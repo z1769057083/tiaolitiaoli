@@ -1,21 +1,12 @@
 <template>
   <div id="app">
-    <index></index>
+    <router-view></router-view>
   </div>
 </template>
 <script>
-import index from '@/components/index'
+import '../static/flexible.js'
 export default {
-  name: 'app',
-  components: {
-    index
-  },
-  data () {
-    return {
-    }
-  },
-  methods: {
-  }
+  name: 'app'
 }
 </script>
 <style>

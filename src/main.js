@@ -9,6 +9,7 @@ import 'element-ui/lib/theme-default/index.css'
 import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 import './common/reset.css'
+import './common/common.css'
 Vue.use(VueRouter)
 Vue.use(ElementUI)
 Vue.use(MintUI)

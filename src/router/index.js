@@ -1,43 +1,37 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import inventoryManage from '@/pages/supplier/inventoryManage'
-import oederManage from '@/pages/distributor/oederManage'
-import shelAudit from '@/pages/platform/shelAudit'
-import addGoods from '@/pages/supplier/addGoods'
-import commodyDetail from '@/pages/supplier/commodyDetail'
+import home from '@/components/home'
 import message from '@/pages/message'
+import report from '@/pages/report'
+import shop from '@/pages/shop'
+import shoplist from '@/pages/shoplist'
 Vue.use(Router)
 export default new Router({
   routes: [
+    {
+      path: '/',
+      component: home,
+      name: 'home'
+    },
     {
       path: '/message',
       component: message,
       name: 'message'
     },
     {
-      path: '/supplier/inventoryManage',
-      component: inventoryManage,
-      name: 'inventoryManage'
+      path: '/report',
+      component: report,
+      name: 'report'
     },
     {
-      path: '/distributor/oederManage',
-      component: oederManage,
-      name: 'oederManage'
+      path: '/shop',
+      component: shop,
+      name: 'shop'
     },
     {
-      path: '/platform/shelAudit',
-      component: shelAudit,
-      name: 'shelAudit'
-    },
-    {
-      path: '/supplier/addGoods',
-      component: addGoods,
-      name: 'addGoods'
-    },
-    {
-      path: '/supplier/commodyDetail',
-      component: commodyDetail,
-      name: 'commodyDetail'
+      path: '/shoplist',
+      component: shoplist,
+      name: 'shoplist'
     }
   ]
 })

@@ -1,0 +1,45 @@
+.i-header{
+  width: 95.8%;
+  height: 1.07rem;
+  background: #000;
+  padding: 0 2.1%;
+  position: relative;
+}
+.i-headerback{
+  padding-top: 0.32rem;
+  width: .21rem;
+  height: .43rem;
+}
+.i-headertit{
+  color: #fff;
+  font-size: .43rem;
+  position: absolute;
+  top: 0.32rem;
+  left: 39.7%;
+}
+.i-headbot{
+  width: 100%;
+  border-top: 0.05rem solid #d6b592;
+  height: 0.53rem;
+  display: flex;
+  justify-content: center;
+}
+.i-headbottext{
+	padding: 0 2%;
+  background: #dbb689;
+  font-size: 12px;
+  text-align: center;
+  height: 0.53rem;
+  line-height: 0.53rem;
+  color: #fff;
+}
+.i-maintop{
+  font-size: 16px;
+  color: #000;
+  font-weight: blod;
+  text-align: center;
+  padding-bottom: 0.37rem;
+  margin-bottom: 0.27rem;
+  line-height: 0.75rem;
+  background: url(../assets/indexborder.png) no-repeat center bottom;
+}
