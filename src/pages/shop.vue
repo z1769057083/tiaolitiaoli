@@ -1,12 +1,5 @@
 <template>
-  <div class='shop'>
-	  <!--头部信息-->	
-		<div class='i-header'>
-		  <a href="javascript:window.history.go(-1)">
-		    <img class='i-headerback' src="../assets/back.png"/>
-		  </a>
-	      <div class='i-headertit'>在线商城</div>
-	  </div>  
+  <div class='shop'> 
      <!--主题部分-->
 		<div class="s-main">
 		  <!--轮播图部分-->
@@ -24,47 +17,12 @@
 				<div class="s-mrecomment">
 					<h3>推荐商品</h3>
 					<div>
-						<dl class="s-mrecomlist">
+						<dl class="s-mrecomlist" v-for="(item, index) in listem">
 							<router-link to='/shoplist'>
-							  <dt class="s-mreconimg"><img src="../assets/shopgoods.png" alt="" /></dt>
+							  <dt class="s-mreconimg"><img :src="item.img" onerror="this.src='http://placeholder.qiniudn.com/800'" alt="" /></dt>
 							</router-link>
 							<dd class="s-mreconintro">
-								<span>引火归元贴</span>
-								<p>¥128.00</p>
-							</dd>
-						</dl>
-						<dl class="s-mrecomlist">
-							<dt class="s-mreconimg"><img src="../assets/shopgoods.png" alt="" /></dt>
-							<dd class="s-mreconintro">
-								<span>引火归元贴</span>
-								<p>¥128.00</p>
-							</dd>
-						</dl>
-						<dl class="s-mrecomlist s-mreconlist1">
-							<dt class="s-mreconimg"><img src="../assets/shopgoods.png" alt="" /></dt>
-							<dd class="s-mreconintro">
-								<span>引火归元贴</span>
-								<p>¥128.00</p>
-							</dd>
-						</dl>
-						<dl class="s-mrecomlist">
-							<dt class="s-mreconimg"><img src="../assets/shopgoods.png" alt="" /></dt>
-							<dd class="s-mreconintro">
-								<span>引火归元贴</span>
-								<p>¥128.00</p>
-							</dd>
-						</dl>
-						<dl class="s-mrecomlist">
-							<dt class="s-mreconimg"><img src="../assets/shopgoods.png" alt="" /></dt>
-							<dd class="s-mreconintro">
-								<span>引火归元贴</span>
-								<p>¥128.00</p>
-							</dd>
-						</dl>
-						<dl class="s-mrecomlist s-mreconlist1">
-							<dt class="s-mreconimg"><img src="../assets/shopgoods.png" alt="" /></dt>
-							<dd class="s-mreconintro">
-								<span>引火归元贴</span>
+								<span>{{item.miaoshu}}</span>
 								<p>¥128.00</p>
 							</dd>
 						</dl>
@@ -128,14 +86,36 @@
 				</div>
 			</div>    
 		</div>	 
-
   <div class="s-mrecombottom">我是有底线的</div>
   </div>
 </template>
 <script>
+import axios from 'axios'
 export default {
   name: 'shop',
-  methods: {}
+  data(){
+  	return {
+      listem:[]
+    }
+  },
+  methods: {
+	  requestlist(){
+//	  	console.log(this);
+	  	var that = this;
+	  	axios.get('/static/list.json')
+		  .then(function (res) {
+		    console.log(res.data);
+		    that.listem = res.data;
+//		    console.log(that);
+		  })
+		  .catch(function (error) {
+		    console.log(error)
+		  })
+	  }
+  },
+  mounted() {
+  	this.requestlist();
+  }
 }
 </script>
 <style scoped>
@@ -221,6 +201,7 @@ export default {
  		float: right;
  		font-weight: normal;
  		background: url(../assets/s-mrecomall.png) no-repeat right;
+ 		background-size: 0.16rem 0.32rem; 
  		padding-right: 3%;
  	}
  	.s-mrecombottom{

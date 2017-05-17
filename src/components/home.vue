@@ -1,9 +1,5 @@
 <template>
 	<div class='home'>
-    <div class='i-header'>
-      <img class='i-headerback' src="../assets/back.png">
-      <div class='i-headertit'>调理调理</div>
-    </div>
     <div class='i-content'>
       <div class='i-headbot'>
         <div class='i-headbottext'>你是第12580位测试者</div>
@@ -18,16 +14,14 @@
         </div>
         <div class='i-maindocter i-maindocter1'>
           <span>林博士</span>
-          <router-link to='/message'>
-            <div class='i-maintest'><img src="../assets/indextest.png"></div>
-          </router-link>
+          <div class="i-maintest" @click="tab('林博士')">
+            <img src="../assets/indextest.png">
+          </div>
           <div class='i-mainportrait'><img src="../assets/indexheadportrait.png"></div>
         </div>
         <div class='i-maindocter'>
           <span>胡大夫</span>
-          <router-link to='/message'>
-            <div class='i-maintest'><img src="../assets/indextest.png"></div>
-          </router-link>
+            <div class='i-maintest' @click="tab('胡大夫')"><img src="../assets/indextest.png"></div>
           <div class='i-mainportrait'><img src="../assets/indexheadportrait1.png"></div>
         </div>
         <div class='i-maintext i-maintip i-maintip1'>温馨提示：本测试所提及的内容仅作为生活保健的咨询建议，如遇不适请及时就医。</div>
@@ -37,10 +31,20 @@
 </template>
 <script>
 export default {
-  name: 'home'
+  name: 'home',
+  data() {
+  	return {
+  	}
+  },
+  methods: {
+  	tab(item) {
+  		this.$router.push({name: 'message', params: {title : item}});
+  	}
+  }
 }
 </script>
-<style scoped>
+<style scoped lang="scss">
+
 .i-content{
   width: 100%;
   background: url(../assets/indexbg.png) no-repeat;

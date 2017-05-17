@@ -1,11 +1,5 @@
 <template>
 	<div class='report'>
-	  <div class='i-header'>
-	  	<a href="javascript:window.history.go(-1)">
-      	  <img class='i-headerback' src="../assets/back.png"/>
-      	</a>
-      	<div class='i-headertit'>体质报告</div>
-      </div>
       <!--聊天内容-->
       <div class='r-content'>
       	<div class='i-headbot'>
@@ -30,9 +24,7 @@
         	  </router-link>
         	</div>
 	      </div>
-      </div>
-      
-      
+      </div> 
    </div>
 </template>
 <script>

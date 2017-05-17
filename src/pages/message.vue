@@ -1,11 +1,5 @@
 <template>
 	<div class='message'>
-	  <div class='i-header'>
-	  	<a href="javascript:window.history.go(-1)">
-      	  <img class='i-headerback' src="../assets/back.png"/>
-      	</a>
-      	<div class='i-headertit'>林博士</div>
-      </div>
       <!--聊天内容-->
       <div class='m-char'>
       	<div class="m-chartime"><span></span><p>2016-01-14 12:33</p><span></span></div>
@@ -15,19 +9,19 @@
 	      	</div>
 	      	<div class="m-chardocter">
 	      		<div class="m-charperson"><img src="../assets/indexheadportrait.png"/></div>
-	      		<div class="m-charcont">我需要知道你的性别和生日。</div>
+	      		<div class="m-charcont">我需要知道你的性别和生日。{{title}}</div>
 	      	</div>
 	      	<div class="m-charcustom">
-	      		<div class="m-charperson" style="float: right;"><img src="../assets/indexheadportrait.png"/></div>
-	      		<div class="m-charcont" style="float: right;">人家是女生！</div>
+	      		<div class="m-charperson"><img src="../assets/indexheadportrait.png"/></div>
+	      		<div class="m-charcont">人家是女生！</div>
 	      	</div>
       </div>
       <!--选择问题内容-->
       <div class="m-select">
       	<div class="m-selecttit">性别</div>
       	<div class="m-selectcon">
-      		<div class="m-selectman"><img src="../assets/msgman.png"/>男</div>
-      		<div class="m-selectman m-selectactive"><img src="../assets/msgwoman.png"/>我是女生</div>	
+      		<div class="m-selectman" :class="{'active': active == 0}" @click="change_active(0,$event)"><img src="../assets/msgman.png"/>男</div>
+      		<div class="m-selectman" :class="{'active': active == 1}" @click="change_active(1,$event)"><img src="../assets/msgwoman.png"/>我是女生</div>	
       	</div>
       	<div class="m-selecttit">出生日期</div>
       	<div class="m-selectdate">年/月/日</div>
@@ -35,13 +29,26 @@
       		<button class="submit">确定</button>
         </router-link>
       </div>
-      
-      
    </div>
 </template>
 <script>
 export default {
-  name: 'message'
+  name: 'message',
+  data(){
+  	return {
+      active: 0,
+      title:''
+    }
+  },
+  methods:{
+  	change_active(num, event) {
+      this.active = num;
+    }
+  },
+  mounted() {
+   this.change_active(0);
+   this.title = this.$router.currentRoute.params.title; 
+  }
 }
 </script>
 <style scoped>
@@ -100,6 +107,7 @@ body,html{
 .m-charperson{
 	width: 1.07rem;
 	height: 1.07rem;
+	float: right;
 }
 .m-charperson img{
 	width: 1.07rem;
@@ -113,11 +121,12 @@ body,html{
 	padding: 0.21rem 0.32rem;
 	border-radius: 0.15rem;
 	letter-spacing: 0.01rem;
+	float: right;
 }
 /*选择问题内容*/
 .m-select{
-	width: 74.4%;
-	margin-left: 12.8%;
+	width: 74.6%;
+	margin-left: 12.2%;
 }
 .m-selecttit{
 	text-align: center;
@@ -135,14 +144,13 @@ body,html{
 }
 .m-selectman{
 	width: 4.2rem;
-	height: 1.54rem;
 	border-radius: 1.06rem;
 	padding-top: 0.32rem;
 	text-align: center;
 	font-size: 0.36rem;
 	color: #b0bfbc;
 }
-.m-selectactive{
+.active{
 	background: #fff;
 	width: 4.8rem;
 }
