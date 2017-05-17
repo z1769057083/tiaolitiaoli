@@ -1,7 +1,9 @@
 <template>
 	<div class='message'>
 	  <div class='i-header'>
-      	<img class='i-headerback' src="../assets/back.png"/>
+	  	<a href="javascript:window.history.go(-1)">
+      	  <img class='i-headerback' src="../assets/back.png"/>
+      	</a>
       	<div class='i-headertit'>林博士</div>
       </div>
       <!--聊天内容-->

@@ -1,7 +1,9 @@
 <template>
 	<div class='report'>
 	  <div class='i-header'>
-      	<img class='i-headerback' src="../assets/back.png"/>
+	  	<a href="javascript:window.history.go(-1)">
+      	  <img class='i-headerback' src="../assets/back.png"/>
+      	</a>
       	<div class='i-headertit'>体质报告</div>
       </div>
       <!--聊天内容-->
@@ -20,8 +22,12 @@
         	</div>
         	<div class="r-msuggest">如果您成年后生活的城市、生活习惯等改变较大，强烈建议您再测试一下后天体质！</div>
         	<div class="r-mbotbtn">
+        	  <router-link to='/shop'>
         		<div class="r-mbotleft"><img src="../assets/reportleft.png"/></div>
+        	  </router-link>
+        	  <router-link to='/shop'>	
         		<div class="r-mbotright"><img src="../assets/reportright.png"/></div>	
+        	  </router-link>
         	</div>
 	      </div>
       </div>
