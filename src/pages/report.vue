@@ -6,7 +6,7 @@
 	        <div class='i-headbottext'>您的先天体质打败了34%的人</div>
 	      </div>
 	      <div class="r-main">
-	      	<h3 class='i-maintop'>你的先天体质</h3>
+	      	<h3 class='i-maintop'>你的先天体质情况</h3>
 	      	<div class="r-mainchart">
 	      		<img src="../assets/reportcharts.png"/>
 	      	</div>
@@ -36,12 +36,15 @@ export default {
 @import "../common/common.scss";
 .r-content{
   width: 100%;
+  height: 100%;
+  position: absolute;
   background: url(../assets/indexbg.png) no-repeat;
   background-size: cover;
   .r-main{
 	margin-top: 0.48rem;
 	.r-mainchart{
 		width: 92%;
+		height: rem(270rem);
 		margin-left: 4%;
 		overflow: hidden;
 		img{
@@ -51,20 +54,20 @@ export default {
 	.i-maincen{
 	  width: 56%;
 	  margin-left: 22%;
-	  margin-bottom: 0.48rem;
+	  margin-bottom: rem(14rem);
 	  border-top: 1px solid #e5e5e3;
-	  padding-top: 0.4rem;
+	  padding-top: rem(15rem);
 	  .r-mattribute{
 		  width: 100%;
 		  text-align: center;
-		  font-size: 0.37rem;
+		  font-size: $font14;
 		  background: url(../assets/rmattribute.png) no-repeat left;
 		  padding-left: 0.27rem;
 	  }
 	  .i-micon{
 		  width: 0.96rem;
 		  height: 0.48rem;
-		  margin-top: 0.4rem;
+		  margin-top: rem(18rem);
 		  display: block;
 		  margin-left: 40%;
 	  }
@@ -73,31 +76,32 @@ export default {
 		width: 84%;
 		margin-left: 8%;
 		text-align: center;
-		font-size: 0.32rem;
+		font-size: $font12;
 		color: #c69b70;
-		line-height: 0.53rem;
-		letter-spacing: 0.01rem;
+		line-height: rem(21rem);
+		letter-spacing: rem(0.4rem);
 	}
 	.r-mbotbtn{
 		width: 84%;
-		margin: 0.8rem 0 0 8%;
+		margin: rem(30rem) 0 0 8%;
+		overflow: hidden;
 		.r-mbotleft{
-			width: 4rem;
-			height: 1.33rem;
+			width: 47.6%;
+			height: rem(50rem);
 			float: left;
-			margin-right: 0.4rem;
+			margin-right: 4.8%;
 			img{
-				width: 4rem;
-				height: 1.33rem;
+				width: 100%;
+				height: 100%;
 			}
 		}
 		.r-mbotright{
-			width: 4rem;
-			height: 1.33rem;
+			width: 47.6%;
+			height: rem(50rem);
 			float: left;
 			img{
-				width: 4rem;
-				height: 1.33rem;
+				width: 100%;
+				height: 100%;
 			}
 		}
 	}

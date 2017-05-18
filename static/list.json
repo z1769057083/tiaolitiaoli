@@ -1,5 +1,5 @@
  [
- { "id": "1", "img": "../assets/shopgoods.png", "miaoshu": "引火归元帖","pic":"128.00" },
- { "id": "2", "img": "../assets/shopgoods.png", "miaoshu": "引火归元帖","pic":"128.00" }
+ { "id": "1", "img": "shopgoods.png", "miaoshu": "引火归元帖","pic":"128.00" },
+ { "id": "2", "img": "shopgoods.png", "miaoshu": "引火归元帖","pic":"128.00" }
 ]
 

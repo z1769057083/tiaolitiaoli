@@ -4,7 +4,7 @@ import home from '@/components/home'
 import message from '@/pages/message'
 import report from '@/pages/report'
 import shop from '@/pages/shop'
-import shoplist from '@/pages/shoplist'
+import goodsdetail from '@/pages/goodsdetail'
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -29,9 +29,9 @@ export default new Router({
       name: 'shop'
     },
     {
-      path: '/shoplist',
-      component: shoplist,
-      name: 'shoplist'
+      path: '/goodsdetail',
+      component: goodsdetail,
+      name: 'goodsdetail'
     }
   ]
 })

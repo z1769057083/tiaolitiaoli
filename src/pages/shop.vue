@@ -13,12 +13,12 @@
 			    <div class="swiper-pagination"></div>
 			</div>
 			<!--商品部分-->
-			<div class="s-mgoods" v-for="(item, index) in listem">
+			<div class="s-mgoods">
 				<div class="s-mrecomment">
-					<h3>{{item.title}}</h3>
+					<h3>推荐商品</h3>
 					<div>
-						<dl class="s-mrecomlist" >
-							<router-link to='/shoplist'>
+						<dl class="s-mrecomlist"  v-for="(item, index) in listem">
+							<router-link to='/goodsdetail'>
 							  <dt class="s-mreconimg"><img :src="item.img" onerror="this.src='http://placeholder.qiniudn.com/800'" alt="" /></dt>
 							</router-link>
 							<dd class="s-mreconintro">
@@ -102,7 +102,7 @@ export default {
   methods: {
 	  requestlist(){
 	  	var that = this;
-	  	axios.get('http://139.162.116.116/product/sample_all')
+	  	axios.get('./static/list.json')
 		  .then(function (res) {
 		  	that.listem = res.data;
 		  	console.log(that.listem)

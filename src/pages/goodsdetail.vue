@@ -44,19 +44,20 @@
 </template>
 <script>
 export default {
-  name: 'shoplist'
+  name: 'goodsdetail'
 }
 </script>
 <style scoped lang="scss">
   .shoplist{
 	  background: #f6f6f6;	
 	  .l-main{
+	  	  width: 100%;
+	  	  height: 93%;
+	  	  position: absolute;
+	  	  bottom: 7%;
+	  		overflow-y: auto;
 	  	.l-mainscroll{
-	  		position: absolute;
-	  		left: 0;
-	  		right: 0;
-	  		/*bottom: 1.28rem;*/
-	  		overflow: hidden;
+	  		width: 100%;
 	  		.l-mgoodsimg{
 				  width: 100%;
 				  height: 9.33rem;
@@ -137,7 +138,7 @@ export default {
 	  }
 	  .l-mgoodspay{
 	  	width: 100%;
-	  	height: 1.28rem;
+	  	height: 7%;
 	  	background: #fff;
 	  	position: fixed;
 	  	left: 0;

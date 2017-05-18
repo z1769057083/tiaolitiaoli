@@ -2,25 +2,63 @@
 	<div class='message'>
       <!--聊天内容-->
       <div class='m-char'>
-      	<div class="m-chardocter">
-      		<div class="m-charperson"><img src="../assets/indexheadportrait.png"/></div>
-      		<div class="m-charcont">您好！欢迎使用体质辨析，了解自己的体质可以更有针对性的养生和调理！</div>
-      	</div>
-      	<div class="m-chardocter">
-      		<div class="m-charperson"><img src="../assets/indexheadportrait.png"/></div>
-      		<div class="m-charcont">我需要知道你的性别和生日。{{title}}</div>
-      	</div>
-      	<div class="m-charcustom">
-      		<div class="m-charperson"><img src="../assets/indexheadportrait.png"/></div>
-      		<div class="m-charcont">人家是女生！</div>
+      	<div class="m-charscroll">
+      		<div class="m-chardocter">
+	      		<div class="m-charperson"><img src="../assets/indexheadportrait.png"/></div>
+	      		<div class="m-charcont">您好！欢迎使用体质辨析，了解自己的体质可以更有针对性的养生和调理！</div>
+	      	</div>
+	      	<div class="m-chardocter">
+	      		<div class="m-charperson"><img src="../assets/indexheadportrait.png"/></div>
+	      		<div class="m-charcont">我需要知道你的性别和生日{{title}}。</div>
+	      	</div>
+	      	<div class="m-charcustom">
+	      		<div class="m-charperson"><img src="../assets/indexheadportrait.png"/></div>
+	      		<div class="m-charcont">人家是女生！</div>
+	      	</div>
+	      	<div class="m-chardocter">
+	      		<div class="m-charperson"><img src="../assets/indexheadportrait.png"/></div>
+	      		<div class="m-charcont">您好！欢迎使用体质辨析，了解自己的体质可以更有针对性的养生和调理！</div>
+	      	</div>
+	      	<div class="m-chardocter">
+	      		<div class="m-charperson"><img src="../assets/indexheadportrait.png"/></div>
+	      		<div class="m-charcont">我需要知道你的性别和生日{{title}}。</div>
+	      	</div>
+	      	<div class="m-charcustom">
+	      		<div class="m-charperson"><img src="../assets/indexheadportrait.png"/></div>
+	      		<div class="m-charcont">人家是女生！</div>
+	      	</div>
+	      	<div class="m-chardocter">
+	      		<div class="m-charperson"><img src="../assets/indexheadportrait.png"/></div>
+	      		<div class="m-charcont">您好！欢迎使用体质辨析，了解自己的体质可以更有针对性的养生和调理！</div>
+	      	</div>
+	      	<div class="m-chardocter">
+	      		<div class="m-charperson"><img src="../assets/indexheadportrait.png"/></div>
+	      		<div class="m-charcont">我需要知道你的性别和生日{{title}}。</div>
+	      	</div>
+	      	<div class="m-charcustom">
+	      		<div class="m-charperson"><img src="../assets/indexheadportrait.png"/></div>
+	      		<div class="m-charcont">人家是女生！</div>
+	      	</div>
+	      	<div class="m-chardocter">
+	      		<div class="m-charperson"><img src="../assets/indexheadportrait.png"/></div>
+	      		<div class="m-charcont">您好！欢迎使用体质辨析，了解自己的体质可以更有针对性的养生和调理！</div>
+	      	</div>
+	      	<div class="m-chardocter">
+	      		<div class="m-charperson"><img src="../assets/indexheadportrait.png"/></div>
+	      		<div class="m-charcont">我需要知道你的性别和生日{{title}}。</div>
+	      	</div>
+	      	<div class="m-charcustom">
+	      		<div class="m-charperson"><img src="../assets/indexheadportrait.png"/></div>
+	      		<div class="m-charcont">人家是女生！</div>
+	      	</div>
       	</div>
       </div>
       <!--选择问题内容-->
       <div class="m-select">
       	<div class="m-selecttit">性别</div>
       	<div class="m-selectcon">
-      		<div class="m-selectman" :class="{'active': active == 0}" @click="change_active(0,$event)"><img src="../assets/msgman.png"/>男</div>
-      		<div class="m-selectman" :class="{'active': active == 1}" @click="change_active(1,$event)"><img src="../assets/msgwoman.png"/>我是女生</div>	
+      		<div class="m-selectboy" :class="{'active': active == 0}" @click="change_active(0,$event)"><img src="../assets/msgman.png"/>男</div>
+      		<div class="m-selectgirl" :class="{'active': active == 1}" @click="change_active(1,$event)"><img src="../assets/msgwoman.png"/>我是女生</div>	
       	</div>
       	<div class="m-selecttit">出生日期</div>
       	<div class="m-selectdate">年/月/日</div>
@@ -45,75 +83,82 @@ export default {
     }
   },
   mounted() {
-   this.change_active(0);
-   this.title = this.$router.currentRoute.params.title; 
+   this.change_active(1);
+   this.title = this.$router.currentRoute.params.title;
+   console.log(this.title)
   }
 }
 </script>
-<style scoped lang="scss">
+<style lang="scss">
 @import "../common/common.scss";
 .message{
 	background: #f8f8f8;
 	width: 100%;
 	height: 100%;
+	position: absolute;
+	overflow: hidden;
 }
 /*聊天内容*/
 .m-char{
 	width: 100%;
-	height: 9rem;
-	border-bottom: 0.05px solid #dab589;
+	height: rem(280rem);
 	background: #f2f2f2;
 	padding-top: rem(20rem);
-	.m-chardocter{
-		width: 78%;
-		margin-left: 7%;
-		overflow: hidden;
-		display: flex;
-		margin-bottom: 0.42rem;
-		.m-charperson{
-			width: 1.07rem;
-			height: 1.07rem;
-			margin-right:0.5rem;
-			img{
+	border-bottom: rem(4rem) solid #dab589;
+	overflow-y: auto;
+	.m-charscroll{
+		width: 100%;
+		.m-chardocter{
+			width: 78%;
+			margin-left: 7%;
+			overflow: hidden;
+			display: flex;
+			margin-bottom: rem(14rem);
+			.m-charperson{
 				width: 1.07rem;
 				height: 1.07rem;
+				margin-right: rem(12rem);
+				img{
+					width: 1.07rem;
+					height: 1.07rem;
+				}
+			}
+			.m-charcont{
+				color: #3c3c3c;
+				background: #fff;
+				line-height: 0.56rem;
+				font-size: 0.37rem;
+				padding: 0.21rem 0.32rem;
+				border-radius: 0.15rem;
+				letter-spacing: 0.01rem;
 			}
 		}
-		.m-charcont{
-			color: #3c3c3c;
-			background: #fff;
-			line-height: 0.56rem;
-			font-size: 0.37rem;
-			padding: 0.21rem 0.32rem;
-			border-radius: 0.15rem;
-			letter-spacing: 0.01rem;
-		}
-	}
-	.m-charcustom{
-		width: 78%;
-		margin-right: 7%;
-		overflow: hidden;
-		margin-bottom: 0.42rem;
-		float: right;
-		.m-charperson{
-			width: 1.07rem;
-			height: 1.07rem;
+		.m-charcustom{
+			width: 78%;
+			margin-right: 7%;
+			overflow: hidden;
+			margin-bottom: rem(14rem);
 			float: right;
-			margin-left: 0.5rem;
-			img{
+			.m-charperson{
 				width: 1.07rem;
 				height: 1.07rem;
+				float: right;
+				margin-left: rem(12rem);
+				img{
+					width: 1.07rem;
+					height: 1.07rem;
+				}
 			}
-		}
-		.m-charcont{
-			color: #3c3c3c;
-			background: #fff;
-			line-height: 0.56rem;
-			font-size: 0.37rem;
-			padding: 0.21rem 0.32rem;
-			border-radius: 0.15rem;
-			letter-spacing: 0.01rem;
-			float: right;
+			.m-charcont{
+				color: #3c3c3c;
+				background: #fff;
+				line-height: 0.56rem;
+				font-size: 0.37rem;
+				padding: 0.21rem 0.32rem;
+				border-radius: 0.15rem;
+				letter-spacing: 0.01rem;
+				float: right;
+			}
 		}
 	}
 }
@@ -121,6 +166,9 @@ export default {
 .m-select{
 	width: 74.6%;
 	margin-left: 12.2%;
+	background: #f8f8f8;
+	position: absolute;
+	z-index: 99;
 	.m-selecttit{
 		text-align: center;
 		font-size: 0.4rem;
@@ -130,34 +178,56 @@ export default {
 	.m-selectcon{
 		width: 100%;
 		position: relative;
-		height: 1.78rem;
+		height: rem(70rem);
 		background: url(../assets/msggrey.png) no-repeat center;
-		display: flex;
-		border-radius: 1.06rem;
-		.m-selectman{
-			width: 4.2rem;
-			border-radius: 1.06rem;
-			padding-top: 0.32rem;
+		background-size: cover;
+		border-radius: rem(45rem);
+		.m-selectboy{
+			width: rem(155rem);
+			height: rem(70rem);
+			border-radius: rem(45rem);
 			text-align: center;
-			font-size: 0.36rem;
+			font-size: rem(14rem);
 			color: #b0bfbc;
+			overflow: hidden;
+			position: absolute;
+			left: 0;
+			top: 0;
 			img{
-				width: 0.80rem;
-				height: 0.80rem;
+				width: rem(28rem);
+				height: rem(28rem);
 				display: block;
-				margin-left: 1.4rem;
-				margin-bottom: 0.24rem;
+				margin: rem(12rem) 0 rem(6rem) rem(63.5rem);
+			}
+		}
+		.m-selectgirl{
+			width: rem(155rem);
+			height: rem(70rem);
+			border-radius: rem(45rem);
+			text-align: center;
+			font-size: rem(14rem);
+			color: #b0bfbc;
+			position: absolute;
+			right: 0;
+			top: 0;
+			overflow: hidden;
+			img{
+				width: rem(36rem);
+				height: rem(28rem);
+				display: block;
+				margin: rem(12rem) 0 rem(6rem) rem(59rem);
+				
 			}
 		}
 		.active{
 			background: #fff;
-			width: 4.8rem;
 		}
 	}
 	.m-selectdate{
 		width: 92.8%;
 		height: 1.3rem;
 		background: url(../assets/msgdate.png) no-repeat center;
+		background-size: cover;
 		line-height: 1.3rem;
 		font-size: 0.37rem;
 		padding-left: 7.2%;

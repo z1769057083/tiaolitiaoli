@@ -1,5 +1,5 @@
 <template>
-	<div class='home'>
+  <div class='home'>
     <div class='i-content'>
       <div class='i-headbot'>
         <div class='i-headbottext'>你是第12580位测试者</div>
@@ -46,24 +46,27 @@ export default {
 <style scoped lang="scss">
 @import "../common/common.scss";
 .i-content{
+  position: absolute;
+  bottom: 0;
   width: 100%;
+  height: 100%;
   background: url(../assets/indexbg.png) no-repeat;
-  background-size: cover; 
+  background-size: 100% 100%; 
   	.i-main{
-  	  	margin-top: rem(18rem);
+  	  	margin-top: rem(22rem);
   	  	.i-maintext{
-		   width: 83.2%;
-		   margin-left: 8.4%;
-		   letter-spacing: 0.01rem;
+		   width: 83.8%;
+		   margin-left: 8.6%;
+		   letter-spacing: rem(0.4rem);
 		   font-size: 0.32rem;
-		   line-height: 0.59rem;
+		   line-height: rem(24rem);
 		   color: #000;
 		   text-align: center;
 		}
 		.i-maincen{
 			width: 53%;
 			margin-left:23.5%;
-			margin-bottom: 0.48rem;
+			margin-top: rem(4rem);
 		  	.i-mline{
 			    width: 100%;
 			    height: 0.03rem;
@@ -71,23 +74,24 @@ export default {
 			.i-micon{
 			    width: 0.96rem;
 			    height: 0.48rem;
-			    margin-top: 0.4rem;
+			    margin-top: rem(22rem);
 			    display: block;
 			    margin-left: 40%;
 			}
 		}
 		.i-maindocter{
-		  width: 82.7%;
-		  height: 2.35rem;
-		  border: 0.05rem solid #e3e3e3;
+		  width: 82%;
+		  height: rem(86rem);
+		  box-shadow: 0 rem(1rem) rem(2rem) #e2e1df;
 		  border-radius: 0.16rem;
 		  margin-left: 13.3%;
 		  position: relative;
 		  background: #fff;
+		  margin-top: rem(22rem);
 		  span{
 			  margin-left: 16%;
-			  line-height: 2.35rem;
-			  font-size: 0.37rem;
+			  line-height: rem(86rem);
+			  font-size: rem(14rem);
 		  }
 		  .i-maintest{
 			  width: 23.2%;
@@ -105,15 +109,15 @@ export default {
 			  }
 			}
 			.i-mainportrait{
-			  width: 1.82rem;
-			  height: 1.82rem;
+			  width: rem(75rem);
+			  height: rem(75rem);
 			  border-radius: 50%;
 			  position: absolute;
-			  left: -0.9rem;
-			  top: 0.27rem;
+			  left: rem(-37.5rem);
+			  top: rem(5rem);
 			  img{
-			    width: 1.82rem;
-			    height: 1.82rem;
+			    width: rem(75rem);
+			    height: rem(75rem);
 			  }
 			}
 
@@ -122,8 +126,8 @@ export default {
 		  margin-bottom: 0.48rem;
 		}
 		.i-maintip{
-		  color: #ce8654;
-		  margin-top: 0.8rem;
+		  color: #C69B70;
+		  margin-top: rem(30rem);
 		}
 	}
 }
