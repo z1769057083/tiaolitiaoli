@@ -13,16 +13,16 @@
 			    <div class="swiper-pagination"></div>
 			</div>
 			<!--商品部分-->
-			<div class="s-mgoods">
+			<div class="s-mgoods" v-for="(item, index) in listem">
 				<div class="s-mrecomment">
-					<h3>推荐商品</h3>
+					<h3>{{item.title}}</h3>
 					<div>
-						<dl class="s-mrecomlist" v-for="(item, index) in listem">
+						<dl class="s-mrecomlist" >
 							<router-link to='/shoplist'>
 							  <dt class="s-mreconimg"><img :src="item.img" onerror="this.src='http://placeholder.qiniudn.com/800'" alt="" /></dt>
 							</router-link>
 							<dd class="s-mreconintro">
-								<span>{{item.miaoshu}}</span>
+								<span>{{item.name}}</span>
 								<p>¥128.00</p>
 							</dd>
 						</dl>
@@ -95,18 +95,17 @@ export default {
   name: 'shop',
   data(){
   	return {
-      listem:[]
+      listem:[],
+      list:[]
     }
   },
   methods: {
 	  requestlist(){
-//	  	console.log(this);
 	  	var that = this;
-	  	axios.get('/static/list.json')
+	  	axios.get('http://139.162.116.116/product/sample_all')
 		  .then(function (res) {
-		    console.log(res.data);
-		    that.listem = res.data;
-//		    console.log(that);
+		  	that.listem = res.data;
+		  	console.log(that.listem)
 		  })
 		  .catch(function (error) {
 		    console.log(error)
@@ -118,7 +117,8 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style scoped lang="scss">
+	@import "../common/common.scss";
 	.shop{
 		width: 100%;
 		overflow: hidden;

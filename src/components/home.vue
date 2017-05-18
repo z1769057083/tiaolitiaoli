@@ -44,87 +44,87 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-
+@import "../common/common.scss";
 .i-content{
   width: 100%;
   background: url(../assets/indexbg.png) no-repeat;
-  background-size: cover;
-}
-.i-main{
-  margin-top: 0.48rem;
-}
-.i-maintext{
-  width: 83.2%;
-  margin-left: 8.4%;
-  letter-spacing: 0.01rem;
-  font-size: 12px;
-  line-height: 0.59rem;
-  color: #000;
-  text-align: center;
-}
-.i-maincen{
-  width: 53%;
-  margin-left:23.5%;
-  margin-bottom: 0.48rem;
-}
-.i-mline{
-  width: 100%;
-  height: 0.03rem;
-}
-.i-micon{
-  width: 0.96rem;
-  height: 0.48rem;
-  margin-top: 0.4rem;
-  display: block;
-  margin-left: 40%;
-}
-.i-maindocter{
-  width: 82.7%;
-  height: 2.35rem;
-  border: 0.05rem solid #e3e3e3;
-  border-radius: 0.16rem;
-  margin-left: 13.3%;
-  position: relative;
-}
-.i-maindocter1{
-  margin-bottom: 0.48rem;
-}
-.i-maindocter span{
-  margin-left: 16%;
-  line-height: 2.35rem;
-  font-size: 0.37rem;
-}
-.i-maintest{
-  width: 23.2%;
-  height: 0.75rem;
-  line-height: 0.75rem;
-  color: #ce8654;
-  border-radius: 0.11rem;
-  text-align: center;
-  position:absolute;
-  right: 3.9%;
-  top: 0.8rem;
-}
-.i-maintest img{
-  width: 1.92rem;
-  height: 0.75rem;
-}
-.i-mainportrait{
-  width: 1.82rem;
-  height: 1.82rem;
-  border-radius: 50%;
-  position: absolute;
-  left: -0.9rem;
-  top: 0.27rem;
-}
-.i-mainportrait img{
-  width: 1.82rem;
-  height: 1.82rem;
-}
-.i-maintip{
-  color: #ce8654;
-}
-.i-maintip1{
-  margin-top: 0.8rem;
+  background-size: cover; 
+  	.i-main{
+  	  	margin-top: rem(18rem);
+  	  	.i-maintext{
+		   width: 83.2%;
+		   margin-left: 8.4%;
+		   letter-spacing: 0.01rem;
+		   font-size: 0.32rem;
+		   line-height: 0.59rem;
+		   color: #000;
+		   text-align: center;
+		}
+		.i-maincen{
+			width: 53%;
+			margin-left:23.5%;
+			margin-bottom: 0.48rem;
+		  	.i-mline{
+			    width: 100%;
+			    height: 0.03rem;
+			}
+			.i-micon{
+			    width: 0.96rem;
+			    height: 0.48rem;
+			    margin-top: 0.4rem;
+			    display: block;
+			    margin-left: 40%;
+			}
+		}
+		.i-maindocter{
+		  width: 82.7%;
+		  height: 2.35rem;
+		  border: 0.05rem solid #e3e3e3;
+		  border-radius: 0.16rem;
+		  margin-left: 13.3%;
+		  position: relative;
+		  background: #fff;
+		  span{
+			  margin-left: 16%;
+			  line-height: 2.35rem;
+			  font-size: 0.37rem;
+		  }
+		  .i-maintest{
+			  width: 23.2%;
+			  height: 0.75rem;
+			  line-height: 0.75rem;
+			  color: #ce8654;
+			  border-radius: 0.11rem;
+			  text-align: center;
+			  position:absolute;
+			  right: 3.9%;
+			  top: 0.8rem;
+			  img{
+				width: 1.92rem;
+				height: 0.75rem;
+			  }
+			}
+			.i-mainportrait{
+			  width: 1.82rem;
+			  height: 1.82rem;
+			  border-radius: 50%;
+			  position: absolute;
+			  left: -0.9rem;
+			  top: 0.27rem;
+			  img{
+			    width: 1.82rem;
+			    height: 1.82rem;
+			  }
+			}
+
+		}
+		.i-maindocter1{
+		  margin-bottom: 0.48rem;
+		}
+		.i-maintip{
+		  color: #ce8654;
+		  margin-top: 0.8rem;
+		}
+	}
 }
 </style>

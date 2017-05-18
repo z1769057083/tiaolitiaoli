@@ -1,0 +1,40 @@
+/*rem换算*/
+@function rem($n) {
+    @return $n / 37.5;
+}
+$font12: rem(12rem);
+$font13: rem(13rem);
+$font14: rem(14rem);
+$font16: rem(16rem);
+$font18: rem(18rem);
+$font20: rem(20rem);
+$c000: #000;
+$cfff: #fff;
+$c3c3c: #3c3c3c;
+.i-headbot{
+  width: 100%;
+  border-top: rem(2rem) solid #d6b592;
+  height: rem(20rem);
+  display: flex;
+  justify-content: center;
+}
+.i-headbottext{
+  padding: 0 2%;
+  background: #dbb689;
+  font-size: $font12;
+  text-align: center;
+  height: rem(20rem);
+  line-height: rem(20rem);
+  color: $cfff;
+}
+.i-maintop{
+  font-size: $font16;
+  color: $c000;
+  font-weight: blod;
+  text-align: center;
+  padding-bottom: rem(14rem);
+  margin-bottom: rem(10rem);
+  line-height: rem(17rem);
+  background: url(../assets/indexborder.png) no-repeat center bottom;
+  background-size: 53% rem(2rem);
+}
