@@ -13,8 +13,8 @@ $cfff: #fff;
 $c3c3c: #3c3c3c;
 .i-headbot{
   width: 100%;
-  border-top: rem(2rem) solid #d6b592;
-  height: rem(20rem);
+  border-top: rem(3rem) solid #dbb689;
+  height: rem(17rem);
   display: flex;
   justify-content: center;
 }
@@ -23,8 +23,8 @@ $c3c3c: #3c3c3c;
   background: #dbb689;
   font-size: $font12;
   text-align: center;
-  height: rem(20rem);
-  line-height: rem(20rem);
+  height: rem(17rem);
+  line-height: rem(17rem);
   color: $cfff;
 }
 .i-maintop{
@@ -32,9 +32,10 @@ $c3c3c: #3c3c3c;
   color: $c000;
   font-weight: blod;
   text-align: center;
-  padding-bottom: rem(24rem);
-  margin-bottom: rem(14rem);
-  line-height: rem(17rem);
+  padding-bottom: rem(14rem);
+  margin-bottom: rem(10rem);
+  line-height: rem(28rem);
+  letter-spacing: rem(2rem);
   background: url(../assets/indexborder.png) no-repeat center bottom;
   background-size: 53% rem(3rem);
 }

@@ -14,7 +14,7 @@
 	        	<div class="r-mattribute">木平、火强、土平、金平、水平</div>
 	        	<img class="i-micon" src="../assets/index.png">
         	</div>
-        	<div class="r-msuggest">如果您成年后生活的城市、生活习惯等改变较大，强烈建议您再测试一下后天体质！</div>
+        	<div class="r-msuggest">如果您成年后生活的城市、生活习惯等改变较大，强烈建议您再测试一下后天体质！如果您成年后生活的城市、生活习惯等改变较大，强烈建议您再测试一下后天体质！如果您成年后生活的城市、生活习惯等改变较大，强烈建议您再测试一下后天体质！如果您成年后生活的城市、生活习惯等改变较大，强烈建议您再测试一下后天体质！如果您成年后生活的城市、生活习惯等改变较大，强烈建议您再测试一下后天体质！如果您成年后生活的城市、生活习惯等改变较大，强烈建议您再测试一下后天体质！如果您成年后生活的城市、生活习惯等改变较大，强烈建议您再测试一下后天体质！</div>
         	<div class="r-mbotbtn">
         	  <router-link to='/shop'>
         		<div class="r-mbotleft"><img src="../assets/reportleft.png"/></div>
@@ -29,7 +29,10 @@
 </template>
 <script>
 export default {
-  name: 'report'
+  name: 'report',
+  mounted() {
+  	document.title="体质报告"
+  }
 }
 </script>
 <style scoped lang="scss">
@@ -44,7 +47,8 @@ export default {
 	margin-top: 0.48rem;
 	.r-mainchart{
 		width: 92%;
-		height: rem(270rem);
+		height: rem(250rem);
+		margin-top: rem(15rem);
 		margin-left: 4%;
 		overflow: hidden;
 		img{
@@ -62,7 +66,9 @@ export default {
 		  text-align: center;
 		  font-size: $font14;
 		  background: url(../assets/rmattribute.png) no-repeat left;
-		  padding-left: 0.27rem;
+		  padding-left: 4%;
+		  line-height: rem(20rem);
+		  color: #c000;
 	  }
 	  .i-micon{
 		  width: 0.96rem;
@@ -85,6 +91,7 @@ export default {
 		width: 84%;
 		margin: rem(30rem) 0 0 8%;
 		overflow: hidden;
+		padding-bottom: rem(30rem);
 		.r-mbotleft{
 			width: 47.6%;
 			height: rem(50rem);

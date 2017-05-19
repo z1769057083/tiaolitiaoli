@@ -48,6 +48,7 @@ export default {
 }
 </script>
 <style scoped lang="scss">
+  @import "../common/common.scss";
   .shoplist{
 	  background: #f6f6f6;	
 	  .l-main{
@@ -58,6 +59,7 @@ export default {
 	  		overflow-y: auto;
 	  	.l-mainscroll{
 	  		width: 100%;
+	  		background: #f6f6f6;
 	  		.l-mgoodsimg{
 				  width: 100%;
 				  height: 9.33rem;
@@ -68,17 +70,18 @@ export default {
 			  }
 			  .l-mgoodsprice{
 			  	width: 93.6%;
-			  	padding: 0.37rem 3.2%;
+			  	padding: rem(14rem) 3.2% rem(6rem);
 			  	background: #fff;
 			  	.l-mgoodsintro{
-				  	font-size: 0.37rem;
-				  	color: #3c3c3c;
-				  	line-height: 0.53rem;
+				  	font-size: rem(14rem);
+				  	color: $c3c3c;
+				  	line-height: rem(20rem);
+				  	margin-bottom: rem(2rem);
 				  }
 				  .l-mgoodspri{
 				  	color: #ff3300;
 				  	font-size: 0.32rem;
-				  	line-height: 0.67rem;
+				  	line-height: rem(25rem);
 				  	span{
 					  	font-size: 0.48rem;
 					  }

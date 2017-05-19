@@ -40,6 +40,10 @@ export default {
   	tab(item) {
   		this.$router.push({name: 'message', params: {title : item}});
   	}
+  },
+  mounted() {
+  	document.title="调理调理"
+  	
   }
 }
 </script>
@@ -53,20 +57,20 @@ export default {
   background: url(../assets/indexbg.png) no-repeat;
   background-size: 100% 100%; 
   	.i-main{
-  	  	margin-top: rem(22rem);
+  	  	margin-top: rem(18rem);
   	  	.i-maintext{
 		   width: 83.8%;
 		   margin-left: 8.6%;
 		   letter-spacing: rem(0.4rem);
-		   font-size: 0.32rem;
-		   line-height: rem(24rem);
+		   font-size: $font12;
+		   line-height: rem(22rem);
 		   color: #000;
 		   text-align: center;
 		}
 		.i-maincen{
 			width: 53%;
 			margin-left:23.5%;
-			margin-top: rem(4rem);
+			margin-top: rem(2rem);
 		  	.i-mline{
 			    width: 100%;
 			    height: 0.03rem;
@@ -74,7 +78,7 @@ export default {
 			.i-micon{
 			    width: 0.96rem;
 			    height: 0.48rem;
-			    margin-top: rem(22rem);
+			    margin-top: rem(18rem);
 			    display: block;
 			    margin-left: 40%;
 			}
@@ -87,7 +91,7 @@ export default {
 		  margin-left: 13.3%;
 		  position: relative;
 		  background: #fff;
-		  margin-top: rem(22rem);
+		  margin-top: rem(18rem);
 		  span{
 			  margin-left: 16%;
 			  line-height: rem(86rem);
