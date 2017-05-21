@@ -3,6 +3,7 @@
      <!--主题部分-->
 		<div class="s-main">
 		  <!--轮播图部分-->
+			
 			<div class="swiper-container">
 			    <div class="swiper-wrapper">
 			        <div class="swiper-slide"><img src="../assets/shopswiper.png"/></div>
@@ -12,7 +13,8 @@
 			    <!-- 如果需要分页器 -->
 			    <div class="swiper-pagination"></div>
 			</div>
-						<!--商品部分-->
+			
+			<!--商品部分-->
 			<div class="s-mgoods">
 				<div class="s-mrecomment">
 					<h3>推荐商品</h3>
