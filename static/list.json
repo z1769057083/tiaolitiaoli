@@ -1,48 +1,20 @@
 [
     {
-        "title": "五行贴",
-        "items": [
-            {
-                "id": "1",
-                "img": "shopgoods.png",
-                "name": "引火归元帖",
-                "pic": "128.00"
-            },
-            {
-                "id": "2",
-                "img": "shopgoods.png",
-                "name": "引火归元帖",
-                "pic": "128.00"
-            },
-            {
-                "id": "3",
-                "img": "shopgoods.png",
-                "name": "引火归元帖",
-                "pic": "128.00"
-            }
-        ]
+        "id": "1",
+        "img": "shopgoods.png",
+        "name": "引火归元帖",
+        "pic": "128.00"
     },
     {
-        "title": "推荐商品",
-        "items": [
-            {
-                "id": "1",
-                "img": "shopgoods.png",
-                "name": "引火归元帖",
-                "pic": "128.00"
-            },
-            {
-                "id": "2",
-                "img": "shopgoods.png",
-                "name": "引火归元帖",
-                "pic": "128.00"
-            },
-            {
-                "id": "3",
-                "img": "shopgoods.png",
-                "name": "引火归元帖",
-                "pic": "128.00"
-            }
-        ]
+        "id": "2",
+        "img": "shopgoods.png",
+        "name": "引火归元帖",
+        "pic": "128.00"
+    },
+    {
+        "id": "3",
+        "img": "shopgoods.png",
+        "name": "引火归元帖",
+        "pic": "128.00"
     }
 ]

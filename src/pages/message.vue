@@ -53,12 +53,53 @@
 	      	</div>
       	</div>
       </div>
-      <!--选择问题内容-->
-      <mSelect1></mSelect1>
+      <!--先天体质报告问题-->
+      <!--<gender></gender>-->
+      <!--<city></city>-->
+      <!--<facialFeatures></facialFeatures>-->
+      <!--<emotion></emotion>-->
+      <!--<season></season>-->
+      <!--<treatOthers1></treatOthers1>-->
+      <!--<treatOthers2></treatOthers2>-->
+      <!--<treatOthers3></treatOthers3>-->
+      <!--<treatOthers4></treatOthers4>-->
+      <!--<parentsBirthday></parentsBirthday>-->
+      <!--<maskconfirm></maskconfirm>-->
+      <!--后天体质报告问题-->
+      <!--<aftercity></aftercity>-->
+      <!--<afterseason></afterseason>-->
+      <afterlimb></afterlimb>
+      <!--<afterfigure></afterfigure>-->
+      <!--<aftertreat1></aftertreat1>-->
+      <!--<aftertreat2></aftertreat2>-->
+      <!--<aftertreat3></aftertreat3>-->
+      <!--<aftertreat4></aftertreat4>-->
+      <!--<aftertreat5></aftertreat5>-->
+      <!--<aftertreat6></aftertreat6>-->
    </div>
 </template>
 <script>
-import mSelect1 from '@/components/mSelect1'
+import gender from '@/components/gender'
+import city from '@/components/city'
+import facialFeatures from '@/components/facialFeatures'
+import emotion from '@/components/emotion'
+import season from '@/components/season'
+import treatOthers1 from '@/components/treatOthers1'
+import treatOthers2 from '@/components/treatOthers2'
+import treatOthers3 from '@/components/treatOthers3'
+import treatOthers4 from '@/components/treatOthers4'
+import parentsBirthday from '@/components/parentsBirthday'
+import maskconfirm from '@/components/maskconfirm'
+import aftercity from '@/components/aftercity'
+import afterseason from '@/components/afterseason'
+import afterlimb from '@/components/afterlimb'
+import afterfigure from '@/components/afterfigure'
+import aftertreat1 from '@/components/aftertreat1'
+import aftertreat2 from '@/components/aftertreat2'
+import aftertreat3 from '@/components/aftertreat3'
+import aftertreat4 from '@/components/aftertreat4'
+import aftertreat5 from '@/components/aftertreat5'
+import aftertreat6 from '@/components/aftertreat6'
 export default {
   name: 'message',
   data(){
@@ -67,7 +108,27 @@ export default {
     }
   },
   components: {
-    mSelect1
+  	gender,
+    city,
+    facialFeatures,
+    emotion,
+    season,
+    treatOthers1,
+    treatOthers2,
+    treatOthers3,
+    treatOthers4,
+    parentsBirthday,
+    maskconfirm,
+    aftercity,
+    afterseason,
+    afterlimb,
+    afterfigure,
+    aftertreat1,
+    aftertreat2,
+    aftertreat3,
+    aftertreat4,
+    aftertreat5,
+    aftertreat6 
   },
   methods:{
   },
@@ -90,7 +151,7 @@ export default {
 /*聊天内容*/
 .m-char{
 	width: 100%;
-	height: rem(320rem);
+	height: 48%;
 	background: #f2f2f2;
 	padding-top: rem(20rem);
 	border-bottom: rem(4rem) solid #dab589;

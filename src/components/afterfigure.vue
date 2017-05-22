@@ -1,0 +1,87 @@
+<template>
+<div class="m-select">
+	<div class="m-selectfacon">
+	  	<div class="m-selectfigure">
+	  		<dl>
+	  			<dt>四肢</dt>
+	  			<dd><span>手足灵活细长多青筋</span></dd>	
+	  			<dd><span>手足小、步伐稳重、走路晃肩、精神矍铄</span></dd>	
+	  			<dd><span>手足小而丰腴，下肢多健壮，步履稳健</span></dd>
+	  			<dd><span>手足小，手背薄。足跟结实有力，行动轻快</span></dd>
+	  			<dd><span>手背厚，手足不安静，行走善摇摆</span></dd>
+	  		</dl>
+	  	</div>
+	  	<router-link to='/report'>
+	  		<button class="submit">确定</button>
+	   </router-link>
+	</div>
+</div>
+</template>
+<script type="text/javascript">
+export default {
+  data(){
+  	return {
+    }
+  }
+}
+</script>
+<style lang="scss">
+@import "../common/common.scss";
+	/*选择问题内容*/
+.m-select{
+	width: 100%;
+	background: #f8f8f8;
+	height: 52%;
+	position: relative;
+	.m-selectfacon{
+		width: 90%;
+		margin-left: 5%;
+		.m-selectfigure{
+			width: 100%;
+			overflow: hidden;
+			dl{
+				width: 100%;
+				position: relative;
+				dt{
+					position: absolute;
+ 					top: rem(16rem);
+ 					left: 0;
+ 					font-size: $font14;
+				}
+				dd{
+					width: 100%;
+					line-height: rem(40rem);
+					border-bottom: 1px solid #e3e3e3;
+					span{
+						display: inline-block;
+						height: rem(22rem);
+						background: #fff;
+						margin-top: rem(10rem);
+						border-radius: rem(10rem);
+						text-align: left;
+						margin-left: 16%;
+						padding: rem(2rem) 2%;
+						line-height: rem(22rem);
+						/*background: #dec29d;
+						color: #fff;*/
+						
+					}
+				}
+			}
+		}
+		.submit{
+			width: 30%;
+			height: rem(40rem);
+			background: #c69b70;
+			border: 0;
+			color: #fff;
+			border-radius: 0.13rem;
+			font-size: 0.37rem;
+			line-height: rem(40rem);
+			position: absolute;
+			bottom: rem(40rem);
+			left: 35%;
+		}
+	}
+}
+</style>

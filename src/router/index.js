@@ -5,6 +5,8 @@ import message from '@/pages/message'
 import report from '@/pages/report'
 import shop from '@/pages/shop'
 import goodsdetail from '@/pages/goodsdetail'
+import allgoods from '@/pages/allgoods'
+import articledetail from '@/pages/articledetail'
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -32,6 +34,16 @@ export default new Router({
       path: '/goodsdetail',
       component: goodsdetail,
       name: 'goodsdetail'
-    }
+    },
+    {
+      path: '/allgoods',
+      component: allgoods,
+      name: 'allgoods'
+    },
+    {
+      path: '/articledetail',
+      component: articledetail,
+      name: 'articledetail'
+    } 
   ]
 })

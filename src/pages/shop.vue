@@ -3,7 +3,6 @@
      <!--主题部分-->
 		<div class="s-main">
 		  <!--轮播图部分-->
-			
 			<div class="swiper-container">
 			    <div class="swiper-wrapper">
 			        <div class="swiper-slide"><img src="../assets/shopswiper.png"/></div>
@@ -13,79 +12,96 @@
 			    <!-- 如果需要分页器 -->
 			    <div class="swiper-pagination"></div>
 			</div>
-			
-			<!--商品部分-->
-			<div class="s-mgoods">
+			<!--文章部分-->
+			<div class="s-marticle">
 				<div class="s-mrecomment">
-					<h3>推荐商品</h3>
+					<h3 class="s-marttitle">个性化推荐</h3>
+					<dl class="s-marticlecon">
+						<dt>
+							<h3>正常的脉象是啥样的？</h3>
+							中医里很多看似神秘莫测的说法，却蕴含诸多令人捉摸不透的真知灼见。
+						</dt>
+						<dd><img src="../assets/shoparticle.png"/></dd>
+					</dl>
+					<dl class="s-marticlecon">
+						<dt>
+							<h3>《黄帝内经》告诉你如何能百病不侵</h3>
+							告诉你如何修炼心法。
+						</dt>
+						<dd><img src="../assets/shoparticle.png"/></dd>
+					</dl>
+					<dl class="s-marticlecon1">
+						<dt>
+							<h3>坐月子是女人调养体质的最佳时期，月子注意这些事，一生不落病</h3>
+						</dt>
+						<dd class="s-martimg"><img src="../assets/shoparticle1.png"/></dd>
+						<dd class="s-martimg"><img src="../assets/shoparticle1.png"/></dd>
+						<dd class="s-martimg"><img src="../assets/shoparticle1.png"/></dd>
+					</dl>
+								<dl class="s-marticlecon">
+						<dt>
+							<h3>正常的脉象是啥样的？</h3>
+							中医里很多看似神秘莫测的说法，却蕴含诸多令人捉摸不透的真知灼见。
+						</dt>
+						<dd><img src="../assets/shoparticle.png"/></dd>
+					</dl>
+					<router-link to='/articledetail'>
+					<dl class="s-marticlecon">
+						<dt>
+							<h3>《黄帝内经》告诉你如何能百病不侵</h3>
+							告诉你如何修炼心法。
+						</dt>
+						<dd><img src="../assets/shoparticle.png"/></dd>
+					</dl>
+					</router-link>
+					<dl class="s-marticlecon1">
+						<dt>
+							<h3>坐月子是女人调养体质的最佳时期，月子注意这些事，一生不落病</h3>
+						</dt>
+						<dd class="s-martimg"><img src="../assets/shoparticle1.png"/></dd>
+						<dd class="s-martimg"><img src="../assets/shoparticle1.png"/></dd>
+						<dd class="s-martimg"><img src="../assets/shoparticle1.png"/></dd>
+					</dl>
+				</div>
+			</div>
+			<!--商品部分-->
+	    <div class="s-mgoods">
+				<div class="s-mrecomment">
+					<h3 class="s-marttitle">五行贴<router-link to='/allgoods'><a class="s-mrecomall" href="">查看全部</a></router-link></h3>
 					<div>
-						<dl class="s-mrecomlist"  v-for="(item, index) in listem">
+					<dl class="s-mrecomlist"  v-for="(item, index) in listem">
 							<router-link to='/goodsdetail'>
 							  <dt class="s-mreconimg"><img :src="item.img" onerror="this.src='http://placeholder.qiniudn.com/800'" alt="" /></dt>
 							</router-link>
 							<dd class="s-mreconintro">
-								<span>{{item.name}}</span>
-								<p>¥128.00</p>
+								<span>引火归元贴</span>
 							</dd>
 						</dl>
 					</div>
 				</div>
-			</div>
-	    <div class="s-mgoods">
 				<div class="s-mrecomment">
-					<h3>五行贴<a class="s-mrecomall" href="">查看全部</a></h3>
+					<h3 class="s-marttitle">五行贴<router-link to='/allgoods'><a class="s-mrecomall" href="">查看全部</a></router-link></h3>
 					<div>
 						<dl class="s-mrecomlist">
 							<dt class="s-mreconimg"><img src="../assets/shopgoods.png" alt="" /></dt>
 							<dd class="s-mreconintro">
 								<span>引火归元贴</span>
-								<p>¥128.00</p>
 							</dd>
 						</dl>
 						<dl class="s-mrecomlist">
 							<dt class="s-mreconimg"><img src="../assets/shopgoods.png" alt="" /></dt>
 							<dd class="s-mreconintro">
 								<span>引火归元贴</span>
-								<p>¥128.00</p>
 							</dd>
 						</dl>
-						<dl class="s-mrecomlist s-mreconlist1">
+						<dl class="s-mrecomlist">
 							<dt class="s-mreconimg"><img src="../assets/shopgoods.png" alt="" /></dt>
 							<dd class="s-mreconintro">
 								<span>引火归元贴</span>
-								<p>¥128.00</p>
 							</dd>
 						</dl>
 					</div>
-				</div>
-			</div>  
-			<div class="s-mgoods">
-				<div class="s-mrecomment">
-					<h3>五行贴<a class="s-mrecomall" href="">查看全部</a></h3>
-					<div>
-						<dl class="s-mrecomlist">
-							<dt class="s-mreconimg"><img src="../assets/shopgoods.png" alt="" /></dt>
-							<dd class="s-mreconintro">
-								<span>引火归元贴</span>
-								<p>¥128.00</p>
-							</dd>
-						</dl>
-						<dl class="s-mrecomlist">
-							<dt class="s-mreconimg"><img src="../assets/shopgoods.png" alt="" /></dt>
-							<dd class="s-mreconintro">
-								<span>引火归元贴</span>
-								<p>¥128.00</p>
-							</dd>
-						</dl>
-						<dl class="s-mrecomlist s-mreconlist1">
-							<dt class="s-mreconimg"><img src="../assets/shopgoods.png" alt="" /></dt>
-							<dd class="s-mreconintro">
-								<span>引火归元贴</span>
-								<p>¥128.00</p>
-							</dd>
-						</dl>
-					</div>
-				</div>
+			  </div>  
 			</div>
 		</div>	 
     <div class="s-mrecombottom">我是有底线的</div>
@@ -133,12 +149,12 @@ export default {
 		/*轮播图*/
 	  .swiper-container {
 	    width: 100%;
-	    height: 4.27rem;
+	    height: rem(124rem);
 	    overflow: hidden;
 	    .swiper-wrapper{
 	    	.swiper-slide{
 		    	width: 100%;
-	        height: 4.27rem;
+	        height: rem(124rem);
 			  	img{
 				  	width: 100%;
 				  	height: 100%;
@@ -146,17 +162,102 @@ export default {
 			  }
 	    }	
 	  }
-	  /*商品列表*/
-	 	.s-mgoods{
+	  /*文章部分*/
+	  .s-marticle{
 	 		width: 100%;
 	 		overflow: hidden;
 	 		background: #fff;
-	 		margin-bottom: 0.26rem;
 	 		.s-mrecomment{
 		 		width: 92%;
 		 		overflow: hidden;
 		 		margin-left: 4%;
 		 		padding-top: 0.32rem;
+		 		.s-marttitle{
+			 		font-size: 0.42rem;
+			 		line-height: rem(40rem);
+			 		color: #000;
+			 		font-weight: bold;
+			 		margin-bottom: 0.26rem;
+			 		background: url(../assets/shoptitleft.png) no-repeat center left;
+			 		padding-left: 2%;
+			 		border-bottom: rem(1rem) solid #e8e8e8;
+			 	}
+			 	.s-marticlecon{
+			 		width: 100%;
+			 		overflow: hidden;
+			 		margin-top: rem(15rem);
+			 		padding-bottom: rem(15rem);
+			 		border-bottom: rem(1rem) solid #e8e8e8;
+			 		dt{
+			 			width: 66%;
+			 			float: left;
+			 			margin-right: 2%;
+			 			font-size: $font12;
+			 			color: #999;
+			 			line-height: rem(20rem);
+			 			h3{
+			 				font-size: $font18;
+			 				color: $c3c3c;
+			 				font-weight: bold;
+			 				line-height: rem(26rem);
+							margin-bottom: rem(5rem);
+							letter-spacing: rem(1rem);
+			 			}
+			 		}
+			 		dd{
+			 			width: 32%;
+			 			height: rem(74rem);
+			 			float: left;
+			 			img{
+			 				width: 100%;
+			 				height: 100%;
+			 			}
+			 		}
+			 	}
+			 	.s-marticlecon1{
+			 		width: 100%;
+			 		overflow: hidden;
+			 		margin-top: rem(15rem);
+			 		padding-bottom: rem(15rem);
+			 		border-bottom: rem(1rem) solid #e8e8e8;
+			 		dt{
+			 			width: 100%;
+			 			h3{
+			 				font-size: $font18;
+			 				color: $c3c3c;
+			 				font-weight: bold;
+			 				line-height: rem(26rem);
+							margin-bottom: rem(5rem);
+							letter-spacing: rem(1rem);
+			 			}
+			 		}
+			 		.s-martimg{
+			 			width: 32%;
+			 			height: rem(84rem);
+			 			float: left;
+			 			margin-right: 2%;
+			 			img{
+			 				width: 100%;
+			 				height: 100%;
+			 			}
+			 		}
+			 		.s-martimg:nth-child(4){
+			 			margin-right: 0;
+			 		}
+			 	}
+			}
+	 	}
+	  /*商品列表*/
+	 	.s-mgoods{
+	 		width: 100%;
+	 		overflow: hidden;
+	 		background: #fff;
+	 		.s-mrecomment{
+		 		width: 92%;
+		 		overflow: hidden;
+		 		margin-left: 4%;
+		 		padding: 0.32rem 0 0.28rem;
+		 		border-bottom: rem(1rem) solid #e8e8e8;
 		 		h3{
 			 		font-size: 0.42rem;
 			 		line-height: 0.59rem;
@@ -178,7 +279,6 @@ export default {
 		 	}
 		 	.s-mrecomlist{
 		 		width: 31.9%;
-		 		height: 3.46rem;
 		 		float: left;
 		 		margin-right: 2.1%;
 		 		margin-bottom: 0.26rem;
@@ -199,15 +299,9 @@ export default {
 				 		color: #000;
 				 		line-height: 0.48rem;
 				 	}
-				 	p{
-				 		font-size: 0.24rem;
-				 		color: #ff4444;
-				 		line-height: 0.35rem;
-				 		margin-top: 0.05rem;
-				 	}
 			 	}
 		 	}
-		 	.s-mreconlist1{
+		 	.s-mrecomlist:nth-child(3n){
 		 		margin-right: 0;
 		 	}
 	 	} 
