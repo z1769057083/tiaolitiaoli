@@ -7,8 +7,8 @@
 	      </div>
 	      <div class="r-main">
 	      	<h3 class='i-maintop'>你的先天体质情况</h3>
-	      	<div class="r-mainchart">
-	      		<img src="../assets/reportcharts.png"/>
+	      	<div class="r-mainchart" id='chart-container'>
+	      		<!--<img src="../assets/reportcharts.png"/>-->
 	      	</div>
 	      	<div class='i-maincen'>
 	        	<div class="r-mattribute">木平、火强、土平、金平、水平</div>
@@ -19,19 +19,86 @@
         	  <router-link to='/shop'>
         		<div class="r-mbotleft"><img src="../assets/reportleft.png"/></div>
         	  </router-link>
-        	  <router-link to='/shop'>	
-        		<div class="r-mbotright"><img src="../assets/reportright.png"/></div>	
+        	  <router-link to='/shop'>
+        		<div class="r-mbotright"><img src="../assets/reportright.png"/></div>
         	  </router-link>
         	</div>
 	      </div>
-      </div> 
+      </div>
    </div>
 </template>
 <script>
+var Highcharts = require('highcharts');
+require('../../static/highcharts-more')(Highcharts);
 export default {
   name: 'report',
   mounted() {
   	document.title="体质报告"
+  	this.loadChart()
+  },
+  methods:{
+    loadChart(){
+        var chart= new Highcharts.Chart('chart-container', {
+            chart: {
+                polar: true
+            },
+            credits:{
+                enabled:false // 禁用版权信息
+            },
+        title: {
+            text: '极地图'
+        },
+        pane: {
+            startAngle: 0,
+            endAngle: 360
+        },
+        xAxis: {
+            tickInterval: 72,
+            min: 0,
+            max: 360,
+            labels: {
+                formatter: function () {
+                var textArray=['金','木','水','火','土']
+                    console.log(this)
+                    return textArray[this.value/72] ;
+                }
+            }
+        },
+        yAxis: {
+            min: 0
+        },
+        plotOptions: {
+            series: {
+                pointStart: 0,
+                pointInterval: 72,
+                marker: {
+                    radius: 1,  //曲线点半径，默认是4
+                    symbol: 'circle' //曲线点类型："circle", "square", "diamond", "triangle","triangle-down"，默认是"circle"
+                }
+            },
+            column: {
+                pointPadding: 0,
+                groupPadding: 0
+            }
+        },
+        series: [{
+            type: 'area',
+            name: '先天',
+            data: [ 5, 4, 3, 2, 1],
+            pointPlacement: 'between'
+        }, {
+            type: 'area',
+            name: '后天',
+            data: [1, 2, 3, 4, 5]
+        }, {
+            type: 'area',
+            name: '节气',
+            data: [7, 3, 6, 4, 5]
+        }]
+      });
+      var title = {text:null};
+      chart.setTitle(title);
+    }
   }
 }
 </script>
