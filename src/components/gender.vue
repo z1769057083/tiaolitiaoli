@@ -35,8 +35,9 @@ export default {
 	/*选择问题内容*/
 .m-select{
 	width: 100%;
-	overflow: hidden;
 	background: #f8f8f8;
+	height: 52%;
+	position: relative;
 	.m-selection{
 		width: 74.6%;
 		margin-left: 12.2%;
@@ -105,18 +106,6 @@ export default {
 			padding-left: 7.2%;
 			color: #bebaba;
 			border-radius: 1.06rem;
-		}
-		.submit{
-			width: 36%;
-			height: rem(40rem);
-			background: #c69b70;
-			border: 0;
-			color: #fff;
-			border-radius: 0.13rem;
-			font-size: 0.37rem;
-			line-height: rem(40rem);
-			margin-top: rem(20rem);
-			margin-left: 32%;
 		}
 	}
 }
