@@ -50,13 +50,14 @@ export default {
 <style scoped lang="scss">
   @import "../common/common.scss";
   .shoplist{
-	  background: #f6f6f6;	
+	  background: #f6f6f6;
 	  .l-main{
 	  	  width: 100%;
 	  	  height: 93%;
 	  	  position: absolute;
 	  	  bottom: 7%;
 	  		overflow-y: auto;
+        -webkit-overflow-scrolling:touch;
 	  	.l-mainscroll{
 	  		width: 100%;
 	  		background: #f6f6f6;
@@ -173,5 +174,5 @@ export default {
 		  	background: #ff4443;
 		  }
 	  }
-  } 
+  }
 </style>
