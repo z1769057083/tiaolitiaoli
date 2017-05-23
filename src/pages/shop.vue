@@ -19,7 +19,7 @@
 					<dl class="s-marticlecon">
 						<dt>
 							<h3>正常的脉象是啥样的？</h3>
-							中医里很多看似神秘莫测的说法，却蕴含诸多令人捉摸不透的真知灼见。
+							中医里很多看似神秘莫测的变化说法，却蕴含诸多令人捉摸不透的真知灼见。
 						</dt>
 						<dd><img src="../assets/shoparticle.png"/></dd>
 					</dl>
@@ -120,7 +120,7 @@ export default {
   methods: {
 	  requestlist(){
 	  	var that = this;
-	  	axios.get('./static/list.json')
+	  	axios.get('http://139.162.116.116/product/all')
 		  .then(function (res) {
 		  	that.listem = res.data;
 		  	console.log(that.listem)

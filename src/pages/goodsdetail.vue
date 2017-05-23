@@ -55,7 +55,7 @@ export default {
   methods: {
 	  requestlist(){
 	  	var that = this;
-	  	axios.get('http://139.162.116.116/product/details')
+	  	axios.get('http://139.162.116.116/product/recommend')
 		  .then(function (res) {
 		  	that.listem = res.data;
 		  	console.log(that.listem)

@@ -54,9 +54,9 @@
       	</div>
       </div>
       <!--先天体质报告问题-->
-      <!--<gender></gender>-->
+      <gender></gender>
       <!--<city></city>-->
-      <facialFeatures></facialFeatures>
+      <!--<facialFeatures></facialFeatures>-->
       <!--<emotion></emotion>-->
       <!--<season></season>-->
       <!--<treatOthers1></treatOthers1>-->
