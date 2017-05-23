@@ -43,8 +43,37 @@
   </div>
 </template>
 <script>
+import axios from 'axios'
 export default {
-  name: 'goodsdetail'
+  name: 'goodsdetail',
+  data(){
+  	return {
+      listem:[],
+      list:[]
+    }
+  },
+  methods: {
+	  requestlist(){
+	  	var that = this;
+	  	axios.get('http://139.162.116.116/product/details')
+		  .then(function (res) {
+		  	that.listem = res.data;
+		  	console.log(that.listem)
+		  })
+		  .catch(function (error) {
+		    console.log(error)
+		  })
+	  }
+  },
+  mounted() {
+  	this.requestlist()
+  	document.title="在线商城"
+  	var mySwiper = new Swiper('.swiper-container',{
+					autoplay: 3000,
+					loop: true,
+          pagination : '.swiper-pagination'	
+				}) 
+  }
 }
 </script>
 <style scoped lang="scss">

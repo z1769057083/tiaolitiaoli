@@ -56,7 +56,7 @@
       <!--先天体质报告问题-->
       <!--<gender></gender>-->
       <!--<city></city>-->
-      <!--<facialFeatures></facialFeatures>-->
+      <facialFeatures></facialFeatures>
       <!--<emotion></emotion>-->
       <!--<season></season>-->
       <!--<treatOthers1></treatOthers1>-->
@@ -68,7 +68,7 @@
       <!--后天体质报告问题-->
       <!--<aftercity></aftercity>-->
       <!--<afterseason></afterseason>-->
-      <afterlimb></afterlimb>
+      <!--<afterlimb></afterlimb>-->
       <!--<afterfigure></afterfigure>-->
       <!--<aftertreat1></aftertreat1>-->
       <!--<aftertreat2></aftertreat2>-->
@@ -156,6 +156,7 @@ export default {
 	padding-top: rem(20rem);
 	border-bottom: rem(4rem) solid #dab589;
 	overflow-y: auto;
+	-webkit-overflow-scrolling:touch;
 	.m-charscroll{
 		width: 100%;
 		.m-chardocter{

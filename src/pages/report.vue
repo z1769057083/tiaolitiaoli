@@ -40,7 +40,9 @@ export default {
     loadChart(){
         var chart= new Highcharts.Chart('chart-container', {
             chart: {
-                polar: true
+            	backgroundColor:'transparent',
+                polar: true,
+                marginTop:15
             },
             credits:{
                 enabled:false // 禁用版权信息
@@ -59,7 +61,7 @@ export default {
             labels: {
                 formatter: function () {
                 var textArray=['金','木','水','火','土']
-                    console.log(this)
+//                  console.log(this)
                     return textArray[this.value/72] ;
                 }
             }
@@ -104,6 +106,9 @@ export default {
 </script>
 <style scoped lang="scss">
 @import "../common/common.scss";
+.highcharts-background{
+	fill:transparent;
+}
 .r-content{
   width: 100%;
   height: 100%;
@@ -118,9 +123,6 @@ export default {
 		margin-top: rem(15rem);
 		margin-left: 4%;
 		overflow: hidden;
-		img{
-			width: 100%;
-		}
 	}
 	.i-maincen{
 	  width: 56%;

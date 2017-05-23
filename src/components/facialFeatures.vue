@@ -5,41 +5,41 @@
 	  		<dl>
 	  			<dt>裸眼视力</dt>
 	  			<dd>
-	  				<p>好</p>
-	  				<p>一般</p>
-	  				<p>差</p>
+	  				<p :class="{'active': active == 0}" @click="change_active(0,'1',$event)">好</p>
+	  				<p :class="{'active': active == 1}" @click="change_active(1,'1',$event)">一般</p>
+	  				<p :class="{'active': active == 2}" @click="change_active(2,'1',$event)">差</p>
 	  			</dd>
 	  		</dl>
 	  		<dl>
 	  			<dt>味觉</dt>
 	  			<dd>
-	  				<p>灵敏</p>
-	  				<p>一般</p>
-	  				<p>迟钝</p>
+	  				<p :class="{'active': active2 == 0}" @click="change_active(0,'2',$event)">灵敏</p>
+	  				<p :class="{'active': active2 == 1}" @click="change_active(1,'2',$event)">一般</p>
+	  				<p :class="{'active': active2 == 2}" @click="change_active(2,'2',$event)">迟钝</p>
 	  			</dd>
 	  		</dl>
 	  		<dl>
 	  			<dt>嗅觉</dt>
 	  			<dd>
-	  				<p>灵敏</p>
-	  				<p>一般</p>
-	  				<p>迟钝</p>
+	  				<p :class="{'active': active3 == 0}" @click="change_active(0,'3',$event)">灵敏</p>
+	  				<p :class="{'active': active3 == 1}" @click="change_active(1,'3',$event)">一般</p>
+	  				<p :class="{'active': active3 == 2}" @click="change_active(2,'3',$event)">迟钝</p>
 	  			</dd>
 	  		</dl>
 	  		<dl>
 	  			<dt>口气</dt>
 	  			<dd>
-	  				<p>清新</p>
-	  				<p>一般</p>
-	  				<p>不告诉你</p>
+	  				<p :class="{'active': active4 == 0}" @click="change_active(0,'4',$event)">清新</p>
+	  				<p :class="{'active': active4 == 1}" @click="change_active(1,'4',$event)">一般</p>
+	  				<p :class="{'active': active4 == 2}" @click="change_active(2,'4',$event)">不告诉你</p>
 	  			</dd>
 	  		</dl>
 	  		<dl>
 	  			<dt>听觉</dt>
 	  			<dd>
-	  				<p>好</p>
-	  				<p>一般</p>
-	  				<p>差</p>
+	  				<p :class="{'active': active5 == 0}" @click="change_active(0,'5',$event)">好</p>
+	  				<p :class="{'active': active5 == 1}" @click="change_active(1,'5',$event)">一般</p>
+	  				<p :class="{'active': active5 == 2}" @click="change_active(2,'5',$event)">差</p>
 	  			</dd>
 	  		</dl>
 	  	</div>
@@ -51,9 +51,49 @@
 </template>
 <script type="text/javascript">
 export default {
-  data(){
+ data(){
   	return {
+      active:'',
+      active2:'',
+      active3:'',
+      active4:'',
+      active5:''
     }
+  },
+  methods:{
+  	change_active(num,sectionId, event) {
+		if(sectionId==1){
+			this.active = num
+		}else if(sectionId==2){
+			this.active2 = num
+		}else if(sectionId==3){
+			this.active3 = num
+		}else if(sectionId==4){
+			this.active4 = num
+		}else if(sectionId==5){
+			this.active5 = num
+		}
+//		switch (sectionId){
+//			case 1:
+//			this.active = num;
+//			break;
+//			case 2:
+//			this.active2 = num;
+//			break;
+//			case 3:
+//			this.active3 = num;
+//			break;
+//			case 4:
+//			this.active4 = num;
+//			break;
+//			case 5:
+//			this.active5 = num;
+//			break;
+//		}
+   }
+  },
+  mounted() {
+   this.change_active()
   }
 }
 </script>
@@ -95,6 +135,10 @@ export default {
 						line-height: rem(24rem);
 						text-align: center;
 						margin-left: 3%;
+					}
+					.active{
+						color: #fff;
+						background: #c69b70;
 					}
 				}
 			}

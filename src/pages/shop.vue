@@ -5,9 +5,9 @@
 		  <!--轮播图部分-->
 			<div class="swiper-container">
 			    <div class="swiper-wrapper">
-			        <div class="swiper-slide"><img src="../assets/shopswiper.png"/></div>
-			        <div class="swiper-slide"><img src="../assets/shopswiper.png"/></div>
-			        <div class="swiper-slide"><img src="../assets/shopswiper.png"/></div>
+			        <div class="swiper-slide"><img class="swiper-img" src="../assets/shopswiper.png"/></div>
+			        <div class="swiper-slide"><img class="swiper-img" src="../assets/shopswiper.png"/></div>
+			        <div class="swiper-slide"><img class="swiper-img" src="../assets/shopswiper.png"/></div>
 			    </div>
 			    <!-- 如果需要分页器 -->
 			    <div class="swiper-pagination"></div>
@@ -134,8 +134,9 @@ export default {
   	this.requestlist()
   	document.title="在线商城"
   	var mySwiper = new Swiper('.swiper-container',{
-					pagination : '.swiper-pagination',
-					
+					autoplay: 3000,
+					loop: true,
+          pagination : '.swiper-pagination'	
 				}) 
   }
 }
@@ -146,21 +147,38 @@ export default {
 		width: 100%;
 		height: 100%;
 		background: #f6f6f6;
-		/*轮播图*/
+		/* 轮播图样式 */
 	  .swiper-container {
 	    width: 100%;
 	    height: rem(124rem);
 	    overflow: hidden;
-	    .swiper-wrapper{
-	    	.swiper-slide{
-		    	width: 100%;
-	        height: rem(124rem);
-			  	img{
+	    .swiper-wrapper {
+			  position: relative;
+			  z-index: 1;
+			  display: flex;
+			  width: 100%;
+			  height: rem(124rem);
+			  transform: translate3d(0px, 0px, 0px);
+			  transition-property: transform;
+			  box-sizing: content-box;
+			  .swiper-slide {
+				  display: flex;
+				  position: relative;
+				  height: rem(124rem);
+				  width: 100%;
+				  overflow: hidden;
+				  justify-content: center;
+				  align-items: center;
+				  flex-shrink: 0;
+				  text-align: center;
+				  font-size: 18px;
+				  background: #fff;
+				  img{
 				  	width: 100%;
 				  	height: 100%;
 				  }
-			  }
-	    }	
+				}
+			}
 	  }
 	  /*文章部分*/
 	  .s-marticle{
