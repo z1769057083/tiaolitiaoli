@@ -3,49 +3,9 @@
       <!--聊天内容-->
       <div class='m-char'>
       	<div class="m-charscroll">
-      		<div class="m-chardocter">
+      		<div class="m-chardocter" v-for="(item,index) in question">
 	      		<div class="m-charperson"><img src="../assets/indexheadportrait.png"/></div>
-	      		<div class="m-charcont">您好！欢迎使用体质辨析，了解自己的体质可以更有针对性的养生和调理！</div>
-	      	</div>
-	      	<div class="m-chardocter">
-	      		<div class="m-charperson"><img src="../assets/indexheadportrait.png"/></div>
-	      		<div class="m-charcont">我需要知道你的性别和生日{{title}}。</div>
-	      	</div>
-	      	<div class="m-charcustom">
-	      		<div class="m-charperson"><img src="../assets/indexheadportrait.png"/></div>
-	      		<div class="m-charcont">人家是女生！</div>
-	      	</div>
-	      	<div class="m-chardocter">
-	      		<div class="m-charperson"><img src="../assets/indexheadportrait.png"/></div>
-	      		<div class="m-charcont">您好！欢迎使用体质辨析，了解自己的体质可以更有针对性的养生和调理！</div>
-	      	</div>
-	      	<div class="m-chardocter">
-	      		<div class="m-charperson"><img src="../assets/indexheadportrait.png"/></div>
-	      		<div class="m-charcont">我需要知道你的性别和生日</div>
-	      	</div>
-	      	<div class="m-charcustom">
-	      		<div class="m-charperson"><img src="../assets/indexheadportrait.png"/></div>
-	      		<div class="m-charcont">人家是女生！</div>
-	      	</div>
-	      	<div class="m-chardocter">
-	      		<div class="m-charperson"><img src="../assets/indexheadportrait.png"/></div>
-	      		<div class="m-charcont">您好！欢迎使用体质辨析，了解自己的体质可以更有针对性的养生和调理！</div>
-	      	</div>
-	      	<div class="m-chardocter">
-	      		<div class="m-charperson"><img src="../assets/indexheadportrait.png"/></div>
-	      		<div class="m-charcont">我需要知道你的性别和生日</div>
-	      	</div>
-	      	<div class="m-charcustom">
-	      		<div class="m-charperson"><img src="../assets/indexheadportrait.png"/></div>
-	      		<div class="m-charcont">人家是女生！</div>
-	      	</div>
-	      	<div class="m-chardocter">
-	      		<div class="m-charperson"><img src="../assets/indexheadportrait.png"/></div>
-	      		<div class="m-charcont">您好！欢迎使用体质辨析，了解自己的体质可以更有针对性的养生和调理！</div>
-	      	</div>
-	      	<div class="m-chardocter">
-	      		<div class="m-charperson"><img src="../assets/indexheadportrait.png"/></div>
-	      		<div class="m-charcont">我需要知道你的性别和生日</div>
+	      		<div class="m-charcont">{{question[index].content}}</div>
 	      	</div>
 	      	<div class="m-charcustom">
 	      		<div class="m-charperson"><img src="../assets/indexheadportrait.png"/></div>
@@ -54,9 +14,10 @@
       	</div>
       </div>
       <!--先天体质报告问题-->
-      <gender></gender>
+      <gender ></gender>
       <!--<city></city>-->
       <!--<facialFeatures></facialFeatures>-->
+      <!--多选  站立-->
       <!--<emotion></emotion>-->
       <!--<season></season>-->
       <!--<treatOthers1></treatOthers1>-->
@@ -75,10 +36,14 @@
       <!--<aftertreat3></aftertreat3>-->
       <!--<aftertreat4></aftertreat4>-->
       <!--<aftertreat5></aftertreat5>-->
+      <!--多选-->
       <!--<aftertreat6></aftertreat6>-->
+      
    </div>
 </template>
 <script>
+import axios from 'axios'
+import api from '../api/api';
 import gender from '@/components/gender'
 import city from '@/components/city'
 import facialFeatures from '@/components/facialFeatures'
@@ -104,7 +69,10 @@ export default {
   name: 'message',
   data(){
   	return {
-      title:''
+      title:'',
+      toggle: false,
+      question:[],
+      imgUrl:'../assets/indexheadportrait.png'
     }
   },
   components: {
@@ -131,11 +99,52 @@ export default {
     aftertreat6 
   },
   methods:{
+  	firstQuestion(){
+	  	var that = this;
+	  	axios.get(api.beforeQuestionData)
+		  .then(function (res) {
+		  	if(res.data.errorCode == 0){
+		  		res = res.data.returnValue.xianTianQuestions
+		  		that.question = res
+		  		console.log(that.question)
+		  	}
+		  })
+	      .catch(function (error) {
+	        console.log(error)
+	      })
+	},
+  	requestlist(){
+//	  	var that = this;
+//      axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
+//	  	axios.post(api.beforeQuestionData)
+//		  .then(function (res) {
+////		  	console.log(res.data)
+////		  	if(res.data.errorCode == 0){
+////		  		res = res.data.returnValue
+////		  		that.question = res
+////		  		console.log(that.question)
+////		  	}
+//		  })
+//	      .catch(function (error) {
+//	        console.log(error)
+//	      })
+	}
   },
   mounted() {
-   this.title = this.$router.currentRoute.params.title;
-   document.title = this.$router.currentRoute.params.title;
-   console.log(this.title)
+    this.firstQuestion()
+    this.requestlist()
+    //取title
+   	if(!window.localStorage){
+        return false;
+    }else{
+        //主逻辑业务
+        let storage = window.localStorage;
+        let obj_arr = storage.getItem(Doctor_Name_Key)
+		let obj = JSON.parse(obj_arr)
+		document.title = obj.name
+		var imgUrl = obj.img
+		console.log(imgUrl)
+    }
   }
 }
 </script>

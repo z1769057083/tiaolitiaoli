@@ -14,14 +14,14 @@
         </div>
         <div class='i-maindocter i-maindocter1'>
           <span>林博士</span>
-          <div class="i-maintest" @click="tab('林博士')">
+          <div class="i-maintest" @click="tab(0)">
             <img src="../assets/indextest.png">
           </div>
           <div class='i-mainportrait'><img src="../assets/indexheadportrait.png"></div>
         </div>
         <div class='i-maindocter'>
           <span>胡大夫</span>
-            <div class='i-maintest' @click="tab('胡大夫')"><img src="../assets/indextest.png"></div>
+            <div class='i-maintest' @click="tab(1)"><img src="../assets/indextest.png"></div>
           <div class='i-mainportrait'><img src="../assets/indexheadportrait1.png"></div>
         </div>
         <div class='i-maintext i-maintip i-maintip1'>温馨提示：本测试所提及的内容仅作为生活保健的咨询建议，如遇不适请及时就医。</div>
@@ -37,13 +37,36 @@ export default {
   	}
   },
   methods: {
-  	tab(item) {
-  		this.$router.push({name: 'message', params: {title : item}});
+  	//点击事件存title
+  	tab(index) {
+  		if(!window.localStorage){
+        return false;
+	   }else{
+	   	  var doctor1 = {'name': "林博士",'img':"../assets/indexheadportrait.png"},
+	   	      doctor2 = {'name': "胡大夫",'img':"../assets/indexheadportrait1.png"}
+	   	  var doctors = [doctor1,doctor2];
+        var storage = window.localStorage;
+        var currentDoctor = doctors[index];
+        var obj_arr = JSON.stringify(currentDoctor)
+        storage.setItem(Doctor_Name_Key,obj_arr);
+	    }
+  		this.$router.push({name: 'message'});
   	}
+//	,
+//	tab1(arr) {
+//		if(!window.localStorage){
+//      return false;
+//	   }else{
+//	        var storage = window.localStorage;
+//	        var arr=[{name:'胡大夫'}]
+//	        var obj_arr = JSON.stringify(arr)
+//	        storage.setItem("obj_arr",obj_arr);
+//	    }
+//		this.$router.push({name: 'message'});
+//	}
   },
   mounted() {
   	document.title="调理调理"
-  	
   }
 }
 </script>

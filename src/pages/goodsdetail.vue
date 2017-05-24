@@ -44,21 +44,26 @@
 </template>
 <script>
 import axios from 'axios'
+import api from '../api/api';
 export default {
   name: 'goodsdetail',
   data(){
   	return {
-      listem:[],
       list:[]
     }
   },
   methods: {
 	  requestlist(){
 	  	var that = this;
-	  	axios.get('http://139.162.116.116/product/recommend')
+	  	that.itemid = this.$route.query.itemid;
+	  	console.log(that.itemid)
+	  	axios.get(api.goodsDetailData+that.itemid)
 		  .then(function (res) {
-		  	that.listem = res.data;
-		  	console.log(that.listem)
+		  	if(res.data.errorCode == 0){
+		  		res = res.data.returnValue
+		  		that.list = res
+		  		console.log(that.list)
+		  	}
 		  })
 		  .catch(function (error) {
 		    console.log(error)

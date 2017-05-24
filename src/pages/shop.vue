@@ -4,13 +4,24 @@
 		<div class="s-main">
 		  <!--轮播图部分-->
 			<div class="swiper-container">
-			    <div class="swiper-wrapper">
-			        <div class="swiper-slide"><img class="swiper-img" src="../assets/shopswiper.png"/></div>
-			        <div class="swiper-slide"><img class="swiper-img" src="../assets/shopswiper.png"/></div>
-			        <div class="swiper-slide"><img class="swiper-img" src="../assets/shopswiper.png"/></div>
-			    </div>
-			    <!-- 如果需要分页器 -->
-			    <div class="swiper-pagination"></div>
+	   		<div class="swiper-wrapper" >
+	   			<!--<div class="swiper-slide">
+	        	<img class="swiper-img" 
+	        		:src="'http://139.162.116.116/image/product/'+sitem.index+'.png'" 
+					  	onerror="this.src='http://placeholder.qiniudn.com/800'"/>
+	        </div>-->
+	        <div class="swiper-slide">
+	        	<img class="swiper-img" src="../assets/shopswiper.png"/>
+	        </div>
+	        <div class="swiper-slide">
+	        	<img class="swiper-img" src="../assets/shopswiper.png"/>
+	        </div>
+	        <div class="swiper-slide">
+	        	<img class="swiper-img" src="../assets/shopswiper.png"/>
+	        </div>
+	    	</div>
+		    <!-- 如果需要分页器 -->
+		    <div class="swiper-pagination"></div>
 			</div>
 			<!--文章部分-->
 			<div class="s-marticle">
@@ -34,16 +45,24 @@
 						<dt>
 							<h3>坐月子是女人调养体质的最佳时期，月子注意这些事，一生不落病</h3>
 						</dt>
-						<dd class="s-martimg"><img src="../assets/shoparticle1.png"/></dd>
-						<dd class="s-martimg"><img src="../assets/shoparticle1.png"/></dd>
-						<dd class="s-martimg"><img src="../assets/shoparticle1.png"/></dd>
+						<dd class="s-martimg">
+							<img src="../assets/shoparticle1.png"/>
+						</dd>
+						<dd class="s-martimg">
+							<img src="../assets/shoparticle1.png"/>
+						</dd>
+						<dd class="s-martimg">
+							<img src="../assets/shoparticle1.png"/>
+						</dd>
 					</dl>
 								<dl class="s-marticlecon">
 						<dt>
 							<h3>正常的脉象是啥样的？</h3>
 							中医里很多看似神秘莫测的说法，却蕴含诸多令人捉摸不透的真知灼见。
 						</dt>
-						<dd><img src="../assets/shoparticle.png"/></dd>
+						<dd>
+							<img src="../assets/shoparticle.png"/>
+						</dd>
 					</dl>
 					<router-link to='/articledetail'>
 					<dl class="s-marticlecon">
@@ -58,50 +77,37 @@
 						<dt>
 							<h3>坐月子是女人调养体质的最佳时期，月子注意这些事，一生不落病</h3>
 						</dt>
-						<dd class="s-martimg"><img src="../assets/shoparticle1.png"/></dd>
-						<dd class="s-martimg"><img src="../assets/shoparticle1.png"/></dd>
-						<dd class="s-martimg"><img src="../assets/shoparticle1.png"/></dd>
+						<dd class="s-martimg">
+							<img src="../assets/shoparticle1.png"/>
+						</dd>
+						<dd class="s-martimg">
+							<img src="../assets/shoparticle1.png"/>
+						</dd>
+						<dd class="s-martimg">
+							<img src="../assets/shoparticle1.png"/>
+						</dd>
 					</dl>
 				</div>
 			</div>
 			<!--商品部分-->
 	    <div class="s-mgoods">
-				<div class="s-mrecomment">
-					<h3 class="s-marttitle">五行贴<router-link to='/allgoods'><a class="s-mrecomall" href="">查看全部</a></router-link></h3>
+				<div class="s-mrecomment" v-for="(item, index) in listem">
+					<h3 class="s-marttitle">{{item.title}}<router-link to='/allgoods'>
+						<a class="s-mrecomall" href="">查看全部</a></router-link></h3>
 					<div>
-					<dl class="s-mrecomlist"  v-for="(item, index) in listem">
-							<router-link to='/goodsdetail'>
-							  <dt class="s-mreconimg"><img :src="item.img" onerror="this.src='http://placeholder.qiniudn.com/800'" alt="" /></dt>
+					<dl class="s-mrecomlist" v-for="temp in item.items">
+							<router-link :to="{ name: 'goodsdetail', query: { itemid: temp._id } }">
+							  <dt class="s-mreconimg">
+							  	<img :src="'http://139.162.116.116/image/product/'+temp.index+'.png'" 
+							  		onerror="this.src='http://placeholder.qiniudn.com/800'"/>
+							  </dt>
+								<dd class="s-mreconintro">
+									<span>{{temp.name}}</span>
+								</dd>
 							</router-link>
-							<dd class="s-mreconintro">
-								<span>引火归元贴</span>
-							</dd>
 						</dl>
 					</div>
 				</div>
-				<div class="s-mrecomment">
-					<h3 class="s-marttitle">五行贴<router-link to='/allgoods'><a class="s-mrecomall" href="">查看全部</a></router-link></h3>
-					<div>
-						<dl class="s-mrecomlist">
-							<dt class="s-mreconimg"><img src="../assets/shopgoods.png" alt="" /></dt>
-							<dd class="s-mreconintro">
-								<span>引火归元贴</span>
-							</dd>
-						</dl>
-						<dl class="s-mrecomlist">
-							<dt class="s-mreconimg"><img src="../assets/shopgoods.png" alt="" /></dt>
-							<dd class="s-mreconintro">
-								<span>引火归元贴</span>
-							</dd>
-						</dl>
-						<dl class="s-mrecomlist">
-							<dt class="s-mreconimg"><img src="../assets/shopgoods.png" alt="" /></dt>
-							<dd class="s-mreconintro">
-								<span>引火归元贴</span>
-							</dd>
-						</dl>
-					</div>
-			  </div>  
 			</div>
 		</div>	 
     <div class="s-mrecombottom">我是有底线的</div>
@@ -109,21 +115,38 @@
 </template>
 <script>
 import axios from 'axios'
+import api from '../api/api';
 export default {
   name: 'shop',
   data(){
   	return {
       listem:[],
-      list:[]
+      recommendlist:[]
     }
   },
   methods: {
 	  requestlist(){
 	  	var that = this;
-	  	axios.get('http://139.162.116.116/product/all')
+	  	axios.get(api.shopData)
 		  .then(function (res) {
-		  	that.listem = res.data;
-		  	console.log(that.listem)
+		  	if(res.data.errorCode == 0){
+		  		res = res.data.returnValue
+		  		that.listem = res
+		  	}
+		  })
+		  .catch(function (error) {
+		    console.log(error)
+		  })
+	  },
+	  recommend(){
+	  	var that = this;
+	  	axios.get(api.recommendData)
+		  .then(function (res) {
+		  	if(res.data.errorCode == 0){
+					res = res.data.returnValue
+		  		that.recommendlist = res
+		  		console.log(res)
+		  	}
 		  })
 		  .catch(function (error) {
 		    console.log(error)
@@ -132,6 +155,7 @@ export default {
   },
   mounted() {
   	this.requestlist()
+  	this.recommend()
   	document.title="在线商城"
   	var mySwiper = new Swiper('.swiper-container',{
 					autoplay: 3000,
