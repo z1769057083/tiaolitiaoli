@@ -5,41 +5,41 @@
 	  		<dl>
 	  			<dt>明辨是非</dt>
 	  			<dd>
-	  				<p>是</p>
-	  				<p>不是</p>
-	  				<p>不确定</p>
+	  				<p :class="{'active': active1 === 0}" @click="change_active(0,'1',$event)">是</p>
+	  				<p :class="{'active': active1 === 1}" @click="change_active(1,'1',$event)">不是</p>
+	  				<p :class="{'active': active1 === 2}" @click="change_active(2,'1',$event)">不确定</p>
 	  			</dd>
 	  		</dl>
 	  		<dl>
 	  			<dt>为人庄重</dt>
 	  			<dd>
-	  				<p>是</p>
-	  				<p>不是</p>
-	  				<p>不确定</p>
+	  				<p :class="{'active': active2 === 0}" @click="change_active(0,'2',$event)">是</p>
+	  				<p :class="{'active': active2 === 1}" @click="change_active(1,'2',$event)">不是</p>
+	  				<p :class="{'active': active2 === 2}" @click="change_active(2,'2',$event)">不确定</p>
 	  			</dd>
 	  		</dl>
 	  		<dl>
 	  			<dt>办事爽快</dt>
 	  			<dd>
-	  				<p>是</p>
-	  				<p>不是</p>
-	  				<p>不确定</p>
+	  				<p :class="{'active': active3 === 0}" @click="change_active(0,'3',$event)">是</p>
+	  				<p :class="{'active': active3 === 1}" @click="change_active(1,'3',$event)">不是</p>
+	  				<p :class="{'active': active3 === 2}" @click="change_active(2,'3',$event)">不确定</p>
 	  			</dd>
 	  		</dl>
 	  		<dl>
 	  			<dt>洁身自好</dt>
 	  			<dd>
-	  				<p>是</p>
-	  				<p>不是</p>
-	  				<p>不确定</p>
+	  				<p :class="{'active': active4 === 0}" @click="change_active(0,'4',$event)">是</p>
+	  				<p :class="{'active': active4 === 1}" @click="change_active(1,'4',$event)">不是</p>
+	  				<p :class="{'active': active4 === 2}" @click="change_active(2,'4',$event)">不确定</p>
 	  			</dd>
 	  		</dl>
 	  		<dl>
 	  			<dt>随遇而安</dt>
 	  			<dd>
-	  				<p>是</p>
-	  				<p>不是</p>
-	  				<p>不确定</p>
+	  				<p :class="{'active': active5 === 0}" @click="change_active(0,'5',$event)">是</p>
+	  				<p :class="{'active': active5 === 1}" @click="change_active(1,'5',$event)">不是</p>
+	  				<p :class="{'active': active5 === 2}" @click="change_active(2,'5',$event)">不确定</p>
 	  			</dd>
 	  		</dl>
 	  	</div>
@@ -51,10 +51,23 @@
 </template>
 <script type="text/javascript">
 export default {
-  data(){
-  	return {
-    }
-  }
+    data(){
+	  	return {
+	      active1:'',
+	      active2:'',
+	      active3:'',
+	      active4:'',
+	      active5:''
+	    }
+	},
+	methods:{
+	  	change_active(num,sectionId, event) {
+		  this.$data['active'+sectionId] = num
+	   }
+	},
+	mounted() {
+	   this.change_active()
+	}
 }
 </script>
 <style lang="scss">
@@ -95,6 +108,10 @@ export default {
 						line-height: rem(24rem);
 						text-align: center;
 						margin-left: 3%;
+					}
+					.active{
+						color: #fff;
+						background: #c69b70;
 					}
 				}
 			}

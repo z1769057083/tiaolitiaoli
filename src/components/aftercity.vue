@@ -6,22 +6,22 @@
 	  		<dl>
 	  			<dt>饮食口味</dt>
 	  			<dd>
-	  				<p>酸</p>
-	  				<p>甜</p>
-	  				<p>苦</p>
-	  				<p>辣</p>
-	  				<p>咸</p>
-	  				<p>淡</p>
+	  				<p :class="{'active': active1 === 0}" @click="change_active(0,'1',$event)">酸</p>
+	  				<p :class="{'active': active1 === 1}" @click="change_active(1,'1',$event)">甜</p>
+	  				<p :class="{'active': active1 === 2}" @click="change_active(2,'1',$event)">苦</p>
+	  				<p :class="{'active': active1 === 3}" @click="change_active(3,'1',$event)">辣</p>
+	  				<p :class="{'active': active1 === 4}" @click="change_active(4,'1',$event)">咸</p>
+	  				<p :class="{'active': active1 === 5}" @click="change_active(5,'1',$event)">淡</p>
 	  			</dd>
 	  		</dl>
 	  		<dl>
 	  			<dt>情绪情况</dt>
 	  			<dd>
-	  				<p>喜</p>
-	  				<p>怒</p>
-	  				<p>忧虑</p>
-	  				<p>悲</p>
-	  				<p>惊恐</p>
+	  				<p :class="{'active': active2 === 0}" @click="change_active(0,'2',$event)">喜</p>
+	  				<p :class="{'active': active2 === 1}" @click="change_active(1,'2',$event)">怒</p>
+	  				<p :class="{'active': active2 === 2}" @click="change_active(2,'2',$event)">忧虑</p>
+	  				<p :class="{'active': active2 === 3}" @click="change_active(3,'2',$event)">悲</p>
+	  				<p :class="{'active': active2 === 4}" @click="change_active(4,'2',$event)">惊恐</p>
 	  			</dd>
 	  		</dl>
 	  	</div>
@@ -33,10 +33,20 @@
 </template>
 <script type="text/javascript">
 export default {
-  data(){
-  	return {
-    }
-  }
+    data(){
+	  	return {
+	      active1:'',
+	      active2:''
+	    }
+	},
+	methods:{
+	  	change_active(num,sectionId, event) {
+		  this.$data['active'+sectionId] = num
+	   }
+	},
+	mounted() {
+	   this.change_active()
+	}
 }
 </script>
 <style lang="scss">
@@ -89,6 +99,10 @@ export default {
 						line-height: rem(24rem);
 						text-align: center;
 						margin-left: 3%;
+					}
+					.active{
+						color: #fff;
+						background: #c69b70;
 					}
 				}
 			}

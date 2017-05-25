@@ -6,7 +6,7 @@
 	  		<div class="m-selectboy" :class="{'active': active == 0}" @click="change_active(0,$event)"><img src="../assets/msgman.png"/>男</div>
 	  		<div class="m-selectgirl" :class="{'active': active == 1}" @click="change_active(1,$event)"><img src="../assets/msgwoman.png"/>我是女生</div>	
 	  	</div>
-	  	<div class="m-selectdate">年/月/日</div>
+	  	<input type="date" class="m-selectdate" value="出生年/月/日" />
 	  	<router-link to='/report'>
 	  		<button class="submit">确定</button>
 	   </router-link>
@@ -97,15 +97,16 @@ export default {
 			}
 		}
 		.m-selectdate{
-			width: 92.8%;
+			width: 85.6%;
 			height: 1.3rem;
 			background: url(../assets/msgdate.png) no-repeat center;
 			background-size: cover;
 			line-height: 1.3rem;
 			font-size: 0.37rem;
-			padding-left: 7.2%;
+			padding: 0 7.2%;
 			color: #bebaba;
 			border-radius: 1.06rem;
+			border:0;
 		}
 	}
 }

@@ -5,7 +5,6 @@
 		<h3 class="a-dtitle">《黄帝内经》揭秘:正常的脉象是啥样的？</h3>
 		<div class="a-dtime">2017.05.22<span>羊毛</span></div>
 		<p class="a-dcontent">
-			
 		</p>
 	</div>
   </div>
@@ -36,7 +35,6 @@ export default {
 		background: #fff;
 		margin-left: 4%;
 		.a-dtitle{
-			
 		}
 	}
 }
