@@ -2,14 +2,14 @@
   <div class='shoplist'>
     <!--主题部分-->
     <div class="l-main">
-    	<div class="l-mainscroll">
+    	<div class="l-mainscroll" v-for='item in list'>
     		<div class="l-mgoodsimg">
 	    		<img src="../assets/listgoodsimg.png"/>
 	      </div>
 			  <div class="l-mgoodsprice">
-			    <p class="l-mgoodsintro">【买二送一】驱蚊包-套餐价格已包括3件</p>
+			    <p class="l-mgoodsintro">{{list.name}}</p>
 			    <div class="l-mgoodspri">
-			  	  ¥<span>50</span>.00
+			  	  <span>{{list.price}}</span>
 			  	  <p>运费：¥12.00</p>
 			    </div>
 			  </div>
@@ -44,7 +44,7 @@
 </template>
 <script>
 import axios from 'axios'
-import api from '../api/api';
+import api from '../api/api'
 export default {
   name: 'goodsdetail',
   data(){
@@ -56,7 +56,6 @@ export default {
 	  requestlist(){
 	  	var that = this;
 	  	that.itemid = this.$route.query.itemid;
-	  	console.log(that.itemid)
 	  	axios.get(api.goodsDetailData+that.itemid)
 		  .then(function (res) {
 		  	if(res.data.errorCode == 0){
@@ -78,6 +77,8 @@ export default {
 					loop: true,
           pagination : '.swiper-pagination'	
 				}) 
+				document.documentElement.scrollTop = 0
+    document.body.scrollTop =0
   }
 }
 </script>

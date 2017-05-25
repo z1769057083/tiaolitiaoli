@@ -1,5 +1,4 @@
 <template>
-<div class="m-select">
 	<div class="m-selectfacon">
 	  	<div class="m-selectseason">
 	  		<dl>
@@ -20,11 +19,7 @@
 	  			</dd>
 	  		</dl>
 	  	</div>
-	  	<router-link to='/report'>
-	  		<button class="submit">确定</button>
-	   </router-link>
 	</div>
-</div>
 </template>
 <script type="text/javascript">
 export default {
@@ -37,11 +32,6 @@ export default {
 <style lang="scss">
 @import "../common/common.scss";
 	/*选择问题内容*/
-.m-select{
-	width: 100%;
-	background: #f8f8f8;
-	height: 52%;
-	position: relative;
 	.m-selectfacon{
 		width: 90%;
 		margin-left: 5%;
@@ -77,24 +67,11 @@ export default {
 						margin-right: 0;
 					}
 					.m-selectulcer{
-						width: 30%;
+						width: 40%;
+						
 					}
 				}
 			}
 		}
-		.submit{
-			width: 30%;
-			height: rem(40rem);
-			background: #c69b70;
-			border: 0;
-			color: #fff;
-			border-radius: 0.13rem;
-			font-size: 0.37rem;
-			line-height: rem(40rem);
-			position: absolute;
-			bottom: rem(40rem);
-			left: 35%;
-		}
 	}
-}
 </style>

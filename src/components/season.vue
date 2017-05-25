@@ -1,31 +1,26 @@
 <template>
-<div class="m-select">
-	<div class="m-selectfacon">
-	  	<div class="m-selectseason">
-	  		<dl>
-	  			<dt>你的劳逸情况:</dt>
-	  			<dd>
-	  				<p :class="{'active': active1 === 0}" @click="change_active(0,'1',$event)">久视</p>
-	  				<p :class="{'active': active1 === 1}" @click="change_active(1,'1',$event)">久坐</p>
-	  				<p :class="{'active': active1 === 2}" @click="change_active(2,'1',$event)">久立</p>
-	  				<p :class="{'active': active1 === 3}" @click="change_active(3,'1',$event)">久卧</p>
-	  				<p :class="{'active': active1 === 4}" @click="change_active(4,'1',$event)">久行</p>
-	  			</dd>
-	  		</dl>
-	  		<dl>
-	  			<dt>一年中哪个季节让你最不舒服？</dt>
-	  			<dd>
-	  				<p :class="{'active': active2 === 0}" @click="change_active(0,'2',$event)">春</p>
-	  				<p :class="{'active': active2 === 1}" @click="change_active(1,'2',$event)">夏</p>
-	  				<p :class="{'active': active2 === 2}" @click="change_active(2,'2',$event)">秋</p>
-	  				<p :class="{'active': active2 === 3}" @click="change_active(3,'2',$event)">冬</p>
-	  			</dd>
-	  		</dl>
-	  	</div>
-	  	<router-link to='/report'>
-	  		<button class="submit">确定</button>
-	   </router-link>
-	</div>
+<div class="m-selectfacon">
+  	<div class="m-selectseason">
+  		<dl>
+  			<dt>你的劳逸情况:</dt>
+  			<dd>
+  				<p :class="{'active': active1 === 0}" @click="change_active(0,'1',$event)">久视</p>
+  				<p :class="{'active': active1 === 1}" @click="change_active(1,'1',$event)">久坐</p>
+  				<p :class="{'active': active1 === 2}" @click="change_active(2,'1',$event)">久立</p>
+  				<p :class="{'active': active1 === 3}" @click="change_active(3,'1',$event)">久卧</p>
+  				<p :class="{'active': active1 === 4}" @click="change_active(4,'1',$event)">久行</p>
+  			</dd>
+  		</dl>
+  		<dl>
+  			<dt>一年中哪个季节让你最不舒服？</dt>
+  			<dd>
+  				<p :class="{'active': active2 === 0}" @click="change_active(0,'2',$event)">春</p>
+  				<p :class="{'active': active2 === 1}" @click="change_active(1,'2',$event)">夏</p>
+  				<p :class="{'active': active2 === 2}" @click="change_active(2,'2',$event)">秋</p>
+  				<p :class="{'active': active2 === 3}" @click="change_active(3,'2',$event)">冬</p>
+  			</dd>
+  		</dl>
+  	</div>	  	
 </div>
 </template>
 <script type="text/javascript">

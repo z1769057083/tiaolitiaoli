@@ -66,6 +66,8 @@ export default {
   methods: {
   },
   mounted() {
+  	document.documentElement.scrollTop = 0
+    document.body.scrollTop =0
   }
 }
 </script>

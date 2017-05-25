@@ -4,7 +4,7 @@
       <div class='m-char'>
       	<div class="m-charscroll">
       		<div class="m-chardocter" v-for="(item,index) in question">
-	      		<div class="m-charperson"><img src="../assets/indexheadportrait.png"/></div>
+	      		<div class="m-charperson"><img src='../assets/indexheadportrait.png'/></div>
 	      		<div class="m-charcont">{{question[index].content}}</div>
 	      	</div>
 	      	<div class="m-charcustom">
@@ -13,32 +13,34 @@
 	      	</div>
       	</div>
       </div>
-      <!--先天体质报告问题-->
-      <gender ></gender>
-      <!--<city></city>-->
-      <!--<facialFeatures></facialFeatures>-->
-      <!--多选  站立-->
-      <!--<emotion></emotion>-->
-      <!--<season></season>-->
-      <!--<treatOthers1></treatOthers1>-->
-      <!--<treatOthers2></treatOthers2>-->
-      <!--<treatOthers3></treatOthers3>-->
-      <!--<treatOthers4></treatOthers4>-->
-      <!--<parentsBirthday></parentsBirthday>-->
-      <!--<maskconfirm></maskconfirm>-->
-      <!--后天体质报告问题-->
-      <!--<aftercity></aftercity>-->
-      <!--<afterseason></afterseason>-->
-      <!--<afterlimb></afterlimb>-->
-      <!--<afterfigure></afterfigure>-->
-      <!--<aftertreat1></aftertreat1>-->
-      <!--<aftertreat2></aftertreat2>-->
-      <!--<aftertreat3></aftertreat3>-->
-      <!--<aftertreat4></aftertreat4>-->
-      <!--<aftertreat5></aftertreat5>-->
-      <!--多选-->
-      <!--<aftertreat6></aftertreat6>-->
-      
+      <!-- <maskconfirm></maskconfirm> -->
+      <div class="m-select">
+      	    <!--先天体质报告问题-->
+	        <gender class='hidden' :class="{show: index == 0}"  @genderChange="genderChange"></gender>
+	        <city class='hidden' :class="{show: index == 1}"></city>
+	        <facialFeatures class='hidden' :class="{show: index == 2}" @genderChange="genderChange"></facialFeatures>
+	        <!--多选  站立-->
+		    <emotion class='hidden' :class="{show: index == 3}"></emotion>
+		    <season class='hidden' :class="{show: index == 4}"></season>
+		    <treatOthers1 class='hidden' :class="{show: index == 5}"></treatOthers1>
+		    <treatOthers2 class='hidden' :class="{show: index == 6}"></treatOthers2>
+		    <treatOthers3 class='hidden' :class="{show: index == 7}"></treatOthers3>
+		    <treatOthers4 class='hidden' :class="{show: index == 8}"></treatOthers4>
+		    <parentsBirthday class='hidden' :class="{show: index == 9}"></parentsBirthday>
+		    <!--后天体质报告问题-->
+		    <aftercity class='hidden' :class="{show: index == 10}"></aftercity>
+		    <afterseason class='hidden' :class="{show: index == 11}"></afterseason>
+		    <afterlimb class='hidden' :class="{show: index == 12}"></afterlimb>
+		    <afterfigure class='hidden' :class="{show: index == 13}"></afterfigure>
+		    <aftertreat1 class='hidden' :class="{show: index == 14}"></aftertreat1>
+		    <aftertreat2 class='hidden' :class="{show: index == 15}"></aftertreat2>
+		    <aftertreat3 class='hidden' :class="{show: index == 16}"></aftertreat3>
+		    <aftertreat4 class='hidden' :class="{show: index == 17}"></aftertreat4>
+		    <aftertreat5 class='hidden' :class="{show: index == 18}"></aftertreat5>
+		    <!--多选-->
+		    <aftertreat6 class='hidden' :class="{show: index == 19}"></aftertreat6>
+		    <button class="submit" @click="confirm">确定</button>
+      </div>
    </div>
 </template>
 <script>
@@ -72,7 +74,21 @@ export default {
       title:'',
       toggle: false,
       question:[],
-      imgUrl:'../assets/indexheadportrait.png'
+      imgUrl:'../assets/indexheadportrait.png',
+      hideMaskConfirm: true,
+      hideGender: true,
+      hideCity: true,
+      currentComponentIndex:true,
+      form: {
+      	gender: '',
+      	data:'',
+      	shili:'',
+      	weijue:'',
+      	xiujue:'',
+      	kouqi:'',
+      	tingjue:''
+      },
+      index:0
     }
   },
   components: {
@@ -112,7 +128,20 @@ export default {
 	      .catch(function (error) {
 	        console.log(error)
 	      })
-	},
+	  },
+	  genderChange (val) {
+	  	this.form.gender = val
+	  	console.log(this.form.gender)
+	  	
+	  },
+	  confirm () {
+	  	console.log(this.form)
+	  	this.index  ++;
+	  	if(this.index<=19){
+	  	}else{
+	  		this.$router.push('/report')
+	  	}
+	  },
   	requestlist(){
 //	  	var that = this;
 //      axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
@@ -137,7 +166,6 @@ export default {
    	if(!window.localStorage){
         return false;
     }else{
-        //主逻辑业务
         let storage = window.localStorage;
         let obj_arr = storage.getItem(Doctor_Name_Key)
 		let obj = JSON.parse(obj_arr)
@@ -222,4 +250,30 @@ export default {
 		}
 	}
 }
+.m-select{
+	width: 100%;
+	background: #f8f8f8;
+	height: 52%;
+	position: relative;
+	.hidden{
+		display: none;
+	}
+	.show{
+		display: block;
+	}
+	.submit{
+		width: 30%;
+		height: rem(40rem);
+		background: #c69b70;
+		border: 0;
+		color: #fff;
+		border-radius: 0.13rem;
+		font-size: 0.37rem;
+		line-height: rem(40rem);
+		position: absolute;
+		bottom: rem(40rem);
+		left: 35%;
+	}
+}
 </style>
+

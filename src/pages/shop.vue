@@ -157,11 +157,13 @@ export default {
   	this.requestlist()
   	this.recommend()
   	document.title="在线商城"
+  	document.documentElement.scrollTop = 0
+    document.body.scrollTop = 0
   	var mySwiper = new Swiper('.swiper-container',{
 					autoplay: 3000,
 					loop: true,
           pagination : '.swiper-pagination'	
-				}) 
+			})
   }
 }
 </script>

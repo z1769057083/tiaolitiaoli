@@ -14,7 +14,13 @@
 	        	<div class="r-mattribute">木平、火强、土平、金平、水平</div>
 	        	<img class="i-micon" src="../assets/index.png">
         	</div>
-        	<div class="r-msuggest">如果您成年后生活的城市、生活习惯等改变较大，强烈建议您再测试一下后天体质！如果您成年后生活的城市、生活习惯等改变较大，强烈建议您再测试一下后天体质！如果您成年后生活的城市、生活习惯等改变较大，强烈建议您再测试一下后天体质！如果您成年后生活的城市、生活习惯等改变较大，强烈建议您再测试一下后天体质！如果您成年后生活的城市、生活习惯等改变较大，强烈建议您再测试一下后天体质！如果您成年后生活的城市、生活习惯等改变较大，强烈建议您再测试一下后天体质！如果您成年后生活的城市、生活习惯等改变较大，强烈建议您再测试一下后天体质！</div>
+        	<div class="r-msuggest">
+	        	如果您成年后生活的城市、生活习惯等改变较大，强烈建议您再测试一下后天体质！
+	        	如果您成年后生活的城市、生活习惯等改变较大，强烈建议您再测试一下后天体质！
+	        	如果您成年后生活的城市、生活习惯等改变较大，强烈建议您再测试一下后天体质！
+	        	如果您成年后生活的城市、生活习惯等改变较大，强烈建议您再测试一下后天体质！
+	        	如果您成年后生活的城市、生活习惯等改变较大，强烈建议您再测试一下后天体质！
+        	</div>
         	<div class="r-mbotbtn">
         	  <router-link to='/shop'>
         		<div class="r-mbotleft"><img src="../assets/reportleft.png"/></div>
@@ -28,15 +34,32 @@
    </div>
 </template>
 <script>
+import axios from 'axios'
+import api from '../api/api';
 var Highcharts = require('highcharts');
 require('../../static/highcharts-more')(Highcharts);
 export default {
   name: 'report',
-  mounted() {
-  	document.title="体质报告"
-  	this.loadChart()
+  data (){
+  	return{
+  		list:[]
+  	}
   },
   methods:{
+//	reportlist(){
+//	  	var that = this;
+//	  	axios.get(api.generateReportData)
+//		  .then(function (res) {
+//		  	if(res.data.errorCode == 0){
+//		  		res = res.data.returnValue
+//		  		that.list = res
+//		  		console.log(that.list)
+//		  	}
+//		  })
+//		  .catch(function (error) {
+//		    console.log(error)
+//		  })
+//	},
     loadChart(){
         var chart= new Highcharts.Chart('chart-container', {
             chart: {
@@ -101,6 +124,13 @@ export default {
       var title = {text:null};
       chart.setTitle(title);
     }
+  },
+  mounted() {
+  	document.title="体质报告"
+  	this.loadChart()
+  	document.documentElement.scrollTop = 0
+    document.body.scrollTop =0
+//	this.reportlist()
   }
 }
 </script>
