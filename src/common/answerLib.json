@@ -1,0 +1,52 @@
+{
+  "gender": {
+    "F": {
+      "text": "我是女生"
+    },
+    "M": {
+      "text": "我是男生"
+    }
+  },
+  "birthday": {
+    "isFormat":true,
+    "text": "我是{0}出生的"
+  },
+  "city": {
+    "isFormat":true,
+    "text": "我是{0}人"
+  },
+  "taste": {
+    "text": "喜欢{0}"
+  },
+  "emotion": {
+    "happy": {
+      "text": "童年揍是这么无忧无虑"
+    },
+    "angry": {
+      "text": "童年揍是这么无忧无虑"
+    },
+    "worry": {
+      "text": "童年揍是这么无忧无虑"
+    },
+    "sad": {
+      "fear": "童年揍是这么无忧无虑"
+    }
+  },
+  "daily": {
+    "watch": {
+      "text": "童年揍是这么无忧无虑"
+    },
+    "walk": {
+      "text": "童年揍是这么无忧无虑"
+    },
+    "stand": {
+      "text": "童年揍是这么无忧无虑"
+    },
+    "sleep": {
+      "text": "童年揍是这么无忧无虑"
+    },
+    "sit": {
+      "text": "童年揍是这么无忧无虑"
+    }
+  }
+}
