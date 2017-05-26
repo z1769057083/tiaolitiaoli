@@ -4,7 +4,7 @@
       <div class='m-char'>
       	<div class="m-charscroll">
       		<div class="m-chardocter" v-for="(item,index) in question">
-	      		<div class="m-charperson"><img src='../assets/indexheadportrait.png'/></div>
+	      		<div class="m-charperson"><img src='../assets/indexheadportrait1.png'/></div>
 	      		<div class="m-charcont">{{question[index].content}}</div>
 	      	</div>
 	      	<div class="m-charcustom">
@@ -18,27 +18,28 @@
       	    <!--先天体质报告问题-->
 	        <gender class='hidden' :class="{show: index == 0}"  @genderChange="genderChange"></gender>
 	        <city class='hidden' :class="{show: index == 1}"></city>
-	        <facialFeatures class='hidden' :class="{show: index == 2}" @genderChange="genderChange"></facialFeatures>
-	        <!--多选  站立-->
-		    <emotion class='hidden' :class="{show: index == 3}"></emotion>
-		    <season class='hidden' :class="{show: index == 4}"></season>
-		    <treatOthers1 class='hidden' :class="{show: index == 5}"></treatOthers1>
-		    <treatOthers2 class='hidden' :class="{show: index == 6}"></treatOthers2>
-		    <treatOthers3 class='hidden' :class="{show: index == 7}"></treatOthers3>
-		    <treatOthers4 class='hidden' :class="{show: index == 8}"></treatOthers4>
-		    <parentsBirthday class='hidden' :class="{show: index == 9}"></parentsBirthday>
+	        <facialFeatures class='hidden' :class="{show: index == 2}" @genderChange="genderChange1"></facialFeatures>
+	        <!--多选-->
+		    <emotion class='hidden' :class="{show: index == 3}" @genderChange="genderChange1"></emotion>
+		    <season class='hidden' :class="{show: index == 4}" @genderChange="genderChange1"></season>
+		    <treatOthers1 class='hidden' :class="{show: index == 5}" @genderChange="genderChange1"></treatOthers1>
+		    <treatOthers2 class='hidden' :class="{show: index == 6}" @genderChange="genderChange1"></treatOthers2>
+		    <treatOthers3 class='hidden' :class="{show: index == 7}" @genderChange="genderChange1"></treatOthers3>
+		    <treatOthers4 class='hidden' :class="{show: index == 8}" @genderChange="genderChange1"></treatOthers4>
+		    <parentsBirthday class='hidden' :class="{show: index == 9}" @genderChange="genderChange1"></parentsBirthday>
 		    <!--后天体质报告问题-->
-		    <aftercity class='hidden' :class="{show: index == 10}"></aftercity>
-		    <afterseason class='hidden' :class="{show: index == 11}"></afterseason>
-		    <afterlimb class='hidden' :class="{show: index == 12}"></afterlimb>
-		    <afterfigure class='hidden' :class="{show: index == 13}"></afterfigure>
-		    <aftertreat1 class='hidden' :class="{show: index == 14}"></aftertreat1>
-		    <aftertreat2 class='hidden' :class="{show: index == 15}"></aftertreat2>
-		    <aftertreat3 class='hidden' :class="{show: index == 16}"></aftertreat3>
-		    <aftertreat4 class='hidden' :class="{show: index == 17}"></aftertreat4>
-		    <aftertreat5 class='hidden' :class="{show: index == 18}"></aftertreat5>
+		    <aftercity class='hidden' :class="{show: index == 10}" @genderChange="genderChange1"></aftercity>
+		    <afteremotion class='hidden' :class="{show: index == 11}" @genderChange="genderChange1"></afteremotion>
+		    <afterseason class='hidden' :class="{show: index == 12}" @genderChange="genderChange1"></afterseason>
+		    <afterlimb class='hidden' :class="{show: index == 13}" @genderChange="genderChange1"></afterlimb>
+		    <afterfigure class='hidden' :class="{show: index == 14}" @genderChange="genderChange1"></afterfigure>
+		    <aftertreat1 class='hidden' :class="{show: index == 15}" @genderChange="genderChange1"></aftertreat1>
+		    <aftertreat2 class='hidden' :class="{show: index == 16}" @genderChange="genderChange1"></aftertreat2>
+		    <aftertreat3 class='hidden' :class="{show: index == 17}" @genderChange="genderChange1"></aftertreat3>
+		    <aftertreat4 class='hidden' :class="{show: index == 18}" @genderChange="genderChange1"></aftertreat4>
+		    <aftertreat5 class='hidden' :class="{show: index == 19}" @genderChange="genderChange1"></aftertreat5>
 		    <!--多选-->
-		    <aftertreat6 class='hidden' :class="{show: index == 19}"></aftertreat6>
+		    <aftertreat6 class='hidden' :class="{show: index == 20}" @genderChange="genderChange1"></aftertreat6>
 		    <button class="submit" @click="confirm">确定</button>
       </div>
    </div>
@@ -58,6 +59,7 @@ import treatOthers4 from '@/components/treatOthers4'
 import parentsBirthday from '@/components/parentsBirthday'
 import maskconfirm from '@/components/maskconfirm'
 import aftercity from '@/components/aftercity'
+import afteremotion from '@/components/afteremotion'
 import afterseason from '@/components/afterseason'
 import afterlimb from '@/components/afterlimb'
 import afterfigure from '@/components/afterfigure'
@@ -74,20 +76,16 @@ export default {
       title:'',
       toggle: false,
       question:[],
-      imgUrl:'../assets/indexheadportrait.png',
+      imgUrl:'',
       hideMaskConfirm: true,
       hideGender: true,
       hideCity: true,
       currentComponentIndex:true,
       form: {
-      	gender: '',
-      	data:'',
-      	shili:'',
-      	weijue:'',
-      	xiujue:'',
-      	kouqi:'',
-      	tingjue:''
+      	gender:'',
+      	birthday:''
       },
+      filledIndex:0,
       index:0
     }
   },
@@ -104,6 +102,7 @@ export default {
     parentsBirthday,
     maskconfirm,
     aftercity,
+    afteremotion,
     afterseason,
     afterlimb,
     afterfigure,
@@ -122,18 +121,22 @@ export default {
 		  	if(res.data.errorCode == 0){
 		  		res = res.data.returnValue.xianTianQuestions
 		  		that.question = res
-		  		console.log(that.question)
 		  	}
 		  })
 	      .catch(function (error) {
 	        console.log(error)
 	      })
 	  },
-	  genderChange (val) {
-	  	this.form.gender = val
-	  	console.log(this.form.gender)
-	  	
+	  genderChange (gender,brithday) {
+	  	this.form.gender = gender
+	  	this.form.brithday = brithday
 	  },
+	  genderChange1 (val) {
+	  	this.form  = val
+	  },
+//	  answerFinished(){
+//	  	this.filledIndex++;
+//	  },
 	  confirm () {
 	  	console.log(this.form)
 	  	this.index  ++;
@@ -170,8 +173,8 @@ export default {
         let obj_arr = storage.getItem(Doctor_Name_Key)
 		let obj = JSON.parse(obj_arr)
 		document.title = obj.name
-		var imgUrl = obj.img
-		console.log(imgUrl)
+		this.imgUrl = obj.img
+		console.log(this.imgUrl)
     }
   }
 }

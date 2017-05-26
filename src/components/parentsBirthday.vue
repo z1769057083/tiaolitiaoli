@@ -1,8 +1,8 @@
 <template>
 	<div class="m-selection">
-	  	<div class="m-selecttit">性别</div>
-	  	<input type="date" class="m-selectbirthday"  :value='today'/>
-	  	<input type="date" class="m-selectbirthday"  :value='today'/>
+	  	<div class="m-selecttit">父母生日</div>
+	  	<input type="date" class="m-selectbirthday"  v-model='today'/>
+	  	<input type="date" class="m-selectbirthday"  v-model='today'/>
 	</div>
 </template>
 <script type="text/javascript">

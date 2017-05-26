@@ -4,41 +4,41 @@
   		<dl>
   			<dt>裸眼视力</dt>
   			<dd>
-  				<p :class="{'active': active1 === 0}" @click="change_active(0,'1',$event)">好</p>
-  				<p :class="{'active': active1 === 1}" @click="change_active(1,'1',$event)">一般</p>
-  				<p :class="{'active': active1 === 2}" @click="change_active(2,'1',$event)">差</p>
+  				<p :class="{'active': active1 === 0}" @click="change_active(0,'1','eye',$event)">好</p>
+  				<p :class="{'active': active1 === 1}" @click="change_active(1,'1','eye',$event)">一般</p>
+  				<p :class="{'active': active1 === 2}" @click="change_active(2,'1','eye',$event)">差</p>
   			</dd>
   		</dl>
   		<dl>
   			<dt>味觉</dt>
   			<dd>
-  				<p :class="{'active': active2 === 0}" @click="change_active(0,'2',$event)">灵敏</p>
-  				<p :class="{'active': active2 === 1}" @click="change_active(1,'2',$event)">一般</p>
-  				<p :class="{'active': active2 === 2}" @click="change_active(2,'2',$event)">迟钝</p>
+  				<p :class="{'active': active2 === 0}" @click="change_active(0,'2','taste',$event)">灵敏</p>
+  				<p :class="{'active': active2 === 1}" @click="change_active(1,'2','taste',$event)">一般</p>
+  				<p :class="{'active': active2 === 2}" @click="change_active(2,'2','taste',$event)">迟钝</p>
   			</dd>
   		</dl>
   		<dl>
   			<dt>嗅觉</dt>
   			<dd>
-  				<p :class="{'active': active3 === 0}" @click="change_active(0,'3',$event)">灵敏</p>
-  				<p :class="{'active': active3 === 1}" @click="change_active(1,'3',$event)">一般</p>
-  				<p :class="{'active': active3 === 2}" @click="change_active(2,'3',$event)">迟钝</p>
+  				<p :class="{'active': active3 === 0}" @click="change_active(0,'3','smell',$event)">灵敏</p>
+  				<p :class="{'active': active3 === 1}" @click="change_active(1,'3','smell',$event)">一般</p>
+  				<p :class="{'active': active3 === 2}" @click="change_active(2,'3','smell',$event)">迟钝</p>
   			</dd>
   		</dl>
   		<dl>
   			<dt>口气</dt>
   			<dd>
-  				<p :class="{'active': active4 === 0}" @click="change_active(0,'4',$event)">清新</p>
-  				<p :class="{'active': active4 === 1}" @click="change_active(1,'4',$event)">一般</p>
-  				<p :class="{'active': active4 === 2}" @click="change_active(2,'4',$event)">不告诉你</p>
+  				<p :class="{'active': active4 === 0}" @click="change_active(0,'4','tone',$event)">清新</p>
+  				<p :class="{'active': active4 === 1}" @click="change_active(1,'4','tone',$event)">一般</p>
+  				<p :class="{'active': active4 === 2}" @click="change_active(2,'4','tone',$event)">不告诉你</p>
   			</dd>
   		</dl>
   		<dl>
   			<dt>听觉</dt>
   			<dd>
-  				<p :class="{'active': active5 === 0}" @click="change_active(0,'5',$event)">好</p>
-  				<p :class="{'active': active5 === 1}" @click="change_active(1,'5',$event)">一般</p>
-  				<p :class="{'active': active5 === 2}" @click="change_active(2,'5',$event)">差</p>
+  				<p :class="{'active': active5 === 0}" @click="change_active(0,'5','hear',$event)">好</p>
+  				<p :class="{'active': active5 === 1}" @click="change_active(1,'5','hear',$event)">一般</p>
+  				<p :class="{'active': active5 === 2}" @click="change_active(2,'5','hear',$event)">差</p>
   			</dd>
   		</dl>
   	</div>
@@ -52,14 +52,22 @@ export default {
       active2:'',
       active3:'',
       active4:'',
-      active5:''
+      active5:'',
+      look: {
+       eye:'',
+       taste:'',
+       smell:'',
+       tone:'',
+       hear:'' 
+      },
     }
   },
   methods:{
-  	change_active(num,sectionId, event) {
-	  this.$data['active'+sectionId] = num
-	  this.$emit('genderChange',num)
-   }
+    change_active(answerValue,sectionId,sectionKey,event) {
+	  this.$data['active'+sectionId] = answerValue
+	  this.$data.look[sectionKey]=answerValue
+	  this.$emit('genderChange', this.$data.look)
+    }
   },
   mounted() {
    this.change_active()

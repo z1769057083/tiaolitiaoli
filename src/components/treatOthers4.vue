@@ -4,41 +4,41 @@
 	  		<dl>
 	  			<dt>明辨是非</dt>
 	  			<dd>
-	  				<p :class="{'active': active1 === 0}" @click="change_active(0,'1',$event)">是</p>
-	  				<p :class="{'active': active1 === 1}" @click="change_active(1,'1',$event)">不是</p>
-	  				<p :class="{'active': active1 === 2}" @click="change_active(2,'1',$event)">不确定</p>
+	  				<p :class="{'active': active1 === 0}" @click="change_active(0,'1','discernment',$event)">是</p>
+	  				<p :class="{'active': active1 === 1}" @click="change_active(1,'1','discernment',$event)">不是</p>
+	  				<p :class="{'active': active1 === 2}" @click="change_active(2,'1','discernment',$event)">不确定</p>
 	  			</dd>
 	  		</dl>
 	  		<dl>
 	  			<dt>为人庄重</dt>
 	  			<dd>
-	  				<p :class="{'active': active2 === 0}" @click="change_active(0,'2',$event)">是</p>
-	  				<p :class="{'active': active2 === 1}" @click="change_active(1,'2',$event)">不是</p>
-	  				<p :class="{'active': active2 === 2}" @click="change_active(2,'2',$event)">不确定</p>
+	  				<p :class="{'active': active2 === 0}" @click="change_active(0,'2','solemn',$event)">是</p>
+	  				<p :class="{'active': active2 === 1}" @click="change_active(1,'2','solemn',$event)">不是</p>
+	  				<p :class="{'active': active2 === 2}" @click="change_active(2,'2','solemn',$event)">不确定</p>
 	  			</dd>
 	  		</dl>
 	  		<dl>
 	  			<dt>办事爽快</dt>
 	  			<dd>
-	  				<p :class="{'active': active3 === 0}" @click="change_active(0,'3',$event)">是</p>
-	  				<p :class="{'active': active3 === 1}" @click="change_active(1,'3',$event)">不是</p>
-	  				<p :class="{'active': active3 === 2}" @click="change_active(2,'3',$event)">不确定</p>
+	  				<p :class="{'active': active3 === 0}" @click="change_active(0,'3','frank',$event)">是</p>
+	  				<p :class="{'active': active3 === 1}" @click="change_active(1,'3','frank',$event)">不是</p>
+	  				<p :class="{'active': active3 === 2}" @click="change_active(2,'3','frank',$event)">不确定</p>
 	  			</dd>
 	  		</dl>
 	  		<dl>
 	  			<dt>洁身自好</dt>
 	  			<dd>
-	  				<p :class="{'active': active4 === 0}" @click="change_active(0,'4',$event)">是</p>
-	  				<p :class="{'active': active4 === 1}" @click="change_active(1,'4',$event)">不是</p>
-	  				<p :class="{'active': active4 === 2}" @click="change_active(2,'4',$event)">不确定</p>
+	  				<p :class="{'active': active4 === 0}" @click="change_active(0,'4','clean',$event)">是</p>
+	  				<p :class="{'active': active4 === 1}" @click="change_active(1,'4','clean',$event)">不是</p>
+	  				<p :class="{'active': active4 === 2}" @click="change_active(2,'4','clean',$event)">不确定</p>
 	  			</dd>
 	  		</dl>
 	  		<dl>
 	  			<dt>随遇而安</dt>
 	  			<dd>
-	  				<p :class="{'active': active5 === 0}" @click="change_active(0,'5',$event)">是</p>
-	  				<p :class="{'active': active5 === 1}" @click="change_active(1,'5',$event)">不是</p>
-	  				<p :class="{'active': active5 === 2}" @click="change_active(2,'5',$event)">不确定</p>
+	  				<p :class="{'active': active5 === 0}" @click="change_active(0,'5','reconcile',$event)">是</p>
+	  				<p :class="{'active': active5 === 1}" @click="change_active(1,'5','reconcile',$event)">不是</p>
+	  				<p :class="{'active': active5 === 2}" @click="change_active(2,'5','reconcile',$event)">不确定</p>
 	  			</dd>
 	  		</dl>
 	  	</div>
@@ -52,13 +52,22 @@ export default {
 	      active2:'',
 	      active3:'',
 	      active4:'',
-	      active5:''
+	      active5:'',
+	      treat:{
+	      	discernment:'',
+	      	solemn:'',
+	      	frank:'',
+	      	clean:'',
+	      	reconcile:''
+	      }
 	    }
 	},
 	methods:{
-	  	change_active(num,sectionId, event) {
-		  this.$data['active'+sectionId] = num
-	   }
+	  	change_active(answerValue,sectionId,sectionKey,event) {
+		  this.$data['active'+sectionId] = answerValue
+		  this.$data.treat[sectionKey]=answerValue
+		  this.$emit('genderChange', this.$data.treat)
+	    }
 	},
 	mounted() {
 	   this.change_active()

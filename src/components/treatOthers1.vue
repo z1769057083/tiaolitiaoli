@@ -4,25 +4,25 @@
 	  		<dl>
 	  			<dt>待人和气，有时候就算吃亏也无妨</dt>
 	  			<dd>
-	  				<p :class="{'active': active1 === 0}" @click="change_active(0,'1',$event)">是</p>
-	  				<p :class="{'active': active1 === 1}" @click="change_active(1,'1',$event)">不是</p>
-	  				<p :class="{'active': active1 === 2}" @click="change_active(2,'1',$event)">不确定</p>
+	  				<p :class="{'active': active1 === 0}" @click="change_active(0,'1','treatother',$event)">是</p>
+	  				<p :class="{'active': active1 === 1}" @click="change_active(1,'1','treatother',$event)">不是</p>
+	  				<p :class="{'active': active1 === 2}" @click="change_active(2,'1','treatother',$event)">不确定</p>
 	  			</dd>
 	  		</dl>
 	  		<dl>
 	  			<dt>计划周全以后才会行动</dt>
 	  			<dd>
-	  				<p :class="{'active': active2 === 0}" @click="change_active(0,'2',$event)">是</p>
-	  				<p :class="{'active': active2 === 1}" @click="change_active(1,'2',$event)">不是</p>
-	  				<p :class="{'active': active2 === 2}" @click="change_active(2,'2',$event)">不确定</p>
+	  				<p :class="{'active': active2 === 0}" @click="change_active(0,'2','plan',$event)">是</p>
+	  				<p :class="{'active': active2 === 1}" @click="change_active(1,'2','plan',$event)">不是</p>
+	  				<p :class="{'active': active2 === 2}" @click="change_active(2,'2','plan',$event)">不确定</p>
 	  			</dd>
 	  		</dl>
 	  		<dl>
 	  			<dt>经常帮助别人</dt>
 	  			<dd>
-	  				<p :class="{'active': active3 === 0}" @click="change_active(0,'3',$event)">是</p>
-	  				<p :class="{'active': active3 === 1}" @click="change_active(1,'3',$event)">不是</p>
-	  				<p :class="{'active': active3 === 2}" @click="change_active(2,'3',$event)">不确定</p>
+	  				<p :class="{'active': active3 === 0}" @click="change_active(0,'3','helpother',$event)">是</p>
+	  				<p :class="{'active': active3 === 1}" @click="change_active(1,'3','helpother',$event)">不是</p>
+	  				<p :class="{'active': active3 === 2}" @click="change_active(2,'3','helpother',$event)">不确定</p>
 	  			</dd>
 	  		</dl>
 	  	</div>
@@ -34,13 +34,20 @@ export default {
 	  	return {
 	      active1:'',
 	      active2:'',
-	      active3:''
+	      active3:'',
+	      treat:{
+	      	treatother:'',
+	      	plan:'',
+	      	helpother:''
+	      }
 	    }
 	},
 	methods:{
-	  	change_active(num,sectionId, event) {
-		  this.$data['active'+sectionId] = num
-	   }
+	  	change_active(answerValue,sectionId,sectionKey,event) {
+		  this.$data['active'+sectionId] = answerValue
+		  this.$data.treat[sectionKey]=answerValue
+		  this.$emit('genderChange', this.$data.treat)
+	    }
 	},
 	mounted() {
 	   this.change_active()
