@@ -8,11 +8,11 @@
     }
   },
   "birthday": {
-    "isFormat":true,
+    "isFormat": true,
     "text": "我是{0}出生的"
   },
   "city": {
-    "isFormat":true,
+    "isFormat": true,
     "text": "我是{0}人"
   },
   "taste": {
@@ -23,30 +23,81 @@
       "text": "童年揍是这么无忧无虑"
     },
     "angry": {
-      "text": "童年揍是这么无忧无虑"
+      "text": "总有刁民想害朕！气！"
     },
     "worry": {
-      "text": "童年揍是这么无忧无虑"
+      "text": "让这个世界让我操碎了心"
     },
     "sad": {
-      "fear": "童年揍是这么无忧无虑"
+      "text": "不说了，说多了都是泪"
+    },
+    "fear": {
+      "text": "那时候我胆小，怕怕"
     }
   },
   "daily": {
     "watch": {
-      "text": "童年揍是这么无忧无虑"
+      "text": "天天看书看电视"
     },
     "walk": {
-      "text": "童年揍是这么无忧无虑"
+      "text": "疲于奔波啊"
     },
     "stand": {
-      "text": "童年揍是这么无忧无虑"
+      "text": "我就是一枚螺丝钉"
     },
     "sleep": {
-      "text": "童年揍是这么无忧无虑"
+      "text": "舒服不过躺着"
     },
     "sit": {
-      "text": "童年揍是这么无忧无虑"
+      "text": "不是在上课就是在上课的路上"
+    }
+  },
+  "season": {
+    "spring": {
+      "text": "春天让我不舒服"
+    },
+    "summer": {
+      "text": "我怕热，夏天最痛苦"
+    },
+    "autumn": {
+      "text": "秋风秋雨秋煞人，最讨厌秋天"
+    },
+    "winter": {
+      "text": "我怕冷，冬天最难受"
+    }
+  },
+  "looks": {
+    "text": "回答完毕"
+  },
+  "face": {
+    "text": ""
+  },
+  "skin": {
+    "text": ""
+  },
+  "body": {
+    "text": ""
+  },
+  "mind": {
+    "text": ""
+  },
+  "character": {
+    "text": ""
+  },
+  "actor": {
+    "text": "选完了"
+  },
+  "femaleStatus": {
+    "pregnant": {
+      "text": "我有了。。。"
+    }
+  },
+  "illness": {
+    "none": {
+      "text": "偶很健康滴"
+    },
+    "cannotSleep": {
+      "text": "睡眠不好"
     }
   }
 }
