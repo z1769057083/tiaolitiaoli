@@ -4,19 +4,7 @@
 	  		<dl>
 	  			<dt>最近出现情况:</dt>
 	  			<dd>
-	  				<p :class="{'active': active}" @click="active = !active" >经常腹泻</p>
-	  				<p :class="{'active': active1}" @click="active1 = !active1">入眠困难</p>
-	  				<p :class="{'active': active2}" @click="active2 = !active2">肠胃不好</p>
-	  				<p :class="{'active': active3}" @click="active3 = !active3">睡觉易醒</p>
-	  				<p :class="{'active': active4}" @click="active4 = !active4">心慌</p>
-	  				<p :class="{'active': active5}" @click="active5 = !active5">全身无力</p>
-	  				<p :class="{'active': active6}" @click="active6 = !active6">便秘</p>
-	  				<p :class="{'active': active7}" @click="active7 = !active7">食欲不振</p>
-	  				<p class="m-selectulcer" 
-	  					:class="{'active': active8}" @click="active8 = !active8">持续口腔溃疡</p>
-	  				<p :class="{'active': active9}" @click="active9 = !active9">痛经</p>
-	  				<p :class="{'active': active10}" @click="active10 = !active10">经期紊乱</p>
-	  				<p :class="{'active': active11}" @click="active11 = !active11">无</p>
+	  				<p v-for="item in brandlist" :class="{active: arr.indexOf(item) > -1 }" @click="ac(item)">{{item}}</p>
 	  			</dd>
 	  		</dl>
 	  	</div>
@@ -26,21 +14,20 @@
 export default {
   data(){
   	return {
-  		active:false,
-  		active1:false,
-  		active2:false,
-  		active3:false,
-  		active4:false,
-  		active5:false,
-  		active6:false,
-  		active7:false,
-  		active8:false,
-  		active9:false,
-  		active10:false,
-  		active11:false
+  		arr: [],
+  		brandlist: ['经常腹泻','入眠困难','肠胃不好','睡觉易醒','心慌','全身无力','便秘','食欲不振','持续口腔溃疡','痛经','经期紊乱无']
     }
   },
   methods:{
+  	ac(obj) {
+            var numb = this.arr.indexOf(obj);
+            if (numb > -1) {
+              this.arr.splice(numb, 1);
+            } else {
+              this.arr.push(obj);
+            }
+            console.log(this.arr);
+        }
   }
 }
 </script>

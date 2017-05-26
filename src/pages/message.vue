@@ -4,7 +4,7 @@
       <div class='m-char'>
       	<div class="m-charscroll">
       		<div class="m-chardocter" v-for="(item,index) in question">
-	      		<div class="m-charperson"><img src='../assets/indexheadportrait1.png'/></div>
+	      		<div class="m-charperson"><img :src='imgUrl'/></div>
 	      		<div class="m-charcont">{{question[index].content}}</div>
 	      	</div>
 	      	<div class="m-charcustom">
@@ -17,7 +17,7 @@
       <div class="m-select">
       	    <!--先天体质报告问题-->
 	        <gender class='hidden' :class="{show: index == 0}"  @genderChange="genderChange"></gender>
-	        <city class='hidden' :class="{show: index == 1}"></city>
+	        <city class='hidden' :class="{show: index == 1}" @genderChange="genderChange"></city>
 	        <facialFeatures class='hidden' :class="{show: index == 2}" @genderChange="genderChange1"></facialFeatures>
 	        <!--多选-->
 		    <emotion class='hidden' :class="{show: index == 3}" @genderChange="genderChange1"></emotion>
@@ -83,7 +83,8 @@ export default {
       currentComponentIndex:true,
       form: {
       	gender:'',
-      	birthday:''
+      	birthday:'',
+      	address:''
       },
       filledIndex:0,
       index:0
@@ -127,12 +128,11 @@ export default {
 	        console.log(error)
 	      })
 	  },
-	  genderChange (gender,brithday) {
-	  	this.form.gender = gender
-	  	this.form.brithday = brithday
+	  genderChange (gender) {
+	  	this.form = gender;
 	  },
-	  genderChange1 (val) {
-	  	this.form  = val
+	  genderChange1 (gender) {
+//	  	this.form = gender;
 	  },
 //	  answerFinished(){
 //	  	this.filledIndex++;
@@ -140,7 +140,7 @@ export default {
 	  confirm () {
 	  	console.log(this.form)
 	  	this.index  ++;
-	  	if(this.index<=19){
+	  	if(this.index<=20){
 	  	}else{
 	  		this.$router.push('/report')
 	  	}

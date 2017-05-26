@@ -47,16 +47,22 @@
   };
 
   export default {
+  	
     methods: {
       onAddressChange(picker, values) {
         picker.setSlotValues(1, address[values[0]]);
         this.addressProvince = values[0];
         this.addressCity = values[1];
+        this.Obj.Address = this.addressCity;
+        console.log(this.Obj.Address);
+        this.$emit('genderChange', this.Obj);
       }
     },
-
     data() {
       return {
+      	Obj:{
+      	Address: ''
+      },
         number: 0,
         yearSlot: [{
           flex: 1,
