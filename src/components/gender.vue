@@ -16,7 +16,7 @@ export default {
       gender:-1,
       brithday:"2014-01-01",
       Obj:{
-      	genter: '',
+      	gender: '',
       	brithday: '',
       	Address: ''
       }
@@ -25,23 +25,24 @@ export default {
   methods:{
   	change_active(gender,event) {
       this.active = gender;
-      this.$emit('genderChange', gender)
+    
       console.log(gender);
-      this.Obj.genter = gender;
+      this.Obj.gender = gender;
       if (this.Obj.brithday != '') {
-      	this.$emit('genderChange', this.Obj);
+      	this.$emit('saveUserAnswer', this.Obj);
       }
 //    if(answerFinished){
 //    	this.$emit('answerFinished')
 //    } 
    },
    change_date(brithday){
+   	debugger;
    	console.log(brithday);
    	var Bir = brithday.split('-');
    	console.log(Bir);
    	this.Obj.brithday = Bir;
    	if (this.Obj.gender != '') {
-   		this.$emit('genderChange', this.Obj);
+   		this.$emit('saveUserAnswer', this.Obj);
    	}
    }
   },

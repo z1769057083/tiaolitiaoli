@@ -15,6 +15,9 @@ export default {
   data(){
   	return {
   		arr: [],
+  		Situation:{
+  			situation:''
+  		},
   		brandlist: ['经常腹泻','入眠困难','肠胃不好','睡觉易醒','心慌','全身无力','便秘','食欲不振','持续口腔溃疡','痛经','经期紊乱无']
     }
   },
@@ -26,7 +29,9 @@ export default {
             } else {
               this.arr.push(obj);
             }
-            console.log(this.arr);
+            this.Situation.situation=this.arr
+            console.log(this.Situation.situation);
+            this.$emit('genderChange', this.Situation)
         }
   }
 }
