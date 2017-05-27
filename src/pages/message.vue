@@ -4,7 +4,7 @@
       <div class='m-char'>
       	<div class="m-charscroll">
       		<div class="m-chardocter" v-for="(item,index) in question">
-	      		<div class="m-charperson"><img src='../assets/indexheadportrait.png'/></div>
+	      		<div class="m-charperson"><img :src='imgUrl'/></div>
 	      		<div class="m-charcont">{{question[index].content}}</div>
 	      	</div>
 	      	<div class="m-charcustom">
@@ -16,29 +16,30 @@
       <!-- <maskconfirm></maskconfirm> -->
       <div class="m-select">
       	    <!--先天体质报告问题-->
-	        <gender class='hidden' :class="{show: index == 0}"  @genderChange="genderChange"></gender>
-	        <city class='hidden' :class="{show: index == 1}"></city>
-	        <facialFeatures class='hidden' :class="{show: index == 2}" @genderChange="genderChange"></facialFeatures>
-	        <!--多选  站立-->
-		    <emotion class='hidden' :class="{show: index == 3}"></emotion>
-		    <season class='hidden' :class="{show: index == 4}"></season>
-		    <treatOthers1 class='hidden' :class="{show: index == 5}"></treatOthers1>
-		    <treatOthers2 class='hidden' :class="{show: index == 6}"></treatOthers2>
-		    <treatOthers3 class='hidden' :class="{show: index == 7}"></treatOthers3>
-		    <treatOthers4 class='hidden' :class="{show: index == 8}"></treatOthers4>
-		    <parentsBirthday class='hidden' :class="{show: index == 9}"></parentsBirthday>
+	        <gender class='hidden' :class="{show: index == 0}"   v-on:saveUserAnswer="parentUpdateUserAnswer"></gender>
+	        <city class='hidden' :class="{show: index == 1}" @updateUserAnswer="updateUserAnswer"></city>
+	        <facialFeatures class='hidden' :class="{show: index == 2}" @updateUserAnswer="updateUserAnswer"></facialFeatures>
+	        <!--多选-->
+		    <emotion class='hidden' :class="{show: index == 3}" @updateUserAnswer="updateUserAnswer"></emotion>
+		    <season class='hidden' :class="{show: index == 4}" @updateUserAnswer="updateUserAnswer"></season>
+		    <treatOthers1 class='hidden' :class="{show: index == 5}" @updateUserAnswer="updateUserAnswer"></treatOthers1>
+		    <treatOthers2 class='hidden' :class="{show: index == 6}" @updateUserAnswer="updateUserAnswer"></treatOthers2>
+		    <treatOthers3 class='hidden' :class="{show: index == 7}" @updateUserAnswer="updateUserAnswer"></treatOthers3>
+		    <treatOthers4 class='hidden' :class="{show: index == 8}" @updateUserAnswer="updateUserAnswer"></treatOthers4>
+		    <parentsBirthday class='hidden' :class="{show: index == 9}" @updateUserAnswer="updateUserAnswer"></parentsBirthday>
 		    <!--后天体质报告问题-->
-		    <aftercity class='hidden' :class="{show: index == 10}"></aftercity>
-		    <afterseason class='hidden' :class="{show: index == 11}"></afterseason>
-		    <afterlimb class='hidden' :class="{show: index == 12}"></afterlimb>
-		    <afterfigure class='hidden' :class="{show: index == 13}"></afterfigure>
-		    <aftertreat1 class='hidden' :class="{show: index == 14}"></aftertreat1>
-		    <aftertreat2 class='hidden' :class="{show: index == 15}"></aftertreat2>
-		    <aftertreat3 class='hidden' :class="{show: index == 16}"></aftertreat3>
-		    <aftertreat4 class='hidden' :class="{show: index == 17}"></aftertreat4>
-		    <aftertreat5 class='hidden' :class="{show: index == 18}"></aftertreat5>
+		    <aftercity class='hidden' :class="{show: index == 10}" @updateUserAnswer="updateUserAnswer"></aftercity>
+		    <afteremotion class='hidden' :class="{show: index == 11}" @updateUserAnswer="updateUserAnswer"></afteremotion>
+		    <afterseason class='hidden' :class="{show: index == 12}" @updateUserAnswer="updateUserAnswer"></afterseason>
+		    <afterlimb class='hidden' :class="{show: index == 13}" @updateUserAnswer="updateUserAnswer"></afterlimb>
+		    <afterfigure class='hidden' :class="{show: index == 14}" @updateUserAnswer="updateUserAnswer"></afterfigure>
+		    <aftertreat1 class='hidden' :class="{show: index == 15}" @updateUserAnswer="updateUserAnswer"></aftertreat1>
+		    <aftertreat2 class='hidden' :class="{show: index == 16}" @updateUserAnswer="updateUserAnswer"></aftertreat2>
+		    <aftertreat3 class='hidden' :class="{show: index == 17}" @updateUserAnswer="updateUserAnswer"></aftertreat3>
+		    <aftertreat4 class='hidden' :class="{show: index == 18}" @updateUserAnswer="updateUserAnswer"></aftertreat4>
+		    <aftertreat5 class='hidden' :class="{show: index == 19}" @updateUserAnswer="updateUserAnswer"></aftertreat5>
 		    <!--多选-->
-		    <aftertreat6 class='hidden' :class="{show: index == 19}"></aftertreat6>
+		    <aftertreat6 class='hidden' :class="{show: index == 20}" @updateUserAnswer="updateUserAnswer"></aftertreat6>
 		    <button class="submit" @click="confirm">确定</button>
       </div>
    </div>
@@ -58,6 +59,7 @@ import treatOthers4 from '@/components/treatOthers4'
 import parentsBirthday from '@/components/parentsBirthday'
 import maskconfirm from '@/components/maskconfirm'
 import aftercity from '@/components/aftercity'
+import afteremotion from '@/components/afteremotion'
 import afterseason from '@/components/afterseason'
 import afterlimb from '@/components/afterlimb'
 import afterfigure from '@/components/afterfigure'
@@ -74,20 +76,14 @@ export default {
       title:'',
       toggle: false,
       question:[],
-      imgUrl:'../assets/indexheadportrait.png',
+      imgUrl:'',
       hideMaskConfirm: true,
       hideGender: true,
       hideCity: true,
       currentComponentIndex:true,
-      form: {
-      	gender: '',
-      	data:'',
-      	shili:'',
-      	weijue:'',
-      	xiujue:'',
-      	kouqi:'',
-      	tingjue:''
+      answer: {
       },
+      filledIndex:0,
       index:0
     }
   },
@@ -104,6 +100,7 @@ export default {
     parentsBirthday,
     maskconfirm,
     aftercity,
+    afteremotion,
     afterseason,
     afterlimb,
     afterfigure,
@@ -115,29 +112,43 @@ export default {
     aftertreat6 
   },
   methods:{
-  	firstQuestion(){
+  	beforeQuestion(){
 	  	var that = this;
 	  	axios.get(api.beforeQuestionData)
 		  .then(function (res) {
 		  	if(res.data.errorCode == 0){
 		  		res = res.data.returnValue.xianTianQuestions
 		  		that.question = res
-		  		console.log(that.question)
+		  		console.log(res)
 		  	}
 		  })
 	      .catch(function (error) {
 	        console.log(error)
 	      })
 	  },
-	  genderChange (val) {
-	  	this.form.gender = val
-	  	console.log(this.form.gender)
+	  parentUpdateUserAnswer(answerParams) {
+	  	debugger;
+	  	console.log('answerParams')
+	  	for(let key in answerParams){
+	  		this.answer[key] = answerParams[key];
+	  	}
+	  //	{'gender":'F','feel"：’happy‘}   {'feel':'happy'}
 	  	
 	  },
+	  updateUserAnswer(){
+	  	debugger;
+	  },
+	  updateUserAnswer1 (gender) {
+//	  	this.form = gender;
+	  },
+//	  answerFinished(){
+//	  	this.filledIndex++;
+//	  },
 	  confirm () {
-	  	console.log(this.form)
+	  	debugger;
+	  	console.log(this.answer)
 	  	this.index  ++;
-	  	if(this.index<=19){
+	  	if(this.index<=20){
 	  	}else{
 	  		this.$router.push('/report')
 	  	}
@@ -160,7 +171,7 @@ export default {
 	}
   },
   mounted() {
-    this.firstQuestion()
+    this.beforeQuestion()
     this.requestlist()
     //取title
    	if(!window.localStorage){
@@ -170,8 +181,8 @@ export default {
         let obj_arr = storage.getItem(Doctor_Name_Key)
 		let obj = JSON.parse(obj_arr)
 		document.title = obj.name
-		var imgUrl = obj.img
-		console.log(imgUrl)
+		this.imgUrl = obj.img
+		console.log(this.imgUrl)
     }
   }
 }

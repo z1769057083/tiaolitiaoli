@@ -4,22 +4,22 @@
   		<dl>
   			<dt>饮食口味</dt>
   			<dd>
-  				<p :class="{'active': active1 === 0}" @click="change_active(0,'1',$event)">酸</p>
-  				<p :class="{'active': active1 === 1}" @click="change_active(1,'1',$event)">甜</p>
-  				<p :class="{'active': active1 === 2}" @click="change_active(2,'1',$event)">苦</p>
-  				<p :class="{'active': active1 === 3}" @click="change_active(3,'1',$event)">辣</p>
-  				<p :class="{'active': active1 === 4}" @click="change_active(4,'1',$event)">咸</p>
-  				<p :class="{'active': active1 === 5}" @click="change_active(5,'1',$event)">淡</p>
+  				<p :class="{'active': active1 === 0}" @click="change_active(0,'1','diettone',$event)">酸</p>
+  				<p :class="{'active': active1 === 1}" @click="change_active(1,'1','diettone',$event)">甜</p>
+  				<p :class="{'active': active1 === 2}" @click="change_active(2,'1','diettone',$event)">苦</p>
+  				<p :class="{'active': active1 === 3}" @click="change_active(3,'1','diettone',$event)">辣</p>
+  				<p :class="{'active': active1 === 4}" @click="change_active(4,'1','diettone',$event)">咸</p>
+  				<p :class="{'active': active1 === 5}" @click="change_active(5,'1','diettone',$event)">淡</p>
   			</dd>
   		</dl>
   		<dl>
   			<dt>情绪情况</dt>
   			<dd>
-  				<p :class="{'active': active2 === 0}" @click="change_active(0,'2',$event)">喜</p>
-  				<p :class="{'active': active2 === 1}" @click="change_active(1,'2',$event)">怒</p>
-  				<p :class="{'active': active2 === 2}" @click="change_active(2,'2',$event)">忧虑</p>
-  				<p :class="{'active': active2 === 3}" @click="change_active(3,'2',$event)">悲</p>
-  				<p :class="{'active': active2 === 4}" @click="change_active(4,'2',$event)">惊恐</p>
+  				<p :class="{'active': active2 === 0}" @click="change_active(0,'2','emotion',$event)">喜</p>
+  				<p :class="{'active': active2 === 1}" @click="change_active(1,'2','emotion',$event)">怒</p>
+  				<p :class="{'active': active2 === 2}" @click="change_active(2,'2','emotion',$event)">忧虑</p>
+  				<p :class="{'active': active2 === 3}" @click="change_active(3,'2','emotion',$event)">悲</p>
+  				<p :class="{'active': active2 === 4}" @click="change_active(4,'2','emotion',$event)">惊恐</p>
   			</dd>
   		</dl>
   	</div>
@@ -30,13 +30,19 @@ export default {
 	data(){
 	  	return {
 	      active1:'',
-	      active2:''
+	      active2:'',
+	      emtion:{
+	      	diettone:'',
+	      	emotion:''
+	      }
 	    }
 	},
 	methods:{
-	  	change_active(num,sectionId, event) {
-		  this.$data['active'+sectionId] = num
-	   }
+	  	change_active(answerValue,sectionId,sectionKey,event) {
+		  this.$data['active'+sectionId] = answerValue
+		  this.$data.emtion[sectionKey] = answerValue
+		  this.$emit('genderChange', this.$data.emtion)
+	    }
 	},
 	mounted() {
 	   this.change_active()

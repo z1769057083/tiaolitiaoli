@@ -1,40 +1,46 @@
 <template>
-	<div class="m-selectfacon">
-	  	<div class="m-selectseason">
-	  		<dl>
-	  			<dt>你的劳逸情况:</dt>
-	  			<dd>
-	  				<p :class="{'active': active1 === 0}" @click="change_active(0,'1',$event)">久视</p>
-	  				<p :class="{'active': active1 === 1}" @click="change_active(1,'1',$event)">久坐</p>
-	  				<p :class="{'active': active1 === 2}" @click="change_active(2,'1',$event)">久立</p>
-	  				<p :class="{'active': active1 === 3}" @click="change_active(3,'1',$event)">久卧</p>
-	  				<p :class="{'active': active1 === 4}" @click="change_active(4,'1',$event)">久行</p>
-	  			</dd>
-	  		</dl>
-	  		<dl>
-	  			<dt>一年中哪个季节让你最不舒服？</dt>
-	  			<dd>
-	  				<p :class="{'active': active2 === 0}" @click="change_active(0,'2',$event)">春</p>
-	  				<p :class="{'active': active2 === 1}" @click="change_active(1,'2',$event)">夏</p>
-	  				<p :class="{'active': active2 === 2}" @click="change_active(2,'2',$event)">秋</p>
-	  				<p :class="{'active': active2 === 3}" @click="change_active(3,'2',$event)">冬</p>
-	  			</dd>
-	  		</dl>
-	  	</div>
-	</div>
+<div class="m-selectfacon">
+  	<div class="m-selectseason">
+  		<dl>
+  			<dt>你的劳逸情况:</dt>
+  			<dd>
+  				<p :class="{'active': active1 === 0}" @click="change_active(0,'1','afterWorkRest',$event)">久视</p>
+  				<p :class="{'active': active1 === 1}" @click="change_active(1,'1','afterWorkRest',$event)">久坐</p>
+  				<p :class="{'active': active1 === 2}" @click="change_active(2,'1','afterWorkRest',$event)">久立</p>
+  				<p :class="{'active': active1 === 3}" @click="change_active(3,'1','afterWorkRest',$event)">久卧</p>
+  				<p :class="{'active': active1 === 4}" @click="change_active(4,'1','afterWorkRest',$event)">久行</p>
+  			</dd>
+  		</dl>
+  		<dl>
+  			<dt>一年中哪个季节让你最不舒服？</dt>
+  			<dd>
+  				<p :class="{'active': active2 === 0}" @click="change_active(0,'2','afterSeason',$event)">春</p>
+  				<p :class="{'active': active2 === 1}" @click="change_active(1,'2','afterSeason',$event)">夏</p>
+  				<p :class="{'active': active2 === 2}" @click="change_active(2,'2','afterSeason',$event)">秋</p>
+  				<p :class="{'active': active2 === 3}" @click="change_active(3,'2','afterSeason',$event)">冬</p>
+  			</dd>
+  		</dl>
+  	</div>	  	
+</div>
 </template>
 <script type="text/javascript">
 export default {
     data(){
 	  	return {
 	      active1:'',
-	      active2:''
+	      active2:'',
+	      season:{
+	      	afterWorkRest:'',
+	      	afterSeason:''
+	      }
 	    }
 	},
 	methods:{
-	  	change_active(num,sectionId, event) {
-		  this.$data['active'+sectionId] = num
-	   }
+	  	change_active(answerValue,sectionId,sectionKey,event) {
+		  this.$data['active'+sectionId] = answerValue
+		  this.$data.season[sectionKey]=answerValue
+		  this.$emit('genderChange', this.$data.season)
+	    }
 	},
 	mounted() {
 	   this.change_active()
@@ -44,6 +50,11 @@ export default {
 <style lang="scss">
 @import "../common/common.scss";
 	/*选择问题内容*/
+.m-select{
+	width: 100%;
+	background: #f8f8f8;
+	height: 52%;
+	position: relative;
 	.m-selectfacon{
 		width: 90%;
 		margin-left: 5%;
@@ -86,5 +97,19 @@ export default {
 				}
 			}
 		}
+		.submit{
+			width: 30%;
+			height: rem(40rem);
+			background: #c69b70;
+			border: 0;
+			color: #fff;
+			border-radius: 0.13rem;
+			font-size: 0.37rem;
+			line-height: rem(40rem);
+			position: absolute;
+			bottom: rem(40rem);
+			left: 35%;
+		}
 	}
+}
 </style>

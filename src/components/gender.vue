@@ -5,7 +5,7 @@
 	  		<div class="m-selectboy" :class="{'active': active == 0}" @click="change_active(0,$event)"><img src="../assets/msgman.png"/>男</div>
 	  		<div class="m-selectgirl" :class="{'active': active == 1}" @click="change_active(1,$event)"><img src="../assets/msgwoman.png"/>我是女生</div>	
 	  	</div>
-	  	<input type="date" class="m-selectdate" name='' :value='today' @click="change_data"/>
+	  	<input type="date" class="m-selectdate" name='brithday'  v-model='brithday' @change='change_date(brithday)'/>
 	</div>
 </template>
 <script type="text/javascript">
@@ -13,21 +13,41 @@ export default {
   data(){
   	return {
       active:0,
-      today: '2014-01-01'
+      gender:-1,
+      brithday:"2014-01-01",
+      Obj:{
+      	gender: '',
+      	brithday: '',
+      	Address: ''
+      }
     }
   },
   methods:{
-  	change_active(num, event) {
-      this.active = num;
-      this.$emit('genderChange', num)
+  	change_active(gender,event) {
+      this.active = gender;
+    
+      console.log(gender);
+      this.Obj.gender = gender;
+      if (this.Obj.brithday != '') {
+      	this.$emit('saveUserAnswer', this.Obj);
+      }
+//    if(answerFinished){
+//    	this.$emit('answerFinished')
+//    } 
    },
-    change_data(){
-    	console.log(this.date)
-    }
+   change_date(brithday){
+   	debugger;
+   	console.log(brithday);
+   	var Bir = brithday.split('-');
+   	console.log(Bir);
+   	this.Obj.brithday = Bir;
+   	if (this.Obj.gender != '') {
+   		this.$emit('saveUserAnswer', this.Obj);
+   	}
+   }
   },
   mounted() {
    this.change_active(1)
-   console.log(this.date)
   }
 }
 </script>

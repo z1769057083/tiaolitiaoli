@@ -4,18 +4,7 @@
 	  		<dl>
 	  			<dt>最近出现情况:</dt>
 	  			<dd>
-	  				<p>经常腹泻</p>
-	  				<p>入眠困难</p>
-	  				<p>肠胃不好</p>
-	  				<p>睡觉易醒</p>
-	  				<p>心慌</p>
-	  				<p>全身无力</p>
-	  				<p>便秘</p>
-	  				<p>食欲不振</p>
-	  				<p class="m-selectulcer">持续口腔溃疡</p>
-	  				<p>痛经</p>
-	  				<p>经期紊乱</p>
-	  				<p>无</p>
+	  				<p v-for="item in brandlist" :class="{active: arr.indexOf(item) > -1 }" @click="ac(item)">{{item}}</p>
 	  			</dd>
 	  		</dl>
 	  	</div>
@@ -25,7 +14,25 @@
 export default {
   data(){
   	return {
+  		arr: [],
+  		Situation:{
+  			situation:''
+  		},
+  		brandlist: ['经常腹泻','入眠困难','肠胃不好','睡觉易醒','心慌','全身无力','便秘','食欲不振','持续口腔溃疡','痛经','经期紊乱无']
     }
+  },
+  methods:{
+  	ac(obj) {
+            var numb = this.arr.indexOf(obj);
+            if (numb > -1) {
+              this.arr.splice(numb, 1);
+            } else {
+              this.arr.push(obj);
+            }
+            this.Situation.situation=this.arr
+            console.log(this.Situation.situation);
+            this.$emit('genderChange', this.Situation)
+        }
   }
 }
 </script>
@@ -69,6 +76,10 @@ export default {
 					.m-selectulcer{
 						width: 40%;
 						
+					}
+					.active{
+						color: #fff;
+						background: #c69b70;
 					}
 				}
 			}

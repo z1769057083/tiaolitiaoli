@@ -1,8 +1,8 @@
 <template>
 	<div class="m-selection">
-	  	<div class="m-selecttit">性别</div>
-	  	<input type="date" class="m-selectbirthday"  :value='today'/>
-	  	<input type="date" class="m-selectbirthday"  :value='today'/>
+	  	<div class="m-selecttit">父母生日</div>
+	  	<input type="date" class="m-selectbirthday" name='fatherBrithdy'  v-model='fatherBrithdy' @change='change_date(fatherBrithdy)'/>
+	  	<input type="date" class="m-selectbirthday" name='brithday'  v-model='brithday' @change='change_date1(brithday)'/>
 	</div>
 </template>
 <script type="text/javascript">
@@ -10,16 +10,30 @@ export default {
   data(){
   	return {
       active:0,
-      today: '2014-01-01'
+      brithday:'2014-01-01',
+      fatherBrithdy:'2014-01-01',
+      Obj:{
+      	fatherBrithdy:'',
+      	motherBrithdy: ''
+      }
     }
   },
   methods:{
-  	change_active(num, event) {
-      this.active = num;
-    }
-  },
-  mounted() {
-   this.change_active(1)
+  	change_date(fatherBrithdy){
+// 	console.log(brithday);
+   	var Bir = fatherBrithdy.split('-');
+   	this.Obj.fatherBrithdy = Bir;
+   	if (this.Obj.motherBrithdy != '') {
+   		this.$emit('genderChange', this.Obj);
+   	}
+   },
+  	change_date1(brithday){
+   	var Bir = brithday.split('-');
+   	this.Obj.motherBrithdy = Bir;
+   	if (this.Obj.fatherBrithdy != '') {
+   		this.$emit('genderChange', this.Obj);
+   	}
+   }
   }
 }
 </script>
