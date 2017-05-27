@@ -15,7 +15,7 @@ export default {
      // if (document.querySelector('.m-select').contains(e.target)) {
        // e.preventDefault();
      // }
-    });
+    //});
   }
 }
 </script>
