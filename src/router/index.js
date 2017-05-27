@@ -7,6 +7,7 @@ import shop from '@/pages/shop'
 import goodsdetail from '@/pages/goodsdetail'
 import allgoods from '@/pages/allgoods'
 import articledetail from '@/pages/articledetail'
+import confirmOrder from '@/pages/confirmOrder'
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -44,6 +45,11 @@ export default new Router({
       path: '/articledetail',
       component: articledetail,
       name: 'articledetail'
-    } 
+    },
+    {
+      path: '/confirmOrder',
+      component: confirmOrder,
+      name: 'confirmOrder'
+    }
   ]
 })

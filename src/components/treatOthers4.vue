@@ -1,44 +1,44 @@
 <template>
 	<div class="m-selectfacon">
-	  	<div class="m-selectfacial">
+	  	<div class="m-selecttreat">
 	  		<dl>
-	  			<dt>明辨是非</dt>
+	  			<dt>清瘦</dt>
 	  			<dd>
-	  				<p :class="{'active': active1 === 0}" @click="change_active(0,'1','discernment',$event)">是</p>
-	  				<p :class="{'active': active1 === 1}" @click="change_active(1,'1','discernment',$event)">不是</p>
-	  				<p :class="{'active': active1 === 2}" @click="change_active(2,'1','discernment',$event)">不确定</p>
+	  				<p :class="{'active': active1 === 0}" @click="change_active(0,'1','lean',$event)">是</p>
+	  				<p :class="{'active': active1 === 1}" @click="change_active(1,'1','lean',$event)">不是</p>
+	  				<p :class="{'active': active1 === 2}" @click="change_active(2,'1','lean',$event)">不确定</p>
+	  			</dd>
+	  		</dl>
+	  		<dl>
+	  			<dt>观察透彻</dt>
+	  			<dd>
+	  				<p :class="{'active': active2 === 0}" @click="change_active(0,'2','observe',$event)">是</p>
+	  				<p :class="{'active': active2 === 1}" @click="change_active(1,'2','observe',$event)">不是</p>
+	  				<p :class="{'active': active2 === 2}" @click="change_active(2,'2','observe',$event)">不确定</p>
 	  			</dd>
 	  		</dl>
 	  		<dl>
 	  			<dt>为人庄重</dt>
 	  			<dd>
-	  				<p :class="{'active': active2 === 0}" @click="change_active(0,'2','solemn',$event)">是</p>
-	  				<p :class="{'active': active2 === 1}" @click="change_active(1,'2','solemn',$event)">不是</p>
-	  				<p :class="{'active': active2 === 2}" @click="change_active(2,'2','solemn',$event)">不确定</p>
+	  				<p :class="{'active': active3 === 0}" @click="change_active(0,'3','solemn',$event)">是</p>
+	  				<p :class="{'active': active3 === 1}" @click="change_active(1,'3','solemn',$event)">不是</p>
+	  				<p :class="{'active': active3 === 2}" @click="change_active(2,'3','solemn',$event)">不确定</p>
 	  			</dd>
 	  		</dl>
 	  		<dl>
 	  			<dt>办事爽快</dt>
 	  			<dd>
-	  				<p :class="{'active': active3 === 0}" @click="change_active(0,'3','frank',$event)">是</p>
-	  				<p :class="{'active': active3 === 1}" @click="change_active(1,'3','frank',$event)">不是</p>
-	  				<p :class="{'active': active3 === 2}" @click="change_active(2,'3','frank',$event)">不确定</p>
+	  				<p :class="{'active': active4 === 0}" @click="change_active(0,'4','frank',$event)">是</p>
+	  				<p :class="{'active': active4 === 1}" @click="change_active(1,'4','frank',$event)">不是</p>
+	  				<p :class="{'active': active4 === 2}" @click="change_active(2,'4','frank',$event)">不确定</p>
 	  			</dd>
 	  		</dl>
 	  		<dl>
-	  			<dt>洁身自好</dt>
+	  			<dt>讲话策略多</dt>
 	  			<dd>
-	  				<p :class="{'active': active4 === 0}" @click="change_active(0,'4','clean',$event)">是</p>
-	  				<p :class="{'active': active4 === 1}" @click="change_active(1,'4','clean',$event)">不是</p>
-	  				<p :class="{'active': active4 === 2}" @click="change_active(2,'4','clean',$event)">不确定</p>
-	  			</dd>
-	  		</dl>
-	  		<dl>
-	  			<dt>随遇而安</dt>
-	  			<dd>
-	  				<p :class="{'active': active5 === 0}" @click="change_active(0,'5','reconcile',$event)">是</p>
-	  				<p :class="{'active': active5 === 1}" @click="change_active(1,'5','reconcile',$event)">不是</p>
-	  				<p :class="{'active': active5 === 2}" @click="change_active(2,'5','reconcile',$event)">不确定</p>
+	  				<p :class="{'active': active5 === 0}" @click="change_active(0,'5','speech',$event)">是</p>
+	  				<p :class="{'active': active5 === 1}" @click="change_active(1,'5','speech',$event)">不是</p>
+	  				<p :class="{'active': active5 === 2}" @click="change_active(2,'5','speech',$event)">不确定</p>
 	  			</dd>
 	  		</dl>
 	  	</div>
@@ -46,27 +46,27 @@
 </template>
 <script type="text/javascript">
 export default {
-    data(){
+  data(){
 	  	return {
 	      active1:'',
 	      active2:'',
 	      active3:'',
 	      active4:'',
 	      active5:'',
-	      treat:{
-	      	discernment:'',
+	      afterTreat:{
+	      	lean:'',
+	      	observe:'',
 	      	solemn:'',
 	      	frank:'',
-	      	clean:'',
-	      	reconcile:''
+	      	speech:''
 	      }
 	    }
 	},
 	methods:{
 	  	change_active(answerValue,sectionId,sectionKey,event) {
 		  this.$data['active'+sectionId] = answerValue
-		  this.$data.treat[sectionKey]=answerValue
-		  this.$emit('genderChange', this.$data.treat)
+		  this.$data.afterTreat[sectionKey]=answerValue
+		  this.$emit('updateUserAnswer', this.$data.afterTreat)
 	    }
 	},
 	mounted() {
@@ -80,7 +80,7 @@ export default {
 	.m-selectfacon{
 		width: 90%;
 		margin-left: 5%;
-		.m-selectfacial{
+		.m-selecttreat{
 			width: 100%;
 			overflow: hidden;
 			dl{
@@ -88,12 +88,12 @@ export default {
 				height: rem(44rem);
 				border-bottom: 1px solid #e3e3e3;
 				dt{
-					width: 19%;
+					width: 22%;
 					float: left;
 					line-height: rem(44rem);
 				}
 				dd{
-					width: 81%;
+					width: 78%;
 					float: left;
 					line-height: rem(44rem);
 					p{

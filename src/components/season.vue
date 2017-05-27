@@ -39,7 +39,7 @@ export default {
 	  	change_active(answerValue,sectionId,sectionKey,event) {
 		  this.$data['active'+sectionId] = answerValue
 		  this.$data.season[sectionKey]=answerValue
-		  this.$emit('genderChange', this.$data.season)
+		  this.$emit('updateUserAnswer', this.$data.season)
 	    }
 	},
 	mounted() {

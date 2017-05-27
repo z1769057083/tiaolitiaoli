@@ -53,7 +53,7 @@ export default {
 	      active3:'',
 	      active4:'',
 	      active5:'',
-	      treat:{
+	      afterTreat:{
 	      	upright:'',
 	      	strong:'',
 	      	optimistic:'',
@@ -65,8 +65,8 @@ export default {
 	methods:{
 	  	change_active(answerValue,sectionId,sectionKey,event) {
 		  this.$data['active'+sectionId] = answerValue
-		  this.$data.treat[sectionKey]=answerValue
-		  this.$emit('genderChange', this.$data.treat)
+		  this.$data.afterTreat[sectionKey]=answerValue
+		  this.$emit('updateUserAnswer', this.$data.afterTreat)
 	    }
 	},
 	mounted() {

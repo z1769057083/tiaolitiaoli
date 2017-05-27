@@ -4,20 +4,20 @@
 	  		<dl>
 	  			<dt>肤色</dt>
 	  			<dd>
-	  				<span :class="{'active': active1 === 0}" @click="change_active(0,'1','afterSkin',$event)">皮肤白皙</span>
-	  				<span :class="{'active': active1 === 1}" @click="change_active(1,'1','afterSkin',$event)">皮肤青白</span>
-	  				<span :class="{'active': active1 === 2}" @click="change_active(2,'1','afterSkin',$event)">皮肤微黑</span>
+	  				<span :class="{'active': active1 === 0}" @click="change_active(0,'1','skin',$event)">皮肤白皙</span>
+	  				<span :class="{'active': active1 === 1}" @click="change_active(1,'1','skin',$event)">皮肤青白</span>
+	  				<span :class="{'active': active1 === 2}" @click="change_active(2,'1','skin',$event)">皮肤微黑</span>
 	  			</dd>
 	  			<dd>
-	  				<span :class="{'active': active1 === 3}" @click="change_active(3,'1','afterSkin',$event)">皮肤发红、发赤或古铜色</span>
-	  				<span :class="{'active': active1 === 4}" @click="change_active(4,'1','afterSkin',$event)">皮肤偏黄</span>
+	  				<span :class="{'active': active1 === 3}" @click="change_active(3,'1','skin',$event)">皮肤发红、发赤或古铜色</span>
+	  				<span :class="{'active': active1 === 4}" @click="change_active(4,'1','skin',$event)">皮肤偏黄</span>
 	  			</dd>
 	  		</dl>
 	  		<dl>
 	  			<dt>身材</dt>
-	  			<dd><span :class="{'active': active2 === 0}" @click="change_active(0,'2','afterFigure',$event)">身材四肢长、身材挺拔、肩背宽大</span></dd>
-	  			<dd><span :class="{'active': active2 === 1}" @click="change_active(1,'2','afterFigure',$event)">脊背宽广而肌肉丰满，身材上尖下阔</span></dd>
-	  			<dd><span :class="{'active': active2 === 2}" @click="change_active(2,'2','afterFigure',$event)">肩背丰满，腹部容易发胖，身材上下匀称</span></dd>
+	  			<dd><span :class="{'active': active2 === 0}" @click="change_active(0,'2','figure',$event)">身材四肢长、身材挺拔、肩背宽大</span></dd>
+	  			<dd><span :class="{'active': active2 === 1}" @click="change_active(1,'2','figure',$event)">脊背宽广而肌肉丰满，身材上尖下阔</span></dd>
+	  			<dd><span :class="{'active': active2 === 2}" @click="change_active(2,'2','figure',$event)">肩背丰满，腹部容易发胖，身材上下匀称</span></dd>
 	  		</dl>
 	  	</div>
 	</div>
@@ -29,8 +29,8 @@ export default {
 	      active1:'',
 	      active2:'',
 	      limb:{
-	      	afterSkin:'',
-	      	afterFigure:''
+	      	skin:'',
+	      	figure:''
 	      }
 	    }
 	},
@@ -38,7 +38,7 @@ export default {
 	  	change_active(answerValue,sectionId,sectionKey,event) {
 		  this.$data['active'+sectionId] = answerValue
 		  this.$data.limb[sectionKey]=answerValue
-		  this.$emit('genderChange', this.$data.limb)
+		  this.$emit('updateUserAnswer', this.$data.limb)
 	    }
 	},
 	mounted() {

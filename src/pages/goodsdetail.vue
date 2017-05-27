@@ -40,17 +40,27 @@
 	  	<div class="l-mgoodsjoin">加入购物车</div>
 	  	<div class="l-mgoodsjoin l-mgoodsbuy">立即购买</div>
 	  </div>
+	  <!--组件-->
+	  <!--加入购物车-->
+	  <!--<shoppingCar></shoppingCar>-->
+	  <purchase></purchase>
   </div>
 </template>
 <script>
 import axios from 'axios'
 import api from '../api/api'
+import shoppingCar from '@/components/shoppingCar'
+import purchase from '@/components/purchase'
 export default {
   name: 'goodsdetail',
   data(){
   	return {
       list:[]
     }
+  },
+  components:{
+  	shoppingCar,
+  	purchase
   },
   methods: {
 	  requestlist(){

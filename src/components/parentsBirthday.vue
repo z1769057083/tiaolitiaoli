@@ -20,18 +20,15 @@ export default {
   },
   methods:{
   	change_date(fatherBrithdy){
-// 	console.log(brithday);
-   	var Bir = fatherBrithdy.split('-');
-   	this.Obj.fatherBrithdy = Bir;
-   	if (this.Obj.motherBrithdy != '') {
-   		this.$emit('genderChange', this.Obj);
+   	this.Obj.fatherBrithdy = fatherBrithdy;
+   	if (this.Obj.motherBrithdy !== '') {
+   		this.$emit('updateUserAnswer', this.Obj);
    	}
    },
   	change_date1(brithday){
-   	var Bir = brithday.split('-');
-   	this.Obj.motherBrithdy = Bir;
-   	if (this.Obj.fatherBrithdy != '') {
-   		this.$emit('genderChange', this.Obj);
+   	this.Obj.motherBrithdy = brithday;
+   	if (this.Obj.fatherBrithdy !== '') {
+   		this.$emit('updateUserAnswer', this.Obj);
    	}
    }
   }

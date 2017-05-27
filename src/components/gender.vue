@@ -17,32 +17,22 @@ export default {
       brithday:"2014-01-01",
       Obj:{
       	gender: '',
-      	brithday: '',
-      	Address: ''
+      	brithday: ''
       }
     }
   },
   methods:{
   	change_active(gender,event) {
       this.active = gender;
-    
-      console.log(gender);
       this.Obj.gender = gender;
-      if (this.Obj.brithday != '') {
-      	this.$emit('saveUserAnswer', this.Obj);
+      if (this.Obj.brithday !== '') {
+      	this.$emit('updateUserAnswer', this.Obj);     	
       }
-//    if(answerFinished){
-//    	this.$emit('answerFinished')
-//    } 
    },
    change_date(brithday){
-   	debugger;
-   	console.log(brithday);
-   	var Bir = brithday.split('-');
-   	console.log(Bir);
-   	this.Obj.brithday = Bir;
-   	if (this.Obj.gender != '') {
-   		this.$emit('saveUserAnswer', this.Obj);
+   	this.Obj.brithday = brithday;
+   	if (this.Obj.gender !== '') {
+   		this.$emit('updateUserAnswer', this.Obj);
    	}
    }
   },

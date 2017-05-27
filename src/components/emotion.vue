@@ -41,7 +41,7 @@ export default {
 	  	change_active(answerValue,sectionId,sectionKey,event) {
 		  this.$data['active'+sectionId] = answerValue
 		  this.$data.emtion[sectionKey] = answerValue
-		  this.$emit('genderChange', this.$data.emtion)
+		  this.$emit('updateUserAnswer', this.$data.emtion)
 	    }
 	},
 	mounted() {
