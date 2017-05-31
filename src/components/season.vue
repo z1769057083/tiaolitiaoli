@@ -4,11 +4,7 @@
   		<dl>
   			<dt>你的劳逸情况:</dt>
   			<dd>
-  				<p :class="{'active': active1 === 0}" @click="change_active(0,'1','workRest',$event)">久视</p>
-  				<p :class="{'active': active1 === 1}" @click="change_active(1,'1','workRest',$event)">久坐</p>
-  				<p :class="{'active': active1 === 2}" @click="change_active(2,'1','workRest',$event)">久立</p>
-  				<p :class="{'active': active1 === 3}" @click="change_active(3,'1','workRest',$event)">久卧</p>
-  				<p :class="{'active': active1 === 4}" @click="change_active(4,'1','workRest',$event)">久行</p>
+  				<p v-for="item in workRestList" :class="{active: arr.indexOf(item) > -1 }" @click="ac(item)">{{item}}</p>
   			</dd>
   		</dl>
   		<dl>
@@ -27,8 +23,9 @@
 export default {
     data(){
 	  	return {
-	      active1:'',
+	  	  arr:[],
 	      active2:'',
+	      workRestList:['久视','久坐','久立','久卧','久行'],
 	      season:{
 	      	workRest:'',
 	      	season:''
@@ -39,8 +36,24 @@ export default {
 	  	change_active(answerValue,sectionId,sectionKey,event) {
 		  this.$data['active'+sectionId] = answerValue
 		  this.$data.season[sectionKey]=answerValue
-		  this.$emit('genderChange', this.$data.season)
-	    }
+		  if(this.season.workRest!==''){
+		  	this.$emit('updateUserAnswer', this.$data.season)
+		  }  
+	   },
+	  	ac(obj) {
+            var numb = this.arr.indexOf(obj);
+            if (numb > -1) {
+              this.arr.splice(numb, 1);
+            } else {
+              this.arr.push(obj);
+            }
+            this.season.workRest=this.arr
+            console.log(this.season.workRest);
+            if(this.season.season!==''){
+			  	this.$emit('updateUserAnswer', this.season)
+			}  
+            
+        }
 	},
 	mounted() {
 	   this.change_active()

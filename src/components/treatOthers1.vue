@@ -1,28 +1,44 @@
 <template>
 	<div class="m-selectfacon">
-	  	<div class="m-selecttreat1">
+	  	<div class="m-selectfacial">
 	  		<dl>
-	  			<dt>待人和气，有时候就算吃亏也无妨</dt>
+	  			<dt>待人处事</dt>
 	  			<dd>
-	  				<p :class="{'active': active1 === 0}" @click="change_active(0,'1','treatother',$event)">是</p>
-	  				<p :class="{'active': active1 === 1}" @click="change_active(1,'1','treatother',$event)">不是</p>
-	  				<p :class="{'active': active1 === 2}" @click="change_active(2,'1','treatother',$event)">不确定</p>
+	  				<p :class="{'active': active1 === 0}" @click="change_active(0,'1','treat',$event)">是</p>
+	  				<p :class="{'active': active1 === 1}" @click="change_active(1,'1','treat',$event)">不是</p>
+	  				<p :class="{'active': active1 === 2}" @click="change_active(2,'1','treat',$event)">不确定</p>
 	  			</dd>
 	  		</dl>
 	  		<dl>
-	  			<dt>计划周全以后才会行动</dt>
+	  			<dt>谋定而动</dt>
 	  			<dd>
-	  				<p :class="{'active': active2 === 0}" @click="change_active(0,'2','plan',$event)">是</p>
-	  				<p :class="{'active': active2 === 1}" @click="change_active(1,'2','plan',$event)">不是</p>
-	  				<p :class="{'active': active2 === 2}" @click="change_active(2,'2','plan',$event)">不确定</p>
+	  				<p :class="{'active': active2 === 0}" @click="change_active(0,'2','trick',$event)">是</p>
+	  				<p :class="{'active': active2 === 1}" @click="change_active(1,'2','trick',$event)">不是</p>
+	  				<p :class="{'active': active2 === 2}" @click="change_active(2,'2','trick',$event)">不确定</p>
 	  			</dd>
 	  		</dl>
 	  		<dl>
-	  			<dt>经常帮助别人</dt>
+	  			<dt>乐于助人</dt>
 	  			<dd>
-	  				<p :class="{'active': active3 === 0}" @click="change_active(0,'3','helpother',$event)">是</p>
-	  				<p :class="{'active': active3 === 1}" @click="change_active(1,'3','helpother',$event)">不是</p>
-	  				<p :class="{'active': active3 === 2}" @click="change_active(2,'3','helpother',$event)">不确定</p>
+	  				<p :class="{'active': active3 === 0}" @click="change_active(0,'3','help',$event)">是</p>
+	  				<p :class="{'active': active3 === 1}" @click="change_active(1,'3','help',$event)">不是</p>
+	  				<p :class="{'active': active3 === 2}" @click="change_active(2,'3','help',$event)">不确定</p>
+	  			</dd>
+	  		</dl>
+	  		<dl>
+	  			<dt>洁身自好</dt>
+	  			<dd>
+	  				<p :class="{'active': active4 === 0}" @click="change_active(0,'4','clean',$event)">是</p>
+	  				<p :class="{'active': active4 === 1}" @click="change_active(1,'4','clean',$event)">不是</p>
+	  				<p :class="{'active': active4 === 2}" @click="change_active(2,'4','clean',$event)">不确定</p>
+	  			</dd>
+	  		</dl>
+	  		<dl>
+	  			<dt>随遇而安</dt>
+	  			<dd>
+	  				<p :class="{'active': active5 === 0}" @click="change_active(0,'5','liberty',$event)">是</p>
+	  				<p :class="{'active': active5 === 1}" @click="change_active(1,'5','liberty',$event)">不是</p>
+	  				<p :class="{'active': active5 === 2}" @click="change_active(2,'5','liberty',$event)">不确定</p>
 	  			</dd>
 	  		</dl>
 	  	</div>
@@ -35,10 +51,14 @@ export default {
 	      active1:'',
 	      active2:'',
 	      active3:'',
+	      active4:'',
+	      active5:'',
 	      treat:{
-	      	treatother:'',
-	      	plan:'',
-	      	helpother:''
+	      	treat:'',
+	      	trick:'',
+	      	help:'',
+	      	clean:'',
+	      	liberty:''
 	      }
 	    }
 	},
@@ -46,7 +66,7 @@ export default {
 	  	change_active(answerValue,sectionId,sectionKey,event) {
 		  this.$data['active'+sectionId] = answerValue
 		  this.$data.treat[sectionKey]=answerValue
-		  this.$emit('genderChange', this.$data.treat)
+		  this.$emit('updateUserAnswer', this.$data.treat)
 	    }
 	},
 	mounted() {
@@ -57,47 +77,44 @@ export default {
 <style lang="scss">
 @import "../common/common.scss";
 	/*选择问题内容*/
-.m-selectfacon{
-	width: 90%;
-	margin-left: 5%;
-	.m-selecttreat1{
-		width: 100%;
-		overflow: hidden;
-		dl{
+	.m-selectfacon{
+		width: 90%;
+		margin-left: 5%;
+		.m-selectfacial{
 			width: 100%;
-			/*height: rem(78rem);*/
-			border-bottom: 1px solid #e3e3e3;
 			overflow: hidden;
-			padding: rem(6rem) 0 rem(14rem);
-			dt{
+			dl{
 				width: 100%;
-				line-height: rem(18rem);
-			}
-			dd{
-				width: 100%;
-				float: left;
-				line-height: rem(44rem);
-				p{
-					display: block;
-					width: 22%;
+				height: rem(44rem);
+				border-bottom: 1px solid #e3e3e3;
+				dt{
+					width: 19%;
 					float: left;
-					height: rem(24rem);
-					background: #fff;
-					margin-top: rem(10rem);
-					border-radius: rem(10rem);
-					line-height: rem(24rem);
-					text-align: center;
-					margin-left: 4%;
+					line-height: rem(44rem);
 				}
-				.active{
-					color: #fff;
-					background: #c69b70;
-				}
-				p:nth-child(1){
-					margin-left: 12%;
+				dd{
+					width: 81%;
+					float: left;
+					line-height: rem(44rem);
+					p{
+						display: block;
+						width: 30%;
+						float: left;
+						height: rem(24rem);
+						background: #fff;
+						margin-top: rem(10rem);
+						border-radius: rem(10rem);
+						line-height: rem(24rem);
+						text-align: center;
+						margin-left: 3%;
+					}
+					.active{
+						color: #fff;
+						background: #c69b70;
+					}
 				}
 			}
 		}
 	}
-}
-</style>
+</style>	  			
+	  		

@@ -204,6 +204,33 @@ export default {
 				  	height: 100%;
 				  }
 				}
+				.swiper-pagination {
+				  position: absolute;
+				  z-index: 10;
+				  text-align: center;
+				  transform: translate3d(0px, 0px, 0px);
+				  transition: all .3s;
+				  height: rem(100rem);
+				}			
+				.swiper-pagination-bullets {
+				  left: 0;
+				  bottom: 10px;
+				  width: 100%;
+				  height: rem(100rem);
+				}
+				.swiper-pagination-bullet {
+				  display: inline-block;
+				  height: 8px;
+				  width: 8px;
+				  margin: 0 5px;
+				  cursor: pointer;
+				  opacity: .2;
+				  border-radius: 50%;
+				  background: #fff;
+				}				
+				.swiper-pagination-bullet-active {
+				  opacity: 1;
+				}
 			}
 	  }
 	  /*文章部分*/

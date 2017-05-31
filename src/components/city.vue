@@ -45,23 +45,20 @@
     '澳门': ['澳门'],
     '台湾': ['台北市', '高雄市', '台北县', '桃园县', '新竹县', '苗栗县', '台中县', '彰化县', '南投县', '云林县', '嘉义县', '台南县', '高雄县', '屏东县', '宜兰县', '花莲县', '台东县', '澎湖县', '基隆市', '新竹市', '台中市', '嘉义市', '台南市']
   };
-
   export default {
-  	
     methods: {
       onAddressChange(picker, values) {
         picker.setSlotValues(1, address[values[0]]);
         this.addressProvince = values[0];
         this.addressCity = values[1];
-        this.Obj.Address = this.addressCity;
-        console.log(this.Obj.Address);
-        this.$emit('genderChange', this.Obj);
+        this.Obj.city = this.addressCity;
+        this.$emit('updateUserAnswer', this.Obj);
       }
     },
     data() {
       return {
       	Obj:{
-      	Address: ''
+      	city: ''
       },
         number: 0,
         yearSlot: [{
@@ -111,8 +108,8 @@
             textAlign: 'center'
           }
         ],
-        addressProvince: '北京',
-        addressCity: '北京'
+        addressProvince: '',
+        addressCity: ''
       };
     },
     mounted() {

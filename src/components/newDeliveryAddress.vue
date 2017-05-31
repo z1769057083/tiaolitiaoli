@@ -1,15 +1,51 @@
 <template>
-	<div class="m-selection1">
-		<div class="m-selectcity">你目前生活的城市 <b>{{ addressProvince }} {{ addressCity }}</b></div>
-		<div class="page-picker">
-		    <div class="page-picker-wrapper">
-		      <mt-picker :slots="addressSlots" @change="onAddressChange" :visible-item-count="5"></mt-picker>
-		    </div>
-	   </div>
+	<div class="maskmain">
+		<div class="address-main">	
+			<h3 @click="close">新增收货地址</h3>
+			<div class="address-mcon">
+				<dl>
+					<dt>收货人</dt>
+					<dd>
+						<input type="text" placeholder="收货人姓名"/>
+					</dd>
+				</dl>
+				<dl>
+					<dt>联系电话</dt>
+					<dd>
+						<input type="text" placeholder="手机或固定电话"/>
+					</dd>
+				</dl>
+				<!--<dl>
+					<dt>选择地区</dt>
+					<dd>
+						<div class="m-selectcity" @click='selectCity'><b>{{ addressProvince }} {{ addressCity }}</b></div>
+						<div class="page-picker" v-show='pickerhidden'>
+						    <div class="page-picker-wrapper">
+						      <mt-picker :slots="addressSlots" @change="onAddressChange" :visible-item-count="5"></mt-picker>
+						    </div>
+					   </div>
+					</dd>
+				</dl>-->
+				<dl>
+					<dt>详细地址</dt>
+					<dd>
+						<input type="text" placeholder="如街道，楼层，门牌号等"/>
+					</dd>
+				</dl>
+				<dl>
+					<dt>邮政编码</dt>
+					<dd>
+						<input type="text" placeholder="邮政编码(选填)"/>
+					</dd>
+				</dl>
+				<div class="address-btn preserve">保存</div>				
+				<div class="address-btn remove">删除收货地址</div>
+			</div>
+		</div>
 	</div>
 </template>
-<script type="text/babel">
-  const address = {
+<script type="text/javascript">
+const address = {
     '北京': ['北京'],
     '广东': ['广州', '深圳', '珠海', '汕头', '韶关', '佛山', '江门', '湛江', '茂名', '肇庆', '惠州', '梅州', '汕尾', '河源', '阳江', '清远', '东莞', '中山', '潮州', '揭阳', '云浮'],
     '上海': ['上海'],
@@ -45,22 +81,27 @@
     '澳门': ['澳门'],
     '台湾': ['台北市', '高雄市', '台北县', '桃园县', '新竹县', '苗栗县', '台中县', '彰化县', '南投县', '云林县', '嘉义县', '台南县', '高雄县', '屏东县', '宜兰县', '花莲县', '台东县', '澎湖县', '基隆市', '新竹市', '台中市', '嘉义市', '台南市']
   };
-
-  export default { 	
+  export default {
     methods: {
       onAddressChange(picker, values) {
         picker.setSlotValues(1, address[values[0]]);
         this.addressProvince = values[0];
         this.addressCity = values[1];
-        this.Obj.Address = this.addressCity;
-        console.log(this.Obj.Address);
-        this.$emit('genderChange', this.Obj);
+        this.Obj.city = this.addressCity;
+        this.$emit('updateUserAnswer', this.Obj);
+      },
+      selectCity(){
+    	this.pickerhidden = true
+      },
+      close(){
+    	this.$emit('closeDialogEvent')
       }
     },
     data() {
       return {
+      	pickerhidden:false,
       	Obj:{
-      	Address: ''
+      	city: '',
       },
         number: 0,
         yearSlot: [{
@@ -110,8 +151,8 @@
             textAlign: 'center'
           }
         ],
-        addressProvince: '北京',
-        addressCity: '北京'
+        addressProvince: '',
+        addressCity: ''
       };
     },
     mounted() {
@@ -130,31 +171,74 @@
 <style lang="scss">
 @import "../common/common.scss";
 	/*选择问题内容*/
-.m-selection1{
-	width: 74.6%;
-	margin-left: 12.2%;
-	overflow: hidden;
-	position: relative;
-	.m-selectcity{
-		width: 92.8%;
-		height: 1.3rem;
-		background: url(../assets/msgdate.png) no-repeat center;
-		background-size: cover;
-		line-height: 1.3rem;
-		font-size: 0.37rem;
-		padding-left: 7.2%;
-		color: #ccc;
-		border-radius: 1.06rem;
-		margin-top: rem(20rem);
-		z-index:9999;
+.maskmain{
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.6);
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	top: 0;
+	z-index: 99;
+	.address-main{
+		height: rem(394rem);
+		background:#fff;
+		width: 100%;
 		position: absolute;
-		b{
-			color: $c3c3c;
+		bottom: 0;
+		left: 0;
+		h3{
+			font-size: $font16;
+			text-align: center;
+			line-height: rem(52rem);
+			border-bottom: 1px solid #efefef;
+			background: url(../assets/shopcarClose.png) no-repeat 97% center;
+			background-size: rem(19rem);
 		}
-	}
-	.page-picker{
-		margin-top: rem(20rem);
-	}
+		.address-mcon{
+			width: 94%;
+			padding: 0 3%;
+			dl{
+				border-bottom: 1px solid #efefef;
+				height: rem(50rem);
+				width: 100%;
+				font-size: $font14;
+				dt{
+					width: 18%;
+					float: left;
+					line-height: rem(50rem);
+				}
+				dd{
+					width: 78%;
+					float: right;
+					margin: rem(16rem) 0;
+					input{
+						width: 100%;
+						border: 0;
+					}
+				}
+			}
+			.address-btn{
+				width: 100%;
+				height: rem(40rem);
+				text-align: center;
+				line-height: rem(40rem);
+				font-size: $font16;
+				border-radius: rem(5rem) ;
+			}
+			.preserve{
+				background: #50b347;
+				color: #fff;
+				margin-bottom: rem(10rem);
+				margin-top: rem(24rem);
+			}
+			.remove{
+				color: $c3c3c;
+				border: 1px solid #999;
+			}
+		}
+		
+		
+	}	
 }
-
 </style>

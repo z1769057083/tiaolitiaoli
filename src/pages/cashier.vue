@@ -1,0 +1,126 @@
+<template>
+  <div class='cashier-main'> 
+	<div class="cashier-mtop">
+		<p>支付金额</p>
+		<span>¥69.00</span>	
+		<div class="cashier-goods">商品名称:驱蚊包-驱蚊包驱蚊包</div>
+	</div>
+	<div class="cashier-mcontent">
+		<dl>
+			<dt><img src="../assets/cashierCard.png"/></dt>
+			<dd>
+				<p>使用银行卡支付</p>
+				请使用银联卡支付，无需开通网银
+			</dd>
+			<dd></dd>
+		</dl>
+		<dl>
+			<dt><img src="../assets/cashierWechart.png"/></dt>
+			<dd>
+				<p>微信支付</p>
+				微信支付使用银行卡累计限制1000元
+			</dd>
+			<dd></dd>
+		</dl>	
+	</div>
+	<div class="cashier-pay">立即支付</div>
+  </div>
+</template>
+<script>
+import axios from 'axios'
+export default {
+  name: 'allgoods',
+  data(){
+  	return {
+    }
+  },
+  methods: {
+  },
+  mounted() {
+  	document.documentElement.scrollTop = 0
+    document.body.scrollTop =0
+  }
+}
+</script>
+<style scoped lang="scss">
+@import "../common/common.scss";
+.cashier-main{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background: #f6f6f6;
+	.cashier-mtop{
+		width: 100%;
+		height: rem(155rem);
+		background: $cfff;
+		margin-top: rem(10rem);
+		text-align: center;
+		color: $c3c3c;
+		p{
+			font-size: $font14;
+			padding-top: rem(32rem);	
+		}
+		span{
+			font-size: $font26;
+			line-height: rem(40rem);
+		}
+		.cashier-goods{
+			width: 30%;
+			margin-left: 34%;
+			margin-top: rem(36rem);
+			font-size: $font14;
+			color: #999;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+	}
+	.cashier-mcontent{
+		width: 100%;
+		background: #fff;
+		margin-top: rem(10rem);
+		overflow: hidden;
+		dl{
+			width: 94%;
+			margin-left: 3%;
+			height: rem(37rem);
+			padding: rem(22rem) 0 rem(15rem);
+			border-bottom: 1px solid #efefef;
+			dt{
+				float: left;
+				width: rem(34rem);
+				height: rem(34rem);
+				margin-right: 3%;
+				img{
+					width: 100%;
+					height: 100%;
+				}
+			}
+			dd{
+				float: left;
+				color: #999;
+				p{
+					color: $c3c3c;
+					font-size: $font14;
+					margin-bottom: rem(8rem);
+				}
+			}
+		}
+		dl:nth-child(2){
+			border: 0;
+		}
+	}
+	.cashier-pay{
+		width: 94%;
+		height: rem(40rem);
+		background: #50b347;
+		color: #fff;
+		text-align: center;
+		line-height: rem(40rem);
+		font-size: $font16;
+		margin-left: 3%;
+		margin-top: rem(20rem);
+		border-radius: rem(5rem);
+	}
+}
+</style>

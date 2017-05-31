@@ -1,0 +1,226 @@
+<template>
+  <div class='tolley-main'> 
+  	<div class="tolley-mtop">
+  		<input class="tolley-check" type="checkbox"/>
+   		<div class="order-mtitle">
+	    	汉古商城
+	    	<span>编辑</span>
+	    </div>
+  	</div>
+  	<div class="tolley-content">
+  		<div class="tolley-mcon">
+  			<input class="tolley-check" type="checkbox"/>
+	  		<dl>
+	    			<dt><img src="../assets/confrimShopImg.png" onerror="this.src='http://placeholder.qiniudn.com/300'"/></dt>
+	    			<dd>
+	    				驱蚊包-套餐价格已包括3件
+	    				<p>¥69</p>
+	    			</dd>
+	    		</dl>
+	    		<div class="order-mnum">X<span>2</span></div>
+	    		<div class="delect">删除</div>
+	  	</div>
+	  	<!--<div class="tolley-mcon">
+	  		<input class="tolley-check" type="checkbox"/>
+	  		<dl>
+	    			<dt><img src="../assets/confrimShopImg.png"/></dt>
+	    			<dd>
+	    				驱蚊包-套餐价格已包括3件
+	    				<p>¥69</p>
+	    			</dd>
+	    		</dl>
+	    		<div class="order-mnum">X<span>2</span></div>
+	  	</div>
+	  	<div class="tolley-mcon">
+	  		<input class="tolley-check" type="checkbox"/>
+	  		<dl>
+	    			<dt><img src="../assets/confrimShopImg.png"/></dt>
+	    			<dd>
+	    				驱蚊包-套餐价格已包括3件
+	    				<p>¥69</p>
+	    			</dd>
+	    		</dl>
+	    		<div class="order-mnum">X<span>2</span></div>
+	  	</div>-->
+  	</div>
+  	<div class="tolley-mbottom">
+  		<router-link to='/cashier'>
+  			<div class="submitOrder">结算(<span>4</span>)</div>
+  		</router-link>
+			<div class="toal">
+				合计:<span>¥69</span>
+				<span class="fare">不含运费</span>
+			</div>
+			<div class="tolley-select">
+				<input class="tolley-check" type="checkbox"/>
+				全选
+			</div>
+  	</div>
+  </div>
+</template>
+<script>
+import axios from 'axios'
+export default {
+  data(){
+  	return {
+  		list:[]
+    }
+  },
+  methods: {
+  	shopList(){
+  		var that = this;
+	  	axios.get('../static/list.json')
+		  .then(function (res) {
+		  		res = res.data.returnValue
+		  		that.list = res
+		  		console.log(res)
+		  })
+		  .catch(function (error) {
+		    console.log(error)
+		  })
+  	}
+  },
+  mounted() {
+  	this.shopList()
+  }
+}
+</script>
+<style scoped lang="scss">
+@import "../common/common.scss";
+.tolley-main{
+	width: 100%;
+	height: 100%;
+	background: #f6f6f6;
+	position: absolute;
+	.tolley-mtop{
+		width: 94%;
+		padding:0 3%;
+		overflow: hidden;
+		background: #fff;
+		.tolley-check{
+			float: left;
+			width: rem(18rem);
+			height: rem(18rem);
+			margin: rem(15rem) 3% 0 0;
+		}
+		.order-mtitle{
+			width: 86%;
+			line-height: rem(46rem);
+			background: url(../assets/confirmLogo.png) no-repeat left;
+			background-size: rem(15rem) rem(14rem);
+			padding-left: 5%;
+			float: left;
+			span{
+				float: right;
+			}
+		}
+	}
+	.tolley-content{
+		width: 100%;
+		overflow: hidden;
+		background: #fff;
+		.tolley-mcon{
+			width: 94%;
+			height: rem(92rem);
+			background: #fafafa;
+			padding: rem(5rem) 3%;
+			margin-bottom: rem(10rem);
+			position: relative;
+			transition: transform .3s;
+			.tolley-check{
+				float: left;
+				width: rem(18rem);
+				height: rem(18rem);
+				margin: rem(37rem) 3% 0 0;
+			}
+			dl{
+				width: 70%;
+				float: left;
+				dt{
+					width: rem(92rem);
+					height: rem(92rem);
+					float: left;
+					img{
+						width: 100%;
+						height: 100%;
+					}
+				}
+				dd{
+					float: right;
+					line-height: rem(20rem);
+					p{
+						margin-top: rem(5rem);
+						font-size: $font14;
+						color: #fe4415;
+					}
+				}
+			}
+			.order-mnum{
+				float: right;
+				line-height: rem(92rem);
+				color: #9c9c9c;
+				span{
+					font-size: $font14;
+				}
+			}
+			.delect{
+				width: rem(60rem);
+				height: rem(102rem);
+				line-height: rem(102rem);
+				background: #ff3b2f;
+				color: #fff;
+				position: absolute;
+				top: 0;
+				right: rem(-60rem);
+				text-align: center;
+				font-size: $font14;
+			}
+		}
+	}
+	.tolley-mbottom{
+		width: 97%;
+		height: rem(48rem);
+		background: #fff;
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		padding-left: 3%;		
+		.submitOrder{
+			width: 24%;
+			float: right;
+			height: rem(48rem);
+			line-height: rem(48rem);
+			color: #fff;
+			background: #ff4443;
+			text-align: center;
+			font-size: $font14;
+		}
+		.toal{
+			float: right;
+			font-size: $font14;
+			color: $c000;
+			line-height: rem(48rem);
+			margin-right: rem(10rem);
+			span{
+				color: #ff3300;
+				margin-left: rem(10rem);
+			}
+			.fare{
+				color: #9e9e9e;
+				font-size: $font12;
+			}
+		}
+		.tolley-select{
+			line-height: rem(48rem);
+			font-size: $font14;
+			.tolley-check{
+				float: left;
+				width: rem(18rem);
+				height: rem(18rem);
+				margin: rem(15rem) 3% 0 0;
+			}
+		}
+	}
+}
+
+</style>

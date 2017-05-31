@@ -3,11 +3,11 @@
 	  	<div class="m-selectfigure">
 	  		<dl>
 	  			<dt>四肢</dt>
-	  			<dd><span :class="{'active': active1 === 0}" @click="change_active(0,'1','afterLimb',$event)">手足灵活细长多青筋</span></dd>	
-	  			<dd><span :class="{'active': active1 === 1}" @click="change_active(1,'1','afterLimb',$event)">手足小、步伐稳重、走路晃肩、精神矍铄</span></dd>	
-	  			<dd><span :class="{'active': active1 === 2}" @click="change_active(2,'1','afterLimb',$event)">手足小而丰腴，下肢多健壮，步履稳健</span></dd>
-	  			<dd><span :class="{'active': active1 === 3}" @click="change_active(3,'1','afterLimb',$event)">手足小，手背薄。足跟结实有力，行动轻快</span></dd>
-	  			<dd><span :class="{'active': active1 === 4}" @click="change_active(4,'1','afterLimb',$event)">手背厚，手足不安静，行走善摇摆</span></dd>
+	  			<dd><span :class="{'active': active1 === 0}" @click="change_active(0,'1','limb',$event)">手足灵活细长多青筋</span></dd>	
+	  			<dd><span :class="{'active': active1 === 1}" @click="change_active(1,'1','limb',$event)">手足小、步伐稳重、走路晃肩、精神矍铄</span></dd>	
+	  			<dd><span :class="{'active': active1 === 2}" @click="change_active(2,'1','limb',$event)">手足小而丰腴，下肢多健壮，步履稳健</span></dd>
+	  			<dd><span :class="{'active': active1 === 3}" @click="change_active(3,'1','limb',$event)">手足小，手背薄。足跟结实有力，行动轻快</span></dd>
+	  			<dd><span :class="{'active': active1 === 4}" @click="change_active(4,'1','limb',$event)">手背厚，手足不安静，行走善摇摆</span></dd>
 	  		</dl>
 	  	</div>
 	</div>
@@ -18,7 +18,7 @@ export default {
 	  	return {
 	      active1:'',
 	      limbs:{
-	      	afterLimb:''
+	      	limb:''
 	      }
 	    }
 	},
@@ -26,7 +26,7 @@ export default {
 	  	change_active(answerValue,sectionId,sectionKey,event) {
 		  this.$data['active'+sectionId] = answerValue
 		  this.$data.limbs[sectionKey]=answerValue
-		  this.$emit('genderChange', this.$data.limbs)
+		  this.$emit('updateUserAnswer', this.$data.limbs)
 	    }
 	},
 	mounted() {

@@ -35,22 +35,42 @@
     <div class="l-mgoodspay">
 	  	<div class="l-mgoodscar">
 	  	  <img src="../assets/listgoodspay.png"/>
-	  	  <p>购物车</p>
+	  	  <router-link to='/shoppingTolley'>
+	  	  	<p>购物车</p>
+	  	  </router-link>
 	  	</div>
-	  	<div class="l-mgoodsjoin">加入购物车</div>
-	  	<div class="l-mgoodsjoin l-mgoodsbuy">立即购买</div>
+	  	<div class="l-mgoodscar l-mgoodsshop">
+	  	  <img src="../assets/listShooping.png"/>
+	  	  <router-link to='/shop'>
+	  	  	<p>商城</p>
+	  	  </router-link>
+	  	</div>
+	  	<div class="l-mgoodsjoin" @click='addShoppingCar'>加入购物车</div>
+	  	<div class="l-mgoodsjoin l-mgoodsbuy" @click='addPurchase'>立即购买</div>
 	  </div>
+	  <!--组件-->
+	  <!--加入购物车-->
+	  <shoppingCar v-show='shophiden' @closeShopping='closeShopping'></shoppingCar>
+	  <purchase v-show='purchasehidden' @closePurchase='closePurchase'></purchase>
   </div>
 </template>
 <script>
 import axios from 'axios'
 import api from '../api/api'
+import shoppingCar from '@/components/shoppingCar'
+import purchase from '@/components/purchase'
 export default {
   name: 'goodsdetail',
   data(){
   	return {
-      list:[]
+      list:[],
+      shophiden: false,
+      purchasehidden:false
     }
+  },
+  components:{
+  	shoppingCar,
+  	purchase
   },
   methods: {
 	  requestlist(){
@@ -67,6 +87,19 @@ export default {
 		  .catch(function (error) {
 		    console.log(error)
 		  })
+	  },
+	  addShoppingCar() {
+	  	console.log(1)
+	  	this.shophiden = true
+	  },
+	  addPurchase() {
+	  	this.purchasehidden = true
+	  },
+	  closeShopping(){
+	  	this.shophiden = false
+	  },
+	  closePurchase(){
+	  	this.purchasehidden = false
 	  }
   },
   mounted() {
@@ -185,7 +218,7 @@ export default {
 	  	right: 0;
 	  	display: flex;
 	  	.l-mgoodscar{
-		  	width: 18.4%;
+		  	width: 17.8%;
 		  	height: 1.28rem;
 		  	text-align: center;
 		  	img{
@@ -193,11 +226,16 @@ export default {
 			  	height: 0.46rem;
 			  	margin: 0.19rem 0 0.1rem 0;
 			  	font-size: 0.32rem;
+			  }
+			  p{
 			  	color: #3C3C3C;
 			  }
 		  }
+		  .l-mgoodsshop{
+		  	border-left: 1px solid #efefef;
+		  }
 		  .l-mgoodsjoin{
-		  	width: 41.3%;
+		  	width: 32.2%;
 		  	height: 1.28rem;
 		  	text-align: center;
 		  	line-height: 1.28rem;

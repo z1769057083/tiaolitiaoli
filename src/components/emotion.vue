@@ -15,11 +15,7 @@
   		<dl>
   			<dt>情绪情况</dt>
   			<dd>
-  				<p :class="{'active': active2 === 0}" @click="change_active(0,'2','emotion',$event)">喜</p>
-  				<p :class="{'active': active2 === 1}" @click="change_active(1,'2','emotion',$event)">怒</p>
-  				<p :class="{'active': active2 === 2}" @click="change_active(2,'2','emotion',$event)">忧虑</p>
-  				<p :class="{'active': active2 === 3}" @click="change_active(3,'2','emotion',$event)">悲</p>
-  				<p :class="{'active': active2 === 4}" @click="change_active(4,'2','emotion',$event)">惊恐</p>
+  				<p v-for="item in emotionList" :class="{active: arr.indexOf(item) > -1 }" @click="ac(item)">{{item}}</p>
   			</dd>
   		</dl>
   	</div>
@@ -29,8 +25,9 @@
 export default {
 	data(){
 	  	return {
+	  	  arr: [],
 	      active1:'',
-	      active2:'',
+	      emotionList: ['喜','怒','忧虑','睡觉易醒','悲','惊恐'],
 	      emtion:{
 	      	diettone:'',
 	      	emotion:''
@@ -41,8 +38,24 @@ export default {
 	  	change_active(answerValue,sectionId,sectionKey,event) {
 		  this.$data['active'+sectionId] = answerValue
 		  this.$data.emtion[sectionKey] = answerValue
-		  this.$emit('genderChange', this.$data.emtion)
-	    }
+		  if(this.emtion.emotion!==''){
+		  	this.$emit('updateUserAnswer', this.$data.emtion)
+		  }  
+	    },
+	  	ac(obj) {
+            var numb = this.arr.indexOf(obj);
+            if (numb > -1) {
+              this.arr.splice(numb, 1);
+            } else {
+              this.arr.push(obj);
+            }
+            this.emtion.emotion=this.arr
+            console.log(this.emtion.emotion);
+            if(this.emtion.diettone!==''){
+			  	this.$emit('updateUserAnswer', this.emtion)
+			}  
+            
+        }
 	},
 	mounted() {
 	   this.change_active()

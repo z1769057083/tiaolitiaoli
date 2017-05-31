@@ -4,7 +4,7 @@
       <div class='m-char'>
       	<div class="m-charscroll">
       		<div class="m-chardocter" v-for="(item,index) in question">
-	      		<div class="m-charperson"><img :src='imgUrl'/></div>
+	      		<div class="m-charperson"><img src='../assets/indexheadportrait.png'/></div>
 	      		<div class="m-charcont">{{question[index].content}}</div>
 	      	</div>
 	      	<div class="m-charcustom">
@@ -13,33 +13,27 @@
 	      	</div>
       	</div>
       </div>
-      <!-- <maskconfirm></maskconfirm> -->
+      <maskconfirm v-show="maskhidden"></maskconfirm> 
       <div class="m-select">
       	    <!--先天体质报告问题-->
-	        <gender class='hidden' :class="{show: index == 0}"   v-on:saveUserAnswer="parentUpdateUserAnswer"></gender>
+	        <gender class='hidden' :class="{show: index == 0}"  v-on:updateUserAnswer="updateUserAnswer"></gender>
 	        <city class='hidden' :class="{show: index == 1}" @updateUserAnswer="updateUserAnswer"></city>
-	        <facialFeatures class='hidden' :class="{show: index == 2}" @updateUserAnswer="updateUserAnswer"></facialFeatures>
-	        <!--多选-->
-		    <emotion class='hidden' :class="{show: index == 3}" @updateUserAnswer="updateUserAnswer"></emotion>
-		    <season class='hidden' :class="{show: index == 4}" @updateUserAnswer="updateUserAnswer"></season>
-		    <treatOthers1 class='hidden' :class="{show: index == 5}" @updateUserAnswer="updateUserAnswer"></treatOthers1>
-		    <treatOthers2 class='hidden' :class="{show: index == 6}" @updateUserAnswer="updateUserAnswer"></treatOthers2>
-		    <treatOthers3 class='hidden' :class="{show: index == 7}" @updateUserAnswer="updateUserAnswer"></treatOthers3>
-		    <treatOthers4 class='hidden' :class="{show: index == 8}" @updateUserAnswer="updateUserAnswer"></treatOthers4>
-		    <parentsBirthday class='hidden' :class="{show: index == 9}" @updateUserAnswer="updateUserAnswer"></parentsBirthday>
+	        <!--公共问题开始-->
+		    <emotion class='hidden' :class="{show: index == 2}" @updateUserAnswer="updateUserAnswer"></emotion>
+		    <season class='hidden' :class="{show: index == 3}" @updateUserAnswer="updateUserAnswer"></season>
+		    <looks class='hidden' :class="{show: index == 4}" @updateUserAnswer="updateUserAnswer"></looks>
+		    <skinColor class='hidden' :class="{show: index == 5}" @updateUserAnswer="updateUserAnswer"></skinColor>
+		    <limbs class='hidden' :class="{show: index == 6}" @updateUserAnswer="updateUserAnswer"></limbs>
+		    <treatOthers1 class='hidden' :class="{show: index == 7}" @updateUserAnswer="updateUserAnswer"></treatOthers1>
+		    <treatOthers2 class='hidden' :class="{show: index == 8}" @updateUserAnswer="updateUserAnswer"></treatOthers2>
+		    <treatOthers3 class='hidden' :class="{show: index == 9}" @updateUserAnswer="updateUserAnswer"></treatOthers3>
+		    <treatOthers4 class='hidden' :class="{show: index == 10}" @updateUserAnswer="updateUserAnswer"></treatOthers4>
+		    <!--公共问题结束-->
+		    <parentsBirthday class='hidden' :class="{show: index == 11}" @updateUserAnswer="updateUserAnswer"></parentsBirthday>
+		    <!--先天体质报告问题结束-->		    	
 		    <!--后天体质报告问题-->
-		    <aftercity class='hidden' :class="{show: index == 10}" @updateUserAnswer="updateUserAnswer"></aftercity>
-		    <afteremotion class='hidden' :class="{show: index == 11}" @updateUserAnswer="updateUserAnswer"></afteremotion>
-		    <afterseason class='hidden' :class="{show: index == 12}" @updateUserAnswer="updateUserAnswer"></afterseason>
-		    <afterlimb class='hidden' :class="{show: index == 13}" @updateUserAnswer="updateUserAnswer"></afterlimb>
-		    <afterfigure class='hidden' :class="{show: index == 14}" @updateUserAnswer="updateUserAnswer"></afterfigure>
-		    <aftertreat1 class='hidden' :class="{show: index == 15}" @updateUserAnswer="updateUserAnswer"></aftertreat1>
-		    <aftertreat2 class='hidden' :class="{show: index == 16}" @updateUserAnswer="updateUserAnswer"></aftertreat2>
-		    <aftertreat3 class='hidden' :class="{show: index == 17}" @updateUserAnswer="updateUserAnswer"></aftertreat3>
-		    <aftertreat4 class='hidden' :class="{show: index == 18}" @updateUserAnswer="updateUserAnswer"></aftertreat4>
-		    <aftertreat5 class='hidden' :class="{show: index == 19}" @updateUserAnswer="updateUserAnswer"></aftertreat5>
-		    <!--多选-->
-		    <aftertreat6 class='hidden' :class="{show: index == 20}" @updateUserAnswer="updateUserAnswer"></aftertreat6>
+		    <aftertreat class='hidden' :class="{show: index == 12}" @updateUserAnswer="updateUserAnswer"></aftertreat>
+		    <!--后天体质报告问题结束-->
 		    <button class="submit" @click="confirm">确定</button>
       </div>
    </div>
@@ -49,67 +43,46 @@ import axios from 'axios'
 import api from '../api/api';
 import gender from '@/components/gender'
 import city from '@/components/city'
-import facialFeatures from '@/components/facialFeatures'
 import emotion from '@/components/emotion'
 import season from '@/components/season'
+import looks from '@/components/looks'
+import skinColor from '@/components/skinColor'
+import limbs from '@/components/limbs'
 import treatOthers1 from '@/components/treatOthers1'
 import treatOthers2 from '@/components/treatOthers2'
 import treatOthers3 from '@/components/treatOthers3'
 import treatOthers4 from '@/components/treatOthers4'
 import parentsBirthday from '@/components/parentsBirthday'
+import aftertreat from '@/components/aftertreat'
 import maskconfirm from '@/components/maskconfirm'
-import aftercity from '@/components/aftercity'
-import afteremotion from '@/components/afteremotion'
-import afterseason from '@/components/afterseason'
-import afterlimb from '@/components/afterlimb'
-import afterfigure from '@/components/afterfigure'
-import aftertreat1 from '@/components/aftertreat1'
-import aftertreat2 from '@/components/aftertreat2'
-import aftertreat3 from '@/components/aftertreat3'
-import aftertreat4 from '@/components/aftertreat4'
-import aftertreat5 from '@/components/aftertreat5'
-import aftertreat6 from '@/components/aftertreat6'
 export default {
   name: 'message',
   data(){
   	return {
       title:'',
-      toggle: false,
       question:[],
       imgUrl:'',
-      hideMaskConfirm: true,
-      hideGender: true,
-      hideCity: true,
-      currentComponentIndex:true,
+      maskhidden: false,
       answer: {
       },
-      filledIndex:0,
       index:0
     }
   },
   components: {
   	gender,
     city,
-    facialFeatures,
     emotion,
     season,
+    looks,
+    skinColor,
+    limbs,
     treatOthers1,
     treatOthers2,
     treatOthers3,
     treatOthers4,
     parentsBirthday,
-    maskconfirm,
-    aftercity,
-    afteremotion,
-    afterseason,
-    afterlimb,
-    afterfigure,
-    aftertreat1,
-    aftertreat2,
-    aftertreat3,
-    aftertreat4,
-    aftertreat5,
-    aftertreat6 
+    aftertreat,
+    maskconfirm, 
   },
   methods:{
   	beforeQuestion(){
@@ -119,38 +92,23 @@ export default {
 		  	if(res.data.errorCode == 0){
 		  		res = res.data.returnValue.xianTianQuestions
 		  		that.question = res
-		  		console.log(res)
 		  	}
 		  })
 	      .catch(function (error) {
 	        console.log(error)
 	      })
 	  },
-	  parentUpdateUserAnswer(answerParams) {
-	  	debugger;
-	  	console.log('answerParams')
+	  updateUserAnswer(answerParams) {
 	  	for(let key in answerParams){
 	  		this.answer[key] = answerParams[key];
 	  	}
-	  //	{'gender":'F','feel"：’happy‘}   {'feel':'happy'}
-	  	
 	  },
-	  updateUserAnswer(){
-	  	debugger;
-	  },
-	  updateUserAnswer1 (gender) {
-//	  	this.form = gender;
-	  },
-//	  answerFinished(){
-//	  	this.filledIndex++;
-//	  },
 	  confirm () {
-	  	debugger;
 	  	console.log(this.answer)
 	  	this.index  ++;
-	  	if(this.index<=20){
+	  	if(this.index <= 12){
 	  	}else{
-	  		this.$router.push('/report')
+	  		this.maskhidden = true;
 	  	}
 	  },
   	requestlist(){
