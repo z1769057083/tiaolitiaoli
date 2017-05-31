@@ -9,14 +9,14 @@
 					    <span>引火归元帖</span>
 					</dd>
 				</dl>
-				<div class="closeBtn"></div>				
+				<div class="closeBtn" @click='close'></div>				
 			</div>
 			<div class="shopCar-num">
 				<span>购买数量</span>
 				<div class="num">
-					<button class="reduceBtn"></button>
-					<input type="text" value="1"/>
-					<button class="addBtn"></button>
+					<button class="reduceBtn" @click='reduce'></button>
+					<input type="text" value='num' v-model='num'/>
+					<button class="addBtn" @click='add'></button>
 				</div>
 			</div>
 			<div class="confirmBtn">确定</div>
@@ -24,12 +24,33 @@
 	</div>
 </template>
 <script type="text/javascript">
+//import { Toast } from '/src/toast';
 export default {
   data(){
   	return {
+  		num:1
     }
+  },
+  methods:{
+  	close(){
+  		this.$emit('closeShopping')
+  	},
+  	reduce(){
+  		if(this.num <= 1){
+  			this.num = 1
+  		}else{
+  			this.num--
+  		}
+  	},
+  	add(){
+  		if(this.num >= 10){
+  			this.num = 10
+  		}else{
+  			this.num++
+  		}
+  	}
   }
-}
+ }
 </script>
 <style lang="scss">
 @import "../common/common.scss";

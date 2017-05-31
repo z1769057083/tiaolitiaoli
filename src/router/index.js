@@ -8,6 +8,8 @@ import goodsdetail from '@/pages/goodsdetail'
 import allgoods from '@/pages/allgoods'
 import articledetail from '@/pages/articledetail'
 import confirmOrder from '@/pages/confirmOrder'
+import shoppingTolley from '@/pages/shoppingTolley'
+import cashier from '@/pages/cashier'
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -50,6 +52,16 @@ export default new Router({
       path: '/confirmOrder',
       component: confirmOrder,
       name: 'confirmOrder'
+    },
+    {
+      path: '/shoppingTolley',
+      component: shoppingTolley,
+      name: 'shoppingTolley'
+    },
+    {
+      path: '/cashier',
+      component: cashier,
+      name: 'cashier'
     }
   ]
 })
