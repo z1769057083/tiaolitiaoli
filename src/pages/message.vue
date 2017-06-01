@@ -129,7 +129,7 @@
                     var item={isQuestion:true};
                     item.content=that.questions[that.index].content;
                     that.renderedQuestions.push(item);
-                },500)
+                },100)
                 if (this.isFinished) {
                     this.maskhidden = true;
                     this.saveAndGenerateReport();
@@ -166,6 +166,7 @@
                     })
             },
             startQuestionBySection(){
+                debugger;
                 this.questionSection = this.$route.query.questionSection;
                 if (typeof(this.questionSection ) == 'undefined') {
                     this.questionSection = XianTianSectionType;

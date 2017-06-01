@@ -80,15 +80,17 @@
                     this.wuXingStatusText += ','
                 }
                 var wuXingReportContentText = '';
-                for (let index = 0; index < report.report.length; index++) {
-                    wuXingReportContentText += report.report[index].content;
-                    wuXingReportContentText += report.report[index].illness;
-                    //TOOD:check the user's gender and age info.
-                    wuXingReportContentText += report.report[index].male;
-                    wuXingReportContentText += report.report[index].female;
-                    wuXingReportContentText += report.report[index].child;
+                if (typeof (report.report) != 'undefined' && report.report != '') {
+                    for (let index = 0; index < report.report.length; index++) {
+                        wuXingReportContentText += report.report[index].content;
+                        wuXingReportContentText += report.report[index].illness;
+                        //TOOD:check the user's gender and age info.
+                        wuXingReportContentText += report.report[index].male;
+                        wuXingReportContentText += report.report[index].female;
+                        wuXingReportContentText += report.report[index].child;
+                    }
+                    this.wuXingReportContent = wuXingReportContentText;
                 }
-                this.wuXingReportContent = wuXingReportContentText;
             },
             loadChart(items){
 //        [{

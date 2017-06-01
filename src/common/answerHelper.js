@@ -35,9 +35,10 @@ export default {
     debugger;
     var answer = AnswerLib[question];
     var text = '';
+    if(typeof(answer)=='undefined'){return ''}
     if (answer&&answer.isFormat) {
       text = answer.text.format(value);
-    } else if(answer.isArray){
+    } else if(typeof(answer.isArray)!=='undefined'&&answer.isArray){
         for(let index=0;index<value.length;index++){
             text += answer[value[index]].text;
         }
