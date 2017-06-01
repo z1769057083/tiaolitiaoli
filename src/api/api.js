@@ -6,5 +6,6 @@ module.exports = {
     recommendData: apiPath + '/product/recommend', // 推荐商品
     goodsDetailData: apiPath + '/product/details?id=', //商品详情
     beforeQuestionData: apiPath + '/report/questions',// message第一个问题
+    saveAnswer: apiPath + '/report/save_answer',
     generateReportData: apiPath + '/report/generate' // 获取报告
 }

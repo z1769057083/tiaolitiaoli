@@ -38,7 +38,8 @@
                              @updateUserAnswer="updateUserAnswer"></parentsBirthday>
             <!--先天体质报告问题结束-->
             <!--后天体质报告问题-->
-            <aftertreat v-if="index == 11 &&questionSection=='houTian'" @updateUserAnswer="updateUserAnswer"></aftertreat>
+            <aftertreat v-if="index == 11 &&questionSection=='houTian'"
+                        @updateUserAnswer="updateUserAnswer"></aftertreat>
             <!--后天体质报告问题结束-->
             <button class="submit" @click="confirm">确定</button>
         </div>
@@ -113,12 +114,43 @@
                 this.index++;
                 if (this.isFinished) {
                     this.maskhidden = true;
+                    this.saveAndGenerateReport();
                 }
+            },
+            saveAndGenerateReport(){
+                var userId = '591e8b4873e713ce5aaddbef';
+                var that = this;
+                var postData ={"answer":{}};
+                if(that.questionSection == XianTianSectionType){
+                    postData.answer[XianTianSectionType]=this.xianTianAnswer;
+                }else{
+                    postData.answer[HouTianSectionType]=this.houTianAnswer;
+                }
+                postData.userId=userId;
+                axios.defaults.headers['Content-Type'] = 'application/json';
+                axios.post(api.generateReportData + "?id=" + userId + "&reportType=" + that.questionSection, postData)
+                //                    .then(function (res1) {
+                //                        axios.get(api.generateReportData + "?id=" + userId + "&reportType=" + that.questionSection)
+                    .then(function (res) {
+                        if (res.data.errorCode == 0) {
+                            let report = res.data.returnValue
+                            if (that.questionSection == XianTianSectionType) {
+                                localStorage.setItem(XianTianReport_Index, JSON.stringify(report))
+                            }
+                            else {
+                                localStorage.setItem(HouTianReport_Index, JSON.stringify(report))
+                            }
+                            console.log(report)
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error)
+                    })
             },
             startQuestionBySection(){
                 this.questionSection = this.$route.query.questionSection;
-                if(typeof(this.questionSection )=='undefined'){
-                    this.questionSection=XianTianSectionType;
+                if (typeof(this.questionSection ) == 'undefined') {
+                    this.questionSection = XianTianSectionType;
                 }
                 if (this.questionSection == XianTianSectionType) {
                     this.index = 0;
