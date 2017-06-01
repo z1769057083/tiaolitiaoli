@@ -4,18 +4,18 @@
   		<dl>
   			<dt>饮食口味</dt>
   			<dd>
-  				<p :class="{'active': active1 === 0}" @click="change_active(0,'1','diettone',$event)">酸</p>
-  				<p :class="{'active': active1 === 1}" @click="change_active(1,'1','diettone',$event)">甜</p>
-  				<p :class="{'active': active1 === 2}" @click="change_active(2,'1','diettone',$event)">苦</p>
-  				<p :class="{'active': active1 === 3}" @click="change_active(3,'1','diettone',$event)">辣</p>
-  				<p :class="{'active': active1 === 4}" @click="change_active(4,'1','diettone',$event)">咸</p>
-  				<p :class="{'active': active1 === 5}" @click="change_active(5,'1','diettone',$event)">淡</p>
+  				<p :class="{'active': taste === 'sour'}" @click="change_active('sour','1',$event)">酸</p>
+  				<p :class="{'active': taste === 'sweet'}" @click="change_active('sweet','1',$event)">甜</p>
+  				<p :class="{'active': taste === 'bitter'}" @click="change_active('bitter','1',$event)">苦</p>
+  				<p :class="{'active': taste === 'hot'}" @click="change_active('hot','1',$event)">辣</p>
+  				<p :class="{'active': taste === 'salt'}" @click="change_active('salt','1',$event)">咸</p>
+  				<p :class="{'active': taste === 'normal'}" @click="change_active('normal','1',$event)">淡</p>
   			</dd>
   		</dl>
   		<dl>
   			<dt>情绪情况</dt>
   			<dd>
-  				<p v-for="item in emotionList" :class="{active: arr.indexOf(item) > -1 }" @click="ac(item)">{{item}}</p>
+  				<p v-for="item in emotionList" :class="{active: arr.indexOf(item.key) > -1 }" @click="ac(item.key)">{{item.text}}</p>
   			</dd>
   		</dl>
   	</div>
@@ -26,20 +26,31 @@ export default {
 	data(){
 	  	return {
 	  	  arr: [],
+            taste:'',
+            emotion:'',
 	      active1:'',
-	      emotionList: ['喜','怒','忧虑','睡觉易醒','悲','惊恐'],
-	      emtion:{
-	      	diettone:'',
-	      	emotion:''
-	      }
+			tasteListSample:['sour','bitter','sweet','hot','salt'],
+	      emotionList: [
+			  {'key':'happy','text': '喜'},
+              {'key':'angry','text': '怒'},
+              {'key':'worry','text': '忧虑'},
+              {'key':'sad','text': '悲'},
+              {'key':'fear','text':'惊恐'}]
 	    }
 	},
+    computed: {
+        answer(){
+            var answer = {};
+            answer.taste = this.taste;
+            answer.emotion = this.emotion;
+            return answer;
+        }
+    },
 	methods:{
 	  	change_active(answerValue,sectionId,sectionKey,event) {
-		  this.$data['active'+sectionId] = answerValue
-		  this.$data.emtion[sectionKey] = answerValue
-		  if(this.emtion.emotion!==''){
-		  	this.$emit('updateUserAnswer', this.$data.emtion)
+		  this.taste= answerValue;
+		  if(this.emotion!==''){
+		  	this.$emit('updateUserAnswer', this.answer)
 		  }  
 	    },
 	  	ac(obj) {
@@ -49,10 +60,9 @@ export default {
             } else {
               this.arr.push(obj);
             }
-            this.emtion.emotion=this.arr
-            console.log(this.emtion.emotion);
-            if(this.emtion.diettone!==''){
-			  	this.$emit('updateUserAnswer', this.emtion)
+            this.emotion=this.arr
+            if(this.taste!==''){
+			  	this.$emit('updateUserAnswer', this.answer)
 			}  
             
         }
