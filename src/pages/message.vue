@@ -3,14 +3,17 @@
         <!--聊天内容-->
         <div class='m-char'>
             <div class="m-charscroll">
-                <div class="m-chardocter" v-for="(item,index) in question">
-                    <div class="m-charperson"><img src='../assets/indexheadportrait.png'/></div>
-                    <div class="m-charcont">{{question[index].content}}</div>
+                <div  :class="item.isQuestion?'m-chardocter':'m-charcustom'"  v-for="(item,index) in renderedQuestions">
+                    <div v-if="item.isQuestion" class="m-charperson"><img src='../assets/indexheadportrait.png'/></div>
+                      <div v-if="!item.isQuestion" class="m-charperson"><img src="../assets/indexheadportrait.png"/></div>
+                    <div class="m-charcont">{{renderedQuestions[index].content}}</div>
+
+                    <!--<div class="m-charcont">人家是女生！</div>-->
                 </div>
-                <div class="m-charcustom">
-                    <div class="m-charperson"><img src="../assets/indexheadportrait.png"/></div>
-                    <div class="m-charcont">人家是女生！</div>
-                </div>
+                <!--<div class="m-charcustom">-->
+                    <!--<div class="m-charperson"><img src="../assets/indexheadportrait.png"/></div>-->
+                    <!--<div class="m-charcont">人家是女生！</div>-->
+                <!--</div>-->
             </div>
         </div>
         <maskconfirm v-show="maskhidden" v-bind:questionSection="questionSection"></maskconfirm>
@@ -62,17 +65,20 @@
     import parentsBirthday from '@/components/parentsBirthday'
     import aftertreat from '@/components/aftertreat'
     import maskconfirm from '@/components/maskconfirm'
+    import answerHelper from '@/common/answerHelper'
     export default {
         name: 'message',
         data(){
             return {
                 title: '',
                 questionSection: XianTianSectionType,
-                question: [],
+                renderedQuestions: [],
+                questions:[],
                 imgUrl: '',
                 maskhidden: false,
                 xianTianAnswer: {},
                 houTianAnswer: {},
+                pendingAnswer:{},
                 index: 0
             }
         },
@@ -100,6 +106,7 @@
         },
         methods: {
             updateUserAnswer(answerParams) {
+                this.pendingAnswer=answerParams;
                 for (let key in answerParams) {
                     if (this.questionSection == XianTianSectionType) {
                         this.xianTianAnswer[key] = answerParams[key];
@@ -112,6 +119,17 @@
             confirm () {
                 console.log(this.xianTianAnswer)
                 this.index++;
+                for(let key in this.pendingAnswer){
+                    var answer={isQuestion:false};
+                    answer.content=answerHelper.getAnswerText(key,this.pendingAnswer[key]);
+                    this.renderedQuestions.push(answer);
+                }
+                var that=this;
+                setTimeout(function(){
+                    var item={isQuestion:true};
+                    item.content=that.questions[that.index].content;
+                    that.renderedQuestions.push(item);
+                },500)
                 if (this.isFinished) {
                     this.maskhidden = true;
                     this.saveAndGenerateReport();
@@ -154,12 +172,15 @@
                 }
                 if (this.questionSection == XianTianSectionType) {
                     this.index = 0;
-                    this.question = JSON.parse(localStorage.getItem(Answer_Index)).xianTianQuestions;
+                    this.questions = JSON.parse(localStorage.getItem(Answer_Index)).xianTianQuestions;
                 }
                 else {
                     this.index = 1;
-                    this.question = JSON.parse(localStorage.getItem(Answer_Index)).houTianQuestions;
+                    this.questions = JSON.parse(localStorage.getItem(Answer_Index)).houTianQuestions;
                 }
+                var item={isQuestion:true};
+                item.content=this.questions[0].content;
+                this.renderedQuestions.push(item);
             }
         },
         mounted() {

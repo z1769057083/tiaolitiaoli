@@ -48,7 +48,11 @@
                 var report = JSON.parse(localStorage.getItem(XianTianReport_Index));
                 var wuXingArray = [];
                 for (let key in report.wuXing) {
-                    wuXingArray.push(report.wuXing[key]);
+                    if (report.wuXing[key] <= 0) {
+                        wuXingArray.push(0.1);
+                    } else {
+                        wuXingArray.push(report.wuXing[key]);
+                    }
                 }
                 this.wuXingStatusText = '';
                 var itemArray = [{
@@ -58,7 +62,7 @@
                     pointPlacement: 'between'
                 }];
                 this.loadChart(itemArray);
-                var wuXingtextMapper = {
+                var wuXingTextMapper = {
                     'gold': '金',
                     'wood': '木',
                     'water': '水',
@@ -66,7 +70,7 @@
                     'earth': '土',
                 }
                 for (let key in report.wuXingLevel) {
-                    this.wuXingStatusText += wuXingtextMapper[key];
+                    this.wuXingStatusText += wuXingTextMapper[key];
                     if (report.wuXingLevel[key] == 0) {
                         this.wuXingStatusText += '弱';
                     }
