@@ -11,16 +11,36 @@
 				
 			</div>
 			<p>问题答完了！</p>
-			<h3>点击查看你的先天体质报告！</h3>
-			<div class="tip">温馨提示:先天体质是你从父母那遗传的以及早期生活习惯养成的体质。</div>
-			<router-link to='/afterReport'>
-				<button class="submit">查看报告</button>
-			</router-link>
+
+			<h3>{{fieldTitle}}</h3>
+			<div class="tip">{{fieldDescription}}</div>
+				<button class="submit" @click="gotoReport()">查看报告</button>
 		</div>
 	</div>
 </template>
 <script type="text/javascript">
 export default {
+    props:['questionSection'],
+    computed: {
+        fieldTitle: function () {
+            return (this.questionSection == XianTianSectionType ? "点击查看你的先天体质报告" : "点击查看你的后天体质报告");
+        },
+        fieldDescription: function () {
+            return (this.questionSection == XianTianSectionType ?
+				"温馨提示:先天体质是你从父母那遗传的以及早期生活习惯养成的体质。"
+				: "温馨提示:后天体质是你后天生活，工作养成的体质。");
+        },
+    },
+    methods:{
+        gotoReport(){
+            if(this.questionSection == XianTianSectionType){
+                this.$router.push({ path: '/report', query: { questionSection: XianTianSectionType } })
+			}
+            else{
+                this.$router.push({ path: '/message', query: { questionSection: HouTianSectionType } })
+			}
+		}
+	},
   data(){
   	return {
     }

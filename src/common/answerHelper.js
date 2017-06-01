@@ -32,10 +32,15 @@ String.prototype.format = function (args) {
 import AnswerLib from './answerLib.json'
 export default {
   getAnswerText: (question, value) => {
+    debugger;
     var answer = AnswerLib[question];
     var text = '';
     if (answer&&answer.isFormat) {
       text = answer.text.format(value);
+    } else if(answer.isArray){
+        for(let index=0;index<value.length;index++){
+            text += answer[value[index]].text;
+        }
     }
     else if(answer[value]){
       text = answer[value].text;
