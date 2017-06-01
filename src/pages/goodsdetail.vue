@@ -50,8 +50,9 @@
 	  </div>
 	  <!--组件-->
 	  <!--加入购物车-->
-	  <shoppingCar v-show='shophiden' @closeShopping='closeShopping'></shoppingCar>
-	  <purchase v-show='purchasehidden' @closePurchase='closePurchase'></purchase>
+	  <shoppingCar v-show='shopHiden' @closeToastEvent='closeToastHandler' @closeShopping='closeShopping'></shoppingCar>
+	  <purchase v-show='purchaseHidden' @closePurchase='closePurchase'></purchase>
+	  <toast v-show='toastHidden'></toast>
   </div>
 </template>
 <script>
@@ -59,18 +60,21 @@ import axios from 'axios'
 import api from '../api/api'
 import shoppingCar from '@/components/shoppingCar'
 import purchase from '@/components/purchase'
+import toast from '@/components/toast'
 export default {
   name: 'goodsdetail',
   data(){
   	return {
       list:[],
-      shophiden: false,
-      purchasehidden:false
+      shopHiden: false,
+      purchaseHidden: false,
+      toastHidden: false
     }
   },
   components:{
   	shoppingCar,
-  	purchase
+  	purchase,
+  	toast
   },
   methods: {
 	  requestlist(){
@@ -89,17 +93,23 @@ export default {
 		  })
 	  },
 	  addShoppingCar() {
-	  	console.log(1)
-	  	this.shophiden = true
+	  	this.shopHiden = true
 	  },
 	  addPurchase() {
-	  	this.purchasehidden = true
+	  	this.purchaseHidden = true
 	  },
 	  closeShopping(){
-	  	this.shophiden = false
+	  	this.shopHiden = false
 	  },
 	  closePurchase(){
-	  	this.purchasehidden = false
+	  	this.purchaseHidden = false
+	  },
+	  closeToastHandler(){
+	  	this.toastHidden = true
+	  	var that = this
+			setTimeout(function()
+			{that.toastHidden = false}
+			,1000)
 	  }
   },
   mounted() {
@@ -110,7 +120,7 @@ export default {
 					loop: true,
           pagination : '.swiper-pagination'	
 				}) 
-				document.documentElement.scrollTop = 0
+		document.documentElement.scrollTop = 0
     document.body.scrollTop =0
   }
 }

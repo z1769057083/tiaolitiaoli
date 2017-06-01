@@ -1,0 +1,95 @@
+<template>
+	<div class="m-headForm">
+	  	<h3>选择最接近的形象</h3>
+	  	<div class="m-hmain">
+	  		<dl :class="{'active': active1 === 0}" @click="change_active(0,'1','headForm',$event)">
+	  			<dt><img src="../assets/mhead1.png"/></dt>
+	  			<dd>头小长脸</dd>
+	  		</dl>
+	  		<dl :class="{'active': active1 === 1}" @click="change_active(1,'1','headForm',$event)">
+	  			<dt><img src="../assets/mhead1.png"/></dt>
+	  			<dd>头顶尖面瘦</dd>
+	  		</dl>
+	  		<dl :class="{'active': active1 === 2}" @click="change_active(2,'1','headForm',$event)">
+	  			<dt><img src="../assets/mhead1.png"/></dt>
+	  			<dd>头大面圆</dd>
+	  		</dl>
+	  		<dl :class="{'active': active1 === 3}" @click="change_active(3,'1','headForm',$event)">
+	  			<dt><img src="../assets/mhead1.png"/></dt>
+	  			<dd>头大脸宽</dd>
+	  		</dl>
+	  		<dl :class="{'active': active1 === 4}" @click="change_active(4,'1','headForm',$event)">
+	  			<dt><img src="../assets/mhead1.png"/></dt>
+	  			<dd>头小面有棱角</dd>
+	  		</dl>
+	  	</div>
+	</div>
+</template>
+<script type="text/javascript">
+export default {
+   data(){
+	  	return {
+	    arr: [],
+	      active1:'',
+	      emtion:{
+	      	headForm:''
+	     }
+	    }
+	},
+	methods:{
+	  	change_active(answerValue,sectionId,sectionKey,event) {
+		  this.$data['active'+sectionId] = answerValue
+		  this.$data.emtion[sectionKey] = answerValue
+		  	this.$emit('updateUserAnswer', this.$data.emtion)
+	   }
+	}
+}
+</script>
+<style lang="scss">
+@import "../common/common.scss";
+/*选择问题内容*/
+.m-headForm{
+	width: 90%;
+	margin-left: 5%;
+	overflow: hidden;
+	h3{
+		text-align: center;
+		margin-top: rem(13rem);
+		margin-bottom: rem(10rem);
+		font-size: $font14;
+	}
+	.m-hmain{
+		width: 100%;
+		overflow: hidden;
+		dl{
+			width: 23%;
+			height: rem(80rem);
+			/*;*/
+			padding: rem(10rem) 0;
+			border-radius: rem(5rem);
+			float: left;
+			margin-right: 2.6%;
+			dt{
+				width: rem(44rem);
+				height: rem(64rem);
+				margin-left: rem(18rem);
+				img{
+					width: 100%;
+					height: 100%;
+				}
+			}
+			dd{
+				font-size: $font12;
+				margin-top: rem(5rem);
+				text-align: center;
+			}
+		}
+		dl:nth-child(4){
+			margin-right: 0;
+		}
+		.active{
+			background: #f2f2f2;
+		}
+	}
+}	
+</style>

@@ -29,6 +29,7 @@ export default {
             taste:'',
             emotion:'',
 	      active1:'',
+
 			tasteListSample:['sour','bitter','sweet','hot','salt'],
 	      emotionList: [
 			  {'key':'happy','text': '喜'},

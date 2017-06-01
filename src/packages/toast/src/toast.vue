@@ -1,6 +1,6 @@
 <template>
   <transition name="mint-toast-pop">
-    <div class="mint-toast" v-show="visible" :class="customClass" :style="{ 'padding': iconClass === '' ? '10px' : '20px' }">
+    <div class="mint-toast" v-show="visible" :style="{ 'padding': iconClass === '' ? '50px 120px' : '200px' }">
       <i class="mint-toast-icon" :class="iconClass" v-if="iconClass !== ''"></i>
       <span class="mint-toast-text" :style="{ 'padding-top': iconClass === '' ? '0' : '10px' }">{{ message }}</span>
     </div>
@@ -60,7 +60,7 @@
 <script type="text/babel">
   export default {
     props: {
-      message: String,
+      message: '',
       className: {
         type: String,
         default: ''
@@ -99,5 +99,5 @@
         return classes.join(' ');
       }
     }
-  };
+  }
 </script>

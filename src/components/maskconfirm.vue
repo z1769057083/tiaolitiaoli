@@ -11,6 +11,7 @@
 				
 			</div>
 			<p>问题答完了！</p>
+
 			<h3>{{fieldTitle}}</h3>
 			<div class="tip">{{fieldDescription}}</div>
 				<button class="submit" @click="gotoReport()">查看报告</button>

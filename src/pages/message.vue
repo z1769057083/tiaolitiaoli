@@ -17,6 +17,8 @@
             </div>
         </div>
         <maskconfirm v-show="maskhidden" v-bind:questionSection="questionSection"></maskconfirm>
+        <uploadMode v-show="uploadHidden" @uploadModeEvent='uploadModeEvent'></uploadMode>
+     
         <div class="m-select">
             <!--先天体质报告问题-->
             <gender v-if="index == 0" @updateUserAnswer="updateUserAnswer"></gender>
@@ -44,6 +46,10 @@
             <aftertreat v-if="index == 11 &&questionSection=='houTian'"
                         @updateUserAnswer="updateUserAnswer"></aftertreat>
             <!--后天体质报告问题结束-->
+             <aftertreat class='hidden' :class="{show: index == 14}" @updateUserAnswer="updateUserAnswer"></aftertreat>
+		    <headForm class='hidden' :class="{show: index == 5}" @updateUserAnswer="updateUserAnswer"></headForm>
+		      <physiology class='hidden' :class="{show: index == 13}" @updateUserAnswer="updateUserAnswer"></physiology>
+		 
             <button class="submit" @click="confirm">确定</button>
         </div>
     </div>
@@ -66,6 +72,11 @@
     import aftertreat from '@/components/aftertreat'
     import maskconfirm from '@/components/maskconfirm'
     import answerHelper from '@/common/answerHelper'
+    import physiology from '@/components/physiology'
+    
+import afterCrescent from '@/components/afterCrescent'
+import headForm from '@/components/headForm'
+import uploadMode from '@/components/uploadMode'
     export default {
         name: 'message',
         data(){
@@ -97,6 +108,10 @@
             parentsBirthday,
             aftertreat,
             maskconfirm,
+            physiology,
+            uploadMode,
+            afterCrescent,
+            headForm
         },
         computed: {
             isFinished: function () {
@@ -199,6 +214,7 @@
             }
         }
     }
+>>>>>>> 62d039c3c7978f0ef69343b97cebf8981e2abaa1
 </script>
 <style lang="scss">
     @import "../common/common.scss";

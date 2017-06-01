@@ -19,12 +19,11 @@
 					<button class="addBtn" @click='add'></button>
 				</div>
 			</div>
-			<div class="confirmBtn">确定</div>
+			<div class="confirmBtn" @click='confirm'>确定</div>
 		</div>
 	</div>
 </template>
 <script type="text/javascript">
-//import { Toast } from '/src/toast';
 export default {
   data(){
   	return {
@@ -33,6 +32,10 @@ export default {
   },
   methods:{
   	close(){
+  		this.$emit('closeShopping')
+  	},
+  	confirm(){
+  		this.$emit('closeToastEvent')
   		this.$emit('closeShopping')
   	},
   	reduce(){
