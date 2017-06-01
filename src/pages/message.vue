@@ -117,15 +117,16 @@
             },
             startQuestionBySection(){
                 this.questionSection = this.$route.query.questionSection;
+                if(typeof(this.questionSection )=='undefined'){
+                    this.questionSection=XianTianSectionType;
+                }
                 if (this.questionSection == XianTianSectionType) {
                     this.index = 0;
-                    let currentQuestion = JSON.parse(localStorage.getItem(Answer_Index)).xianTianQuestions;
-                    this.question = currentQuestion;
+                    this.question = JSON.parse(localStorage.getItem(Answer_Index)).xianTianQuestions;
                 }
                 else {
                     this.index = 1;
-                    let currentQuestion = JSON.parse(localStorage.getItem(Answer_Index)).houTianQuestions;
-                    this.question = currentQuestion;
+                    this.question = JSON.parse(localStorage.getItem(Answer_Index)).houTianQuestions;
                 }
             }
         },
