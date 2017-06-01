@@ -32,7 +32,6 @@ String.prototype.format = function (args) {
 import AnswerLib from './answerLib.json'
 export default {
   getAnswerText: (question, value) => {
-    debugger;
     var answer = AnswerLib[question];
     var text = '';
     if(typeof(answer)=='undefined'){return ''}

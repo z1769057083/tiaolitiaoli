@@ -170,7 +170,6 @@
     }
 </script>
 <style scoped lang="scss">
-<<<<<<< HEAD
 @import "../common/common.scss";
 .highcharts-background{
 	fill:transparent;
@@ -267,99 +266,5 @@
 	}
   }
 }
-=======
-    @import "../common/common.scss";
-
-    .highcharts-background {
-        fill: transparent;
-    }
-
-    .r-content {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        background: url(../assets/indexbg.png) no-repeat;
-        background-size: cover;
-
-    .r-main {
-        margin-top: 0.48rem;
-
-    .r-mainchart {
-        width: 92%;
-        height: rem(250rem);
-        margin-top: rem(15rem);
-        margin-left: 4%;
-        overflow: hidden;
-    }
-
-    .i-maincen {
-        width: 56%;
-        margin-left: 22%;
-        margin-bottom: rem(14rem);
-        border-top: 1px solid #e5e5e3;
-        padding-top: rem(15rem);
-
-    .r-mattribute {
-        width: 100%;
-        text-align: center;
-        font-size: $font14;
-        background: url(../assets/rmattribute.png) no-repeat left;
-        padding-left: 4%;
-        line-height: rem(20rem);
-        color: #c000;
-    }
-
-    .i-micon {
-        width: 0.96rem;
-        height: 0.48rem;
-        margin-top: rem(18rem);
-        display: block;
-        margin-left: 40%;
-    }
-
-    }
-    .r-msuggest {
-        width: 84%;
-        margin-left: 8%;
-        text-align: center;
-        font-size: $font12;
-        color: #c69b70;
-        line-height: rem(21rem);
-        letter-spacing: rem(0.4rem);
-    }
-
-    .r-mbotbtn {
-        width: 84%;
-        margin: rem(30rem) 0 0 8%;
-        overflow: hidden;
-        padding-bottom: rem(30rem);
-
-    .r-mbotleft {
-        width: 47.6%;
-        height: rem(50rem);
-        float: left;
-        margin-right: 4.8%;
-
-    img {
-        width: 100%;
-        height: 100%;
-    }
-
-    }
-    .r-mbotright {
-        width: 47.6%;
-        height: rem(50rem);
-        float: left;
-
-    img {
-        width: 100%;
-        height: 100%;
-    }
-
-    }
-    }
-    }
-    }
->>>>>>> 62d039c3c7978f0ef69343b97cebf8981e2abaa1
 
 </style>

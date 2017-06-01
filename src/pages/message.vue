@@ -1,8 +1,8 @@
 <template>
     <div class='message'>
         <!--聊天内容-->
-        <div class='m-char'>
-            <div class="m-charscroll">
+        <div class='m-char' id="chatContainer">
+            <div class="m-charscroll" >
                 <div  :class="item.isQuestion?'m-chardocter':'m-charcustom'"  v-for="(item,index) in renderedQuestions">
                     <div v-if="item.isQuestion" class="m-charperson"><img src='../assets/indexheadportrait.png'/></div>
                       <div v-if="!item.isQuestion" class="m-charperson"><img src="../assets/indexheadportrait.png"/></div>
@@ -17,8 +17,8 @@
             </div>
         </div>
         <maskconfirm v-show="maskhidden" v-bind:questionSection="questionSection"></maskconfirm>
-        <uploadMode v-show="uploadHidden" @uploadModeEvent='uploadModeEvent'></uploadMode>
-     
+        <!--<uploadMode v-show="uploadHidden" @uploadModeEvent='uploadModeEvent'></uploadMode>-->
+
         <div class="m-select">
             <!--先天体质报告问题-->
             <gender v-if="index == 0" @updateUserAnswer="updateUserAnswer"></gender>
@@ -49,7 +49,7 @@
              <aftertreat class='hidden' :class="{show: index == 14}" @updateUserAnswer="updateUserAnswer"></aftertreat>
 		    <headForm class='hidden' :class="{show: index == 5}" @updateUserAnswer="updateUserAnswer"></headForm>
 		      <physiology class='hidden' :class="{show: index == 13}" @updateUserAnswer="updateUserAnswer"></physiology>
-		 
+
             <button class="submit" @click="confirm">确定</button>
         </div>
     </div>
@@ -73,7 +73,7 @@
     import maskconfirm from '@/components/maskconfirm'
     import answerHelper from '@/common/answerHelper'
     import physiology from '@/components/physiology'
-    
+
 import afterCrescent from '@/components/afterCrescent'
 import headForm from '@/components/headForm'
 import uploadMode from '@/components/uploadMode'
@@ -119,6 +119,15 @@ import uploadMode from '@/components/uploadMode'
                 || this.questionSection == HouTianSectionType && this.index >= 12);
             }
         },
+        watch: {
+            renderedQuestions() {
+                this.$nextTick(() => {
+                    var container = this.$el.querySelector("#chatContainer");
+                    console.log(container);
+                    container.scrollTop = container.scrollHeight;
+                })
+            }
+        },
         methods: {
             updateUserAnswer(answerParams) {
                 this.pendingAnswer=answerParams;
@@ -140,11 +149,14 @@ import uploadMode from '@/components/uploadMode'
                     this.renderedQuestions.push(answer);
                 }
                 var that=this;
-                setTimeout(function(){
-                    var item={isQuestion:true};
-                    item.content=that.questions[that.index].content;
-                    that.renderedQuestions.push(item);
-                },100)
+                var item={isQuestion:true};
+                item.content=that.questions[that.index].content;
+                that.renderedQuestions.push(item);
+//                setTimeout(function(){
+//                    var item={isQuestion:true};
+//                    item.content=that.questions[that.index].content;
+//                    that.renderedQuestions.push(item);
+//                },100)
                 if (this.isFinished) {
                     this.maskhidden = true;
                     this.saveAndGenerateReport();
@@ -181,7 +193,6 @@ import uploadMode from '@/components/uploadMode'
                     })
             },
             startQuestionBySection(){
-                debugger;
                 this.questionSection = this.$route.query.questionSection;
                 if (typeof(this.questionSection ) == 'undefined') {
                     this.questionSection = XianTianSectionType;
@@ -214,7 +225,6 @@ import uploadMode from '@/components/uploadMode'
             }
         }
     }
->>>>>>> 62d039c3c7978f0ef69343b97cebf8981e2abaa1
 </script>
 <style lang="scss">
     @import "../common/common.scss";
