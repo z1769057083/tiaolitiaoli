@@ -1,7 +1,7 @@
 <template>
 	<div class="maskmain">
 		<div class="select-main">	
-			<h3>选择收货地址</h3>
+			<h3 @click = 'close'>选择收货地址</h3>
 			<div class="address-mcon">
 				<dl>
 					<dt><input type="checkbox" /></dt>
@@ -25,6 +25,11 @@ export default {
   data(){
   	return {
     }
+  },
+  methods:{
+  	close(){
+  		this.$emit('selectDelivery')
+  	}
   }
 }
 </script>

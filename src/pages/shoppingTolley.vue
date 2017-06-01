@@ -60,30 +60,9 @@
 </template>
 <script>
 import axios from 'axios'
-export default {
-  data(){
-  	return {
-  		list:[]
-    }
-  },
-  methods: {
-  	shopList(){
-  		var that = this;
-	  	axios.get('../static/list.json')
-		  .then(function (res) {
-		  		res = res.data.returnValue
-		  		that.list = res
-		  		console.log(res)
-		  })
-		  .catch(function (error) {
-		    console.log(error)
-		  })
-  	}
-  },
-  mounted() {
-  	this.shopList()
-  }
-}
+ export default {
+ 	
+ }
 </script>
 <style scoped lang="scss">
 @import "../common/common.scss";

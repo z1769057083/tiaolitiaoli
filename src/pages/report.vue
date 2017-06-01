@@ -12,13 +12,13 @@
 	      	</div>
 	      	<div class='i-maincen'>
 	        	<div class="r-mattribute">木平、火强、土平、金平、水平</div>
+	        	<div class="r-mreport">
+	        		<h3>先天体质</h3>
+	        		<p>你所在的城市6月气温升高，空气中湿度增加，体内汗液无法通畅的发散出来，人们就会感到胸闷、心悸，精神不振，全身乏力。易出现中暑、腮腺炎、水痘。</p>
+	        	</div>
 	        	<img class="i-micon" src="../assets/index.png">
         	</div>
         	<div class="r-msuggest">
-	        	如果您成年后生活的城市、生活习惯等改变较大，强烈建议您再测试一下后天体质！
-	        	如果您成年后生活的城市、生活习惯等改变较大，强烈建议您再测试一下后天体质！
-	        	如果您成年后生活的城市、生活习惯等改变较大，强烈建议您再测试一下后天体质！
-	        	如果您成年后生活的城市、生活习惯等改变较大，强烈建议您再测试一下后天体质！
 	        	如果您成年后生活的城市、生活习惯等改变较大，强烈建议您再测试一下后天体质！
         	</div>
         	<div class="r-mbotbtn">
@@ -155,8 +155,8 @@ export default {
 		overflow: hidden;
 	}
 	.i-maincen{
-	  width: 56%;
-	  margin-left: 22%;
+	  width: 92%;
+	  margin-left: 4%;
 	  margin-bottom: rem(14rem);
 	  border-top: 1px solid #e5e5e3;
 	  padding-top: rem(15rem);
@@ -164,10 +164,28 @@ export default {
 		  width: 100%;
 		  text-align: center;
 		  font-size: $font14;
-		  background: url(../assets/rmattribute.png) no-repeat left;
 		  padding-left: 4%;
 		  line-height: rem(20rem);
 		  color: #c000;
+	  }
+	  .r-mreport{
+	  	width: 100%;
+	  	overflow: hidden;
+	  	background: #fff;
+	  	padding: rem(18rem) 0;
+	  	box-shadow: rem(1rem) rem(1rem) rem(1rem) rem(1.5rem) #e2e1df;
+	  	margin-top: rem(10rem);
+	  	h3{
+	  	  background: url(../assets/rmattribute.png) no-repeat center left;
+	  	  padding-left: 3%;
+	  	  font-size: $font14;
+	  	  color: #c69b70; 	
+	  	}
+	  	p{
+	  		margin:rem(5rem) rem(8rem) 0;
+	  		line-height: rem(20rem);
+	  		letter-spacing: rem(0.2rem);
+	  	}
 	  }
 	  .i-micon{
 		  width: 0.96rem;
@@ -188,9 +206,9 @@ export default {
 	}
 	.r-mbotbtn{
 		width: 84%;
-		margin: rem(30rem) 0 0 8%;
+		margin: rem(10rem) 0 0 8%;
 		overflow: hidden;
-		padding-bottom: rem(30rem);
+		padding-bottom: rem(10rem);
 		.r-mbotleft{
 			width: 47.6%;
 			height: rem(50rem);

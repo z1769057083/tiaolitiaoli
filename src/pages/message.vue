@@ -14,25 +14,29 @@
       	</div>
       </div>
       <maskconfirm v-show="maskhidden"></maskconfirm> 
+      <uploadMode v-show="uploadHidden" @uploadModeEvent='uploadModeEvent'></uploadMode>
       <div class="m-select">
       	    <!--先天体质报告问题-->
-	        <gender class='hidden' :class="{show: index == 0}"  v-on:updateUserAnswer="updateUserAnswer"></gender>
+	        <gender class='hidden' :class="{show: index == 0}"  @updateUserAnswer="updateUserAnswer"></gender>
 	        <city class='hidden' :class="{show: index == 1}" @updateUserAnswer="updateUserAnswer"></city>
 	        <!--公共问题开始-->
 		    <emotion class='hidden' :class="{show: index == 2}" @updateUserAnswer="updateUserAnswer"></emotion>
 		    <season class='hidden' :class="{show: index == 3}" @updateUserAnswer="updateUserAnswer"></season>
 		    <looks class='hidden' :class="{show: index == 4}" @updateUserAnswer="updateUserAnswer"></looks>
-		    <skinColor class='hidden' :class="{show: index == 5}" @updateUserAnswer="updateUserAnswer"></skinColor>
-		    <limbs class='hidden' :class="{show: index == 6}" @updateUserAnswer="updateUserAnswer"></limbs>
-		    <treatOthers1 class='hidden' :class="{show: index == 7}" @updateUserAnswer="updateUserAnswer"></treatOthers1>
-		    <treatOthers2 class='hidden' :class="{show: index == 8}" @updateUserAnswer="updateUserAnswer"></treatOthers2>
-		    <treatOthers3 class='hidden' :class="{show: index == 9}" @updateUserAnswer="updateUserAnswer"></treatOthers3>
-		    <treatOthers4 class='hidden' :class="{show: index == 10}" @updateUserAnswer="updateUserAnswer"></treatOthers4>
+		    <headForm class='hidden' :class="{show: index == 5}" @updateUserAnswer="updateUserAnswer"></headForm>
+		    <skinColor class='hidden' :class="{show: index == 6}" @updateUserAnswer="updateUserAnswer"></skinColor>
+		    <limbs class='hidden' :class="{show: index == 7}" @updateUserAnswer="updateUserAnswer"></limbs>
+		    <treatOthers1 class='hidden' :class="{show: index == 8}" @updateUserAnswer="updateUserAnswer"></treatOthers1>
+		    <treatOthers2 class='hidden' :class="{show: index == 9}" @updateUserAnswer="updateUserAnswer"></treatOthers2>
+		    <treatOthers3 class='hidden' :class="{show: index == 10}" @updateUserAnswer="updateUserAnswer"></treatOthers3>
+		    <treatOthers4 class='hidden' :class="{show: index == 11}" @updateUserAnswer="updateUserAnswer"></treatOthers4>
 		    <!--公共问题结束-->
-		    <parentsBirthday class='hidden' :class="{show: index == 11}" @updateUserAnswer="updateUserAnswer"></parentsBirthday>
+		    <parentsBirthday class='hidden' :class="{show: index == 12}" @updateUserAnswer="updateUserAnswer"></parentsBirthday>
 		    <!--先天体质报告问题结束-->		    	
 		    <!--后天体质报告问题-->
-		    <aftertreat class='hidden' :class="{show: index == 12}" @updateUserAnswer="updateUserAnswer"></aftertreat>
+		    <physiology class='hidden' :class="{show: index == 13}" @updateUserAnswer="updateUserAnswer"></physiology>
+		    <aftertreat class='hidden' :class="{show: index == 14}" @updateUserAnswer="updateUserAnswer"></aftertreat>
+		    <afterCrescent class='hidden' :class="{show: index == 15}" @updateUserAnswer="updateUserAnswer"></afterCrescent>
 		    <!--后天体质报告问题结束-->
 		    <button class="submit" @click="confirm">确定</button>
       </div>
@@ -46,6 +50,7 @@ import city from '@/components/city'
 import emotion from '@/components/emotion'
 import season from '@/components/season'
 import looks from '@/components/looks'
+import headForm from '@/components/headForm'
 import skinColor from '@/components/skinColor'
 import limbs from '@/components/limbs'
 import treatOthers1 from '@/components/treatOthers1'
@@ -53,8 +58,11 @@ import treatOthers2 from '@/components/treatOthers2'
 import treatOthers3 from '@/components/treatOthers3'
 import treatOthers4 from '@/components/treatOthers4'
 import parentsBirthday from '@/components/parentsBirthday'
+import physiology from '@/components/physiology'
 import aftertreat from '@/components/aftertreat'
+import afterCrescent from '@/components/afterCrescent'
 import maskconfirm from '@/components/maskconfirm'
+import uploadMode from '@/components/uploadMode'
 export default {
   name: 'message',
   data(){
@@ -63,6 +71,7 @@ export default {
       question:[],
       imgUrl:'',
       maskhidden: false,
+      uploadHidden: false,
       answer: {
       },
       index:0
@@ -74,6 +83,7 @@ export default {
     emotion,
     season,
     looks,
+    headForm,
     skinColor,
     limbs,
     treatOthers1,
@@ -81,8 +91,11 @@ export default {
     treatOthers3,
     treatOthers4,
     parentsBirthday,
+    physiology,
     aftertreat,
+    afterCrescent,
     maskconfirm, 
+    uploadMode
   },
   methods:{
   	beforeQuestion(){
@@ -97,20 +110,23 @@ export default {
 	      .catch(function (error) {
 	        console.log(error)
 	      })
-	  },
-	  updateUserAnswer(answerParams) {
+	},
+	updateUserAnswer(answerParams) {
 	  	for(let key in answerParams){
 	  		this.answer[key] = answerParams[key];
 	  	}
-	  },
-	  confirm () {
+	},
+	uploadModeEvent(){
+	  	this.uploadHidden = true
+	},
+	confirm () {
 	  	console.log(this.answer)
 	  	this.index  ++;
-	  	if(this.index <= 12){
+	  	if(this.index <= 15){
 	  	}else{
 	  		this.maskhidden = true;
-	  	}
-	  },
+	    }
+	},
   	requestlist(){
 //	  	var that = this;
 //      axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'

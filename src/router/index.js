@@ -10,6 +10,8 @@ import articledetail from '@/pages/articledetail'
 import confirmOrder from '@/pages/confirmOrder'
 import shoppingTolley from '@/pages/shoppingTolley'
 import cashier from '@/pages/cashier'
+import afterReport from '@/pages/afterReport'
+import recuperate from '@/pages/recuperate'
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -62,6 +64,16 @@ export default new Router({
       path: '/cashier',
       component: cashier,
       name: 'cashier'
+    },
+    {
+      path: '/afterReport',
+      component: afterReport,
+      name: 'afterReport'
+    },
+    {
+      path: '/recuperate',
+      component: recuperate,
+      name: 'recuperate'
     }
   ]
 })

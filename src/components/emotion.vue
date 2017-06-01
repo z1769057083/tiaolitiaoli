@@ -27,7 +27,7 @@ export default {
 	  	return {
 	  	  arr: [],
 	      active1:'',
-	      emotionList: ['喜','怒','忧虑','睡觉易醒','悲','惊恐'],
+	      emotionList: ['喜','怒','忧虑','悲','惊恐'],
 	      emtion:{
 	      	diettone:'',
 	      	emotion:''

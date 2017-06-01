@@ -13,7 +13,7 @@
 			<p>问题答完了！</p>
 			<h3>点击查看你的先天体质报告！</h3>
 			<div class="tip">温馨提示:先天体质是你从父母那遗传的以及早期生活习惯养成的体质。</div>
-			<router-link to='/report'>
+			<router-link to='/afterReport'>
 				<button class="submit">查看报告</button>
 			</router-link>
 		</div>
