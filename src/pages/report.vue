@@ -84,7 +84,6 @@ export default {
             labels: {
                 formatter: function () {
                 var textArray=['金','木','水','火','土']
-//                  console.log(this)
                     return textArray[this.value/72] ;
                 }
             }
@@ -130,7 +129,6 @@ export default {
   	this.loadChart()
   	document.documentElement.scrollTop = 0
     document.body.scrollTop =0
-//	this.reportlist()
   }
 }
 </script>

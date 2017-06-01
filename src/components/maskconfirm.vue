@@ -13,8 +13,7 @@
 			<p>问题答完了！</p>
 			<h3>{{fieldTitle}}</h3>
 			<div class="tip">{{fieldDescription}}</div>
-			<a #click="gotoReport"></a>
-				<button class="submit">查看报告</button>
+				<button class="submit" @click="gotoReport()">查看报告</button>
 		</div>
 	</div>
 </template>
@@ -31,7 +30,7 @@ export default {
 				: "温馨提示:后天体质是你后天生活，工作养成的体质。");
         },
     },
-	methods:{
+    methods:{
         gotoReport(){
             if(this.questionSection == XianTianSectionType){
                 this.$router.push({ path: '/report', query: { questionSection: XianTianSectionType } })
