@@ -11,7 +11,7 @@
 				
 			</div>
 			<p>问题答完了！</p>
-			<h3>点击查看你的先天体质报告！</h3>
+			<h3>{{fieldTitle}}</h3>
 			<div class="tip">温馨提示:先天体质是你从父母那遗传的以及早期生活习惯养成的体质。</div>
 			<router-link to='/report'>
 				<button class="submit">查看报告</button>
@@ -21,6 +21,12 @@
 </template>
 <script type="text/javascript">
 export default {
+    props:['questionSection'],
+    computed: {
+        fieldTitle: function () {
+            return (this.questionSection == XianTianSectionType ? "点击查看你的先天体质报告" : "点击查看你的后天体质报告");
+        }
+    },
   data(){
   	return {
     }

@@ -22,7 +22,7 @@
 	        	如果您成年后生活的城市、生活习惯等改变较大，强烈建议您再测试一下后天体质！
         	</div>
         	<div class="r-mbotbtn">
-        	  <router-link to='/message'>
+        	  <router-link to='/message?questionSection=houTian'>
         		<div class="r-mbotleft"><img src="../assets/reportleft.png"/></div>
         	  </router-link>
         	  <router-link to='/shop'>
