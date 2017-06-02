@@ -178,8 +178,8 @@ export default {
 	    width: 100%;
 	    height: rem(124rem);
 	    overflow: hidden;
+	    position: relative;
 	    .swiper-wrapper {
-			  position: relative;
 			  z-index: 1;
 			  display: flex;
 			  width: 100%;
@@ -204,34 +204,37 @@ export default {
 				  	height: 100%;
 				  }
 				}
-				.swiper-pagination {
-				  position: absolute;
-				  z-index: 10;
-				  text-align: center;
-				  transform: translate3d(0px, 0px, 0px);
-				  transition: all .3s;
-				  height: rem(100rem);
-				}			
-				.swiper-pagination-bullets {
-				  left: 0;
-				  bottom: 10px;
-				  width: 100%;
-				  height: rem(100rem);
-				}
-				.swiper-pagination-bullet {
-				  display: inline-block;
-				  height: 8px;
-				  width: 8px;
-				  margin: 0 5px;
-				  cursor: pointer;
-				  opacity: .2;
-				  border-radius: 50%;
-				  background: #fff;
-				}				
-				.swiper-pagination-bullet-active {
-				  opacity: 1;
-				}
 			}
+			.swiper-pagination {
+			  z-index: 999;
+			  text-align: center;
+			  /*transform: translate3d(0px, 0px, 0px);*/
+			  transition: all .3s;
+			  height: rem(10rem);
+			  right: rem(30rem);
+			  position: absolute;
+			}
+			.swiper-pagination-bullets {
+				position: absolute;
+			  right: rem(15rem);
+			  bottom: rem(15rem);
+			  width: 30%;
+			  height: rem(8rem);
+			  background: #fff;
+			  span{
+				  width: rem(8rem);
+				  height: rem(8rem);
+				  margin: 0 rem(5rem);
+				  cursor: pointer;
+				  border-radius: 50%;
+				  background: #0000FF;
+				  opacity: .5;
+				  display: block;
+				}	
+				.swiper-pagination-bullet-active {
+					opacity: 1;
+				}	
+			}	
 	  }
 	  /*文章部分*/
 	  .s-marticle{

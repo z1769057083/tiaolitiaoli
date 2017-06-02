@@ -9,9 +9,9 @@
 		    			<p>收货人:林林林  15612345678</p>
 		    			<span>收货地址:上海上海市松江区老城荣乐路12弄300号小熊吉他方舟点</span>
 		    		</dd>
-		    		<dd class="order-right"><img src="../assets/selectEdit.png"/></dd>
+		    		<dd class="order-right" @click='editAddress'><img src="../assets/selectEdit.png"/></dd>
 				</dl>
-				<dl>
+				<dl @click='addNewAddress'>
 					<dt><img src="../assets/selectAddress.png"/></dt>
 		    		<dd class="consignee">新增地址</dd>
 		    		<dd class="order-return"><img src="../assets/confirmRight.png"/></dd>
@@ -34,6 +34,13 @@ export default {
   	},
   	close1(){
   		this.$emit('selectDelivery')
+  	},
+  	editAddress(){
+  		this.$emit('editDelivery')  
+//		this.$emit('selectDelivery')
+  	},
+  	addNewAddress(){
+  		this.$emit('closeDialogEvent')  	
   	}
   }
 }

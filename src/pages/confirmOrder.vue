@@ -64,29 +64,32 @@
 			</div>
 		</div>
 		<!--新增收货地址-->
-		<newDeliveryAddress v-show='Deliveryhidden' @closeDialogEvent='closeDialogHandler'></newDeliveryAddress>
+		<newDeliveryAddress v-show='Deliveryhidden' @closeDialogEvent='closeDialogHandler' @openDialogEvent='openDialogHandler'></newDeliveryAddress>
 		<selectdeliveryaddress  v-show='selecthidden' @selectDelivery='selectDeliveryHandler'></selectdeliveryaddress>
-		
+		<editDeliveryAddress v-show='editHidden' @editDelivery='editDeliveryHandler'></editDeliveryAddress>
   </div>
 </template>
 <script>
 import axios from 'axios'
 import newDeliveryAddress from '@/components/newDeliveryAddress'
 import selectdeliveryaddress from '@/components/selectdeliveryaddress'
+import editDeliveryAddress from '@/components/editDeliveryAddress'
 export default {
   data(){
   	return {
   		num:1,
   		totalPrice:'',
   		Deliveryhidden: false,
-  		addNewAddressHidden: false,
-  		DevelieryAddressHidden: true,
-  		selecthidden: false 
+  		addNewAddressHidden: true,
+  		DevelieryAddressHidden: false,
+  		selecthidden: false,
+  		editHidden: false
     }
   },
   components:{
   	newDeliveryAddress,
-  	selectdeliveryaddress
+  	selectdeliveryaddress,
+  	editDeliveryAddress
   },
   methods: {
   	reduce(){
@@ -112,8 +115,14 @@ export default {
   	closeDialogHandler(){
   		this.Deliveryhidden = false
   	},
+  	openDialogHandler(){
+  		this.Deliveryhidden = true
+  	},
   	selectDeliveryHandler(){
   		this.selecthidden = false
+  	},
+  	editDeliveryHandler(){
+  		this.editHidden = true
   	}
   },
   mounted() {

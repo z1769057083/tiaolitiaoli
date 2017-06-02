@@ -1,18 +1,18 @@
 <template>
 	<div class="maskmain">
-		<div class="address-main">	
+		<div class="address-main1">	
 			<h3 @click="close">新增收货地址</h3>
 			<div class="address-mcon">
 				<dl>
 					<dt>收货人</dt>
 					<dd>
-						<input type="text" placeholder="收货人姓名" v-model='name'/>
+						<input type="text" name="name" placeholder="收货人姓名" />
 					</dd>
 				</dl>
 				<dl>
 					<dt>联系电话</dt>
 					<dd>
-						<input type="text" placeholder="手机或固定电话" v-model='phone'/>
+						<input type="text" placeholder="手机或固定电话" />
 					</dd>
 				</dl>
 				<!--<dl>
@@ -29,16 +29,17 @@
 				<dl>
 					<dt>详细地址</dt>
 					<dd>
-						<input type="text" placeholder="如街道，楼层，门牌号等" v-model='address'/>
+						<input type="text" placeholder="如街道，楼层，门牌号等" />
 					</dd>
 				</dl>
 				<dl>
 					<dt>邮政编码</dt>
 					<dd>
-						<input type="text" placeholder="邮政编码(选填)"  v-model='postCode'/>
+						<input type="text" placeholder="邮政编码(选填)"/>
 					</dd>
 				</dl>
-				<div class="address-btn preserve" @click='reserve'>保存</div>
+				<div class="address-btn preserve">保存</div>
+				<div class="address-btn remove">删除收货地址</div>
 			</div>
 		</div>
 		<confirmToast v-show='confirmHidden' @closeConfirm='closeConfirmEvent'></confirmToast>
@@ -52,10 +53,6 @@ import confirmToast from '@/components/confirmToast'
 	},
     data() {
       return {
-      	name:'',
-      	phone:'',
-      	address:'',
-      	postCode:'',
       	confirmHidden: false
       }
     },
@@ -65,20 +62,6 @@ import confirmToast from '@/components/confirmToast'
       },
       closeConfirmEvent(){
       	this.confirmHidden = false
-      },
-      reserve(){
-      	if (!window.localStorage) {
-            return false
-            console.log(11111)
-        } else {
-        	console.log(2222)
-            var address = { 'name': this.name, 'phone': this.phone,'address':this.address,'postCode':this.postCode}
-            var storage = window.localStorage
-            var obj_arr = JSON.stringify(address)
-//          storage.setItem(deliver_key, obj_arr)
-            console.log( obj_arr)
-            
-        }
       }
     },
     mounted() {
@@ -97,8 +80,8 @@ import confirmToast from '@/components/confirmToast'
 	left: 0;
 	top: 0;
 	z-index: 99;
-	.address-main{
-		height: rem(342rem);
+	.address-main1{
+		height: rem(394rem);
 		background:#fff;
 		width: 100%;
 		position: absolute;

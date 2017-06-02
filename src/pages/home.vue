@@ -32,32 +32,32 @@
     </div>
 </template>
 <script>
-    export default {
-        name: 'home',
-        data() {
-            return {}
-        },
-        methods: {
-            //点击事件存title
-            tab(index) {
-                if (!window.localStorage) {
-                    return false;
-                } else {
-                    var doctor1 = { 'name': "林博士", 'img': "../static/images/indexheadportrait.png" },
-                        doctor2 = { 'name': "胡大夫", 'img': "../static/images/indexheadportrait1.png" }
-                    var doctors = [doctor1, doctor2];
-                    var storage = window.localStorage;
-                    var currentDoctor = doctors[index];
-                    var obj_arr = JSON.stringify(currentDoctor)
-                    storage.setItem(Doctor_Name_Key, obj_arr);
-                }
-                this.$router.push({ path: '/message', query: { questionSection: XianTianSectionType } })
+export default {
+    data() {
+        return {}
+    },
+    methods: {
+        //点击事件存title
+        tab(index) {
+            if (!window.localStorage) {
+                return false;
+            } else {
+                var doctor1 = { 'name': "林博士", 'img': "../static/images/indexheadportrait.png" },
+                    doctor2 = { 'name': "胡大夫", 'img': "../static/images/indexheadportrait1.png" }
+                var doctors = [doctor1, doctor2];
+                var storage = window.localStorage;
+                var currentDoctor = doctors[index];
+                var obj_arr = JSON.stringify(currentDoctor)
+                storage.setItem(Doctor_Name_Key, obj_arr);
+                console.log(obj_arr)
             }
-        },
-        mounted() {
-            document.title = "调理调理"
+            this.$router.push({ path: '/message', query: { questionSection: XianTianSectionType } })
         }
+    },
+    mounted() {
+        document.title = "调理调理"
     }
+}
 </script>
 <style scoped lang="scss">
     @import "../common/common.scss";

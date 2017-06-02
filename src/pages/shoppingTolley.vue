@@ -36,7 +36,7 @@
 	  	</div>
   	</div>
   	<div class="tolley-mbottom">
-  		<router-link to='/cashier'>
+  		<router-link to='/confirmOrder'>
   			<div class="submitOrder">结算(<span>4</span>)</div>
   		</router-link>
 			<div class="toal">
