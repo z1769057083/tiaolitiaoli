@@ -1,7 +1,7 @@
 <template>
   <div class='tolley-main'> 
   	<div class="tolley-mtop">
-  		<div class="tolley-check" :class="{}" @click='selectCheck'></div>	
+  		<div class="tolley-check" :class="{'active': toggle}" @click='selectCheck'></div>	
    		<div class="order-mtitle">
 	    	汉古商城
 	    	<span>编辑</span>
@@ -9,7 +9,7 @@
   	</div>
   	<div class="tolley-content">
   		<div class="tolley-mcon">
-  			<input class="tolley-check" type="checkbox"/>
+  			<div class="tolley-check" :class="{'active': toggle}"></div>	
 	  		<dl>
 	    			<dt><img src="../assets/confrimShopImg.png" onerror="this.src='http://placeholder.qiniudn.com/300'"/></dt>
 	    			<dd>
@@ -20,28 +20,20 @@
 	    		<div class="order-mnum">X<span>2</span></div>
 	    		<div class="delect">删除</div>
 	  	</div>
-	  	<!--<div class="tolley-mcon">
-	  		<input class="tolley-check" type="checkbox"/>
+  	</div>
+  	<div class="tolley-content">
+  		<div class="tolley-mcon">
+  			<div class="tolley-check" :class="{'active': toggle}" ></div>	
 	  		<dl>
-	    			<dt><img src="../assets/confrimShopImg.png"/></dt>
+	    			<dt><img src="../assets/confrimShopImg.png" onerror="this.src='http://placeholder.qiniudn.com/300'"/></dt>
 	    			<dd>
 	    				驱蚊包-套餐价格已包括3件
 	    				<p>¥69</p>
 	    			</dd>
 	    		</dl>
 	    		<div class="order-mnum">X<span>2</span></div>
+	    		<div class="delect">删除</div>
 	  	</div>
-	  	<div class="tolley-mcon">
-	  		<input class="tolley-check" type="checkbox"/>
-	  		<dl>
-	    			<dt><img src="../assets/confrimShopImg.png"/></dt>
-	    			<dd>
-	    				驱蚊包-套餐价格已包括3件
-	    				<p>¥69</p>
-	    			</dd>
-	    		</dl>
-	    		<div class="order-mnum">X<span>2</span></div>
-	  	</div>-->
   	</div>
   	<div class="tolley-mbottom">
   		<router-link to='/cashier'>
@@ -52,7 +44,7 @@
 				<span class="fare">不含运费</span>
 			</div>
 			<div class="tolley-select">
-				<input class="tolley-check" type="checkbox"/>
+				<div class="tolley-check" :class="{'active': toggle}" @click='selectCheck'></div>	
 				全选
 			</div>
   	</div>
@@ -61,9 +53,21 @@
 <script>
 import axios from 'axios'
  export default {
+ 	data(){
+ 		return{
+ 			toggle: false,
+ 			toggleLock: false
+ 		}
+ 	},
  	methods:{
  		selectCheck(){
- 			
+ 			if(!this.toggleLock){
+ 				this.toggle = true
+ 				this.toggleLock = true
+ 			}else{
+ 				this.toggle = false
+ 				this.toggleLock = false
+ 			}		
  		}
  	}
  	
@@ -76,12 +80,7 @@ import axios from 'axios'
 	height: 100%;
 	background: #f6f6f6;
 	position: absolute;
-	.tolley-mtop{
-		width: 94%;
-		padding:0 3%;
-		overflow: hidden;
-		background: #fff;
-		.tolley-check{
+	  .tolley-check{
 			float: left;
 			width: rem(18rem);
 			height: rem(18rem);
@@ -90,10 +89,17 @@ import axios from 'axios'
 			margin: rem(15rem) 3% 0 0;
 		}
 		.active{
+			width: rem(20rem);
+			height: rem(20rem);
 			background: url(../assets/shopTolley.png) no-repeat center;
 			background-size: cover;
 			border:0;
 		}
+	.tolley-mtop{
+		width: 94%;
+		padding:0 3%;
+		overflow: hidden;
+		background: #fff;
 		.order-mtitle{
 			width: 86%;
 			line-height: rem(46rem);
@@ -119,9 +125,6 @@ import axios from 'axios'
 			position: relative;
 			transition: transform .3s;
 			.tolley-check{
-				float: left;
-				width: rem(18rem);
-				height: rem(18rem);
 				margin: rem(37rem) 3% 0 0;
 			}
 			dl{
@@ -204,12 +207,6 @@ import axios from 'axios'
 		.tolley-select{
 			line-height: rem(48rem);
 			font-size: $font14;
-			.tolley-check{
-				float: left;
-				width: rem(18rem);
-				height: rem(18rem);
-				margin: rem(15rem) 3% 0 0;
-			}
 		}
 	}
 }

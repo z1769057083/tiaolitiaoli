@@ -12,7 +12,7 @@
 				<p>使用银行卡支付</p>
 				请使用银联卡支付，无需开通网银
 			</dd>
-			<dd></dd>
+			<dd class="check" :class="{'active': toggle}" @click='selectCheck'></dd>
 		</dl>
 		<dl>
 			<dt><img src="../assets/cashierWechart.png"/></dt>
@@ -20,7 +20,7 @@
 				<p>微信支付</p>
 				微信支付使用银行卡累计限制1000元
 			</dd>
-			<dd></dd>
+			<dd class="check" :class="{'active': toggle1}" @click='selectCheck1'></dd>
 		</dl>	
 	</div>
 	<div class="cashier-pay">立即支付</div>
@@ -29,12 +29,35 @@
 <script>
 import axios from 'axios'
 export default {
-  name: 'allgoods',
   data(){
   	return {
+  		toggle: false,
+  		toggle1: false,
+ 			toggleLock: false,
+ 			toggleLock1: false
     }
   },
   methods: {
+  	selectCheck(){
+ 			if(!this.toggleLock){
+ 				this.toggle = true
+ 				this.toggle1 = false
+ 				this.toggleLock = true
+ 			}else{
+ 				this.toggle = false
+ 				this.toggleLock = false
+ 			}		
+ 		},
+  	selectCheck1(){
+ 			if(!this.toggleLock1){
+ 				this.toggle1 = true
+ 				this.toggle = false
+ 				this.toggleLock1 = true
+ 			}else{
+ 				this.toggle1 = false
+ 				this.toggleLock1 = false
+ 			}		
+ 		}
   },
   mounted() {
   	document.documentElement.scrollTop = 0
@@ -86,6 +109,7 @@ export default {
 			height: rem(37rem);
 			padding: rem(22rem) 0 rem(15rem);
 			border-bottom: 1px solid #efefef;
+			position: relative;
 			dt{
 				float: left;
 				width: rem(34rem);
@@ -104,6 +128,22 @@ export default {
 					font-size: $font14;
 					margin-bottom: rem(8rem);
 				}
+			}
+			.check{
+				position: absolute;
+				right: 0;
+				top:rem(30rem);
+				width: rem(18rem);
+				height: rem(18rem);
+				border-radius: 50%;
+				border: 1px solid #999;	
+			}
+			.active{
+				width: rem(20rem);
+				height: rem(20rem);
+				background: url(../assets/cashierCheck.png) no-repeat center;
+				background-size: cover;
+				border:0;
 			}
 		}
 		dl:nth-child(2){
