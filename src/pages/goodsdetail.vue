@@ -45,12 +45,11 @@
 	  	  	<p>商城</p>
 	  	  </router-link>
 	  	</div>
-	  	<div class="l-mgoodsjoin" @click='addShoppingCar'>加入购物车</div>
-	  	<div class="l-mgoodsjoin l-mgoodsbuy" @click='addPurchase'>立即购买</div>
+	  	<div class="l-mgoodsjoin" @click='shopHiden = !shopHiden'>加入购物车</div>
+	  	<div class="l-mgoodsjoin l-mgoodsbuy" @click='purchaseHidden = !purchaseHidden'>立即购买</div>
 	  </div>
 	  <!--组件-->
 	  <!--加入购物车-->
-<!--	  <shoppingCar v-show='shopHiden' @closeToastEvent='closeToastHandler' @closeShopping='closeShopping'></shoppingCar>-->
 	  <div class="maskmain" v-show='shopHiden'>
 			<div class="mask-shopCar">
 				<div class="shopCar-main">
@@ -74,7 +73,33 @@
 				<div class="confirmBtn" @click='confirm'>确定</div>
 			</div>
 		</div>
-	  <purchase v-show='purchaseHidden' @closePurchase='closePurchase'></purchase>
+		<!--立即购买-->
+	  <!--<purchase v-show='purchaseHidden' @closePurchase='closePurchase'></purchase>-->
+	  <div class="maskmain" v-show='purchaseHidden'>
+			<div class="mask-shopCar">
+				<div class="shopCar-main">
+					<dl>
+						<dt><img src="../assets/shopcar.png"/></dt>
+						<dd>
+						    <p>¥50.00</p>
+						    <span>引火归元帖</span>
+						</dd>
+					</dl>
+					<div class="closeBtn" @click='purchaseHidden = !purchaseHidden'></div>				
+				</div>
+				<div class="shopCar-num">
+					<span>购买数量</span>
+					<div class="num">
+						<button class="reduceBtn" @click='reduce1'></button>
+						<input type="text" value="num1" v-model='num1'/>
+						<button class="addBtn" @click='add1'></button>
+					</div>
+				</div>
+				<router-link to='/confirmOrder'>
+				<div class="confirmBtn1">下一步</div>
+				</router-link>
+			</div>
+		</div>
 	  <toast v-show='toastHidden'></toast>
   </div>
 </template>
@@ -88,6 +113,8 @@ export default {
   data(){
   	return {
       list:[],
+      num:1,
+      num1:1,
       shopHiden: false,
       purchaseHidden: false,
       toastHidden: false
@@ -134,15 +161,20 @@ export default {
   			this.num++
   		}
   	},
-	  addShoppingCar() {
-	  	this.shopHiden = true
-	  },
-	  addPurchase() {
-	  	this.purchaseHidden = true
-	  },
-	  closePurchase(){
-	  	this.purchaseHidden = false
-	  }
+  	reduce1(){
+  		if(this.num1 <= 1){
+  			this.num1 = 1
+  		}else{
+  			this.num1--
+  		}
+  	},
+  	add1(){
+  		if(this.num1 >= 10){
+  			this.num1 = 10
+  		}else{
+  			this.num1++
+  		}
+  	}
   },
   mounted() {
   	this.requestlist()
@@ -395,6 +427,18 @@ export default {
 				height: rem(48rem);
 				color: #fff;
 				background: #ff8854;
+				line-height: rem(48rem);
+				text-align: center;
+				font-size: $font16;
+				position: absolute;
+				left: 0;
+				bottom: 0;
+			}
+			.confirmBtn1{
+				width: 100%;
+				height: rem(48rem);
+				color: #fff;
+				background: #ff4443;
 				line-height: rem(48rem);
 				text-align: center;
 				font-size: $font16;
