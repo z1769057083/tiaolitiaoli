@@ -4,7 +4,7 @@
 			<h3 @click = 'close'>选择收货地址</h3>
 			<div class="address-mcon">
 				<dl>
-					<dt><input type="checkbox" /></dt>
+					<dt @click='close1'><div class="tolley-check" :class="{'active': toggle}"></div></dt>
 		    		<dd class="consignee">
 		    			<p>收货人:林林林  15612345678</p>
 		    			<span>收货地址:上海上海市松江区老城荣乐路12弄300号小熊吉他方舟点</span>
@@ -24,10 +24,15 @@
 export default {
   data(){
   	return {
+  		toggle: true,
+ 		toggleLock: false
     }
   },
   methods:{
   	close(){
+  		this.$emit('selectDelivery')
+  	},
+  	close1(){
   		this.$emit('selectDelivery')
   	}
   }
@@ -72,6 +77,21 @@ export default {
 					width: rem(19rem);
 					height: rem(19rem);
 					margin-right: 2%;
+					.tolley-check{
+						float: left;
+						width: rem(17rem);
+						height: rem(17rem);
+						border-radius: 50%;
+						border: 1px solid #999;
+						margin: rem(15rem) 3% 0 0;
+					}
+					.active{
+						width: rem(19rem);
+						height: rem(19rem);
+						background: url(../assets/shopTolley.png) no-repeat center;
+						background-size: cover;
+						border:0;
+					}
 					img{
 						width: 100%;
 						height: 100%;

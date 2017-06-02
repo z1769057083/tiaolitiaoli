@@ -2,19 +2,23 @@
   <div class='confirmOrder'> 
     <!--主题部分-->
     <div class="order-top">
-    	<div class="order-address" @click='addAddress'>
-    		<img class="order-add" src="../assets/confirmaddress.png"/>
-    	    <span>新增收货地址</span>
-    	    <img class="order-right" src="../assets/confirmRight.png"/>
-    	</div>
-    	<!--<dl class="order-consignee">
-    		<dt><img src="../assets/orderAddress.png"/></dt>
-    		<dd class="consignee">
-    			<p>收货人:林林林<span>15612345678</span></p>
-    			<span>收货地址:上海上海市松江区老城荣乐路12弄300号小熊吉他方舟点</span>
-    		</dd>
-    		<dd class="order-right"><img src="../assets/confirmRight.png"/></dd>
-    	</dl>-->
+    	<!--新增收货地址开始-->
+    	<div class="order-address" v-show='addNewAddressHidden' @click='addAddress'>
+				<img class="order-add" src="../assets/confirmaddress.png"/>
+				<span>新增收货地址</span>
+				<img class="order-right" src="../assets/confirmRight.png"/>
+			</div>
+			<!--新增收货地址结束-->
+    	<!--收货地址开始-->
+    	<dl class="order-consignee" v-show='DevelieryAddressHidden' @click='editAddress'>
+				<dt><img src="../assets/orderAddress.png"/></dt>
+				<dd class="consignee">
+					<p>收货人:林林林<span>15612345678</span></p>
+					<span>收货地址:上海上海市松江区老城荣乐路12弄300号小熊吉他方舟点</span>
+				</dd>
+				<dd class="order-right"><img src="../assets/confirmRight.png"/></dd>
+			</dl>
+			<!--收货地址结束-->
     </div> 
     <div class="order-main">
     	<h3 class="order-mtitle">汉古商城</h3>
@@ -61,7 +65,7 @@
 		</div>
 		<!--新增收货地址-->
 		<newDeliveryAddress v-show='Deliveryhidden' @closeDialogEvent='closeDialogHandler'></newDeliveryAddress>
-		<!--<selectdeliveryaddress></selectdeliveryaddress>-->
+		<selectdeliveryaddress  v-show='selecthidden' @selectDelivery='selectDeliveryHandler'></selectdeliveryaddress>
 		
   </div>
 </template>
@@ -74,7 +78,10 @@ export default {
   	return {
   		num:1,
   		totalPrice:'',
-  		Deliveryhidden:false
+  		Deliveryhidden: false,
+  		addNewAddressHidden: false,
+  		DevelieryAddressHidden: true,
+  		selecthidden: false 
     }
   },
   components:{
@@ -99,13 +106,18 @@ export default {
   	addAddress(){
   		this.Deliveryhidden = true
   	},
+  	editAddress(){
+  		this.selecthidden = true
+  	},
   	closeDialogHandler(){
   		this.Deliveryhidden = false
+  	},
+  	selectDeliveryHandler(){
+  		this.selecthidden = false
   	}
   },
   mounted() {
   	this.totalPrice = 69*this.num
-  	console.log(this.num)
   }
 }
 </script>
@@ -121,7 +133,7 @@ export default {
 		height: rem(110rem);
 		overflow: hidden;
 		margin-bottom: rem(10rem);
-		background:#fff url(../assets/confirmTop.png) repeat-x  bottom;
+		background:#fff url(../assets/confirmTop.png) repeat-x  bottom;	
 		.order-address{
 			width: 94%;
 			height: rem(40rem);
@@ -183,7 +195,7 @@ export default {
 					height: 100%;
 				}
 			}
-		}
+		}	
 	}
 	.order-main{
 		width: 100%;

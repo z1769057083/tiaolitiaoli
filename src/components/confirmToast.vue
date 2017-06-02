@@ -11,10 +11,10 @@
 export default {
   methods:{
   	cancel(){
-  		this.$emit('confirmHidden')
+  		this.$emit('closeConfirm')
   	},
   	comfirm(){
-  		this.$emit('confirmHidden')
+  		this.$emit('closeDialogEvent')
   	}
   }
 }

@@ -80,21 +80,21 @@ import axios from 'axios'
 	height: 100%;
 	background: #f6f6f6;
 	position: absolute;
-	  .tolley-check{
-			float: left;
-			width: rem(18rem);
-			height: rem(18rem);
-			border-radius: 50%;
-			border: 1px solid #999;
-			margin: rem(15rem) 3% 0 0;
-		}
-		.active{
-			width: rem(20rem);
-			height: rem(20rem);
-			background: url(../assets/shopTolley.png) no-repeat center;
-			background-size: cover;
-			border:0;
-		}
+  .tolley-check{
+		float: left;
+		width: rem(18rem);
+		height: rem(18rem);
+		border-radius: 50%;
+		border: 1px solid #999;
+		margin: rem(15rem) 3% 0 0;
+	}
+	.active{
+		width: rem(20rem);
+		height: rem(20rem);
+		background: url(../assets/shopTolley.png) no-repeat center;
+		background-size: cover;
+		border:0;
+	}
 	.tolley-mtop{
 		width: 94%;
 		padding:0 3%;
