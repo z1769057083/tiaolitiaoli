@@ -5,7 +5,7 @@
             <div class="m-charscroll" >
                 <div  :class="item.isQuestion?'m-chardocter':'m-charcustom'"  v-for="(item,index) in renderedQuestions">
                     <div v-if="item.isQuestion" class="m-charperson"><img :src='imgUrl'/></div>
-                      <div v-if="!item.isQuestion" class="m-charperson"><img src="../assets/indexheadportrait.png"/></div>
+                      <div v-if="!item.isQuestion" class="m-charperson"><img :src="myselfAvatar"/></div>
                     <div class="m-charcont">{{renderedQuestions[index].content}}</div>
 
                     <!--<div class="m-charcont">人家是女生！</div>-->
@@ -77,7 +77,7 @@
 	import uploadMode from '@/components/uploadMode'
     export default {
         name: 'message',
-       
+
         data(){
             return {
                 title: '',
@@ -85,6 +85,7 @@
                 renderedQuestions: [],
                 questions:[],
                 imgUrl: '',
+                myselfAvatar:'../static/images/indexheadportrait.png',
                 maskhidden: false,
                 uploadHidden: false,
                 xianTianAnswer: {},
@@ -230,7 +231,11 @@
                 let obj = JSON.parse(obj_arr)
                 document.title = obj.name
                 this.imgUrl = obj.img
-                console.log(this.imgUrl)
+                if(storage.getItem(Account_Index)!==null){
+                    let account=JSON.parse(storage.getItem(Account_Index))
+                    this.myselfAvatar=account.headimgurl;
+                }
+
             }
         }
     }
