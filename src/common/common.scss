@@ -2,6 +2,7 @@
 @function rem($n) {
     @return $n / 37.5;
 }
+$font8: rem(8rem);
 $font12: rem(12rem);
 $font13: rem(13rem);
 $font14: rem(14rem);

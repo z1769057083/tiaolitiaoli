@@ -1,5 +1,4 @@
 <template>
-
 	<div class='report'>
       <!--聊天内容-->
       <div class='r-content'>

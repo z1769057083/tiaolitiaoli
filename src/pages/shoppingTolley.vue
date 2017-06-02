@@ -1,7 +1,7 @@
 <template>
   <div class='tolley-main'> 
   	<div class="tolley-mtop">
-  		<input class="tolley-check" type="checkbox"/>
+  		<div class="tolley-check" :class="{}" @click='selectCheck'></div>	
    		<div class="order-mtitle">
 	    	汉古商城
 	    	<span>编辑</span>
@@ -61,6 +61,11 @@
 <script>
 import axios from 'axios'
  export default {
+ 	methods:{
+ 		selectCheck(){
+ 			
+ 		}
+ 	}
  	
  }
 </script>
@@ -80,7 +85,14 @@ import axios from 'axios'
 			float: left;
 			width: rem(18rem);
 			height: rem(18rem);
+			border-radius: 50%;
+			border: 1px solid #999;
 			margin: rem(15rem) 3% 0 0;
+		}
+		.active{
+			background: url(../assets/shopTolley.png) no-repeat center;
+			background-size: cover;
+			border:0;
 		}
 		.order-mtitle{
 			width: 86%;

@@ -4,7 +4,7 @@
         <div class='m-char' id="chatContainer">
             <div class="m-charscroll" >
                 <div  :class="item.isQuestion?'m-chardocter':'m-charcustom'"  v-for="(item,index) in renderedQuestions">
-                    <div v-if="item.isQuestion" class="m-charperson"><img src='../assets/indexheadportrait.png'/></div>
+                    <div v-if="item.isQuestion" class="m-charperson"><img :src='imgUrl'/></div>
                       <div v-if="!item.isQuestion" class="m-charperson"><img src="../assets/indexheadportrait.png"/></div>
                     <div class="m-charcont">{{renderedQuestions[index].content}}</div>
 
@@ -17,7 +17,7 @@
             </div>
         </div>
         <maskconfirm v-show="maskhidden" v-bind:questionSection="questionSection"></maskconfirm>
-        <!--<uploadMode v-show="uploadHidden" @uploadModeEvent='uploadModeEvent'></uploadMode>-->
+        <uploadMode v-show="uploadHidden" @uploadModeEvent='uploadModeEvent'></uploadMode>
 
         <div class="m-select">
             <!--先天体质报告问题-->
@@ -46,10 +46,9 @@
             <aftertreat v-if="index == 11 &&questionSection=='houTian'"
                         @updateUserAnswer="updateUserAnswer"></aftertreat>
             <!--后天体质报告问题结束-->
-             <aftertreat class='hidden' :class="{show: index == 14}" @updateUserAnswer="updateUserAnswer"></aftertreat>
-		    <headForm class='hidden' :class="{show: index == 5}" @updateUserAnswer="updateUserAnswer"></headForm>
-		      <physiology class='hidden' :class="{show: index == 13}" @updateUserAnswer="updateUserAnswer"></physiology>
-
+		    <headForm class='hidden' :class="{show: index == 13}" @updateUserAnswer="updateUserAnswer"></headForm>
+		    <physiology class='hidden' :class="{show: index == 14}" @updateUserAnswer="updateUserAnswer"></physiology>
+			<afterCrescent class='hidden' :class="{show: index == 15}" @updateUserAnswer="updateUserAnswer"></afterCrescent>
             <button class="submit" @click="confirm">确定</button>
         </div>
     </div>
@@ -73,12 +72,12 @@
     import maskconfirm from '@/components/maskconfirm'
     import answerHelper from '@/common/answerHelper'
     import physiology from '@/components/physiology'
-
-import afterCrescent from '@/components/afterCrescent'
-import headForm from '@/components/headForm'
-import uploadMode from '@/components/uploadMode'
+	import afterCrescent from '@/components/afterCrescent'
+	import headForm from '@/components/headForm'
+	import uploadMode from '@/components/uploadMode'
     export default {
         name: 'message',
+       
         data(){
             return {
                 title: '',
@@ -87,6 +86,7 @@ import uploadMode from '@/components/uploadMode'
                 questions:[],
                 imgUrl: '',
                 maskhidden: false,
+                uploadHidden: false,
                 xianTianAnswer: {},
                 houTianAnswer: {},
                 pendingAnswer:{},
@@ -115,9 +115,15 @@ import uploadMode from '@/components/uploadMode'
         },
         computed: {
             isFinished: function () {
-                return (this.questionSection == XianTianSectionType && this.index >= 12
-                || this.questionSection == HouTianSectionType && this.index >= 12);
+                return (this.questionSection == XianTianSectionType && this.index >= 13
+                || this.questionSection == HouTianSectionType && this.index >= 15);
             }
+//          ,
+//      	doctorAvatar(){
+//      		var doctor=JSON.parse( localStorage.getItem(Doctor_Name_Key));
+//      		console.log(doctor.img);
+//      		return doctor.img;
+//      	}
         },
         watch: {
             renderedQuestions() {
@@ -208,6 +214,9 @@ import uploadMode from '@/components/uploadMode'
                 var item={isQuestion:true};
                 item.content=this.questions[0].content;
                 this.renderedQuestions.push(item);
+            },
+            uploadModeEvent(){
+            	this.uploadHidden = true
             }
         },
         mounted() {

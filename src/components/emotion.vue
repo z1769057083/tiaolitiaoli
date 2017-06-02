@@ -4,12 +4,7 @@
   		<dl>
   			<dt>饮食口味</dt>
   			<dd>
-  				<p :class="{'active': taste === 'sour'}" @click="change_active('sour','1',$event)">酸</p>
-  				<p :class="{'active': taste === 'sweet'}" @click="change_active('sweet','1',$event)">甜</p>
-  				<p :class="{'active': taste === 'bitter'}" @click="change_active('bitter','1',$event)">苦</p>
-  				<p :class="{'active': taste === 'hot'}" @click="change_active('hot','1',$event)">辣</p>
-  				<p :class="{'active': taste === 'salt'}" @click="change_active('salt','1',$event)">咸</p>
-  				<p :class="{'active': taste === 'normal'}" @click="change_active('normal','1',$event)">淡</p>
+  				<p v-for="items in tasteListSample" :class="{active: tasteArr.indexOf(items.key) > -1 }" @click="ac1(items.key)">{{items.text}}</p>
   			</dd>
   		</dl>
   		<dl>
@@ -25,13 +20,19 @@
 export default {
 	data(){
 	  	return {
-	  	  arr: [],
+	  	    arr: [],
             taste:'',
             emotion:'',
-	      active1:'',
-
-			tasteListSample:['sour','bitter','sweet','hot','salt'],
-	      emotionList: [
+	        active1:'',
+			tasteArr: [],
+			tasteListSample:[
+			  {'key':'sour','text': '酸'},
+              {'key':'sweet','text': '甜'},
+              {'key':'bitter','text': '苦'},
+              {'key':'hot','text': '辣'},
+              {'key':'salt','text': '咸'},
+              {'key':'normal','text':'淡'}],
+	        emotionList: [
 			  {'key':'happy','text': '喜'},
               {'key':'angry','text': '怒'},
               {'key':'worry','text': '忧虑'},
@@ -48,12 +49,6 @@ export default {
         }
     },
 	methods:{
-	  	change_active(answerValue,sectionId,sectionKey,event) {
-		  this.taste= answerValue;
-		  if(this.emotion!==''){
-		  	this.$emit('updateUserAnswer', this.answer)
-		  }  
-	    },
 	  	ac(obj) {
             var numb = this.arr.indexOf(obj);
             if (numb > -1) {
@@ -66,10 +61,20 @@ export default {
 			  	this.$emit('updateUserAnswer', this.answer)
 			}  
             
+        },
+        ac1(obj) {
+            var numb1 = this.tasteArr.indexOf(obj);
+            if (numb1 > -1) {
+              this.tasteArr.splice(numb1, 1);
+            } else {
+              this.tasteArr.push(obj);
+            }
+            this.taste=this.tasteArr
+            if(this.emotion!==''){
+			  	this.$emit('updateUserAnswer', this.answer)
+			}  
+            
         }
-	},
-	mounted() {
-	   this.change_active()
 	}
 }
 </script>

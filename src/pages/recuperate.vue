@@ -34,7 +34,7 @@
 					<dl class="s-marticlecon">
 						<dt>
 							<h3>音乐调理让你轻松？</h3>
-							中医里很多看似神秘莫测的变化说法，却蕴含诸多令人捉摸不透的真知灼见。
+							中医里很多看似神秘莫测的变化说法
 						</dt>
 						<dd><img src="../assets/shoparticle.png"/></dd>
 					</dl>
@@ -47,7 +47,7 @@
 					</dl>
 					<dl class="s-marticlecon1">
 						<dt>
-							<h3>坐月子是女人调养体质的最佳时期，月子注意这些事，一生不落病</h3>
+							<h3>怎么吃让你更健康？</h3>
 						</dt>
 						<dd class="s-martimg">
 							<img src="../assets/shoparticle1.png"/>
@@ -59,36 +59,33 @@
 							<img src="../assets/shoparticle1.png"/>
 						</dd>
 					</dl>
-								<dl class="s-marticlecon">
+						<dl class="s-marticlecon">
 						<dt>
-							<h3>正常的脉象是啥样的？</h3>
-							中医里很多看似神秘莫测的说法，却蕴含诸多令人捉摸不透的真知灼见。
+							<h3>音乐调理让你轻松？</h3>
+							中医里很多看似神秘莫测的变化说法
 						</dt>
 						<dd>
 							<img src="../assets/shoparticle.png"/>
 						</dd>
 					</dl>
-					<router-link to='/articledetail'>
-					<dl class="s-marticlecon">
-						<dt>
-							<h3>《黄帝内经》告诉你如何能百病不侵</h3>
-							告诉你如何修炼心法。
-						</dt>
-						<dd><img src="../assets/shoparticle.png"/></dd>
-					</dl>
-					</router-link>
 					<dl class="s-marticlecon1">
 						<dt>
-							<h3>坐月子是女人调养体质的最佳时期，月子注意这些事，一生不落病</h3>
+							<h3>中医调理见效快？</h3>
 						</dt>
 						<dd class="s-martimg">
 							<img src="../assets/shoparticle1.png"/>
+							<p class="s-martimgTitle">48小时特惠 引火归元贴</p>
+							<p class="s-martimgPic">¥69.00<span>¥128.00</span></p>
 						</dd>
 						<dd class="s-martimg">
 							<img src="../assets/shoparticle1.png"/>
+							<p class="s-martimgTitle">48小时特惠 引火归元贴</p>
+							<p class="s-martimgPic">¥69.00<span>¥128.00</span></p>
 						</dd>
 						<dd class="s-martimg">
 							<img src="../assets/shoparticle1.png"/>
+							<p class="s-martimgTitle">48小时特惠 引火归元贴</p>
+							<p class="s-martimgPic">¥69.00<span>¥128.00</span></p>
 						</dd>
 					</dl>
 				</div>
@@ -103,8 +100,8 @@
 	width: 100%;
 	overflow: hidden;
 	background: url(../assets/indexbg.png) no-repeat;
-	background-size: cover;
-	padding-top: rem(30rem);
+	background: cover;
+	padding: rem(30rem) 0;
 	.recuperate-main{
 		width: 86.6%;
 		border: 1px solid #c69b70;
@@ -186,33 +183,32 @@
 		 		overflow: hidden;
 		 		background: #fff;
 		 		.s-mrecomment{
-			 		width: 92%;
+			 		width: 100%;
 			 		overflow: hidden;
-			 		margin-left: 4%;
-			 		padding-top: 0.32rem;
+			 		padding-top: rem(5rem);
 			 		.s-marttitle{
-				 		font-size: 0.42rem;
+				 		font-size: rem(16rem);
 				 		line-height: rem(40rem);
 				 		color: #000;
 				 		font-weight: bold;
 				 		margin-bottom: 0.26rem;
 				 		background: url(../assets/shoptitleft.png) no-repeat center left;
 				 		padding-left: 2%;
-				 		border-bottom: rem(1rem) solid #e8e8e8;
+				 		border-bottom: rem(1rem) solid #f4eade;
 				 	}
 				 	.s-marticlecon{
 				 		width: 100%;
 				 		overflow: hidden;
 				 		margin-top: rem(15rem);
 				 		padding-bottom: rem(15rem);
-				 		border-bottom: rem(1rem) solid #e8e8e8;
+				 		border-bottom: rem(1rem) solid #f4eade;
 				 		dt{
-				 			width: 66%;
+				 			width: 64%;
 				 			float: left;
 				 			margin-right: 2%;
 				 			font-size: $font12;
 				 			color: #999;
-				 			line-height: rem(20rem);
+				 			line-height: rem(18rem);
 				 			h3{
 				 				font-size: $font18;
 				 				color: $c3c3c;
@@ -224,8 +220,8 @@
 				 		}
 				 		dd{
 				 			width: 32%;
-				 			height: rem(74rem);
-				 			float: left;
+				 			height: rem(70rem);
+				 			float: right;
 				 			img{
 				 				width: 100%;
 				 				height: 100%;
@@ -237,7 +233,7 @@
 				 		overflow: hidden;
 				 		margin-top: rem(15rem);
 				 		padding-bottom: rem(15rem);
-				 		border-bottom: rem(1rem) solid #e8e8e8;
+				 		border-bottom: rem(1rem) solid #f4eade;
 				 		dt{
 				 			width: 100%;
 				 			h3{
@@ -250,13 +246,27 @@
 				 			}
 				 		}
 				 		.s-martimg{
-				 			width: 32%;
-				 			height: rem(84rem);
+				 			width: 31%;
 				 			float: left;
-				 			margin-right: 2%;
+				 			margin-right: 3%;
+				 			overflow: hidden;
 				 			img{
 				 				width: 100%;
-				 				height: 100%;
+				 				height: rem(68rem);
+				 			}
+				 			.s-martimgTitle{
+				 				font-size: $font12;
+				 				line-height: rem(16rem);
+				 				font-weight: bold;
+				 			}
+				 			.s-martimgPic{
+				 				color: #ff4443;
+				 				span{
+				 					font-size: $font12;
+				 					color: #999;
+				 					text-decoration: line-through;
+				 					line-height: rem(20rem);
+				 				}
 				 			}
 				 		}
 				 		.s-martimg:nth-child(4){

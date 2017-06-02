@@ -43,8 +43,8 @@
                 if (!window.localStorage) {
                     return false;
                 } else {
-                    var doctor1 = { 'name': "林博士", 'img': "../assets/indexheadportrait.png" },
-                        doctor2 = { 'name': "胡大夫", 'img': "../assets/indexheadportrait1.png" }
+                    var doctor1 = { 'name': "林博士", 'img': "../static/images/indexheadportrait.png" },
+                        doctor2 = { 'name': "胡大夫", 'img': "../static/images/indexheadportrait1.png" }
                     var doctors = [doctor1, doctor2];
                     var storage = window.localStorage;
                     var currentDoctor = doctors[index];

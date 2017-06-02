@@ -19,7 +19,6 @@ export default {
 	},
 	methods:{  	
 		uploadPic(){
-			console.log(111)
 			this.$emit('uploadModeEvent')
 		}
 	}
