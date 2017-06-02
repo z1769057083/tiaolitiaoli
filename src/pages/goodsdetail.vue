@@ -50,7 +50,30 @@
 	  </div>
 	  <!--组件-->
 	  <!--加入购物车-->
-	  <shoppingCar v-show='shopHiden' @closeToastEvent='closeToastHandler' @closeShopping='closeShopping'></shoppingCar>
+<!--	  <shoppingCar v-show='shopHiden' @closeToastEvent='closeToastHandler' @closeShopping='closeShopping'></shoppingCar>-->
+	  <div class="maskmain" v-show='shopHiden'>
+			<div class="mask-shopCar">
+				<div class="shopCar-main">
+					<dl>
+						<dt><img src="../assets/shopcar.png"/></dt>
+						<dd>
+						    <p>¥50.00</p>
+						    <span>{{list.name}}</span>
+						</dd>
+					</dl>
+					<div class="closeBtn" @click='shopHiden = !shopHiden'></div>				
+				</div>
+				<div class="shopCar-num">
+					<span>购买数量</span>
+					<div class="num">
+						<button class="reduceBtn" @click='reduce'></button>
+						<input type="text" value='num' v-model='num'/>
+						<button class="addBtn" @click='add'></button>
+					</div>
+				</div>
+				<div class="confirmBtn" @click='confirm'>确定</div>
+			</div>
+		</div>
 	  <purchase v-show='purchaseHidden' @closePurchase='closePurchase'></purchase>
 	  <toast v-show='toastHidden'></toast>
   </div>
@@ -58,7 +81,6 @@
 <script>
 import axios from 'axios'
 import api from '../api/api'
-import shoppingCar from '@/components/shoppingCar'
 import purchase from '@/components/purchase'
 import toast from '@/components/toast'
 export default {
@@ -72,7 +94,6 @@ export default {
     }
   },
   components:{
-  	shoppingCar,
   	purchase,
   	toast
   },
@@ -91,24 +112,36 @@ export default {
 		    console.log(error)
 		  })
 	  },
+  	confirm(){
+  		this.toastHidden = true
+	  	var that = this
+			setTimeout(function()
+			{that.toastHidden = false}
+			,1000)
+  		this.shopHiden = false
+  	},
+  	reduce(){
+  		if(this.num <= 1){
+  			this.num = 1
+  		}else{
+  			this.num--
+  		}
+  	},
+  	add(){
+  		if(this.num >= 10){
+  			this.num = 10
+  		}else{
+  			this.num++
+  		}
+  	},
 	  addShoppingCar() {
 	  	this.shopHiden = true
 	  },
 	  addPurchase() {
 	  	this.purchaseHidden = true
 	  },
-	  closeShopping(){
-	  	this.shopHiden = false
-	  },
 	  closePurchase(){
 	  	this.purchaseHidden = false
-	  },
-	  closeToastHandler(){
-	  	this.toastHidden = true
-	  	var that = this
-			setTimeout(function()
-			{that.toastHidden = false}
-			,1000)
 	  }
   },
   mounted() {
@@ -257,4 +290,118 @@ export default {
 		  }
 	  }
   }
+  .maskmain{
+		width: 100%;
+		height: 100%;
+		background: rgba(0,0,0,0.6);
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		top: 0;
+		z-index: 99;
+		.mask-shopCar{
+			width: 100%;
+			height: rem(235rem);
+			background: #fff;
+			position: absolute;
+			bottom: 0;
+			left: 0; 
+			.shopCar-main{
+				width: 94%;
+				height: rem(112rem);
+				margin-left: 3%;
+				border-bottom: 1px solid #efefef;
+				dl{
+					float: left;
+					position: relative;
+					width: 56.8%;
+					height: rem(100rem);
+					dt{
+						width: rem(116rem);
+						height: rem(116rem);
+						position: absolute;
+						left: 0;
+						top: rem(-20rem);
+						img{
+							width: 100%;
+							height: 100%;
+						}
+					}
+					dd{
+						margin: rem(50rem) 0 0 rem(130rem);
+						p{
+							font-size: $font14;
+							color: #ff3300;
+							line-height: rem(28rem);
+							font-weight: bold;
+						}
+						span{
+							color: $c000;
+						}
+					}
+				}
+				.closeBtn{
+					width: rem(19rem);
+					height: rem(19rem);
+					margin-top: rem(10rem);
+					float: right;
+					background: url(../assets/shopcarClose.png) no-repeat center;
+					background-size: cover;
+				}
+			}
+			.shopCar-num{
+				width: 94%;
+				height: rem(58rem);
+				margin-left: 3%;
+				border-bottom: 1px solid #efefef;
+				span{	
+					line-height: rem(58rem);
+				}
+				.num{
+					float: right;
+					width: 30%;
+					height: rem(30rem);
+					margin-top: rem(14rem);;
+					button{
+						width: 30%;
+						float: left;
+						display: block;
+						height: rem(30rem);
+						border: 0;
+					}
+					.reduceBtn{
+						background: url(../assets/shopcarReduce.png);
+						background-size: cover;
+					}
+					.addBtn{
+						background: url(../assets/shopCaradd.png);
+						background-size: cover;
+					}
+					input{
+						float: left;
+						width: 34%;
+						height: rem(30rem);
+						border: 0;
+						background: #f5f5f5;
+						margin: 0 3%;
+						text-align: center;
+					    line-height: rem(30rem);
+					}
+				}
+				
+			}
+			.confirmBtn{
+				width: 100%;
+				height: rem(48rem);
+				color: #fff;
+				background: #ff8854;
+				line-height: rem(48rem);
+				text-align: center;
+				font-size: $font16;
+				position: absolute;
+				left: 0;
+				bottom: 0;
+			}
+		}
+	}
 </style>

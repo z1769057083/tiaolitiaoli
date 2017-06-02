@@ -12,7 +12,7 @@
 				<p>使用银行卡支付</p>
 				请使用银联卡支付，无需开通网银
 			</dd>
-			<dd class="check" :class="{'active': toggle}" @click='selectCheck'></dd>
+			<dd class="check" :class="{'active': toggle}" @click='toggle = !toggle'></dd>
 		</dl>
 		<dl>
 			<dt><img src="../assets/cashierWechart.png"/></dt>
@@ -20,7 +20,7 @@
 				<p>微信支付</p>
 				微信支付使用银行卡累计限制1000元
 			</dd>
-			<dd class="check" :class="{'active': toggle1}" @click='selectCheck1'></dd>
+			<dd class="check" :class="{'active': !toggle}" @click='toggle = !toggle'></dd>
 		</dl>	
 	</div>
 	<div class="cashier-pay">立即支付</div>
@@ -31,33 +31,11 @@ import axios from 'axios'
 export default {
   data(){
   	return {
-  		toggle: false,
-  		toggle1: false,
- 			toggleLock: false,
- 			toggleLock1: false
+			toggle: true
     }
   },
   methods: {
-  	selectCheck(){
- 			if(!this.toggleLock){
- 				this.toggle = true
- 				this.toggle1 = false
- 				this.toggleLock = true
- 			}else{
- 				this.toggle = false
- 				this.toggleLock = false
- 			}		
- 		},
-  	selectCheck1(){
- 			if(!this.toggleLock1){
- 				this.toggle1 = true
- 				this.toggle = false
- 				this.toggleLock1 = true
- 			}else{
- 				this.toggle1 = false
- 				this.toggleLock1 = false
- 			}		
- 		}
+  	
   },
   mounted() {
   	document.documentElement.scrollTop = 0

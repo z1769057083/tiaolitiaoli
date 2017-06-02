@@ -78,7 +78,7 @@ import confirmToast from '@/components/confirmToast'
             var address = { 'name': this.name, 'phone': this.phone,'address':this.address,'postCode':this.postCode}
             var storage = window.localStorage
             var obj_arr = JSON.stringify(address)
-//          storage.setItem(deliver_key, obj_arr)
+            storage.setItem("deliver_key", obj_arr)
             console.log( obj_arr)
             
         }

@@ -81,8 +81,8 @@ export default {
   		num:1,
   		totalPrice:'',
   		Deliveryhidden: false,
-  		addNewAddressHidden: true,
-  		DevelieryAddressHidden: false,
+  		addNewAddressHidden: false,
+  		DevelieryAddressHidden: true,
   		selecthidden: false,
   		editHidden: false
     }

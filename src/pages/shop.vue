@@ -174,59 +174,7 @@ export default {
 		height: 100%;
 		background: #f6f6f6;
 		/* 轮播图样式 */
-	  .swiper-container {
-	    width: 100%;
-	    height: rem(124rem);
-	    overflow: hidden;
-	    position: relative;
-	    .swiper-wrapper {
-			  z-index: 1;
-			  display: flex;
-			  width: 100%;
-			  height: rem(124rem);
-			  transform: translate3d(0px, 0px, 0px);
-			  transition-property: transform;
-			  box-sizing: content-box;
-			  .swiper-slide {
-				  display: flex;
-				  position: relative;
-				  height: rem(124rem);
-				  width: 100%;
-				  overflow: hidden;
-				  justify-content: center;
-				  align-items: center;
-				  flex-shrink: 0;
-				  text-align: center;
-				  font-size: 18px;
-				  background: #fff;
-				  img{
-				  	width: 100%;
-				  	height: 100%;
-				  }
-				}
-			}
-			.swiper-pagination-bullets{
-				position: absolute;
-			  right: rem(15rem);
-			  bottom: rem(15rem);
-			  width: 30%;
-			  height: rem(8rem);
-			  background: #fff;
-			}	
-		  .swiper-pagination-bullet{
-			  width: rem(8rem);
-			  height: rem(8rem);
-			  margin: 0 rem(5rem);
-			  cursor: pointer;
-			  border-radius: 50%;
-			  background: #000;
-			  opacity: .5;
-			  display: block;
-			}	
-			.swiper-pagination-bullet-active {
-				opacity: 1;
-			}	
-	  }
+	  
 	  /*文章部分*/
 	  .s-marticle{
 	 		width: 100%;

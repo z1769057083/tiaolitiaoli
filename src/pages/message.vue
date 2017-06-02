@@ -121,7 +121,7 @@
             renderedQuestions() {
                 this.$nextTick(() => {
                     var container = this.$el.querySelector("#chatContainer");
-                    console.log(container);
+//                  console.log(container);
                     container.scrollTop = container.scrollHeight;
                 })
             }
@@ -147,8 +147,6 @@
                     this.renderedQuestions.push(answer);
                 }
                 var that = this;
-               
-                debugger;
                 var diffValue=this.questionSection == XianTianSectionType?0:1;
                 if(that.questions[that.index-diffValue]&&that.questions[that.index-diffValue].content){
                 	 var item = { isQuestion: true };

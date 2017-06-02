@@ -48,7 +48,7 @@ export default {
                 var storage = window.localStorage;
                 var currentDoctor = doctors[index];
                 var obj_arr = JSON.stringify(currentDoctor)
-                storage.setItem(Doctor_Name_Key, obj_arr);
+                storage.setItem('Doctor_Name_Key', obj_arr);
                 console.log(obj_arr)
             }
             this.$router.push({ path: '/message', query: { questionSection: XianTianSectionType } })
