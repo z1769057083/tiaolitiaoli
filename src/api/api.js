@@ -8,5 +8,6 @@ module.exports = {
     goodsDetailData: apiPath + '/product/details?id=', //商品详情
     beforeQuestionData: apiPath + '/report/questions',// message第一个问题
     saveAnswer: apiPath + '/report/save_answer',
+    getUserByOpenId: apiPath + '/user/get_user_by_openid',
     generateReportData: apiPath + '/report/generate' // 获取报告
 }

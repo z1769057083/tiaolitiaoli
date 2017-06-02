@@ -2,17 +2,17 @@
     <div class='message'>
         <!--聊天内容-->
         <div class='m-char' id="chatContainer">
-            <div class="m-charscroll" >
-                <div  :class="item.isQuestion?'m-chardocter':'m-charcustom'"  v-for="(item,index) in renderedQuestions">
+            <div class="m-charscroll">
+                <div :class="item.isQuestion?'m-chardocter':'m-charcustom'" v-for="(item,index) in renderedQuestions">
                     <div v-if="item.isQuestion" class="m-charperson"><img :src='imgUrl'/></div>
-                      <div v-if="!item.isQuestion" class="m-charperson"><img src="../assets/indexheadportrait.png"/></div>
+                    <div v-if="!item.isQuestion" class="m-charperson"><img :src="myselfAvatar"/></div>
                     <div class="m-charcont">{{renderedQuestions[index].content}}</div>
 
                     <!--<div class="m-charcont">人家是女生！</div>-->
                 </div>
                 <!--<div class="m-charcustom">-->
-                    <!--<div class="m-charperson"><img src="../assets/indexheadportrait.png"/></div>-->
-                    <!--<div class="m-charcont">人家是女生！</div>-->
+                <!--<div class="m-charperson"><img src="../assets/indexheadportrait.png"/></div>-->
+                <!--<div class="m-charcont">人家是女生！</div>-->
                 <!--</div>-->
             </div>
         </div>
@@ -28,27 +28,32 @@
             <emotion v-if="index == 2" @updateUserAnswer="updateUserAnswer"></emotion>
             <season v-if="index == 3" @updateUserAnswer="updateUserAnswer"></season>
             <looks v-if="index == 4" @updateUserAnswer="updateUserAnswer"></looks>
+            <!--TODO:replace this component with correct one with face.-->
             <skinColor v-if="index == 5" @updateUserAnswer="updateUserAnswer"></skinColor>
-            <limbs v-if="index == 6" @updateUserAnswer="updateUserAnswer"></limbs>
-            <treatOthers1 v-if="index == 7"
+            <skinColor v-if="index == 6" @updateUserAnswer="updateUserAnswer"></skinColor>
+            <limbs v-if="index == 7" @updateUserAnswer="updateUserAnswer"></limbs>
+            <!--TODO:replace this component with correct one with character.-->
+            <limbs v-if="index == 8" @updateUserAnswer="updateUserAnswer"></limbs>
+            <treatOthers1 v-if="index == 9"
                           @updateUserAnswer="updateUserAnswer"></treatOthers1>
-            <treatOthers2 v-if="index == 8"
+            <treatOthers2 v-if="index == 10"
                           @updateUserAnswer="updateUserAnswer"></treatOthers2>
-            <treatOthers3 v-if="index == 9"
+            <treatOthers3 v-if="index == 11"
                           @updateUserAnswer="updateUserAnswer"></treatOthers3>
-            <treatOthers4 v-if="index == 10"
+            <treatOthers4 v-if="index == 12"
                           @updateUserAnswer="updateUserAnswer"></treatOthers4>
             <!--公共问题结束-->
-            <parentsBirthday v-if="index == 11&&questionSection=='xianTian'"
+            <parentsBirthday v-if="index == 13&&questionSection=='xianTian'"
                              @updateUserAnswer="updateUserAnswer"></parentsBirthday>
             <!--先天体质报告问题结束-->
             <!--后天体质报告问题-->
-            <aftertreat v-if="index == 11 &&questionSection=='houTian'"
+            <aftertreat v-if="index == 13 &&questionSection=='houTian'"
                         @updateUserAnswer="updateUserAnswer"></aftertreat>
             <!--后天体质报告问题结束-->
-		    <headForm class='hidden' :class="{show: index == 13}" @updateUserAnswer="updateUserAnswer"></headForm>
-		    <physiology class='hidden' :class="{show: index == 14}" @updateUserAnswer="updateUserAnswer"></physiology>
-			<afterCrescent class='hidden' :class="{show: index == 15}" @updateUserAnswer="updateUserAnswer"></afterCrescent>
+            <headForm class='hidden' :class="{show: index == 14}" @updateUserAnswer="updateUserAnswer"></headForm>
+            <physiology class='hidden' :class="{show: index == 15 &&questionSection=='houTian'}" @updateUserAnswer="updateUserAnswer"></physiology>
+            <afterCrescent class='hidden' :class="{show: index == 16 &&questionSection=='houTian'} "
+                           @updateUserAnswer="updateUserAnswer"></afterCrescent>
             <button class="submit" @click="confirm">确定</button>
         </div>
     </div>
@@ -72,46 +77,31 @@
     import maskconfirm from '@/components/maskconfirm'
     import answerHelper from '@/common/answerHelper'
     import physiology from '@/components/physiology'
-	import afterCrescent from '@/components/afterCrescent'
-	import headForm from '@/components/headForm'
-	import uploadMode from '@/components/uploadMode'
+    import afterCrescent from '@/components/afterCrescent'
+    import headForm from '@/components/headForm'
+    import uploadMode from '@/components/uploadMode'
     export default {
         name: 'message',
-       
         data(){
             return {
                 title: '',
                 questionSection: XianTianSectionType,
                 renderedQuestions: [],
-                questions:[],
+                questions: [],
                 imgUrl: '',
+                myselfAvatar: '../static/images/indexheadportrait.png',
                 maskhidden: false,
                 uploadHidden: false,
                 xianTianAnswer: {},
                 houTianAnswer: {},
-                pendingAnswer:{},
+                pendingAnswer: {},
                 index: 0
             }
         },
         components: {
-            gender,
-            city,
-            emotion,
-            season,
-            looks,
-            skinColor,
-            limbs,
-            treatOthers1,
-            treatOthers2,
-            treatOthers3,
-            treatOthers4,
-            parentsBirthday,
-            aftertreat,
-            maskconfirm,
-            physiology,
-            uploadMode,
-            afterCrescent,
-            headForm
+            gender, city, emotion, season, looks, skinColor, limbs, treatOthers1,
+            treatOthers2, treatOthers3, treatOthers4, parentsBirthday,
+            aftertreat, maskconfirm, physiology, uploadMode, afterCrescent, headForm
         },
         computed: {
             isFinished: function () {
@@ -136,7 +126,7 @@
         },
         methods: {
             updateUserAnswer(answerParams) {
-                this.pendingAnswer=answerParams;
+                this.pendingAnswer = answerParams;
                 for (let key in answerParams) {
                     if (this.questionSection == XianTianSectionType) {
                         this.xianTianAnswer[key] = answerParams[key];
@@ -149,14 +139,14 @@
             confirm () {
                 console.log(this.xianTianAnswer)
                 this.index++;
-                for(let key in this.pendingAnswer){
-                    var answer={isQuestion:false};
-                    answer.content=answerHelper.getAnswerText(key,this.pendingAnswer[key]);
+                for (let key in this.pendingAnswer) {
+                    var answer = { isQuestion: false };
+                    answer.content = answerHelper.getAnswerText(key, this.pendingAnswer[key]);
                     this.renderedQuestions.push(answer);
                 }
-                var that=this;
-                var item={isQuestion:true};
-                item.content=that.questions[that.index].content;
+                var that = this;
+                var item = { isQuestion: true };
+                item.content = that.questions[that.index].content;
                 that.renderedQuestions.push(item);
 //                setTimeout(function(){
 //                    var item={isQuestion:true};
@@ -171,13 +161,13 @@
             saveAndGenerateReport(){
                 var userId = '591e8b4873e713ce5aaddbef';
                 var that = this;
-                var postData ={"answer":{}};
-                if(that.questionSection == XianTianSectionType){
-                    postData.answer[XianTianSectionType]=this.xianTianAnswer;
-                }else{
-                    postData.answer[HouTianSectionType]=this.houTianAnswer;
+                var postData = { "answer": {} };
+                if (that.questionSection == XianTianSectionType) {
+                    postData.answer[XianTianSectionType] = this.xianTianAnswer;
+                } else {
+                    postData.answer[HouTianSectionType] = this.houTianAnswer;
                 }
-                postData.userId=userId;
+                postData.userId = userId;
                 axios.defaults.headers['Content-Type'] = 'application/json';
                 axios.post(api.generateReportData + "?id=" + userId + "&reportType=" + that.questionSection, postData)
                 //                    .then(function (res1) {
@@ -211,12 +201,12 @@
                     this.index = 1;
                     this.questions = JSON.parse(localStorage.getItem(Answer_Index)).houTianQuestions;
                 }
-                var item={isQuestion:true};
-                item.content=this.questions[0].content;
+                var item = { isQuestion: true };
+                item.content = this.questions[0].content;
                 this.renderedQuestions.push(item);
             },
             uploadModeEvent(){
-            	this.uploadHidden = true
+                this.uploadHidden = true
             }
         },
         mounted() {
@@ -230,7 +220,11 @@
                 let obj = JSON.parse(obj_arr)
                 document.title = obj.name
                 this.imgUrl = obj.img
-                console.log(this.imgUrl)
+                if (storage.getItem(Account_Index) !== null) {
+                    let account = JSON.parse(storage.getItem(Account_Index))
+                    this.myselfAvatar = account.headimgurl;
+                }
+
             }
         }
     }
