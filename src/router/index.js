@@ -12,6 +12,7 @@ import shoppingTolley from '@/pages/shoppingTolley'
 import cashier from '@/pages/cashier'
 import afterReport from '@/pages/afterReport'
 import recuperate from '@/pages/recuperate'
+import test from '@/pages/testUpload'
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -19,6 +20,10 @@ export default new Router({
       path: '/',
       component: home,
       name: 'home'
+    }, {
+      path: '/test',
+      component: test,
+      name: 'test'
     },
     {
       path: '/message',
