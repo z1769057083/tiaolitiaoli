@@ -205,35 +205,26 @@ export default {
 				  }
 				}
 			}
-			.swiper-pagination {
-			  z-index: 999;
-			  text-align: center;
-			  /*transform: translate3d(0px, 0px, 0px);*/
-			  transition: all .3s;
-			  height: rem(10rem);
-			  right: rem(30rem);
-			  position: absolute;
-			}
-			.swiper-pagination-bullets {
+			.swiper-pagination-bullets{
 				position: absolute;
 			  right: rem(15rem);
 			  bottom: rem(15rem);
 			  width: 30%;
 			  height: rem(8rem);
 			  background: #fff;
-			  span{
-				  width: rem(8rem);
-				  height: rem(8rem);
-				  margin: 0 rem(5rem);
-				  cursor: pointer;
-				  border-radius: 50%;
-				  background: #0000FF;
-				  opacity: .5;
-				  display: block;
-				}	
-				.swiper-pagination-bullet-active {
-					opacity: 1;
-				}	
+			}	
+		  .swiper-pagination-bullet{
+			  width: rem(8rem);
+			  height: rem(8rem);
+			  margin: 0 rem(5rem);
+			  cursor: pointer;
+			  border-radius: 50%;
+			  background: #000;
+			  opacity: .5;
+			  display: block;
+			}	
+			.swiper-pagination-bullet-active {
+				opacity: 1;
 			}	
 	  }
 	  /*文章部分*/

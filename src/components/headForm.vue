@@ -88,7 +88,7 @@ export default {
 			margin-right: 0;
 		}
 		.active{
-			background: #f2f2f2;
+			background: #fff;
 		}
 	}
 }	

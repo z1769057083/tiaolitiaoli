@@ -3,7 +3,8 @@
     <!--主题部分-->
     <div class="order-top">
     	<!--新增收货地址开始-->
-    	<div class="order-address" v-show='addNewAddressHidden' @click='addAddress'>
+    	<div class="order-address" v-show='addNewAddressHidden' @click='addAddress' 
+    		   @clickEvent='clickEventHandler'>
 				<img class="order-add" src="../assets/confirmaddress.png"/>
 				<span>新增收货地址</span>
 				<img class="order-right" src="../assets/confirmRight.png"/>
@@ -123,6 +124,10 @@ export default {
   	},
   	editDeliveryHandler(){
   		this.editHidden = true
+  	},
+  	clickEventHandler(){
+  		this.addNewAddressHidden = false
+  		this.DevelieryAddressHidden = true
   	}
   },
   mounted() {

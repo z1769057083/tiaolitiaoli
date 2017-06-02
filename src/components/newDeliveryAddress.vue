@@ -41,7 +41,7 @@
 				<div class="address-btn preserve" @click='reserve'>保存</div>
 			</div>
 		</div>
-		<confirmToast v-show='confirmHidden' @closeConfirm='closeConfirmEvent'></confirmToast>
+		<confirmToast v-show='confirmHidden' @closeDialogEvent='closeDialogHandler' @closeConfirm='closeConfirmEvent'></confirmToast>
 	</div>
 </template>
 <script type="text/javascript">
@@ -60,6 +60,9 @@ import confirmToast from '@/components/confirmToast'
       }
     },
     methods: {
+    	closeDialogHandler(){
+    		  this.$emit('closeDialogEvent')
+    	},
       close(){ 	
     	this.confirmHidden = true
       },
@@ -79,6 +82,8 @@ import confirmToast from '@/components/confirmToast'
             console.log( obj_arr)
             
         }
+        this.$emit('closeDialogEvent')
+        this.$emit('clickEvent')
       }
     },
     mounted() {

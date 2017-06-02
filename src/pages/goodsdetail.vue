@@ -2,7 +2,7 @@
   <div class='shoplist'>
     <!--主题部分-->
     <div class="l-main">
-    	<div class="l-mainscroll" v-for='item in list'>
+    	<div class="l-mainscroll">
     		<div class="l-mgoodsimg">
 	    		<img src="../assets/listgoodsimg.png"/>
 	      </div>
@@ -85,7 +85,6 @@ export default {
 		  	if(res.data.errorCode == 0){
 		  		res = res.data.returnValue
 		  		that.list = res
-		  		console.log(that.list)
 		  	}
 		  })
 		  .catch(function (error) {

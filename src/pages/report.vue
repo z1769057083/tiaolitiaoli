@@ -22,7 +22,7 @@
 	        	  {{wuXingReportContent}}
         	</div>
         	<div class="r-mbotbtn">
-        	  <router-link to='/message?questionSection="houTian"'>
+        	  <router-link to='/message?questionSection=houTian'>
         		<div class="r-mbotleft"><img src="../assets/reportleft.png"/></div>
         	  </router-link>
         	  <router-link to='/shop'>

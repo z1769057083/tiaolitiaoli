@@ -14,6 +14,7 @@ export default {
   		this.$emit('closeConfirm')
   	},
   	comfirm(){
+  		this.$emit('closeConfirm')
   		this.$emit('closeDialogEvent')
   	}
   }

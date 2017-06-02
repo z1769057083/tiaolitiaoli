@@ -37,7 +37,7 @@ export default {
                 this.$router.push({ path: '/report', query: { questionSection: XianTianSectionType } })
 			}
             else{
-                this.$router.push({ path: '/message', query: { questionSection: HouTianSectionType } })
+                this.$router.push({ path: '/afterReport', query: { questionSection: HouTianSectionType } })
 			}
 		}
 	},

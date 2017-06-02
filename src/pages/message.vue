@@ -28,32 +28,31 @@
             <emotion v-if="index == 2" @updateUserAnswer="updateUserAnswer"></emotion>
             <season v-if="index == 3" @updateUserAnswer="updateUserAnswer"></season>
             <looks v-if="index == 4" @updateUserAnswer="updateUserAnswer"></looks>
-            <!--TODO:replace this component with correct one with face.-->
-            <skinColor v-if="index == 5" @updateUserAnswer="updateUserAnswer"></skinColor>
+            <headForm v-if="index == 5" @updateUserAnswer="updateUserAnswer"></headForm>
             <skinColor v-if="index == 6" @updateUserAnswer="updateUserAnswer"></skinColor>
             <limbs v-if="index == 7" @updateUserAnswer="updateUserAnswer"></limbs>
-            <!--TODO:replace this component with correct one with character.-->
-            <limbs v-if="index == 8" @updateUserAnswer="updateUserAnswer"></limbs>
-            <treatOthers1 v-if="index == 9"
+            <character v-if="index == 8" @updateUserAnswer="updateUserAnswer"></character>
+            <temperament v-if="index == 9" @updateUserAnswer="updateUserAnswer"></temperament>
+            <treatOthers1 v-if="index == 10"
                           @updateUserAnswer="updateUserAnswer"></treatOthers1>
-            <treatOthers2 v-if="index == 10"
+            <treatOthers2 v-if="index == 11"
                           @updateUserAnswer="updateUserAnswer"></treatOthers2>
-            <treatOthers3 v-if="index == 11"
+            <treatOthers3 v-if="index == 12"
                           @updateUserAnswer="updateUserAnswer"></treatOthers3>
-            <treatOthers4 v-if="index == 12"
+            <treatOthers4 v-if="index == 13"
                           @updateUserAnswer="updateUserAnswer"></treatOthers4>
             <!--公共问题结束-->
-            <parentsBirthday v-if="index == 13&&questionSection=='xianTian'"
+            <parentsBirthday v-if="index == 14&&questionSection=='xianTian'"
                              @updateUserAnswer="updateUserAnswer"></parentsBirthday>
             <!--先天体质报告问题结束-->
             <!--后天体质报告问题-->
-            <aftertreat v-if="index == 13 &&questionSection=='houTian'"
+            <physiology class='hidden' :class="{show: index == 14 &&questionSection=='houTian'}" @updateUserAnswer="updateUserAnswer"></physiology>
+            <aftertreat v-if="index == 15 &&questionSection=='houTian'"
                         @updateUserAnswer="updateUserAnswer"></aftertreat>
-            <!--后天体质报告问题结束-->
-            <headForm class='hidden' :class="{show: index == 14}" @updateUserAnswer="updateUserAnswer"></headForm>
-            <physiology class='hidden' :class="{show: index == 15 &&questionSection=='houTian'}" @updateUserAnswer="updateUserAnswer"></physiology>
+            
             <afterCrescent class='hidden' :class="{show: index == 16 &&questionSection=='houTian'} "
                            @updateUserAnswer="updateUserAnswer"></afterCrescent>
+            <!--后天体质报告问题结束-->
             <button class="submit" @click="confirm">确定</button>
         </div>
     </div>
@@ -80,6 +79,8 @@
     import afterCrescent from '@/components/afterCrescent'
     import headForm from '@/components/headForm'
     import uploadMode from '@/components/uploadMode'
+    import character from '@/components/character'
+    import temperament from '@/components/temperament'
     export default {
         name: 'message',
         data(){
@@ -101,12 +102,13 @@
         components: {
             gender, city, emotion, season, looks, skinColor, limbs, treatOthers1,
             treatOthers2, treatOthers3, treatOthers4, parentsBirthday,
-            aftertreat, maskconfirm, physiology, uploadMode, afterCrescent, headForm
+            aftertreat, maskconfirm, physiology, uploadMode, afterCrescent, headForm,
+            character,temperament
         },
         computed: {
             isFinished: function () {
-                return (this.questionSection == XianTianSectionType && this.index >= 13
-                || this.questionSection == HouTianSectionType && this.index >= 15);
+                return (this.questionSection == XianTianSectionType && this.index >= 15
+                || this.questionSection == HouTianSectionType && this.index >= 17);
             }
 //          ,
 //      	doctorAvatar(){
@@ -145,9 +147,14 @@
                     this.renderedQuestions.push(answer);
                 }
                 var that = this;
-                var item = { isQuestion: true };
-                item.content = that.questions[that.index].content;
-                that.renderedQuestions.push(item);
+               
+                debugger;
+                var diffValue=this.questionSection == XianTianSectionType?0:1;
+                if(that.questions[that.index-diffValue]&&that.questions[that.index-diffValue].content){
+                	 var item = { isQuestion: true };
+                    item.content = that.questions[that.index-diffValue].content;
+                    that.renderedQuestions.push(item);
+                }
 //                setTimeout(function(){
 //                    var item={isQuestion:true};
 //                    item.content=that.questions[that.index].content;
