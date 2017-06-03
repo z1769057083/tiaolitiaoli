@@ -7,40 +7,26 @@
 	    	<span>编辑</span>
 	    </div>
   	</div>
-  	<div class="tolley-content">
-  		<div class="tolley-mcon">
+  	<div class="tolley-content" v-for='(item,index) in arr'>
+  		<div class="tolley-mcon" >
   			<div class="tolley-check" :class="{'active': toggle}"></div>	
 	  		<dl>
 	    			<dt><img src="../assets/confrimShopImg.png" onerror="this.src='http://placeholder.qiniudn.com/300'"/></dt>
 	    			<dd>
-	    				驱蚊包-套餐价格已包括3件
-	    				<p>¥69</p>
+	    				{{item.name}}
+	    				<p>{{item.price}}</p>
 	    			</dd>
 	    		</dl>
-	    		<div class="order-mnum">X<span>2</span></div>
-	    		<div class="delect">删除</div>
-	  	</div>
-  	</div>
-  	<div class="tolley-content">
-  		<div class="tolley-mcon">
-  			<div class="tolley-check" :class="{'active': toggle}" ></div>	
-	  		<dl>
-	    			<dt><img src="../assets/confrimShopImg.png" onerror="this.src='http://placeholder.qiniudn.com/300'"/></dt>
-	    			<dd>
-	    				驱蚊包-套餐价格已包括3件
-	    				<p>¥69</p>
-	    			</dd>
-	    		</dl>
-	    		<div class="order-mnum">X<span>2</span></div>
+	    		<div class="order-mnum">X<span>{{item.num}}</span></div>
 	    		<div class="delect">删除</div>
 	  	</div>
   	</div>
   	<div class="tolley-mbottom">
   		<router-link to='/confirmOrder'>
-  			<div class="submitOrder">结算(<span>4</span>)</div>
+  			<div class="submitOrder">结算(<span>{{total}}</span>)</div>
   		</router-link>
 			<div class="toal">
-				合计:<span>¥69</span>
+				合计:<span>¥{{count}}元</span>
 				<span class="fare">不含运费</span>
 			</div>
 			<div class="tolley-select">
@@ -56,7 +42,10 @@ import axios from 'axios'
  	data(){
  		return{
  			toggle: false,
- 			toggleLock: false
+ 			toggleLock: false,
+ 			arr:[],
+ 			count:'',
+ 			total:''
  		}
  	},
  	methods:{
@@ -69,7 +58,21 @@ import axios from 'axios'
  				this.toggleLock = false
  			}		
  		}
- 	}
+ 	},
+ 	mounted() {
+    if (!window.localStorage) {
+        return false;
+    } else {
+        let storage = window.localStorage;
+        let obj_arr = storage.getItem('shopcart_Key')
+        let obj = JSON.parse(obj_arr)
+        this.arr = obj
+        
+        console.log(this.arr[0].num)
+				this.total = this.arr[0].num 
+				this.count = this.arr[0].num*parseInt(this.arr[0].price)
+    }
+}
  	
  }
 </script>
@@ -140,8 +143,9 @@ import axios from 'axios'
 					}
 				}
 				dd{
-					float: right;
+					float: left;
 					line-height: rem(20rem);
+					margin-left: rem(10rem);
 					p{
 						margin-top: rem(5rem);
 						font-size: $font14;

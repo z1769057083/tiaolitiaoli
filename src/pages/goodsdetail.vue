@@ -56,7 +56,7 @@
 					<dl>
 						<dt><img src="../assets/shopcar.png"/></dt>
 						<dd>
-						    <p>¥50.00</p>
+						    <p>{{list.price}}</p>
 						    <span>{{list.name}}</span>
 						</dd>
 					</dl>
@@ -80,8 +80,8 @@
 					<dl>
 						<dt><img src="../assets/shopcar.png"/></dt>
 						<dd>
-						    <p>¥50.00</p>
-						    <span>引火归元帖</span>
+						     <p>{{list.price}}</p>
+						    <span>{{list.name}}</span>
 						</dd>
 					</dl>
 					<div class="closeBtn" @click='purchaseHidden = !purchaseHidden'></div>				
@@ -89,13 +89,13 @@
 				<div class="shopCar-num">
 					<span>购买数量</span>
 					<div class="num">
-						<button class="reduceBtn" @click='reduce1'></button>
-						<input type="text" value="num1" v-model='num1'/>
-						<button class="addBtn" @click='add1'></button>
+						<button class="reduceBtn" @click='reduce'></button>
+						<input type="text" value="num" v-model='num'/>
+						<button class="addBtn" @click='add'></button>
 					</div>
 				</div>
 				<router-link to='/confirmOrder'>
-				<div class="confirmBtn1">下一步</div>
+				<div class="confirmBtn1" @click='confirm'>下一步</div>
 				</router-link>
 			</div>
 		</div>
@@ -110,12 +110,10 @@ import api from '../api/api'
 import purchase from '@/components/purchase'
 import toast from '@/components/toast'
 export default {
-  name: 'goodsdetail',
   data(){
   	return {
       list:[],
       num:1,
-      num1:1,
       shopHiden: false,
       purchaseHidden: false,
       toastHidden: false
@@ -142,11 +140,21 @@ export default {
 	  },
   	confirm(){
   		this.toastHidden = true
+  		this.shopHiden = false
 	  	var that = this
 			setTimeout(function()
 			{that.toastHidden = false}
 			,1000)
-  		this.shopHiden = false
+			if (!window.localStorage) {
+	        return false;
+	   } else {
+	        var shop = { 'id': this.list._id, 'img': this.list.index,'name': this.list.name,'price': this.list.price,'num':this.num}
+	        var shopcart = [shop]
+	        var storage = window.localStorage;
+	        var obj_arr = JSON.stringify(shopcart)
+	        storage.setItem('shopcart_Key', obj_arr);
+	        console.log(obj_arr)
+	    }
   	},
   	reduce(){
   		if(this.num <= 1){
@@ -160,20 +168,6 @@ export default {
   			this.num = 10
   		}else{
   			this.num++
-  		}
-  	},
-  	reduce1(){
-  		if(this.num1 <= 1){
-  			this.num1 = 1
-  		}else{
-  			this.num1--
-  		}
-  	},
-  	add1(){
-  		if(this.num1 >= 10){
-  			this.num1 = 10
-  		}else{
-  			this.num1++
   		}
   	}
   },
@@ -347,7 +341,7 @@ export default {
 				dl{
 					float: left;
 					position: relative;
-					width: 56.8%;
+					/*width: 56.8%;*/
 					height: rem(100rem);
 					dt{
 						width: rem(116rem);

@@ -3,15 +3,14 @@
     <!--主题部分-->
     <div class="order-top">
     	<!--新增收货地址开始-->
-    	<div class="order-address" v-show='addNewAddressHidden' @click='addAddress' 
-    		   @clickEvent='clickEventHandler'>
+    	<div class="order-address" v-show='addNewAddressHidden' @click='addAddress'>
 				<img class="order-add" src="../assets/confirmaddress.png"/>
 				<span>新增收货地址</span>
 				<img class="order-right" src="../assets/confirmRight.png"/>
 			</div>
 			<!--新增收货地址结束-->
     	<!--收货地址开始-->
-    	<dl class="order-consignee" v-show='DevelieryAddressHidden' @click='editAddress'>
+    	<dl class="order-consignee" v-show='!addNewAddressHidden' @click='editAddress'>
 				<dt><img src="../assets/orderAddress.png"/></dt>
 				<dd class="consignee">
 					<p>收货人:林林林<span>15612345678</span></p>
@@ -23,15 +22,15 @@
     </div> 
     <div class="order-main">
     	<h3 class="order-mtitle">汉古商城</h3>
-    	<div class="order-mdetail">
+    	<div class="order-mdetail" v-for='(item,index) in arr'>
     		<dl>
     			<dt><img src="../assets/confrimShopImg.png"/></dt>
     			<dd>
-    				驱蚊包-套餐价格已包括3件
-    				<p>¥69</p>
+    				{{item.name}}
+	    			<p>{{item.price}}</p>
     			</dd>
     		</dl>
-    		<div class="order-mnum">X<span>2</span></div>
+    		<div class="order-mnum">X<span>{{item.num}}</span></div>
     	</div>		
     </div>
     <div class="order-mcontent">
@@ -53,7 +52,7 @@
     	</dl>-->
     	<dl class="order-mconpic">
     		<dt></dt>
-    		<dd>共2件商品   小计:<span>¥{{totalPrice}}.00</span></dd>
+    		<dd>共2件商品   小计:<span>¥{{count}}.00</span></dd>
     	</dl>
     </div>
 		<div class="order-bottom">
@@ -61,20 +60,119 @@
 				<div class="submitOrder">提交订单</div>
 			</router-link>
 			<div class="toal">
-				合计:<span>¥69</span>
+				合计:<span>¥{{countPrice}}</span>
 			</div>
 		</div>
-		<!--新增收货地址-->
-		<newDeliveryAddress v-show='Deliveryhidden' @closeDialogEvent='closeDialogHandler' @openDialogEvent='openDialogHandler'></newDeliveryAddress>
-		<selectdeliveryaddress  v-show='selecthidden' @selectDelivery='selectDeliveryHandler'></selectdeliveryaddress>
-		<editDeliveryAddress v-show='editHidden' @editDelivery='editDeliveryHandler'></editDeliveryAddress>
+		<!--新增收货地址开始-->
+		<div class="maskmain" v-show='Deliveryhidden' @closeDialogEvent='closeDialogHandler'>
+			<div class="address-main">	
+				<h3 @click="close">新增收货地址</h3>
+				<div class="address-mcon">
+					<dl>
+						<dt>收货人</dt>
+						<dd>
+							<input type="text" placeholder="收货人姓名" v-model='name'/>
+						</dd>
+					</dl>
+					<dl>
+						<dt>联系电话</dt>
+						<dd>
+							<input type="text" placeholder="手机或固定电话" v-model='phone'/>
+						</dd>
+					</dl>
+					<dl>
+						<dt>详细地址</dt>
+						<dd>
+							<input type="text" placeholder="如街道，楼层，门牌号等" v-model='address'/>
+						</dd>
+					</dl>
+					<dl>
+						<dt>邮政编码</dt>
+						<dd>
+							<input type="text" placeholder="邮政编码(选填)"  v-model='postCode'/>
+						</dd>
+					</dl>
+					<div class="address-btn preserve" @click='reserve'>保存</div>
+				</div>
+			</div>
+			<confirmToast v-show='confirmToastHidden' @closeDialogEvent='closeDialogHandler' @closeConfirm='closeConfirmEvent'></confirmToast>
+		</div>
+		<!--新增收货地址结束-->
+		<!--选择收货地址开始-->
+		<div class="maskmain" v-show='selecthidden'>
+			<div class="select-main">	
+				<h3 @click = 'selecthidden = !selecthidden'>选择收货地址</h3>
+				<div class="address-mcon">
+					<dl>
+						<dt @click='selecthidden = !selecthidden'><div class="tolley-check" :class="{'active': toggle}"></div></dt>
+			    		<dd class="consignee">
+			    			<p>收货人:林林林  15612345678</p>
+			    			<span>收货地址:上海上海市松江区老城荣乐路12弄300号小熊吉他方舟点</span>
+			    		</dd>
+			    		<dd class="order-right" @click='selectEdit'><img src="../assets/selectEdit.png"/></dd>
+					</dl>
+					<dl @click='addNewAddress'>
+						<dt><img src="../assets/selectAddress.png"/></dt>
+			    		<dd class="consignee">新增地址</dd>
+			    		<dd class="order-return"><img src="../assets/confirmRight.png"/></dd>
+					</dl>
+				</div>
+			</div>
+		</div>
+		<!--选择收货地址结束-->
+		<!--修改收货地址开始-->
+		<div class="maskmain" v-show='confirmHidden' @closeDialogEvent='closeDialogHandler'>
+			<div class="address-main address-main1">	
+				<h3 @click="close">修改收货地址</h3>
+				<div class="address-mcon">
+					<dl>
+						<dt>收货人</dt>
+						<dd>
+							<input type="text" name="name" placeholder="收货人姓名" />
+						</dd>
+					</dl>
+					<dl>
+						<dt>联系电话</dt>
+						<dd>
+							<input type="text" placeholder="手机或固定电话" />
+						</dd>
+					</dl>
+					<!--<dl>
+						<dt>选择地区</dt>
+						<dd>
+							<div class="m-selectcity" @click='selectCity'><b>{{ addressProvince }} {{ addressCity }}</b></div>
+							<div class="page-picker" v-show='pickerhidden'>
+							    <div class="page-picker-wrapper">
+							      <mt-picker :slots="addressSlots" @change="onAddressChange" :visible-item-count="5"></mt-picker>
+							    </div>
+						   </div>
+						</dd>
+					</dl>-->
+					<dl>
+						<dt>详细地址</dt>
+						<dd>
+							<input type="text" placeholder="如街道，楼层，门牌号等" />
+						</dd>
+					</dl>
+					<dl>
+						<dt>邮政编码</dt>
+						<dd>
+							<input type="text" placeholder="邮政编码(选填)"/>
+						</dd>
+					</dl>
+					<div class="address-btn preserve">保存</div>
+					<div class="address-btn remove">删除收货地址</div>
+				</div>
+			</div>
+			<confirmToast v-show='confirmToastHidden'  @closeDialogEvent='closeDialogHandler'  @closeConfirm='closeConfirmEvent'></confirmToast>
+		</div>
+
+		<!--修改收货地址结束-->
   </div>
 </template>
 <script>
 import axios from 'axios'
-import newDeliveryAddress from '@/components/newDeliveryAddress'
-import selectdeliveryaddress from '@/components/selectdeliveryaddress'
-import editDeliveryAddress from '@/components/editDeliveryAddress'
+import confirmToast from '@/components/confirmToast'
 export default {
   data(){
   	return {
@@ -82,15 +180,24 @@ export default {
   		totalPrice:'',
   		Deliveryhidden: false,
   		addNewAddressHidden: false,
-  		DevelieryAddressHidden: true,
   		selecthidden: false,
-  		editHidden: false
+  		editHidden: false,
+  		name:'',
+  	  phone:'',
+  	  address:'',
+  	  postCode:'',
+  	  confirmHidden: false,
+  	  confirmToastHidden: false,
+  	  toggle: true,
+ 			toggleLock: false,
+ 			arr:[],
+ 			count:'',
+ 			total:'',
+ 			countPrice:''
     }
   },
   components:{
-  	newDeliveryAddress,
-  	selectdeliveryaddress,
-  	editDeliveryAddress
+  	confirmToast
   },
   methods: {
   	reduce(){
@@ -107,31 +214,71 @@ export default {
   			this.num++
   		}
   	},
+  	//点击新增收货地址显示
   	addAddress(){
   		this.Deliveryhidden = true
   	},
+  	//修改收货地址
   	editAddress(){
   		this.selecthidden = true
-  	},
-  	closeDialogHandler(){
-  		this.Deliveryhidden = false
-  	},
-  	openDialogHandler(){
-  		this.Deliveryhidden = true
-  	},
-  	selectDeliveryHandler(){
-  		this.selecthidden = false
   	},
   	editDeliveryHandler(){
   		this.editHidden = true
   	},
-  	clickEventHandler(){
-  		this.addNewAddressHidden = false
-  		this.DevelieryAddressHidden = true
+  	//选择收货地址
+  	selectDeliveryHandler(){
+  		this.confirmHidden = false
+  	},		
+		//新增地址中的关闭按钮
+	  close(){ 	
+		this.confirmToastHidden = true
+	  },
+	  closeConfirmEvent(){
+	  	this.confirmToastHidden = false
+	  },
+	  closeDialogHandler(){
+			this.Deliveryhidden = false
+			this.confirmHidden = false
+			this.selecthidden = false
+			this.confirmToastHidden = false
+		},
+	  //保存 存localstorage，如果localstorage不为空则新增地址变为false 地址变为true 
+	  reserve(){
+	  	if (!window.localStorage) {
+	        return false
+	   } else {
+	        var address = { 'name': this.name, 'phone': this.phone,'address':this.address,'postCode':this.postCode}
+	        var storage = window.localStorage
+	        var obj_arr = JSON.stringify(address)
+	        storage.setItem("deliver_key", obj_arr)
+	        console.log( obj_arr)
+	        
+	    }
+	    this.$emit('closeDialogEvent')
+	    this.$emit('clickEvent')
+	  },
+  	selectEdit(){
+  		this.confirmHidden = true
+  		this.selecthidden = false
+  	},
+  	addNewAddress(){
+  		this.Deliveryhidden = true
+  		this.selecthidden = false
   	}
   },
   mounted() {
-  	this.totalPrice = 69*this.num
+  	if (!window.localStorage) {
+        return false;
+    } else {
+        let storage = window.localStorage;
+        let obj_arr = storage.getItem('shopcart_Key')
+        let obj = JSON.parse(obj_arr)
+        this.arr = obj
+        console.log(this.arr[0].num)
+				this.total = this.arr[0].num 
+				this.count = this.arr[0].num*parseInt(this.arr[0].price)
+				this.countPrice = this.count + 12
+    }
   }
 }
 </script>
@@ -240,8 +387,9 @@ export default {
 					}
 				}
 				dd{
-					float: right;
+					float: left;
 					line-height: rem(20rem);
+					margin-left: rem(10rem);
 					p{
 						margin-top: rem(5rem);
 						font-size: $font14;
@@ -351,5 +499,161 @@ export default {
 			}
 		}
 	}
+}
+.maskmain{
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.6);
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	top: 0;
+	z-index: 99;
+	.address-main{
+		height: rem(342rem);
+		background:#fff;
+		width: 100%;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		h3{
+			font-size: $font16;
+			text-align: center;
+			line-height: rem(52rem);
+			border-bottom: 1px solid #efefef;
+			background: url(../assets/shopcarClose.png) no-repeat 97% center;
+			background-size: rem(19rem);
+		}
+		.address-mcon{
+			width: 94%;
+			padding: 0 3%;
+			dl{
+				border-bottom: 1px solid #efefef;
+				height: rem(50rem);
+				width: 100%;
+				font-size: $font14;
+				dt{
+					width: 18%;
+					float: left;
+					line-height: rem(50rem);
+				}
+				dd{
+					width: 78%;
+					float: right;
+					margin: rem(16rem) 0;
+					input{
+						width: 100%;
+						border: 0;
+					}
+				}
+			}
+			.address-btn{
+				width: 100%;
+				height: rem(40rem);
+				text-align: center;
+				line-height: rem(40rem);
+				font-size: $font16;
+				border-radius: rem(5rem) ;
+			}
+			.preserve{
+				background: #50b347;
+				color: #fff;
+				margin-bottom: rem(10rem);
+				margin-top: rem(24rem);
+			}
+			.remove{
+				color: $c3c3c;
+				border: 1px solid #999;
+			}
+		}	
+	}
+	.address-main1{
+	  height: rem(394rem);
+	}
+	.select-main{
+		background:#fff;
+		width: 100%;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		h3{
+			font-size: $font16;
+			text-align: center;
+			line-height: rem(52rem);
+			border-bottom: 1px solid #efefef;
+			background: url(../assets/shopcarClose.png) no-repeat 97% center;
+			background-size: rem(19rem);
+		}
+		.address-mcon{
+			width: 94%;
+			padding: 0 3%;
+			dl{
+				width: 100%;
+				overflow: hidden;
+				border-bottom: 1px solid #efefef;
+				padding: rem(10rem) 0;
+				dt{
+					float: left;
+					width: rem(19rem);
+					height: rem(19rem);
+					margin-right: 2%;
+					.tolley-check{
+						float: left;
+						width: rem(17rem);
+						height: rem(17rem);
+						border-radius: 50%;
+						border: 1px solid #999;
+						margin: rem(15rem) 3% 0 0;
+					}
+					.active{
+						width: rem(19rem);
+						height: rem(19rem);
+						background: url(../assets/shopTolley.png) no-repeat center;
+						background-size: cover;
+						border:0;
+					}
+					img{
+						width: 100%;
+						height: 100%;
+					}
+				}
+				.consignee{
+					float: left;
+					width: 84%;
+					line-height: rem((19rem));
+					font-size: $font12;
+					p{
+						margin-bottom: rem(2rem);
+						color: $c3c3c;
+					}
+					span{
+						line-height: rem(16rem);
+						color: #999;
+					}
+				}
+				.order-right{
+					width: rem(15rem);
+					height: rem(15rem);
+					float: right;
+					margin-top: rem(18rem);
+					img{
+						width: 100%;
+						height: 100%;
+					}
+				}
+				.order-return{
+					width: rem(5rem);
+					height: rem(11rem);
+					float: right;
+					margin-top: rem(2rem);
+					img{
+						width: 100%;
+						height: 100%;
+					}
+				}	
+			}
+			
+		}	
+	}		
 }
 </style>
