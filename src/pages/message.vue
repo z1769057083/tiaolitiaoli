@@ -50,7 +50,7 @@
             <aftertreat v-if="index == 15 &&questionSection=='houTian'"
                         @updateUserAnswer="updateUserAnswer"></aftertreat>
 
-            <afterCrescent class='hidden' :class="{show: index == 16 &&questionSection=='houTian'} "
+            <afterCrescent v-if="index == 16 &&questionSection=='houTian' "
                            @updateUserAnswer="updateUserAnswer"></afterCrescent>
             <!--后天体质报告问题结束-->
             <button class="submit" @click="confirm">确定</button>
@@ -130,6 +130,7 @@
         },
         methods: {
             updateUserAnswer(answerParams) {
+
                 this.isCurrentQuestionFinished=true;
                 this.pendingAnswer = answerParams;
                 for (let key in answerParams) {
