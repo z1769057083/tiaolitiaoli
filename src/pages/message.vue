@@ -49,7 +49,7 @@
             <physiology class='hidden' :class="{show: index == 14 &&questionSection=='houTian'}" @updateUserAnswer="updateUserAnswer"></physiology>
             <aftertreat v-if="index == 15 &&questionSection=='houTian'"
                         @updateUserAnswer="updateUserAnswer"></aftertreat>
-            
+
             <afterCrescent class='hidden' :class="{show: index == 16 &&questionSection=='houTian'} "
                            @updateUserAnswer="updateUserAnswer"></afterCrescent>
             <!--后天体质报告问题结束-->
@@ -81,6 +81,7 @@
     import uploadMode from '@/components/uploadMode'
     import character from '@/components/character'
     import temperament from '@/components/temperament'
+    import Toast from '@/packages/toast'
     export default {
         name: 'message',
         data(){
@@ -90,6 +91,7 @@
                 renderedQuestions: [],
                 questions: [],
                 imgUrl: '',
+                isCurrentQuestionFinished:false,
                 myselfAvatar: '../static/images/indexheadportrait.png',
                 maskhidden: false,
                 uploadHidden: false,
@@ -128,6 +130,7 @@
         },
         methods: {
             updateUserAnswer(answerParams) {
+                this.isCurrentQuestionFinished=true;
                 this.pendingAnswer = answerParams;
                 for (let key in answerParams) {
                     if (this.questionSection == XianTianSectionType) {
@@ -139,6 +142,14 @@
                 }
             },
             confirm () {
+                if(!this.isCurrentQuestionFinished){
+                    Toast({
+                        message: '请先完成当前问题',
+                        position:'top',
+                    });
+                    return;
+                }
+                this.isCurrentQuestionFinished=false;
                 console.log(this.xianTianAnswer)
                 this.index++;
                 for (let key in this.pendingAnswer) {
@@ -175,8 +186,6 @@
                 postData.userId = userId;
                 axios.defaults.headers['Content-Type'] = 'application/json';
                 axios.post(api.generateReportData + "?id=" + userId + "&reportType=" + that.questionSection, postData)
-                //                    .then(function (res1) {
-                //                        axios.get(api.generateReportData + "?id=" + userId + "&reportType=" + that.questionSection)
                     .then(function (res) {
                         if (res.data.errorCode == 0) {
                             let report = res.data.returnValue
