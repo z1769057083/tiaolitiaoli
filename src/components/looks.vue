@@ -66,11 +66,13 @@ export default {
     change_active(answerValue,sectionId,sectionKey,event) {
 	  this.$data['active'+sectionId] = answerValue
 	  this.$data.look[sectionKey]=answerValue
-	  this.$emit('updateUserAnswer', this.$data.look)
+		//TODO:follow the code sample as emotion component , dod not need to declare 'look' object.
+		if(this.active1!==''&&this.active2!==''&&this.active3!==''&&this.active4!==''&&this.active5!==''){
+            this.$emit('updateUserAnswer', this.$data.look)
+		}
     }
   },
   mounted() {
-   this.change_active()
   }
 }
 </script>
