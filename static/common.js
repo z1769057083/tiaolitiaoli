@@ -10,12 +10,11 @@ global.XianTianAnswer_Index = 'xianTianAnswer_Index'
 global.HouTianAnswer_Index = 'xianTianAnswer_Index'
 
 module.exports = {
-    loadXianTianUserData (compoment){
+    loadXianTianUserData (component){
         var xianTianAnswer = JSON.parse(localStorage.getItem(XianTianAnswer_Index));
         for (let key in xianTianAnswer) {
-            if( compoment.$data[key] &&typeof (compoment.$data[key])===typeof (xianTianAnswer[key])){
-                debugger;
-                compoment.$data[key] = xianTianAnswer[key];
+            if( component.$data[key] &&typeof (component.$data[key])===typeof (xianTianAnswer[key])){
+                component.$data[key] = xianTianAnswer[key];
             }
         }
     }
