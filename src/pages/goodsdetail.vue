@@ -73,8 +73,7 @@
 				<div class="confirmBtn" @click='confirm'>确定</div>
 			</div>
 		</div>
-		<!--立即购买-->
-	  <!--<purchase v-show='purchaseHidden' @closePurchase='closePurchase'></purchase>-->
+		<!--立即购买开始-->
 	  <div class="maskmain" v-show='purchaseHidden'>
 			<div class="mask-shopCar">
 				<div class="shopCar-main">
@@ -100,6 +99,7 @@
 				</router-link>
 			</div>
 		</div>
+		<!--立即购买结束-->
 	  <toast v-show='toastHidden'></toast>
   </div>
 </template>

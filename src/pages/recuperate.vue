@@ -98,9 +98,9 @@
 @import "../common/common.scss";
 .recuperate{
 	width: 100%;
-	overflow: hidden;
-	background: url(../assets/indexbg.png) no-repeat;
-	background: cover;
+	position: absolute;
+	background: url(../assets/indexbg.png) repeat-y;
+	background-size: cover;
 	padding: rem(30rem) 0;
 	.recuperate-main{
 		width: 86.6%;
@@ -168,7 +168,8 @@
 					span{
 						display: block;
 						font-weight: bold;	
-						float: left;	
+						float: left;
+						line-height: rem(16rem);
 					}
 					p{
 						width: 80%;
@@ -213,7 +214,7 @@
 				 				font-size: $font18;
 				 				color: $c3c3c;
 				 				font-weight: bold;
-				 				line-height: rem(26rem);
+				 				line-height: rem(22rem);
 								margin-bottom: rem(5rem);
 								letter-spacing: rem(1rem);
 				 			}
@@ -261,11 +262,13 @@
 				 			}
 				 			.s-martimgPic{
 				 				color: #ff4443;
+				 				line-height: rem(20rem);
 				 				span{
 				 					font-size: $font12;
 				 					color: #999;
 				 					text-decoration: line-through;
 				 					line-height: rem(20rem);
+				 					float: right;
 				 				}
 				 			}
 				 		}
