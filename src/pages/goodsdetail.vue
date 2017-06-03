@@ -100,6 +100,7 @@
 			</div>
 		</div>
 		<!--立即购买结束-->
+		<!--已成功加入购物车-->
 	  <toast v-show='toastHidden'></toast>
   </div>
 </template>

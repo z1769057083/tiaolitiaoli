@@ -122,7 +122,6 @@ export default {
 			border-radius: rem(5rem);
 			float: left;
 			margin-right: 2%;
-			background: #fff;
 			margin-bottom: rem(10rem);
 			padding: rem(10rem) 0;
 			dt{
