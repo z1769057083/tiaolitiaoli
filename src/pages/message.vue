@@ -181,8 +181,10 @@
                 var postData = { "answer": {} };
                 if (that.questionSection == XianTianSectionType) {
                     postData.answer[XianTianSectionType] = this.xianTianAnswer;
+                    localStorage.setItem(XianTianAnswer_Index, JSON.stringify(this.xianTianAnswer))
                 } else {
                     postData.answer[HouTianSectionType] = this.houTianAnswer;
+                    localStorage.setItem(HouTianAnswer_Index, JSON.stringify(this.houTianAnswer))
                 }
                 postData.userId = userId;
                 axios.defaults.headers['Content-Type'] = 'application/json';

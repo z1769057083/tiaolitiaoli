@@ -4,27 +4,25 @@
   		<dl>
   			<dt>饮食口味</dt>
   			<dd>
-  				<p v-for="items in tasteListSample" :class="{active: tasteArr.indexOf(items.key) > -1 }" @click="ac1(items.key)">{{items.text}}</p>
+  				<p v-for="items in tasteListSample" :class="{active: taste.indexOf(items.key) > -1 }" @click="ac1(items.key)">{{items.text}}</p>
   			</dd>
   		</dl>
   		<dl>
   			<dt>情绪情况</dt>
   			<dd>
-  				<p v-for="item in emotionList" :class="{active: arr.indexOf(item.key) > -1 }" @click="ac(item.key)">{{item.text}}</p>
+  				<p v-for="item in emotionList" :class="{active: emotion.indexOf(item.key) > -1 }" @click="ac(item.key)">{{item.text}}</p>
   			</dd>
   		</dl>
   	</div>
 </div>
 </template>
 <script type="text/javascript">
+    import Common from '../../static/common'
 export default {
 	data(){
 	  	return {
-	  	    arr: [],
-            taste:'',
-            emotion:'',
-	        active1:'',
-			tasteArr: [],
+	  	    emotion: [],
+            taste: [],
 			tasteListSample:[
 			  {'key':'sour','text': '酸'},
               {'key':'sweet','text': '甜'},
@@ -48,32 +46,32 @@ export default {
             return answer;
         }
     },
+	mounted(){
+        Common.loadXianTianUserData(this);
+	},
 	methods:{
 	  	ac(obj) {
-            var numb = this.arr.indexOf(obj);
+            var numb = this.emotion.indexOf(obj);
             if (numb > -1) {
-              this.arr.splice(numb, 1);
+              this.emotion.splice(numb, 1);
             } else {
-              this.arr.push(obj);
+              this.emotion.push(obj);
             }
-            this.emotion=this.arr
-            if(this.taste!==''){
+            if(this.taste!==[]){
 			  	this.$emit('updateUserAnswer', this.answer)
-			}  
-            
+			}
+
         },
         ac1(obj) {
-            var numb1 = this.tasteArr.indexOf(obj);
+            var numb1 = this.taste.indexOf(obj);
             if (numb1 > -1) {
-              this.tasteArr.splice(numb1, 1);
+              this.taste.splice(numb1, 1);
             } else {
-              this.tasteArr.push(obj);
+              this.taste.push(obj);
             }
-            this.taste=this.tasteArr
-            if(this.emotion!==''){
+            if(this.emotion!==[]){
 			  	this.$emit('updateUserAnswer', this.answer)
-			}  
-            
+			}
         }
 	}
 }
@@ -118,6 +116,6 @@ export default {
 				}
 			}
 		}
-	}	
+	}
 }
 </style>
