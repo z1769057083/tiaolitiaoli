@@ -17,6 +17,10 @@ export default {
 	  	return {     
 	    }
 	},
+    mounted() {
+		//TODO: do not code here.
+        this.$emit('updateUserAnswer', {})
+	},
 	methods:{  	
 		uploadPic(){
 			this.$emit('uploadModeEvent')

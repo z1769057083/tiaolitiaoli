@@ -38,11 +38,12 @@ export default {
 	  	change_active(answerValue,sectionId,sectionKey,event) {
 		  this.$data['active'+sectionId] = answerValue
 		  this.$data.limb[sectionKey]=answerValue
-		  this.$emit('updateUserAnswer', this.$data.limb)
+            if(this.active1!==''&&this.active2!=='') {
+                this.$emit('updateUserAnswer', this.$data.limb)
+            }
 	    }
 	},
 	mounted() {
-	   this.change_active()
 	}
 }
 </script>
