@@ -50,6 +50,7 @@
         },
         methods: {
             renderReport(){
+                debugger;
                 var report = JSON.parse(localStorage.getItem(XianTianReport_Index));
                 var wuXingArray = [];
                 for (let key in report.wuXing) {
@@ -63,7 +64,7 @@
                 var itemArray = [{
                     type: 'area',
                     name: '先天',
-                    data: wuXingArray,
+                    data: [5,4,3,3,2],
                     pointPlacement: 'between'
                 }];
                 this.loadChart(itemArray);
@@ -87,15 +88,17 @@
                 var wuXingReportContentText = '';
                 if (typeof (report.report) != 'undefined' && report.report != '') {
                     for (let index = 0; index < report.report.length; index++) {
-                        for (let key in report[index]) {
-                            wuXingReportContentText += report.report[index][key];
-                        }
-//                        wuXingReportContentText += report.report[index].content;
-//                        wuXingReportContentText += report.report[index].illness;
-//                        //TODO:check the user's gender and age info.
-//                        wuXingReportContentText += report.report[index].male;
-//                        wuXingReportContentText += report.report[index].female;
-//                        wuXingReportContentText += report.report[index].child;
+                        if(report.report[index].content)
+                        wuXingReportContentText += report.report[index].content;
+                        if(report.report[index].illness)
+                        wuXingReportContentText += report.report[index].illness;
+                        //TODO:check the user's gender and age info.
+                        if(report.report[index].male)
+                        wuXingReportContentText += report.report[index].male;
+                        if(report.report[index].female)
+                        wuXingReportContentText += report.report[index].female;
+                        if(report.report[index].child)
+                        wuXingReportContentText += report.report[index].child;
                     }
                     this.wuXingReportContent = wuXingReportContentText;
                 }
@@ -104,8 +107,7 @@
                 items = [{
                     type: 'area',
                     name: '先天',
-                    data: [1.52, 2.35, 4.04, 0.1, 0.65],
-                    pointPlacement: 'between'
+                    data: [5,4,3,3,2]
                 }];
                 var chart = new Highcharts.Chart('chart-container', {
                     chart: {
