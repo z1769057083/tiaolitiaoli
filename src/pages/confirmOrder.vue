@@ -13,8 +13,8 @@
     	<dl class="order-consignee" v-show='!addNewAddressHidden' @click='editAddress'>
 				<dt><img src="../assets/orderAddress.png"/></dt>
 				<dd class="consignee">
-					<p>收货人:林林林<span>15612345678</span></p>
-					<span>收货地址:上海上海市松江区老城荣乐路12弄300号小熊吉他方舟点</span>
+					<p>收货人:{{addressArr[0].name}}<span>{{addressArr[0].phone}}</span></p>
+					<span>收货地址:{{addressArr[0].address}}</span>
 				</dd>
 				<dd class="order-right"><img src="../assets/confirmRight.png"/></dd>
 			</dl>
@@ -22,7 +22,7 @@
     </div> 
     <div class="order-main">
     	<h3 class="order-mtitle">汉古商城</h3>
-    	<div class="order-mdetail" v-for='(item,index) in arr'>
+    	<div class="order-mdetail" v-for='item in arr'>
     		<dl>
     			<dt><img src="../assets/confrimShopImg.png"/></dt>
     			<dd>
@@ -179,7 +179,7 @@ export default {
   		num:1,
   		totalPrice:'',
   		Deliveryhidden: false,
-  		addNewAddressHidden: false,
+  		addNewAddressHidden: true,
   		selecthidden: false,
   		editHidden: false,
   		name:'',
@@ -190,10 +190,11 @@ export default {
   	  confirmToastHidden: false,
   	  toggle: true,
  			toggleLock: false,
- 			arr:[],
  			count:'',
+ 			arr:[],
  			total:'',
- 			countPrice:''
+ 			countPrice:'',
+ 			addressArr:[]
     }
   },
   components:{
@@ -246,13 +247,21 @@ export default {
 	  reserve(){
 	  	if (!window.localStorage) {
 	        return false
-	   } else {
-	        var address = { 'name': this.name, 'phone': this.phone,'address':this.address,'postCode':this.postCode}
-	        var storage = window.localStorage
-	        var obj_arr = JSON.stringify(address)
-	        storage.setItem("deliver_key", obj_arr)
-	        console.log( obj_arr)
-	        
+	    } else {
+        var address = { 
+        	name: this.name, 
+        	phone: this.phone,
+        	address:this.address,
+        	postCode:this.postCode
+        }
+        console.log(address)  
+        if(address.name!==''&&address.phone!==''&&address.address!==''){
+        	this.addNewAddressHidden = false
+        	this.Deliveryhidden = false
+        }
+        var storage = window.localStorage
+        var obj_arr = JSON.stringify(address)  
+        storage.setItem("deliver_key", obj_arr)
 	    }
 	    this.$emit('closeDialogEvent')
 	    this.$emit('clickEvent')
@@ -267,17 +276,44 @@ export default {
   	}
   },
   mounted() {
-  	if (!window.localStorage) {
+  	//取从购物车传过来的数据的商品信息
+//	if (!window.localStorage) {
+//      return false;
+//  } else {
+//      let storage = window.localStorage;
+//      let obj_arr = storage.getItem('shopcart_Key')
+//      let obj = JSON.parse(obj_arr)
+//      this.arr = obj
+//      for (var i = 0, len = this.arr.length; i < len; i++) {
+//      	console.log(this.arr[i].num)
+//					this.total += this.arr[i].num 
+//					this.count = this.arr[i].num*parseInt(this.arr[i].price)
+//					this.countPrice = this.count + 12
+//      }
+//      
+//  }
+    //取直接购买的商品信息
+    if (!window.localStorage) {
         return false;
     } else {
         let storage = window.localStorage;
-        let obj_arr = storage.getItem('shopcart_Key')
+        let obj_arr = storage.getItem('shopcart_Key1')
         let obj = JSON.parse(obj_arr)
-        this.arr = obj
-        console.log(this.arr[0].num)
+        this.arr.push(obj)
+
 				this.total = this.arr[0].num 
 				this.count = this.arr[0].num*parseInt(this.arr[0].price)
 				this.countPrice = this.count + 12
+				let address_arr = storage.getItem("deliver_key")
+        let address_obj = JSON.parse(address_arr)
+        this.addressArr.push (address_obj)
+        console.log(this.addressArr)
+        if(this.address_arr!==""){
+		    	console.log(this.address_arr)
+		    	this.addNewAddressHidden = false
+		    }else{
+		    	this.addNewAddressHidden = true
+		    }
     }
   }
 }

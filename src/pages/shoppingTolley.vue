@@ -66,11 +66,12 @@ import axios from 'axios'
         let storage = window.localStorage;
         let obj_arr = storage.getItem('shopcart_Key')
         let obj = JSON.parse(obj_arr)
-        this.arr = obj
-        
-        console.log(this.arr[0].num)
-				this.total = this.arr[0].num 
-				this.count = this.arr[0].num*parseInt(this.arr[0].price)
+        this.arr = obj 
+        console.log(this.arr)
+        //如果购物车为空，控制购物车的点消失
+        if(this.arr ===''){
+        	this.$emit('catrDotted')
+        }
     }
 }
  	
