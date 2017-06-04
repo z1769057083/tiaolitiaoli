@@ -1,121 +1,132 @@
 <template>
-<div class="m-selectfacon">
-  	<div class="m-selectfacial">
-  		<dl>
-  			<dt>裸眼视力</dt>
-  			<dd>
-  				<p :class="{'active': active1 === 0}" @click="change_active(0,'1','eye',$event)">好</p>
-  				<p :class="{'active': active1 === 1}" @click="change_active(1,'1','eye',$event)">一般</p>
-  				<p :class="{'active': active1 === 2}" @click="change_active(2,'1','eye',$event)">差</p>
-  			</dd>
-  		</dl>
-  		<dl>
-  			<dt>味觉</dt>
-  			<dd>
-  				<p :class="{'active': active2 === 0}" @click="change_active(0,'2','taste',$event)">灵敏</p>
-  				<p :class="{'active': active2 === 1}" @click="change_active(1,'2','taste',$event)">一般</p>
-  				<p :class="{'active': active2 === 2}" @click="change_active(2,'2','taste',$event)">迟钝</p>
-  			</dd>
-  		</dl>
-  		<dl>
-  			<dt>嗅觉</dt>
-  			<dd>
-  				<p :class="{'active': active3 === 0}" @click="change_active(0,'3','smell',$event)">灵敏</p>
-  				<p :class="{'active': active3 === 1}" @click="change_active(1,'3','smell',$event)">一般</p>
-  				<p :class="{'active': active3 === 2}" @click="change_active(2,'3','smell',$event)">迟钝</p>
-  			</dd>
-  		</dl>
-  		<dl>
-  			<dt>口气</dt>
-  			<dd>
-  				<p :class="{'active': active4 === 0}" @click="change_active(0,'4','tone',$event)">清新</p>
-  				<p :class="{'active': active4 === 1}" @click="change_active(1,'4','tone',$event)">一般</p>
-  				<p :class="{'active': active4 === 2}" @click="change_active(2,'4','tone',$event)">不告诉你</p>
-  			</dd>
-  		</dl>
-  		<dl>
-  			<dt>听觉</dt>
-  			<dd>
-  				<p :class="{'active': active5 === 0}" @click="change_active(0,'5','hear',$event)">好</p>
-  				<p :class="{'active': active5 === 1}" @click="change_active(1,'5','hear',$event)">一般</p>
-  				<p :class="{'active': active5 === 2}" @click="change_active(2,'5','hear',$event)">差</p>
-  			</dd>
-  		</dl>
-  	</div>
-</div>
+    <div class="m-selectfacon">
+        <div class="m-selectfacial">
+            <dl>
+                <dt>裸眼视力</dt>
+                <dd>
+                    <p :class="{'active': eye === 0}" @click="change_active(0,'eye',$event)">好</p>
+                    <p :class="{'active': eye === 1}" @click="change_active(1,'eye',$event)">一般</p>
+                    <p :class="{'active': eye === 2}" @click="change_active(2,'eye',$event)">差</p>
+                </dd>
+            </dl>
+            <dl>
+                <dt>味觉</dt>
+                <dd>
+                    <p :class="{'active': taste === 0}" @click="change_active(0,'taste',$event)">灵敏</p>
+                    <p :class="{'active': taste === 1}" @click="change_active(1,'taste',$event)">一般</p>
+                    <p :class="{'active': taste === 2}" @click="change_active(2,'taste',$event)">迟钝</p>
+                </dd>
+            </dl>
+            <dl>
+                <dt>嗅觉</dt>
+                <dd>
+                    <p :class="{'active': smell === 0}" @click="change_active(0,'smell',$event)">灵敏</p>
+                    <p :class="{'active': smell === 1}" @click="change_active(1,'smell',$event)">一般</p>
+                    <p :class="{'active': smell === 2}" @click="change_active(2,'smell',$event)">迟钝</p>
+                </dd>
+            </dl>
+            <dl>
+                <dt>口气</dt>
+                <dd>
+                    <p :class="{'active': tone === 0}" @click="change_active(0,'tone',$event)">清新</p>
+                    <p :class="{'active': tone === 1}" @click="change_active(1,'tone',$event)">一般</p>
+                    <p :class="{'active': tone === 2}" @click="change_active(2,'tone',$event)">不告诉你</p>
+                </dd>
+            </dl>
+            <dl>
+                <dt>听觉</dt>
+                <dd>
+                    <p :class="{'active': hear === 0}" @click="change_active(0,'hear',$event)">好</p>
+                    <p :class="{'active': hear === 1}" @click="change_active(1,'hear',$event)">一般</p>
+                    <p :class="{'active': hear === 2}" @click="change_active(2,'hear',$event)">差</p>
+                </dd>
+            </dl>
+        </div>
+    </div>
 </template>
 <script type="text/javascript">
-export default {
- data(){
-  	return {
-      active1:'',
-      active2:'',
-      active3:'',
-      active4:'',
-      active5:'',
-      look: {
-       eye:'',
-       taste:'',
-       smell:'',
-       tone:'',
-       hear:'' 
-      },
+    export default {
+        data(){
+            return {
+                eye: '',
+                taste: '',
+                smell: '',
+                tone: '',
+                hear: ''
+            }
+        },
+        computed: {
+            answer(){
+                var answer = {};
+                answer.eye = this.eye;
+                answer.taste = this.taste;
+                answer.tone = this.tone;
+                answer.smell = this.smell;
+                answer.hear = this.hear;
+                var answerContainer={};
+                answerContainer.looks=answer;
+                return answerContainer;
+            }
+        },
+        methods: {
+            change_active(answerValue, sectionKey, event) {
+                this.$data[sectionKey] = answerValue
+                if (this.eye !== '' && this.taste !== '' && this.smell !== '' && this.tone !== '' && this.hear !== '') {
+                    this.$emit('updateUserAnswer', this.answer)
+                }
+            }
+        },
+        mounted() {
+        }
     }
-  },
-  methods:{
-    change_active(answerValue,sectionId,sectionKey,event) {
-	  this.$data['active'+sectionId] = answerValue
-	  this.$data.look[sectionKey]=answerValue
-		//TODO:follow the code sample as emotion component , dod not need to declare 'look' object.
-		if(this.active1!==''&&this.active2!==''&&this.active3!==''&&this.active4!==''&&this.active5!==''){
-            this.$emit('updateUserAnswer', this.$data.look)
-		}
-    }
-  },
-  mounted() {
-  }
-}
 </script>
 <style lang="scss">
-@import "../common/common.scss";
-	/*选择问题内容*/
-.m-selectfacon{
-	width: 90%;
-	margin-left: 5%;
-	.m-selectfacial{
-		width: 100%;
-		overflow: hidden;
-		dl{
-			width: 100%;
-			height: rem(44rem);
-			border-bottom: 1px solid #e3e3e3;
-			dt{
-				width: 19%;
-				float: left;
-				line-height: rem(44rem);
-			}
-			dd{
-				width: 81%;
-				float: left;
-				line-height: rem(44rem);
-				p{
-					display: block;
-					width: 30%;
-					float: left;
-					height: rem(24rem);
-					background: #fff;
-					margin-top: rem(10rem);
-					border-radius: rem(10rem);
-					line-height: rem(24rem);
-					text-align: center;
-					margin-left: 3%;
-				}
-				.active{
-					color: #fff;
-					background: #c69b70;
-				}
-			}
-		}
-	}
-}
+    @import "../common/common.scss";
+    /*选择问题内容*/
+    .m-selectfacon {
+        width: 90%;
+        margin-left: 5%;
+
+    .m-selectfacial {
+        width: 100%;
+        overflow: hidden;
+
+    dl {
+        width: 100%;
+        height: rem(44rem);
+        border-bottom: 1px solid #e3e3e3;
+
+    dt {
+        width: 19%;
+        float: left;
+        line-height: rem(44rem);
+    }
+
+    dd {
+        width: 81%;
+        float: left;
+        line-height: rem(44rem);
+
+    p {
+        display: block;
+        width: 30%;
+        float: left;
+        height: rem(24rem);
+        background: #fff;
+        margin-top: rem(10rem);
+        border-radius: rem(10rem);
+        line-height: rem(24rem);
+        text-align: center;
+        margin-left: 3%;
+    }
+
+    .active {
+        color: #fff;
+        background: #c69b70;
+    }
+
+    }
+    }
+    }
+    }
 </style>
