@@ -15,6 +15,7 @@ module.exports = {
         for (let key in xianTianAnswer) {
             if( component.$data[key] &&typeof (component.$data[key])===typeof (xianTianAnswer[key])){
                 component.$data[key] = xianTianAnswer[key];
+                component.$emit('updateUserAnswer', component.answer)
             }
         }
     }

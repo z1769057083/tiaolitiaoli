@@ -27,7 +27,7 @@ export default {
 	  	return {
 	  	  daily:[],
 	      active2:'',
-			season:'',
+			season:-1,
             dailyList:[
                 {'key':'watch','text': '久视'},
                 {'key':'walk','text': '久行'},
@@ -67,7 +67,6 @@ export default {
 	},
 	mounted() {
         Common.loadXianTianUserData(this);
-	    this.change_active()
 	}
 }
 </script>
