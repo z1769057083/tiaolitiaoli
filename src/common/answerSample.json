@@ -1,0 +1,10 @@
+{
+  "gender" : "M",
+  "birthday" : "1965-2-26",
+  "emotion" : ["happy","sad"],
+  "age" : "22",
+  "location" : {
+    "province" : "青海省",
+    "city" : "德令哈"
+  }
+}

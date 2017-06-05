@@ -10,7 +10,7 @@
   		<dl>
   			<dt>情绪情况</dt>
   			<dd>
-  				<p v-for="item in emotionList" :class="{active: emotion.indexOf(item.key) > -1 }" @click="ac(item.key)">{{item.text}}</p>
+  				<p v-for="item in emotionList" :class="{active: emotions.indexOf(item.key) > -1 }" @click="ac(item.key)">{{item.text}}</p>
   			</dd>
   		</dl>
   	</div>
@@ -21,7 +21,7 @@
 export default {
 	data(){
 	  	return {
-	  	    emotion: [],
+	  	    emotions: [],
             taste: [],
 			tasteListSample:[
 			  {'key':'sour','text': '酸'},
@@ -42,7 +42,7 @@ export default {
         answer(){
             var answer = {};
             answer.taste = this.taste;
-            answer.emotion = this.emotion;
+            answer.emotions = this.emotions;
             return answer;
         }
     },
@@ -51,11 +51,11 @@ export default {
 	},
 	methods:{
 	  	ac(obj) {
-            var numb = this.emotion.indexOf(obj);
+            var numb = this.emotions.indexOf(obj);
             if (numb > -1) {
-              this.emotion.splice(numb, 1);
+              this.emotions.splice(numb, 1);
             } else {
-              this.emotion.push(obj);
+              this.emotions.push(obj);
             }
             if(this.taste!==[]){
 			  	this.$emit('updateUserAnswer', this.answer)
@@ -69,7 +69,7 @@ export default {
             } else {
               this.taste.push(obj);
             }
-            if(this.emotion!==[]){
+            if(this.emotions!==[]){
 			  	this.$emit('updateUserAnswer', this.answer)
 			}
         }
