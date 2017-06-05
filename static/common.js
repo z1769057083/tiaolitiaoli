@@ -18,5 +18,16 @@ module.exports = {
                 component.$emit('updateUserAnswer', component.answer)
             }
         }
-    }
+    },
+    loadExtendXianTianUserData (component,field){
+        var xianTianAnswer = JSON.parse(localStorage.getItem(XianTianAnswer_Index));
+        var extendValue=xianTianAnswer[field];
+        for (let key in extendValue) {
+            debugger;
+            if( component.$data[key] &&typeof (component.$data[key])===typeof (extendValue[key])){
+                component.$data[key] = extendValue[key];
+                component.$emit('updateUserAnswer', component.answer)
+            }
+        }
+    },
 }

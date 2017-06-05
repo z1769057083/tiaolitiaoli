@@ -45,14 +45,16 @@
     </div>
 </template>
 <script type="text/javascript">
+
+    import Common from '../../static/common'
     export default {
         data(){
             return {
-                eye: '',
-                taste: '',
-                smell: '',
-                tone: '',
-                hear: ''
+                eye: -1,
+                taste: -1,
+                smell: -1,
+                tone: -1,
+                hear: -1
             }
         },
         computed: {
@@ -77,6 +79,7 @@
             }
         },
         mounted() {
+            Common.loadExtendXianTianUserData(this,'looks');
         }
     }
 </script>
