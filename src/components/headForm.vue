@@ -35,6 +35,12 @@ export default {
 	      face:-1
 	    }
 	},
+	methods:{
+	  	change_active(answerValue,sectionId,sectionKey,event) {
+		  this.$data.face = answerValue
+		  	this.$emit('updateUserAnswer', this.answer)
+	   }
+	},
     computed: {
         answer(){
             var answer = {};
@@ -42,12 +48,6 @@ export default {
             return answer;
         }
     },
-	methods:{
-	  	change_active(answerValue,sectionId,sectionKey,event) {
-		  this.$data.face = answerValue
-		  	this.$emit('updateUserAnswer', this.answer)
-	   }
-	},
     mounted() {
         Common.loadXianTianUserData(this);
     }

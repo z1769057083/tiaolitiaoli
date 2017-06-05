@@ -26,7 +26,6 @@ export default {
     data(){
 	  	return {
 	  	  daily:[],
-	      active2:'',
 			season:-1,
             dailyList:[
                 {'key':'watch','text': '久视'},
