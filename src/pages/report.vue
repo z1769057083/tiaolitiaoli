@@ -65,7 +65,7 @@
                 var itemArray = [{
                     type: 'area',
                     name: '先天',
-                    data: [5,4,3,3,2],
+                    data: wuXingArray,
                     pointPlacement: 'between'
                 }];
                 this.loadChart(itemArray);
@@ -105,11 +105,6 @@
                 }
             },
             loadChart(items){
-                items = [{
-                    type: 'area',
-                    name: '先天',
-                    data: [5,4,3,3,2]
-                }];
                 var chart = new Highcharts.Chart('chart-container', {
                     chart: {
                         backgroundColor: 'transparent',
