@@ -21,7 +21,8 @@ export default {
 		//TODO: do not code here.
         this.$emit('updateUserAnswer', {})
 	},
-	methods:{  	
+	methods:{  
+		
 		uploadPic(){
 			this.$emit('uploadModeEvent')
 		}

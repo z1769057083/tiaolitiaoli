@@ -96,9 +96,7 @@
 						<button class="addBtn" @click='add'></button>
 					</div>
 				</div>
-				<router-link to='/confirmOrder'>
 				<div class="confirmBtn1" @click='confirm1'>下一步</div>
-				</router-link>
 			</div>
 		</div>
 		<!--立即购买结束-->
@@ -145,6 +143,7 @@
           })
       },
       confirm(){
+      	this.shopingCatrDotted = true
         this.toastHidden = true
         this.shopHiden = false
         var that = this
@@ -200,10 +199,12 @@
             'price': this.list.price,
             'num': this.num
           }
-          var obj_arr1 = JSON.stringify(shop1)
+          this.nowArr.push(shop1);
+          var obj_arr1 = JSON.stringify(this.nowArr)
           console.log(obj_arr1)
-          storage.setItem('shopcart_Key1', obj_arr1);
+          storage.setItem('buyNow_Key', obj_arr1);
         }
+        this.$router.push({ path: '/confirmOrder', query: { routerId: 1 }})
       },
       reduce(){
         if (this.num <= 1) {
@@ -234,7 +235,8 @@
       document.documentElement.scrollTop = 0
       document.body.scrollTop = 0
       //如果加入购物车则购物车的点显示 
-      if( this.obj_arr !== ''){
+      var storage = window.localStorage
+      if(storage.getItem('shopcart_Key')){
       	this.shopingCatrDotted = true
       }
     }

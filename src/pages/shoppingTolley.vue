@@ -22,9 +22,8 @@
 	  	</div>
   	</div>
   	<div class="tolley-mbottom">
-  		<router-link to='/confirmOrder'>
-  			<div class="submitOrder">结算(<span>{{total}}</span>)</div>
-  		</router-link>
+  		<!--<router-link :to="{ name: 'user', params: { userId: 123 }}">User</router-link>-->
+  			<div class="submitOrder" @click='settlement'>结算(<span>{{total}}</span>)</div>
 			<div class="toal">
 				合计:<span>¥{{count}}元</span>
 				<span class="fare">不含运费</span>
@@ -57,6 +56,9 @@ import axios from 'axios'
  				this.toggle = false
  				this.toggleLock = false
  			}		
+ 		},
+ 		settlement(){
+ 			this.$router.push({ path: '/confirmOrder', query: { routerId: 0 }})
  		}
  	},
  	mounted() {
