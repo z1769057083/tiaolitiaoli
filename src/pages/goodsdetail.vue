@@ -34,18 +34,20 @@
     </div>
     <div class="l-mgoodspay">
 	  	<div class="l-mgoodscar">
-	  	  <img src="../assets/listgoodspay.png"/>
-	  	  <router-link to='/shoppingTolley'>
-	  	  	<p>购物车</p>
+	  		<router-link to='/shoppingTolley'>
+		  	  <img src="../assets/listgoodspay.png"/>
+		  	  <p>购物车 </p>
+		  	  <span v-show = 'shopingCatrDotted' @catrDotted='catrDottedEvent'></span>
 	  	  </router-link>
 	  	</div>
 	  	<div class="l-mgoodscar l-mgoodsshop">
-	  	  <img src="../assets/listShooping.png"/>
-	  	  <router-link to='/shop'>
+	  		<router-link to='/shop'>
+	  	  	<img src="../assets/listShooping.png"/>	  	  
 	  	  	<p>商城</p>
 	  	  </router-link>
+	  	</div>	
+	  	<div class="l-mgoodsjoin" @click='shopHiden = !shopHiden'>加入购物车
 	  	</div>
-	  	<div class="l-mgoodsjoin" @click='shopHiden = !shopHiden'>加入购物车</div>
 	  	<div class="l-mgoodsjoin l-mgoodsbuy" @click='purchaseHidden = !purchaseHidden'>立即购买</div>
 	  </div>
 	  <!--组件-->
@@ -56,7 +58,7 @@
 					<dl>
 						<dt><img src="../assets/shopcar.png"/></dt>
 						<dd>
-						    <p>¥50.00</p>
+						    <p>{{list.price}}</p>
 						    <span>{{list.name}}</span>
 						</dd>
 					</dl>
@@ -73,16 +75,15 @@
 				<div class="confirmBtn" @click='confirm'>确定</div>
 			</div>
 		</div>
-		<!--立即购买-->
-	  <!--<purchase v-show='purchaseHidden' @closePurchase='closePurchase'></purchase>-->
+		<!--立即购买开始-->
 	  <div class="maskmain" v-show='purchaseHidden'>
 			<div class="mask-shopCar">
 				<div class="shopCar-main">
 					<dl>
 						<dt><img src="../assets/shopcar.png"/></dt>
 						<dd>
-						    <p>¥50.00</p>
-						    <span>引火归元帖</span>
+						     <p>{{list.price}}</p>
+						    <span>{{list.name}}</span>
 						</dd>
 					</dl>
 					<div class="closeBtn" @click='purchaseHidden = !purchaseHidden'></div>				
@@ -90,104 +91,156 @@
 				<div class="shopCar-num">
 					<span>购买数量</span>
 					<div class="num">
-						<button class="reduceBtn" @click='reduce1'></button>
-						<input type="text" value="num1" v-model='num1'/>
-						<button class="addBtn" @click='add1'></button>
+						<button class="reduceBtn" @click='reduce'></button>
+						<input type="text" value="num" v-model='num'/>
+						<button class="addBtn" @click='add'></button>
 					</div>
 				</div>
-				<router-link to='/confirmOrder'>
-				<div class="confirmBtn1">下一步</div>
-				</router-link>
+				<div class="confirmBtn1" @click='confirm1'>下一步</div>
 			</div>
 		</div>
+		<!--立即购买结束-->
+		<!--已成功加入购物车-->
 	  <toast v-show='toastHidden'></toast>
   </div>
 </template>
 <script>
-import axios from 'axios'
-import api from '../api/api'
-import purchase from '@/components/purchase'
-import toast from '@/components/toast'
-export default {
-  name: 'goodsdetail',
-  data(){
-  	return {
-      list:[],
-      num:1,
-      num1:1,
-      shopHiden: false,
-      purchaseHidden: false,
-      toastHidden: false
+  import axios from 'axios'
+  import api from '../api/api'
+  import purchase from '@/components/purchase'
+  import toast from '@/components/toast'
+  export default {
+    data(){
+      return {
+        list: [],
+        num: 1,
+        shopHiden: false,
+        purchaseHidden: false,
+        toastHidden: false,
+        arr: [],
+        arr2:[],
+        nowArr:[],
+        shopingCatrDotted: false
+      }
+    },
+    components: {
+      purchase,
+      toast
+    },
+    methods: {
+      requestlist(){
+        var that = this;
+        that.itemid = this.$route.query.itemid;
+        axios.get(api.goodsDetailData + that.itemid)
+          .then(function (res) {
+            if (res.data.errorCode == 0) {
+              res = res.data.returnValue
+              that.list = res
+            }
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+      },
+      confirm(){
+      	this.shopingCatrDotted = true
+        this.toastHidden = true
+        this.shopHiden = false
+        var that = this
+        setTimeout(function () {
+            that.toastHidden = false
+          }
+          , 1000)
+        if (!window.localStorage) {
+          return false;
+        } else {
+          var storage = window.localStorage;
+          var obgood = storage.getItem('shopcart_Key');
+          var shop = {
+            'id': this.list._id,
+            'img': this.list.index,
+            'name': this.list.name,
+            'price': this.list.price,
+            'num': this.num
+          }
+          if (obgood) {
+            this.arr = JSON.parse(obgood);
+            for (var i = 0, len = this.arr.length; i < len; i++) {
+              this.arr2.push(this.arr[i].id);
+            }
+            if (this.arr2.indexOf(that.list._id) >= 0) {
+              for (var j = 0, lan = this.arr.length; j < lan; j++) {
+                if (this.arr[j]) {
+                  if (this.arr[j].id === that.list._id) {
+                    this.arr.splice(this.arr.indexOf(this.arr[j]), 1);
+                  }
+                }
+              }
+              this.arr.push(shop);
+            } else {
+              this.arr.push(shop);
+            }
+          } else {
+            this.arr.push(shop);
+          }
+          var obj_arr = JSON.stringify(this.arr)
+          storage.setItem('shopcart_Key', obj_arr);
+        }
+      },
+      confirm1(){
+        if (!window.localStorage) {
+          return false;
+        } else {
+          var storage = window.localStorage;
+          var shop1 = {
+            'id': this.list._id,
+            'img': this.list.index,
+            'name': this.list.name,
+            'price': this.list.price,
+            'num': this.num
+          }
+          this.nowArr.push(shop1);
+          var obj_arr1 = JSON.stringify(this.nowArr)
+          console.log(obj_arr1)
+          storage.setItem('buyNow_Key', obj_arr1);
+        }
+        this.$router.push({ path: '/confirmOrder', query: { routerId: 1 }})
+      },
+      reduce(){
+        if (this.num <= 1) {
+          this.num = 1
+        } else {
+          this.num--
+        }
+      },
+      add(){
+        if (this.num >= 10) {
+          this.num = 10
+        } else {
+          this.num++
+        }
+      },
+      catrDottedEvent(){
+      	this.shopingCatrDotted = false
+      }
+    },
+    mounted() {
+      this.requestlist()
+      document.title = "在线商城"
+      var mySwiper = new Swiper('.swiper-container', {
+        autoplay: 3000,
+        loop: true,
+        pagination: '.swiper-pagination'
+      })
+      document.documentElement.scrollTop = 0
+      document.body.scrollTop = 0
+      //如果加入购物车则购物车的点显示 
+      var storage = window.localStorage
+      if(storage.getItem('shopcart_Key')){
+      	this.shopingCatrDotted = true
+      }
     }
-  },
-  components:{
-  	purchase,
-  	toast
-  },
-  methods: {
-	  requestlist(){
-	  	var that = this;
-	  	that.itemid = this.$route.query.itemid;
-	  	axios.get(api.goodsDetailData+that.itemid)
-		  .then(function (res) {
-		  	if(res.data.errorCode == 0){
-		  		res = res.data.returnValue
-		  		that.list = res
-		  	}
-		  })
-		  .catch(function (error) {
-		    console.log(error)
-		  })
-	  },
-  	confirm(){
-  		this.toastHidden = true
-	  	var that = this
-			setTimeout(function()
-			{that.toastHidden = false}
-			,1000)
-  		this.shopHiden = false
-  	},
-  	reduce(){
-  		if(this.num <= 1){
-  			this.num = 1
-  		}else{
-  			this.num--
-  		}
-  	},
-  	add(){
-  		if(this.num >= 10){
-  			this.num = 10
-  		}else{
-  			this.num++
-  		}
-  	},
-  	reduce1(){
-  		if(this.num1 <= 1){
-  			this.num1 = 1
-  		}else{
-  			this.num1--
-  		}
-  	},
-  	add1(){
-  		if(this.num1 >= 10){
-  			this.num1 = 10
-  		}else{
-  			this.num1++
-  		}
-  	}
-  },
-  mounted() {
-  	this.requestlist()
-  	document.title="在线商城"
-  	var mySwiper = new Swiper('.swiper-container',{
-					autoplay: 3000,
-					loop: true,
-          pagination : '.swiper-pagination'	
-				}) 
-		document.documentElement.scrollTop = 0
-    document.body.scrollTop =0
   }
-}
 </script>
 <style scoped lang="scss">
   @import "../common/common.scss";
@@ -295,6 +348,7 @@ export default {
 		  	width: 17.8%;
 		  	height: 1.28rem;
 		  	text-align: center;
+		  	position: relative;
 		  	img{
 			  	width: 0.56rem;
 			  	height: 0.46rem;
@@ -303,6 +357,16 @@ export default {
 			  }
 			  p{
 			  	color: #3C3C3C;
+		  	}
+		  	span{
+		  		width: rem(8rem);
+		  		height: rem(8rem);
+		  		border-radius: 50%;
+		  		background: #ff8854;
+		  		position: absolute;
+		  		top: rem(4rem);
+		  		right: rem(18rem);
+		  		display: block;
 			  }
 		  }
 		  .l-mgoodsshop{
@@ -346,7 +410,7 @@ export default {
 				dl{
 					float: left;
 					position: relative;
-					width: 56.8%;
+					/*width: 56.8%;*/
 					height: rem(100rem);
 					dt{
 						width: rem(116rem);

@@ -132,6 +132,7 @@ export default {
 		  	if(res.data.errorCode == 0){
 		  		res = res.data.returnValue
 		  		that.listem = res
+		  		console.log(res)
 		  	}
 		  })
 		  .catch(function (error) {
@@ -145,7 +146,6 @@ export default {
 		  	if(res.data.errorCode == 0){
 					res = res.data.returnValue
 		  		that.recommendlist = res
-		  		console.log(res)
 		  	}
 		  })
 		  .catch(function (error) {

@@ -2,8 +2,8 @@
   <div class='cashier-main'> 
 	<div class="cashier-mtop">
 		<p>支付金额</p>
-		<span>¥69.00</span>	
-		<div class="cashier-goods">商品名称:驱蚊包-驱蚊包驱蚊包</div>
+		<span>¥{{this.arr[2]}}.00</span>	
+		<div class="cashier-goods">商品名称:</div>
 	</div>
 	<div class="cashier-mcontent">
 		<dl>
@@ -31,14 +31,23 @@ import axios from 'axios'
 export default {
   data(){
   	return {
-			toggle: true
+			toggle: true,
+			arr:[]
     }
   },
   methods: {
   	
   },
   mounted() {
-  	document.documentElement.scrollTop = 0
+    if(!window.localStorage){
+    	return false
+    }else{
+    	let storage = window.localStorage
+    	let obj_arr = storage.getItem('orderArr')
+	    let obj = JSON.parse(obj_arr)
+	    this.arr = obj
+    }
+    document.documentElement.scrollTop = 0
     document.body.scrollTop =0
   }
 }

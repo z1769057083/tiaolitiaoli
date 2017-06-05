@@ -76,13 +76,13 @@ $c3c3c: #3c3c3c;
     .swiper-pagination-bullets{
       position: absolute;
       right: rem(15rem);
-      bottom: rem(15rem);
-      width: 15%;
+      bottom: rem(19rem);
+      width: 10%;
       height: rem(8rem);
       .swiper-pagination-bullet{
-          width: rem(8rem);
-          height: rem(8rem);
-          margin: 0 rem(5rem);
+          width: rem(5rem);
+          height: rem(5rem);
+          margin: 0 rem(3rem);
           cursor: pointer;
           border-radius: 50%;
           background: #fff;
