@@ -42,9 +42,12 @@ export default {
             text += answer[value[index]].text;
         }
     }
-    else if(answer[value]){
-      text = answer[value].text;
+    else if(answer.text){
+      text += answer.text;
+    } else if(answer[value]){
+      text += answer[value].text;
     }
+    if(text==='') text='回答完毕';
     return text;
   }
 }

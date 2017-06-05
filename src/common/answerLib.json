@@ -16,6 +16,7 @@
     "text": "我是{0}人"
   },
   "taste": {
+    "isArray":true,
     "sour": {
       "text": "喜欢酸的"
     },"bitter": {
@@ -26,9 +27,11 @@
       "text": "喜欢辣的"
     },"salt": {
       "text": "喜欢咸的"
+    },"normal": {
+      "text": "喜欢淡的"
     }
   },
-  "emotion": {
+  "emotions": {
     "isArray":true,
     "happy": {
       "text": "童年揍是这么无忧无虑。"
@@ -64,16 +67,16 @@
     }
   },
   "season": {
-    "spring": {
+    "0": {
       "text": "春天让我不舒服"
     },
-    "summer": {
+    "1": {
       "text": "我怕热，夏天最痛苦"
     },
-    "autumn": {
+    "2": {
       "text": "秋风秋雨秋煞人，最讨厌秋天"
     },
-    "winter": {
+    "3": {
       "text": "我怕冷，冬天最难受"
     }
   },

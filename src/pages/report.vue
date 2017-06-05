@@ -50,7 +50,6 @@
         },
         methods: {
             renderReport(){
-                debugger;
                 var report = JSON.parse(localStorage.getItem(XianTianReport_Index));
                 var wuXingArray = [];
                 for (let key in report.wuXing) {

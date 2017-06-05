@@ -3,10 +3,10 @@
         <!--聊天内容-->
         <div class='m-char' id="chatContainer">
             <div class="m-charscroll">
-                <div :class="item.isQuestion?'m-chardocter':'m-charcustom'" v-for="(item,index) in renderedQuestions">
+                <div :class="item.isQuestion?'m-chardocter':'m-charcustom'" v-for="(item,index) in renderedMessages">
                     <div v-if="item.isQuestion" class="m-charperson"><img :src='imgUrl'/></div>
                     <div v-if="!item.isQuestion" class="m-charperson"><img :src="myselfAvatar"/></div>
-                    <div class="m-charcont">{{renderedQuestions[index].content}}</div>
+                    <div class="m-charcont">{{renderedMessages[index].content}}</div>
 
                     <!--<div class="m-charcont">人家是女生！</div>-->
                 </div>
@@ -88,7 +88,7 @@
             return {
                 title: '',
                 questionSection: XianTianSectionType,
-                renderedQuestions: [],
+                renderedMessages: [],
                 questions: [],
                 imgUrl: '',
                 isCurrentQuestionFinished:false,
@@ -120,7 +120,7 @@
 //      	}
         },
         watch: {
-            renderedQuestions() {
+            renderedMessages() {
                 this.$nextTick(() => {
                     var container = this.$el.querySelector("#chatContainer");
 //                  console.log(container);
@@ -156,19 +156,19 @@
                 for (let key in this.pendingAnswer) {
                     var answer = { isQuestion: false };
                     answer.content = answerHelper.getAnswerText(key, this.pendingAnswer[key]);
-                    this.renderedQuestions.push(answer);
+                    this.renderedMessages.push(answer);
                 }
                 var that = this;
                 var diffValue=this.questionSection == XianTianSectionType?0:1;
                 if(that.questions[that.index-diffValue]&&that.questions[that.index-diffValue].content){
                 	 var item = { isQuestion: true };
                     item.content = that.questions[that.index-diffValue].content;
-                    that.renderedQuestions.push(item);
+                    that.renderedMessages.push(item);
                 }
 //                setTimeout(function(){
 //                    var item={isQuestion:true};
 //                    item.content=that.questions[that.index].content;
-//                    that.renderedQuestions.push(item);
+//                    that.renderedMessages.push(item);
 //                },100)
                 if (this.isFinished) {
                     this.maskhidden = true;
@@ -220,7 +220,7 @@
                 }
                 var item = { isQuestion: true };
                 item.content = this.questions[0].content;
-                this.renderedQuestions.push(item);
+                this.renderedMessages.push(item);
             },
             uploadModeEvent(){
                 this.uploadHidden = true
