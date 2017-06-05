@@ -14,12 +14,13 @@
                     <div class="r-mattribute">{{wuXingStatusText}}</div>
                     <div class="r-mreport">
                         <h3>先天体质</h3>
-                        <p>你所在的城市6月气温升高，空气中湿度增加，体内汗液无法通畅的发散出来，人们就会感到胸闷、心悸，精神不振，全身乏力。易出现中暑、腮腺炎、水痘。</p>
+                        <p>{{wuXingReportContent}}</p>
                     </div>
                     <img class="i-micon" src="../assets/index.png">
                 </div>
                 <div class="r-msuggest">
-                    {{wuXingReportContent}}
+
+                    如果您成年后生活的城市、生活习惯等改变较大，强烈建议您再测试一下后天体质！
                 </div>
                 <div class="r-mbotbtn">
                     <router-link to='/message?questionSection=houTian'>
