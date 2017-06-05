@@ -26,6 +26,8 @@
 	</div>
 </template>
 <script type="text/javascript">
+
+    import Common from '../../static/common'
 export default {
    data(){
 	  	return {
@@ -45,7 +47,10 @@ export default {
 		  this.$data.face = answerValue
 		  	this.$emit('updateUserAnswer', this.answer)
 	   }
-	}
+	},
+    mounted() {
+        Common.loadXianTianUserData(this);
+    }
 }
 </script>
 <style lang="scss">
