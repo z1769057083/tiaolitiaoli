@@ -3,36 +3,42 @@
 	  	<div class="m-selectfigure">
 	  		<dl>
 	  			<dt>四肢</dt>
-	  			<dd><span :class="{'active': active1 === 0}" @click="change_active(0,'1','limb',$event)">手足灵活细长多青筋</span></dd>	
-	  			<dd><span :class="{'active': active1 === 1}" @click="change_active(1,'1','limb',$event)">手足小、步伐稳重、走路晃肩、精神矍铄</span></dd>	
-	  			<dd><span :class="{'active': active1 === 2}" @click="change_active(2,'1','limb',$event)">手足小而丰腴，下肢多健壮，步履稳健</span></dd>
-	  			<dd><span :class="{'active': active1 === 3}" @click="change_active(3,'1','limb',$event)">手足小，手背薄。足跟结实有力，行动轻快</span></dd>
-	  			<dd><span :class="{'active': active1 === 4}" @click="change_active(4,'1','limb',$event)">手背厚，手足不安静，行走善摇摆</span></dd>
+	  			<dd><span :class="{'active': limb === 0}" @click="change_active(0,'1','limb',$event)">手足灵活细长多青筋</span></dd>	
+	  			<dd><span :class="{'active': limb === 1}" @click="change_active(1,'1','limb',$event)">手足小、步伐稳重、走路晃肩、精神矍铄</span></dd>	
+	  			<dd><span :class="{'active': limb === 2}" @click="change_active(2,'1','limb',$event)">手足小而丰腴，下肢多健壮，步履稳健</span></dd>
+	  			<dd><span :class="{'active': limb === 3}" @click="change_active(3,'1','limb',$event)">手足小，手背薄。足跟结实有力，行动轻快</span></dd>
+	  			<dd><span :class="{'active': limb === 4}" @click="change_active(4,'1','limb',$event)">手背厚，手足不安静，行走善摇摆</span></dd>
 	  		</dl>
 	  	</div>
 	</div>
 </template>
 <script type="text/javascript">
+
+    import Common from '../../static/common'
 export default {
    data(){
 	  	return {
-	      active1:'',
-	      limbs:{
-	      	limb:''
-	      }
+	      limb:-1
 	    }
 	},
 	methods:{
 	  	change_active(answerValue,sectionId,sectionKey,event) {
-		  this.$data['active'+sectionId] = answerValue
-		  this.$data.limbs[sectionKey]=answerValue
-            if(this.active1!=='') {
-                this.$emit('updateUserAnswer', this.$data.limbs)
+		  this.$data.limb=answerValue
+            if(this.limb!==-1) {
+                this.$emit('updateUserAnswer', this.answer)
             }
 	    }
 	},
-	mounted() {
-	}
+	computed: {
+        answer(){
+            var answer = {};
+            answer.limb = this.limb;
+            return answer;
+        }
+    },
+    mounted() {
+        Common.loadXianTianUserData(this);
+    }
 }
 </script>
 <style lang="scss">
