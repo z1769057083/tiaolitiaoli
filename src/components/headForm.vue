@@ -2,23 +2,23 @@
 	<div class="m-headForm">
 	  	<h3>选择最接近的形象</h3>
 	  	<div class="m-hmain">
-	  		<dl :class="{'active': active1 === 0}" @click="change_active(0,'1','headForm',$event)">
+	  		<dl :class="{'active': face === 0}" @click="change_active(0,'1','headForm',$event)">
 	  			<dt><img src="../assets/mhead1.png"/></dt>
 	  			<dd>头小长脸</dd>
 	  		</dl>
-	  		<dl :class="{'active': active1 === 1}" @click="change_active(1,'1','headForm',$event)">
+	  		<dl :class="{'active': face === 1}" @click="change_active(1,'1','headForm',$event)">
 	  			<dt><img src="../assets/mhead1.png"/></dt>
 	  			<dd>头顶尖面瘦</dd>
 	  		</dl>
-	  		<dl :class="{'active': active1 === 2}" @click="change_active(2,'1','headForm',$event)">
+	  		<dl :class="{'active': face === 2}" @click="change_active(2,'1','headForm',$event)">
 	  			<dt><img src="../assets/mhead1.png"/></dt>
 	  			<dd>头大面圆</dd>
 	  		</dl>
-	  		<dl :class="{'active': active1 === 3}" @click="change_active(3,'1','headForm',$event)">
+	  		<dl :class="{'active': face === 3}" @click="change_active(3,'1','headForm',$event)">
 	  			<dt><img src="../assets/mhead1.png"/></dt>
 	  			<dd>头大脸宽</dd>
 	  		</dl>
-	  		<dl :class="{'active': active1 === 4}" @click="change_active(4,'1','headForm',$event)">
+	  		<dl :class="{'active': face === 4}" @click="change_active(4,'1','headForm',$event)">
 	  			<dt><img src="../assets/mhead1.png"/></dt>
 	  			<dd>头小面有棱角</dd>
 	  		</dl>
@@ -30,17 +30,20 @@ export default {
    data(){
 	  	return {
 	    arr: [],
-	      active1:'',
-	      emtion:{
-	      	headForm:''
-	     }
+	      face:-1
 	    }
 	},
+    computed: {
+        answer(){
+            var answer = {};
+            answer.face = this.face;
+            return answer;
+        }
+    },
 	methods:{
 	  	change_active(answerValue,sectionId,sectionKey,event) {
-		  this.$data['active'+sectionId] = answerValue
-		  this.$data.emtion[sectionKey] = answerValue
-		  	this.$emit('updateUserAnswer', this.$data.emtion)
+		  this.$data.face = answerValue
+		  	this.$emit('updateUserAnswer', this.answer)
 	   }
 	}
 }
