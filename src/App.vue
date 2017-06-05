@@ -9,6 +9,10 @@
     import '../static/swiper-3.4.2.min.js'
     import axios from 'axios'
     import api from '@/api/api'
+    import Highcharts from 'highcharts';
+    import Hig from 'highcharts/highcharts-more' ;
+    Hig(Highcharts)
+    global.Highcharts=Highcharts
     export default {
         name: 'app',
         methods: {

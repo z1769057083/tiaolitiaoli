@@ -65,8 +65,6 @@
 <script>
 import axios from 'axios'
 import api from '../api/api'
-//var Highcharts = require('highcharts');
-//require('../../static/highcharts-more')(Highcharts);
 export default {
   data (){
   	return{
@@ -75,20 +73,6 @@ export default {
   	}
   },
   methods:{
-//	reportlist(){
-//	  	var that = this;
-//	  	axios.get(api.generateReportData)
-//		  .then(function (res) {
-//		  	if(res.data.errorCode == 0){
-//		  		res = res.data.returnValue
-//		  		that.list = res
-//		  		console.log(that.list)
-//		  	}
-//		  })
-//		  .catch(function (error) {
-//		    console.log(error)
-//		  })
-//	},
 	afterReport(){
 		this.afterReportHidden = true
 	},
@@ -154,6 +138,7 @@ export default {
     }
   },
   mounted() {
+      debugger;
   	document.title="体质报告"
   	this.loadChart()
   	document.documentElement.scrollTop = 0

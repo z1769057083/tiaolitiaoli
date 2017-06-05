@@ -38,9 +38,6 @@
 <script>
     import axios from 'axios'
     import api from '../api/api';
-    import Highcharts from 'highcharts';
-    import Hig from 'highcharts/highcharts-more' ;
-    Hig(Highcharts)
     export default {
         name: 'report',
         data (){
