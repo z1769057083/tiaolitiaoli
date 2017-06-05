@@ -50,8 +50,9 @@
 import axios from 'axios'
 import api from '../api/api'
 import afterReportDetail from '@/components/afterReportDetail'
-var Highcharts = require('highcharts');
-require('../../static/highcharts-more')(Highcharts);
+
+//TODO:confict with highChart report xianjian Page.
+
 export default {
   data (){
   	return{

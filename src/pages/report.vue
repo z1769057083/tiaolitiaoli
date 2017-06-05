@@ -37,8 +37,9 @@
 <script>
     import axios from 'axios'
     import api from '../api/api';
-    var Highcharts = require('highcharts');
-    require('../../static/highcharts-more')(Highcharts);
+    import Highcharts from 'highcharts';
+    import Hig from 'highcharts/highcharts-more' ;
+    Hig(Highcharts)
     export default {
         name: 'report',
         data (){
