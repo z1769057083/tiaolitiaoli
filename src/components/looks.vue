@@ -73,7 +73,7 @@
         methods: {
             change_active(answerValue, sectionKey, event) {
                 this.$data[sectionKey] = answerValue
-                if (this.eye !== '' && this.taste !== '' && this.smell !== '' && this.tone !== '' && this.hear !== '') {
+                if (this.eye !== -1 && this.taste !== -1 && this.smell !== -1 && this.tone !== -1 && this.hear !== -1) {
                     this.$emit('updateUserAnswer', this.answer)
                 }
             }
