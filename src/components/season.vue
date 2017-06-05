@@ -4,59 +4,70 @@
   		<dl>
   			<dt>你的劳逸情况:</dt>
   			<dd>
-  				<p v-for="item in workRestList" :class="{active: arr.indexOf(item) > -1 }" @click="ac(item)">{{item}}</p>
+  				<p v-for="item in dailyList" :class="{active: daily.indexOf(item.key) > -1 }" @click="ac(item.key)">{{item.text}}</p>
   			</dd>
   		</dl>
   		<dl>
   			<dt>一年中哪个季节让你最不舒服？</dt>
   			<dd>
-  				<p :class="{'active': active2 === 0}" @click="change_active(0,'2','season',$event)">春</p>
-  				<p :class="{'active': active2 === 1}" @click="change_active(1,'2','season',$event)">夏</p>
-  				<p :class="{'active': active2 === 2}" @click="change_active(2,'2','season',$event)">秋</p>
-  				<p :class="{'active': active2 === 3}" @click="change_active(3,'2','season',$event)">冬</p>
+  				<p :class="{'active': season === 0}" @click="change_active(0,$event)">春</p>
+  				<p :class="{'active': season === 1}" @click="change_active(1,$event)">夏</p>
+  				<p :class="{'active': season === 2}" @click="change_active(2,$event)">秋</p>
+  				<p :class="{'active': season === 3}" @click="change_active(3,$event)">冬</p>
   			</dd>
   		</dl>
   	</div>	  	
 </div>
 </template>
 <script type="text/javascript">
+
+    import Common from '../../static/common'
 export default {
     data(){
 	  	return {
-	  	  arr:[],
+	  	  daily:[],
 	      active2:'',
-	      workRestList:['久视','久坐','久立','久卧','久行'],
-	      season:{
-	      	workRest:'',
-	      	season:''
-	      }
+			season:'',
+            dailyList:[
+                {'key':'watch','text': '久视'},
+                {'key':'walk','text': '久行'},
+                {'key':'stand','text': '久立'},
+                {'key':'sleep','text': '久卧'},
+                {'key':'sit','text': '久坐'}]
 	    }
 	},
+    computed: {
+        answer(){
+            var answer = {};
+            answer.daily = this.daily;
+            answer.season = this.season;
+            return answer;
+        }
+    },
+
 	methods:{
-	  	change_active(answerValue,sectionId,sectionKey,event) {
-		  this.$data['active'+sectionId] = answerValue
-		  this.$data.season[sectionKey]=answerValue
-		  if(this.season.workRest!==''){
-		  	this.$emit('updateUserAnswer', this.$data.season)
+	  	change_active(answerValue,event) {
+		  this.$data.season=answerValue
+		  if(this.daily!==[]){
+		  	this.$emit('updateUserAnswer', this.answer)
 		  }  
 	   },
 	  	ac(obj) {
-            var numb = this.arr.indexOf(obj);
+            var numb = this.daily.indexOf(obj);
             if (numb > -1) {
-              this.arr.splice(numb, 1);
+              this.daily.splice(numb, 1);
             } else {
-              this.arr.push(obj);
+              this.daily.push(obj);
             }
-            this.season.workRest=this.arr
-            console.log(this.season.workRest);
-            if(this.season.season!==''){
-			  	this.$emit('updateUserAnswer', this.season)
+            if(this.season!==''){
+			  	this.$emit('updateUserAnswer', this.answer)
 			}  
             
         }
 	},
 	mounted() {
-	   this.change_active()
+        Common.loadXianTianUserData(this);
+	    this.change_active()
 	}
 }
 </script>
