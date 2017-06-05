@@ -53,6 +53,7 @@
         mounted() {
             this.loadQuestions()
             this.loadUserInfo()
+            console.log('当前版本:'+Version);
         }
     }
 </script>
