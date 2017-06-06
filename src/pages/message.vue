@@ -6,14 +6,12 @@
                 <div :class="item.isQuestion?'m-chardocter':'m-charcustom'" v-for="(item,index) in renderedMessages">
                     <div v-if="item.isQuestion" class="m-charperson"><img :src='imgUrl'/></div>
                     <div v-if="!item.isQuestion" class="m-charperson"><img :src="myselfAvatar"/></div>
-                    <div class="m-charcont">{{renderedMessages[index].content}}</div>
-
-                    <!--<div class="m-charcont">人家是女生！</div>-->
+                    <div class="m-charcont">
+	                    <img v-if="item.isQuestion" src="../../static/images/messageDlogLeft.png"/>
+	                    <img v-if="!item.isQuestion"  src="../../static/images/messageDlogRight.png"/>
+	                    {{renderedMessages[index].content}}
+                    </div>
                 </div>
-                <!--<div class="m-charcustom">-->
-                <!--<div class="m-charperson"><img src="../assets/indexheadportrait.png"/></div>-->
-                <!--<div class="m-charcont">人家是女生！</div>-->
-                <!--</div>-->
             </div>
         </div>
         <maskconfirm v-show="maskhidden" v-bind:questionSection="questionSection"></maskconfirm>
@@ -254,7 +252,7 @@
         width: 100%;
         height: 100%;
         position: absolute;
-        overflow: hidden;
+        /*overflow: hidden;*/
     }
 
     /*聊天内容*/
@@ -266,71 +264,87 @@
         border-bottom: rem(4rem) solid #dab589;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
-
-    .m-charscroll {
-        width: 100%;
-
-    .m-chardocter {
-        width: 78%;
-        margin-left: 7%;
-        overflow: hidden;
-        display: flex;
-        margin-bottom: rem(14rem);
-
-    .m-charperson {
-        width: 1.07rem;
-        height: 1.07rem;
-        margin-right: rem(12rem);
-
-    img {
-        width: 1.07rem;
-        height: 1.07rem;
-    }
-
-    }
-    .m-charcont {
-        color: #3c3c3c;
-        background: #fff;
-        line-height: 0.56rem;
-        font-size: 0.37rem;
-        padding: 0.21rem 0.32rem;
-        border-radius: 0.15rem;
-        letter-spacing: 0.01rem;
-    }
-
-    }
-    .m-charcustom {
-        width: 78%;
-        margin-right: 7%;
-        overflow: hidden;
-        margin-bottom: rem(14rem);
-        float: right;
-
-    .m-charperson {
-        width: 1.07rem;
-        height: 1.07rem;
-        float: right;
-        margin-left: rem(12rem);
-
-    img {
-        width: 1.07rem;
-        height: 1.07rem;
-    }
-
-    }
-    .m-charcont {
-        color: #3c3c3c;
-        background: #fff;
-        line-height: 0.56rem;
-        font-size: 0.37rem;
-        padding: 0.21rem 0.32rem;
-        border-radius: 0.15rem;
-        letter-spacing: 0.01rem;
-        float: right;
-    }
-
-    }
-    }
+	    .m-charscroll {
+	        width: 100%;
+		    .m-chardocter {
+		        width: 78%;
+		        margin-left: 7%;
+		        overflow: hidden;
+		        display: flex;
+		        margin-bottom: rem(14rem);
+		
+			    .m-charperson {
+			        width: 1.07rem;
+			        height: 1.07rem;
+			        margin-right: rem(12rem);
+			
+				    img {
+				        width: 1.07rem;
+				        height: 1.07rem;
+				    }
+	
+		    	}
+			    .m-charcont {
+			        color: #3c3c3c;
+			        line-height: 0.56rem;
+			        font-size: 0.37rem;
+			        padding: 0.21rem 0.32rem;
+			        border-radius: 0.15rem;
+			        letter-spacing: 0.01rem;
+			        max-width: 72%;
+			        position: relative;
+			        background: #fff;
+			        img{
+			        	width: rem(7rem);
+			        	height: rem(14rem);
+			        	position: absolute;
+			        	top: rem(10rem);
+			        	left: rem(-7rem);
+			        }
+			        
+			    }
+	    	}
+		    .m-charcustom {
+		        width: 78%;
+		        margin-right: 7%;
+		        overflow: hidden;
+		        margin-bottom: rem(14rem);
+		        float: right;
+			
+			    .m-charperson {
+			        width: 1.07rem;
+			        height: 1.07rem;
+			        float: right;
+			        margin-left: rem(12rem);
+			
+				    img {
+				        width: 1.07rem;
+				        height: 1.07rem;
+				    }
+			
+			    }
+			    .m-charcont {
+			        color: #3c3c3c;
+			        background: #fff;
+			        line-height: 0.56rem;
+			        font-size: 0.37rem;
+			        padding: 0.21rem 0.32rem;
+			        border-radius: 0.15rem;
+			        letter-spacing: 0.01rem;
+			        float: right;
+			        max-width: 72%;
+			        position: relative;
+			        img{
+			        	width: rem(7rem);
+			        	height: rem(14rem);
+			        	position: absolute;
+			        	top: rem(10rem);
+			        	right: rem(-7rem);
+			        }
+			    }
+		
+		    }
+    	}
     }
     .m-select {
         width: 100%;

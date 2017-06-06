@@ -199,12 +199,13 @@
         padding-top: rem(15rem);
 
     .r-mattribute {
-        width: 100%;
         text-align: center;
         font-size: $font14;
-        padding-left: 4%;
         line-height: rem(20rem);
         color: #c000;
+        background: url(../assets/rmattribute.png) no-repeat center;
+        padding-left: 14%;
+        margin-right: 14%;
     }
 
     .r-mreport {
@@ -226,8 +227,9 @@
         margin: rem(5rem) rem(8rem) 0;
         line-height: rem(20rem);
         letter-spacing: rem(0.2rem);
+        text-align: justify;
+        text-justify:inter-ideograph;
     }
-
     }
     .i-micon {
         width: 0.96rem;

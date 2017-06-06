@@ -213,6 +213,8 @@ export default {
 		  	.r-mrconp{
 		  		border-bottom: 0;
 		  		padding-bottom: 0;
+		  		text-justify: inter-ideograph;
+                text-align: justify;
 		  	}
 		  	.right{
 		  		width: rem(72rem);

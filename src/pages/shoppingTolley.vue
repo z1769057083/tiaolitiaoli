@@ -1,66 +1,164 @@
 <template>
-  <div class='tolley-main'> 
-  	<div class="tolley-mtop">
-  		<div class="tolley-check" :class="{'active': toggle}" @click='selectCheck'></div>	
-   		<div class="order-mtitle">
-	    	汉古商城
-	    	<span>编辑</span>
-	    </div>
-  	</div>
-  	<div class="tolley-content" v-for='(item,index) in arr'>
-  		<div class="tolley-mcon" >
-  			<div class="tolley-check" :class="{'active': toggle}"></div>	
-	  		<dl>
-	    			<dt><img src="../assets/confrimShopImg.png" onerror="this.src='http://placeholder.qiniudn.com/300'"/></dt>
+	<div>
+	<div class="no-goods" v-if='!arr.length'>
+		<div>
+			暂无商品
+		</div>
+	</div>
+    <div class='tolley-main' v-else> 
+	  	<div class="tolley-mtop">
+	  		<div class="tolley-check" :class="{active: isSelectAll}" @click='allSelect'></div>	
+	   		<div class="order-mtitle">
+		    	汉古商城
+		    	<span></span>
+		    </div>
+	  	</div>
+	  	<div class="tolley-content" v-for='(item,index) in arr'>
+	  		<div class="tolley-mcon">
+	  			<div class="tolley-check" :class="{active:item.isChecked}" @click='selectGood(index)'></div>	
+		  		<dl>
+	    			<dt><img 
+	    				:src="'http://139.162.116.116/image/product/'+item.img+'/1.jpg'" 
+	    				onerror="this.src='http://placeholder.qiniudn.com/300'"/></dt>
 	    			<dd>
 	    				{{item.name}}
 	    				<p>{{item.price}}</p>
 	    			</dd>
 	    		</dl>
 	    		<div class="order-mnum">X<span>{{item.num}}</span></div>
-	    		<div class="delect">删除</div>
+	    		<div class="delect" @click='delGoods(item,index)'><img src="../../static/images/tolleyDelect.png"/></div>
+		  	</div>
 	  	</div>
-  	</div>
-  	<div class="tolley-mbottom">
-  		<!--<router-link :to="{ name: 'user', params: { userId: 123 }}">User</router-link>-->
-  			<div class="submitOrder" @click='settlement'>结算(<span>{{total}}</span>)</div>
-			<div class="toal">
-				合计:<span>¥{{count}}元</span>
-				<span class="fare">不含运费</span>
-			</div>
-			<div class="tolley-select">
-				<div class="tolley-check" :class="{'active': toggle}" @click='selectCheck'></div>	
-				全选
-			</div>
-  	</div>
+	  	<div class="tolley-mbottom">
+			<div class="submitOrder" @click='settlement'>结算(<span>{{total}}</span>)</div>
+				<div class="toal">
+					合计:<span>¥{{totalPrice | Currency}}元</span>
+					<span class="fare"></span>
+				</div>
+				<div class="tolley-select">
+					<div class="tolley-check" :class="{active: isSelectAll}" @click='allSelect'></div>	
+					全选
+				</div>
+		  	</div>
+	  	</div>
+	  	<div class="shopConfirm-toast" v-show='toastHidden'>
+		  	<div class="confirm-main">
+		  		<p>确定要删除商品嘛?</p>
+		 		<div class="btn" @click='toastHidden = !toastHidden'>取消</div>
+		 		<div class="btn rightBtn" @click='confirmDel'>确定</div>
+		  	</div>
+		</div>
   </div>
 </template>
 <script>
 import axios from 'axios'
+import Toast from '@/packages/toast'
  export default {
  	data(){
  		return{
- 			toggle: false,
  			toggleLock: false,
+ 			isSelectAll:false,
  			arr:[],
- 			count:'',
- 			total:''
+ 			total:'',
+ 			toastHidden:false,
+ 			readyToDelIndex:-1,
+ 			orderArr:[]
  		}
  	},
  	methods:{
- 		selectCheck(){
- 			if(!this.toggleLock){
- 				this.toggle = true
- 				this.toggleLock = true
- 			}else{
- 				this.toggle = false
- 				this.toggleLock = false
- 			}		
+   		allSelect(){
+   			if(!this.toggleLock){
+   				this.isSelectAll = true
+   				this.toggleLock = true
+   				this.arr.forEach((item)=>{
+					item.isChecked = true					
+				})	
+   			}else{
+   				this.isSelectAll = false
+   				this.toggleLock = false
+   				this.arr.forEach((item)=>{
+					item.isChecked = false			
+				})	
+   			}		
+   		},
+ 		selectGood(index){	
+			this.arr[index].isChecked = !this.arr[index].isChecked;
+			this.$forceUpdate()
+			if(this.arr[index].isChecked==true){
+				this.orderArr.push(this.arr[index])
+			}
+			
+			console.log(this.orderArr)
+			this.isCheckAll()
+ 		},
+// 		判断是否全部选中
+ 		isCheckAll(){
+ 			var flag = true;
+			this.arr.forEach((item)=>{
+				if(!item.isChecked){
+					flag = false;
+				}
+			});
+			if(!flag){
+				this.isSelectAll = false;
+			} else {
+				this.isSelectAll = true;
+			}
  		},
  		settlement(){
- 			this.$router.push({ path: '/confirmOrder', query: { routerId: 0 }})
- 		}
+   			var flag = true;
+ 			this.arr.forEach((item)=>{
+				if(item.isChecked){
+					this.$router.push({ path: '/confirmOrder', query: { routerId: 0 }})	
+					flag = true;
+				}else{					
+					flag = false;
+					if(flag === false){
+						Toast({
+                        message: '请选择商品之后在结算',
+                        position:'top',
+                    });
+					}
+                    return;	
+				}
+			});
+ 			
+ 		},
+ 		delGoods(item,index){
+			this.toastHidden = true
+			this.readyToDelIndex = index
+		},
+ 		//删除商品
+   		confirmDel(){
+   			this.toastHidden = false
+   			this.arr.splice(this.readyToDelIndex,1);
+        	window.localStorage.setItem('shopcart_Key',JSON.stringify(this.arr))
+//      	console.log(window.localStorage.getItem('shopcart_Key')!==this.arr)
+        	if(window.localStorage.getItem('shopcart_Key')!==this.arr){
+//      		this.$emit(this.arr)
+        		this.isSelectAll = false
+        	}else{
+        		this.isCheckAll()
+        	}
+   		}
  	},
+	computed:{
+//		总价
+		totalPrice:function(){
+			var total = 0;
+			this.arr.forEach(function(good){
+//				if(good.isChecked){
+//					total += good.productPrice * good.productQuentity;
+//				}
+			});
+			return total;
+		}
+	},
+	filters:{
+		Currency:function(val){
+			return val;
+		}
+	},
  	mounted() {
     if (!window.localStorage) {
         return false;
@@ -68,8 +166,8 @@ import axios from 'axios'
         let storage = window.localStorage;
         let obj_arr = storage.getItem('shopcart_Key')
         let obj = JSON.parse(obj_arr)
-        this.arr = obj 
-        console.log(this.arr)
+        this.arr = obj
+//      console.log(this.arr)
         //如果购物车为空，控制购物车的点消失
         if(this.arr ===''){
         	this.$emit('catrDotted')
@@ -81,6 +179,18 @@ import axios from 'axios'
 </script>
 <style scoped lang="scss">
 @import "../common/common.scss";
+.no-goods{
+  	 background: #f6f6f6;
+  	 width: 100%;
+  	 height: 100%;
+  	 position: absolute;
+  	 z-index: 999;
+ 	div{
+ 		text-align: center;
+  	    line-height: 100%;	
+  	    margin-top: 40%;
+ 	}
+  }
 .tolley-main{
 	width: 100%;
 	height: 100%;
@@ -104,7 +214,7 @@ import axios from 'axios'
 	.tolley-mtop{
 		width: 94%;
 		padding:0 3%;
-		overflow: hidden;
+		height: rem(46rem);
 		background: #fff;
 		.order-mtitle{
 			width: 86%;
@@ -134,7 +244,6 @@ import axios from 'axios'
 				margin: rem(37rem) 3% 0 0;
 			}
 			dl{
-				width: 70%;
 				float: left;
 				dt{
 					width: rem(92rem);
@@ -158,23 +267,24 @@ import axios from 'axios'
 			}
 			.order-mnum{
 				float: right;
-				line-height: rem(92rem);
+				line-height: rem(46rem);
 				color: #9c9c9c;
 				span{
 					font-size: $font14;
 				}
 			}
 			.delect{
-				width: rem(60rem);
-				height: rem(102rem);
-				line-height: rem(102rem);
-				background: #ff3b2f;
-				color: #fff;
+				width: rem(15rem);
+				height: rem(19rem);
 				position: absolute;
-				top: 0;
-				right: rem(-60rem);
+				bottom: rem(10rem);
+				right: rem(10rem);
 				text-align: center;
 				font-size: $font14;
+				img{
+					width: 100%;
+					height: 100%;
+				}
 			}
 		}
 	}
@@ -182,7 +292,7 @@ import axios from 'axios'
 		width: 97%;
 		height: rem(48rem);
 		background: #fff;
-		position: absolute;
+		position: fixed;
 		left: 0;
 		bottom: 0;
 		padding-left: 3%;		
@@ -217,5 +327,38 @@ import axios from 'axios'
 		}
 	}
 }
-
+.shopConfirm-toast{
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		background: rgba(0,0,0,.5);
+		z-index: 999;
+		.confirm-main{
+			width: 80%;
+			background: #fff;
+			height: rem(100rem);
+			position: absolute;
+			border-radius: rem(5rem);
+			left: 10%;
+			top: 42%;
+			p{
+				font-size: $font14;
+				margin: rem(20rem) 0 0 rem(20rem);
+			}
+			.btn{
+				width: 49%;
+				height: rem(44rem);
+				float: left;
+				text-align: center;
+				line-height: rem(44rem);
+				border-top: 1px solid #efefef;
+				margin-top: rem(21rem);
+				font-size: $font14;
+			}
+			.rightBtn{
+				border-left: 1px solid #efefef;
+				color: #c69b70;
+			}
+		}
+	}
 </style>

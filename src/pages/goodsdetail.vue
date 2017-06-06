@@ -1,108 +1,106 @@
 <template>
-  <div class='shoplist'>
-    <!--主题部分-->
-    <div class="l-main">
-    	<div class="l-mainscroll">
-    		<div class="l-mgoodsimg">
-	    		<img src="../assets/listgoodsimg.png"/>
-	      </div>
-			  <div class="l-mgoodsprice">
-			    <p class="l-mgoodsintro">{{list.name}}</p>
-			    <div class="l-mgoodspri">
-			  	  <span>{{list.price}}</span>
-			  	  <p>运费：¥12.00</p>
-			    </div>
-			  </div>
-			  <div class="l-maddress">
-			  	<img class="l-maddressimgl" src="../assets/listadress.png"/>线下门店
-			  	<img class="l-maddressimgr" src="../assets/listadressright.png" alt="" />
-			  </div>
-			  <div class="l-mgoodstit">
-			  	<img src="../assets/listline.png"/><span>商品详情</span><img src="../assets/listline.png"/>
-			  </div>
-			  <div class="l-mgooddetail">
-			  	<img src="../assets/listdetail1.png"/>
-			  	<img src="../assets/listdetail2.png"/>
-			  	<img src="../assets/listdetail3.png"/>
-			  	<img src="../assets/listdetail4.png"/>
-			  	<img src="../assets/listdetail5.png"/>
-			  	<img src="../assets/listdetail6.png"/>
-			  	<img src="../assets/listdetail7.png"/>
-			  	<img src="../assets/listdetail8.png"/>
-			  </div>
-    	</div>
-    </div>
-    <div class="l-mgoodspay">
-	  	<div class="l-mgoodscar">
-	  		<router-link to='/shoppingTolley'>
-		  	  <img src="../assets/listgoodspay.png"/>
-		  	  <p>购物车 </p>
-		  	  <span v-show = 'shopingCatrDotted' @catrDotted='catrDottedEvent'></span>
-	  	  </router-link>
-	  	</div>
-	  	<div class="l-mgoodscar l-mgoodsshop">
-	  		<router-link to='/shop'>
-	  	  	<img src="../assets/listShooping.png"/>	  	  
-	  	  	<p>商城</p>
-	  	  </router-link>
-	  	</div>	
-	  	<div class="l-mgoodsjoin" @click='shopHiden = !shopHiden'>加入购物车
-	  	</div>
-	  	<div class="l-mgoodsjoin l-mgoodsbuy" @click='purchaseHidden = !purchaseHidden'>立即购买</div>
+	  <div class='shoplist'>
+	    <!--主题部分-->
+	    <div class="l-main">
+	    	<div class="l-mainscroll">
+	    		<div class="l-mgoodsimg">
+		    		<img :src="'http://139.162.116.116/image/product/'+list.index+'/1.jpg'" 
+								  		onerror="this.src='http://placeholder.qiniudn.com/800'"/>
+		      </div>
+				  <div class="l-mgoodsprice">
+				    <p class="l-mgoodsintro">{{list.name}}</p>
+				    <div class="l-mgoodspri">
+				  	  <span>{{list.price}}</span>
+				  	  <p>运费：¥12.00</p>
+				    </div>
+				  </div>
+				  <div class="l-maddress">
+				  	<img class="l-maddressimgl" src="../assets/listadress.png"/>线下门店
+				  	<img class="l-maddressimgr" src="../assets/listadressright.png" alt="" />
+				  </div>
+				  <div class="l-mgoodstit">
+				  	<img src="../assets/listline.png"/><span>商品详情</span><img src="../assets/listline.png"/>
+				  </div>
+				  <div class="l-mgooddetail">
+				  	<img v-for='imgItem in list.images' 
+				  		:src="'http://139.162.116.116/image/product/'+imgItem+'/1.jpg'" 
+							onerror="this.src='http://placeholder.qiniudn.com/800'"/>
+				  </div>
+	    	</div>
+	    </div>
+	    <div class="l-mgoodspay">
+		  	<div class="l-mgoodscar">
+		  		<router-link to='/shoppingTolley'>
+			  	  <img src="../assets/listgoodspay.png"/>
+			  	  <p>购物车 </p>
+			  	  <span v-show = 'shopingCatrDotted' @catrDotted='catrDottedEvent'></span>
+		  	  </router-link>
+		  	</div>
+		  	<div class="l-mgoodscar l-mgoodsshop">
+		  		<router-link to='/shop'>
+		  	  	<img src="../assets/listShooping.png"/>	  	  
+		  	  	<p>商城</p>
+		  	  </router-link>
+		  	</div>	
+		  	<div class="l-mgoodsjoin" @click='shopHiden = !shopHiden'>加入购物车
+		  	</div>
+		  	<div class="l-mgoodsjoin l-mgoodsbuy" @click='purchaseHidden = !purchaseHidden'>立即购买</div>
+		  </div>
+		  <!--组件-->
+		  <!--加入购物车-->
+		  <div class="maskmain" v-show='shopHiden'>
+				<div class="mask-shopCar">
+					<div class="shopCar-main">
+						<dl>
+							<dt><img :src="'http://139.162.116.116/image/product/'+list.index+'/1.jpg'" 
+							onerror="this.src='http://placeholder.qiniudn.com/800'"/></dt>
+							<dd>
+							    <p>{{list.price}}</p>
+							    <span>{{list.name}}</span>
+							</dd>
+						</dl>
+						<div class="closeBtn" @click='shopHiden = !shopHiden'></div>				
+					</div>
+					<div class="shopCar-num">
+						<span>购买数量</span>
+						<div class="num">
+							<button class="reduceBtn" @click='reduce'></button>
+							<input type="text" value='num' v-model='num'/>
+							<button class="addBtn" @click='add'></button>
+						</div>
+					</div>
+					<div class="confirmBtn" @click='confirm'>确定</div>
+				</div>
+			</div>
+			<!--立即购买开始-->
+		  <div class="maskmain" v-show='purchaseHidden'>
+				<div class="mask-shopCar">
+					<div class="shopCar-main">
+						<dl>
+							<dt><img :src="'http://139.162.116.116/image/product/'+list.index+'/1.jpg'" 
+							         onerror="this.src='http://placeholder.qiniudn.com/800'"/></dt>
+							<dd>
+							     <p>{{list.price}}</p>
+							    <span>{{list.name}}</span>
+							</dd>
+						</dl>
+						<div class="closeBtn" @click='purchaseHidden = !purchaseHidden'></div>				
+					</div>
+					<div class="shopCar-num">
+						<span>购买数量</span>
+						<div class="num">
+							<button class="reduceBtn" @click='reduce'></button>
+							<input type="text" value="num" v-model='num'/>
+							<button class="addBtn" @click='add'></button>
+						</div>
+					</div>
+					<div class="confirmBtn1" @click='confirm1'>下一步</div>
+				</div>
+			</div>
+			<!--立即购买结束-->
+			<!--已成功加入购物车-->
+		  <toast v-show='toastHidden'></toast>
 	  </div>
-	  <!--组件-->
-	  <!--加入购物车-->
-	  <div class="maskmain" v-show='shopHiden'>
-			<div class="mask-shopCar">
-				<div class="shopCar-main">
-					<dl>
-						<dt><img src="../assets/shopcar.png"/></dt>
-						<dd>
-						    <p>{{list.price}}</p>
-						    <span>{{list.name}}</span>
-						</dd>
-					</dl>
-					<div class="closeBtn" @click='shopHiden = !shopHiden'></div>				
-				</div>
-				<div class="shopCar-num">
-					<span>购买数量</span>
-					<div class="num">
-						<button class="reduceBtn" @click='reduce'></button>
-						<input type="text" value='num' v-model='num'/>
-						<button class="addBtn" @click='add'></button>
-					</div>
-				</div>
-				<div class="confirmBtn" @click='confirm'>确定</div>
-			</div>
-		</div>
-		<!--立即购买开始-->
-	  <div class="maskmain" v-show='purchaseHidden'>
-			<div class="mask-shopCar">
-				<div class="shopCar-main">
-					<dl>
-						<dt><img src="../assets/shopcar.png"/></dt>
-						<dd>
-						     <p>{{list.price}}</p>
-						    <span>{{list.name}}</span>
-						</dd>
-					</dl>
-					<div class="closeBtn" @click='purchaseHidden = !purchaseHidden'></div>				
-				</div>
-				<div class="shopCar-num">
-					<span>购买数量</span>
-					<div class="num">
-						<button class="reduceBtn" @click='reduce'></button>
-						<input type="text" value="num" v-model='num'/>
-						<button class="addBtn" @click='add'></button>
-					</div>
-				</div>
-				<div class="confirmBtn1" @click='confirm1'>下一步</div>
-			</div>
-		</div>
-		<!--立即购买结束-->
-		<!--已成功加入购物车-->
-	  <toast v-show='toastHidden'></toast>
-  </div>
 </template>
 <script>
   import axios from 'axios'
@@ -238,7 +236,10 @@
       var storage = window.localStorage
       if(storage.getItem('shopcart_Key')){
       	this.shopingCatrDotted = true
+      }else if(storage.getItem('shopcart_Key')!==this.arr){
+      	this.shopingCatrDotted = false	
       }
+      console.log(this.arr)
     }
   }
 </script>

@@ -92,11 +92,13 @@
 			<!--商品部分-->
 	    <div class="s-mgoods">
 				<div class="s-mrecomment" v-for="(item, index) in listem">
-					<h3 class="s-marttitle">{{item.title}}<router-link to='/allgoods'>
-						<a class="s-mrecomall" href="">查看全部</a></router-link></h3>
+					<h3 class="s-marttitle">{{item.categoryName}}
+						<router-link :to="{ name: 'allgoods', query: { categoryId: item.category }}">
+						<a class="s-mrecomall" href="">查看全部</a>
+						</router-link></h3>
 					<div>
 					<dl class="s-mrecomlist" v-for="temp in item.items">
-							<router-link :to="{ name: 'goodsdetail', query: { itemid: temp._id } }">
+							<router-link :to="{ name: 'goodsdetail', query: { itemid: temp._id }}">
 							  <dt class="s-mreconimg">
 							  	<img :src="'http://139.162.116.116/image/product/'+temp.index+'.png'" 
 							  		onerror="this.src='http://placeholder.qiniudn.com/800'"/>
