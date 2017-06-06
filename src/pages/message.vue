@@ -128,7 +128,6 @@
         },
         methods: {
             checkFemaleQuestion(that){
-                debugger;
                 var xianTianAnswer = JSON.parse(localStorage.getItem(XianTianAnswer_Index));
                 var isMale=xianTianAnswer.gender==='M';
                 var diffValue=that.questionSection === XianTianSectionType?0:1;
@@ -140,7 +139,6 @@
                 }
             },
             updateUserAnswer(answerParams) {
-
                 this.isCurrentQuestionFinished=true;
                 this.pendingAnswer = answerParams;
                 for (let key in answerParams) {
