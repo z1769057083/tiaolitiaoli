@@ -57,7 +57,7 @@ import Toast from '@/packages/toast'
  	data(){
  		return{
  			toggleLock: false,
- 			isSelectAll:false,
+ 			isSelectAll: true,
  			arr:[],
  			total:'',
  			toastHidden:false,
@@ -87,7 +87,6 @@ import Toast from '@/packages/toast'
 			if(this.arr[index].isChecked==true){
 				this.orderArr.push(this.arr[index])
 			}
-			
 			console.log(this.orderArr)
 			this.isCheckAll()
  		},
@@ -132,11 +131,10 @@ import Toast from '@/packages/toast'
    		confirmDel(){
    			this.toastHidden = false
    			this.arr.splice(this.readyToDelIndex,1);
-        	window.localStorage.setItem('shopcart_Key',JSON.stringify(this.arr))
-//      	console.log(window.localStorage.getItem('shopcart_Key')!==this.arr)
+        	window.localStorage.setItem('shopcart_Key',JSON.stringify(this.arr))		
         	if(window.localStorage.getItem('shopcart_Key')!==this.arr){
-//      		this.$emit(this.arr)
         		this.isSelectAll = false
+        		this.isCheckAll()
         	}else{
         		this.isCheckAll()
         	}
@@ -160,20 +158,24 @@ import Toast from '@/packages/toast'
 		}
 	},
  	mounted() {
-    if (!window.localStorage) {
-        return false;
-    } else {
-        let storage = window.localStorage;
-        let obj_arr = storage.getItem('shopcart_Key')
-        let obj = JSON.parse(obj_arr)
-        this.arr = obj
-//      console.log(this.arr)
-        //如果购物车为空，控制购物车的点消失
-        if(this.arr ===''){
-        	this.$emit('catrDotted')
-        }
-    }
-}
+	    if (!window.localStorage) {
+	        return false;
+	    } else {
+	        let storage = window.localStorage;
+	        let obj_arr = storage.getItem('shopcart_Key')
+	        let obj = JSON.parse(obj_arr)
+	        this.arr = obj
+	//      console.log(this.arr)
+	        //如果购物车为空，控制购物车的点消失
+	        if(this.arr ===''){
+	        	this.$emit('catrDotted')
+	        }
+	    }
+	    this.arr.forEach((item)=>{
+			item.isChecked = true
+		})
+	    
+	}
  	
  }
 </script>
