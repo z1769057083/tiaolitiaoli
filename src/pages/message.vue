@@ -122,14 +122,12 @@
             renderedMessages() {
                 this.$nextTick(() => {
                     var container = this.$el.querySelector("#chatContainer");
-//                  console.log(container);
                     container.scrollTop = container.scrollHeight;
                 })
             }
         },
         methods: {
             checkFemaleQuestion(that){
-                debugger;
                 var xianTianAnswer = JSON.parse(localStorage.getItem(XianTianAnswer_Index));
                 if (xianTianAnswer==null||typeof(xianTianAnswer) === 'undefined') {
                     that.index = that.index + 1;
