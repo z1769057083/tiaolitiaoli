@@ -1,19 +1,19 @@
 {
   "gender": {
     "F": {
-      "text": "我是女生"
+      "text": "我是女生."
     },
     "M": {
-      "text": "我是男生"
+      "text": "我是男生."
     }
   },
   "birthday": {
     "isFormat": true,
-    "text": "我是{0}出生的"
+    "text": "我是{0}出生的."
   },
   "city": {
     "isFormat": true,
-    "text": "我是{0}人"
+    "text": "我是{0}人."
   },
   "taste": {
     "isArray":true,

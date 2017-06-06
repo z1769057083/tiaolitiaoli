@@ -153,11 +153,12 @@
                 this.isCurrentQuestionFinished=false;
                 console.log(this.xianTianAnswer)
                 this.index++;
+                var answer = { isQuestion: false,content:'' };
                 for (let key in this.pendingAnswer) {
-                    var answer = { isQuestion: false };
-                    answer.content = answerHelper.getAnswerText(key, this.pendingAnswer[key]);
-                    this.renderedMessages.push(answer);
+                    answer.content += answerHelper.getAnswerText(key, this.pendingAnswer[key]);
                 }
+                if(answer.content===''){answer.content='回答完毕';}
+                this.renderedMessages.push(answer);
                 var that = this;
                 var diffValue=this.questionSection == XianTianSectionType?0:1;
                 if(that.questions[that.index-diffValue]&&that.questions[that.index-diffValue].content){

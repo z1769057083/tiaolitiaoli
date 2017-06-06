@@ -32,8 +32,8 @@ export default {
     getAnswerText: (question, value) => {
         var answer = AnswerLib[question];
         var text = '';
-        if (typeof(answer) == 'undefined') {
-            return '回答完毕'
+        if (typeof(answer) === 'undefined') {
+            return ''
         }
         if (answer && answer.isFormat) {
             text = answer.text.format(value);
@@ -47,7 +47,7 @@ export default {
         } else if (answer[value]) {
             text += answer[value].text;
         }
-        if (text === '') text = '回答完毕';
+        if (text === '') text = '';
         return text;
     }
 }
