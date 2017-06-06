@@ -2,70 +2,70 @@
 	<div class="m-temperament">
 	  	<h3>下面哪个人物像你？</h3>
 	  	<div class="m-hmain">
-	  		<dl :class="{'active': active1 === 0}" @click="change_active(0,'1','temperament',$event)">
+	  		<dl :class="{'active': temperament === 0}" @click="change_active(0,'1','temperament',$event)">
 	  			<dt><img src="../assets/messageCharacter1.png"/></dt>
 	  			<dd>
 	  				善良温和、与人为善<br>
 	  				不轻易妥协、有恒心
 	  			</dd>
 	  		</dl>
-	  		<dl :class="{'active': active1 === 1}" @click="change_active(1,'1','temperament',$event)">
+	  		<dl :class="{'active': temperament == 1}" @click="change_active(1,'1','temperament',$event)">
 	  			<dt><img src="../assets/messageCharacter1.png"/></dt>
 	  			<dd>
 	  				善良温和、与人为善<br>
 	  				不轻易妥协、有恒心
 	  			</dd>
 	  		</dl>
-	  		<dl :class="{'active': active1 === 2}" @click="change_active(2,'1','temperament',$event)">
+	  		<dl :class="{'active': temperament === 2}" @click="change_active(2,'1','temperament',$event)">
 	  			<dt><img src="../assets/messageCharacter1.png"/></dt>
 	  			<dd>
 	  				善良温和、与人为善<br>
 	  				不轻易妥协、有恒心
 	  			</dd>
 	  		</dl>
-	  		<dl :class="{'active': active1 === 3}" @click="change_active(3,'1','temperament',$event)">
+	  		<dl :class="{'active': temperament === 3}" @click="change_active(3,'1','temperament',$event)">
 	  			<dt><img src="../assets/messageCharacter1.png"/></dt>
 	  			<dd>
 	  				善良温和、与人为善<br>
 	  				不轻易妥协、有恒心
 	  			</dd>
 	  		</dl>
-	  		<dl :class="{'active': active1 === 4}" @click="change_active(4,'1','temperament',$event)">
+	  		<dl :class="{'active': temperament === 4}" @click="change_active(4,'1','temperament',$event)">
 	  			<dt><img src="../assets/messageCharacter1.png"/></dt>
 	  			<dd>
 	  				善良温和、与人为善<br>
 	  				不轻易妥协、有恒心
 	  			</dd>
 	  		</dl>
-	  		<dl :class="{'active': active1 === 5}" @click="change_active(5,'1','temperament',$event)">
+	  		<dl :class="{'active': temperament === 5}" @click="change_active(5,'1','temperament',$event)">
 	  			<dt><img src="../assets/messageCharacter1.png"/></dt>
 	  			<dd>
 	  				善良温和、与人为善<br>
 	  				不轻易妥协、有恒心
 	  			</dd>
 	  		</dl>
-	  		<dl :class="{'active': active1 === 6}" @click="change_active(6,'1','temperament',$event)">
+	  		<dl :class="{'active': temperament === 6}" @click="change_active(6,'1','temperament',$event)">
 	  			<dt><img src="../assets/messageCharacter1.png"/></dt>
 	  			<dd>
 	  				善良温和、与人为善<br>
 	  				不轻易妥协、有恒心
 	  			</dd>
 	  		</dl>
-	  		<dl :class="{'active': active1 === 7}" @click="change_active(7,'1','temperament',$event)">
+	  		<dl :class="{'active': temperament === 7}" @click="change_active(7,'1','temperament',$event)">
 	  			<dt><img src="../assets/messageCharacter1.png"/></dt>
 	  			<dd>
 	  				善良温和、与人为善<br>
 	  				不轻易妥协、有恒心
 	  			</dd>
 	  		</dl>
-	  		<dl :class="{'active': active1 === 8}" @click="change_active(8,'1','temperament',$event)">
+	  		<dl :class="{'active': temperament === 8}" @click="change_active(8,'1','temperament',$event)">
 	  			<dt><img src="../assets/messageCharacter1.png"/></dt>
 	  			<dd>
 	  				善良温和、与人为善<br>
 	  				不轻易妥协、有恒心
 	  			</dd>
 	  		</dl>
-	  		<dl :class="{'active': active1 === 9}" @click="change_active(9,'1','temperament',$event)">
+	  		<dl :class="{'active': temperament === 9}" @click="change_active(9,'1','temperament',$event)">
 	  			<dt><img src="../assets/messageCharacter1.png"/></dt>
 	  			<dd>
 	  				善良温和、与人为善<br>
@@ -77,23 +77,30 @@
 	</div>
 </template>
 <script type="text/javascript">
+
+    import Common from '../../static/common'
 export default {
    data(){
 	  	return {
-	    arr: [],
-	      active1:'',
-	      emtion:{
-	      	temperament:''
-	     }
+            temperament:-1
 	    }
 	},
+    computed: {
+        answer(){
+            var answer = {};
+            answer.temperament = this.temperament;
+            return answer;
+        }
+    },
 	methods:{
 	  	change_active(answerValue,sectionId,sectionKey,event) {
-		  this.$data['active'+sectionId] = answerValue
-		  this.$data.emtion[sectionKey] = answerValue
-		  	this.$emit('updateUserAnswer', this.$data.emtion)
+		  	this.$data.temperament = answerValue
+		  	this.$emit('updateUserAnswer', this.answer)
 	   }
-	}
+	},
+    mounted(){
+        Common.loadXianTianUserData(this);
+    }
 }
 </script>
 <style lang="scss">

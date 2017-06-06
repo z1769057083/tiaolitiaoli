@@ -4,22 +4,29 @@
 	  		<dl>
 	  			<dt>最近出现情况:</dt>
 	  			<dd>
-	  				<p v-for="item in brandlist" :class="{active: answer.situation.indexOf(item) > -1 }" @click="ac(item)">{{item}}</p>
+	  				<p v-for="item in brandlist" :class="{active: situation.indexOf(item) > -1 }" @click="ac(item)">{{item}}</p>
 	  			</dd>
 	  		</dl>
 	  	</div>
 	</div>
 </template>
 <script type="text/javascript">
+
+    import Common from '../../static/common'
 export default {
   data(){
   	return {
-  	    answer:{
-            situation: [],
-		},
+  	    situation: [],
   		brandlist: ['经常腹泻','入眠困难','肠胃不好','睡觉易醒','心慌','全身无力','便秘','食欲不振','持续口腔溃疡','痛经','经期紊乱无']
     }
   },
+    computed: {
+        answer(){
+            var answer = {};
+            answer.situation = this.situation;
+            return answer;
+        }
+    },
   methods:{
   	ac(obj) {
             var numb = this.answer.situation.indexOf(obj);
@@ -30,7 +37,10 @@ export default {
             }
             this.$emit('updateUserAnswer', this.answer)
         }
-  }
+  },
+	mounted(){
+        Common.loadXianTianUserData(this);
+	}
 }
 </script>
 <style lang="scss">
