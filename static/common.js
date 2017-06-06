@@ -22,6 +22,7 @@ module.exports = {
     },
     loadExtendXianTianUserData (component,field){
         var xianTianAnswer = JSON.parse(localStorage.getItem(XianTianAnswer_Index));
+        if(xianTianAnswer==null) return;
         var extendValue=xianTianAnswer[field];
         for (let key in extendValue) {
             if( component.$data[key] &&typeof (component.$data[key])===typeof (extendValue[key])){
