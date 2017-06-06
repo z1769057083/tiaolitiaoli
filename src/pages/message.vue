@@ -129,6 +129,18 @@
             }
         },
         methods: {
+            checkFemaleQuestion(that){
+                debugger;
+                var xianTianAnswer = JSON.parse(localStorage.getItem(XianTianAnswer_Index));
+                var isMale=xianTianAnswer.gender==='M';
+                var diffValue=that.questionSection === XianTianSectionType?0:1;
+                if(that.questions[that.index-diffValue+1]&&that.questions[that.index-diffValue+1].questionName==='femaleStatus'&&isMale){
+                    that.index=that.index+2;
+                }
+                else {
+                    that.index=that.index+1;
+                }
+            },
             updateUserAnswer(answerParams) {
 
                 this.isCurrentQuestionFinished=true;
@@ -152,13 +164,14 @@
                 }
                 this.isCurrentQuestionFinished=false;
                 console.log(this.xianTianAnswer)
-                this.index++;
+
                 var answer = { isQuestion: false,content:'' };
                 for (let key in this.pendingAnswer) {
                     answer.content += answerHelper.getAnswerText(key, this.pendingAnswer[key]);
                 }
                 if(answer.content===''){answer.content='回答完毕';}
                 this.renderedMessages.push(answer);
+                this.checkFemaleQuestion(this);
                 var that = this;
                 var diffValue=this.questionSection == XianTianSectionType?0:1;
                 if(that.questions[that.index-diffValue]&&that.questions[that.index-diffValue].content){
