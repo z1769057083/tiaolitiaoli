@@ -29,7 +29,6 @@
             }
         },
         mounted(){
-            this.$emit('updateUserAnswer', this.answer);
         },
         methods: {
             change_active(gender) {
