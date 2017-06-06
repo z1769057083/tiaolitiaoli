@@ -4,56 +4,53 @@
 	  		<dl>
 	  			<dt>清瘦</dt>
 	  			<dd>
-	  				<p :class="{'active': active1 === 0}" @click="change_active(0,'1','lean',$event)">是</p>
-	  				<p :class="{'active': active1 === 1}" @click="change_active(1,'1','lean',$event)">不是</p>
-	  				<p :class="{'active': active1 === 2}" @click="change_active(2,'1','lean',$event)">不确定</p>
+	  				<p :class="{'active': section4.lean === 0}" @click="change_active(0,'1','lean',$event)">是</p>
+	  				<p :class="{'active': section4.lean === 1}" @click="change_active(1,'1','lean',$event)">不是</p>
+	  				<p :class="{'active': section4.lean === 2}" @click="change_active(2,'1','lean',$event)">不确定</p>
 	  			</dd>
 	  		</dl>
 	  		<dl>
 	  			<dt>观察透彻</dt>
 	  			<dd>
-	  				<p :class="{'active': active2 === 0}" @click="change_active(0,'2','observe',$event)">是</p>
-	  				<p :class="{'active': active2 === 1}" @click="change_active(1,'2','observe',$event)">不是</p>
-	  				<p :class="{'active': active2 === 2}" @click="change_active(2,'2','observe',$event)">不确定</p>
+	  				<p :class="{'active': section4.observe === 0}" @click="change_active(0,'2','observe',$event)">是</p>
+	  				<p :class="{'active': section4.observe === 1}" @click="change_active(1,'2','observe',$event)">不是</p>
+	  				<p :class="{'active': section4.observe === 2}" @click="change_active(2,'2','observe',$event)">不确定</p>
 	  			</dd>
 	  		</dl>
 	  		<dl>
 	  			<dt>为人庄重</dt>
 	  			<dd>
-	  				<p :class="{'active': active3 === 0}" @click="change_active(0,'3','solemn',$event)">是</p>
-	  				<p :class="{'active': active3 === 1}" @click="change_active(1,'3','solemn',$event)">不是</p>
-	  				<p :class="{'active': active3 === 2}" @click="change_active(2,'3','solemn',$event)">不确定</p>
+	  				<p :class="{'active': section4.solemn === 0}" @click="change_active(0,'3','solemn',$event)">是</p>
+	  				<p :class="{'active': section4.solemn === 1}" @click="change_active(1,'3','solemn',$event)">不是</p>
+	  				<p :class="{'active': section4.solemn === 2}" @click="change_active(2,'3','solemn',$event)">不确定</p>
 	  			</dd>
 	  		</dl>
 	  		<dl>
 	  			<dt>办事爽快</dt>
 	  			<dd>
-	  				<p :class="{'active': active4 === 0}" @click="change_active(0,'4','frank',$event)">是</p>
-	  				<p :class="{'active': active4 === 1}" @click="change_active(1,'4','frank',$event)">不是</p>
-	  				<p :class="{'active': active4 === 2}" @click="change_active(2,'4','frank',$event)">不确定</p>
+	  				<p :class="{'active': section4.frank === 0}" @click="change_active(0,'4','frank',$event)">是</p>
+	  				<p :class="{'active': section4.frank === 1}" @click="change_active(1,'4','frank',$event)">不是</p>
+	  				<p :class="{'active': section4.frank === 2}" @click="change_active(2,'4','frank',$event)">不确定</p>
 	  			</dd>
 	  		</dl>
 	  		<dl>
 	  			<dt>讲话策略多</dt>
 	  			<dd>
-	  				<p :class="{'active': active5 === 0}" @click="change_active(0,'5','speech',$event)">是</p>
-	  				<p :class="{'active': active5 === 1}" @click="change_active(1,'5','speech',$event)">不是</p>
-	  				<p :class="{'active': active5 === 2}" @click="change_active(2,'5','speech',$event)">不确定</p>
+	  				<p :class="{'active': section4.speech === 0}" @click="change_active(0,'5','speech',$event)">是</p>
+	  				<p :class="{'active': section4.speech === 1}" @click="change_active(1,'5','speech',$event)">不是</p>
+	  				<p :class="{'active': section4.speech === 2}" @click="change_active(2,'5','speech',$event)">不确定</p>
 	  			</dd>
 	  		</dl>
 	  	</div>
 	</div>
 </template>
 <script type="text/javascript">
+
+    import Common from '../../static/common'
 export default {
   data(){
 	  	return {
-	      active1:'',
-	      active2:'',
-	      active3:'',
-	      active4:'',
-	      active5:'',
-	      afterTreat:{
+            section4:{
 	      	lean:'',
 	      	observe:'',
 	      	solemn:'',
@@ -64,14 +61,14 @@ export default {
 	},
 	methods:{
 	  	change_active(answerValue,sectionId,sectionKey,event) {
-		  this.$data['active'+sectionId] = answerValue
-		  this.$data.afterTreat[sectionKey]=answerValue
-		  this.$emit('updateUserAnswer', this.$data.afterTreat)
+            this.$data.section4[sectionKey]=answerValue
+            var answer={'section4':this.section4}
+            this.$emit('updateUserAnswer', answer)
 	    }
 	},
-	mounted() {
-	   this.change_active()
-	}
+    mounted(){
+        Common.loadXianTianUserData(this);
+    }
 }
 </script>
 <style lang="scss">
