@@ -4,7 +4,7 @@
 	  		<dl>
 	  			<dt>最近出现情况:</dt>
 	  			<dd>
-	  				<p v-for="item in brandlist" :class="{active: arr.indexOf(item) > -1 }" @click="ac(item)">{{item}}</p>
+	  				<p v-for="item in brandlist" :class="{active: answer.situation.indexOf(item) > -1 }" @click="ac(item)">{{item}}</p>
 	  			</dd>
 	  		</dl>
 	  	</div>
@@ -14,24 +14,21 @@
 export default {
   data(){
   	return {
-  		arr: [],
-  		Situation:{
-  			afterSituation:''
-  		},
+  	    answer:{
+            situation: [],
+		},
   		brandlist: ['经常腹泻','入眠困难','肠胃不好','睡觉易醒','心慌','全身无力','便秘','食欲不振','持续口腔溃疡','痛经','经期紊乱无']
     }
   },
   methods:{
   	ac(obj) {
-            var numb = this.arr.indexOf(obj);
+            var numb = this.answer.situation.indexOf(obj);
             if (numb > -1) {
-              this.arr.splice(numb, 1);
+                this.answer.situation.splice(numb, 1);
             } else {
-              this.arr.push(obj);
+                this.answer.situation.push(obj);
             }
-            this.Situation.afterSituation=this.arr
-            console.log(this.Situation.afterSituation);
-            this.$emit('updateUserAnswer', this.Situation)
+            this.$emit('updateUserAnswer', this.answer)
         }
   }
 }
