@@ -11,8 +11,8 @@
                 </div>
                 <div class='i-maintext'>本次测试大约需要10分钟的时间填写。</div>
                 <div class='i-maincen'>
-                    <img class="i-mline" src="../assets/indexline.png"/>
-                    <img class="i-micon" src="../assets/index.png">
+                    <img class="i-mline" src="../../static/images/indexline.png"/>
+                    <img class="i-micon" src="../../static/images/index.png">
                 </div>
                 <div class='i-maindocter i-maindocter1'>
                     <span>林博士</span>

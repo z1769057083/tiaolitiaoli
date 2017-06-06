@@ -24,7 +24,8 @@
     	<h3 class="order-mtitle">汉古商城</h3>
     	<div class="order-mdetail" v-for='(item,index) in arr'>
     		<dl>
-    			<dt><img src="../assets/confrimShopImg.png"/></dt>
+    			<dt><img :src="'http://139.162.116.116/image/product/'+item.img+'/1.jpg'" 
+	    				onerror="this.src='http://placeholder.qiniudn.com/300'"/></dt>
     			<dd>
     				{{item.name}}
 	    			<p>{{item.price}}</p>
@@ -40,7 +41,7 @@
     	</dl>
     	<dl class="order-mconpic">
     		<dt></dt>
-    		<dd>共件商品   小计:<span>¥{{count}}.00</span></dd>
+    		<dd>共{{totalNum}}件商品   小计:<span>¥{{count}}.00</span></dd>
     	</dl>
     </div>
 		<div class="order-bottom">
@@ -159,9 +160,10 @@ export default {
   	  postCode:'',
   	  confirmHidden: false,
   	  confirmToastHidden: false,
- 			count:'',
+ 			count:0,
+ 			totalNum:0,
  			arr:[],
- 			countPrice:'',
+ 			countPrice:0,
  			addressArr:{
  				name:'',
 	  	  phone:'',
@@ -227,7 +229,7 @@ export default {
         	Toast({
             message: '手机号码格式有误',
             position:'top',
-          });
+          })
             return;
         }
         var storage = window.localStorage
@@ -300,10 +302,14 @@ export default {
         	let obj_arr = storage.getItem('shopcart_Key')
 	        let obj = JSON.parse(obj_arr)
 	        this.arr = obj
-	        for (var i = 0, len = this.arr.length; i < len; i++) {
-						this.count = this.arr[i].num*parseInt(this.arr[i].price)
-						this.countPrice = this.count + 12
-	        }
+	        console.log(this.arr)
+	        if (this.arr.length) {
+	          for (var i = 0, len = this.arr.length; i < len; i++) {
+	          	  this.totalNum += this.arr[i].num * 1 
+								this.count += this.arr[i].num * parseInt(this.arr[i].price)
+								this.countPrice = this.count + 12
+	          }
+         }
         }else if(routeId==1){      	
         	//取直接购买的商品信息         	
         	let obj_arr = storage.getItem('buyNow_Key')
@@ -419,7 +425,6 @@ export default {
 			background: #fafafa;
 			padding: rem(5rem) 3%;
 			dl{
-				width: 70%;
 				float: left;
 				dt{
 					width: rem(92rem);
@@ -455,6 +460,7 @@ export default {
 		width: 94%;
 		background: #fff;
 		padding: 0 3%;
+		margin-bottom: rem(48rem);
 		dl{
 			width: 100%;
 			height: rem(47rem);
@@ -488,7 +494,7 @@ export default {
 		width: 100%;
 		height: rem(48rem);
 		background: #fff;
-		position: absolute;
+		position: fixed;
 		left: 0;
 		bottom: 0;		
 		.submitOrder{
