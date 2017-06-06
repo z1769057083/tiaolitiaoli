@@ -7,9 +7,9 @@
                     <div v-if="item.isQuestion" class="m-charperson"><img :src='imgUrl'/></div>
                     <div v-if="!item.isQuestion" class="m-charperson"><img :src="myselfAvatar"/></div>
                     <div class="m-charcont">
-	                    <img v-if="item.isQuestion" src="../../static/images/messageDlogLeft.png"/>
-	                    <img v-if="!item.isQuestion"  src="../../static/images/messageDlogRight.png"/>
-	                    {{renderedMessages[index].content}}
+                        <img v-if="item.isQuestion" src="../../static/images/messageDlogLeft.png"/>
+                        <img v-if="!item.isQuestion" src="../../static/images/messageDlogRight.png"/>
+                        {{renderedMessages[index].content}}
                     </div>
                 </div>
             </div>
@@ -44,7 +44,8 @@
                              @updateUserAnswer="updateUserAnswer"></parentsBirthday>
             <!--先天体质报告问题结束-->
             <!--后天体质报告问题-->
-            <physiology class='hidden' :class="{show: index == 14 &&questionSection=='houTian'}" @updateUserAnswer="updateUserAnswer"></physiology>
+            <physiology class='hidden' :class="{show: index == 14 &&questionSection=='houTian'}"
+                        @updateUserAnswer="updateUserAnswer"></physiology>
             <aftertreat v-if="index == 15 &&questionSection=='houTian'"
                         @updateUserAnswer="updateUserAnswer"></aftertreat>
 
@@ -89,7 +90,7 @@
                 renderedMessages: [],
                 questions: [],
                 imgUrl: '',
-                isCurrentQuestionFinished:false,
+                isCurrentQuestionFinished: false,
                 myselfAvatar: '../static/images/indexheadportrait.png',
                 maskhidden: false,
                 uploadHidden: false,
@@ -103,7 +104,7 @@
             gender, city, emotion, season, looks, skinColor, limbs, treatOthers1,
             treatOthers2, treatOthers3, treatOthers4, parentsBirthday,
             aftertreat, maskconfirm, physiology, uploadMode, afterCrescent, headForm,
-            character,temperament
+            character, temperament
         },
         computed: {
             isFinished: function () {
@@ -130,18 +131,24 @@
             checkFemaleQuestion(that){
                 debugger;
                 var xianTianAnswer = JSON.parse(localStorage.getItem(XianTianAnswer_Index));
-                var isMale=xianTianAnswer.gender==='M';
-                var diffValue=that.questionSection === XianTianSectionType?0:1;
-                if(that.questions[that.index-diffValue+1]&&that.questions[that.index-diffValue+1].questionName==='femaleStatus'&&isMale){
-                    that.index=that.index+2;
+                if (xianTianAnswer==null||typeof(xianTianAnswer) === 'undefined') {
+                    that.index = that.index + 1;
                 }
                 else {
-                    that.index=that.index+1;
+                    var isMale = xianTianAnswer.gender === 'M';
+                    var diffValue = that.questionSection === XianTianSectionType ? 0 : 1;
+                    if (that.questions[that.index - diffValue + 1] && that.questions[that.index - diffValue + 1].questionName === 'femaleStatus' && isMale) {
+                        that.index = that.index + 2;
+                    }
+                    else {
+                        that.index = that.index + 1;
+                    }
                 }
+
             },
             updateUserAnswer(answerParams) {
 
-                this.isCurrentQuestionFinished=true;
+                this.isCurrentQuestionFinished = true;
                 this.pendingAnswer = answerParams;
                 for (let key in answerParams) {
                     if (this.questionSection == XianTianSectionType) {
@@ -153,28 +160,30 @@
                 }
             },
             confirm () {
-                if(!this.isCurrentQuestionFinished){
+                if (!this.isCurrentQuestionFinished) {
                     Toast({
                         message: '请先完成当前问题',
-                        position:'top',
+                        position: 'top',
                     });
                     return;
                 }
-                this.isCurrentQuestionFinished=false;
+                this.isCurrentQuestionFinished = false;
                 console.log(this.xianTianAnswer)
 
-                var answer = { isQuestion: false,content:'' };
+                var answer = { isQuestion: false, content: '' };
                 for (let key in this.pendingAnswer) {
                     answer.content += answerHelper.getAnswerText(key, this.pendingAnswer[key]);
                 }
-                if(answer.content===''){answer.content='回答完毕';}
+                if (answer.content === '') {
+                    answer.content = '回答完毕';
+                }
                 this.renderedMessages.push(answer);
                 this.checkFemaleQuestion(this);
                 var that = this;
-                var diffValue=this.questionSection == XianTianSectionType?0:1;
-                if(that.questions[that.index-diffValue]&&that.questions[that.index-diffValue].content){
-                	 var item = { isQuestion: true };
-                    item.content = that.questions[that.index-diffValue].content;
+                var diffValue = this.questionSection == XianTianSectionType ? 0 : 1;
+                if (that.questions[that.index - diffValue] && that.questions[that.index - diffValue].content) {
+                    var item = { isQuestion: true };
+                    item.content = that.questions[that.index - diffValue].content;
                     that.renderedMessages.push(item);
                 }
 //                setTimeout(function(){
@@ -278,87 +287,92 @@
         border-bottom: rem(4rem) solid #dab589;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
-	    .m-charscroll {
-	        width: 100%;
-		    .m-chardocter {
-		        width: 78%;
-		        margin-left: 7%;
-		        overflow: hidden;
-		        display: flex;
-		        margin-bottom: rem(14rem);
-		
-			    .m-charperson {
-			        width: 1.07rem;
-			        height: 1.07rem;
-			        margin-right: rem(12rem);
-			
-				    img {
-				        width: 1.07rem;
-				        height: 1.07rem;
-				    }
-	
-		    	}
-			    .m-charcont {
-			        color: #3c3c3c;
-			        line-height: 0.56rem;
-			        font-size: 0.37rem;
-			        padding: 0.21rem 0.32rem;
-			        border-radius: 0.15rem;
-			        letter-spacing: 0.01rem;
-			        max-width: 72%;
-			        position: relative;
-			        background: #fff;
-			        img{
-			        	width: rem(7rem);
-			        	height: rem(14rem);
-			        	position: absolute;
-			        	top: rem(10rem);
-			        	left: rem(-7rem);
-			        }
-			        
-			    }
-	    	}
-		    .m-charcustom {
-		        width: 78%;
-		        margin-right: 7%;
-		        overflow: hidden;
-		        margin-bottom: rem(14rem);
-		        float: right;
-			
-			    .m-charperson {
-			        width: 1.07rem;
-			        height: 1.07rem;
-			        float: right;
-			        margin-left: rem(12rem);
-			
-				    img {
-				        width: 1.07rem;
-				        height: 1.07rem;
-				    }
-			
-			    }
-			    .m-charcont {
-			        color: #3c3c3c;
-			        background: #fff;
-			        line-height: 0.56rem;
-			        font-size: 0.37rem;
-			        padding: 0.21rem 0.32rem;
-			        border-radius: 0.15rem;
-			        letter-spacing: 0.01rem;
-			        float: right;
-			        max-width: 72%;
-			        position: relative;
-			        img{
-			        	width: rem(7rem);
-			        	height: rem(14rem);
-			        	position: absolute;
-			        	top: rem(10rem);
-			        	right: rem(-7rem);
-			        }
-			    }
-		
-		    }
-    	}
+
+    .m-charscroll {
+        width: 100%;
+
+    .m-chardocter {
+        width: 78%;
+        margin-left: 7%;
+        overflow: hidden;
+        display: flex;
+        margin-bottom: rem(14rem);
+
+    .m-charperson {
+        width: 1.07rem;
+        height: 1.07rem;
+        margin-right: rem(12rem);
+
+    img {
+        width: 1.07rem;
+        height: 1.07rem;
+    }
+
+    }
+    .m-charcont {
+        color: #3c3c3c;
+        line-height: 0.56rem;
+        font-size: 0.37rem;
+        padding: 0.21rem 0.32rem;
+        border-radius: 0.15rem;
+        letter-spacing: 0.01rem;
+        max-width: 72%;
+        position: relative;
+        background: #fff;
+
+    img {
+        width: rem(7rem);
+        height: rem(14rem);
+        position: absolute;
+        top: rem(10rem);
+        left: rem(-7rem);
+    }
+
+    }
+    }
+    .m-charcustom {
+        width: 78%;
+        margin-right: 7%;
+        overflow: hidden;
+        margin-bottom: rem(14rem);
+        float: right;
+
+    .m-charperson {
+        width: 1.07rem;
+        height: 1.07rem;
+        float: right;
+        margin-left: rem(12rem);
+
+    img {
+        width: 1.07rem;
+        height: 1.07rem;
+    }
+
+    }
+    .m-charcont {
+        color: #3c3c3c;
+        background: #fff;
+        line-height: 0.56rem;
+        font-size: 0.37rem;
+        padding: 0.21rem 0.32rem;
+        border-radius: 0.15rem;
+        letter-spacing: 0.01rem;
+        float: right;
+        max-width: 72%;
+        position: relative;
+
+    img {
+        width: rem(7rem);
+        height: rem(14rem);
+        position: absolute;
+        top: rem(10rem);
+        right: rem(-7rem);
+    }
+
+    }
+
+    }
+    }
     }
     .m-select {
         width: 100%;
