@@ -34,7 +34,7 @@ export default {
   getAnswerText: (question, value) => {
     var answer = AnswerLib[question];
     var text = '';
-    if(typeof(answer)=='undefined'){return ''}
+    if(typeof(answer)=='undefined'){return '回答完毕'}
     if (answer&&answer.isFormat) {
       text = answer.text.format(value);
     } else if(typeof(answer.isArray)!=='undefined'&&answer.isArray){
