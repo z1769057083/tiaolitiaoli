@@ -8,10 +8,10 @@
 			<img class="recuperatebg" src="../assets/recuperatebg.png"/>
 			<div class="recuperate-mcon">
 				<div class="mcon-name">
-					<span>姓名:芝麻姑娘</span>
-					<span>年龄:25</span>
-					<span>性别:女</span>
-					<span>备注:备孕</span>
+					<span>姓名:{{nickname}}</span>
+					<span>年龄:{{age}}</span>
+					<span>性别:{{genderText}}</span>
+					<span>备注:{{comments}}</span>
 				</div>
 				<div class="mcon-symptom">
 					<span>主述症状:</span>饭后上中腹痛，或有恶心、抠吐、积食感，病腹疼痛难忍
@@ -94,6 +94,33 @@
 		</div>
    </div>
 </template>
+<script>
+    import axios from 'axios'
+    import api from '../api/api'
+    import ReportHelper from '../../static/reportHelper';
+    import Common from '../../static/common';
+    export default {
+        data (){
+            return{
+                nickname:'',
+				age:'',
+				genderText:'',
+				comments:''
+            }
+        },
+        mounted(){
+            let user=JSON.parse(localStorage.getItem(Account_Index));
+            let xianTianData=JSON.parse(localStorage.getItem(XianTianAnswer_Index));
+            let houTianData=JSON.parse(localStorage.getItem(HouTianAnswer_Index));
+            this.nickname=user.nickname;
+            this.genderText=xianTianData.gender=='F'?'女':'男';
+            this.age=new Date().getFullYear()- new Date(xianTianData.birthday).getFullYear();
+            if(houTianData&&houTianData.femaleStatus){
+                this.comments=houTianData.femaleStatus;
+			}
+        }
+    }
+</script>
 <style scoped lang="scss">
 @import "../common/common.scss";
 .recuperate{

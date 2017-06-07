@@ -13,7 +13,7 @@
 	        	<div class="r-mreport">
 	        		<div class="r-mrcontent">
 	        			<h3>先天体质</h3>
-	        			<p>水平、火强、土平、金平、水平</p>
+	        			<p>{{wuXingXianTianStatusText}}</p>
 	        			<router-link to='/report'>
 		        			<div class="right">
 		        				<img src="../assets/afterRdetail.png"/>
@@ -22,7 +22,9 @@
 	        		</div>
 	        		<div class="r-mrcontent">
 	        			<h3>后天体质</h3>
-	        		    <p class="r-mrconp">相比先天体质，你的后天体质得到改善</p>
+	        		    <p class="r-mrconp">
+							{{wuXingHouTianStatusText}}<br>
+							相比先天体质，你的后天体质得到改善</p>
 	        		    <div class="right" @click='afterReport'>
 	        				<img src="../assets/afterRdetail.png"/>
 	        			</div>
@@ -71,6 +73,8 @@ export default {
   		list:[],
         wuXingReportContent: '',
         wuXingStatusText: '',
+		wuXingXianTianStatusText:'',
+		wuXingHouTianStatusText:'',
   		afterReportHidden: false
   	}
   },
@@ -96,6 +100,8 @@ export default {
           ReportHelper.loadChart('chart-container',items)
 
           this.wuXingStatusText=Common.parseWuXingLevelToText(report.wuXingLevel);
+          this.wuXingXianTianStatusText=Common.parseWuXingLevelToText(report.wuXingXianTianLevel);
+          this.wuXingHouTianStatusText=Common.parseWuXingLevelToText(report.wuXingHouTianLevel);
           let wuXingReportContentText = '';
           if (typeof (report.report) != 'undefined' && report.report != '') {
               for (let index = 0; index < report.report.length; index++) {
