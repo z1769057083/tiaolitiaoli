@@ -39,20 +39,19 @@
 							</dd>
 						</router-link>	
 					</dl>
-					<!--<dl class="s-marticlecon1">
-						<dt>
-							<h3>坐月子是女人调养体质的最佳时期，月子注意这些事，一生不落病</h3>
-						</dt>
-						<dd class="s-martimg">
-							<img src="../assets/shoparticle1.png"/>
-						</dd>
-						<dd class="s-martimg">
-							<img src="../assets/shoparticle1.png"/>
-						</dd>
-						<dd class="s-martimg">
-							<img src="../assets/shoparticle1.png"/>
-						</dd>
-					</dl>-->
+					<div class="s-marticlecon1">
+						<dl>
+							<dt>
+								<h3>推荐商品</h3>
+							</dt>							
+							<dd class="s-martimg" v-for='recommendItem in recommendlist'>
+								<router-link :to="{ name: 'goodsdetail', query: { itemid: recommendItem._id }}">
+									<img :src="'http://139.162.116.116/image/product/'+recommendItem.index+'.png'" 
+							  		onerror="this.src='http://placeholder.qiniudn.com/800'"/>
+							  </router-link>
+							</dd>							
+						</dl>	
+					</div>
 				</div>
 			</div>
 			<!--商品部分-->
@@ -100,7 +99,6 @@ export default {
 		  	if(res.data.errorCode == 0){
 		  		res = res.data.returnValue
 		  		that.listem = res
-		  		console.log(that.listem)
 		  	}
 		  })
 		  .catch(function (error) {
@@ -109,16 +107,20 @@ export default {
 	  },
 	  recommend(){
 	  	var that = this;
-	  	axios.get(api.recommendData)
-		  .then(function (res) {
-		  	if(res.data.errorCode == 0){
-					res = res.data.returnValue
-		  		that.recommendlist = res
-		  	}
-		  })
-		  .catch(function (error) {
-		    console.log(error)
-		  })
+		  if (window.localStorage.getItem(Account_Index) !== null) {
+	        let account = JSON.parse(window.localStorage.getItem(Account_Index))
+	        axios.get(api.recommendData+account._id)
+					  .then(function (res) {
+					  	if(res.data.errorCode == 0){
+								res = res.data.returnValue
+					  		that.recommendlist = res
+					  		console.log(that.recommendlist)
+					  	}
+					  })
+					  .catch(function (error) {
+					    console.log(error)
+					  })
+	   }	  	
 	  },
 	  getSoup(){
 	  	var that = this;
@@ -127,7 +129,6 @@ export default {
 		  	if(res.data.errorCode == 0){
 					res = res.data.returnValue
 		  		that.getSouplist = res
-		  		console.log(that.getSouplist)
 		  	}
 		  })
 		  .catch(function (error) {

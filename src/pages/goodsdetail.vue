@@ -22,6 +22,10 @@
 				  	<img src="../assets/listline.png"/><span>商品详情</span><img src="../assets/listline.png"/>
 				  </div>
 				  <div class="l-mgooddetail">
+				  	<p>功效：{{list.effect}}</p>
+						<p>禁用：{{list.avoid}}</p>
+						<p>{{list.description}}</p>
+						<p>适用人群：{{list.fit_people}}</p>
 				  	<img v-for='imgItem in list.images' 
 				  		:src="'http://139.162.116.116/image/product/'+imgItem+'/1.jpg'" 
 							onerror="this.src='http://placeholder.qiniudn.com/800'"/>
@@ -77,7 +81,7 @@
 				<div class="mask-shopCar">
 					<div class="shopCar-main">
 						<dl>
-							<dt><img :src="'http://139.162.116.116/image/product/'+list.index+'/1.jpg'" 
+							<dt><img :src="'http://139.162.116.116/image/product/39/'+list.index+'/.jpg'" 
 							         onerror="this.src='http://placeholder.qiniudn.com/800'"/></dt>
 							<dd>
 							     <p>{{list.priceText}}</p>
@@ -132,26 +136,13 @@
             if (res.data.errorCode == 0) {
               res = res.data.returnValue
               that.list = res
+              console.log(res)
             }
           })
           .catch(function (error) {
             console.log(error)
           })
       },
-//    singleSoupList(){
-//      var that = this;
-//      that.soupId = this.$route.query.soupId;
-//      axios.get(api.singleSoupData + that.soupId)
-//        .then(function (res) {
-//          if (res.data.errorCode == 0) {
-//            res = res.data.returnValue
-//             that.list = res
-//          }
-//        })
-//        .catch(function (error) {
-//          console.log(error)
-//        })
-//    },
       confirm(){
       	this.shopingCatrDotted = true
         this.toastHidden = true
@@ -330,6 +321,7 @@
 			  	background: #fff;
 			 	  text-align: center;
 			 		vertical-align: middle;
+			 		margin-bottom: rem(10rem);
 			 		span{
 				  	margin: 0 3%;
 				  	color: #3C3C3C;
@@ -344,9 +336,17 @@
 			  .l-mgooddetail{
 			  	width: 100%;
 			  	overflow: hidden;
+			  	background: #fff;
 			  	img{
 				  	width: 100%;
 				  	height: 100%;
+				  }
+				  p{
+				  	line-height: rem(26rem);
+				  	font-size: $font14;
+				  	width: 92%;
+				  	margin:rem(10rem) 0 rem(10rem) 4%;
+				  	
 				  }
 			  }
 	  	}

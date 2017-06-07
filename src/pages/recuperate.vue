@@ -43,6 +43,19 @@
 								</dd>
 							</router-link>	
 						</dl>
+						<div class="s-marticlecon1">
+							<dl>
+								<dt>
+									<h3>推荐商品</h3>
+								</dt>							
+								<dd class="s-martimg" v-for='recommendItem in recommendlist'>
+									<router-link :to="{ name: 'goodsdetail', query: { itemid: recommendItem._id }}">
+										<img :src="'http://139.162.116.116/image/product/'+recommendItem.index+'.png'" 
+								  		onerror="this.src='http://placeholder.qiniudn.com/800'"/>
+								  </router-link>
+								</dd>							
+							</dl>	
+						</div>
 					</div>
 					<!--商品部分-->
 			        <div class="s-mgoods">
@@ -84,6 +97,7 @@
 				genderText:'',
 				comments:'',
 				listem:[],
+				recommendlist:[],
 			    getSouplist:[]
             }
         },
@@ -115,7 +129,23 @@
 				  .catch(function (error) {
 				    console.log(error)
 				  })
-			  }
+			  },
+			  recommend(){
+			  	var that = this;
+				  if (window.localStorage.getItem(Account_Index) !== null) {
+			        let account = JSON.parse(window.localStorage.getItem(Account_Index))
+			        axios.get(api.recommendData+account._id)
+							  .then(function (res) {
+							  	if(res.data.errorCode == 0){
+										res = res.data.returnValue
+							  		that.recommendlist = res
+							  		console.log(that.recommendlist)
+							  	}
+							  })
+							  .catch(function (error) {
+							    console.log(error)
+							  })
+			   }	 
         },
         mounted(){
         	document.title ='调理方法'
@@ -123,6 +153,7 @@
             document.body.scrollTop = 0
         	this.requestlist()
 		  	this.getSoup()
+		  	this.recommend()
             let user=JSON.parse(localStorage.getItem(Account_Index));
             let xianTianData=JSON.parse(localStorage.getItem(XianTianAnswer_Index));
             let houTianData=JSON.parse(localStorage.getItem(HouTianAnswer_Index));
@@ -134,6 +165,8 @@
 			}
         }
     }
+        }
+    
 </script>
 <style scoped lang="scss">
 @import "../common/common.scss";

@@ -124,7 +124,7 @@ import Toast from '@/packages/toast'
         		this.isSelectAll = false
         		this.isCheckAll()        		
         	}else{
-        		this.isCheckAll()
+        		this.isCheckAll()        		
         	}
    		}
  	},

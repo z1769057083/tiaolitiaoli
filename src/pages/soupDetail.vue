@@ -24,15 +24,35 @@
   	</div>  
   </div>
 </template>
-
 <script>
 	import axios from 'axios'
 	import api from '../api/api';
   export default {
     data(){
     	return{
-    		
+    		list:[]
     	}
+    },
+    methods:{
+      singleSoupList(){
+        var that = this;
+        that.soupId = this.$route.query.soupId;
+        console.log(that.soupId)
+        axios.get(api.singleSoupData + that.soupId)
+          .then(function (res) {
+            if (res.data.errorCode == 0) {
+              res = res.data.returnValue
+               that.list = res
+               console.log(that.list)
+            }
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+      }
+    },
+    mounted(){
+    	this.singleSoupList()
     }
   }
 </script>
