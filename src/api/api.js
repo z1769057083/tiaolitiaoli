@@ -12,7 +12,7 @@ module.exports = {
     generateReportData: apiPath + '/report/generate', // 获取报告
     allDoodsData: apiPath + '/product/category?category=', // 查看全部商品
     allSoupData: apiPath + '/product/get_soup', //获取汤品
-    singleSoupData: apiPath + '/product/get_single_soup?id=' //获取汤品详情
+    singleSoupData: apiPath + '/product/get_single_soup?id=' ,//获取汤品详情
     generateTestAccount: apiPath + '/wechat/test_save_userInfo',
     getReport: apiPath + '/report/get_report'
 }
