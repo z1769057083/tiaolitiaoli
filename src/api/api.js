@@ -1,6 +1,6 @@
 // api use part
    let apiPath = 'http://139.162.116.116';
-//let apiPath = 'http://localhost:3333';
+// let apiPath = 'http://localhost:3333';
 // let apiPath = 'http://192.168.31.248:3333';
 module.exports = {
     shopData: apiPath + '/product/all', // 商城首页
@@ -10,5 +10,7 @@ module.exports = {
     saveAnswer: apiPath + '/report/save_answer',
     getUserByOpenId: apiPath + '/user/get_user_by_openid',
     generateReportData: apiPath + '/report/generate', // 获取报告
-    allDoodsData: apiPath + '/product/category?category=' // 查看全部商品
+    allDoodsData: apiPath + '/product/category?category=', // 查看全部商品
+    generateTestAccount: apiPath + '/wechat/test_save_userInfo',
+    getReport: apiPath + '/report/get_report'
 }
