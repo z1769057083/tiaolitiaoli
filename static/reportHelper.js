@@ -7,6 +7,7 @@ module.exports = {
                 polar: true,
                 marginTop: 15
             },
+            colors: [ '#eee5d7', '#e2c8a8','#d8b688'],
             credits: {
                 enabled: false // 禁用版权信息
             },
