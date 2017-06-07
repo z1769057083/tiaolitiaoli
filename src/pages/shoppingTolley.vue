@@ -13,22 +13,24 @@
 		    	<span></span>
 		    </div>
 	  	</div>
-	  	<div class="tolley-content" v-for='(item,index) in arr'>
-	  		<div class="tolley-mcon">
-	  			<div class="tolley-check" :class="{active:item.isChecked}" @click='selectGood(index)'></div>	
-		  		<dl>
-	    			<dt><img 
-	    				:src="'http://139.162.116.116/image/product/'+item.img+'/1.jpg'" 
-	    				onerror="this.src='http://placeholder.qiniudn.com/300'"/></dt>
-	    			<dd>
-	    				{{item.name}}
-	    				<p>{{item.priceText}}</p>
-	    			</dd>
-	    		</dl>
-	    		<div class="order-mnum">X<span>{{item.num}}</span></div>
-	    		<div class="delect" @click='delGoods(item,index)'><img src="../assets/tolleyDelect.png"/></div>
+	  	<div class="tolley-cont">
+	  		<div class="tolley-content" v-for='(item,index) in arr'>
+		  		<div class="tolley-mcon">
+		  			<div class="tolley-check" :class="{active:item.isChecked}" @click='selectGood(index)'></div>	
+			  		<dl>
+		    			<dt><img 
+		    				:src="'http://139.162.116.116/image/product/'+item.img+'/1.jpg'" 
+		    				onerror="this.src='http://placeholder.qiniudn.com/300'"/></dt>
+		    			<dd>
+		    				{{item.name}}
+		    				<p>{{item.priceText}}</p>
+		    			</dd>
+		    		</dl>
+		    		<div class="order-mnum">X<span>{{item.num}}</span></div>
+		    		<div class="delect" @click='delGoods(item,index)'><img src="../assets/tolleyDelect.png"/></div>
+			  	</div>
 		  	</div>
-	  	</div>
+	  	</div>	  	
 	  	<div class="tolley-mbottom">
 			<div class="submitOrder" @click='settlement'>结算(<span>{{totalNum}}</span>)</div>
 				<div class="toal">
@@ -237,66 +239,72 @@ import Toast from '@/packages/toast'
 			}
 		}
 	}
-	.tolley-content{
+	.tolley-cont{
 		width: 100%;
 		overflow: hidden;
-		background: #fff;
-		.tolley-mcon{
-			width: 94%;
-			height: rem(92rem);
-			background: #fafafa;
-			padding: rem(5rem) 3%;
-			margin-bottom: rem(10rem);
-			position: relative;
-			transition: transform .3s;
-			.tolley-check{
-				margin: rem(37rem) 3% 0 0;
-			}
-			dl{
-				float: left;
-				dt{
-					width: rem(92rem);
-					height: rem(92rem);
+		margin-bottom: rem(50rem);
+		.tolley-content{
+			width: 100%;
+			overflow: hidden;
+			background: #fff;
+			.tolley-mcon{
+				width: 94%;
+				height: rem(92rem);
+				background: #fafafa;
+				padding: rem(5rem) 3%;
+				margin-bottom: rem(10rem);
+				position: relative;
+				transition: transform .3s;
+				.tolley-check{
+					margin: rem(37rem) 3% 0 0;
+				}
+				dl{
 					float: left;
+					dt{
+						width: rem(92rem);
+						height: rem(92rem);
+						float: left;
+						img{
+							width: 100%;
+							height: 100%;
+						}
+					}
+					dd{
+						float: left;
+						line-height: rem(20rem);
+						margin-left: rem(10rem);
+						p{
+							margin-top: rem(5rem);
+							font-size: $font14;
+							color: #fe4415;
+						}
+					}
+				}
+				.order-mnum{
+					float: right;
+					line-height: rem(46rem);
+					color: #9c9c9c;
+					span{
+						font-size: $font14;
+					}
+				}
+				.delect{
+					width: rem(15rem);
+					height: rem(19rem);
+					position: absolute;
+					bottom: rem(10rem);
+					right: rem(10rem);
+					text-align: center;
+					font-size: $font14;
 					img{
 						width: 100%;
 						height: 100%;
 					}
 				}
-				dd{
-					float: left;
-					line-height: rem(20rem);
-					margin-left: rem(10rem);
-					p{
-						margin-top: rem(5rem);
-						font-size: $font14;
-						color: #fe4415;
-					}
-				}
-			}
-			.order-mnum{
-				float: right;
-				line-height: rem(46rem);
-				color: #9c9c9c;
-				span{
-					font-size: $font14;
-				}
-			}
-			.delect{
-				width: rem(15rem);
-				height: rem(19rem);
-				position: absolute;
-				bottom: rem(10rem);
-				right: rem(10rem);
-				text-align: center;
-				font-size: $font14;
-				img{
-					width: 100%;
-					height: 100%;
-				}
 			}
 		}
 	}
+	
 	.tolley-mbottom{
 		width: 97%;
 		height: rem(48rem);
@@ -304,7 +312,8 @@ import Toast from '@/packages/toast'
 		position: fixed;
 		left: 0;
 		bottom: 0;
-		padding-left: 3%;		
+		padding-left: 3%;
+		border-top: 1px solid #f6f6f6;		
 		.submitOrder{
 			width: 24%;
 			float: right;
@@ -336,7 +345,7 @@ import Toast from '@/packages/toast'
 		}
 	}
 }
-.shopConfirm-toast{
+    .shopConfirm-toast{
 		width: 100%;
 		height: 100%;
 		position: absolute;

@@ -521,7 +521,8 @@ export default {
 		background: #fff;
 		position: fixed;
 		left: 0;
-		bottom: 0;		
+		bottom: 0;	
+		border-top: 1px solid #f6f6f6;	
 		.submitOrder{
 			width: 24%;
 			float: right;
