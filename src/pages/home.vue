@@ -2,7 +2,7 @@
     <div class='home'>
         <div class='i-content'>
             <div class='i-headbot'>
-                <div class='i-headbottext'>你是第12580位测试者</div>
+                <div class='i-headbottext'>你是第{{visitorCount}}位测试者</div>
             </div>
             <div class='i-main'>
                 <h3 class='i-maintop'>体质检测</h3>
@@ -32,9 +32,14 @@
     </div>
 </template>
 <script>
+
+    import axios from 'axios'
+    import api from '../api/api'
 export default {
     data() {
-        return {}
+        return {
+            visitorCount:-1,
+        }
     },
     methods: {
         //点击事件存title
@@ -56,6 +61,13 @@ export default {
     },
     mounted() {
         document.title = "调理调理"
+        let that =this
+        axios.get(api.getUserCount)
+            .then(function (res) {
+                if (res.data.errorCode == 0) {
+                    that.visitorCount=res.data.returnValue
+                }
+            })
     }
 }
 </script>
