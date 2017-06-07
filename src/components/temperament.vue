@@ -26,50 +26,52 @@
 	  		<dl :class="{'active': temperament === 3}" @click="change_active(3,'1','temperament',$event)">
 	  			<dt><img src="../assets/tempate4.png"/></dt>
 	  			<dd>
-	  				聪明能干、事业心强<br>
+	  				精明能干、事业心强<br>
 	  				情感专一、控制欲强
 	  			</dd>
 	  		</dl>
 	  		<dl :class="{'active': temperament === 4}" @click="change_active(4,'1','temperament',$event)">
 	  			<dt><img src="../assets/tempate5.png"/></dt>
 	  			<dd>
-	  				善良温和、与人为善<br>
-	  				不轻易妥协、有恒心
+	  				性情高冷、独来独往<br>
+	  				有洁癖、有才华
 	  			</dd>
 	  		</dl>
 	  		<dl :class="{'active': temperament === 5}" @click="change_active(5,'1','temperament',$event)">
 	  			<dt><img src="../assets/tempate6.png"/></dt>
 	  			<dd>
-	  				善良温和、与人为善<br>
-	  				不轻易妥协、有恒心
+	  				踏实专一、和善友好<br>
+	  				有包容心、会照顾人
 	  			</dd>
 	  		</dl>
 	  		<dl :class="{'active': temperament === 6}" @click="change_active(6,'1','temperament',$event)">
 	  			<dt><img src="../assets/tempate7.png"/></dt>
 	  			<dd>
-	  				善良温和、与人为善<br>
-	  				不轻易妥协、有恒心
+	  				美丽聪慧、柔情似水<br>
+	  				桀骜不驯、疾恶如仇
+	  				
 	  			</dd>
 	  		</dl>
 	  		<dl :class="{'active': temperament === 7}" @click="change_active(7,'1','temperament',$event)">
 	  			<dt><img src="../assets/tempate8.png"/></dt>
 	  			<dd>
-	  				善良温和、与人为善<br>
-	  				不轻易妥协、有恒心
+	  				聪明能干、维护领导<br>
+	  				宽容大度、处事平和
+
 	  			</dd>
 	  		</dl>
 	  		<dl :class="{'active': temperament === 8}" @click="change_active(8,'1','temperament',$event)">
 	  			<dt><img src="../assets/tempate9.png"/></dt>
 	  			<dd>
-	  				善良温和、与人为善<br>
-	  				不轻易妥协、有恒心
+	  				敢说敢为、办事练达<br>
+	  				志趣高雅、大方开朗
 	  			</dd>
 	  		</dl>
 	  		<dl :class="{'active': temperament === 9}" @click="change_active(9,'1','temperament',$event)">
 	  			<dt><img src="../assets/tempate10.png"/></dt>
 	  			<dd>
-	  				善良温和、与人为善<br>
-	  				不轻易妥协、有恒心
+	  				贞静淡泊、清雅端庄<br>
+	  				处事明达、沉静从容
 	  			</dd>
 	  		</dl>
 	  		<div class="temper-bottom"></div>

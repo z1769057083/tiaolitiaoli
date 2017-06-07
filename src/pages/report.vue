@@ -84,7 +84,7 @@
             }
         },
         mounted() {
-            document.title = "体质报告"
+            document.title = "先天体质报告"
             this.renderReport();
             document.documentElement.scrollTop = 0
             document.body.scrollTop = 0

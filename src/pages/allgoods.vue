@@ -48,6 +48,7 @@ export default {
   },
   mounted() {
   	this.requestlist()
+  	document.title = "商品列表"
   	document.documentElement.scrollTop = 0
     document.body.scrollTop =0
   }

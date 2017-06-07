@@ -254,6 +254,7 @@
       	this.shopingCatrDotted = false	
       }
       console.log(this.arr)
+      document.title ='商品详情'
     }
   }
 </script>

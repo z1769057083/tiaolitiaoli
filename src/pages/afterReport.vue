@@ -125,7 +125,7 @@ export default {
       }
   },
   mounted() {
-	  document.title="体质报告"
+	  document.title="后天体质报告"
       let that=this
 	  let userId=JSON.parse(localStorage.getItem(Account_Index))._id
       axios.get(api.getReport+"?userId="+userId+"&reportType=houTian")
@@ -241,7 +241,7 @@ export default {
 	width: 100%;
 	height: 100%;
 	background: rgba(0,0,0,0.6);
-	position: absolute;
+	position: fixed;
 	bottom: 0;
 	left: 0;
 	top: 0;

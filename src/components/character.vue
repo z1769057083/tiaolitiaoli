@@ -5,43 +5,44 @@
 	  		<dl :class="{'active': character === 0}" @click="change_active(0,'1','character',$event)">
 	  			<dt><img src="../assets/character1.png"/></dt>
 	  			<dd>
-	  				善良温和、与人为善<br>
-	  				不轻易妥协、有恒心
+	  				博学多才、足智多谋<br>
+	  				
 	  			</dd>
 	  		</dl>
 	  		<dl :class="{'active': character === 1}" @click="change_active(1,'1','character',$event)">
 	  			<dt><img src="../assets/character2.png"/></dt>
 	  			<dd>
-	  				善良温和、与人为善<br>
-	  				不轻易妥协、有恒心
+	  				有魄力、讲义气<br>
+	  				请财务、要面子
 	  			</dd>
 	  		</dl>
 	  		<dl :class="{'active': character === 2}" @click="change_active(2,'1','character',$event)">
 	  			<dt><img src="../assets/character3.png"/></dt>
 	  			<dd>
-	  				善良温和、与人为善<br>
-	  				不轻易妥协、有恒心
+	  				吃嘛嘛香、不喜动<br>
+	  				容易知足、不爱操心
 	  			</dd>
 	  		</dl>
 	  		<dl :class="{'active': character === 3}" @click="change_active(3,'1','character',$event)">
 	  			<dt><img src="../assets/character4.png"/></dt>
 	  			<dd>
-	  				善良温和、与人为善<br>
-	  				不轻易妥协、有恒心
+	  				能担大任、善于用人<br>
+	  				行为果断、精力充沛
 	  			</dd>
 	  		</dl>
 	  		<dl :class="{'active': character === 4}" @click="change_active(4,'1','character',$event)">
 	  			<dt><img src="../assets/character5.png"/></dt>
 	  			<dd>
-	  				善良温和、与人为善<br>
-	  				不轻易妥协、有恒心
+	  				处事灵活<br>
+	  				知识面广、有想象力
+	  				
 	  			</dd>
 	  		</dl>
 	  		<dl :class="{'active': character === 5}" @click="change_active(5,'1','character',$event)">
 	  			<dt><img src="../assets/character6.png"/></dt>
 	  			<dd>
-	  				善良温和、与人为善<br>
-	  				不轻易妥协、有恒心
+	  				重感情、讲义气<br>
+	  				慈仁善良、处事稳重
 	  			</dd>
 	  		</dl>
 	  		<dl :class="{'active': character === 6}" @click="change_active(6,'1','character',$event)">
@@ -54,22 +55,22 @@
 	  		<dl :class="{'active': character === 7}" @click="change_active(7,'1','character',$event)">
 	  			<dt><img src="../assets/character8.png"/></dt>
 	  			<dd>
-	  				善良温和、与人为善<br>
-	  				不轻易妥协、有恒心
+	  				喜欢安逸、知足常乐<br>
+	  				幽默风趣、憨厚率直
 	  			</dd>
 	  		</dl>
 	  		<dl :class="{'active': character === 8}" @click="change_active(8,'1','character',$event)">
 	  			<dt><img src="../assets/character9.png"/></dt>
 	  			<dd>
-	  				善良温和、与人为善<br>
-	  				不轻易妥协、有恒心
+	  				聪明好学、追求自由<br>
+	  		                      富正义感、勇于创新
 	  			</dd>
 	  		</dl>
 	  		<dl :class="{'active': character === 9}" @click="change_active(9,'1','character',$event)">
 	  			<dt><img src="../assets/character10.png"/></dt>
 	  			<dd>
-	  				善良温和、与人为善<br>
-	  				不轻易妥协、有恒心
+	  				勤劳稳重、任劳任怨<br>
+	  				默默奉献、逆来顺受
 	  			</dd>
 	  		</dl>
 	  		<div class="temper-bottom"></div>

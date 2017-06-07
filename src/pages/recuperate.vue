@@ -29,67 +29,44 @@
 					</div>
 				</div>
 				<div class="s-marticle">
-				<div class="s-mrecomment">
-					<h3 class="s-marttitle">个性化推荐</h3>
-					<dl class="s-marticlecon">
-						<dt>
-							<h3>音乐调理让你轻松？</h3>
-							中医里很多看似神秘莫测的变化说法
-						</dt>
-						<dd><img src="../assets/shoparticle.png"/></dd>
-					</dl>
-					<dl class="s-marticlecon">
-						<dt>
-							<h3>《黄帝内经》告诉你如何能百病不侵</h3>
-							告诉你如何修炼心法。
-						</dt>
-						<dd><img src="../assets/shoparticle.png"/></dd>
-					</dl>
-					<dl class="s-marticlecon1">
-						<dt>
-							<h3>怎么吃让你更健康？</h3>
-						</dt>
-						<dd class="s-martimg">
-							<img src="../assets/shoparticle1.png"/>
-						</dd>
-						<dd class="s-martimg">
-							<img src="../assets/shoparticle1.png"/>
-						</dd>
-						<dd class="s-martimg">
-							<img src="../assets/shoparticle1.png"/>
-						</dd>
-					</dl>
-						<dl class="s-marticlecon">
-						<dt>
-							<h3>音乐调理让你轻松？</h3>
-							中医里很多看似神秘莫测的变化说法
-						</dt>
-						<dd>
-							<img src="../assets/shoparticle.png"/>
-						</dd>
-					</dl>
-					<dl class="s-marticlecon1">
-						<dt>
-							<h3>中医调理见效快？</h3>
-						</dt>
-						<dd class="s-martimg">
-							<img src="../assets/shoparticle1.png"/>
-							<p class="s-martimgTitle">48小时特惠 引火归元贴</p>
-							<p class="s-martimgPic">¥69.00<span>¥128.00</span></p>
-						</dd>
-						<dd class="s-martimg">
-							<img src="../assets/shoparticle1.png"/>
-							<p class="s-martimgTitle">48小时特惠 引火归元贴</p>
-							<p class="s-martimgPic">¥69.00<span>¥128.00</span></p>
-						</dd>
-						<dd class="s-martimg">
-							<img src="../assets/shoparticle1.png"/>
-							<p class="s-martimgTitle">48小时特惠 引火归元贴</p>
-							<p class="s-martimgPic">¥69.00<span>¥128.00</span></p>
-						</dd>
-					</dl>
+					<div class="s-mrecomment">
+						<h3 class="s-marttitle">个性化推荐</h3>
+						<dl class="s-marticlecon" v-for='soupItem in getSouplist'>
+							<router-link :to="{ name:'soupDetail', query: { soupId: soupItem._id }}">
+								<dt>
+									<h3>{{soupItem.title}}</h3>
+									{{soupItem.material}}
+								</dt>
+								<dd>
+									<img :src="'http://139.162.116.116/image/soup/44/'+soupItem.index+'.jpg'" 
+										  		onerror="this.src='http://placeholder.qiniudn.com/800'"/>
+								</dd>
+							</router-link>	
+						</dl>
+					</div>
+					<!--商品部分-->
+			        <div class="s-mgoods">
+						<div class="s-mrecomment" v-for="(item, index) in listem">
+							<h3 class="h3">{{item.title}}
+								<router-link :to="{ name: 'allgoods', query: { categoryId: item.category }}">
+								<a class="s-mrecomall" href="">查看全部</a>
+								</router-link></h3>
+							<div>
+							<dl class="s-mrecomlist" v-for="temp in item.items">
+									<router-link :to="{ name: 'goodsdetail', query: { itemid: temp._id }}">
+									  <dt class="s-mreconimg">
+									  	<img :src="'http://139.162.116.116/image/product/'+temp.index+'.png'" 
+									  		onerror="this.src='http://placeholder.qiniudn.com/800'"/>
+									  </dt>
+										<dd class="s-mreconintro">
+											<span>{{temp.name}}</span>
+										</dd>
+									</router-link>
+								</dl>
+							</div>
+						</div>
+					</div>
 				</div>
-			</div>
 			</div>
 		</div>
    </div>
@@ -105,10 +82,47 @@
                 nickname:'',
 				age:'',
 				genderText:'',
-				comments:''
+				comments:'',
+				listem:[],
+			    getSouplist:[]
             }
         },
+        methods: {
+        	requestlist(){
+			  	var that = this;
+			  	axios.get(api.shopData)
+				  .then(function (res) {
+				  	if(res.data.errorCode == 0){
+				  		res = res.data.returnValue
+				  		that.listem = res
+				  		console.log(that.listem)
+				  	}
+				  })
+				  .catch(function (error) {
+				    console.log(error)
+				  })
+			},
+			getSoup(){
+			  	var that = this;
+			  	axios.get(api.allSoupData)
+				  .then(function (res) {
+				  	if(res.data.errorCode == 0){
+							res = res.data.returnValue
+				  		that.getSouplist = res
+				  		console.log(that.getSouplist)
+				  	}
+				  })
+				  .catch(function (error) {
+				    console.log(error)
+				  })
+			  }
+        },
         mounted(){
+        	document.title ='调理方法'
+        	document.documentElement.scrollTop = 0
+            document.body.scrollTop = 0
+        	this.requestlist()
+		  	this.getSoup()
             let user=JSON.parse(localStorage.getItem(Account_Index));
             let xianTianData=JSON.parse(localStorage.getItem(XianTianAnswer_Index));
             let houTianData=JSON.parse(localStorage.getItem(HouTianAnswer_Index));
@@ -237,6 +251,10 @@
 				 			font-size: $font12;
 				 			color: #999;
 				 			line-height: rem(18rem);
+				 			display: -webkit-box;
+							-webkit-box-orient: vertical;
+							-webkit-line-clamp: 2;
+							overflow: hidden;
 				 			h3{
 				 				font-size: $font18;
 				 				color: $c3c3c;
@@ -304,6 +322,63 @@
 				 		}
 				 	}
 				}
+					  /*商品列表*/
+			 	.s-mgoods{
+			 		width: 100%;
+			 		overflow: hidden;
+			 		background: #fff;
+			 		.s-mrecomment{
+				 		width: 100%;
+				 		overflow: hidden;
+				 		padding: 0.32rem 0 0.28rem;
+				 		border-bottom: rem(1rem) solid #e8e8e8;
+				 		.h3{
+					 		font-size: 0.42rem;
+					 		line-height: 0.59rem;
+					 		color: #000;
+					 		font-weight: bold;
+					 		margin-bottom: 0.26rem;
+					 		background: url(../assets/shoptitleft.png) no-repeat left;
+					 		padding-left: 2%;
+					 		.s-mrecomall{
+						 		font-size: 0.35rem;
+						 		color: #c69b70;
+						 		float: right;
+						 		font-weight: normal;
+						 		background: url(../assets/s-mrecomall.png) no-repeat right;
+						 		background-size: 0.16rem 0.32rem; 
+						 		padding-right: 3%;
+						 	}
+					 	} 	
+				 	}
+				 	.s-mrecomlist{
+				 		width: 31.9%;
+				 		float: left;
+				 		margin-right: 2.1%;
+				 		margin-bottom: 0.26rem;
+				 		.s-mreconimg{
+					 		width: 100%;
+					 		height: 2.24rem;
+					 		margin-bottom: 0.21rem;
+					 		img{
+						 		width: 100%;
+						 		height: 100%;
+						 	}
+					 	}
+					 	.s-mreconintro{
+					 		width: 100%;
+					 		overflow: hidden;
+					 		span{
+						 		font-size: 0.35rem;
+						 		color: #000;
+						 		line-height: 0.48rem;
+						 	}
+					 	}
+				 	}
+				 	.s-mrecomlist:nth-child(3n){
+				 		margin-right: 0;
+				 	}
+			 	} 
 		 	}
 		}
 	}

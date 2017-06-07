@@ -352,7 +352,7 @@ export default {
         	this.loadOrdersFromBuyNow();
         }
 	     	this.loadDelieverAddress();
-      
+      document.title ='确认订单'
     }
   }
 </script>

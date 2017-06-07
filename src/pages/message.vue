@@ -8,7 +8,7 @@
                     <div v-if="!item.isQuestion" class="m-charperson"><img :src="myselfAvatar"/></div>
                     <div class="m-charcont">
                         <img v-if="item.isQuestion" src="../assets/messageDlogLeft.png"/>
-                        <img v-if="!item.isQuestion" src="../assets/messageDlogLeft.png"/>
+                        <img v-if="!item.isQuestion" src="../assets/messageDlogRight.png"/>
                         {{renderedMessages[index].content}}
                     </div>
                 </div>
@@ -277,11 +277,10 @@
         position: absolute;
         /*overflow: hidden;*/
     }
-
     /*聊天内容*/
     .m-char {
         width: 100%;
-        height: 48%;
+        height: 44%;
         background: #f2f2f2;
         padding-top: rem(20rem);
         border-bottom: rem(4rem) solid #dab589;
@@ -301,13 +300,14 @@
     .m-charperson {
         width: 1.07rem;
         height: 1.07rem;
+        border-radius: 50%;
         margin-right: rem(12rem);
+        overflow: hidden;
 
     img {
         width: 1.07rem;
         height: 1.07rem;
     }
-
     }
     .m-charcont {
         color: #3c3c3c;
@@ -342,6 +342,9 @@
         height: 1.07rem;
         float: right;
         margin-left: rem(12rem);
+        border-radius: 50%;
+        overflow: hidden;
+        
 
     img {
         width: 1.07rem;

@@ -58,7 +58,7 @@
 			<!--商品部分-->
 	    <div class="s-mgoods">
 				<div class="s-mrecomment" v-for="(item, index) in listem">
-					<h3 class="s-marttitle">{{item.categoryName}}
+					<h3 class="s-marttitle">{{item.title}}
 						<router-link :to="{ name: 'allgoods', query: { categoryId: item.category }}">
 						<a class="s-mrecomall" href="">查看全部</a>
 						</router-link></h3>
@@ -100,6 +100,7 @@ export default {
 		  	if(res.data.errorCode == 0){
 		  		res = res.data.returnValue
 		  		that.listem = res
+		  		console.log(that.listem)
 		  	}
 		  })
 		  .catch(function (error) {
@@ -190,6 +191,10 @@ export default {
 			 			font-size: $font12;
 			 			color: #999;
 			 			line-height: rem(20rem);
+			 			display: -webkit-box;
+						-webkit-box-orient: vertical;
+						-webkit-line-clamp: 2;
+						overflow: hidden;
 			 			h3{
 			 				font-size: $font18;
 			 				color: $c3c3c;

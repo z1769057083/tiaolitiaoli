@@ -184,6 +184,7 @@ import Toast from '@/packages/toast'
 	    this.arr.forEach((item)=>{
 			item.isChecked = true
 		})
+	    document.title ='购物车'
 	}
  	
  }
