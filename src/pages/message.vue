@@ -195,7 +195,8 @@
                 }
             },
             saveAndGenerateReport(){
-                var userId = '591e8b4873e713ce5aaddbef';
+                let user=JSON.parse(localStorage.getItem(Account_Index));
+                var userId = user._id;
                 var that = this;
                 var postData = { "answer": {} };
                 if (that.questionSection == XianTianSectionType) {
@@ -206,6 +207,7 @@
                     localStorage.setItem(HouTianAnswer_Index, JSON.stringify(this.houTianAnswer))
                 }
                 postData.userId = userId;
+                console.log(postData);
                 axios.defaults.headers['Content-Type'] = 'application/json';
                 axios.post(api.generateReportData + "?id=" + userId + "&reportType=" + that.questionSection, postData)
                     .then(function (res) {

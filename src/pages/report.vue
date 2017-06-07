@@ -41,6 +41,8 @@
 <script>
     import axios from 'axios'
     import api from '../api/api';
+    import Common from '../../static/common';
+    import ReportHelper from '../../static/reportHelper';
     export default {
         name: 'report',
         data (){
@@ -52,41 +54,17 @@
         },
         methods: {
             renderReport(){
-                var report = JSON.parse(localStorage.getItem(XianTianReport_Index));
-                var wuXingArray = [];
-                for (let key in report.wuXing) {
-                    if (report.wuXing[key] <= 0) {
-                        wuXingArray.push(0.1);
-                    } else {
-                        wuXingArray.push(report.wuXing[key]);
-                    }
-                }
+                let report = JSON.parse(localStorage.getItem(XianTianReport_Index));
+                let wuXingArray = Common.parseWuXingToArray(report.wuXing);
                 this.wuXingStatusText = '';
-                var itemArray = [{
+                let itemArray = [{
                     type: 'area',
                     name: '先天',
-                    data: wuXingArray,
-                    pointPlacement: 'between'
+                    data: wuXingArray
                 }];
-                this.loadChart(itemArray);
-                var wuXingTextMapper = {
-                    'gold': '金',
-                    'wood': '木',
-                    'water': '水',
-                    'fire': '火',
-                    'earth': '土',
-                }
-                for (let key in report.wuXingLevel) {
-                    this.wuXingStatusText += wuXingTextMapper[key];
-                    if (report.wuXingLevel[key] == 0) {
-                        this.wuXingStatusText += '弱';
-                    }
-                    else {
-                        this.wuXingStatusText += '强';
-                    }
-                    this.wuXingStatusText += ','
-                }
-                var wuXingReportContentText = '';
+                ReportHelper.loadChart('chart-container',itemArray);
+                this.wuXingStatusText=Common.parseWuXingLevelToText(report.wuXingLevel);
+                let wuXingReportContentText = '';
                 if (typeof (report.report) != 'undefined' && report.report != '') {
                     for (let index = 0; index < report.report.length; index++) {
                         if(report.report[index].content)
@@ -103,54 +81,6 @@
                     }
                     this.wuXingReportContent = wuXingReportContentText;
                 }
-            },
-            loadChart(items){
-                var chart = new Highcharts.Chart('chart-container', {
-                    chart: {
-                        backgroundColor: 'transparent',
-                        polar: true,
-                        marginTop: 15
-                    },
-                    credits: {
-                        enabled: false // 禁用版权信息
-                    },
-                    title: {
-                        text: null
-                    },
-                    pane: {
-                        startAngle: 0,
-                        endAngle: 360
-                    },
-                    xAxis: {
-                        tickInterval: 72,
-                        min: 0,
-                        max: 360,
-                        labels: {
-                            formatter: function () {
-                                var textArray = ['金', '木', '水', '火', '土']
-                                return textArray[this.value / 72];
-                            }
-                        }
-                    },
-                    yAxis: {
-                        min: 0
-                    },
-                    plotOptions: {
-                        series: {
-                            pointStart: 0,
-                            pointInterval: 72,
-                            marker: {
-                                radius: 1,  //曲线点半径，默认是4
-                                symbol: 'circle' //曲线点类型："circle", "square", "diamond", "triangle","triangle-down"，默认是"circle"
-                            }
-                        },
-                        column: {
-                            pointPadding: 0,
-                            groupPadding: 0
-                        }
-                    },
-                    series: items
-                });
             }
         },
         mounted() {
