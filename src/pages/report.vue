@@ -83,6 +83,8 @@
                     }
                     this.wuXingStatusText += ','
                 }
+                debugger;
+                this.wuXingStatusText=this.wuXingStatusText.trim(',');
                 var wuXingReportContentText = '';
                 if (typeof (report.report) != 'undefined' && report.report != '') {
                     for (let index = 0; index < report.report.length; index++) {

@@ -9,6 +9,17 @@ global.HouTianReport_Index = 'houTianReport'
 global.XianTianAnswer_Index = 'xianTianAnswer_Index'
 global.HouTianAnswer_Index = 'xianTianAnswer_Index'
 global.Version = '0.0.1'
+String.prototype.trim = function (char, type) {
+    if (char) {
+        if (type == 'left') {
+            return this.replace(new RegExp('^\\'+char+'+', 'g'), '');
+        } else if (type == 'right') {
+            return this.replace(new RegExp('\\'+char+'+$', 'g'), '');
+        }
+        return this.replace(new RegExp('^\\'+char+'+|\\'+char+'+$', 'g'), '');
+    }
+    return this.replace(/^\s+|\s+$/g, '');
+};
 
 module.exports = {
     loadXianTianUserData (component){
