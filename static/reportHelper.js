@@ -46,6 +46,14 @@ module.exports = {
                     groupPadding: 0
                 }
             },
+            tooltip:{
+                formatter: function () {
+                    var textArray = ['金', '木', '水', '火', '土'];
+                    var text= textArray[this.x / 72];
+                    return ' <b>' +this.series.name  +
+                        '</b> : '+text +' '+ this.y ;
+                },
+            },
             series: items
         });
     }
