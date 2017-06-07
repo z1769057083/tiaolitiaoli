@@ -7,8 +7,8 @@
                     <div v-if="item.isQuestion" class="m-charperson"><img :src='imgUrl'/></div>
                     <div v-if="!item.isQuestion" class="m-charperson"><img :src="myselfAvatar"/></div>
                     <div class="m-charcont">
-                        <img v-if="item.isQuestion" src="../../static/images/messageDlogLeft.png"/>
-                        <img v-if="!item.isQuestion" src="../../static/images/messageDlogRight.png"/>
+                        <img v-if="item.isQuestion" src="../assets/messageDlogLeft.png"/>
+                        <img v-if="!item.isQuestion" src="../assets/messageDlogLeft.png"/>
                         {{renderedMessages[index].content}}
                     </div>
                 </div>

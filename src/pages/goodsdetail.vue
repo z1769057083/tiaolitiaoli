@@ -15,7 +15,7 @@
 				    </div>
 				  </div>
 				  <div class="l-maddress">
-				  	<img class="l-maddressimgl" src="../assets/listadress.png"/>线下门店
+				  	<img class="l-maddressimgl" src="../assets/listadress.png"/>线下门店：广东省广州市天河区平逸街102号
 				  	<img class="l-maddressimgr" src="../assets/listadressright.png" alt="" />
 				  </div>
 				  <div class="l-mgoodstit">
@@ -118,7 +118,7 @@
         arr: [],
         arr2:[],
         nowArr:[],
-        shopingCatrDotted: false
+        shopingCatrDotted: false,
       }
     },
     components: {
@@ -140,6 +140,20 @@
             console.log(error)
           })
       },
+//    singleSoupList(){
+//      var that = this;
+//      that.soupId = this.$route.query.soupId;
+//      axios.get(api.singleSoupData + that.soupId)
+//        .then(function (res) {
+//          if (res.data.errorCode == 0) {
+//            res = res.data.returnValue
+//             that.list = res
+//          }
+//        })
+//        .catch(function (error) {
+//          console.log(error)
+//        })
+//    },
       confirm(){
       	this.shopingCatrDotted = true
         this.toastHidden = true

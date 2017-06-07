@@ -13,6 +13,7 @@ import cashier from '@/pages/cashier'
 import afterReport from '@/pages/afterReport'
 import recuperate from '@/pages/recuperate'
 import test from '@/pages/testUpload'
+import soupDetail from '@/pages/soupDetail'
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -79,6 +80,11 @@ export default new Router({
       path: '/recuperate',
       component: recuperate,
       name: 'recuperate'
+    },
+    {
+      path: '/soupDetail',
+      component: soupDetail,
+      name: 'soupDetail'
     }
   ]
 })

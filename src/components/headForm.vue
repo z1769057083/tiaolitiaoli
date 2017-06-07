@@ -7,19 +7,19 @@
 	  			<dd>头小长脸</dd>
 	  		</dl>
 	  		<dl :class="{'active': face === 1}" @click="change_active(1,'1','headForm',$event)">
-	  			<dt><img src="../assets/mhead1.png"/></dt>
+	  			<dt><img src="../assets/mhead2.png"/></dt>
 	  			<dd>头顶尖面瘦</dd>
 	  		</dl>
 	  		<dl :class="{'active': face === 2}" @click="change_active(2,'1','headForm',$event)">
-	  			<dt><img src="../assets/mhead1.png"/></dt>
+	  			<dt><img src="../assets/mhead3.png"/></dt>
 	  			<dd>头大面圆</dd>
 	  		</dl>
 	  		<dl :class="{'active': face === 3}" @click="change_active(3,'1','headForm',$event)">
-	  			<dt><img src="../assets/mhead1.png"/></dt>
+	  			<dt><img src="../assets/mhead4.png"/></dt>
 	  			<dd>头大脸宽</dd>
 	  		</dl>
 	  		<dl :class="{'active': face === 4}" @click="change_active(4,'1','headForm',$event)">
-	  			<dt><img src="../assets/mhead1.png"/></dt>
+	  			<dt><img src="../assets/mhead5.png"/></dt>
 	  			<dd>头小面有棱角</dd>
 	  		</dl>
 	  	</div>

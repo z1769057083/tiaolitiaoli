@@ -25,55 +25,21 @@
 			</div>
 			<!--文章部分-->
 			<div class="s-marticle">
-				<div class="s-mrecomment">
+				<div class="s-mrecomment"  >
 					<h3 class="s-marttitle">个性化推荐</h3>
-					<dl class="s-marticlecon">
+					<dl class="s-marticlecon" v-for='soupItem in getSouplist'>
 						<dt>
-							<h3>正常的脉象是啥样的？</h3>
-							中医里很多看似神秘莫测的变化说法，却蕴含诸多令人捉摸不透的真知灼见。
-						</dt>
-						<dd><img src="../assets/shoparticle.png"/></dd>
-					</dl>
-					<dl class="s-marticlecon">
-						<dt>
-							<h3>《黄帝内经》告诉你如何能百病不侵</h3>
-							告诉你如何修炼心法。
-						</dt>
-						<dd><img src="../assets/shoparticle.png"/></dd>
-					</dl>
-					<dl class="s-marticlecon1">
-						<dt>
-							<h3>坐月子是女人调养体质的最佳时期，月子注意这些事，一生不落病</h3>
-						</dt>
-						<dd class="s-martimg">
-							<img src="../assets/shoparticle1.png"/>
-						</dd>
-						<dd class="s-martimg">
-							<img src="../assets/shoparticle1.png"/>
-						</dd>
-						<dd class="s-martimg">
-							<img src="../assets/shoparticle1.png"/>
-						</dd>
-					</dl>
-								<dl class="s-marticlecon">
-						<dt>
-							<h3>正常的脉象是啥样的？</h3>
-							中医里很多看似神秘莫测的说法，却蕴含诸多令人捉摸不透的真知灼见。
+							<h3>{{soupItem.title}}</h3>
+							{{soupItem.material}}
 						</dt>
 						<dd>
-							<img src="../assets/shoparticle.png"/>
+							<router-link :to="{ name: '', query: { soupId: soupItem._id }}">
+								<img :src="'http://139.162.116.116/image/soup/44/'+soupItem.index+'.jpg'" 
+								  		onerror="this.src='http://placeholder.qiniudn.com/800'"/>
+							</router-link>
 						</dd>
 					</dl>
-					<router-link to='/articledetail'>
-					<dl class="s-marticlecon">
-						<dt>
-							<h3>《黄帝内经》告诉你如何能百病不侵</h3>
-							告诉你如何修炼心法。
-						</dt>
-						<dd><img src="../assets/shoparticle.png"/></dd>
-					</dl>
-					</router-link>
-					<dl class="s-marticlecon1">
+					<!--<dl class="s-marticlecon1">
 						<dt>
 							<h3>坐月子是女人调养体质的最佳时期，月子注意这些事，一生不落病</h3>
 						</dt>
@@ -86,7 +52,7 @@
 						<dd class="s-martimg">
 							<img src="../assets/shoparticle1.png"/>
 						</dd>
-					</dl>
+					</dl>-->
 				</div>
 			</div>
 			<!--商品部分-->
@@ -123,7 +89,8 @@ export default {
   data(){
   	return {
       listem:[],
-      recommendlist:[]
+      recommendlist:[],
+      getSouplist:[]
     }
   },
   methods: {
@@ -134,7 +101,6 @@ export default {
 		  	if(res.data.errorCode == 0){
 		  		res = res.data.returnValue
 		  		that.listem = res
-		  		console.log(res)
 		  	}
 		  })
 		  .catch(function (error) {
@@ -153,11 +119,26 @@ export default {
 		  .catch(function (error) {
 		    console.log(error)
 		  })
+	  },
+	  getSoup(){
+	  	var that = this;
+	  	axios.get(api.allSoupData)
+		  .then(function (res) {
+		  	if(res.data.errorCode == 0){
+					res = res.data.returnValue
+		  		that.getSouplist = res
+		  		console.log(that.getSouplist)
+		  	}
+		  })
+		  .catch(function (error) {
+		    console.log(error)
+		  })
 	  }
   },
   mounted() {
   	this.requestlist()
   	this.recommend()
+  	this.getSoup()
   	document.title="在线商城"
   	document.documentElement.scrollTop = 0
     document.body.scrollTop = 0

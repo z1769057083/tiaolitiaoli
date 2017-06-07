@@ -26,7 +26,7 @@
 	    			</dd>
 	    		</dl>
 	    		<div class="order-mnum">X<span>{{item.num}}</span></div>
-	    		<div class="delect" @click='delGoods(item,index)'><img src="../../static/images/tolleyDelect.png"/></div>
+	    		<div class="delect" @click='delGoods(item,index)'><img src="../assets/tolleyDelect.png"/></div>
 		  	</div>
 	  	</div>
 	  	<div class="tolley-mbottom">
@@ -57,7 +57,6 @@ import Toast from '@/packages/toast'
  	data(){
  		return{
  			toggleLock: false,
- 			isSelectAll: true,
  			arr:[],
  			total:'',
  			toastHidden:false,
@@ -82,18 +81,14 @@ import Toast from '@/packages/toast'
    			}		
    		},
  		selectGood(index){	
-			this.arr[index].isChecked = !this.arr[index].isChecked;
+ 			this.arr[index].isChecked = !this.arr[index].isChecked;
+ 			this.$set(this.arr, index, this.arr[index])
 			this.$forceUpdate()
-			if(this.arr[index].isChecked==true){
-				this.orderArr.push(this.arr[index])
-			}
-			console.log(this.orderArr)
-			this.isCheckAll()
  		},
 // 		判断是否全部选中
  		isCheckAll(){
  			var flag = true;
-			this.arr.forEach((item)=>{
+			this.orderArr.forEach((item)=>{
 				if(!item.isChecked){
 					flag = false;
 				}
@@ -105,23 +100,15 @@ import Toast from '@/packages/toast'
 			}
  		},
  		settlement(){
-   			var flag = true;
- 			this.arr.forEach((item)=>{
-				if(item.isChecked){
-					this.$router.push({ path: '/confirmOrder', query: { routerId: 0 }})	
-					flag = true;
-				}else{					
-					flag = false;
-					if(flag === false){
-						Toast({
-                        message: '请选择商品之后在结算',
-                        position:'top',
-                    });
-					}
-                    return;	
-				}
-			});
- 			
+   			if(this.isSelectAny){
+   				window.localStorage.setItem('shopcart_Key',JSON.stringify(this.arr))
+				this.$router.push({ path: '/confirmOrder', query: { routerId: 0 }})	
+			}else{					
+				Toast({
+                    message: '请选择商品之后在结算',
+                    position:'top',
+                });
+			}
  		},
  		delGoods(item,index){
 			this.toastHidden = true
@@ -134,14 +121,32 @@ import Toast from '@/packages/toast'
         	window.localStorage.setItem('shopcart_Key',JSON.stringify(this.arr))		
         	if(window.localStorage.getItem('shopcart_Key')!==this.arr){
         		this.isSelectAll = false
-        		this.isCheckAll()
+        		this.isCheckAll()        		
         	}else{
         		this.isCheckAll()
         	}
    		}
  	},
 	computed:{
-//		总价
+		isSelectAll: function () {
+ 			let flag=true;
+ 			this.arr.forEach((item)=>{
+				if(!item.isChecked){
+					flag = false;
+				}
+			});
+			return flag;
+ 	    },
+ 	    isSelectAny: function () {
+ 			let flag=false;
+ 			this.arr.forEach((item)=>{
+				if(item.isChecked){
+					flag = true;
+				}
+			});
+			return flag;
+ 	    },
+        //总价
 		totalPrice:function(){
 			var total = 0;
 			this.arr.forEach(function(good){
@@ -163,18 +168,11 @@ import Toast from '@/packages/toast'
 	    } else {
 	        let storage = window.localStorage;
 	        let obj_arr = storage.getItem('shopcart_Key')
-	        let obj = JSON.parse(obj_arr)
-	        this.arr = obj
-	//      console.log(this.arr)
-	        //如果购物车为空，控制购物车的点消失
-	        if(this.arr ===''){
-	        	this.$emit('catrDotted')
-	        }
+	        this.arr = JSON.parse(obj_arr)
 	    }
 	    this.arr.forEach((item)=>{
 			item.isChecked = true
 		})
-	    
 	}
  	
  }

@@ -3,70 +3,70 @@
 	  	<h3>下面哪个人物像你？</h3>
 	  	<div class="m-hmain">
 	  		<dl :class="{'active': temperament === 0}" @click="change_active(0,'1','temperament',$event)">
-	  			<dt><img src="../../static/images/tempate1.png"/></dt>
+	  			<dt><img src="../assets/tempate1.png"/></dt>
 	  			<dd>
 	  				与人为善、思虑周全<br>
 	  				不逐名利、渴望认同
 	  			</dd>
 	  		</dl>
 	  		<dl :class="{'active': temperament === 1}" @click="change_active(1,'1','temperament',$event)">
-	  			<dt><img src="../../static/images/tempate2.png"/></dt>
+	  			<dt><img src="../assets/tempate2.png"/></dt>
 	  			<dd>
 	  				多愁善感、敏感多思<br>
 	  				个性独立、清高气傲
 	  			</dd>
 	  		</dl>
 	  		<dl :class="{'active': temperament === 2}" @click="change_active(2,'1','temperament',$event)">
-	  			<dt><img src="../../static/images/tempate3.png"/></dt>
+	  			<dt><img src="../assets/tempate3.png"/></dt>
 	  			<dd>
 	  				聪明活泼、感情丰富<br>
 	  				善于交际、无条理
 	  			</dd>
 	  		</dl>
 	  		<dl :class="{'active': temperament === 3}" @click="change_active(3,'1','temperament',$event)">
-	  			<dt><img src="../../static/images/tempate4.png"/></dt>
+	  			<dt><img src="../assets/tempate4.png"/></dt>
 	  			<dd>
 	  				聪明能干、事业心强<br>
 	  				情感专一、控制欲强
 	  			</dd>
 	  		</dl>
 	  		<dl :class="{'active': temperament === 4}" @click="change_active(4,'1','temperament',$event)">
-	  			<dt><img src="../../static/images/tempate5.png"/></dt>
+	  			<dt><img src="../assets/tempate5.png"/></dt>
 	  			<dd>
 	  				善良温和、与人为善<br>
 	  				不轻易妥协、有恒心
 	  			</dd>
 	  		</dl>
 	  		<dl :class="{'active': temperament === 5}" @click="change_active(5,'1','temperament',$event)">
-	  			<dt><img src="../../static/images/tempate6.png"/></dt>
+	  			<dt><img src="../assets/tempate6.png"/></dt>
 	  			<dd>
 	  				善良温和、与人为善<br>
 	  				不轻易妥协、有恒心
 	  			</dd>
 	  		</dl>
 	  		<dl :class="{'active': temperament === 6}" @click="change_active(6,'1','temperament',$event)">
-	  			<dt><img src="../../static/images/tempate7.png"/></dt>
+	  			<dt><img src="../assets/tempate7.png"/></dt>
 	  			<dd>
 	  				善良温和、与人为善<br>
 	  				不轻易妥协、有恒心
 	  			</dd>
 	  		</dl>
 	  		<dl :class="{'active': temperament === 7}" @click="change_active(7,'1','temperament',$event)">
-	  			<dt><img src="../../static/images/tempate8.png"/></dt>
+	  			<dt><img src="../assets/tempate8.png"/></dt>
 	  			<dd>
 	  				善良温和、与人为善<br>
 	  				不轻易妥协、有恒心
 	  			</dd>
 	  		</dl>
 	  		<dl :class="{'active': temperament === 8}" @click="change_active(8,'1','temperament',$event)">
-	  			<dt><img src="../../static/images/tempate9.png"/></dt>
+	  			<dt><img src="../assets/tempate9.png"/></dt>
 	  			<dd>
 	  				善良温和、与人为善<br>
 	  				不轻易妥协、有恒心
 	  			</dd>
 	  		</dl>
 	  		<dl :class="{'active': temperament === 9}" @click="change_active(9,'1','temperament',$event)">
-	  			<dt><img src="../../static/images/tempate10.png"/></dt>
+	  			<dt><img src="../assets/tempate10.png"/></dt>
 	  			<dd>
 	  				善良温和、与人为善<br>
 	  				不轻易妥协、有恒心

@@ -45,9 +45,7 @@
     	</dl>
     </div>
 		<div class="order-bottom">
-			<router-link to='/cashier'>
-				<div class="submitOrder" @click='submitOrder'>提交订单</div>
-			</router-link>
+			<div class="submitOrder" @click='submitOrder'>提交订单</div>
 			<div class="toal">
 				合计:<span>¥{{countPrice}}</span>
 			</div>
@@ -216,6 +214,7 @@ export default {
         	address: this.address,
         	postCode: this.postCode
         } 
+        console.log(address)
         var rephone = /^1[3,4,5,7,8]\d{9}$/;
         if(rephone.test(address.phone)){
         	if(address.name!==''&&address.address!==''){
@@ -224,7 +223,13 @@ export default {
 	        	var storage = window.localStorage
 		        var obj_arr = JSON.stringify(address)  
 		        storage.setItem("deliver_key", obj_arr)
-	        }
+	        }else{
+	        	Toast({
+		        message: '必填项不能为空',
+		        position:'top',
+		      });
+		        return;
+          }
         }else{
         	Toast({
             message: '手机号码格式有误',
@@ -232,22 +237,21 @@ export default {
           })
             return;
         }
-        var storage = window.localStorage
+        this.addressArr=address
         var obj_arr = JSON.stringify(address)  
-        storage.setItem("deliver_key", obj_arr)
+        window.localStorage.setItem("deliver_key", obj_arr)
 	    }
 	    this.$emit('closeDialogEvent')
 	    this.$emit('clickEvent')
 	  },
 	  //修改收货地址保存数据
 	  reserve1(){
-	  	console.log(1)
 	  	var address1 = { 
         	name: this.addressArr.name, 
         	phone: this.addressArr.phone,
         	address: this.addressArr.address,
         	postCode: this.addressArr.postCode
-        } 
+       }	  	
 	  	var rephone = /^1[3,4,5,7,8]\d{9}$/;
 	  	if(rephone.test(this.addressArr.phone)){
 	    	if(this.addressArr.name!==''&&this.addressArr.address!==''){
@@ -256,6 +260,12 @@ export default {
         	var storage = window.localStorage
 	        var obj_arr= JSON.stringify(address1)  
 	        storage.setItem("deliver_key", obj_arr)
+        }else{
+        	Toast({
+		        message: '必填项不能为空',
+		        position:'top',
+		      });
+		        return;
         }
 	    }else{
 	    	Toast({
@@ -274,10 +284,17 @@ export default {
 	        let storage = window.localStorage
 	        this.submitArr.push(this.arr)
 	        this.submitArr.push(this.addressArr)
-	         this.submitArr.push(this.countPrice)
+	        this.submitArr.push(this.countPrice)
 	        var orderArr= JSON.stringify(this.submitArr)  
 	        storage.setItem("orderArr", orderArr)
 			  }
+			  this.$router.push({ path: '/cashier'})
+	  	}else{
+	  		Toast({
+            message: '收货地址不能为空',
+            position:'top',
+        })
+        return;
 	  	}
 	  	
 
@@ -285,24 +302,35 @@ export default {
   	selectEdit(){
   		this.confirmHidden = true
   		this.selecthidden = false
+  	}, 	
+  	loadDelieverAddress(){
+  		 //取地址的localstorage
+	      let address_arr = window.localStorage.getItem("deliver_key")
+		    let address_obj = JSON.parse(address_arr)
+		    console.log(address_obj)
+		    if(address_obj!==null){
+		    	this.addressArr = address_obj
+	      	this.addNewAddressHidden = false
+//	      	this.$set(this.addressArr, index, this.addressArr[index])
+//	      	this.$forceUpdate()
+            console.log(this.addressArr.name)
+	     }
   	},
-  	loadFromLocal(){
-  		//read address data from local storage.
-  	}
-  },
-  mounted() {  
-  	  this.loadFromLocal();
-  	  var routeId = this.$router.currentRoute.query.routerId
-			if (!window.localStorage) {
-		    return false;
-		  } else {
-    	//取从购物车传过来的数据的商品信息
-        let storage = window.localStorage;
-        if(routeId==0){
-        	let obj_arr = storage.getItem('shopcart_Key')
+  	loadOrdersFromBuyNow(){
+  		//取直接购买的商品信息         	
+        	let obj_arr = window.localStorage.getItem('buyNow_Key')
+	        this.arr = JSON.parse(obj_arr)
+					this.count = this.arr[0].num*parseInt(this.arr[0].price)
+					this.countPrice = this.count + 12
+  	},
+  	loadOrdersFromShopCart(){
+  		let obj_arr = window.localStorage.getItem('shopcart_Key')
 	        let obj = JSON.parse(obj_arr)
-	        this.arr = obj
-	        console.log(this.arr)
+	        obj.forEach((index)=>{
+						if(index.isChecked){
+							this.arr.push(index)
+						}						
+					});
 	        if (this.arr.length) {
 	          for (var i = 0, len = this.arr.length; i < len; i++) {
 	          	  this.totalNum += this.arr[i].num * 1 
@@ -310,25 +338,20 @@ export default {
 								this.countPrice = this.count + 12
 	          }
          }
+  	}
+  },
+  mounted() {  
+  	  var routeId = this.$router.currentRoute.query.routerId
+			if (!window.localStorage) {
+		    return false;
+		  } 
+        if(routeId==0){
+        	this.loadOrdersFromShopCart();
         }else if(routeId==1){      	
-        	//取直接购买的商品信息         	
-        	let obj_arr = storage.getItem('buyNow_Key')
-	        let obj = JSON.parse(obj_arr)
-	        this.arr = obj
-					this.count = this.arr[0].num*parseInt(this.arr[0].price)
-					this.countPrice = this.count + 12
+        	this.loadOrdersFromBuyNow();
         }
-	      //取地址的localstorage
-	      let address_arr = storage.getItem("deliver_key")
-		    let address_obj = JSON.parse(address_arr)
-		    this.addressArr = address_obj
-		    console.log(this.addressArr)
-		    if(this.addressArr.name!==''){
-		    	this.addNewAddressHidden = false
-		    }else{
-		    	this.addNewAddressHidden = true
-		    }
-      }
+	     	this.loadOrdersFromShopCart();
+      
     }
   }
 </script>
@@ -344,7 +367,8 @@ export default {
 		height: rem(110rem);
 		overflow: hidden;
 		margin-bottom: rem(10rem);
-		background:#fff url(../assets/confirmTop.png) repeat-x  bottom;	
+		background:#fff url(../assets/confirmTop.png) no-repeat  bottom;	
+		background-size: 100% rem(8rem);
 		.order-address{
 			width: 94%;
 			height: rem(40rem);
