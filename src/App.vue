@@ -34,12 +34,9 @@
                 if (typeof (openid) == 'undefined' || openid == '') {
                     //Note:generate test account.
                     if (localStorage.getItem(Account_Index) == null) {
-
                         axios.get(api.generateTestAccount)
                             .then(function (res) {
-                                debugger;
                                 if (res.data.errorCode == 0) {
-
                                     let user = res.data.returnValue;
                                     localStorage.setItem(Account_Index, JSON.stringify(user))
                                 }
