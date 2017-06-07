@@ -31,10 +31,8 @@
 	        	<div class="r-mseason">
         			<h3>当季体质</h3>
         		    <p class="r-mrconp">
-        		    	你所在的城市6月气温升高，空气中湿度增加，体内汗液无法通畅的发散出来，
-        		    	人们就会感到胸闷、心悸，精神不振，全身乏力。易出现中暑、腮腺炎、水痘。<br>
-        		    	根据你的体质和所在地区基本月武侯，我给你制定了一份你的养生调理方案，请点击查看。<br>
-        		    	每两个月根据气候的变化，我会更新你的养生调理方案，你可以通过公众号到时查看，祝你健康！
+						{{wuXingStatusText}}<br>
+						{{wuXingReportContent}}
         		    </p>
         		    <router-link to='/recuperate'>
         		    <img class="r-mrconimg" src="../assets/afterRmy.png"/>
@@ -71,12 +69,14 @@ export default {
   data (){
   	return{
   		list:[],
+        wuXingReportContent: '',
+        wuXingStatusText: '',
   		afterReportHidden: false
   	}
   },
   methods:{
-      renderReport(){
-          let report = JSON.parse(localStorage.getItem(HouTianReport_Index));
+      renderReport(report){
+//          let report = JSON.parse(localStorage.getItem(HouTianReport_Index));
           let wuXingXianTianArray = Common.parseWuXingToArray(report.wuXingXianTian);
           let wuXingHouTianArray = Common.parseWuXingToArray(report.wuXingHouTian);
           let wuXingDangshiArray = Common.parseWuXingToArray(report.wuXingDangShi);
@@ -119,11 +119,18 @@ export default {
       }
   },
   mounted() {
-  	document.title="体质报告"
-     this.renderReport()
-  	document.documentElement.scrollTop = 0
-    document.body.scrollTop =0
-//	this.reportlist()
+	  document.title="体质报告"
+      let that=this
+	  let userId=JSON.parse(localStorage.getItem(Account_Index))._id
+      axios.get(api.getReport+"?userId="+userId+"&reportType=houTian")
+          .then(function (res) {
+              if (res.data.errorCode == 0) {
+                  let report = res.data.returnValue;
+				  that.renderReport(report)
+              }
+          })
+	  document.documentElement.scrollTop = 0
+	  document.body.scrollTop =0
   }
 }
 </script>
