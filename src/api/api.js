@@ -1,6 +1,6 @@
 // api use part
    let apiPath = 'http://139.162.116.116';
-//let apiPath = 'http://localhost:3333';
+// let apiPath = 'http://localhost:3333';
 // let apiPath = 'http://192.168.31.248:3333';
 module.exports = {
     shopData: apiPath + '/product/all', // 商城首页
@@ -13,4 +13,6 @@ module.exports = {
     allDoodsData: apiPath + '/product/category?category=', // 查看全部商品
     allSoupData: apiPath + '/product/get_soup', //获取汤品
     singleSoupData: apiPath + '/product/get_single_soup?id=' //获取汤品详情
+    generateTestAccount: apiPath + '/wechat/test_save_userInfo',
+    getReport: apiPath + '/report/get_report'
 }
