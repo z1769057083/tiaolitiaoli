@@ -10,8 +10,11 @@
                 <div class="r-mainchart" id='chart-container'>
                     <!--<img src="../assets/reportcharts.png"/>-->
                 </div>
-                <div class='i-maincen'>
-                    <div class="r-mattribute">{{wuXingStatusText}}</div>
+                <div class='i-maincen'>              	
+                    <div class="r-mattribute">
+	                    <div class="i-maincenleft"></div>                    	
+	                    {{wuXingStatusText}}
+                    </div>
                     <div class="r-mreport">
                         <h3>先天体质</h3>
                         <p>{{wuXingReportContent}}</p>
@@ -174,7 +177,7 @@
 
     .r-main {
         margin-top: 0.48rem;
-
+		margin-bottom: 0.48rem;
     .r-mainchart {
         width: 92%;
         height: rem(250rem);
@@ -193,11 +196,17 @@
     .r-mattribute {
         text-align: center;
         font-size: $font14;
-        line-height: rem(20rem);
+        height: rem(20rem);
         color: #c000;
-        background: url(../assets/rmattribute.png) no-repeat center;
-        padding-left: 14%;
-        margin-right: 14%;
+        text-align: center;  
+        letter-spacing: rem(1.5rem);      
+        .i-maincenleft{
+        	width: rem(3rem);
+        	height: rem(14rem);
+        	display: inline-block;
+        	background: url(../assets/rmattribute.png) no-repeat center;
+        	background-size: cover;        	
+        }
     }
 
     .r-mreport {
@@ -228,7 +237,7 @@
         height: 0.48rem;
         margin-top: rem(18rem);
         display: block;
-        margin-left: 40%;
+        margin-left: 45%;
     }
 
     }
@@ -244,7 +253,7 @@
 
     .r-mbotbtn {
         width: 84%;
-        margin: rem(10rem) 0 0 8%;
+        margin: rem(20rem) 0 0 8%;
         overflow: hidden;
         padding-bottom: rem(10rem);
 

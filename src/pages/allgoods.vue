@@ -15,7 +15,7 @@
 				</dd>
 		</dl>
 	</div>
-	<!--<div class="s-mrecombottom">我是有底线的</div>-->
+	<div class="s-mrecombottom">我是有底线的</div>
   </div>
 </template>
 <script>

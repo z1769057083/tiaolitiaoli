@@ -107,8 +107,8 @@ export default {
 @import "../common/common.scss";
 /*选择问题内容*/
 .m-temperament{
-	width: 100%;
-	/*margin-left: 5%;*/
+	width: 90%;
+	margin-left: 5%;
 	overflow: hidden;
 	height: rem(220rem);
 	h3{

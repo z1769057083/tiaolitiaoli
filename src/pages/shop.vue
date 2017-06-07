@@ -28,16 +28,16 @@
 				<div class="s-mrecomment"  >
 					<h3 class="s-marttitle">个性化推荐</h3>
 					<dl class="s-marticlecon" v-for='soupItem in getSouplist'>
-						<dt>
-							<h3>{{soupItem.title}}</h3>
-							{{soupItem.material}}
-						</dt>
-						<dd>
-							<router-link :to="{ name: '', query: { soupId: soupItem._id }}">
-								<img :src="'http://139.162.116.116/image/soup/44/'+soupItem.index+'.jpg'" 
-								  		onerror="this.src='http://placeholder.qiniudn.com/800'"/>
-							</router-link>
-						</dd>
+						<router-link :to="{ name:'soupDetail', query: { soupId: soupItem._id }}">
+							<dt>
+								<h3>{{soupItem.title}}</h3>
+								{{soupItem.material}}
+							</dt>
+							<dd>
+									<img :src="'http://139.162.116.116/image/soup/44/'+soupItem.index+'.jpg'" 
+									  		onerror="this.src='http://placeholder.qiniudn.com/800'"/>
+							</dd>
+						</router-link>	
 					</dl>
 					<!--<dl class="s-marticlecon1">
 						<dt>
@@ -85,7 +85,6 @@
 import axios from 'axios'
 import api from '../api/api';
 export default {
-  name: 'shop',
   data(){
   	return {
       listem:[],

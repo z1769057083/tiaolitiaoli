@@ -3,7 +3,7 @@
 	<div class="cashier-mtop">
 		<p>支付金额</p>
 		<span>¥{{this.arr[2]}}.00</span>	
-		<div class="cashier-goods">商品名称:</div>
+		<div class="cashier-goods">商品名称:{{this.arr2.name}}</div>
 	</div>
 	<div class="cashier-mcontent">
 		<dl>
@@ -32,7 +32,8 @@ export default {
   data(){
   	return {
 			toggle: true,
-			arr:[]
+			arr:[],
+			arr2:[]
     }
   },
   methods: {
@@ -46,6 +47,8 @@ export default {
     	let obj_arr = storage.getItem('orderArr')
 	    let obj = JSON.parse(obj_arr)
 	    this.arr = obj
+	    this.arr2 = this.arr[0][0]
+	    console.log(this.arr2)
     }
     document.documentElement.scrollTop = 0
     document.body.scrollTop =0
@@ -69,15 +72,16 @@ export default {
 		p{
 			font-size: $font14;
 			padding-top: rem(32rem);	
+			margin-bottom: rem(10rem);
 		}
 		span{
 			font-size: $font26;
-			line-height: rem(40rem);
+			line-height: rem(30rem);
 		}
 		.cashier-goods{
-			width: 30%;
+			width: 32%;
 			margin-left: 34%;
-			margin-top: rem(36rem);
+			margin-top: rem(30rem);
 			font-size: $font14;
 			color: #999;
 			overflow: hidden;

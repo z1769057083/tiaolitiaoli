@@ -78,9 +78,9 @@ export default {
 			float: left;
 			margin-right: 2.6%;
 			dt{
-				width: rem(44rem);
+				width: rem(64rem);
 				height: rem(64rem);
-				margin-left: rem(18rem);
+				margin-left: rem(8rem);
 				img{
 					width: 100%;
 					height: 100%;

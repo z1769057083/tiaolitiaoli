@@ -10,7 +10,7 @@
 				  <div class="l-mgoodsprice">
 				    <p class="l-mgoodsintro">{{list.name}}</p>
 				    <div class="l-mgoodspri">
-				  	  <span>{{list.price}}</span>
+				  	  <span>{{list.priceText}}</span>
 				  	  <p>运费：¥12.00</p>
 				    </div>
 				  </div>
@@ -55,7 +55,7 @@
 							<dt><img :src="'http://139.162.116.116/image/product/'+list.index+'/1.jpg'" 
 							onerror="this.src='http://placeholder.qiniudn.com/800'"/></dt>
 							<dd>
-							    <p>{{list.price}}</p>
+							    <p>{{list.priceText}}</p>
 							    <span>{{list.name}}</span>
 							</dd>
 						</dl>
@@ -80,7 +80,7 @@
 							<dt><img :src="'http://139.162.116.116/image/product/'+list.index+'/1.jpg'" 
 							         onerror="this.src='http://placeholder.qiniudn.com/800'"/></dt>
 							<dd>
-							     <p>{{list.price}}</p>
+							     <p>{{list.priceText}}</p>
 							    <span>{{list.name}}</span>
 							</dd>
 						</dl>
@@ -105,7 +105,6 @@
 <script>
   import axios from 'axios'
   import api from '../api/api'
-  import purchase from '@/components/purchase'
   import toast from '@/components/toast'
   export default {
     data(){
@@ -122,7 +121,6 @@
       }
     },
     components: {
-      purchase,
       toast
     },
     methods: {
@@ -173,7 +171,8 @@
             'img': this.list.index,
             'name': this.list.name,
             'price': this.list.price,
-            'num': this.num
+            'num': this.num,
+            'priceText': this.list.priceText
           }
           if (obgood) {
             this.arr = JSON.parse(obgood);
@@ -209,7 +208,8 @@
             'img': this.list.index,
             'name': this.list.name,
             'price': this.list.price,
-            'num': this.num
+            'num': this.num,
+            'priceText': this.list.priceText
           }
           this.nowArr.push(shop1);
           var obj_arr1 = JSON.stringify(this.nowArr)
@@ -352,7 +352,7 @@
 	  }
 	  .l-mgoodspay{
 	  	width: 100%;
-	  	height: 7%;
+	  	height: 8%;
 	  	background: #fff;
 	  	position: fixed;
 	  	left: 0;

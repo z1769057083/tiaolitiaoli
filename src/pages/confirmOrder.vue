@@ -28,7 +28,7 @@
 	    				onerror="this.src='http://placeholder.qiniudn.com/300'"/></dt>
     			<dd>
     				{{item.name}}
-	    			<p>{{item.price}}</p>
+	    			<p>{{item.priceText}}</p>
     			</dd>
     		</dl>
     		<div class="order-mnum">X<span>{{item.num}}</span></div>
@@ -320,6 +320,7 @@ export default {
   		//取直接购买的商品信息         	
         	let obj_arr = window.localStorage.getItem('buyNow_Key')
 	        this.arr = JSON.parse(obj_arr)
+	        this.totalNum += this.arr[0].num
 					this.count = this.arr[0].num*parseInt(this.arr[0].price)
 					this.countPrice = this.count + 12
   	},
@@ -350,7 +351,7 @@ export default {
         }else if(routeId==1){      	
         	this.loadOrdersFromBuyNow();
         }
-	     	this.loadOrdersFromShopCart();
+	     	this.loadDelieverAddress();
       
     }
   }

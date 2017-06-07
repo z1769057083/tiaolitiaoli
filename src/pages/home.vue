@@ -61,7 +61,6 @@ export default {
 </script>
 <style scoped lang="scss">
     @import "../common/common.scss";
-
     .i-content {
         position: absolute;
         bottom: 0;

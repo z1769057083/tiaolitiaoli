@@ -134,7 +134,7 @@ export default {
 			padding: rem(10rem) 0;
 			dt{
 				width: 100%;
-				height: rem(53rem);
+				height: rem(60rem);
 				img{
 					width: 100%;
 					height: 100%;

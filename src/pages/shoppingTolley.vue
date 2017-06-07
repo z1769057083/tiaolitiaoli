@@ -22,7 +22,7 @@
 	    				onerror="this.src='http://placeholder.qiniudn.com/300'"/></dt>
 	    			<dd>
 	    				{{item.name}}
-	    				<p>{{item.price}}</p>
+	    				<p>{{item.priceText}}</p>
 	    			</dd>
 	    		</dl>
 	    		<div class="order-mnum">X<span>{{item.num}}</span></div>
@@ -30,7 +30,7 @@
 		  	</div>
 	  	</div>
 	  	<div class="tolley-mbottom">
-			<div class="submitOrder" @click='settlement'>结算(<span>{{total}}</span>)</div>
+			<div class="submitOrder" @click='settlement'>结算(<span>{{totalNum}}</span>)</div>
 				<div class="toal">
 					合计:<span>¥{{totalPrice | Currency}}元</span>
 					<span class="fare"></span>
@@ -58,7 +58,6 @@ import Toast from '@/packages/toast'
  		return{
  			toggleLock: false,
  			arr:[],
- 			total:'',
  			toastHidden:false,
  			readyToDelIndex:-1,
  			orderArr:[]
@@ -100,8 +99,8 @@ import Toast from '@/packages/toast'
 			}
  		},
  		settlement(){
-   			if(this.isSelectAny){
-   				window.localStorage.setItem('shopcart_Key',JSON.stringify(this.arr))
+   			if(this.isSelectAny){   				
+   				window.localStorage.setItem('shopcart_Key',JSON.stringify(this.arr))   				
 				this.$router.push({ path: '/confirmOrder', query: { routerId: 0 }})	
 			}else{					
 				Toast({
@@ -146,15 +145,25 @@ import Toast from '@/packages/toast'
 			});
 			return flag;
  	    },
-        //总价
+//      //总价
 		totalPrice:function(){
 			var total = 0;
-			this.arr.forEach(function(good){
-//				if(good.isChecked){
-//					total += good.productPrice * good.productQuentity;
-//				}
-			});
+			console.log(this.arr)
+			for(var i = 0, len = this.arr.length; i < len; i++){
+				if(this.arr[i].isChecked){
+					total += this.arr[i].num*parseInt(this.arr[i].price);
+				}
+			}
 			return total;
+		},
+		totalNum:function(){
+			var num = 0
+			for(var i = 0, len = this.arr.length; i < len; i++){
+				if(this.arr[i].isChecked){
+					num += this.arr[i].num
+				}
+			}
+			return num;
 		}
 	},
 	filters:{

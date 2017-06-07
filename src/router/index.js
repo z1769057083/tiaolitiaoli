@@ -14,6 +14,7 @@ import afterReport from '@/pages/afterReport'
 import recuperate from '@/pages/recuperate'
 import test from '@/pages/testUpload'
 import soupDetail from '@/pages/soupDetail'
+import geneTest from '@/pages/geneTest'
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -85,6 +86,11 @@ export default new Router({
       path: '/soupDetail',
       component: soupDetail,
       name: 'soupDetail'
+    },
+    {
+      path: '/geneTest',
+      component: geneTest,
+      name: 'geneTest'
     }
   ]
 })
