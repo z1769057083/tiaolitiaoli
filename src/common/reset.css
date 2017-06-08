@@ -44,7 +44,7 @@ h1,h2,h3,h4,h5{
 }
 /* 重置文本格式元素 */
 a { text-decoration: none; }
-
+a:hover { text-decoration: none; }
 /* 清除浮动 */
 .clearfix:before,.clearfix:after {
     content:"";

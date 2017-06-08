@@ -18,11 +18,11 @@
 		<div class="s-marticlecon1">
 			<dl>
 				<dt>
-					<h3>推荐商品</h3>
+					<h3 class="s-marcontitle">推荐商品</h3>
 				</dt>							
 				<dd class="s-martimg" v-for='recommendItem in recommendlist'>
 					<router-link :to="{ name: 'goodsdetail', query: { itemid: recommendItem._id }}">
-						<img :src="'http://139.162.116.116/image/product/'+recommendItem.index+'.png'" 
+						<img :src="'http://139.162.116.116/image/product/'+recommendItem.index+'/1.jpg'" 
 				  		onerror="this.src='http://placeholder.qiniudn.com/800'"/>
 				  </router-link>
 				  <p class="s-martname">{{recommendItem.name}}</p>
@@ -42,7 +42,7 @@
 		<dl class="s-mrecomlist" v-for="temp in item.items">
 				<router-link :to="{ name: 'goodsdetail', query: { itemid: temp._id }}">
 				  <dt class="s-mreconimg">
-				  	<img :src="'http://139.162.116.116/image/product/'+temp.index+'.png'" 
+				  	<img :src="'http://139.162.116.116/image/product/'+temp.index+'/1.jpg'" 
 				  		onerror="this.src='http://placeholder.qiniudn.com/800'"/>
 				  </dt>
 					<dd class="s-mreconintro">
@@ -139,7 +139,7 @@ export default {
  		font-weight: bold;
  		margin-bottom: 0.26rem;
  		background: url(../assets/shoptitleft.png) no-repeat center left;
- 		padding-left: 2%;
+ 		padding-left: 2.5%;
  		border-bottom: rem(1rem) solid #e8e8e8;
  	}
  	.s-marticlecon{
@@ -181,18 +181,20 @@ export default {
  	.s-marticlecon1{
  		width: 100%;
  		overflow: hidden;
- 		margin-top: rem(15rem);
- 		padding-bottom: rem(15rem);
+ 		margin-top: rem(10rem);
+ 		padding-bottom: rem(10rem);
  		border-bottom: rem(1rem) solid #e8e8e8;
  		dt{
  			width: 100%;
- 			h3{
- 				font-size: $font18;
+ 			.s-marcontitle{
+ 				font-size: $font16;
  				color: $c3c3c;
  				font-weight: bold;
  				line-height: rem(26rem);
 				margin-bottom: rem(5rem);
 				letter-spacing: rem(1rem);
+				background: url(../assets/shoptitleft.png) no-repeat center left;
+ 				padding-left: 2.5%;
  			}
  		}
  		.s-martimg{
@@ -222,16 +224,14 @@ export default {
 .s-mrecomment{
 	width: 100%;
 	overflow: hidden;
-	padding: 0.32rem 0 0.28rem;
-	border-bottom: rem(1rem) solid #e8e8e8;
 	h3{
  		font-size: 0.42rem;
  		line-height: 0.59rem;
  		color: #000;
  		font-weight: bold;
  		margin-bottom: 0.26rem;
- 		background: url(../assets/shoptitleft.png) no-repeat left;
- 		padding-left: 2%;
+ 		/*background: url(../assets/shoptitleft.png) no-repeat left;
+ 		padding-left: 2%;*/
  		.s-mrecomall{
 	 		font-size: 0.35rem;
 	 		color: #c69b70;

@@ -22,10 +22,12 @@
 				  	<img src="../assets/listline.png"/><span>商品详情</span><img src="../assets/listline.png"/>
 				  </div>
 				  <div class="l-mgooddetail">
-				  	<p>功效：{{list.effect}}</p>
-						<p>禁用：{{list.avoid}}</p>
-						<p>{{list.description}}</p>
-						<p>适用人群：{{list.fit_people}}</p>
+				  	<div>
+				  		<p class="activeShow" v-if="list.effect">功效：{{list.effect}}</p>
+							<p class="activeShow" v-if="list.avoid">禁用：{{list.avoid}}</p>
+							<p class="activeShow" v-if="list.description">{{list.description}}</p>
+							<p class="activeShow" v-if="list.fit_people">适用人群：{{list.fit_people}}</p>
+				  	</div>
 				  	<img v-for='imgItem in list.images' 
 				  		:src="'http://139.162.116.116/image/product/'+list.index+'/'+imgItem+'.jpg'" 
 							onerror="this.src='http://placeholder.qiniudn.com/800'"/>
@@ -136,7 +138,7 @@
             if (res.data.errorCode == 0) {
               res = res.data.returnValue
               that.list = res
-              console.log(res)
+	           	console.log(that.list)
             }
           })
           .catch(function (error) {
@@ -202,7 +204,7 @@
           }
           this.nowArr.push(shop1);
           var obj_arr1 = JSON.stringify(this.nowArr)
-          console.log(obj_arr1)
+//        console.log(obj_arr1)
           storage.setItem('buyNow_Key', obj_arr1);
         }
         this.$router.push({ path: '/confirmOrder', query: { routerId: 1 }})
@@ -224,11 +226,13 @@
       catrDottedEvent(){
       	this.shopingCatrDotted = false
       },
+      //判断是否有后天测试报告
       isRouterShop(){
       	if(window.localStorage.houTianReport!==''){
       		this.$router.push({ path: '/recuperate'})
-      	}
-      	this.$router.push({ path: '/shop'})
+      	}else{
+      		this.$router.push({ path: '/shop'})
+      	}      	
       }
     },
     mounted() {
@@ -248,7 +252,6 @@
       }else if(storage.getItem('shopcart_Key')!==this.arr){
       	this.shopingCatrDotted = false	
       }
-      console.log(this.arr)
       document.title ='商品详情'
     }
   }
@@ -341,6 +344,9 @@
 			  	width: 100%;
 			  	overflow: hidden;
 			  	background: #fff;
+			  	.activeShow{
+			  		display: block;
+			  	}
 			  	img{
 				  	width: 100%;
 				  	height: 100%;

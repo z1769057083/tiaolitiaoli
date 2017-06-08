@@ -1,26 +1,20 @@
 <template>
   <div class="soup">
   	<div class="soup-main">
-  		 <h3>《黄帝内经》揭秘：正常的脉象是啥样的？</h3>
-  		 <p>
-  		 	中医里很多看似神秘莫测的说话，却蕴藏着诸多令人捉摸不透的真知灼见，
-  		 	比如中医里的脉诊，能断疾病，能看健康，甚至能断生死，让很多人感觉
-  		 	难以置信。早在《黄帝内经》中，其实就有不少关于脉诊的记载，今天就
-  		 	从《黄帝内经》的角度看看正常脉象是什么样子的。
-  		 </p>
-  		 <div class="soup-mpic">
-  		 		<img src="../assets/shoparticle.png" alt="" />
+  		 <h3 class="activeShow" v-if="list.title">{{list.title}}</h3>
+  		 <p></p>
+  		 <div class="soup-mpic activeShow" v-if="list.index">
+  		 		<img  :src="'http://139.162.116.116/image/soup/'+list.index+'/1.jpg'" 
+							  onerror="this.src='http://placeholder.qiniudn.com/800'" />
   		 </div>
-  		 <p>
-  		 	中医里很多看似神秘莫测的说话，却蕴藏着诸多令人捉摸不透的真知灼见，
-  		 	比如中医里的脉诊，能断疾病，能看健康，甚至能断生死，让很多人感觉
-  		 	难以置信。早在《黄帝内经》中，其实就有不少关于脉诊的记载，今天就
-  		 	从《黄帝内经》的角度看看正常脉象是什么样子的。
-  		 </p>
-  		 <div class="soup-mpic">
-  		 		<img src="../assets/shoparticle.png" alt="" />
-  		 </div>
-  		 
+  		 <p class="activeShow" v-if="list.material"><span>需备食材：</span></p>
+  		 <p class="activeShow" v-if="list.material">{{list.material}}</p>
+  		 <p class="activeShow" v-if="list.step1"><span>主要步骤：</span></p>
+  		 <p class="activeShow" v-if="list.step1">{{list.step1}}</p>
+  		 <p class="activeShow" v-if="list.step2">{{list.step2}}</p>
+  		 <p class="activeShow" v-if="list.step3">{{list.step3}}</p>
+  		 <p class="activeShow" v-if="list.step4">{{list.step4}}</p>
+  		 <p class="activeShow" v-if="list.step5">{{list.step5}}</p>
   	</div>  
   </div>
 </template>
@@ -53,6 +47,7 @@
     },
     mounted(){
     	this.singleSoupList()
+    	document.title="食谱"
     }
   }
 </script>
@@ -65,6 +60,9 @@
 		width: 92%;
 		margin-left: 4%;
 		margin-top: rem(20rem);
+		.activeShow{
+			display: block;
+		}
 		h3{
 			text-align: center;
 			font-size: $font16;
@@ -76,6 +74,10 @@
 			text-align: justify;
 			font-size: $font12;
 			color: $c3c3c;
+			span{
+				font-size: $font14;
+				font-weight: bold;
+			}
 		}
 		.soup-mpic{
 			margin: rem(15rem) 0;

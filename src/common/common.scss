@@ -67,7 +67,12 @@ $c3c3c: #3c3c3c;
           text-align: center;
           font-size: 18px;
           background: #fff;
-          img{
+          .swiper-img{
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
             width: 100%;
             height: 100%;
           }
@@ -94,4 +99,4 @@ $c3c3c: #3c3c3c;
         }   
     }   
       
-  }
+}

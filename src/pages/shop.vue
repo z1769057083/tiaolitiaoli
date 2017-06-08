@@ -5,12 +5,14 @@
 		  <!--轮播图部分-->
 			<div class="swiper-container">
 	   		<div class="swiper-wrapper" >
-	   			<div class="swiper-slide"  v-for='hotItem in hotList'>
-	   				<router-link :to="{ name: 'goodsdetail', query: { itemid: hotItem._id }}">
-	        	<img class="swiper-img" 
-	        		:src="'http://139.162.116.116/image/product/'+hotItem.index+'/1.jpg'" 
-					  	onerror="this.src='http://placeholder.qiniudn.com/800'"/>
-					  </router-link>	
+	        <div class="swiper-slide" v-for="hotItem in hotList">
+	        	<template>
+	        		<router-link :to="{ name: 'goodsdetail', query: { itemid: hotItem._id }}">
+		        		<img class="swiper-img" 
+			        		:src="'http://139.162.116.116/image/product/'+hotItem.index+'/1.jpg'" 
+							  	onerror="this.src='http://placeholder.qiniudn.com/800'"/>
+						  </router-link>
+					  </template>	
 	        </div>
 	    	</div>
 		    <!-- 如果需要分页器 -->
@@ -59,11 +61,24 @@ export default {
   	document.title="在线商城"
   	document.documentElement.scrollTop = 0
     document.body.scrollTop = 0
-  	var mySwiper = new Swiper('.swiper-container',{
-					autoplay: 3000,
-					loop: true,
-          pagination : '.swiper-pagination'	
-			})
+  },
+  watch:{
+  	  hotList: {
+        handler(val, oldVal) {
+          this.$nextTick(() => {
+            if (!this.swiper) {
+              this.swiper = new Swiper('.swiper-container', {
+                loop: true,
+                autoplay: 3000,
+                pagination: '.swiper-pagination',
+                paginationClickable: true,
+                autoplayDisableOnInteraction: false
+              });
+            }
+          });
+        },
+        deep: true
+      }
   }
 }
 </script>
