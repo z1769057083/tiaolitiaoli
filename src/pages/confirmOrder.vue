@@ -28,7 +28,7 @@
 	    				onerror="this.src='http://placeholder.qiniudn.com/300'"/></dt>
     			<dd>
     				{{item.name}}
-	    			<p>{{item.priceText}}</p>
+	    			<p>¥{{item.price}}.00</p>
     			</dd>
     		</dl>
     		<div class="order-mnum">X<span>{{item.num}}</span></div>
@@ -47,7 +47,7 @@
 		<div class="order-bottom">
 			<div class="submitOrder" @click='submitOrder'>提交订单</div>
 			<div class="toal">
-				合计:<span>¥{{countPrice}}</span>
+				合计:<span>¥{{countPrice}}元</span>
 			</div>
 		</div>
 		<!--新增收货地址开始-->

@@ -14,5 +14,6 @@ module.exports = {
     allSoupData: apiPath + '/product/get_soup', //获取汤品
     singleSoupData: apiPath + '/product/get_single_soup?id=' ,//获取汤品详情
     generateTestAccount: apiPath + '/wechat/test_save_userInfo',
-    getReport: apiPath + '/report/get_report'
+    getReport: apiPath + '/report/get_report',
+    hotGoods: apiPath + '/product/hot'
 }

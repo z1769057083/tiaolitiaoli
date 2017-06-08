@@ -10,7 +10,7 @@
 				  <div class="l-mgoodsprice">
 				    <p class="l-mgoodsintro">{{list.name}}</p>
 				    <div class="l-mgoodspri">
-				  	  <span>{{list.priceText}}</span>
+				  	  <span>¥{{list.price}}.00</span>
 				  	  <p>运费：¥12.00</p>
 				    </div>
 				  </div>
@@ -27,7 +27,7 @@
 						<p>{{list.description}}</p>
 						<p>适用人群：{{list.fit_people}}</p>
 				  	<img v-for='imgItem in list.images' 
-				  		:src="'http://139.162.116.116/image/product/'+imgItem+'/1.jpg'" 
+				  		:src="'http://139.162.116.116/image/product/'+list.index+'/'+imgItem+'.jpg'" 
 							onerror="this.src='http://placeholder.qiniudn.com/800'"/>
 				  </div>
 	    	</div>
@@ -40,11 +40,11 @@
 			  	  <span v-show = 'shopingCatrDotted' @catrDotted='catrDottedEvent'></span>
 		  	  </router-link>
 		  	</div>
-		  	<div class="l-mgoodscar l-mgoodsshop">
-		  		<router-link to='/shop'>
+		  	<div class="l-mgoodscar l-mgoodsshop" @click='isRouterShop'>
+		  		<!--<router-link to='/shop'>-->
 		  	  	<img src="../assets/listShooping.png"/>	  	  
 		  	  	<p>商城</p>
-		  	  </router-link>
+		  	  <!--</router-link>-->
 		  	</div>	
 		  	<div class="l-mgoodsjoin" @click='shopHiden = !shopHiden'>加入购物车
 		  	</div>
@@ -59,7 +59,7 @@
 							<dt><img :src="'http://139.162.116.116/image/product/'+list.index+'/1.jpg'" 
 							onerror="this.src='http://placeholder.qiniudn.com/800'"/></dt>
 							<dd>
-							    <p>{{list.priceText}}</p>
+							    <p>¥{{list.price}}.00</p>
 							    <span>{{list.name}}</span>
 							</dd>
 						</dl>
@@ -84,7 +84,7 @@
 							<dt><img :src="'http://139.162.116.116/image/product/39/'+list.index+'/.jpg'" 
 							         onerror="this.src='http://placeholder.qiniudn.com/800'"/></dt>
 							<dd>
-							     <p>{{list.priceText}}</p>
+							     <p>¥{{list.price}}.00</p>
 							    <span>{{list.name}}</span>
 							</dd>
 						</dl>
@@ -163,7 +163,6 @@
             'name': this.list.name,
             'price': this.list.price,
             'num': this.num,
-            'priceText': this.list.priceText
           }
           if (obgood) {
             this.arr = JSON.parse(obgood);
@@ -200,7 +199,6 @@
             'name': this.list.name,
             'price': this.list.price,
             'num': this.num,
-            'priceText': this.list.priceText
           }
           this.nowArr.push(shop1);
           var obj_arr1 = JSON.stringify(this.nowArr)
@@ -225,6 +223,12 @@
       },
       catrDottedEvent(){
       	this.shopingCatrDotted = false
+      },
+      isRouterShop(){
+      	if(window.localStorage.houTianReport!==''){
+      		this.$router.push({ path: '/recuperate'})
+      	}
+      	this.$router.push({ path: '/shop'})
       }
     },
     mounted() {

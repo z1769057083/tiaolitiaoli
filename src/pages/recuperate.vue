@@ -28,58 +28,7 @@
 						</p>
 					</div>
 				</div>
-				<div class="s-marticle">
-					<div class="s-mrecomment">
-						<h3 class="s-marttitle">个性化推荐</h3>
-						<dl class="s-marticlecon" v-for='soupItem in getSouplist'>
-							<router-link :to="{ name:'soupDetail', query: { soupId: soupItem._id }}">
-								<dt>
-									<h3>{{soupItem.title}}</h3>
-									{{soupItem.material}}
-								</dt>
-								<dd>
-									<img :src="'http://139.162.116.116/image/soup/44/'+soupItem.index+'.jpg'" 
-										  		onerror="this.src='http://placeholder.qiniudn.com/800'"/>
-								</dd>
-							</router-link>	
-						</dl>
-						<div class="s-marticlecon1">
-							<dl>
-								<dt>
-									<h3>推荐商品</h3>
-								</dt>							
-								<dd class="s-martimg" v-for='recommendItem in recommendlist'>
-									<router-link :to="{ name: 'goodsdetail', query: { itemid: recommendItem._id }}">
-										<img :src="'http://139.162.116.116/image/product/'+recommendItem.index+'.png'" 
-								  		onerror="this.src='http://placeholder.qiniudn.com/800'"/>
-								  </router-link>
-								</dd>							
-							</dl>	
-						</div>
-					</div>
-					<!--商品部分-->
-			        <div class="s-mgoods">
-						<div class="s-mrecomment" v-for="(item, index) in listem">
-							<h3 class="h3">{{item.title}}
-								<router-link :to="{ name: 'allgoods', query: { categoryId: item.category }}">
-								<a class="s-mrecomall" href="">查看全部</a>
-								</router-link></h3>
-							<div>
-							<dl class="s-mrecomlist" v-for="temp in item.items">
-									<router-link :to="{ name: 'goodsdetail', query: { itemid: temp._id }}">
-									  <dt class="s-mreconimg">
-									  	<img :src="'http://139.162.116.116/image/product/'+temp.index+'.png'" 
-									  		onerror="this.src='http://placeholder.qiniudn.com/800'"/>
-									  </dt>
-										<dd class="s-mreconintro">
-											<span>{{temp.name}}</span>
-										</dd>
-									</router-link>
-								</dl>
-							</div>
-						</div>
-					</div>
-				</div>
+				<commodity></commodity>
 			</div>
 		</div>
    </div>
@@ -89,6 +38,7 @@
     import api from '../api/api'
     import ReportHelper from '../../static/reportHelper';
     import Common from '../../static/common';
+    import commodity from '@/components/commodity'
     export default {
         data (){
             return{
@@ -101,59 +51,16 @@
 			    getSouplist:[]
             }
         },
+        components:{
+		   commodity
+		},
         methods: {
-        	requestlist(){
-			  	var that = this;
-			  	axios.get(api.shopData)
-				  .then(function (res) {
-				  	if(res.data.errorCode == 0){
-				  		res = res.data.returnValue
-				  		that.listem = res
-				  		console.log(that.listem)
-				  	}
-				  })
-				  .catch(function (error) {
-				    console.log(error)
-				  })
-			},
-			getSoup(){
-			  	var that = this;
-			  	axios.get(api.allSoupData)
-				  .then(function (res) {
-				  	if(res.data.errorCode == 0){
-							res = res.data.returnValue
-				  		that.getSouplist = res
-				  		console.log(that.getSouplist)
-				  	}
-				  })
-				  .catch(function (error) {
-				    console.log(error)
-				  })
-			  },
-			  recommend(){
-			  	var that = this;
-				  if (window.localStorage.getItem(Account_Index) !== null) {
-			        let account = JSON.parse(window.localStorage.getItem(Account_Index))
-			        axios.get(api.recommendData+account._id)
-							  .then(function (res) {
-							  	if(res.data.errorCode == 0){
-										res = res.data.returnValue
-							  		that.recommendlist = res
-							  		console.log(that.recommendlist)
-							  	}
-							  })
-							  .catch(function (error) {
-							    console.log(error)
-							  })
-			   }	 
+ 
         },
         mounted(){
         	document.title ='调理方法'
         	document.documentElement.scrollTop = 0
             document.body.scrollTop = 0
-        	this.requestlist()
-		  	this.getSoup()
-		  	this.recommend()
             let user=JSON.parse(localStorage.getItem(Account_Index));
             let xianTianData=JSON.parse(localStorage.getItem(XianTianAnswer_Index));
             let houTianData=JSON.parse(localStorage.getItem(HouTianAnswer_Index));
@@ -164,9 +71,7 @@
                 this.comments=houTianData.femaleStatus;
 			}
         }
-    }
-        }
-    
+    }  
 </script>
 <style scoped lang="scss">
 @import "../common/common.scss";
