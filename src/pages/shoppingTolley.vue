@@ -23,7 +23,7 @@
 		    				onerror="this.src='http://placeholder.qiniudn.com/300'"/></dt>
 		    			<dd>
 		    				{{item.name}}
-		    				<p>{{item.priceText}}</p>
+		    				<p>¥{{item.price}}.00</p>
 		    			</dd>
 		    		</dl>
 		    		<div class="order-mnum">X<span>{{item.num}}</span></div>
@@ -124,7 +124,7 @@ import Toast from '@/packages/toast'
         		this.isSelectAll = false
         		this.isCheckAll()        		
         	}else{
-        		this.isCheckAll()
+        		this.isCheckAll()        		
         	}
    		}
  	},

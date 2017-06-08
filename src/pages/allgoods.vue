@@ -33,7 +33,7 @@ export default {
         var that = this;
         that.categoryId = this.$route.query.categoryId;
         console.log(this.$route.query.categoryId)
-        axios.get('http://139.162.116.116/product/category?category=daily')
+        axios.get(api.allDoodsData+that.categoryId)
           .then(function (res) {
             if (res.data.errorCode == 0) {
               res = res.data.returnValue
@@ -61,6 +61,7 @@ export default {
 	height: 100%;
 	background: #f6f6f6;
 	overflow: hidden;
+	position: absolute;
 	.a-main{
 		width: 95%;
 		overflow: hidden;

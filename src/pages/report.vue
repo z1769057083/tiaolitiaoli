@@ -114,7 +114,7 @@
 
         .r-main {
             margin-top: 0.48rem;
-            margin-bottom: 0.48rem;
+            padding-bottom: 0.48rem;
             .r-mainchart {
                 width: 92%;
                 height: rem(250rem);
@@ -122,7 +122,6 @@
                 margin-left: 4%;
                 overflow: hidden;
             }
-
             .i-maincen {
                 width: 92%;
                 margin-left: 4%;
@@ -220,5 +219,6 @@
             }
         }
     }
+
 
 </style>

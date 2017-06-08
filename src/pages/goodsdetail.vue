@@ -10,7 +10,7 @@
 				  <div class="l-mgoodsprice">
 				    <p class="l-mgoodsintro">{{list.name}}</p>
 				    <div class="l-mgoodspri">
-				  	  <span>{{list.priceText}}</span>
+				  	  <span>¥{{list.price}}.00</span>
 				  	  <p>运费：¥12.00</p>
 				    </div>
 				  </div>
@@ -22,8 +22,14 @@
 				  	<img src="../assets/listline.png"/><span>商品详情</span><img src="../assets/listline.png"/>
 				  </div>
 				  <div class="l-mgooddetail">
+				  	<div>
+				  		<p class="activeShow" v-if="list.effect">功效：{{list.effect}}</p>
+							<p class="activeShow" v-if="list.avoid">禁用：{{list.avoid}}</p>
+							<p class="activeShow" v-if="list.description">{{list.description}}</p>
+							<p class="activeShow" v-if="list.fit_people">适用人群：{{list.fit_people}}</p>
+				  	</div>
 				  	<img v-for='imgItem in list.images' 
-				  		:src="'http://139.162.116.116/image/product/'+imgItem+'/1.jpg'" 
+				  		:src="'http://139.162.116.116/image/product/'+list.index+'/'+imgItem+'.jpg'" 
 							onerror="this.src='http://placeholder.qiniudn.com/800'"/>
 				  </div>
 	    	</div>
@@ -36,11 +42,11 @@
 			  	  <span v-show = 'shopingCatrDotted' @catrDotted='catrDottedEvent'></span>
 		  	  </router-link>
 		  	</div>
-		  	<div class="l-mgoodscar l-mgoodsshop">
-		  		<router-link to='/shop'>
+		  	<div class="l-mgoodscar l-mgoodsshop" @click='isRouterShop'>
+		  		<!--<router-link to='/shop'>-->
 		  	  	<img src="../assets/listShooping.png"/>	  	  
 		  	  	<p>商城</p>
-		  	  </router-link>
+		  	  <!--</router-link>-->
 		  	</div>	
 		  	<div class="l-mgoodsjoin" @click='shopHiden = !shopHiden'>加入购物车
 		  	</div>
@@ -55,7 +61,7 @@
 							<dt><img :src="'http://139.162.116.116/image/product/'+list.index+'/1.jpg'" 
 							onerror="this.src='http://placeholder.qiniudn.com/800'"/></dt>
 							<dd>
-							    <p>{{list.priceText}}</p>
+							    <p>¥{{list.price}}.00</p>
 							    <span>{{list.name}}</span>
 							</dd>
 						</dl>
@@ -77,10 +83,10 @@
 				<div class="mask-shopCar">
 					<div class="shopCar-main">
 						<dl>
-							<dt><img :src="'http://139.162.116.116/image/product/'+list.index+'/1.jpg'" 
+							<dt><img :src="'http://139.162.116.116/image/product/39/'+list.index+'/.jpg'" 
 							         onerror="this.src='http://placeholder.qiniudn.com/800'"/></dt>
 							<dd>
-							     <p>{{list.priceText}}</p>
+							     <p>¥{{list.price}}.00</p>
 							    <span>{{list.name}}</span>
 							</dd>
 						</dl>
@@ -132,26 +138,13 @@
             if (res.data.errorCode == 0) {
               res = res.data.returnValue
               that.list = res
+	           	console.log(that.list)
             }
           })
           .catch(function (error) {
             console.log(error)
           })
       },
-//    singleSoupList(){
-//      var that = this;
-//      that.soupId = this.$route.query.soupId;
-//      axios.get(api.singleSoupData + that.soupId)
-//        .then(function (res) {
-//          if (res.data.errorCode == 0) {
-//            res = res.data.returnValue
-//             that.list = res
-//          }
-//        })
-//        .catch(function (error) {
-//          console.log(error)
-//        })
-//    },
       confirm(){
       	this.shopingCatrDotted = true
         this.toastHidden = true
@@ -172,7 +165,6 @@
             'name': this.list.name,
             'price': this.list.price,
             'num': this.num,
-            'priceText': this.list.priceText
           }
           if (obgood) {
             this.arr = JSON.parse(obgood);
@@ -209,11 +201,10 @@
             'name': this.list.name,
             'price': this.list.price,
             'num': this.num,
-            'priceText': this.list.priceText
           }
           this.nowArr.push(shop1);
           var obj_arr1 = JSON.stringify(this.nowArr)
-          console.log(obj_arr1)
+//        console.log(obj_arr1)
           storage.setItem('buyNow_Key', obj_arr1);
         }
         this.$router.push({ path: '/confirmOrder', query: { routerId: 1 }})
@@ -234,6 +225,14 @@
       },
       catrDottedEvent(){
       	this.shopingCatrDotted = false
+      },
+      //判断是否有后天测试报告
+      isRouterShop(){
+      	if(window.localStorage.houTianReport!==''){
+      		this.$router.push({ path: '/recuperate'})
+      	}else{
+      		this.$router.push({ path: '/shop'})
+      	}      	
       }
     },
     mounted() {
@@ -253,7 +252,6 @@
       }else if(storage.getItem('shopcart_Key')!==this.arr){
       	this.shopingCatrDotted = false	
       }
-      console.log(this.arr)
       document.title ='商品详情'
     }
   }
@@ -330,6 +328,7 @@
 			  	background: #fff;
 			 	  text-align: center;
 			 		vertical-align: middle;
+			 		margin-bottom: rem(10rem);
 			 		span{
 				  	margin: 0 3%;
 				  	color: #3C3C3C;
@@ -344,9 +343,20 @@
 			  .l-mgooddetail{
 			  	width: 100%;
 			  	overflow: hidden;
+			  	background: #fff;
+			  	.activeShow{
+			  		display: block;
+			  	}
 			  	img{
 				  	width: 100%;
 				  	height: 100%;
+				  }
+				  p{
+				  	line-height: rem(26rem);
+				  	font-size: $font14;
+				  	width: 92%;
+				  	margin:rem(10rem) 0 rem(10rem) 4%;
+				  	
 				  }
 			  }
 	  	}
