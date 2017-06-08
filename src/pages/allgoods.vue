@@ -61,15 +61,16 @@ export default {
 	background: #f6f6f6;
 	overflow: auto;
 	position: absolute;
+	-webkit-overflow-scrolling: touch;
 	.a-main{
 		width: 95%;
 		overflow: hidden;
 		margin-left: 2.5%;
-		margin-top: rem(15rem);
+		margin-top: rem(12rem);
 		dl{
 			width: 48.5%;
 			float: left;
-			margin: 0 3% rem(10rem) 0;
+			margin: 0 3% rem(12rem) 0;
 			background: #fff;
 			dt{
 				width: 100%;
