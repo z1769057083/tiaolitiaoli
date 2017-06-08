@@ -122,11 +122,22 @@ import Toast from '@/packages/toast'
         	window.localStorage.setItem('shopcart_Key',JSON.stringify(this.arr))		
         	if(window.localStorage.getItem('shopcart_Key')!==this.arr){
         		this.isSelectAll = false
-        		this.isCheckAll()        		
+        		 if(!this.arr.length){
+			    	this.$emit('catrDotted')
+			    }
+        		this.isCheckAll()  
+//      		this.doctorAvatar()
         	}else{
         		this.isCheckAll()        		
         	}
    		}
+// 		doctorAvatar(){
+// 			debugger
+//  		var doctor=JSON.parse( localStorage.getItem('shopcart_Key'));
+//  		if(!this.arr.length){
+//		    	this.$emit('catrDotted')
+//	       }
+//  	}
  	},
 	computed:{
 		isSelectAll: function () {
@@ -152,7 +163,7 @@ import Toast from '@/packages/toast'
 			var total = 0;
 			console.log(this.arr)
 			for(var i = 0, len = this.arr.length; i < len; i++){
-				if(this.arr[i].isChecked){
+				if(this.arr[i].isChecked){					
 					total += this.arr[i].num*parseInt(this.arr[i].price);
 				}
 			}

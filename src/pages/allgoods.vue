@@ -15,7 +15,8 @@
 				</dd>
 		</dl>
 	</div>
-	<div class="s-mrecombottom">我是有底线的</div>
+	<div class="s-mrecombottom" v-if='list.length>4'>我是有底线的</div>
+	<div class="s-mrecombottom1" v-if='list.length<=4'>当前商品还很少哦</div>
   </div>
 </template>
 <script>
@@ -31,14 +32,13 @@ export default {
   methods: {
   	requestlist(){
         var that = this;
+        document.title = this.$route.query.titleName;
         that.categoryId = this.$route.query.categoryId;
-        console.log(this.$route.query.categoryId)
         axios.get(api.allDoodsData+that.categoryId)
           .then(function (res) {
             if (res.data.errorCode == 0) {
               res = res.data.returnValue
               that.list = res
-              console.log(that.list)
             }
           })
           .catch(function (error) {
@@ -48,7 +48,6 @@ export default {
   },
   mounted() {
   	this.requestlist()
-  	document.title = "商品列表"
   	document.documentElement.scrollTop = 0
     document.body.scrollTop =0
   }
@@ -60,7 +59,7 @@ export default {
 	width: 100%;
 	height: 100%;
 	background: #f6f6f6;
-	overflow: hidden;
+	overflow: auto;
 	position: absolute;
 	.a-main{
 		width: 95%;
@@ -106,6 +105,20 @@ export default {
 	 		overflow: hidden;
 	 		text-align: center;
 	 		margin: rem(20rem) 0;
+	 		display: block;
 	 	}	
+	 	.s-mrecombottom1{
+	 		line-height: 0.45rem;
+	 		font-size: 0.32rem;
+	 		color: #999;
+	 		width: 100%;
+	 		overflow: hidden;
+	 		text-align: center;
+	 		margin: rem(20rem) 0;
+	 		display: block;
+	 		position: absolute;
+	 		bottom: 0;
+	 		left: 0;
+	 	}
 }
 </style>

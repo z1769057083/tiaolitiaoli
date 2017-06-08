@@ -123,6 +123,7 @@
         arr: [],
         arr2:[],
         nowArr:[],
+        emptyArray:[],
         shopingCatrDotted: false,
       }
     },
@@ -138,7 +139,6 @@
             if (res.data.errorCode == 0) {
               res = res.data.returnValue
               that.list = res
-	           	console.log(that.list)
             }
           })
           .catch(function (error) {
@@ -247,12 +247,13 @@
       document.body.scrollTop = 0
       //如果加入购物车则购物车的点显示 
       var storage = window.localStorage
-      if(storage.getItem('shopcart_Key')){
-      	this.shopingCatrDotted = true
-      }else if(storage.getItem('shopcart_Key')!==this.arr){
-      	this.shopingCatrDotted = false	
+      if(JSON.parse(storage.getItem('shopcart_Key'))==''){
+      	this.shopingCatrDotted = false
+      }else{      	
+      	this.shopingCatrDotted = true	
       }
       document.title ='商品详情'
+      
     }
   }
 </script>
