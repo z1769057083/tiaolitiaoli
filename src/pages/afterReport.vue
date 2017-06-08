@@ -33,7 +33,7 @@
 	        	<div class="r-mseason">
         			<h3>当季体质</h3>
         		    <p class="r-mrconp">
-						{{wuXingStatusText}}<br>
+						{{wuXingDangShiStatusText}}<br>
 						{{wuXingReportContent}}
         		    </p>
         		    <router-link to='/recuperate'>
@@ -72,7 +72,7 @@ export default {
   	return{
   		list:[],
         wuXingReportContent: '',
-        wuXingStatusText: '',
+        wuXingDangShiStatusText: '',
 		wuXingXianTianStatusText:'',
 		wuXingHouTianStatusText:'',
   		afterReportHidden: false
@@ -99,23 +99,23 @@ export default {
           }]
           ReportHelper.loadChart('chart-container',items)
 
-          this.wuXingStatusText=Common.parseWuXingLevelToText(report.wuXingLevel);
+          this.wuXingDangShiStatusText=Common.parseWuXingLevelToText(report.wuXingDangShiLevel);
           this.wuXingXianTianStatusText=Common.parseWuXingLevelToText(report.wuXingXianTianLevel);
           this.wuXingHouTianStatusText=Common.parseWuXingLevelToText(report.wuXingHouTianLevel);
           let wuXingReportContentText = '';
-          if (typeof (report.report) != 'undefined' && report.report != '') {
-              for (let index = 0; index < report.report.length; index++) {
-                  if(report.report[index].content)
-                      wuXingReportContentText += report.report[index].content;
-                  if(report.report[index].illness)
-                      wuXingReportContentText += report.report[index].illness;
+          if (typeof (report.jieQiReports) != 'undefined' && report.jieQiReports != '') {
+              for (let index = 0; index < report.jieQiReports.length; index++) {
+                  if(report.jieQiReports[index].content)
+                      wuXingReportContentText += report.jieQiReports[index].content;
+                  if(report.jieQiReports[index].illness)
+                      wuXingReportContentText += report.jieQiReports[index].illness;
                   //TODO:check the user's gender and age info.
-                  if(report.report[index].male)
-                      wuXingReportContentText += report.report[index].male;
-                  if(report.report[index].female)
-                      wuXingReportContentText += report.report[index].female;
-                  if(report.report[index].child)
-                      wuXingReportContentText += report.report[index].child;
+                  if(report.jieQiReports[index].male)
+                      wuXingReportContentText += report.jieQiReports[index].male;
+                  if(report.jieQiReports[index].female)
+                      wuXingReportContentText += report.jieQiReports[index].female;
+                  if(report.jieQiReports[index].child)
+                      wuXingReportContentText += report.jieQiReports[index].child;
               }
               this.wuXingReportContent = wuXingReportContentText;
           }

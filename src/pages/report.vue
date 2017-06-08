@@ -53,9 +53,8 @@
             }
         },
         methods: {
-            renderReport(){
-                let report = JSON.parse(localStorage.getItem(XianTianReport_Index));
-                let wuXingArray = Common.parseWuXingToArray(report.wuXing);
+            renderReport(report){
+                let wuXingArray = Common.parseWuXingToArray(report.wuXingXianTian);
                 this.wuXingStatusText = '';
                 let itemArray = [{
                     type: 'area',
@@ -63,21 +62,21 @@
                     data: wuXingArray
                 }];
                 ReportHelper.loadChart('chart-container',itemArray);
-                this.wuXingStatusText=Common.parseWuXingLevelToText(report.wuXingLevel);
+                this.wuXingStatusText=Common.parseWuXingLevelToText(report.wuXingXianTianLevel);
                 let wuXingReportContentText = '';
-                if (typeof (report.report) != 'undefined' && report.report != '') {
-                    for (let index = 0; index < report.report.length; index++) {
-                        if(report.report[index].content)
-                        wuXingReportContentText += report.report[index].content;
-                        if(report.report[index].illness)
-                        wuXingReportContentText += report.report[index].illness;
+                if (typeof (report.xianTianReports) != 'undefined' && report.xianTianReports != '') {
+                    for (let index = 0; index < report.xianTianReports.length; index++) {
+                        if(report.xianTianReports[index].content)
+                        wuXingReportContentText += report.xianTianReports[index].content;
+                        if(report.xianTianReports[index].illness)
+                        wuXingReportContentText += report.xianTianReports[index].illness;
                         //TODO:check the user's gender and age info.
-                        if(report.report[index].male)
-                        wuXingReportContentText += report.report[index].male;
-                        if(report.report[index].female)
-                        wuXingReportContentText += report.report[index].female;
-                        if(report.report[index].child)
-                        wuXingReportContentText += report.report[index].child;
+                        if(report.xianTianReports[index].male)
+                        wuXingReportContentText += report.xianTianReports[index].male;
+                        if(report.xianTianReports[index].female)
+                        wuXingReportContentText += report.xianTianReports[index].female;
+                        if(report.xianTianReports[index].child)
+                        wuXingReportContentText += report.xianTianReports[index].child;
                     }
                     this.wuXingReportContent = wuXingReportContentText;
                 }
@@ -85,7 +84,15 @@
         },
         mounted() {
             document.title = "先天体质报告"
-            this.renderReport();
+            let that=this
+            let userId=JSON.parse(localStorage.getItem(Account_Index))._id
+            axios.get(api.getReport+"?userId="+userId+"&reportType=xianTian")
+                .then(function (res) {
+                    if (res.data.errorCode == 0) {
+                        let report = res.data.returnValue;
+                        that.renderReport(report)
+                    }
+                })
             document.documentElement.scrollTop = 0
             document.body.scrollTop = 0
         }
