@@ -5,7 +5,7 @@
 </template>
 <script>
     import '../static/flexible.js'
-    import '../static/common.js'
+    import Common from '../static/common'
     import '../static/swiper-3.4.2.min.js'
     import axios from 'axios'
     import api from '@/api/api'
@@ -38,6 +38,10 @@
                             .then(function (res) {
                                 if (res.data.errorCode == 0) {
                                     let user = res.data.returnValue;
+                                    if(user.xianTian){
+                                        global.User=user.xianTian.gender;
+                                        global.User.age=Common.getUserAge(user.xianTian.birthday);
+                                    }
                                     localStorage.setItem(Account_Index, JSON.stringify(user))
                                 }
                             })
@@ -48,6 +52,10 @@
                         .then(function (res) {
                             if (res.data.errorCode == 0) {
                                 let user = res.data.returnValue;
+                                if(user.xianTian){
+                                    global.User=user.xianTian.gender;
+                                    global.User.age=Common.getUserAge(user.xianTian.birthday);
+                                }
                                 localStorage.setItem(Account_Index, JSON.stringify(user))
                             }
                         })

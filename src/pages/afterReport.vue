@@ -52,8 +52,8 @@
                 <div class="reportDetailcontent">
                     <p>
 
-                    {{wuXingReportHouTianContent}}
-                </p>
+                        {{wuXingReportHouTianContent}}
+                    </p>
                 </div>
             </div>
         </div>
@@ -65,9 +65,9 @@
                 <img class="close" src="../assets/shopcarClose.png"
                      @click='xianTianReportIsShowed = !xianTianReportIsShowed'/>
                 <div class="reportDetailcontent">
-                <p>
-                    {{wuXingReportXianTianContent}}
-                </p>
+                    <p>
+                        {{wuXingReportXianTianContent}}
+                    </p>
                 </div>
             </div>
         </div>
@@ -117,30 +117,12 @@
                 this.wuXingDangShiStatusText = Common.parseWuXingLevelToText(report.wuXingDangShiLevel);
                 this.wuXingXianTianStatusText = Common.parseWuXingLevelToText(report.wuXingXianTianLevel);
                 this.wuXingHouTianStatusText = Common.parseWuXingLevelToText(report.wuXingHouTianLevel);
-                this.wuXingReportJieQiContent = this.convertReportsToText(report.jieQiReports);
-                this.wuXingReportXianTianContent = this.convertReportsToText(report.xianTianReports);
-                this.wuXingReportHouTianContent = this.convertReportsToText(report.houTianReports);
+                this.wuXingReportJieQiContent = Common.convertReportsToText(report.jieQiReports);
+                this.wuXingReportXianTianContent = Common.convertReportsToText(report.xianTianReports);
+                this.wuXingReportHouTianContent = Common.convertReportsToText(report.houTianReports);
 
             },
-            convertReportsToText(reports){
-                let wuXingReportContentText = '';
-                if (typeof (reports) != 'undefined' && reports != '') {
-                    for (let index = 0; index < reports.length; index++) {
-                        if (reports[index].content)
-                            wuXingReportContentText += reports[index].content;
-                        if (reports[index].illness)
-                            wuXingReportContentText += reports[index].illness;
-                        //TODO:check the user's gender and age info.
-                        if (reports[index].male)
-                            wuXingReportContentText += reports[index].male;
-                        if (reports[index].female)
-                            wuXingReportContentText += reports[index].female;
-                        if (reports[index].child)
-                            wuXingReportContentText += reports[index].child;
-                    }
-                }
-                return wuXingReportContentText;
-            },
+
             afterReport(){
                 this.afterReportHidden = true
             },
@@ -166,153 +148,156 @@
 </script>
 <style scoped lang="scss" rel="stylesheet/scss">
 
-@import "../common/common.scss";
-.highcharts-background{
-	fill:transparent;
-}
-.after-content{
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  background: url(../assets/indexbg.png) repeat-y;
-  background-size: cover;
-  .r-main{
-	margin-top: 0.48rem;
-	padding-bottom: rem(40rem);
-	.r-mainchart{
-		width: 92%;
-		height: rem(250rem);
-		margin-top: rem(15rem);
-		margin-left: 4%;
-		overflow: hidden;
-	}
-	.i-maincen{
-	  width: 92%;
-	  margin-left: 4%;
-	  margin-bottom: rem(14rem);
-	  .r-mreport{
-	  	width: 100%;
-	  	overflow: hidden;
-	  	background: #fff;
-	  	padding-top: rem(18rem);
-	  	box-shadow: rem(1rem) rem(1rem) rem(1rem) rem(1.5rem) #e2e1df;
-	  	margin-top: rem(10rem);
-	  	.r-mrcontent{
-	  		padding-bottom: rem(10rem);
-	  		position: relative;
-	  		h3{
-		  	  background: url(../assets/rmattribute.png) no-repeat center left;
-		  	  padding-left: 3%;
-		  	  font-size: $font14;
-		  	  color: #c69b70;
-		  	}
-		  	p{
-		  		margin:rem(5rem) rem(8rem) 0;
-		  		line-height: rem(22rem);
-		  		letter-spacing: rem(0.2rem);
-		  		border-bottom: 1px solid #ead5ba;
-		  		padding-bottom: rem(10rem);
-		  	}
-		  	.r-mrconp{
-		  		border-bottom: 0;
-		  		padding-bottom: 0;
-		  		text-justify: inter-ideograph;
-                text-align: justify;
-		  	}
-		  	.right{
-		  		width: rem(72rem);
-		  		height: rem(28rem);
-		  		position: absolute;
-		  		right: rem(10rem);
-		  		top: rem(8rem);
-		  		img{
-		  			width: 100%;
-		  			height: 100%;
-		  		}
-		  	}
-	  	  }
-	   }
-	   .r-mseason{
-		   	width: 100%;
-		  	background: #fff;
-		  	padding: rem(18rem) 0;
-		  	box-shadow: rem(1rem) rem(1rem) rem(1rem) rem(1.5rem) #e2e1df;
-		  	margin-top: rem(10rem);
-		  	position: relative;
-		  	h3{
-		  	  background: url(../assets/rmattribute.png) no-repeat center left;
-		  	  padding-left: 3%;
-		  	  font-size: $font14;
-		  	  color: #c69b70;
-		  	}
-		  	p{
-		  		margin:rem(5rem) rem(8rem) 0;
-		  		line-height: rem(22rem);
-		  		letter-spacing: rem(0.2rem);
-		  		padding-bottom: rem(10rem);
-		  	}
-		  	.r-mrconimg{
-		  		width: rem(150rem);
-		  		height: rem(50rem);
-		  		position: absolute;
-		  		bottom: rem(-25rem);
-		  		left: 26%;
-		  	}
-	   }
-	}
-  }
-}
-.reportDetail{
-	width: 100%;
-	height: 100%;
-	background: rgba(0,0,0,0.6);
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	top: 0;
-	z-index: 99;
-	.reportDetail-main{
-		width: 74.6%;
-		height: rem(340rem);
-		background: #fff;
-		border-radius: rem(10rem);
-		position: absolute;
-		top: rem(130rem);
-		left: 12.7%;
-		.top{
-			position: absolute;
-			width: 54%;
-			height: rem(54rem);
-			top: rem(-16rem);
-			left: 23%;
-			img{
-				width: 100%;
-				height: 100%;
-			}
-		}
-		.close{
-			position: absolute;
-			width: rem(19rem);
-			height: rem(19rem);
-			top: rem(10rem);
-			right: rem(10rem);
-		}
-		.reportDetailcontent{
-			width: 100%;
-			height: rem(275rem);
-			margin-top:  rem(48rem);
-			border-bottom: 1px double #f4eade;
-			overflow: auto;
-			p{
-				margin:0 8%;
-		  		line-height: rem(22rem);;
-		  		padding-bottom: rem(10rem);
-		  		font-size: $font14;
-		  		color: #505050;
-		  		text-align: justify;
-	        text-justify: inter-ideograph;
-			}
-		}
-	}
-}
+    @import "../common/common.scss";
+
+    .highcharts-background {
+        fill: transparent;
+    }
+
+    .after-content {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: url(../assets/indexbg.png) repeat-y;
+        background-size: cover;
+        .r-main {
+            margin-top: 0.48rem;
+            padding-bottom: rem(40rem);
+            .r-mainchart {
+                width: 92%;
+                height: rem(250rem);
+                margin-top: rem(15rem);
+                margin-left: 4%;
+                overflow: hidden;
+            }
+            .i-maincen {
+                width: 92%;
+                margin-left: 4%;
+                margin-bottom: rem(14rem);
+                .r-mreport {
+                    width: 100%;
+                    overflow: hidden;
+                    background: #fff;
+                    padding-top: rem(18rem);
+                    box-shadow: rem(1rem) rem(1rem) rem(1rem) rem(1.5rem) #e2e1df;
+                    margin-top: rem(10rem);
+                    .r-mrcontent {
+                        padding-bottom: rem(10rem);
+                        position: relative;
+                        h3 {
+                            background: url(../assets/rmattribute.png) no-repeat center left;
+                            padding-left: 3%;
+                            font-size: $font14;
+                            color: #c69b70;
+                        }
+                        p {
+                            margin: rem(5rem) rem(8rem) 0;
+                            line-height: rem(22rem);
+                            letter-spacing: rem(0.2rem);
+                            border-bottom: 1px solid #ead5ba;
+                            padding-bottom: rem(10rem);
+                        }
+                        .r-mrconp {
+                            border-bottom: 0;
+                            padding-bottom: 0;
+                            text-justify: inter-ideograph;
+                            text-align: justify;
+                        }
+                        .right {
+                            width: rem(72rem);
+                            height: rem(28rem);
+                            position: absolute;
+                            right: rem(10rem);
+                            top: rem(8rem);
+                            img {
+                                width: 100%;
+                                height: 100%;
+                            }
+                        }
+                    }
+                }
+                .r-mseason {
+                    width: 100%;
+                    background: #fff;
+                    padding: rem(18rem) 0;
+                    box-shadow: rem(1rem) rem(1rem) rem(1rem) rem(1.5rem) #e2e1df;
+                    margin-top: rem(10rem);
+                    position: relative;
+                    h3 {
+                        background: url(../assets/rmattribute.png) no-repeat center left;
+                        padding-left: 3%;
+                        font-size: $font14;
+                        color: #c69b70;
+                    }
+                    p {
+                        margin: rem(5rem) rem(8rem) 0;
+                        line-height: rem(22rem);
+                        letter-spacing: rem(0.2rem);
+                        padding-bottom: rem(10rem);
+                    }
+                    .r-mrconimg {
+                        width: rem(150rem);
+                        height: rem(50rem);
+                        position: absolute;
+                        bottom: rem(-25rem);
+                        left: 26%;
+                    }
+                }
+            }
+        }
+    }
+
+    .reportDetail {
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        top: 0;
+        z-index: 99;
+        .reportDetail-main {
+            width: 74.6%;
+            height: rem(340rem);
+            background: #fff;
+            border-radius: rem(10rem);
+            position: absolute;
+            top: rem(130rem);
+            left: 12.7%;
+            .top {
+                position: absolute;
+                width: 54%;
+                height: rem(54rem);
+                top: rem(-16rem);
+                left: 23%;
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            .close {
+                position: absolute;
+                width: rem(19rem);
+                height: rem(19rem);
+                top: rem(10rem);
+                right: rem(10rem);
+            }
+            .reportDetailcontent {
+                width: 100%;
+                height: rem(275rem);
+                margin-top: rem(48rem);
+                border-bottom: 1px double #f4eade;
+                overflow: auto;
+                p {
+                    margin: 0 8%;
+                    line-height: rem(22rem);;
+                    padding-bottom: rem(10rem);
+                    font-size: $font14;
+                    color: #505050;
+                    text-align: justify;
+                     text-justify: inter-ideograph;
+                }
+            }
+        }
+    }
 </style>
