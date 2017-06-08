@@ -3,17 +3,17 @@
         <!--聊天内容-->
         <div class='r-content'>
             <div class='i-headbot'>
-                <div class='i-headbottext'>您的先天体质打败了34%的人</div>
+                <div class='i-headbottext'>您的先天体质报告</div>
             </div>
             <div class="r-main">
                 <h3 class='i-maintop'>你的先天体质情况</h3>
                 <div class="r-mainchart" id='chart-container'>
                     <!--<img src="../assets/reportcharts.png"/>-->
                 </div>
-                <div class='i-maincen'>              	
+                <div class='i-maincen'>
                     <div class="r-mattribute">
-	                    <div class="i-maincenleft"></div>                    	
-	                    {{wuXingStatusText}}
+                        <div class="i-maincenleft"></div>
+                        {{wuXingStatusText}}
                     </div>
                     <div class="r-mreport">
                         <h3>先天体质</h3>
@@ -61,22 +61,22 @@
                     name: '先天',
                     data: wuXingArray
                 }];
-                ReportHelper.loadChart('chart-container',itemArray);
-                this.wuXingStatusText=Common.parseWuXingLevelToText(report.wuXingXianTianLevel);
+                ReportHelper.loadChart('chart-container', itemArray);
+                this.wuXingStatusText = Common.parseWuXingLevelToText(report.wuXingXianTianLevel);
                 let wuXingReportContentText = '';
                 if (typeof (report.xianTianReports) != 'undefined' && report.xianTianReports != '') {
                     for (let index = 0; index < report.xianTianReports.length; index++) {
-                        if(report.xianTianReports[index].content)
-                        wuXingReportContentText += report.xianTianReports[index].content;
-                        if(report.xianTianReports[index].illness)
-                        wuXingReportContentText += report.xianTianReports[index].illness;
+                        if (report.xianTianReports[index].content)
+                            wuXingReportContentText += report.xianTianReports[index].content;
+                        if (report.xianTianReports[index].illness)
+                            wuXingReportContentText += report.xianTianReports[index].illness;
                         //TODO:check the user's gender and age info.
-                        if(report.xianTianReports[index].male)
-                        wuXingReportContentText += report.xianTianReports[index].male;
-                        if(report.xianTianReports[index].female)
-                        wuXingReportContentText += report.xianTianReports[index].female;
-                        if(report.xianTianReports[index].child)
-                        wuXingReportContentText += report.xianTianReports[index].child;
+                        if (report.xianTianReports[index].male)
+                            wuXingReportContentText += report.xianTianReports[index].male;
+                        if (report.xianTianReports[index].female)
+                            wuXingReportContentText += report.xianTianReports[index].female;
+                        if (report.xianTianReports[index].child)
+                            wuXingReportContentText += report.xianTianReports[index].child;
                     }
                     this.wuXingReportContent = wuXingReportContentText;
                 }
@@ -84,9 +84,9 @@
         },
         mounted() {
             document.title = "先天体质报告"
-            let that=this
-            let userId=JSON.parse(localStorage.getItem(Account_Index))._id
-            axios.get(api.getReport+"?userId="+userId+"&reportType=xianTian")
+            let that = this
+            let userId = JSON.parse(localStorage.getItem(Account_Index))._id
+            axios.get(api.getReport + "?userId=" + userId + "&reportType=xianTian")
                 .then(function (res) {
                     if (res.data.errorCode == 0) {
                         let report = res.data.returnValue;
@@ -98,7 +98,7 @@
         }
     }
 </script>
-<style scoped lang="scss">
+<style scoped="" lang="scss" rel="stylesheet/scss">
     @import "../common/common.scss";
 
     .highcharts-background {
@@ -112,113 +112,113 @@
         background: url(../assets/indexbg.png) no-repeat;
         background-size: cover;
 
-    .r-main {
-        margin-top: 0.48rem;
-		margin-bottom: 0.48rem;
-    .r-mainchart {
-        width: 92%;
-        height: rem(250rem);
-        margin-top: rem(15rem);
-        margin-left: 4%;
-        overflow: hidden;
-    }
+        .r-main {
+            margin-top: 0.48rem;
+            margin-bottom: 0.48rem;
+            .r-mainchart {
+                width: 92%;
+                height: rem(250rem);
+                margin-top: rem(15rem);
+                margin-left: 4%;
+                overflow: hidden;
+            }
 
-    .i-maincen {
-        width: 92%;
-        margin-left: 4%;
-        margin-bottom: rem(14rem);
-        border-top: 1px solid #e5e5e3;
-        padding-top: rem(15rem);
+            .i-maincen {
+                width: 92%;
+                margin-left: 4%;
+                margin-bottom: rem(14rem);
+                border-top: 1px solid #e5e5e3;
+                padding-top: rem(15rem);
 
-    .r-mattribute {
-        text-align: center;
-        font-size: $font14;
-        height: rem(20rem);
-        color: #c000;
-        text-align: center;  
-        letter-spacing: rem(1.5rem);      
-        .i-maincenleft{
-        	width: rem(3rem);
-        	height: rem(14rem);
-        	display: inline-block;
-        	background: url(../assets/rmattribute.png) no-repeat center;
-        	background-size: cover;        	
+                .r-mattribute {
+                    text-align: center;
+                    font-size: $font14;
+                    height: rem(20rem);
+                    color: #c000;
+                    text-align: center;
+                    letter-spacing: rem(1.5rem);
+                    .i-maincenleft {
+                        width: rem(3rem);
+                        height: rem(14rem);
+                        display: inline-block;
+                        background: url(../assets/rmattribute.png) no-repeat center;
+                        background-size: cover;
+                    }
+                }
+
+                .r-mreport {
+                    width: 100%;
+                    overflow: hidden;
+                    background: #fff;
+                    padding: rem(18rem) 0;
+                    box-shadow: rem(1rem) rem(1rem) rem(1rem) rem(1.5rem) #e2e1df;
+                    margin-top: rem(10rem);
+
+                    h3 {
+                        background: url(../assets/rmattribute.png) no-repeat center left;
+                        padding-left: 3%;
+                        font-size: $font14;
+                        color: #c69b70;
+                    }
+
+                    p {
+                        margin: rem(5rem) rem(8rem) 0;
+                        line-height: rem(20rem);
+                        letter-spacing: rem(0.2rem);
+                        text-align: justify;
+                         text-justify: inter-ideograph;
+                    }
+                }
+                .i-micon {
+                    width: 0.96rem;
+                    height: 0.48rem;
+                    margin-top: rem(18rem);
+                    display: block;
+                    margin-left: 45%;
+                }
+
+            }
+            .r-msuggest {
+                width: 84%;
+                margin-left: 8%;
+                text-align: center;
+                font-size: $font12;
+                color: #c69b70;
+                line-height: rem(21rem);
+                letter-spacing: rem(0.4rem);
+            }
+
+            .r-mbotbtn {
+                width: 84%;
+                margin: rem(20rem) 0 0 8%;
+                overflow: hidden;
+                padding-bottom: rem(10rem);
+
+                .r-mbotleft {
+                    width: 47.6%;
+                    height: rem(50rem);
+                    float: left;
+                    margin-right: 4.8%;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
+
+                }
+                .r-mbotright {
+                    width: 47.6%;
+                    height: rem(50rem);
+                    float: left;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
+
+                }
+            }
         }
-    }
-
-    .r-mreport {
-        width: 100%;
-        overflow: hidden;
-        background: #fff;
-        padding: rem(18rem) 0;
-        box-shadow: rem(1rem) rem(1rem) rem(1rem) rem(1.5rem) #e2e1df;
-        margin-top: rem(10rem);
-
-    h3 {
-        background: url(../assets/rmattribute.png) no-repeat center left;
-        padding-left: 3%;
-        font-size: $font14;
-        color: #c69b70;
-    }
-
-    p {
-        margin: rem(5rem) rem(8rem) 0;
-        line-height: rem(20rem);
-        letter-spacing: rem(0.2rem);
-        text-align: justify;
-        text-justify:inter-ideograph;
-    }
-    }
-    .i-micon {
-        width: 0.96rem;
-        height: 0.48rem;
-        margin-top: rem(18rem);
-        display: block;
-        margin-left: 45%;
-    }
-
-    }
-    .r-msuggest {
-        width: 84%;
-        margin-left: 8%;
-        text-align: center;
-        font-size: $font12;
-        color: #c69b70;
-        line-height: rem(21rem);
-        letter-spacing: rem(0.4rem);
-    }
-
-    .r-mbotbtn {
-        width: 84%;
-        margin: rem(20rem) 0 0 8%;
-        overflow: hidden;
-        padding-bottom: rem(10rem);
-
-    .r-mbotleft {
-        width: 47.6%;
-        height: rem(50rem);
-        float: left;
-        margin-right: 4.8%;
-
-    img {
-        width: 100%;
-        height: 100%;
-    }
-
-    }
-    .r-mbotright {
-        width: 47.6%;
-        height: rem(50rem);
-        float: left;
-
-    img {
-        width: 100%;
-        height: 100%;
-    }
-
-    }
-    }
-    }
     }
 
 </style>
