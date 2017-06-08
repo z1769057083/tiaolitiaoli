@@ -51,19 +51,25 @@ export default {
   data(){
 	  	return {
 	      section1:{
-	      	treat:'',
-	      	trick:'',
-	      	help:'',
-	      	clean:'',
-	      	liberty:''
+	      	treat:-1,
+	      	trick:-1,
+	      	help:-1,
+	      	clean:-1,
+	      	liberty:-1
 	      }
 	    }
 	},
+    computed: {
+        answer(){
+            var answer = {};
+            answer.section1 = this.section1;
+            return answer;
+        }
+    },
 	methods:{
 	  	change_active(answerValue,sectionId,sectionKey,event) {
 		    this.$data.section1[sectionKey]=answerValue
-			var answer={'section1':this.section1}
-		    this.$emit('updateUserAnswer', answer)
+		    this.$emit('updateUserAnswer', this.answer)
 	    }
 	},
     mounted(){

@@ -7,6 +7,7 @@ module.exports = {
                 polar: true,
                 marginTop: 15
             },
+            colors: [ '#eee5d7', '#e2c8a8','#d8b688'],
             credits: {
                 enabled: false // 禁用版权信息
             },
@@ -44,6 +45,14 @@ module.exports = {
                     pointPadding: 0,
                     groupPadding: 0
                 }
+            },
+            tooltip:{
+                formatter: function () {
+                    var textArray = ['金', '木', '水', '火', '土'];
+                    var text= textArray[this.x / 72];
+                    return ' <b>' +this.series.name  +
+                        '</b> : '+text +' '+ this.y ;
+                },
             },
             series: items
         });

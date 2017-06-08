@@ -47,8 +47,8 @@
                     axios.get(api.getUserByOpenId + "?openid=" + openid)
                         .then(function (res) {
                             if (res.data.errorCode == 0) {
-                                res = res.data.returnValue;
-                                localStorage.setItem(Account_Index, JSON.stringify(res))
+                                let user = res.data.returnValue;
+                                localStorage.setItem(Account_Index, JSON.stringify(user))
                             }
                         })
                 }

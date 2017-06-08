@@ -58,6 +58,7 @@ module.exports = {
     loadXianTianUserData (component){
         var xianTianAnswer = JSON.parse(localStorage.getItem(XianTianAnswer_Index));
         for (let key in xianTianAnswer) {
+            debugger;
             if (component.$data[key] && typeof (component.$data[key]) === typeof (xianTianAnswer[key])) {
                 component.$data[key] = xianTianAnswer[key];
                 component.$emit('updateUserAnswer', component.answer)
