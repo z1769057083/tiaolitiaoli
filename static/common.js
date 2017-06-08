@@ -79,7 +79,6 @@ module.exports = {
                     wuXingReportContentText += reports[index].content;
                 if (reports[index].illness)
                     wuXingReportContentText += reports[index].illness;
-                //TODO:check the user's gender and age info.
                 if (global.User.gender = 'F') {
                     if (reports[index].female)
                         wuXingReportContentText += reports[index].female;
