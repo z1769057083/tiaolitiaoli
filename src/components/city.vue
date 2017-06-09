@@ -131,7 +131,7 @@
         }
     };
 </script>
-<style lang="scss">
+<style lang="scss" rel="stylesheet/scss">
     @import "../common/common.scss";
     /*选择问题内容*/
     .m-selection1 {

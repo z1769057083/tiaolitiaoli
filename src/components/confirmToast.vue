@@ -20,7 +20,7 @@ export default {
   }
 }
 </script>
-<style lang="scss">
+<style lang="scss" rel="stylesheet/scss">
 @import "../common/common.scss";
 .confirm-toast{
 	width: 100%;
