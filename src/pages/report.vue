@@ -63,23 +63,7 @@
                 }];
                 ReportHelper.loadChart('chart-container', itemArray);
                 this.wuXingStatusText = Common.parseWuXingLevelToText(report.wuXingXianTianLevel);
-                let wuXingReportContentText = '';
-                if (typeof (report.xianTianReports) != 'undefined' && report.xianTianReports != '') {
-                    for (let index = 0; index < report.xianTianReports.length; index++) {
-                        if (report.xianTianReports[index].content)
-                            wuXingReportContentText += report.xianTianReports[index].content;
-                        if (report.xianTianReports[index].illness)
-                            wuXingReportContentText += report.xianTianReports[index].illness;
-                        //TODO:check the user's gender and age info.
-                        if (report.xianTianReports[index].male)
-                            wuXingReportContentText += report.xianTianReports[index].male;
-                        if (report.xianTianReports[index].female)
-                            wuXingReportContentText += report.xianTianReports[index].female;
-                        if (report.xianTianReports[index].child)
-                            wuXingReportContentText += report.xianTianReports[index].child;
-                    }
-                    this.wuXingReportContent = wuXingReportContentText;
-                }
+                this.wuXingReportContent = Common.convertReportsToText(report.xianTianReports);
             }
         },
         mounted() {

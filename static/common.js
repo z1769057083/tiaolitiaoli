@@ -9,6 +9,7 @@ global.HouTianReport_Index = 'houTianReport'
 global.XianTianAnswer_Index = 'xianTianAnswer_Index'
 global.HouTianAnswer_Index = 'xianTianAnswer_Index'
 global.Version = '0.0.1'
+global.User = {}
 String.prototype.trim = function (char, type) {
     if (char) {
         if (type == 'left') {
@@ -22,6 +23,11 @@ String.prototype.trim = function (char, type) {
 };
 
 module.exports = {
+    getUserAge:(birthday)=>{
+        var birthYear= new Date(birthday).getFullYear();
+        var age =new Date().getFullYear()-birthYear;
+        return age;
+    },
     parseWuXingLevelToText(wuXingLevel){
         let wuXingStatusText = '';
         var wuXingTextMapper = {
@@ -63,6 +69,30 @@ module.exports = {
                 component.$emit('updateUserAnswer', component.answer)
             }
         }
+    },
+    convertReportsToText(reports){
+        let wuXingReportContentText = '';
+        if (typeof (reports) != 'undefined' && reports != '') {
+            for (let index = 0; index < reports.length; index++) {
+                if (reports[index].content)
+                    wuXingReportContentText += reports[index].content;
+                if (reports[index].illness)
+                    wuXingReportContentText += reports[index].illness;
+                if (global.User.gender = 'F') {
+                    if (reports[index].female)
+                        wuXingReportContentText += reports[index].female;
+                }
+                else {
+                    if (reports[index].male)
+                        wuXingReportContentText += reports[index].male;
+                }
+                if (global.User.age <= 15) {
+                    if (reports[index].child)
+                        wuXingReportContentText += reports[index].child;
+                }
+            }
+        }
+        return wuXingReportContentText;
     },
     loadExtendXianTianUserData (component, field){
         var xianTianAnswer = JSON.parse(localStorage.getItem(XianTianAnswer_Index));
