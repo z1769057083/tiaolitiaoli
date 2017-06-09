@@ -83,7 +83,7 @@
 				<div class="mask-shopCar">
 					<div class="shopCar-main">
 						<dl>
-							<dt><img :src="'http://139.162.116.116/image/product/39/'+list.index+'/.jpg'" 
+							<dt><img :src="'http://139.162.116.116/image/product/'+list.index+'/1.jpg'" 
 							         onerror="this.src='http://placeholder.qiniudn.com/800'"/></dt>
 							<dd>
 							     <p>¥{{list.price}}.00</p>
@@ -228,11 +228,14 @@
       },
       //判断是否有后天测试报告
       isRouterShop(){
-      	if(window.localStorage.houTianReport!==''){
-      		this.$router.push({ path: '/recuperate'})
+//    	debugger
+//TODO: change the logic for route redirect.
+      	if(window.localStorage.houTianReport){
+      		this.$router.push({ path: '/recuperate'})     			
       	}else{
-      		this.$router.push({ path: '/shop'})
-      	}      	
+      		this.$router.push({ path: '/shop'}) 	
+      	}  
+      	
       }
     },
     mounted() {
@@ -354,8 +357,9 @@
 				  }
 				  p{
 				  	line-height: rem(26rem);
-				  	font-size: $font14;
+				  	font-size: $font12;
 				  	width: 92%;
+				  	color: $c3c3c;
 				  	margin:rem(10rem) 0 rem(10rem) 4%;
 				  	
 				  }
@@ -364,7 +368,6 @@
 	  }
 	  .l-mgoodspay{
 	  	width: 100%;
-	  	height: 8%;
 	  	background: #fff;
 	  	position: fixed;
 	  	left: 0;

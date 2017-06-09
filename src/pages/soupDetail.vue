@@ -2,7 +2,6 @@
   <div class="soup">
   	<div class="soup-main">
   		 <h3 class="activeShow" v-if="list.title">{{list.title}}</h3>
-  		 <p></p>
   		 <div class="soup-mpic activeShow" v-if="list.index">
   		 		<img  :src="'http://139.162.116.116/image/soup/'+list.index+'/1.jpg'" 
 							  onerror="this.src='http://placeholder.qiniudn.com/800'" />
@@ -15,6 +14,14 @@
   		 <p class="activeShow" v-if="list.step3">{{list.step3}}</p>
   		 <p class="activeShow" v-if="list.step4">{{list.step4}}</p>
   		 <p class="activeShow" v-if="list.step5">{{list.step5}}</p>
+  		 <div class="soup-img activeShow" v-if="list.images" >
+  		 		<img class='soupImg' v-for='imgItem in list.images' 
+  		 			:src="'http://139.162.116.116/image/soup/'+list.index+'/'+imgItem+'.jpg'" 
+						onerror="this.src='http://placeholder.qiniudn.com/800'">
+						<!--<img class="soupImg" src="../assets/2.jpg"/>
+						<img class="soupImg" src="../assets/2.jpg"/>
+						<img class="soupImg" src="../assets/2.jpg"/>-->
+  		 </div>  		 
   	</div>  
   </div>
 </template>
@@ -87,6 +94,15 @@
 				width: 100%;
 				height: 100%;
 			}
+		}
+		.soupImg{
+			width: 100%;
+			height: 100%;
+		}
+		.soup-img{
+			margin-top: rem(10rem);
+			width: 100%;
+			overflow: hidden;
 		}
 	}
 }

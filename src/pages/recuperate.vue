@@ -79,7 +79,7 @@
 	width: 100%;
 	position: absolute;
 	background: url(../assets/indexbg.jpg) repeat-y;
-	background-size: cover;
+	background-size: contain;
 	padding: rem(30rem) 0;
 	.recuperate-main{
 		width: 86.6%;

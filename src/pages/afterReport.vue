@@ -41,12 +41,11 @@
                 </div>
             </div>
         </div>
-        <!--<afterReportDetail ></afterReportDetail>-->
         <!--后天报告详情开始-->
         <div class="reportDetail" v-show='afterReportHidden'>
             <div class="reportDetail-main">
                 <div class="top">
-                    <img src="../assets/afterHou.png"/>
+                    <img src="../assets/houtianImg.png"/>
                 </div>
                 <img class="close" src="../assets/shopcarClose.png" @click='afterReportHidden = !afterReportHidden'/>
                 <div class="reportDetailcontent">
@@ -60,7 +59,7 @@
         <div class="reportDetail" v-show='xianTianReportIsShowed'>
             <div class="reportDetail-main">
                 <div class="top">
-                    <img src="../assets/afterHou.png"/>
+                    <img src="../assets/xiantianImg.png"/>
                 </div>
                 <img class="close" src="../assets/shopcarClose.png"
                      @click='xianTianReportIsShowed = !xianTianReportIsShowed'/>

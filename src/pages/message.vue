@@ -145,7 +145,6 @@
 
             },
             updateUserAnswer(answerParams) {
-
                 this.isCurrentQuestionFinished = true;
                 this.pendingAnswer = answerParams;
                 for (let key in answerParams) {

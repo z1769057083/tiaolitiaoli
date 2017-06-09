@@ -16,5 +16,6 @@ module.exports = {
     generateTestAccount: apiPath + '/wechat/test_save_userInfo',
     getUserCount: apiPath + '/user/count',
     getReport: apiPath + '/report/get_report',
-    hotGoods: apiPath + '/product/hot'
+    hotGoods: apiPath + '/product/hot',
+    cashierSendData: apiPath + '/order/create' //发起请求向后台传订单数据 post    
 }

@@ -174,6 +174,9 @@ export default {
 	  	  address:'',
 	  	  postCode:''
  			},
+ 			price:{
+ 				price:0
+ 			},
  			submitArr:[]
     }
   },
@@ -220,7 +223,6 @@ export default {
         	address: this.address,
         	postCode: this.postCode
         } 
-        console.log(address)
         var rephone = /^1[3,4,5,7,8]\d{9}$/;
         if(rephone.test(address.phone)){
         	if(address.name!==''&&address.address!==''){
@@ -290,7 +292,7 @@ export default {
 	        let storage = window.localStorage
 	        this.submitArr.push(this.arr)
 	        this.submitArr.push(this.addressArr)
-	        this.submitArr.push(this.countPrice)
+	        this.submitArr.push(this.price)
 	        var orderArr= JSON.stringify(this.submitArr)  
 	        storage.setItem("orderArr", orderArr)
 			  }
@@ -313,14 +315,10 @@ export default {
   		 //取地址的localstorage
 	      let address_arr = window.localStorage.getItem("deliver_key")
 		    let address_obj = JSON.parse(address_arr)
-		    console.log(address_obj)
 		    if(address_obj!==null){		    	
 		    	this.addressArr = address_obj
 		    	this.editAddressArr = this.addressArr
 	      	this.addNewAddressHidden = false
-//	      	this.$set(this.addressArr, index, this.addressArr[index])
-//	      	this.$forceUpdate()
-            console.log(this.addressArr.name)
 	     }
   	},
   	loadOrdersFromBuyNow(){
@@ -330,6 +328,7 @@ export default {
 	        this.totalNum += this.arr[0].num
 					this.count = this.arr[0].num*parseInt(this.arr[0].price)
 					this.countPrice = this.count + 12
+					this.price.price = this.countPrice
   	},
   	loadOrdersFromShopCart(){
   		let obj_arr = window.localStorage.getItem('shopcart_Key')
@@ -344,6 +343,7 @@ export default {
 	          	  this.totalNum += this.arr[i].num * 1 
 								this.count += this.arr[i].num * parseInt(this.arr[i].price)
 								this.countPrice = this.count + 12
+								this.price.price = this.countPrice
 	          }
          }
   	}

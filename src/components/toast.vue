@@ -1,7 +1,7 @@
 <template>
 	<div class="toast">
 	  	<div class="toast-main">
-	  		<img src="../assets/toast.png"/>
+	  		<img src="../assets/toastImg.png"/>
 	  		<p>已成功添加到购物车</p>
 	  	</div>
 	</div>
