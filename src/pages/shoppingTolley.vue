@@ -19,7 +19,7 @@
 		  			<div class="tolley-check" :class="{active:item.isChecked}" @click='selectGood(index)'></div>	
 			  		<dl>
 		    			<dt><img 
-		    				:src="'http://139.162.116.116/image/product/'+item.img+'/1.jpg'" 
+		    				:src="''+apiPath+'/image/product/'+item.img+'/1.jpg'" 
 		    				onerror="this.src='http://placeholder.qiniudn.com/300'"/></dt>
 		    			<dd>
 		    				{{item.name}}
@@ -62,7 +62,8 @@ import Toast from '@/packages/toast'
  			arr:[],
  			toastHidden:false,
  			readyToDelIndex:-1,
- 			orderArr:[]
+ 			orderArr:[],
+ 			apiPath:''
  		}
  	},
  	methods:{
@@ -196,6 +197,7 @@ import Toast from '@/packages/toast'
 			item.isChecked = true
 		})
 	    document.title ='购物车'
+	    this.apiPath = api.apipath
 	}
  	
  }

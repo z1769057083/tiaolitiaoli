@@ -95,6 +95,7 @@
                 dl {
                     width: 100%;
                     /*height: rem(78rem);*/
+                    font-size: $font13;
                     border-bottom: 1px solid #e3e3e3;
                     overflow: hidden;
                     padding-bottom: rem(14rem);

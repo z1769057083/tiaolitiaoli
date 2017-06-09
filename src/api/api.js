@@ -1,7 +1,7 @@
 // api use part
-//       let apiPath = 'http://139.162.116.116';
+         let apiPath = 'http://139.162.116.116';
 // let apiPath = 'http://localhost:3333';
-let apiPath = 'http://192.168.31.248:3333';
+//let apiPath = 'http://192.168.31.248:3333';
 module.exports = {
     shopData: apiPath + '/product/all', // 商城首页
     recommendData: apiPath + '/product/recommend?id=', // 推荐商品
@@ -16,5 +16,7 @@ module.exports = {
     generateTestAccount: apiPath + '/wechat/test_save_userInfo',
     getUserCount: apiPath + '/user/count',
     getReport: apiPath + '/report/get_report',
-    hotGoods: apiPath + '/product/hot'
+    hotGoods: apiPath + '/product/hot',
+    cashierSendData: apiPath + '/order/create',
+    apipath:apiPath //发起请求向后台传订单数据 post
 }

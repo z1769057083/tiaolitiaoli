@@ -46,6 +46,7 @@ export default {
 		dl{
 			width: 100%;
 			height: rem(78rem);
+			font-size: $font13;
 			dt{
 				width: 100%;
 				line-height: rem(44rem);

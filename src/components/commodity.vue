@@ -10,7 +10,7 @@
 					{{soupItem.material}}
 				</dt>
 				<dd>
-					<img :src="'http://139.162.116.116/image/soup/'+soupItem.index+'/1.jpg'"  
+					<img :src="''+apiPath+'/image/soup/'+soupItem.index+'/1.jpg'"  
 						onerror="this.src='http://placeholder.qiniudn.com/800'"/>
 				</dd>
 			</router-link>	
@@ -22,7 +22,7 @@
 				</dt>							
 				<dd class="s-martimg" v-for='recommendItem in recommendlist'>
 					<router-link :to="{ name: 'goodsdetail', query: { itemid: recommendItem._id}}">
-						<img :src="'http://139.162.116.116/image/product/'+recommendItem.index+'/1.jpg'" 
+						<img :src="''+apiPath+'/image/product/'+recommendItem.index+'/1.jpg'" 
 				  		onerror="this.src='http://placeholder.qiniudn.com/800'"/>
 				  </router-link>
 				  <p class="s-martname">{{recommendItem.name}}</p>
@@ -42,7 +42,7 @@
 		<dl class="s-mrecomlist" v-for="temp in item.items">
 				<router-link :to="{ name: 'goodsdetail', query: { itemid: temp._id}}">
 				  <dt class="s-mreconimg">
-				  	<img :src="'http://139.162.116.116/image/product/'+temp.index+'/1.jpg'" 
+				  	<img :src="''+apiPath+'/image/product/'+temp.index+'/1.jpg'" 
 				  		onerror="this.src='http://placeholder.qiniudn.com/800'"/>
 				  </dt>
 					<dd class="s-mreconintro">
@@ -64,7 +64,8 @@ export default {
       listem:[],
       recommendlist:[],
       getSouplist:[],
-      soupList:[]
+      soupList:[],
+      apiPath:''
     }
   },
   components:{
@@ -122,6 +123,7 @@ export default {
   	this.requestlist()
   	this.recommend()
   	this.getSoup()
+  	this.apiPath = api.apipath
   }
 }
 </script>

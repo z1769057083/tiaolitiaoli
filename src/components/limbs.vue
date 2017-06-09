@@ -53,6 +53,7 @@ export default {
 			dl{
 				width: 100%;
 				position: relative;
+				font-size: $font13;
 				dt{
 					position: absolute;
  					top: rem(16rem);

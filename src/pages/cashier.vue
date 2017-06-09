@@ -2,7 +2,7 @@
   <div class='cashier-main'> 
 	<div class="cashier-mtop">
 		<p>支付金额</p>
-		<span>¥{{this.arr[2]}}.00</span>	
+		<span>¥{{totalCount}}.00</span>	
 		<div class="cashier-goods">商品名称:{{this.arr2.name}}</div>
 	</div>
 	<div class="cashier-mcontent">
@@ -28,18 +28,47 @@
 </template>
 <script>
 import axios from 'axios'
+import api from '../api/api'
 export default {
   data(){
   	return {
 			toggle: true,
 			arr:[],
-			arr2:[]
+			arr2:[],
+			totalCount:0
     }
   },
   methods: {
-  	
+  	requestCashier(){
+			let that = this
+			axios.defaults.headers['Content-Type'] = 'application/json';
+			if(!window.localStorage){
+	    	return false
+	    }else{
+	    	let storage = window.localStorage
+	    	let obj_arr = storage.getItem('orderArr')
+	    	let obj = JSON.parse(obj_arr)
+	   		this.arr = obj
+	   		console.log(this.arr)
+	    }
+			let params = {
+				order:this.arr[0],
+				address:this.arr[1],
+				price:this.arr[2].price
+			}
+	    axios.post(api.cashierSendData,params)
+		    .then(function (res) {
+		      if (res.data.errorCode == 0) {
+      				console.log(res.data.returnValue)
+		      }
+		    })
+		    .catch(function (error) {
+		        console.log(error)
+		    })
+	  	}
   },
-  mounted() {
+  mounted(){
+  	this.requestCashier()
     if(!window.localStorage){
     	return false
     }else{
@@ -48,7 +77,7 @@ export default {
 	    let obj = JSON.parse(obj_arr)
 	    this.arr = obj
 	    this.arr2 = this.arr[0][0]
-	    console.log(this.arr2)
+			this.totalCount = this.arr[2].price
     }
     document.documentElement.scrollTop = 0
     document.body.scrollTop =0

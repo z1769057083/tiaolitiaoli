@@ -109,8 +109,8 @@ export default {
 @import "../common/common.scss";
 /*选择问题内容*/
 .m-temperament{
-	width: 90%;
-	margin-left: 5%;
+	width: 96%;
+	margin-left: 2%;
 	overflow: hidden;
 	height: rem(220rem);
 	h3{
@@ -135,7 +135,7 @@ export default {
 			padding: rem(10rem) 0;
 			dt{
 				width: 100%;
-				height: rem(60rem);
+				height: rem(56rem);
 				img{
 					width: 100%;
 					height: 100%;

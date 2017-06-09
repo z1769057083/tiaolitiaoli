@@ -1,6 +1,6 @@
 <template>
 	<div class="m-selectfacon">
-	  	<div class="m-selectseason">
+	  	<div class="m-selectappend">
 	  		<dl>
 	  			<dt>最近出现情况:</dt>
 	  			<dd>
@@ -17,7 +17,7 @@ export default {
   data(){
   	return {
   	    situation: [],
-  		brandlist: ['经常腹泻','入眠困难','肠胃不好','睡觉易醒','心慌','全身无力','便秘','食欲不振','持续口腔溃疡','痛经','经期紊乱无']
+  		brandlist: ['经常腹泻','入眠困难','肠胃不好','睡觉易醒','心慌','全身无力','便秘','食欲不振','持续口腔溃疡','痛经','经期紊乱','无']
     }
   },
     computed: {
@@ -49,7 +49,7 @@ export default {
 	.m-selectfacon{
 		width: 90%;
 		margin-left: 5%;
-		.m-selectseason{
+		.m-selectappend{
 			width: 100%;
 			overflow: hidden;
 			dl{
@@ -57,9 +57,11 @@ export default {
 				border-bottom: 1px solid #e3e3e3;
 				overflow: hidden;
 				padding-bottom: rem(14rem);
+				font-size: $font12;
 				dt{
 					width: 100%;
 					line-height: rem(36rem);
+					font-size: $font13;
 				}
 				dd{
 					width: 100%;

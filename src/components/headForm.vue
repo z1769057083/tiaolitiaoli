@@ -76,6 +76,7 @@ export default {
 			padding: rem(10rem) 0;
 			border-radius: rem(5rem);
 			float: left;
+			font-size: $font13;
 			margin-right: 2.6%;
 			dt{
 				width: rem(64rem);

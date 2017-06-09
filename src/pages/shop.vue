@@ -9,7 +9,7 @@
 	        	<template>
 	        		<router-link :to="{ name: 'goodsdetail', query: { itemid: hotItem._id }}">
 		        		<img class="swiper-img" 
-			        		:src="'http://139.162.116.116/image/product/'+hotItem.index+'/1.jpg'" 
+			        		:src="''+apiPath+'/image/product/'+hotItem.index+'/1.jpg'" 
 							  	onerror="this.src='http://placeholder.qiniudn.com/800'"/>
 						  </router-link>
 					  </template>	
@@ -34,7 +34,8 @@ import commodity from '@/components/commodity'
 export default {
   data(){
   	return {
-  		hotList:[]
+  		hotList:[],
+  		apiPath:''
     }
   },
   components:{
@@ -60,6 +61,8 @@ export default {
   	document.title="在线商城"
   	document.documentElement.scrollTop = 0
     document.body.scrollTop = 0
+    this.apiPath = api.apipath
+    console.log(this.apiPath)
   },
   watch:{
   	  hotList: {
