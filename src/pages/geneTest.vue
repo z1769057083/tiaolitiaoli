@@ -42,7 +42,7 @@
 	height: 100%;
 	overflow: hidden;
 	position: absolute;
-	background: url(../assets/indexbg.png) no-repeat;
+	background: url(../assets/indexbg.jpg) no-repeat;
     background-size: 100% 100%;
 	.gene-main{
 		width: 86%;

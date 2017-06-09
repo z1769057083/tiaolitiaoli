@@ -174,7 +174,7 @@
   width: 100%;
   height: 100%;
   position: absolute;
-  background: url(../assets/indexbg.png) repeat-y;
+  background: url(../assets/indexbg.jpg) repeat-y;
   background-size: cover;
   .r-main{
 	margin-top: 0.48rem;

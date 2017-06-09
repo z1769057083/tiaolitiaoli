@@ -78,7 +78,7 @@
 .recuperate{
 	width: 100%;
 	position: absolute;
-	background: url(../assets/indexbg.png) repeat-y;
+	background: url(../assets/indexbg.jpg) repeat-y;
 	background-size: cover;
 	padding: rem(30rem) 0;
 	.recuperate-main{

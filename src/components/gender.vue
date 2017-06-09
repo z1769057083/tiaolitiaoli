@@ -2,11 +2,15 @@
     <div class="m-selection">
         <div class="m-selecttit1">性别</div>
         <div class="m-selectcon">
-            <div class="m-selectboy" :class="{'active': gender == 'M'}" @click="change_active('M',$event)"><img
-                    src="../assets/msgman.png"/>男
+            <div class="m-selectboy" :class="{'active': gender == 'M'}" @click="change_active('M',$event)">
+            	<img v-show='msgBoyImg' src="../assets/msgman.png"/>
+            	<img v-show='!msgBoyImg' src="../assets/msgmanactive.png"/>
+            	男
             </div>
-            <div class="m-selectgirl" :class="{'active': gender == 'F'}" @click="change_active('F',$event)"><img
-                    src="../assets/msgwoman.png"/>我是女生
+            <div class="m-selectgirl" :class="{'active': gender == 'F'}" @click="change_active('F',$event)">
+            	<img v-show='msgGrilImg' src="../assets/msgwoman.png"/>
+            	<img v-show='!msgGrilImg' src="../assets/msgwomanactive.png"/>
+            	我是女生
             </div>
         </div>
         <input type="date" class="m-selectdate" name='birthday' v-model='birthday' @change='change_date(birthday)'/>
@@ -17,7 +21,9 @@
         data(){
             return {
                 gender: "F",
-                birthday: "2014-01-01"
+                birthday: "2014-01-01",
+                msgBoyImg: true,
+                msgGrilImg: false
             }
         },
         computed: {
@@ -32,6 +38,13 @@
         },
         methods: {
             change_active(gender) {
+            	if(gender=='M'){
+            		this.msgBoyImg = false
+            		this.msgGrilImg = true
+            	}else{
+            		this.msgBoyImg = true
+            		this.msgGrilImg = false
+            	}
                 this.gender = gender;
                 if (this.birthday !== '') {
                     this.$emit('updateUserAnswer', this.answer);
@@ -87,7 +100,9 @@
         display: block;
         margin: rem(12rem) 0 rem(6rem) rem(63.5rem);
     }
-
+	.msgimgboy{
+		display: block;
+	}
     }
     .m-selectgirl {
         width: rem(155rem);
@@ -110,10 +125,9 @@
     }
 
     }
-    .active {
+    .active{
         background: #fff;
     }
-
     }
     .m-selectdate {
         width: 85.6%;

@@ -109,7 +109,7 @@
         width: 100%;
         height: 100%;
         position: absolute;
-        background: url(../assets/indexbg.png) no-repeat;
+        background: url(../assets/indexbg.jpg) no-repeat;
         background-size: cover;
 
         .r-main {

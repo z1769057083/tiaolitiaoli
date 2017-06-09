@@ -78,7 +78,7 @@ export default {
         bottom: 0;
         width: 100%;
         height: 100%;
-        background: url(../assets/indexbg.png) no-repeat;
+        background: url(../assets/indexbg.jpg) no-repeat;
         background-size: 100% 100%;
 
     .i-main {
