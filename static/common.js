@@ -8,7 +8,7 @@ global.XianTianReport_Index = 'xianTianReport'
 global.HouTianReport_Index = 'houTianReport'
 global.XianTianAnswer_Index = 'xianTianAnswer_Index'
 global.HouTianAnswer_Index = 'houTianAnswer_Index'
-global.Version = '0.0.1'
+global.Version = '0.0.2'
 global.User = {}
 String.prototype.trim = function (char, type) {
     if (char) {

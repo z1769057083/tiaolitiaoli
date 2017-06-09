@@ -30,9 +30,9 @@
                     </div>
                     <div class="r-mseason">
                         <h3>当季体质</h3>
-                        <p class="r-mrconp">
-                            {{wuXingDangShiStatusText}}<br>
-                            {{wuXingReportJieQiContent}}
+                        <p class="r-mrconp" v-html="wuXingDangShiStatusText+'<br>'+wuXingReportJieQiContent">
+                            <!--{{wuXingDangShiStatusText}}<br>-->
+                            <!--{{wuXingReportJieQiContent}}-->
                         </p>
                         <router-link to='/recuperate'>
                             <img class="r-mrconimg" src="../assets/afterRmy.png"/>

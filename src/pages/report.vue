@@ -17,7 +17,7 @@
                     </div>
                     <div class="r-mreport">
                         <h3>先天体质</h3>
-                        <p>{{wuXingReportContent}}</p>
+                        <p v-html="wuXingReportContent"></p>
                     </div>
                     <img class="i-micon" src="../assets/index.png">
                 </div>
