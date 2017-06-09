@@ -138,6 +138,7 @@
                 .then(function (res) {
                     if (res.data.errorCode == 0) {
                         let report = res.data.returnValue;
+                        localStorage.setItem(HouTianReport_Index, JSON.stringify(report))
                         that.renderReport(report)
                     }
                 })

@@ -14,18 +14,13 @@
 					<span>备注:{{comments}}</span>
 				</div>
 				<div class="mcon-symptom">
-					<span>主述症状:</span>饭后上中腹痛，或有恶心、抠吐、积食感，病腹疼痛难忍
+					<span>主述症状:</span>{{illness}}
 				</div>
 				<div class="mcon-season">
 					<p class="tit">R</p>
 					<div>
 						<span>当季体质:</span>
-						<p>
-							水平、火强、土平、金平、水平
-							根据你的体质和所在地区基本月气候的变化，
-							我会更新你的养生调理方案，你可以通过公众号到时查看，
-							祝你健康！
-						</p>
+						<p v-html="wuXingLevelText+'<br>'+reportContent"></p>
 					</div>
 				</div>
 				<commodity></commodity>
@@ -46,6 +41,9 @@
 				age:'',
 				genderText:'',
 				comments:'',
+				illness:'',
+				wuXingLevelText:'',
+				reportContent:'',
 				listem:[],
 				recommendlist:[],
 			    getSouplist:[]
@@ -64,8 +62,14 @@
             let user=JSON.parse(localStorage.getItem(Account_Index));
             let xianTianData=JSON.parse(localStorage.getItem(XianTianAnswer_Index));
             let houTianData=JSON.parse(localStorage.getItem(HouTianAnswer_Index));
+            let dangJiReport=JSON.parse(localStorage.getItem(HouTianReport_Index));
+            this.wuXingLevelText=Common.parseWuXingLevelToText(dangJiReport.wuXingDangShiLevel);
+            console.log(this.wuXingLevelText);
+            this.reportContent=Common.convertReportsToText(dangJiReport.jieQiReports).substring(0,100);
+
             this.nickname=user.nickname;
             this.genderText=xianTianData.gender=='F'?'女':'男';
+            this.illness=houTianData.situation.toString();
             this.age=new Date().getFullYear()- new Date(xianTianData.birthday).getFullYear();
             if(houTianData&&houTianData.femaleStatus){
                 this.comments=houTianData.femaleStatus;

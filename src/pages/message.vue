@@ -219,12 +219,6 @@
                     .then(function (res) {
                         if (res.data.errorCode == 0) {
                             let report = res.data.returnValue
-                            if (that.questionSection == XianTianSectionType) {
-                                localStorage.setItem(XianTianReport_Index, JSON.stringify(report))
-                            }
-                            else {
-                                localStorage.setItem(HouTianReport_Index, JSON.stringify(report))
-                            }
                             console.log(report)
                         }
                     })
