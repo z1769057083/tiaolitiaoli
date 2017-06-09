@@ -70,7 +70,6 @@
 
             },
             ac1(obj) {
-                debugger;
                 var numb1 = this.taste.indexOf(obj);
                 if (numb1 > -1) {
                     this.taste.splice(numb1, 1);
@@ -99,10 +98,11 @@
                 width: 100%;
                 height: rem(78rem);
                 border-bottom: 1px solid #e3e3e3;
+                font-size: $font13;
 
                 dt {
                     width: 19%;
-                    float: left;
+                    float: left;                    
                     line-height: rem(44rem);
                 }
 

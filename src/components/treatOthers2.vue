@@ -104,6 +104,7 @@
                 width: 100%;
                 height: rem(44rem);
                 border-bottom: 1px solid #e3e3e3;
+                font-size: $font13;
                 dt {
                     width: 19%;
                     float: left;

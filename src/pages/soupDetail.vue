@@ -79,7 +79,7 @@
 		p{
 			line-height: rem(26rem);
 			text-align: justify;
-			font-size: $font12;
+			font-size: $font13;
 			color: $c3c3c;
 			span{
 				font-size: $font14;

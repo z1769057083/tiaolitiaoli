@@ -91,11 +91,9 @@
 
     .r-content {
         width: 100%;
-        height: 100%;
         position: absolute;
-        background: url(../assets/indexbg.jpg) no-repeat;
-        background-size: cover;
-
+        background: url(../assets/indexbg.jpg) repeat-y;
+        background-size: contain;
         .r-main {
             margin-top: 0.48rem;
             padding-bottom: 0.48rem;

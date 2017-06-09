@@ -148,12 +148,12 @@
 						display: block;
 						font-weight: bold;	
 						float: left;
-						line-height: rem(16rem);
+						line-height: rem(18rem);
 					}
 					p{
 						width: 80%;
 						float: right;
-						line-height: rem(16rem);
+						line-height: rem(18rem);
 					}
 				}
 			}
