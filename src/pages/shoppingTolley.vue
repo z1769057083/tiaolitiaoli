@@ -54,6 +54,7 @@
 </template>
 <script>
 import axios from 'axios'
+import api from '../api/api'
 import Toast from '@/packages/toast'
  export default {
  	data(){

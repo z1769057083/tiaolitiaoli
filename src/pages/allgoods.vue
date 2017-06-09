@@ -5,7 +5,7 @@
 		<dl v-for='item in list'>
 			<router-link :to="{ name: 'goodsdetail', query: { itemid: item._id }}">
 				<dt>
-					<img :src="'http://139.162.116.116/image/product/'+item.index+'/1.jpg'" 
+					<img :src="''+apiPath+'/image/product/'+item.index+'/1.jpg'" 
 							onerror="this.src='http://placeholder.qiniudn.com/800'"/>
 				</dt>
 			</router-link>
@@ -26,7 +26,8 @@ export default {
   name: 'allgoods',
   data(){
   	return {
-  		list:[]
+  		list:[],
+  		apiPath:''
     }
   },
   methods: {
@@ -47,6 +48,7 @@ export default {
       },
   },
   mounted() {
+  	this.apiPath = api.apipath
   	this.requestlist()
   	document.documentElement.scrollTop = 0
     document.body.scrollTop =0

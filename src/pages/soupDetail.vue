@@ -3,7 +3,7 @@
   	<div class="soup-main">
   		 <h3 class="activeShow" v-if="list.title">{{list.title}}</h3>
   		 <div class="soup-mpic activeShow" v-if="list.index">
-  		 		<img  :src="'http://139.162.116.116/image/soup/'+list.index+'/1.jpg'" 
+  		 		<img  :src="''+apiPath+'/image/soup/'+list.index+'/1.jpg'" 
 							  onerror="this.src='http://placeholder.qiniudn.com/800'" />
   		 </div>
   		 <p class="activeShow" v-if="list.material"><span>需备食材：</span></p>
@@ -16,7 +16,7 @@
   		 <p class="activeShow" v-if="list.step5">{{list.step5}}</p>
   		 <div class="soup-img activeShow" v-if="list.images" >
   		 		<img class='soupImg' v-for='imgItem in list.images' 
-  		 			:src="'http://139.162.116.116/image/soup/'+list.index+'/'+imgItem+'.jpg'" 
+  		 			:src="''+apiPath+'/image/soup/'+list.index+'/'+imgItem+'.jpg'" 
 						onerror="this.src='http://placeholder.qiniudn.com/800'">
 						<!--<img class="soupImg" src="../assets/2.jpg"/>
 						<img class="soupImg" src="../assets/2.jpg"/>
@@ -31,7 +31,8 @@
   export default {
     data(){
     	return{
-    		list:[]
+    		list:[],
+    		apiPath:''
     	}
     },
     methods:{
@@ -55,6 +56,7 @@
     mounted(){
     	this.singleSoupList()
     	document.title="食谱"
+    	this.apiPath = api.apipath
     }
   }
 </script>

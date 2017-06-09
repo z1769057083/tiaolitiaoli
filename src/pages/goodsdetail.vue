@@ -4,7 +4,7 @@
 	    <div class="l-main">
 	    	<div class="l-mainscroll">
 	    		<div class="l-mgoodsimg">
-		    		<img :src="'http://139.162.116.116/image/product/'+list.index+'/1.jpg'" 
+		    		<img :src="''+apiPath+'/image/product/'+list.index+'/1.jpg'" 
 								  		onerror="this.src='http://placeholder.qiniudn.com/800'"/>
 		      </div>
 				  <div class="l-mgoodsprice">
@@ -29,7 +29,7 @@
 							<p class="activeShow" v-if="list.fit_people">适用人群：{{list.fit_people}}</p>
 				  	</div>
 				  	<img v-for='imgItem in list.images' 
-				  		:src="'http://139.162.116.116/image/product/'+list.index+'/'+imgItem+'.jpg'" 
+				  		:src="''+apiPath+'/image/product/'+list.index+'/'+imgItem+'.jpg'" 
 							onerror="this.src='http://placeholder.qiniudn.com/800'"/>
 				  </div>
 	    	</div>
@@ -58,7 +58,7 @@
 				<div class="mask-shopCar">
 					<div class="shopCar-main">
 						<dl>
-							<dt><img :src="'http://139.162.116.116/image/product/'+list.index+'/1.jpg'" 
+							<dt><img :src="''+apiPath+'/image/product/'+list.index+'/1.jpg'" 
 							onerror="this.src='http://placeholder.qiniudn.com/800'"/></dt>
 							<dd>
 							    <p>¥{{list.price}}.00</p>
@@ -83,7 +83,7 @@
 				<div class="mask-shopCar">
 					<div class="shopCar-main">
 						<dl>
-							<dt><img :src="'http://139.162.116.116/image/product/'+list.index+'/1.jpg'" 
+							<dt><img :src="''+apiPath+'/image/product/'+list.index+'/1.jpg'" 
 							         onerror="this.src='http://placeholder.qiniudn.com/800'"/></dt>
 							<dd>
 							     <p>¥{{list.price}}.00</p>
@@ -125,6 +125,7 @@
         nowArr:[],
         emptyArray:[],
         shopingCatrDotted: false,
+        apiPath:''
       }
     },
     components: {
@@ -256,6 +257,7 @@
       	this.shopingCatrDotted = true	
       }
       document.title ='商品详情'
+      this.apiPath = api.apipath
       
     }
   }

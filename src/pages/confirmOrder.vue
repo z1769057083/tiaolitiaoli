@@ -24,7 +24,7 @@
     	<h3 class="order-mtitle">汉古商城</h3>
     	<div class="order-mdetail" v-for='(item,index) in arr'>
     		<dl>
-    			<dt><img :src="'http://139.162.116.116/image/product/'+item.img+'/1.jpg'" 
+    			<dt><img :src="''+apiPath+'/image/product/'+item.img+'/1.jpg'" 
 	    				onerror="this.src='http://placeholder.qiniudn.com/300'"/></dt>
     			<dd>
     				{{item.name}}
@@ -177,7 +177,8 @@ export default {
  			price:{
  				price:0
  			},
- 			submitArr:[]
+ 			submitArr:[],
+ 			apiPath:''
     }
   },
   components:{
@@ -360,6 +361,7 @@ export default {
         }
 	     	this.loadDelieverAddress();
       	document.title ='确认订单'
+      	this.apiPath = api.apipath
     }
   }
 </script>

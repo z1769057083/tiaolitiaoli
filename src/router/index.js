@@ -6,7 +6,6 @@ import report from '@/pages/report'
 import shop from '@/pages/shop'
 import goodsdetail from '@/pages/goodsdetail'
 import allgoods from '@/pages/allgoods'
-import articledetail from '@/pages/articledetail'
 import confirmOrder from '@/pages/confirmOrder'
 import shoppingTolley from '@/pages/shoppingTolley'
 import cashier from '@/pages/cashier'
@@ -51,11 +50,6 @@ export default new Router({
       path: '/allgoods',
       component: allgoods,
       name: 'allgoods'
-    },
-    {
-      path: '/articledetail',
-      component: articledetail,
-      name: 'articledetail'
     },
     {
       path: '/confirmOrder',
