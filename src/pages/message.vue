@@ -129,7 +129,7 @@
         methods: {
             checkFemaleQuestion(that){
                 var xianTianAnswer = JSON.parse(localStorage.getItem(XianTianAnswer_Index));
-                if (xianTianAnswer==null||typeof(xianTianAnswer) === 'undefined') {
+                if (xianTianAnswer == null || typeof(xianTianAnswer) === 'undefined') {
                     that.index = that.index + 1;
                 }
                 else {
@@ -195,7 +195,7 @@
                 }
             },
             saveAndGenerateReport(){
-                let user=JSON.parse(localStorage.getItem(Account_Index));
+                let user = JSON.parse(localStorage.getItem(Account_Index));
                 var userId = user._id;
                 var that = this;
                 var postData = { "answer": {} };
@@ -267,7 +267,7 @@
         }
     }
 </script>
-<style lang="scss">
+<style lang="scss" rel="stylesheet/scss">
     @import "../common/common.scss";
 
     .message {
@@ -277,6 +277,7 @@
         position: absolute;
         /*overflow: hidden;*/
     }
+
     /*聊天内容*/
     .m-char {
         width: 100%;
@@ -287,123 +288,124 @@
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
 
-    .m-charscroll {
-        width: 100%;
+        .m-charscroll {
+            width: 100%;
 
-    .m-chardocter {
-        width: 78%;
-        margin-left: 7%;
-        overflow: hidden;
-        display: flex;
-        margin-bottom: rem(14rem);
+            .m-chardocter {
+                width: 78%;
+                margin-left: 7%;
+                overflow: hidden;
+                display: flex;
+                margin-bottom: rem(14rem);
 
-    .m-charperson {
-        width: 1.07rem;
-        height: 1.07rem;
-        border-radius: 50%;
-        margin-right: rem(12rem);
-        overflow: hidden;
+                .m-charperson {
+                    width: 1.07rem;
+                    height: 1.07rem;
+                    border-radius: 50%;
+                    margin-right: rem(12rem);
+                    overflow: hidden;
 
-    img {
-        width: 1.07rem;
-        height: 1.07rem;
-    }
-    }
-    .m-charcont {
-        color: #3c3c3c;
-        line-height: 0.56rem;
-        font-size: 0.37rem;
-        padding: 0.21rem 0.32rem;
-        border-radius: 0.15rem;
-        letter-spacing: 0.01rem;
-        max-width: 72%;
-        position: relative;
-        background: #fff;
+                    img {
+                        width: 1.07rem;
+                        height: 1.07rem;
+                    }
 
-    img {
-        width: rem(7rem);
-        height: rem(14rem);
-        position: absolute;
-        top: rem(10rem);
-        left: rem(-7rem);
+                }
+                .m-charcont {
+                    color: #3c3c3c;
+                    line-height: 0.56rem;
+                    font-size: 0.37rem;
+                    padding: 0.21rem 0.32rem;
+                    border-radius: 0.15rem;
+                    letter-spacing: 0.01rem;
+                    max-width: 72%;
+                    position: relative;
+                    background: #fff;
+
+                    img {
+                        width: rem(7rem);
+                        height: rem(14rem);
+                        position: absolute;
+                        top: rem(10rem);
+                        left: rem(-7rem);
+                    }
+
+                }
+            }
+            .m-charcustom {
+                width: 78%;
+                margin-right: 7%;
+                overflow: hidden;
+                margin-bottom: rem(14rem);
+                float: right;
+
+                .m-charperson {
+                    width: 1.07rem;
+                    height: 1.07rem;
+                    float: right;
+                    margin-left: rem(12rem);
+                    border-radius: 50%;
+                    overflow: hidden;
+
+                    img {
+                        width: 1.07rem;
+                        height: 1.07rem;
+                    }
+
+                }
+                .m-charcont {
+                    color: #3c3c3c;
+                    background: #fff;
+                    line-height: 0.56rem;
+                    font-size: 0.37rem;
+                    padding: 0.21rem 0.32rem;
+                    border-radius: 0.15rem;
+                    letter-spacing: 0.01rem;
+                    float: right;
+                    max-width: 72%;
+                    position: relative;
+
+                    img {
+                        width: rem(7rem);
+                        height: rem(14rem);
+                        position: absolute;
+                        top: rem(10rem);
+                        right: rem(-7rem);
+                    }
+
+                }
+
+            }
+        }
     }
 
-    }
-    }
-    .m-charcustom {
-        width: 78%;
-        margin-right: 7%;
-        overflow: hidden;
-        margin-bottom: rem(14rem);
-        float: right;
-
-    .m-charperson {
-        width: 1.07rem;
-        height: 1.07rem;
-        float: right;
-        margin-left: rem(12rem);
-        border-radius: 50%;
-        overflow: hidden;
-        
-
-    img {
-        width: 1.07rem;
-        height: 1.07rem;
-    }
-
-    }
-    .m-charcont {
-        color: #3c3c3c;
-        background: #fff;
-        line-height: 0.56rem;
-        font-size: 0.37rem;
-        padding: 0.21rem 0.32rem;
-        border-radius: 0.15rem;
-        letter-spacing: 0.01rem;
-        float: right;
-        max-width: 72%;
-        position: relative;
-
-    img {
-        width: rem(7rem);
-        height: rem(14rem);
-        position: absolute;
-        top: rem(10rem);
-        right: rem(-7rem);
-    }
-
-    }
-
-    }
-    }
-    }
     .m-select {
         width: 100%;
         background: #f8f8f8;
         height: 52%;
         position: relative;
 
-    .hidden {
-        display: none;
-    }
+        .hidden {
+            display: none;
+        }
 
-    .show {
-        display: block;
-    }
+        .show {
+            display: block;
+        }
 
-    .submit {
-        width: 30%;
-        height: rem(40rem);
-        background: #c69b70;
-        border: 0;
-        color: #fff;
-        border-radius: 0.13rem;
-        font-size: 0.37rem;
-        line-height: rem(40rem);
-        position: absolute;
-        bottom: rem(40rem);
-        left: 35%;
-    }
+        .submit {
+            width: 30%;
+            height: rem(40rem);
+            background: #c69b70;
+            border: 0;
+            color: #fff;
+            border-radius: 0.13rem;
+            font-size: 0.37rem;
+            line-height: rem(40rem);
+            position: absolute;
+            bottom: rem(40rem);
+            left: 35%;
+        }
 
     }
 </style>
