@@ -145,15 +145,21 @@
 
             },
             updateUserAnswer(answerParams) {
-
-                this.isCurrentQuestionFinished = true;
-                this.pendingAnswer = answerParams;
-                for (let key in answerParams) {
-                    if (this.questionSection == XianTianSectionType) {
-                        this.xianTianAnswer[key] = answerParams[key];
-                    }
-                    else {
-                        this.houTianAnswer[key] = answerParams[key];
+                if (answerParams.isAllFilled || typeof (answerParams.isAllFilled) === 'undefined') {
+                    this.isCurrentQuestionFinished = true;
+                }
+                else {
+                    this.isCurrentQuestionFinished = false;
+                }
+                if (this.isCurrentQuestionFinished) {
+                    this.pendingAnswer = answerParams;
+                    for (let key in answerParams) {
+                        if (this.questionSection == XianTianSectionType) {
+                            this.xianTianAnswer[key] = answerParams[key];
+                        }
+                        else {
+                            this.houTianAnswer[key] = answerParams[key];
+                        }
                     }
                 }
             },
