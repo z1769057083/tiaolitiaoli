@@ -64,12 +64,19 @@ export default {
             var answer = {};
             answer.section3 = this.section3;
             return answer;
+        },
+        isAllFilled(){
+            return this.section3.gentle != -1 && this.section3.evil != -1
+                && this.section3.flexible != -1 && this.section3.burly != -1
+                && this.section3.principle != -1;
         }
     },
 	methods:{
 	  	change_active(answerValue,sectionId,sectionKey,event){
             this.$data.section3[sectionKey]=answerValue
-            this.$emit('updateUserAnswer', this.answer)
+            if (this.isAllFilled) {
+                this.$emit('updateUserAnswer', this.answer)
+            }
 	    }
 	},
     mounted(){
@@ -77,7 +84,7 @@ export default {
     }
 }
 </script>
-<style lang="scss">
+<style lang="scss" rel="stylesheet/scss">
 @import "../common/common.scss";
 	/*选择问题内容*/
 	.m-selectfacon{

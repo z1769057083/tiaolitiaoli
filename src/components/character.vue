@@ -77,7 +77,7 @@
 	  	</div>
 	</div>
 </template>
-<script type="text/javascript">
+<script type="text/javascript" >
 
     import Common from '../../static/common'
 export default {
@@ -104,7 +104,7 @@ export default {
 	}
 }
 </script>
-<style lang="scss">
+<style lang="scss" rel="stylesheet/scss">
 @import "../common/common.scss";
 /*选择问题内容*/
 .m-character{

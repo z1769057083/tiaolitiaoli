@@ -11,7 +11,7 @@ export default {
 
 }
 </script>
-<style lang="scss">
+<style lang="scss" rel="stylesheet/scss">
 @import "../common/common.scss";
 .toast{
 	width: 100%;
