@@ -118,7 +118,7 @@
                     text-align: center;
                     font-size: $font14;
                     height: rem(20rem);
-                    color: #c000;
+                    color: $c000;
                     text-align: center;
                     letter-spacing: rem(1.5rem);
                     .i-maincenleft {
