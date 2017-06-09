@@ -1,7 +1,7 @@
 
 module.exports = {
-    loadChart(element,items){
-        let chart = new Highcharts.Chart(element, {
+    loadChart:function(element,items){
+        var chart = new Highcharts.Chart(element, {
             chart: {
                 backgroundColor: 'transparent',
                 polar: true,
@@ -24,7 +24,7 @@ module.exports = {
                 max: 360,
                 labels: {
                     formatter: function () {
-                        let textArray = ['金', '木', '水', '火', '土']
+                        var textArray = ['金', '木', '水', '火', '土']
                         return textArray[this.value / 72];
                     }
                 }

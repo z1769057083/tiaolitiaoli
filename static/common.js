@@ -23,13 +23,13 @@ String.prototype.trim = function (char, type) {
 };
 
 module.exports = {
-    getUserAge:(birthday)=>{
+    getUserAge:function (birthday){
         var birthYear= new Date(birthday).getFullYear();
         var age =new Date().getFullYear()-birthYear;
         return age;
     },
-    parseWuXingLevelToText(wuXingLevel){
-        let wuXingStatusText = '';
+    parseWuXingLevelToText:function(wuXingLevel){
+        var wuXingStatusText = '';
         var wuXingTextMapper = {
             'gold': '金',
             'wood': '木',
@@ -37,7 +37,7 @@ module.exports = {
             'fire': '火',
             'earth': '土',
         }
-        for (let key in wuXingLevel) {
+        for (var key in wuXingLevel) {
             wuXingStatusText += wuXingTextMapper[key];
             if (wuXingLevel[key] == 0) {
                 wuXingStatusText += '弱';
@@ -50,9 +50,9 @@ module.exports = {
         wuXingStatusText = wuXingStatusText.trim(',');
         return wuXingStatusText;
     },
-    parseWuXingToArray(wuXing){
+    parseWuXingToArray:function(wuXing){
         var wuXingArray = [];
-        for (let key in wuXing) {
+        for (var key in wuXing) {
             if (wuXing[key] <= 0) {
                 wuXingArray.push(0.1);
             } else {
@@ -61,19 +61,19 @@ module.exports = {
         }
         return wuXingArray;
     },
-    loadXianTianUserData (component){
+    loadXianTianUserData:function (component){
         var xianTianAnswer = JSON.parse(localStorage.getItem(XianTianAnswer_Index));
-        for (let key in xianTianAnswer) {
+        for (var key in xianTianAnswer) {
             if (component.$data[key] && typeof (component.$data[key]) === typeof (xianTianAnswer[key])) {
                 component.$data[key] = xianTianAnswer[key];
                 component.$emit('updateUserAnswer', component.answer)
             }
         }
     },
-    convertReportsToText(reports){
-        let wuXingReportContentText = '';
+    convertReportsToText:function(reports){
+        var wuXingReportContentText = '';
         if (typeof (reports) != 'undefined' && reports != '') {
-            for (let index = 0; index < reports.length; index++) {
+            for (var index = 0; index < reports.length; index++) {
                 if (reports[index].content)
                     wuXingReportContentText += reports[index].content;
                 if (reports[index].illness)
@@ -94,11 +94,11 @@ module.exports = {
         }
         return wuXingReportContentText;
     },
-    loadExtendXianTianUserData (component, field){
+    loadExtendXianTianUserData:function (component, field){
         var xianTianAnswer = JSON.parse(localStorage.getItem(XianTianAnswer_Index));
         if (xianTianAnswer == null) return;
         var extendValue = xianTianAnswer[field];
-        for (let key in extendValue) {
+        for (var key in extendValue) {
             if (component.$data[key] && typeof (component.$data[key]) === typeof (extendValue[key])) {
                 component.$data[key] = extendValue[key];
                 component.$emit('updateUserAnswer', component.answer)
