@@ -17,5 +17,6 @@ module.exports = {
     getUserCount: apiPath + '/user/count',
     getReport: apiPath + '/report/get_report',
     hotGoods: apiPath + '/product/hot',
-    cashierSendData: apiPath + '/order/create' //发起请求向后台传订单数据 post    
+    cashierSendData: apiPath + '/order/create',
+    apipath:apiPath //发起请求向后台传订单数据 post
 }
