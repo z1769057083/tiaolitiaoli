@@ -277,7 +277,7 @@
     @import "../common/common.scss";
 
     .message {
-        background: #f8f8f8;
+        background: #f2f2f2;
         width: 100%;
         height: 100%;
         position: absolute;
@@ -290,10 +290,9 @@
         height: 44%;
         background: #f2f2f2;
         padding-top: rem(20rem);
-        border-bottom: rem(4rem) solid #dab589;
+        /*border-bottom: rem(4rem) solid #dab589;*/
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
-
         .m-charscroll {
             width: 100%;
 
@@ -385,12 +384,15 @@
         }
     }
 
-    .m-select {
+    .m-select{
         width: 100%;
         background: #f8f8f8;
         height: 52%;
         position: relative;
-
+        overflow: hidden;
+		border-top: 1px solid #e8e8e8;
+		border-top-left-radius: rem(15rem);
+		border-top-right-radius: rem(15rem);
         .hidden {
             display: none;
         }
