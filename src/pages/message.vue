@@ -233,11 +233,11 @@
                 }
                 if (this.questionSection == XianTianSectionType) {
                     this.index = 0;
-                    this.questions = JSON.parse(localStorage.getItem(Answer_Index)).xianTianQuestions;
+                    this.questions = JSON.parse(localStorage.getItem(All_Question_Index)).xianTianQuestions;
                 }
                 else {
                     this.index = 1;
-                    this.questions = JSON.parse(localStorage.getItem(Answer_Index)).houTianQuestions;
+                    this.questions = JSON.parse(localStorage.getItem(All_Question_Index)).houTianQuestions;
                 }
                 var item = { isQuestion: true };
                 item.content = this.questions[0].content;
