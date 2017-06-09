@@ -64,12 +64,19 @@ export default {
             var answer = {};
             answer.section4 = this.section4;
             return answer;
+        },
+        isAllFilled(){
+            return this.section4.lean != -1 && this.section4.observe != -1
+                && this.section4.solemn != -1 && this.section4.frank != -1
+                && this.section4.speech != -1;
         }
     },
 	methods:{
 	  	change_active(answerValue,sectionId,sectionKey,event) {
             this.$data.section4[sectionKey]=answerValue
-            this.$emit('updateUserAnswer', this.answer)
+            if (this.isAllFilled) {
+                this.$emit('updateUserAnswer', this.answer)
+            }
 	    }
 	},
     mounted(){
