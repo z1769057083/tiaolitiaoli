@@ -13,8 +13,8 @@
     	<dl class="order-consignee" v-else='!addNewAddressHidden' @click='editAddress'>
 				<dt><img src="../assets/orderAddress.png"/></dt>
 				<dd class="consignee">
-					<p>收货人:{{addressArr.name}}<span>{{addressArr.phone}}</span></p>
-					<span>收货地址:{{addressArr.address}}</span>
+					<p>收货人:&nbsp;{{addressArr.name}}<span>{{addressArr.phone}}</span></p>
+					<span>收货地址:&nbsp;{{addressArr.address}}</span>
 				</dd>
 				<dd class="order-right"><img src="../assets/confirmRight.png"/></dd>
 			</dl>
@@ -37,17 +37,17 @@
     <div class="order-mcontent">
     	<dl>
     		<dt>配送方式</dt>
-    		<dd>快递¥12.00</dd>
+    		<dd>快递 &nbsp;¥12.00</dd>
     	</dl>
     	<dl class="order-mconpic">
     		<dt></dt>
-    		<dd>共{{totalNum}}件商品   小计:<span>¥{{count}}.00</span></dd>
+    		<dd>共&nbsp;{{totalNum}}&nbsp;件商品   小计:&nbsp;<span>¥<span class="order-mconprice">{{count}}</span>.00</span></dd>
     	</dl>
     </div>
 		<div class="order-bottom">
 			<div class="submitOrder" @click='submitOrder'>提交订单</div>
 			<div class="toal">
-				合计:<span>¥{{countPrice}}元</span>
+				合计:<span>¥&nbsp;{{countPrice}}</span>
 			</div>
 		</div>
 		<!--新增收货地址开始-->
@@ -93,8 +93,8 @@
 					<dl>
 						<dt><div class="tolley-check"></div></dt>
 			    		<dd class="consignee">
-			    				<p>收货人:{{addressArr.name}}<span>{{addressArr.phone}}</span></p>
-									<span>收货地址:{{addressArr.address}}</span>
+			    				<p>收货人:&nbsp;{{addressArr.name}}<span>{{addressArr.phone}}</span></p>
+									<span>收货地址:&nbsp;{{addressArr.address}}</span>
 			    		</dd>
 			    		<dd class="order-right" @click='selectEdit'><img src="../assets/selectEdit.png"/></dd>
 					</dl>
@@ -110,25 +110,25 @@
 					<dl>
 						<dt>收货人</dt>
 						<dd>
-							<input type="text" name="name" placeholder="收货人姓名" v-model='addressArr.name'/>
+							<input type="text" name="name" placeholder="收货人姓名" v-model='editAddressArr.name'/>
 						</dd>
 					</dl>
 					<dl>
 						<dt>联系电话</dt>
 						<dd>
-							<input type="text" placeholder="手机或固定电话"  v-model='addressArr.phone'/>
+							<input type="text" placeholder="手机或固定电话"  v-model='editAddressArr.phone'/>
 						</dd>
 					</dl>
 					<dl>
 						<dt>详细地址</dt>
 						<dd>
-							<input type="text" placeholder="如街道，楼层，门牌号等" v-model='addressArr.address'/>
+							<input type="text" placeholder="如街道，楼层，门牌号等" v-model='editAddressArr.address'/>
 						</dd>
 					</dl>
 					<dl>
 						<dt>邮政编码</dt>
 						<dd>
-							<input type="text" placeholder="邮政编码(选填)" v-model='addressArr.postCode'/>
+							<input type="text" placeholder="邮政编码(选填)" v-model='editAddressArr.postCode'/>
 						</dd>
 					</dl>
 					<div class="address-btn preserve" @click='reserve1'>保存</div>
@@ -163,6 +163,12 @@ export default {
  			arr:[],
  			countPrice:0,
  			addressArr:{
+ 				name:'',
+	  	  phone:'',
+	  	  address:'',
+	  	  postCode:''
+ 			},
+ 			editAddressArr:{
  				name:'',
 	  	  phone:'',
 	  	  address:'',
@@ -308,8 +314,9 @@ export default {
 	      let address_arr = window.localStorage.getItem("deliver_key")
 		    let address_obj = JSON.parse(address_arr)
 		    console.log(address_obj)
-		    if(address_obj!==null){
+		    if(address_obj!==null){		    	
 		    	this.addressArr = address_obj
+		    	this.editAddressArr = this.addressArr
 	      	this.addNewAddressHidden = false
 //	      	this.$set(this.addressArr, index, this.addressArr[index])
 //	      	this.$forceUpdate()
@@ -352,7 +359,7 @@ export default {
         	this.loadOrdersFromBuyNow();
         }
 	     	this.loadDelieverAddress();
-      document.title ='确认订单'
+      	document.title ='确认订单'
     }
   }
 </script>
@@ -418,7 +425,7 @@ export default {
 					}
 				}
 				span{
-					line-height: rem(16rem);
+					line-height: rem(18rem);
 				}
 			}
 			.order-right{
@@ -511,6 +518,9 @@ export default {
 				letter-spacing: rem(0.4rem);
 				span{
 					color: #ff3300;
+					.order-mconprice{
+						font-size: $font14;
+					}
 				}
 			}
 		}
@@ -646,7 +656,7 @@ export default {
 					.tolley-check{
 						float: left;
 						border-radius: 50%;
-						margin: rem(15rem) 3% 0 0;
+						margin: rem(10rem) 3% 0 0;
 						width: rem(19rem);
 						height: rem(19rem);
 						background: url(../assets/shopTolley.png) no-repeat center;
@@ -666,9 +676,12 @@ export default {
 					p{
 						margin-bottom: rem(2rem);
 						color: $c3c3c;
+						span{
+							float: right;
+						}
 					}
 					span{
-						line-height: rem(16rem);
+						line-height: rem(18rem);
 						color: #999;
 					}
 				}

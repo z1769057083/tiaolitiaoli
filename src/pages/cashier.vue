@@ -80,7 +80,7 @@ export default {
 			line-height: rem(30rem);
 		}
 		.cashier-goods{
-			width: 32%;
+			width: 35%;
 			margin-left: 34%;
 			margin-top: rem(30rem);
 			font-size: $font14;

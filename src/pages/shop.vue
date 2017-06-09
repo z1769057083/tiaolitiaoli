@@ -48,7 +48,6 @@ export default {
             if (res.data.errorCode == 0) {
               res = res.data.returnValue
               that.hotList = res
-              console.log(res)
             }
           })
           .catch(function (error) {

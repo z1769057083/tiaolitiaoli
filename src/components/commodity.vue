@@ -21,7 +21,7 @@
 					<h3 class="s-marcontitle">推荐商品</h3>
 				</dt>							
 				<dd class="s-martimg" v-for='recommendItem in recommendlist'>
-					<router-link :to="{ name: 'goodsdetail', query: { itemid: recommendItem._id }}">
+					<router-link :to="{ name: 'goodsdetail', query: { itemid: recommendItem._id}}">
 						<img :src="'http://139.162.116.116/image/product/'+recommendItem.index+'/1.jpg'" 
 				  		onerror="this.src='http://placeholder.qiniudn.com/800'"/>
 				  </router-link>
@@ -33,14 +33,14 @@
 		</div>
 	</div>
 	<!--商品部分-->
-	<div class="s-mrecomment" v-for="(item, index) in listem">
+	<div class="s-mrecomment1" v-for="(item, index) in listem">
 		<h3 class="s-marttitle">{{item.title}}
-			<router-link :to="{ name: 'allgoods', query: { categoryId: item.category }}">
+			<router-link :to="{ name: 'allgoods', query: { categoryId: item.category ,titleName:item.title}}">
 			<a class="s-mrecomall" href="">查看全部</a>
 			</router-link></h3>
 		<div>
 		<dl class="s-mrecomlist" v-for="temp in item.items">
-				<router-link :to="{ name: 'goodsdetail', query: { itemid: temp._id }}">
+				<router-link :to="{ name: 'goodsdetail', query: { itemid: temp._id}}">
 				  <dt class="s-mreconimg">
 				  	<img :src="'http://139.162.116.116/image/product/'+temp.index+'/1.jpg'" 
 				  		onerror="this.src='http://placeholder.qiniudn.com/800'"/>
@@ -221,17 +221,19 @@ export default {
  	}
 }
   /*商品列表*/
-.s-mrecomment{
+.s-mrecomment1{
 	width: 100%;
 	overflow: hidden;
+	padding-top: 0.32rem;
+	border-bottom: rem(1rem) solid #e8e8e8;
 	h3{
  		font-size: 0.42rem;
  		line-height: 0.59rem;
  		color: #000;
  		font-weight: bold;
  		margin-bottom: 0.26rem;
- 		/*background: url(../assets/shoptitleft.png) no-repeat left;
- 		padding-left: 2%;*/
+ 		background: url(../assets/shoptitleft.png) no-repeat left;
+ 		padding-left: 2%;
  		.s-mrecomall{
 	 		font-size: 0.35rem;
 	 		color: #c69b70;
