@@ -145,6 +145,7 @@
 
             },
             updateUserAnswer(answerParams) {
+            	debugger;
                 if (answerParams.isAllFilled || typeof (answerParams.isAllFilled) === 'undefined') {
                     this.isCurrentQuestionFinished = true;
                 }
