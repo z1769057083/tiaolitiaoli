@@ -85,7 +85,7 @@ export default {
   }
 }
 </script>
-<style scoped lang="scss">
+<style scoped lang="scss" rel="stylesheet/scss">
 @import "../common/common.scss";
 .cashier-main{
 	width: 100%;

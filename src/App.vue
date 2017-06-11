@@ -30,7 +30,6 @@
                     })
             },
             loadUserInfo(){
-                debugger;
                 let openid = this.$route.query.openid;
                 if (typeof (openid) == 'undefined' || openid == '') {
                     //Note:generate test account.

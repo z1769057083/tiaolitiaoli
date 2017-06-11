@@ -35,7 +35,7 @@
     }
   }
 </script>
-<style scoped lang="scss">
+<style scoped lang="scss" rel="stylesheet/scss">
 @import "../common/common.scss";
 .gene{
 	width: 100%;

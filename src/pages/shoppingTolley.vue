@@ -134,7 +134,6 @@ import Toast from '@/packages/toast'
         	}
    		}
 // 		doctorAvatar(){
-// 			debugger
 //  		var doctor=JSON.parse( localStorage.getItem('shopcart_Key'));
 //  		if(!this.arr.length){
 //		    	this.$emit('catrDotted')
@@ -203,7 +202,7 @@ import Toast from '@/packages/toast'
  	
  }
 </script>
-<style scoped lang="scss">
+<style scoped lang="scss" rel="stylesheet/scss">
 @import "../common/common.scss";
 .no-goods{
   	 background: #f6f6f6;
