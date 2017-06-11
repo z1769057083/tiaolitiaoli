@@ -30,6 +30,7 @@
                     })
             },
             loadUserInfo(){
+                debugger;
                 let openid = this.$route.query.openid;
                 if (typeof (openid) == 'undefined' || openid == '') {
                     //Note:generate test account.
@@ -39,7 +40,7 @@
                                 if (res.data.errorCode == 0) {
                                     let user = res.data.returnValue;
                                     if(user.xianTian){
-                                        global.User=user.xianTian.gender;
+                                        global.User.gender=user.xianTian.gender;
                                         global.User.age=Common.getUserAge(user.xianTian.birthday);
                                     }
                                     localStorage.setItem(Account_Index, JSON.stringify(user))
@@ -53,7 +54,7 @@
                             if (res.data.errorCode == 0) {
                                 let user = res.data.returnValue;
                                 if(user.xianTian){
-                                    global.User=user.xianTian.gender;
+                                    global.User.gender=user.xianTian.gender;
                                     global.User.age=Common.getUserAge(user.xianTian.birthday);
                                 }
                                 localStorage.setItem(Account_Index, JSON.stringify(user))
