@@ -37,12 +37,6 @@
                 .then(function (res) {
                     var data=res.data;
                     console.log(data);
-//              { jsapi_ticket: 'jsapi_ticket',
-//                  nonceStr: '9avltp36a8l09cv',
-//                  timestamp: '1496381373',
-//                  url: 'http://example.com',
-//                  signature: 'ad6bb11f81ca6e48ebde472f2e09609683223185' }
-
                     wx.config({
                         debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
                         appId: data.appId, // 必填，公众号的唯一标识
