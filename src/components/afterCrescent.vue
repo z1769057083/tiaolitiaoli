@@ -3,10 +3,13 @@
         <h3>上传月牙白图片</h3>
         <div class="m-crescent">
             <div class="m-picture" @click='beginUsePic'>
-                <img src="../assets/mafterCrescent.png"/>
+                <img :src="fingerImage"/>
             </div>
-            <div class="m-remove">
-                <img src="../assets/mafterRemove.png"/>
+            <div class="re-choose-button" v-show="isChosen" @click="choosePic">
+                <div class="re-choose-text">重新选择</div>
+                <div class="m-remove">
+                    <img src="../assets/mafterRemove.png"/>
+                </div>
             </div>
         </div>
     </div>
@@ -17,13 +20,16 @@
     import wx from 'weixin-js-sdk'
     export default {
         data(){
-            return {}
+            return {
+                isChosen: false,
+                fingerImage: '/static/images/mafterCrescent.png'
+            }
         },
         mounted() {
-            var domain=location.href.split('#')[0];//Note http://localhost:3333/
-            axios.get(domain+'wechat/get_signature?url='+domain)
+            var domain = location.href.split('#')[0];//Note http://localhost:3333/
+            axios.get(domain + 'wechat/get_signature?url=' + domain)
                 .then(function (res) {
-                    var data=res.data;
+                    var data = res.data;
                     console.log(data);
                     wx.config({
                         debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
@@ -39,22 +45,57 @@
                 })
         },
         methods: {
-            beginUsePic(){
+            choosePic(){
+                var that = this;
                 wx.chooseImage({
                     count: 1, // 默认9
                     sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
                     sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
                     success: function (res) {
-                        var localIds = res.localIds;
-                        wx.previewImage({
-                            current: localIds[0], // 当前显示图片的http链接
-                            urls: localIds // 需要预览的图片http链接列表
-                        });
+                        that.fingerImage = res.localIds[0];
+                        //js判断是否ios或Android
+                        var u = navigator.userAgent;
+                        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+                        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+                        if(isiOS){
+                            wx.getLocalImgData({
+                                localId: res.localIds[0], // 图片的localID
+                                success: function (res) {
+                                    var localData = res.localData; // localData是图片的base64数据，可以用img标签显示
+                                    that.fingerImage=localData;
+                                }
+                            });
+                        }
+                        that.isChosen = true;
+                        that.uploadPic();
                     }
                 })
             },
+            beginUsePic(){
+                if (!this.isChosen) {
+                    this.choosePic();
+                }
+                else{
+                    this.showPicDetails();
+                }
+            },
+            showPicDetails(){
+                if (this.isChosen) {
+                    var localIds = [this.fingerImage];
+                    wx.previewImage({
+                        current: this.fingerImage, // 当前显示图片的http链接
+                        urls: localIds // 需要预览的图片http链接列表
+                    });
+                }
+            },
             uploadPic(){
-                this.$emit('uploadModeEvent')
+                wx.uploadImage({
+                    localId: [this.fingerImage], // 需要上传的图片的本地ID，由chooseImage接口获得
+                    isShowProgressTips: 1, // 默认为1，显示进度提示
+                    success: function (res) {
+                        var serverId = res.serverId; // 返回图片的服务器端ID
+                    }
+                });
             }
         }
     }
@@ -86,10 +127,16 @@
                     height: 100%;
                 }
             }
+            .re-choose-text {
+                float: left;
+                height: rem(29rem);
+                line-height: rem(29rem);;
+            }
             .m-remove {
+                float: left;
                 width: 23%;
                 height: rem(29rem);
-                margin-left: 38.5%;
+                margin-left: 10%;
                 img {
                     width: 100%;
                     height: 100%;
