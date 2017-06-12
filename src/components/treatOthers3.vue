@@ -95,13 +95,13 @@ export default {
 			overflow: hidden;
 			dl{
 				width: 100%;
-				height: rem(44rem);
+				height: rem(50rem);
 				border-bottom: 1px solid #e3e3e3;
 				font-size: $font13;
 				dt{
 					width: 19%;
 					float: left;
-					line-height: rem(44rem);
+					line-height: rem(48rem);
 				}
 				dd{
 					width: 81%;
@@ -109,15 +109,15 @@ export default {
 					line-height: rem(44rem);
 					p{
 						display: block;
-						width: 30%;
+						width: 28%;
 						float: left;
-						height: rem(24rem);
+						height: rem(28rem);
 						background: #fff;
 						margin-top: rem(10rem);
 						border-radius: rem(10rem);
-						line-height: rem(24rem);
+						line-height: rem(28rem);
 						text-align: center;
-						margin-left: 3%;
+						margin-left: 5%;
 					}
 					.active{
 						color: #fff;

@@ -277,7 +277,7 @@
 	  		background: #f6f6f6;
 	  		.l-mgoodsimg{
 				  width: 100%;
-				  height: 9.33rem;
+				  height: rem(214rem);
 				  img{
 					  width: 100%;
 					  height: 100%;
@@ -341,8 +341,8 @@
 				  }
 				  img{
 				  	vertical-align: middle;
-				  	height: 0.1rem;
-				  	width: 6.7%;
+				  	height: 0.05rem;
+				  	width: 15%;
 				  }
 			  }
 			  .l-mgooddetail{
@@ -358,7 +358,7 @@
 				  }
 				  p{
 				  	line-height: rem(26rem);
-				  	font-size: $font12;
+				  	font-size: $font14;
 				  	width: 92%;
 				  	color: $c3c3c;
 				  	margin:rem(10rem) 0 rem(10rem) 4%;

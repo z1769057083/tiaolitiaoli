@@ -94,33 +94,31 @@
 
                 dl {
                     width: 100%;
-                    /*height: rem(78rem);*/
                     font-size: $font13;
-                    border-bottom: 1px solid #e3e3e3;
+                    border-bottom: 1px solid #e1e1e1;
                     overflow: hidden;
-                    padding-bottom: rem(14rem);
+                    padding: rem(12rem) 0;
 
                     dt {
                         width: 100%;
-                        line-height: rem(36rem);
+                        line-height: rem(26rem);
                     }
 
                     dd {
                         width: 100%;
                         float: left;
                         line-height: rem(44rem);
-
                         p {
                             display: block;
-                            width: 22%;
+                            width: 20%;
                             float: left;
-                            height: rem(24rem);
+                            height: rem(28rem);
                             background: #fff;
                             margin-top: rem(10rem);
                             border-radius: rem(10rem);
-                            line-height: rem(24rem);
+                            line-height: rem(28rem);
                             text-align: center;
-                            margin-right: 4%;
+                            margin-right: 6.6%;
                         }
 
                         .active {

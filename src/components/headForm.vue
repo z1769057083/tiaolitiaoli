@@ -1,6 +1,6 @@
 <template>
 	<div class="m-headForm">
-	  	<h3>选择最接近的形象</h3>
+	  	<h3><img src="../assets/indexline.png" alt="" />选择最接近的形象<img class="imgright" src="../assets/indexline.png" alt="" /></h3>
 	  	<div class="m-hmain">
 	  		<dl :class="{'active': face === 0}" @click="change_active(0,'1','headForm',$event)">
 	  			<dt><img src="../assets/mhead1.png"/></dt>
@@ -26,8 +26,7 @@
 	</div>
 </template>
 <script type="text/javascript">
-
-    import Common from '../../static/common'
+import Common from '../../static/common'
 export default {
    data(){
 	  	return {
@@ -57,14 +56,23 @@ export default {
 @import "../common/common.scss";
 /*选择问题内容*/
 .m-headForm{
-	width: 90%;
-	margin-left: 5%;
+	width: 96%;
+	margin-left: 2%;
 	overflow: hidden;
 	h3{
 		text-align: center;
 		margin-top: rem(13rem);
 		margin-bottom: rem(10rem);
 		font-size: $font14;
+		img{
+		  	vertical-align: middle;
+		  	height: 0.02rem;
+		  	margin-right: rem(10rem);
+		  	width: 25%;
+		}
+		.imgright{
+			margin-left: rem(10rem);
+		}
 	}
 	.m-hmain{
 		width: 100%;

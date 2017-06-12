@@ -18,6 +18,7 @@
 		  		<div class="tolley-mcon">
 		  			<div class="tolley-check" :class="{active:item.isChecked}" @click='selectGood(index)'></div>	
 			  		<dl>
+			  			<router-link :to="{ name: 'goodsdetail', query: { itemid: item.id }}">
 		    			<dt><img 
 		    				:src="''+apiPath+'/image/product/'+item.img+'/1.jpg'" 
 		    				onerror="this.src='http://placeholder.qiniudn.com/300'"/></dt>
@@ -25,6 +26,7 @@
 		    				{{item.name}}
 		    				<p>¥{{item.price}}.00</p>
 		    			</dd>
+		    			</router-link>
 		    		</dl>
 		    		<div class="order-mnum">X<span>{{item.num}}</span></div>
 		    		<div class="delect" @click='delGoods(item,index)'><img src="../assets/tolleyDelect.png"/></div>
@@ -287,6 +289,7 @@ import Toast from '@/packages/toast'
 						float: left;
 						line-height: rem(20rem);
 						margin-left: rem(10rem);
+						color: $c3c3c;
 						p{
 							margin-top: rem(5rem);
 							font-size: $font14;
