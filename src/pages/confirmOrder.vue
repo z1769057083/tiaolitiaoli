@@ -141,6 +141,7 @@
 </template>
 <script>
 import axios from 'axios'
+import api from '../api/api'
 import Toast from '@/packages/toast'
 import confirmToast from '@/components/confirmToast'
 export default {
