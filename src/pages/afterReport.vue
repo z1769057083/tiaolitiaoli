@@ -49,10 +49,7 @@
                 </div>
                 <img class="close" src="../assets/shopcarClose.png" @click='afterReportHidden = !afterReportHidden'/>
                 <div class="reportDetailcontent">
-                    <p>
-
-                        {{wuXingReportHouTianContent}}
-                    </p>
+                    <p v-html="wuXingReportHouTianContent"> </p>
                 </div>
             </div>
         </div>
@@ -64,9 +61,7 @@
                 <img class="close" src="../assets/shopcarClose.png"
                      @click='xianTianReportIsShowed = !xianTianReportIsShowed'/>
                 <div class="reportDetailcontent">
-                    <p>
-                        {{wuXingReportXianTianContent}}
-                    </p>
+                    <p v-html="wuXingReportXianTianContent"> </p>
                 </div>
             </div>
         </div>

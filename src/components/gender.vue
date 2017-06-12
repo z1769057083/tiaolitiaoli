@@ -48,7 +48,7 @@
                 }
                 this.gender = gender;
                 if (this.birthday !== '') {
-                    global.User = this.answer;
+                    global.User.gender = this.answer.gender;
                     global.User.age = Common.getUserAge(this.birthday);
                     this.$emit('updateUserAnswer', this.answer);
                 }
@@ -56,7 +56,7 @@
             change_date(changedBirthday){
                 this.birthday = changedBirthday;
                 if (this.gender !== '') {
-                    global.User = this.answer;
+                    global.User.gender = this.answer.gender;
                     global.User.age = Common.getUserAge(this.birthday);
                     this.$emit('updateUserAnswer', this.answer);
                 }

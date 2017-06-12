@@ -229,7 +229,6 @@
       },
       //判断是否有后天测试报告
       isRouterShop(){
-//    	debugger
 //TODO: change the logic for route redirect.
       	if(window.localStorage.houTianReport){
       		this.$router.push({ path: '/recuperate'})     			
@@ -262,7 +261,7 @@
     }
   }
 </script>
-<style scoped lang="scss">
+<style scoped lang="scss" rel="stylesheet/scss">
   @import "../common/common.scss";
   .shoplist{
 	  background: #f6f6f6;
