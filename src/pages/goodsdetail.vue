@@ -161,11 +161,11 @@
           var storage = window.localStorage;
           var obgood = storage.getItem('shopcart_Key');
           var shop = {
-            'id': this.list._id,
-            'img': this.list.index,
-            'name': this.list.name,
-            'price': this.list.price,
-            'num': this.num,
+            id: this.list._id,
+            img: this.list.index,
+            name: this.list.name,
+            price: this.list.price,
+            num: this.num,
           }
           if (obgood) {
             this.arr = JSON.parse(obgood);
@@ -176,11 +176,14 @@
               for (var j = 0, lan = this.arr.length; j < lan; j++) {
                 if (this.arr[j]) {
                   if (this.arr[j].id === that.list._id) {
+                  	this.arr.num += this.arr[j].num
+                  	console.log(this.arr)
                     this.arr.splice(this.arr.indexOf(this.arr[j]), 1);
                   }
                 }
               }
               this.arr.push(shop);
+              console.log(shop)
             } else {
               this.arr.push(shop);
             }
@@ -218,8 +221,8 @@
         }
       },
       add(){
-        if (this.num >= 10) {
-          this.num = 10
+        if (this.num >= 100) {
+          this.num = 100
         } else {
           this.num++
         }

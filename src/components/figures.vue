@@ -80,7 +80,7 @@ export default {
 					}
 					.active{
 						color: #fff;
-						background: #c69b70;
+						background: #dec19d;
 					}
 					span:nth-child(3n){
 						margin-right: 0;

@@ -125,7 +125,7 @@
 
                     .active {
                         color: #fff;
-                        background: #c69b70;
+                        background: #dec19d;
                     }
 
                 }

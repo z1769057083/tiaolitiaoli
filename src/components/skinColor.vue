@@ -17,9 +17,7 @@
 	</div>
 </template>
 <script type="text/javascript">
-
-
-    import Common from '../../static/common'
+import Common from '../../static/common'
 export default {
     data(){
 	  	return {
@@ -74,13 +72,11 @@ export default {
 						padding: 0 6%;
 						line-height: rem(28rem);
 						margin-right: 6%;
-						/*background: #dec29d;
-						color: #fff;*/
 						
 					}
 					.active{
 						color: #fff;
-						background: #c69b70;
+						background: #dec19d;
 					}
 					span:nth-child(3n){
 						margin-right: 0;

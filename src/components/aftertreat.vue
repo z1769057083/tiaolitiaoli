@@ -74,7 +74,7 @@ export default {
 						float: left;
 						height: rem(28rem);
 						background: #fff;
-						margin-top: rem(10rem);
+						margin-top: rem(12rem);
 						border-radius: rem(10rem);
 						line-height: rem(28rem);
 						text-align: center;
@@ -89,7 +89,7 @@ export default {
 					}
 					.active{
 						color: #fff;
-						background: #c69b70;
+						background: #dec19d;
 					}
 				}
 			}
