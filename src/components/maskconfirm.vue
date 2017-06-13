@@ -5,7 +5,7 @@
 				<div class="mask-headerbg"></div>
 				<div class="mask-portrait">
 					<div class="mask-portraitimg">
-						<img src="../assets/maskportrait.png"/>
+						<img :src="myselfAvatar"/>
 					</div>
 				</div>	
 				
@@ -19,6 +19,11 @@
 </template>
 <script type="text/javascript">
 export default {
+	data(){
+	  	return {
+	  		myselfAvatar:'../../static/images/maskportrait.png'
+	    }
+	},
     props:['questionSection'],
     computed: {
         fieldTitle: function () {
@@ -40,10 +45,17 @@ export default {
 			}
 		}
 	},
-  data(){
-  	return {
+	 mounted() {
+        if (!window.localStorage) {
+            return false;
+        } else {
+            if (window.localStorage.getItem(Account_Index) !== null) {
+                let account = JSON.parse(window.localStorage.getItem(Account_Index))
+                this.myselfAvatar = account.headimgurl;
+            }
+
+        }
     }
-  }
 }
 </script>
 <style lang="scss" rel="stylesheet/scss">
@@ -80,18 +92,17 @@ export default {
 				background-size: cover;
 			}
 			.mask-portrait{
-				width: rem(90rem);
-				height: rem(90rem);
+				width: rem(94rem);
+				height: rem(94rem);
 				background: #fff;
 				border-radius: 50%;
 				position: absolute;
 				bottom: 0;
 				left: 34%;
 				overflow: hidden;
-				.mask-portraitimg{
-					width: rem(85rem);
-					height: rem(85rem);
-					background: blue;
+				.mask-portraitimg{					
+					width: rem(88rem);
+					height: rem(88rem);
 					border-radius: 50%;
 					margin: rem(2.6rem);
 					overflow: hidden;

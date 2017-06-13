@@ -1,38 +1,37 @@
 <template>
 	<div class="m-selectfacon">
-	  	<div class="m-selectfigure">
+	  	<div class="m-selectfalimb">
 	  		<dl>
-	  			<dt>四肢</dt>
-	  			<dd><span :class="{'active': limb === 0}" @click="change_active(0,'1','limb',$event)">手足灵活细长多青筋</span></dd>	
-	  			<dd><span :class="{'active': limb === 1}" @click="change_active(1,'1','limb',$event)">手足小、步伐稳重、走路晃肩、精神矍铄</span></dd>	
-	  			<dd><span :class="{'active': limb === 2}" @click="change_active(2,'1','limb',$event)">手足小而丰腴，下肢多健壮，步履稳健</span></dd>
-	  			<dd><span :class="{'active': limb === 3}" @click="change_active(3,'1','limb',$event)">手足小，手背薄。足跟结实有力，行动轻快</span></dd>
-	  			<dd><span :class="{'active': limb === 4}" @click="change_active(4,'1','limb',$event)">手背厚，手足不安静，行走善摇摆</span></dd>
+	  			<dt>身材</dt>
+	  			<dd><span :class="{'active': body === 0}" @click="change_active(0,'2','body',$event)">身材四肢长、身材挺拔、肩背宽大</span></dd>
+	  			<dd><span :class="{'active': body === 1}" @click="change_active(1,'2','body',$event)">脊背宽广而肌肉丰满，身材上尖下阔</span></dd>
+	  			<dd><span :class="{'active': body === 2}" @click="change_active(2,'2','body',$event)">肩背丰满，腹部容易发胖，身材上下匀称</span></dd>
+	  			<dd><span :class="{'active': body === 3}" @click="change_active(3,'2','body',$event)">肩背瘦小，腹小</span></dd>
+	  			<dd><span :class="{'active': body === 4}" @click="change_active(4,'2','body',$event)">两肩小，腹部易肥胖，脊背长，骶长，塌臀</span></dd>
 	  		</dl>
 	  	</div>
 	</div>
 </template>
 <script type="text/javascript">
-
-    import Common from '../../static/common'
+import Common from '../../static/common'
 export default {
-   data(){
+    data(){
 	  	return {
-	      limb:-1
+	      body:-1
 	    }
 	},
 	methods:{
 	  	change_active(answerValue,sectionId,sectionKey,event) {
-		  this.$data.limb=answerValue
-            if(this.limb!==-1) {
+		  this.$data[sectionKey]=answerValue
+            if(this.body!==-1) {
                 this.$emit('updateUserAnswer', this.answer)
             }
 	    }
 	},
-	computed: {
+    computed: {
         answer(){
             var answer = {};
-            answer.limb = this.limb;
+            answer.body = this.body;
             return answer;
         }
     },
@@ -47,7 +46,7 @@ export default {
 	.m-selectfacon{
 		width: 90%;
 		margin-left: 5%;
-		.m-selectfigure{
+		.m-selectfalimb{
 			width: 100%;
 			overflow: hidden;
 			dl{
@@ -64,6 +63,7 @@ export default {
 					width: 100%;
 					line-height: rem(50rem);
 					border-bottom: 1px solid #e3e3e3;
+					margin-left: 16%;
 					span{
 						display: inline-block;
 						height: rem(28rem);
@@ -71,13 +71,19 @@ export default {
 						margin-top: rem(10rem);
 						border-radius: rem(10rem);
 						text-align: left;
-						margin-left: 16%;
 						padding: rem(2rem) 2%;
-						line-height: rem(28rem);	
+						line-height: rem(28rem);
+						margin-right: 6%;
+						/*background: #dec29d;
+						color: #fff;*/
+						
 					}
 					.active{
 						color: #fff;
 						background: #c69b70;
+					}
+					span:nth-child(3n){
+						margin-right: 0;
 					}
 				}
 			}

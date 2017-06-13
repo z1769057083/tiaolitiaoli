@@ -133,7 +133,7 @@ export default {
 .s-mrecomment{
 	width: 100%;
 	overflow: hidden;
-	padding-top: 0.32rem;
+	padding-top: rem(6rem);
 	.s-marttitle{
  		font-size: 0.42rem;
  		line-height: rem(40rem);
@@ -148,7 +148,7 @@ export default {
  		width: 100%;
  		overflow: hidden;
  		margin-top: rem(15rem);
- 		padding-bottom: rem(15rem);
+ 		padding-bottom: rem(12rem);
  		border-bottom: rem(1rem) solid #e8e8e8;
  		dt{
  			width: 66%;
@@ -172,7 +172,7 @@ export default {
  		}
  		dd{
  			width: 32%;
- 			height: rem(74rem);
+ 			height: rem(64rem);
  			float: left;
  			img{
  				width: 100%;
@@ -205,7 +205,7 @@ export default {
  			margin-right: 2%;
  			img{
  				width: 100%;
- 				height: rem(84rem);
+ 				height: rem(64rem);
  			}
  			.s-martname{
  				font-size: $font12;
@@ -254,7 +254,7 @@ export default {
 	margin-bottom: 0.26rem;
 	.s-mreconimg{
  		width: 100%;
- 		height: 2.24rem;
+ 		height: rem(64rem);
  		margin-bottom: 0.21rem;
  		img{
 	 		width: 100%;

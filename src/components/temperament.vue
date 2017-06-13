@@ -1,6 +1,6 @@
 <template>
 	<div class="m-temperament">
-	  	<h3>下面哪个人物像你？</h3>
+	  	<h3><img src="../assets/indexline.png" alt="" />下面哪个人物像你？<img class="imgright" src="../assets/indexline.png" alt="" /></h3>
 	  	<div class="m-hmain">
 	  		<dl :class="{'active': temperament === 0}" @click="change_active(0,'1','temperament',$event)">
 	  			<dt><img src="../assets/tempate1.png"/></dt>
@@ -112,12 +112,21 @@ export default {
 	width: 96%;
 	margin-left: 2%;
 	overflow: hidden;
-	height: rem(220rem);
+	height: rem(260rem);
 	h3{
 		text-align: center;
 		margin-top: rem(13rem);
 		margin-bottom: rem(15rem);
 		font-size: $font14;
+		img{
+		  	vertical-align: middle;
+		  	height: 0.02rem;
+		  	margin-right: rem(10rem);
+		  	width: 25%;
+		}
+		.imgright{
+			margin-left: rem(10rem);
+		}
 	}
 	.m-hmain{
 		width: 100%;
@@ -144,8 +153,8 @@ export default {
 			dd{
 				font-size: $font12;
 				margin-top: rem(5rem);
-				text-align: center;
 				line-height: rem(20rem);
+				padding: 0 rem(3rem);
 			}
 		}
 		dl:nth-child(3n){
@@ -156,7 +165,7 @@ export default {
 		}
 		.temper-bottom{
 			width: 100%;
-			height: rem(35rem);
+			height: rem(10rem);
 			float: left;
 		}
 	}

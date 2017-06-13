@@ -93,35 +93,33 @@
         .m-selectemotion {
             width: 100%;
             overflow: hidden;
-
+			margin-top: rem(2rem);
             dl {
                 width: 100%;
-                height: rem(78rem);
-                border-bottom: 1px solid #e3e3e3;
+                height: rem(94rem);
+                border-bottom: 1px solid #e1e1e1;
                 font-size: $font13;
-
                 dt {
                     width: 19%;
                     float: left;                    
-                    line-height: rem(44rem);
+                    line-height: rem(48rem);
                 }
-
                 dd {
                     width: 81%;
                     float: left;
                     line-height: rem(44rem);
-
                     p {
                         display: block;
-                        width: 30%;
+                        width: 26%;
                         float: left;
-                        height: rem(24rem);
+                        height: rem(28rem);
                         background: #fff;
-                        margin-top: rem(10rem);
+                        margin-top: rem(12rem);
                         border-radius: rem(10rem);
-                        line-height: rem(24rem);
+                        line-height: rem(28rem);
                         text-align: center;
-                        margin-left: 3%;
+                        margin-left: 7%;
+                        font-size: $font12;
                     }
 
                     .active {

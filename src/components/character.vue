@@ -1,26 +1,25 @@
 <template>
 	<div class="m-character">
-	  	<h3>下面哪个人物像你？</h3>
+	  	<h3><img src="../assets/indexline.png" alt="" />下面哪个人物像你？<img class="imgright" src="../assets/indexline.png" alt="" /></h3>
 	  	<div class="m-hmain">
 	  		<dl :class="{'active': character === 0}" @click="change_active(0,'1','character',$event)">
 	  			<dt><img src="../assets/character1.png"/></dt>
 	  			<dd>
-	  				博学多才、足智多谋<br>
-	  				
+	  				博学多才、足智多谋<br>	  				
 	  			</dd>
 	  		</dl>
 	  		<dl :class="{'active': character === 1}" @click="change_active(1,'1','character',$event)">
 	  			<dt><img src="../assets/character2.png"/></dt>
 	  			<dd>
-	  				有魄力、讲义气<br>
-	  				轻财务、要面子
+	  				有魄力、讲义气 
+	  				轻<br>财务、要面子
 	  			</dd>
 	  		</dl>
 	  		<dl :class="{'active': character === 2}" @click="change_active(2,'1','character',$event)">
 	  			<dt><img src="../assets/character3.png"/></dt>
 	  			<dd>
-	  				吃嘛嘛香、不喜动<br>
-	  				容易知足、不爱操心
+	  				吃嘛嘛香、不爱操心<br>
+	  				容易知足、不喜动
 	  			</dd>
 	  		</dl>
 	  		<dl :class="{'active': character === 3}" @click="change_active(3,'1','character',$event)">
@@ -32,10 +31,9 @@
 	  		</dl>
 	  		<dl :class="{'active': character === 4}" @click="change_active(4,'1','character',$event)">
 	  			<dt><img src="../assets/character5.png"/></dt>
-	  			<dd>
-	  				处事灵活<br>
-	  				知识面广、有想象力
-	  				
+	  			<dd>	  				
+	  				知识面广、有想象力<br>
+	  				处事灵活	  				
 	  			</dd>
 	  		</dl>
 	  		<dl :class="{'active': character === 5}" @click="change_active(5,'1','character',$event)">
@@ -111,12 +109,21 @@ export default {
 	width: 96%;
 	margin-left: 2%;
 	overflow: hidden;
-	height: rem(220rem);
+	height: rem(260rem);
 	h3{
 		text-align: center;
 		margin-top: rem(13rem);
 		margin-bottom: rem(15rem);
 		font-size: $font14;
+		img{
+		  	vertical-align: middle;
+		  	height: 0.02rem;
+		  	margin-right: rem(10rem);
+		  	width: 25%;
+		}
+		.imgright{
+			margin-left: rem(10rem);
+		}
 	}
 	.m-hmain{
 		width: 100%;
@@ -131,7 +138,6 @@ export default {
 			float: left;
 			margin-right: 2%;
 			margin-bottom: rem(10rem);
-			/*background: #fff;*/
 			padding: rem(10rem) 0;
 			dt{
 				width: 100%;
@@ -144,8 +150,8 @@ export default {
 			dd{
 				font-size: $font12;
 				margin-top: rem(5rem);
-				text-align: center;
 				line-height: rem(20rem);
+				padding: 0 rem(3rem);
 			}
 		}
 		dl:nth-child(3n){
@@ -156,7 +162,7 @@ export default {
 		}
 		.temper-bottom{
 			width: 100%;
-			height: rem(35rem);
+			height: rem(10rem);
 			float: left;
 		}
 	}

@@ -150,7 +150,7 @@
         padding-left: 7.2%;
         color: #ccc;
         border-radius: 1.06rem;
-        margin-top: rem(20rem);
+        margin-top: rem(30rem);
         z-index: 9999;
         position: absolute;
 
@@ -160,7 +160,7 @@
 
     }
     .page-picker {
-        margin-top: rem(20rem);
+        margin-top: rem(35rem);
     }
 
     }

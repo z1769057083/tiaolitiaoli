@@ -28,28 +28,29 @@
             <looks v-if="index == 4" @updateUserAnswer="updateUserAnswer"></looks>
             <headForm v-if="index == 5" @updateUserAnswer="updateUserAnswer"></headForm>
             <skinColor v-if="index == 6" @updateUserAnswer="updateUserAnswer"></skinColor>
-            <limbs v-if="index == 7" @updateUserAnswer="updateUserAnswer"></limbs>
-            <character v-if="index == 8" @updateUserAnswer="updateUserAnswer"></character>
-            <temperament v-if="index == 9" @updateUserAnswer="updateUserAnswer"></temperament>
-            <treatOthers1 v-if="index == 10"
+            <figures v-if="index == 7" @updateUserAnswer="updateUserAnswer"></figures>
+            <limbs v-if="index == 8" @updateUserAnswer="updateUserAnswer"></limbs>
+            <character v-if="index == 9" @updateUserAnswer="updateUserAnswer"></character>
+            <temperament v-if="index == 10" @updateUserAnswer="updateUserAnswer"></temperament>
+            <treatOthers1 v-if="index == 11"
                           @updateUserAnswer="updateUserAnswer"></treatOthers1>
-            <treatOthers2 v-if="index == 11"
+            <treatOthers2 v-if="index == 12"
                           @updateUserAnswer="updateUserAnswer"></treatOthers2>
-            <treatOthers3 v-if="index == 12"
+            <treatOthers3 v-if="index == 13"
                           @updateUserAnswer="updateUserAnswer"></treatOthers3>
-            <treatOthers4 v-if="index == 13"
+            <treatOthers4 v-if="index == 14"
                           @updateUserAnswer="updateUserAnswer"></treatOthers4>
             <!--公共问题结束-->
-            <parentsBirthday v-if="index == 14&&questionSection=='xianTian'"
+            <parentsBirthday v-if="index == 15&&questionSection=='xianTian'"
                              @updateUserAnswer="updateUserAnswer"></parentsBirthday>
             <!--先天体质报告问题结束-->
             <!--后天体质报告问题-->
-            <physiology class='hidden' :class="{show: index == 14 &&questionSection=='houTian'}"
+            <physiology class='hidden' :class="{show: index == 15 &&questionSection=='houTian'}"
                         @updateUserAnswer="updateUserAnswer"></physiology>
-            <aftertreat v-if="index == 15 &&questionSection=='houTian'"
+            <aftertreat v-if="index == 16 &&questionSection=='houTian'"
                         @updateUserAnswer="updateUserAnswer"></aftertreat>
 
-            <afterCrescent v-if="index == 16 &&questionSection=='houTian' "
+            <afterCrescent v-if="index == 17 &&questionSection=='houTian' "
                            @updateUserAnswer="updateUserAnswer"></afterCrescent>
             <!--后天体质报告问题结束-->
             <button class="submit" @click="confirm">确定</button>
@@ -81,6 +82,7 @@
     import character from '@/components/character'
     import temperament from '@/components/temperament'
     import Toast from '@/packages/toast'
+    import figures from '@/components/figures'
     export default {
         name: 'message',
         data(){
@@ -104,12 +106,12 @@
             gender, city, emotion, season, looks, skinColor, limbs, treatOthers1,
             treatOthers2, treatOthers3, treatOthers4, parentsBirthday,
             aftertreat, maskconfirm, physiology, uploadMode, afterCrescent, headForm,
-            character, temperament
+            character, temperament, figures
         },
         computed: {
             isFinished: function () {
-                return (this.questionSection == XianTianSectionType && this.index >= 15
-                || this.questionSection == HouTianSectionType && this.index >= 17);
+                return (this.questionSection == XianTianSectionType && this.index >= 16
+                || this.questionSection == HouTianSectionType && this.index >= 18);
             }
 //          ,
 //      	doctorAvatar(){
@@ -377,7 +379,6 @@
             }
         }
     }
-
     .m-select{
         width: 100%;
         background: #f8f8f8;
@@ -405,7 +406,7 @@
             font-size: 0.37rem;
             line-height: rem(40rem);
             position: absolute;
-            bottom: rem(40rem);
+            bottom: rem(20rem);
             left: 35%;
         }
 

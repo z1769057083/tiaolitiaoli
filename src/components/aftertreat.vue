@@ -57,10 +57,11 @@ export default {
 				border-bottom: 1px solid #e3e3e3;
 				overflow: hidden;
 				padding-bottom: rem(14rem);
+				padding-top: rem(14rem);
 				font-size: $font12;
 				dt{
 					width: 100%;
-					line-height: rem(36rem);
+					line-height: rem(20rem);
 					font-size: $font13;
 				}
 				dd{
@@ -71,11 +72,11 @@ export default {
 						display: block;
 						width: 22%;
 						float: left;
-						height: rem(24rem);
+						height: rem(28rem);
 						background: #fff;
 						margin-top: rem(10rem);
 						border-radius: rem(10rem);
-						line-height: rem(24rem);
+						line-height: rem(28rem);
 						text-align: center;
 						margin-right: 4%;
 					}

@@ -22,7 +22,7 @@
         data(){
             return {
                 gender: "F",
-                birthday: "2014-01-01",
+                birthday: "1990-01-01",
                 msgBoyImg: true,
                 msgGrilImg: false
             }
@@ -75,7 +75,7 @@
             text-align: center;
             font-size: 0.4rem;
             color: #3C3C3C;
-            padding: rem(10rem) 0 rem(10rem);
+            padding: rem(20rem) 0 rem(20rem);
         }
 
         .m-selectcon {
@@ -140,7 +140,7 @@
             line-height: 1.3rem;
             font-size: 0.37rem;
             padding: 0 7.2%;
-            color: #bebaba;
+            color: #999;
             border-radius: 1.06rem;
             border: 0;
         }
