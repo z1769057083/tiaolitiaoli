@@ -2,7 +2,7 @@
     <div class="m-selectfacon">
         <div class="m-selectfacial">
             <dl>
-                <dt>待人处事</dt>
+                <dt>待人和气</dt>
                 <dd>
                     <p :class="{'active': section1.treat === 0}" @click="change_active(0,'1','treat',$event)">是</p>
                     <p :class="{'active': section1.treat === 1}" @click="change_active(1,'1','treat',$event)">不是</p>

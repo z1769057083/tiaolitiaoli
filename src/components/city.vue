@@ -6,6 +6,7 @@
                 <mt-picker :slots="addressSlots" @change="onAddressChange" :visible-item-count="5"></mt-picker>
             </div>
         </div>
+        <div class="m-selectMask"></div>       
     </div>
 </template>
 <script type="text/babel">
@@ -139,7 +140,6 @@
         margin-left: 12.2%;
         overflow: hidden;
         position: relative;
-
     .m-selectcity {
         width: 92.8%;
         height: 1.3rem;
@@ -162,7 +162,15 @@
     .page-picker {
         margin-top: rem(35rem);
     }
+    .m-selectMask{
+    	position: absolute;
+    	height: 140px;
+    	width: 100%;
+    	background: #f8f8f8;
+    	margin-top:rem(-1614rem);
+    }
 
     }
 
 </style>
+	

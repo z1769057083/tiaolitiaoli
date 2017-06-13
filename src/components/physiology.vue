@@ -59,11 +59,11 @@ export default {
 					display: block;
 					width: 28%;
 					float: left;
-					height: rem(28rem);
+					height: rem(30rem);
 					background: #fff;
 					margin: rem(10rem) 0 rem(10rem) 5%;
 					border-radius: rem(10rem);
-					line-height: rem(28rem);
+					line-height: rem(30rem);
 					text-align: center;
 				}
 				.active{

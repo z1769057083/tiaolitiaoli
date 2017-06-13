@@ -24,7 +24,7 @@
 		    				onerror="this.src='http://placeholder.qiniudn.com/300'"/></dt>
 		    			<dd>
 		    				{{item.name}}
-		    				<p>¥{{item.price}}.00</p>
+		    				<p>¥{{item.price}}</p>
 		    			</dd>
 		    			</router-link>
 		    		</dl>

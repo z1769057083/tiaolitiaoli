@@ -1,16 +1,18 @@
 <template>
     <div class="m-selection">
-        <div class="m-selecttit1">性别</div>
+        <!--<div class="m-selecttit1">性别</div>-->
         <div class="m-selectcon">
             <div class="m-selectboy" :class="{'active': gender == 'M'}" @click="change_active('M',$event)">
                 <img v-show='msgBoyImg' src="../assets/msgman.png"/>
                 <img v-show='!msgBoyImg' src="../assets/msgmanactive.png"/>
-                男
+                <span v-show='msgBoyImg'>男</span>
+                <span v-show='!msgBoyImg'>我是男生</span>
             </div>
             <div class="m-selectgirl" :class="{'active': gender == 'F'}" @click="change_active('F',$event)">
                 <img v-show='msgGrilImg' src="../assets/msgwoman.png"/>
                 <img v-show='!msgGrilImg' src="../assets/msgwomanactive.png"/>
-                我是女生
+                <span v-show='msgGrilImg'>女</span>
+                <span v-show='!msgGrilImg'>我是女生</span>
             </div>
         </div>
         <input type="date" class="m-selectdate" name='birthday' v-model='birthday' @change='change_date(birthday)'/>
@@ -70,14 +72,12 @@
     .m-selection {
         width: 74.6%;
         margin-left: 12.2%;
-
         .m-selecttit1 {
             text-align: center;
             font-size: 0.4rem;
             color: #3C3C3C;
             padding: rem(20rem) 0 rem(20rem);
         }
-
         .m-selectcon {
             width: 100%;
             position: relative;
@@ -86,24 +86,25 @@
             background-size: cover;
             border-radius: rem(45rem);
             margin-bottom: rem(20rem);
-
+			margin-top: rem(40rem);
             .m-selectboy {
                 width: rem(155rem);
                 height: rem(70rem);
                 border-radius: rem(45rem);
                 text-align: center;
                 font-size: rem(14rem);
-                color: #b0bfbc;
                 overflow: hidden;
                 position: absolute;
                 left: 0;
                 top: 0;
-
                 img {
                     width: rem(28rem);
                     height: rem(28rem);
                     display: block;
                     margin: rem(12rem) 0 rem(6rem) rem(63.5rem);
+                }
+                span{
+                	color: #999;
                 }
                 .msgimgboy {
                     display: block;
@@ -124,7 +125,10 @@
                     width: rem(36rem);
                     height: rem(28rem);
                     display: block;
-                    margin: rem(12rem) 0 rem(6rem) rem(63.5rem);
+                    margin: rem(12rem) 0 rem(6rem) rem(59rem);
+                }
+                span{
+                	color: #999;
                 }
 
             }

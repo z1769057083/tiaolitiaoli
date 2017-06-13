@@ -21,7 +21,7 @@
 export default {
 	data(){
 	  	return {
-	  		myselfAvatar:'../../static/images/maskportrait.png'
+	  		myselfAvatar:'../../static/images/indexheadportrait.png'
 	    }
 	},
     props:['questionSection'],

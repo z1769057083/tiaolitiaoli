@@ -69,7 +69,7 @@ export default {
 						margin-top: rem(12rem);
 						border-radius: rem(10rem);
 						text-align: left;
-						padding: 0 6%;
+						padding: rem(2rem) 6%;
 						line-height: rem(28rem);
 						margin-right: 6%;
 						

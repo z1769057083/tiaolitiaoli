@@ -50,6 +50,7 @@ export default {
 		.m-selectfigure{
 			width: 100%;
 			overflow: hidden;
+			padding-top: rem(6rem);
 			dl{
 				width: 100%;
 				position: relative;
@@ -62,13 +63,13 @@ export default {
 				}
 				dd{
 					width: 100%;
-					line-height: rem(50rem);
+					line-height: rem(46rem);
 					border-bottom: 1px solid #e3e3e3;
 					span{
 						display: inline-block;
 						height: rem(28rem);
 						background: #fff;
-						margin-top: rem(10rem);
+						margin-top: rem(6rem);
 						border-radius: rem(10rem);
 						text-align: left;
 						margin-left: 16%;

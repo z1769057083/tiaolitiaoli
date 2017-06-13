@@ -109,7 +109,7 @@ export default {
 	width: 96%;
 	margin-left: 2%;
 	overflow: hidden;
-	height: rem(260rem);
+	height: rem(240rem);
 	h3{
 		text-align: center;
 		margin-top: rem(13rem);

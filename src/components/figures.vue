@@ -49,6 +49,7 @@ export default {
 		.m-selectfalimb{
 			width: 100%;
 			overflow: hidden;
+			padding-top: rem(6rem);
 			dl{
 				width: 100%;
 				position: relative;
@@ -61,22 +62,19 @@ export default {
 				}
 				dd{
 					width: 100%;
-					line-height: rem(50rem);
+					line-height: rem(46rem);
 					border-bottom: 1px solid #e3e3e3;
 					margin-left: 16%;
 					span{
 						display: inline-block;
 						height: rem(28rem);
 						background: #fff;
-						margin-top: rem(10rem);
+						margin-top: rem(6rem);
 						border-radius: rem(10rem);
 						text-align: left;
 						padding: rem(2rem) 2%;
 						line-height: rem(28rem);
-						margin-right: 6%;
-						/*background: #dec29d;
-						color: #fff;*/
-						
+						margin-right: 6%;					
 					}
 					.active{
 						color: #fff;

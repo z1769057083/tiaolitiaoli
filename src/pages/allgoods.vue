@@ -11,7 +11,7 @@
 			</router-link>
 				<dd>
 					<span>{{item.name}}</span>
-					<p>¥{{item.price}}</p>
+					<p>¥{{item.price}}.00</p>
 				</dd>
 		</dl>
 	</div>

@@ -78,12 +78,6 @@
 <style lang="scss" rel="stylesheet/scss">
     @import "../common/common.scss";
     /*选择问题内容*/
-    .m-select {
-        width: 100%;
-        background: #f8f8f8;
-        height: 52%;
-        position: relative;
-
         .m-selectfacon {
             width: 90%;
             margin-left: 5%;
@@ -148,5 +142,4 @@
             }
 
         }
-    }
 </style>

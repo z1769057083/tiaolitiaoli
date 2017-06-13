@@ -46,7 +46,6 @@
     </div>
 </template>
 <script type="text/javascript">
-
     import Common from '../../static/common'
     export default {
         data(){
@@ -96,13 +95,13 @@
             overflow: hidden;
             dl {
                 width: 100%;
-                height: rem(50rem);
+                height: rem(46rem);
                 border-bottom: 1px solid #e3e3e3;
 				font-size: $font13;
                 dt {
                     width: 22%;
                     float: left;
-                    line-height: rem(48rem);
+                    line-height: rem(46rem);
                 }
 
                 dd {

@@ -15,8 +15,6 @@
             </div>
         </div>
         <maskconfirm v-show="maskhidden" v-bind:questionSection="questionSection"></maskconfirm>
-        <uploadMode v-show="uploadHidden" @uploadModeEvent='uploadModeEvent'></uploadMode>
-
         <div class="m-select">
             <!--先天体质报告问题-->
             <gender v-if="index == 0" @updateUserAnswer="updateUserAnswer"></gender>
@@ -45,7 +43,7 @@
                              @updateUserAnswer="updateUserAnswer"></parentsBirthday>
             <!--先天体质报告问题结束-->
             <!--后天体质报告问题-->
-            <physiology class='hidden' :class="{show: index == 15 &&questionSection=='houTian'}"
+            <physiology v-if="index == 15 &&questionSection=='houTian'"
                         @updateUserAnswer="updateUserAnswer"></physiology>
             <aftertreat v-if="index == 16 &&questionSection=='houTian'"
                         @updateUserAnswer="updateUserAnswer"></aftertreat>
@@ -78,7 +76,6 @@
     import physiology from '@/components/physiology'
     import afterCrescent from '@/components/afterCrescent'
     import headForm from '@/components/headForm'
-    import uploadMode from '@/components/uploadMode'
     import character from '@/components/character'
     import temperament from '@/components/temperament'
     import Toast from '@/packages/toast'
@@ -105,7 +102,7 @@
         components: {
             gender, city, emotion, season, looks, skinColor, limbs, treatOthers1,
             treatOthers2, treatOthers3, treatOthers4, parentsBirthday,
-            aftertreat, maskconfirm, physiology, uploadMode, afterCrescent, headForm,
+            aftertreat, maskconfirm, physiology, afterCrescent, headForm,
             character, temperament, figures
         },
         computed: {
@@ -244,9 +241,6 @@
                 var item = { isQuestion: true };
                 item.content = this.questions[0].content;
                 this.renderedMessages.push(item);
-            },
-            uploadModeEvent(){
-                this.uploadHidden = true
             }
         },
         mounted() {
@@ -271,13 +265,11 @@
 </script>
 <style lang="scss" rel="stylesheet/scss">
     @import "../common/common.scss";
-
     .message {
         background: #f2f2f2;
         width: 100%;
         height: 100%;
         position: absolute;
-        /*overflow: hidden;*/
     }
 
     /*聊天内容*/
@@ -291,7 +283,6 @@
         -webkit-overflow-scrolling: touch;
         .m-charscroll {
             width: 100%;
-
             .m-chardocter {
                 width: 78%;
                 margin-left: 7%;
@@ -382,7 +373,7 @@
     .m-select{
         width: 100%;
         background: #f8f8f8;
-        height: 52%;
+        height: 52.5%;
         position: relative;
         overflow: hidden;
 		border-top: 1px solid #e8e8e8;

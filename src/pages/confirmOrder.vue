@@ -28,7 +28,7 @@
 	    				onerror="this.src='http://placeholder.qiniudn.com/300'"/></dt>
     			<dd>
     				{{item.name}}
-	    			<p>¥{{item.price}}.00</p>
+	    			<p>¥{{item.price}}</p>
     			</dd>
     		</dl>
     		<div class="order-mnum">X<span>{{item.num}}</span></div>
@@ -37,7 +37,7 @@
     <div class="order-mcontent">
     	<dl>
     		<dt>配送方式</dt>
-    		<dd>快递 &nbsp;¥12.00</dd>
+    		<dd>快递 &nbsp;¥{{fare}}.00（超过300.00包邮哦）</dd>
     	</dl>
     	<dl class="order-mconpic">
     		<dt></dt>
@@ -179,7 +179,8 @@ export default {
  				price:0
  			},
  			submitArr:[],
- 			apiPath:''
+ 			apiPath:'',
+ 			fare:12
     }
   },
   components:{
@@ -329,7 +330,13 @@ export default {
 	        this.arr = JSON.parse(obj_arr)
 	        this.totalNum += this.arr[0].num
 					this.count = this.arr[0].num*parseInt(this.arr[0].price)
-					this.countPrice = this.count + 12
+					if(this.count>=300){
+						this.fare = 0
+						this.countPrice = this.count
+					}else{
+						this.fare = 12
+						this.countPrice = this.count + 12
+					}
 					this.price.price = this.countPrice
   	},
   	loadOrdersFromShopCart(){
@@ -344,7 +351,13 @@ export default {
 	          for (var i = 0, len = this.arr.length; i < len; i++) {
 	          	  this.totalNum += this.arr[i].num * 1 
 								this.count += this.arr[i].num * parseInt(this.arr[i].price)
-								this.countPrice = this.count + 12
+								if(this.count>=300){
+									this.fare = 0
+									this.countPrice = this.count
+								}else{
+									this.fare = 12
+									this.countPrice = this.count + 12
+								}
 								this.price.price = this.countPrice
 	          }
          }
@@ -503,7 +516,7 @@ export default {
 			line-height: rem(47rem);
 			dt{
 				float: left;
-				width: 50%;
+				width: 30%;
 			}
 			.leave-msg{
 				span{

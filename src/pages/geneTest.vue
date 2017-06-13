@@ -2,7 +2,7 @@
   <div class="gene">
   	<div class="gene-main">
   		<div class="gene-mpic">
-  		 	<img src="../assets/geneTest1.png" alt="" />
+  		 	<img src="../assets/geneTest1.jpg" alt="" />
   		</div>
   		<div class="gene-mtit">
   			<img src="../assets/genetest2.png" alt="" />

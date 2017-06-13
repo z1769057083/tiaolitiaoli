@@ -1,6 +1,6 @@
 <template>
     <div class="m-selection">
-        <div class="m-selecttit">父母生日</div>
+        <!--<div class="m-selecttit">父母生日</div>-->
         	<span>父亲生日：</span>
         	<input type="date" class="m-selectbirthday" name='fatherBirthday' v-model='fatherBirthday'
                @change='change_date(fatherBirthday)'/>
@@ -48,7 +48,7 @@
     .m-selection {
         /*width: 74.6%;
         margin-left: 12.2%;*/
-
+		margin-top: rem(35rem);
     .m-selecttit {
         text-align: center;
         font-size: 0.4rem;
@@ -56,10 +56,10 @@
         padding: rem(14rem) 0 rem(14rem);
     }
 	span{
-    	color: #999;
+    	color: $c3c3c;
     	font-size: $font14;
     	display: inline-block;
-    	padding-bottom: rem(10rem);
+    	padding-bottom: rem(15rem);
     }
     .m-selectbirthday {
         width: 92.8%;

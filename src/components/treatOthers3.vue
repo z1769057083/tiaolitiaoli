@@ -45,8 +45,7 @@
 	</div>
 </template>
 <script type="text/javascript">
-
-    import Common from '../../static/common'
+import Common from '../../static/common'
 export default {
   data(){
 	  	return {
@@ -95,18 +94,17 @@ export default {
 			overflow: hidden;
 			dl{
 				width: 100%;
-				height: rem(50rem);
+				height: rem(46rem);
 				border-bottom: 1px solid #e3e3e3;
 				font-size: $font13;
 				dt{
 					width: 19%;
 					float: left;
-					line-height: rem(48rem);
+					line-height: rem(46rem);
 				}
 				dd{
 					width: 81%;
 					float: left;
-					line-height: rem(44rem);
 					p{
 						display: block;
 						width: 28%;

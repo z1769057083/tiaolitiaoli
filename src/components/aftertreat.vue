@@ -11,8 +11,7 @@
 	</div>
 </template>
 <script type="text/javascript">
-
-    import Common from '../../static/common'
+import Common from '../../static/common'
 export default {
   data(){
   	return {
@@ -72,11 +71,11 @@ export default {
 						display: block;
 						width: 22%;
 						float: left;
-						height: rem(28rem);
+						height: rem(30rem);
 						background: #fff;
 						margin-top: rem(12rem);
 						border-radius: rem(10rem);
-						line-height: rem(28rem);
+						line-height: rem(30rem);
 						text-align: center;
 						margin-right: 4%;
 					}

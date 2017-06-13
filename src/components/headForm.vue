@@ -80,23 +80,23 @@ export default {
 		dl{
 			width: 23%;
 			height: rem(80rem);
-			/*;*/
 			padding: rem(10rem) 0;
 			border-radius: rem(5rem);
 			float: left;
 			font-size: $font13;
 			margin-right: 2.6%;
+			margin-bottom: rem(10rem);
 			dt{
-				width: rem(64rem);
+				width: 90%;
 				height: rem(64rem);
-				margin-left: rem(8rem);
+				margin-left: 5%;
 				img{
 					width: 100%;
 					height: 100%;
 				}
 			}
 			dd{
-				font-size: $font12;
+				font-size: $font13;
 				margin-top: rem(5rem);
 				text-align: center;
 			}
