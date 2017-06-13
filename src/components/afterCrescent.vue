@@ -26,6 +26,8 @@
             }
         },
         mounted() {
+            //Note:the emit make it enable to go through the question.
+            this.$emit('updateUserAnswer', {})
             var domain = location.href.split('#')[0];//Note http://localhost:3333/
             axios.get(domain + 'wechat/get_signature?url=' + domain)
                 .then(function (res) {

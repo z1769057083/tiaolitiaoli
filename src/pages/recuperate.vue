@@ -34,6 +34,7 @@
     import ReportHelper from '../../static/reportHelper';
     import Common from '../../static/common';
     import commodity from '@/components/commodity'
+    import Toast from '@/packages/toast'
     export default {
         data (){
             return{
@@ -59,21 +60,28 @@
         	document.title ='调理方法'
         	document.documentElement.scrollTop = 0
             document.body.scrollTop = 0
-            let user=JSON.parse(localStorage.getItem(Account_Index));
-            let xianTianData=JSON.parse(localStorage.getItem(XianTianAnswer_Index));
-            let houTianData=JSON.parse(localStorage.getItem(HouTianAnswer_Index));
-            let dangJiReport=JSON.parse(localStorage.getItem(HouTianReport_Index));
-            this.wuXingLevelText=Common.parseWuXingLevelToText(dangJiReport.wuXingDangShiLevel);
-            console.log(this.wuXingLevelText);
-            this.reportContent=Common.convertReportsToText(dangJiReport.jieQiReports).substring(0,100);
-
-            this.nickname=user.nickname;
-            this.genderText=xianTianData.gender=='F'?'女':'男';
-            this.illness=houTianData.situation.toString();
-            this.age=new Date().getFullYear()- new Date(xianTianData.birthday).getFullYear();
-            if(houTianData&&houTianData.femaleStatus){
-                this.comments=houTianData.femaleStatus;
+			if(localStorage.getItem(HouTianReport_Index)!==null){
+                let user=JSON.parse(localStorage.getItem(Account_Index));
+                let xianTianData=JSON.parse(localStorage.getItem(XianTianAnswer_Index));
+                let houTianData=JSON.parse(localStorage.getItem(HouTianAnswer_Index));
+                let dangJiReport=JSON.parse(localStorage.getItem(HouTianReport_Index));
+                this.wuXingLevelText=Common.parseWuXingLevelToText(dangJiReport.wuXingDangShiLevel);
+                this.reportContent=Common.convertReportsToText(dangJiReport.jieQiReports).substring(0,100);
+                this.nickname=user.nickname;
+                this.genderText=xianTianData.gender=='F'?'女':'男';
+                this.illness=houTianData.situation.toString();
+                this.age=new Date().getFullYear()- new Date(xianTianData.birthday).getFullYear();
+                if(houTianData&&houTianData.femaleStatus){
+                    this.comments=houTianData.femaleStatus;
+                }
 			}
+			else{
+			    Toast({
+                    message: '请先完成体质辨析',
+                    position:'top',
+				});
+			}
+
         }
     }  
 </script>

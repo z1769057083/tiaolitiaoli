@@ -49,7 +49,7 @@
                 </div>
                 <img class="close" src="../assets/shopcarClose.png" @click='afterReportHidden = !afterReportHidden'/>
                 <div class="reportDetailcontent">
-                    <p v-html="wuXingReportHouTianContent"> </p>
+                    <p v-html="wuXingReportHouTianContent"></p>
                 </div>
             </div>
         </div>
@@ -61,7 +61,7 @@
                 <img class="close" src="../assets/shopcarClose.png"
                      @click='xianTianReportIsShowed = !xianTianReportIsShowed'/>
                 <div class="reportDetailcontent">
-                    <p v-html="wuXingReportXianTianContent"> </p>
+                    <p v-html="wuXingReportXianTianContent"></p>
                 </div>
             </div>
         </div>
@@ -73,6 +73,7 @@
     import api from '../api/api'
     import ReportHelper from '../../static/reportHelper';
     import Common from '../../static/common';
+    import Toast from '@/packages/toast'
     export default {
         data (){
             return {
@@ -127,15 +128,24 @@
         mounted() {
             document.title = "后天体质报告"
             let that = this
-            let userId = JSON.parse(localStorage.getItem(Account_Index))._id
-            axios.get(api.getReport + "?userId=" + userId + "&reportType=houTian")
-                .then(function (res) {
-                    if (res.data.errorCode == 0) {
-                        let report = res.data.returnValue;
-                        localStorage.setItem(HouTianReport_Index, JSON.stringify(report))
-                        that.renderReport(report)
-                    }
-                })
+            if (localStorage.getItem(Account_Index) == null) {
+                Toast({
+                    message: '请先完成体质辨析',
+                    position: 'top'
+                });
+                return;
+            }
+            else {
+                let userId = JSON.parse(localStorage.getItem(Account_Index))._id
+                axios.get(api.getReport + "?userId=" + userId + "&reportType=houTian")
+                    .then(function (res) {
+                        if (res.data.errorCode == 0) {
+                            let report = res.data.returnValue;
+                            localStorage.setItem(HouTianReport_Index, JSON.stringify(report))
+                            that.renderReport(report)
+                        }
+                    })
+            }
             document.documentElement.scrollTop = 0
             document.body.scrollTop = 0
         }
