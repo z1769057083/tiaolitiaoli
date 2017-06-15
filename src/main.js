@@ -29,6 +29,7 @@ axios.interceptors.response.use(function(response) { //配置请求回来的信�
     store.dispatch('hideLoading');
     return response;
 }, function(error) {
+    store.dispatch('hideLoading');
     return Promise.reject(error);
 });
 /* eslint-disable no-new */
