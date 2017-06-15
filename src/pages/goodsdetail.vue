@@ -4,7 +4,7 @@
 	    <div class="l-main">
 	    	<div class="l-mainscroll">
 	    		<div class="l-mgoodsimg">
-		    		<img :src="''+apiPath+'/image/product/'+list.index+'/1.jpg'" 
+		    		<img :src="''+apiPath+'/image/product/thumbnail/'+list.index+'.jpg'"
 								  		onerror="this.src='http://placeholder.qiniudn.com/800'"/>
 		      </div>
 				  <div class="l-mgoodsprice">
@@ -58,7 +58,7 @@
 				<div class="mask-shopCar">
 					<div class="shopCar-main">
 						<dl>
-							<dt><img :src="''+apiPath+'/image/product/'+list.index+'/1.jpg'" 
+							<dt><img :src="''+apiPath+'/image/product/'+list.index+'/1.jpg'"
 							onerror="this.src='http://placeholder.qiniudn.com/800'"/></dt>
 							<dd>
 							    <p>¥{{list.price}}.00</p>

@@ -22,7 +22,7 @@
 				</dt>							
 				<dd class="s-martimg" v-for='recommendItem in recommendlist'>
 					<router-link :to="{ name: 'goodsdetail', query: { itemid: recommendItem._id}}">
-						<img :src="''+apiPath+'/image/product/'+recommendItem.index+'/1.jpg'" 
+						<img :src="''+apiPath+'/image/product/thumbnail/'+recommendItem.index+'.jpg'"
 				  		onerror="this.src='http://placeholder.qiniudn.com/800'"/>
 				  </router-link>
 				  <p class="s-martname">{{recommendItem.name}}</p>
@@ -42,7 +42,7 @@
 		<dl class="s-mrecomlist" v-for="temp in item.items">
 				<router-link :to="{ name: 'goodsdetail', query: { itemid: temp._id}}">
 				  <dt class="s-mreconimg">
-				  	<img :src="''+apiPath+'/image/product/'+temp.index+'/1.jpg'" 
+				  	<img :src="''+apiPath+'/image/product/thumbnail/'+temp.index+'.jpg'"
 				  		onerror="this.src='http://placeholder.qiniudn.com/800'"/>
 				  </dt>
 					<dd class="s-mreconintro">
