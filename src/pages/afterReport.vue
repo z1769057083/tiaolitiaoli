@@ -13,16 +13,14 @@
                     <div class="r-mreport">
                         <div class="r-mrcontent">
                             <h3>先天体质</h3>
-                            <p>{{wuXingXianTianStatusText}}</p>
+                            <p v-html="wuXingXianTianStatusText"></p>
                             <div class="right" @click='showXianTianReport'>
                                 <img src="../assets/afterRdetail.png"/>
                             </div>
                         </div>
                         <div class="r-mrcontent">
                             <h3>后天体质</h3>
-                            <p class="r-mrconp">
-                                {{wuXingHouTianStatusText}}<br>
-                                相比先天体质，你的后天体质得到改善</p>
+                            <p class="r-mrconp" v-html="wuXingHouTianStatusText"></p>
                             <div class="right" @click='afterReport'>
                                 <img src="../assets/afterRdetail.png"/>
                             </div>
@@ -108,10 +106,12 @@
                     data: wuXingDangshiArray
                 }];
                 ReportHelper.loadChart('chart-container', items)
-
-                this.wuXingDangShiStatusText = Common.parseWuXingLevelToText(report.wuXingDangShiLevel);
-                this.wuXingXianTianStatusText = Common.parseWuXingLevelToText(report.wuXingXianTianLevel);
-                this.wuXingHouTianStatusText = Common.parseWuXingLevelToText(report.wuXingHouTianLevel);
+                this.wuXingXianTianStatusText = Common.parseWuXingLevelToText(report.wuXingXianTianLevel)
+                    + " <br> [" +Common.parseWuXingPointToText(report.wuXingXianTian)+"]";
+                this.wuXingHouTianStatusText = Common.parseWuXingLevelToText(report.wuXingHouTianLevel)
+                    + " <br> [" + Common.parseWuXingPointToText(report.wuXingHouTian)+"]";
+                this.wuXingDangShiStatusText = Common.parseWuXingLevelToText(report.wuXingDangShiLevel)
+                    + " <br> [" + Common.parseWuXingPointToText(report.wuXingDangShi)+"]";
                 this.wuXingReportJieQiContent = Common.convertReportsToText(report.jieQiReports);
                 this.wuXingReportXianTianContent = Common.convertReportsToText(report.xianTianReports);
                 this.wuXingReportHouTianContent = Common.convertReportsToText(report.houTianReports);

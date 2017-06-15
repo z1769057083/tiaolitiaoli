@@ -50,6 +50,27 @@ module.exports = {
         wuXingStatusText = wuXingStatusText.trim(',');
         return wuXingStatusText;
     },
+    parseWuXingPointToText:function(wuXing){
+        var wuXingStatusArray = [];
+        var wuXingTextMapper = {
+            'gold': '金',
+            'wood': '木',
+            'water': '水',
+            'fire': '火',
+            'earth': '土',
+        }
+        for (var key in wuXing) {
+            var wuXingStatusText = wuXingTextMapper[key];
+            if (wuXing[key] <= 0) {
+                wuXingStatusText += '0.1';
+            }
+            else {
+                wuXingStatusText += wuXing[key];
+            }
+            wuXingStatusArray.push(wuXingStatusText);
+        }
+        return wuXingStatusArray.toString();
+    },
     parseWuXingToArray:function(wuXing){
         var wuXingArray = [];
         for (var key in wuXing) {

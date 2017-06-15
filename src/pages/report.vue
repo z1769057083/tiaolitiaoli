@@ -11,9 +11,7 @@
                     <!--<img src="../assets/reportcharts.png"/>-->
                 </div>
                 <div class='i-maincen'>
-                    <div class="r-mattribute">
-                        <div class="i-maincenleft"></div>
-                        {{wuXingStatusText}}
+                    <div class="r-mattribute" v-html="wuXingStatusText">
                     </div>
                     <div class="r-mreport">
                         <h3>先天体质</h3>
@@ -62,7 +60,10 @@
                     data: wuXingArray
                 }];
                 ReportHelper.loadChart('chart-container', itemArray);
-                this.wuXingStatusText = Common.parseWuXingLevelToText(report.wuXingXianTianLevel);
+//                this.wuXingStatusText = Common.parseWuXingLevelToText(report.wuXingXianTianLevel)+
+//                    ":"+wuXingArray.ToString();
+                this.wuXingStatusText ='<div class="i-maincenleft"></div>'+ Common.parseWuXingLevelToText(report.wuXingXianTianLevel)
+                    + " <br> [" + Common.parseWuXingPointToText(report.wuXingXianTian)+"]";
                 this.wuXingReportContent = Common.convertReportsToText(report.xianTianReports);
             }
         },
@@ -115,7 +116,7 @@
                 .r-mattribute {
                     text-align: center;
                     font-size: $font14;
-                    height: rem(20rem);
+                    line-height: rem(20rem);
                     color: $c000;
                     text-align: center;
                     letter-spacing: rem(1.5rem);
