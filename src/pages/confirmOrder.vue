@@ -124,16 +124,16 @@
 						</dd>
 					</dl>
 					<dl>
-						<dt>详细地址</dt>
-						<dd>
-							<input type="text" placeholder="如街道，楼层，门牌号等" v-model='editAddressArr.address'/>
+						<dt>邮政编码</dt>
+						<dd class="selectAddress">
+							<!--<input type="number" placeholder="邮政编码(选填)" v-model='editAddressArr.postCode'/>-->
+							<selectcity></selectcity>
 						</dd>
 					</dl>
 					<dl>
-						<dt>邮政编码</dt>
-						<dd class="">
-							<input type="number" placeholder="邮政编码(选填)" v-model='editAddressArr.postCode'/>
-							<!--<selectcity></selectcity>-->
+						<dt>详细地址</dt>
+						<dd>
+							<input type="text" placeholder="如街道，楼层，门牌号等" v-model='editAddressArr.address'/>
 						</dd>
 					</dl>
 					<div class="address-btn preserve" @click='reserve1'>保存</div>
@@ -585,9 +585,10 @@ export default {
 	width: 100%;
 	height: 100%;
 	background: rgba(0,0,0,0.6);
-	position: absolute;
+	position: fixed;
 	bottom: 0;
 	left: 0;
+	right: 0;
 	top: 0;
 	z-index: 99;
 	.address-main{
