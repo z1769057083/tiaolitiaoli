@@ -59,7 +59,6 @@
         },
         mounted() {
             this.swiperlist()
-            this.onWeChatShare()
             document.title = "在线商城"
             document.documentElement.scrollTop = 0
             document.body.scrollTop = 0
