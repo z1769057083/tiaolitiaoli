@@ -1,7 +1,7 @@
 <template>
 	<div>
 	<!--文章部分-->
-	<div class="s-mrecomment"  >
+	<div class="s-mrecomment" v-if="hasRecommend" >
 		<h3 class="s-marttitle" style="display: none;">个性化推荐</h3>
 		<dl class="s-marticlecon" v-for='soupItem in getSouplist' style="display: none;">
 			<router-link :to="{ name:'soupDetail', query: { soupId: soupItem._id }}">
@@ -18,7 +18,7 @@
 		<div class="s-marticlecon1">
 			<dl>
 				<dt>
-					<h3 class="s-marcontitle">推荐商品</h3>
+					<h3 class="s-marcontitle" v-if="hasRecommend">推荐商品</h3>
 				</dt>							
 				<dd class="s-martimg" v-for='recommendItem in recommendlist'>
 					<router-link :to="{ name: 'goodsdetail', query: { itemid: recommendItem._id}}">
@@ -62,6 +62,7 @@ export default {
   data(){
   	return {
       listem:[],
+        hasRecommend:false,
       recommendlist:[],
       getSouplist:[],
       soupList:[],
@@ -95,6 +96,7 @@ export default {
 					  	if(res.data.errorCode == 0){
 							res = res.data.returnValue
 					  		that.recommendlist = res
+							that.recommendData=true
 //					  		console.log(that.recommendlist)
 					  	}
 					  })
