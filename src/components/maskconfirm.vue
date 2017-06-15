@@ -38,10 +38,10 @@ export default {
     methods:{
         gotoReport(){
             if(this.questionSection == XianTianSectionType){
-                this.$router.push({ path: '/report', query: { questionSection: XianTianSectionType } })
+                this.$router.push({ path: '/report' })
 			}
             else{
-                this.$router.push({ path: '/afterReport', query: { questionSection: HouTianSectionType } })
+                this.$router.push({ path: '/afterReport' })
 			}
 		}
 	},

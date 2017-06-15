@@ -2,8 +2,8 @@
 	<div>
 	<!--文章部分-->
 	<div class="s-mrecomment"  >
-		<h3 class="s-marttitle">个性化推荐</h3>
-		<dl class="s-marticlecon" v-for='soupItem in getSouplist'>
+		<h3 class="s-marttitle" style="display: none;">个性化推荐</h3>
+		<dl class="s-marticlecon" v-for='soupItem in getSouplist' style="display: none;">
 			<router-link :to="{ name:'soupDetail', query: { soupId: soupItem._id }}">
 				<dt>
 					<h3>{{soupItem.title}}</h3>
@@ -22,7 +22,7 @@
 				</dt>							
 				<dd class="s-martimg" v-for='recommendItem in recommendlist'>
 					<router-link :to="{ name: 'goodsdetail', query: { itemid: recommendItem._id}}">
-						<img :src="''+apiPath+'/image/product/'+recommendItem.index+'/1.jpg'" 
+						<img :src="''+apiPath+'/image/product/thumbnail/'+recommendItem.index+'.jpg'"
 				  		onerror="this.src='http://placeholder.qiniudn.com/800'"/>
 				  </router-link>
 				  <p class="s-martname">{{recommendItem.name}}</p>
@@ -42,7 +42,7 @@
 		<dl class="s-mrecomlist" v-for="temp in item.items">
 				<router-link :to="{ name: 'goodsdetail', query: { itemid: temp._id}}">
 				  <dt class="s-mreconimg">
-				  	<img :src="''+apiPath+'/image/product/'+temp.index+'/1.jpg'" 
+				  	<img :src="''+apiPath+'/image/product/thumbnail/'+temp.index+'.jpg'"
 				  		onerror="this.src='http://placeholder.qiniudn.com/800'"/>
 				  </dt>
 					<dd class="s-mreconintro">

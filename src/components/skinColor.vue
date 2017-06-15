@@ -4,13 +4,13 @@
 	  		<dl>
 	  			<dt>请选择你的肤色</dt>
 	  			<dd>
-	  				<span :class="{'active': skin === 0}" @click="change_active(0,'1','skin',$event)">皮肤白皙</span>
-	  				<span :class="{'active': skin === 1}" @click="change_active(1,'1','skin',$event)">皮肤青白</span>
-	  				<span :class="{'active': skin === 2}" @click="change_active(2,'1','skin',$event)">皮肤微黑</span>
+	  				<span :class="{'active': skin === 0}" @click="change_active(0)">皮肤白皙</span>
+	  				<span :class="{'active': skin === 1}" @click="change_active(1)">皮肤青白</span>
+	  				<span :class="{'active': skin === 2}" @click="change_active(2)">皮肤微黑</span>
 	  			</dd>
 	  			<dd>
-	  				<span :class="{'active': skin === 3}" @click="change_active(3,'1','skin',$event)">皮肤发红、发赤或古铜色</span>
-	  				<span :class="{'active': skin === 4}" @click="change_active(4,'1','skin',$event)">皮肤偏黄</span>
+	  				<span :class="{'active': skin === 3}" @click="change_active(3)">皮肤发红、发赤或古铜色</span>
+	  				<span :class="{'active': skin === 4}" @click="change_active(4)">皮肤偏黄</span>
 	  			</dd>
 	  		</dl>
 	  	</div>
@@ -26,7 +26,7 @@ export default {
 	},
 	methods:{
 	  	change_active(answerValue,sectionId,sectionKey,event) {
-		  this.$data[sectionKey]=answerValue
+		  this.$data.skin=answerValue
             if(this.skin!==-1) {
                 this.$emit('updateUserAnswer', this.answer)
             }

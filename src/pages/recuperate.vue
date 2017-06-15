@@ -17,7 +17,7 @@
 					<span>主述症状:</span>{{illness}}
 				</div>
 				<div class="mcon-season">
-					<p class="tit">R</p>
+					<p class="tit" style="display: none;">R</p>
 					<div>
 						<span>当季体质:</span>
 						<p v-html="wuXingLevelText+'<br>'+reportContent"></p>
@@ -69,7 +69,8 @@
                 this.reportContent=Common.convertReportsToText(dangJiReport.jieQiReports).substring(0,100);
                 this.nickname=user.nickname;
                 this.genderText=xianTianData.gender=='F'?'女':'男';
-                this.illness=houTianData.situation.toString();
+                if(houTianData){ this.illness=houTianData.tags.toString();}
+
                 this.age=new Date().getFullYear()- new Date(xianTianData.birthday).getFullYear();
                 if(houTianData&&houTianData.femaleStatus){
                     this.comments=houTianData.femaleStatus;

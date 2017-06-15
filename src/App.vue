@@ -1,20 +1,27 @@
 <template>
     <div id="app">
+        <loading v-show="loading"></loading>
         <router-view></router-view>
     </div>
 </template>
 <script>
     import '../static/flexible.js'
+    import wx from 'weixin-js-sdk'
     import Common from '../static/common'
     import '../static/swiper-3.4.2.min.js'
     import axios from 'axios'
     import api from '@/api/api'
     import Highcharts from 'highcharts';
     import Hig from 'highcharts/highcharts-more' ;
+
+    import {mapGetters,mapActions} from 'vuex';
     Hig(Highcharts)
     global.Highcharts = Highcharts
+
+
     export default {
         name: 'app',
+        computed:mapGetters(['loading']),
         methods: {
             loadQuestions(){
                 axios.get(api.beforeQuestionData)
@@ -27,6 +34,56 @@
                     })
                     .catch(function (error) {
                         console.log(error)
+                    })
+            },
+            onWeChatShare(){
+                global.shareTitle='调一调';
+                global.link='http://ikehealth.cn/wechat/';
+                global.shareDesc='感觉不舒服，调一调吧';
+                wx.ready(function () {
+                    wx.onMenuShareTimeline({
+                        title: global.shareTitle, // 分享标题
+                        link: global.link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                        imgUrl: 'http://ikehealth.cn/image/logo.png', // 分享图标
+                        success: function () {
+                            // 用户确认分享后执行的回调函数
+                        },
+                        cancel: function () {
+                            // 用户取消分享后执行的回调函数
+                        }
+                    });
+                    wx.onMenuShareAppMessage({
+                        title:  global.shareTitle, // 分享标题
+                        desc: global.shareDesc, // 分享描述
+                        link:  global.link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                        imgUrl: 'http://ikehealth.cn/image/logo.png', // 分享图标
+                        type: '', // 分享类型,music、video或link，不填默认为link
+                        dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+                        success: function () {
+                            // 用户确认分享后执行的回调函数
+                        },
+                        cancel: function () {
+                            // 用户取消分享后执行的回调函数
+                        }
+                    });
+
+                })
+            },
+            configWeChatSDK(){
+                var domain = location.href.split('#')[0];//Note http://localhost:3333/
+                axios.get(domain + 'wechat/get_signature?url=' + domain)
+                    .then(function (res) {
+                        var data = res.data;
+                        wx.config({
+//                        debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                            appId: data.appId, // 必填，公众号的唯一标识
+                            timestamp: data.timestamp, // 必填，生成签名的时间戳
+                            nonceStr: data.nonceStr, // 必填，生成签名的随机串
+                            signature: data.signature,// 必填，签名，见附录1
+                            jsApiList: ['chooseImage', 'previewImage',
+                                'uploadImage','onMenuShareTimeline','onMenuShareAppMessage',
+                                'downloadImage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                        });
                     })
             },
             loadUserInfo(){
@@ -73,6 +130,8 @@
         mounted() {
             this.loadQuestions()
             this.loadUserInfo()
+            this.configWeChatSDK()
+            this.onWeChatShare()
             console.log('当前版本:' + Version);
         }
     }

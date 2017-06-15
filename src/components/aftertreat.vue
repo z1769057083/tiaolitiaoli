@@ -4,7 +4,7 @@
 	  		<dl>
 	  			<dt>最近出现情况:</dt>
 	  			<dd>
-	  				<p v-for="item in brandlist" :class="{active: situation.indexOf(item) > -1 }" @click="ac(item)">{{item}}</p>
+	  				<p v-for="item in brandlist" :class="{active: tags.indexOf(item) > -1 }" @click="ac(item)">{{item}}</p>
 	  			</dd>
 	  		</dl>
 	  	</div>
@@ -15,24 +15,24 @@ import Common from '../../static/common'
 export default {
   data(){
   	return {
-  	    situation: [],
+  	    tags: [],
   		brandlist: ['经常腹泻','入眠困难','肠胃不好','睡觉易醒','心慌','全身无力','便秘','食欲不振','持续口腔溃疡','痛经','经期紊乱','无']
     }
   },
     computed: {
         answer(){
             var answer = {};
-            answer.situation = this.situation;
+            answer.tags = this.tags;
             return answer;
         }
     },
   methods:{
   	ac(obj) {
-            var numb = this.answer.situation.indexOf(obj);
+            var numb = this.tags.indexOf(obj);
             if (numb > -1) {
-                this.answer.situation.splice(numb, 1);
+                this.tags.splice(numb, 1);
             } else {
-                this.answer.situation.push(obj);
+                this.tags.push(obj);
             }
             this.$emit('updateUserAnswer', this.answer)
         }
