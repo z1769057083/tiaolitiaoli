@@ -1,5 +1,6 @@
 <template>
     <div id="app">
+        <loading v-show="loading"></loading>
         <router-view></router-view>
     </div>
 </template>
@@ -12,10 +13,15 @@
     import api from '@/api/api'
     import Highcharts from 'highcharts';
     import Hig from 'highcharts/highcharts-more' ;
+
+    import {mapGetters,mapActions} from 'vuex';
     Hig(Highcharts)
     global.Highcharts = Highcharts
+
+
     export default {
         name: 'app',
+        computed:mapGetters(['loading']),
         methods: {
             loadQuestions(){
                 axios.get(api.beforeQuestionData)

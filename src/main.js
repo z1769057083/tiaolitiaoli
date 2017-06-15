@@ -8,14 +8,34 @@ import MintUI from 'mint-ui'
 import '../static/mint-ui.css'
 import './common/reset.css'
 import './common/common.scss'
+
+import store from './store/'
+import Loading from './components/loading'
 import axios from 'axios'
 Vue.use(VueRouter)
 Vue.use(MintUI)
+Vue.use(Loading);
 Vue.config.productionTip = false
+
+
+axios.interceptors.request.use(function(config) { //配置发送请求的信息
+    store.dispatch('showLoading');
+    return config;
+}, function(error) {
+    return Promise.reject(error);
+});
+
+axios.interceptors.response.use(function(response) { //配置请求回来的信息
+    store.dispatch('hideLoading');
+    return response;
+}, function(error) {
+    return Promise.reject(error);
+});
 /* eslint-disable no-new */
 new Vue({
   // el: '#app',
   router,
+    store,
   template: '<App/>',
   components: { App }
 }).$mount('#app')
