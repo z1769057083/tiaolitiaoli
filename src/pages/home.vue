@@ -2,7 +2,7 @@
     <div class='home'>
         <div class='i-content'>
             <div class='i-headbot'>
-                <div class='i-headbottext'>你是第{{visitorCount}}位测试者</div>
+                <div class='i-headbottext' style="display: none;">你是第{{visitorCount}}位测试者</div>
             </div>
             <div class='i-main'>
                 <h3 class='i-maintop'>体质检测</h3>
@@ -33,6 +33,7 @@
 </template>
 <script>
 
+    import Toast from '@/packages/toast'
     import axios from 'axios'
     import api from '../api/api'
     export default {
@@ -43,6 +44,15 @@
         },
         methods: {
             //点击事件存title
+            showInfo(){
+                let info = this.$route.query.info;
+                if(info &&info==='report_required'){
+                    Toast({
+                        'message':'请先完成体质检测',
+                        position: 'top',
+                    });
+                }
+            },
             tab(index) {
                 if (!window.localStorage) {
                     return false;
@@ -61,6 +71,7 @@
         mounted() {
             document.title = "调理调理"
             let that = this
+            this.showInfo();
             axios.get(api.getUserCount)
                 .then(function (res) {
                     if (res.data.errorCode == 0) {
