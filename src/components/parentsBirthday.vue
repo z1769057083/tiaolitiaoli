@@ -2,10 +2,10 @@
     <div class="m-selection">
         <!--<div class="m-selecttit">父母生日</div>-->
         	<span>父亲生日：</span>
-        	<input type="date" class="m-selectbirthday" name='fatherBirthday' v-model='fatherBirthday'
+        	<input type="date" :class="{'activeDate': toggle}" class="m-selectbirthday" name='fatherBirthday' v-model='fatherBirthday'
                @change='change_date(fatherBirthday)'/>
         	<span>母亲生日：</span>
-        	<input type="date" class="m-selectbirthday" name='motherBirthday' v-model='motherBirthday'
+        	<input type="date" :class="{'activeDate': toggle1}" class="m-selectbirthday" name='motherBirthday' v-model='motherBirthday'
                @change='change_MotherDate(motherBirthday)'/>
         
     </div>
@@ -15,7 +15,9 @@
         data(){
             return {
                 motherBirthday: '1990-01-01',
-                fatherBirthday: '1990-01-01'
+                fatherBirthday: '1990-01-01',
+                toggle: false,
+                toggle1: false
             }
         },
         computed: {
@@ -28,12 +30,14 @@
         },
         methods: {
             change_date(fatherBirthday){
+            	this.toggle = true
                 this.fatherBirthday = fatherBirthday;
                 if (this.motherBrithdy !== '') {
                     this.$emit('updateUserAnswer', this.answer);
                 }
             },
             change_MotherDate(motherBirthday){
+            	this.toggle1 = true
                 this.motherBrithdy = motherBirthday;
                 if (this.fatherBirthday !== '') {
                     this.$emit('updateUserAnswer', this.answer);
@@ -74,6 +78,8 @@
         margin-bottom: rem(30rem);
         border: 0;
     }
-
+	.activeDate{
+		color: #000;
+	}
     }
 </style>

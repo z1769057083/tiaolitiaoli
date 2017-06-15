@@ -15,7 +15,7 @@
                 <span v-show='!msgGrilImg'>我是女生</span>
             </div>
         </div>
-        <input type="date" class="m-selectdate" name='birthday' v-model='birthday' @change='change_date(birthday)'/>
+        <input type="date" class="m-selectdate" :class="{'activeDate': toggle}" name='birthday' v-model='birthday' @change='change_date(birthday)'/>
     </div>
 </template>
 <script type="text/javascript">
@@ -26,7 +26,8 @@
                 gender: "F",
                 birthday: "1990-01-01",
                 msgBoyImg: true,
-                msgGrilImg: false
+                msgGrilImg: false,
+                toggle: false
             }
         },
         computed: {
@@ -57,6 +58,7 @@
             },
             change_date(changedBirthday){
                 this.birthday = changedBirthday;
+                this.toggle = true
                 if (this.gender !== '') {
                     global.User.gender = this.answer.gender;
                     global.User.age = Common.getUserAge(this.birthday);
@@ -147,6 +149,9 @@
             color: #999;
             border-radius: 1.06rem;
             border: 0;
+        }
+        .activeDate{
+        	color: #000000;
         }
 
     }

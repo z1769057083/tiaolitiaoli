@@ -88,7 +88,7 @@ export default {
 			margin-bottom: rem(10rem);
 			dt{
 				width: 90%;
-				height: rem(64rem);
+				height: rem(68rem);
 				margin-left: 5%;
 				img{
 					width: 100%;
@@ -106,6 +106,7 @@ export default {
 		}
 		.active{
 			background: #fff;
+			box-shadow: 0 rem(1rem) rem(2rem) #e2e1df;
 		}
 	}
 }	

@@ -130,7 +130,7 @@
         }
         .m-hmain {
             width: 100%;
-            height: rem(220rem);
+            height: rem(210rem);
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
             dl {
@@ -162,6 +162,7 @@
             }
             .active {
                 background: #fff;
+                box-shadow: 0 rem(1rem) rem(2rem) #e2e1df;
             }
             .temper-bottom {
                 width: 100%;
