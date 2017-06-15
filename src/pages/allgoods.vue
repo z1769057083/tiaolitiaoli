@@ -74,9 +74,10 @@ export default {
 			float: left;
 			margin: 0 3% rem(12rem) 0;
 			background: #fff;
+			padding-bottom: rem(4rem);
 			dt{
 				width: 100%;
-				height: rem(173rem);
+				height: rem(98rem);
 				img{
 					width: 100%;
 					height: 100%;

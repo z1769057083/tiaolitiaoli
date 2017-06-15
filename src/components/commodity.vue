@@ -124,7 +124,10 @@ export default {
   	this.recommend()
   	this.getSoup()
   	this.apiPath = api.apipath
-  }
+  },
+   watch: {
+    
+   }
 }
 </script>
 <style scoped lang="scss" rel="stylesheet/scss">
@@ -222,7 +225,7 @@ export default {
  		}
  	}
 }
-  /*商品列表*/
+/*商品列表*/
 .s-mrecomment1{
 	width: 100%;
 	overflow: hidden;
@@ -268,6 +271,7 @@ export default {
 	 		font-size: 0.35rem;
 	 		color: #000;
 	 		line-height: 0.48rem;
+	 		text-decoration: none;
 	 	}
  	}
 }

@@ -6,21 +6,21 @@
 		<div class="cashier-goods">商品名称:{{this.arr2.name}}</div>
 	</div>
 	<div class="cashier-mcontent">
-		<dl>
+		<dl  @click='toggle = !toggle'>
 			<dt><img src="../assets/cashierCard.png"/></dt>
 			<dd>
 				<p>使用银行卡支付</p>
 				请使用银联卡支付，无需开通网银
 			</dd>
-			<dd class="check" :class="{'active': toggle}" @click='toggle = !toggle'></dd>
+			<dd class="check" :class="{'active': toggle}"></dd>
 		</dl>
-		<dl>
+		<dl @click='toggle = !toggle'>
 			<dt><img src="../assets/cashierWechart.png"/></dt>
 			<dd>
 				<p>微信支付</p>
 				微信支付使用银行卡累计限制1000元
 			</dd>
-			<dd class="check" :class="{'active': !toggle}" @click='toggle = !toggle'></dd>
+			<dd class="check" :class="{'active': !toggle}"></dd>
 		</dl>	
 	</div>
 	<div class="cashier-pay">立即支付</div>
@@ -35,6 +35,7 @@ export default {
 			toggle: true,
 			arr:[],
 			arr2:[],
+			accountArr:[],
 			totalCount:0
     }
   },
@@ -50,11 +51,17 @@ export default {
 	    	let obj = JSON.parse(obj_arr)
 	   		this.arr = obj
 	   		console.log(this.arr)
+	   		if (window.localStorage.getItem(Account_Index) !== null) {
+            let account = JSON.parse(window.localStorage.getItem(Account_Index))
+            this.accountArr = account
+        }
 	    }
 			let params = {
 				order:this.arr[0],
 				address:this.arr[1],
-				price:this.arr[2].price
+				price:this.arr[2].price,
+				userId:this.accountArr._id,
+				nickName:this.accountArr.nickname
 			}
 	    axios.post(api.cashierSendData,params)
 		    .then(function (res) {

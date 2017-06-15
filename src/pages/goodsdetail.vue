@@ -5,7 +5,7 @@
 	    	<div class="l-mainscroll">
 	    		<div class="l-mgoodsimg">
 		    		<img :src="''+apiPath+'/image/product/'+list.index+'/1.jpg'" 
-								  		onerror="this.src='http://placeholder.qiniudn.com/800'"/>
+								 onerror="this.src='http://placeholder.qiniudn.com/800'"/>
 		      </div>
 				  <div class="l-mgoodsprice">
 				    <p class="l-mgoodsintro">{{list.name}}</p>
@@ -43,10 +43,8 @@
 		  	  </router-link>
 		  	</div>
 		  	<div class="l-mgoodscar l-mgoodsshop" @click='isRouterShop'>
-		  		<!--<router-link to='/shop'>-->
 		  	  	<img src="../assets/listShooping.png"/>	  	  
 		  	  	<p>商城</p>
-		  	  <!--</router-link>-->
 		  	</div>	
 		  	<div class="l-mgoodsjoin" @click='shopHiden = !shopHiden'>加入购物车
 		  	</div>
@@ -74,7 +72,8 @@
 							<input type="text" value='num' v-model='num'/>
 							<button class="addBtn" @click='add'></button>
 						</div>
-					</div>
+						<span class="stock">（库存{{list.left}}）</span>
+					</div>					
 					<div class="confirmBtn" @click='confirm'>确定</div>
 				</div>
 			</div>
@@ -99,6 +98,7 @@
 							<input type="text" value="num" v-model='num'/>
 							<button class="addBtn" @click='add'></button>
 						</div>
+						<span class="stock">（库存{{list.left}}）</span>
 					</div>
 					<div class="confirmBtn1" @click='confirm1'>下一步</div>
 				</div>
@@ -165,6 +165,7 @@
             img: this.list.index,
             name: this.list.name,
             price: this.list.price,
+            left: this.list.left,
             num: this.num,
           }
           if (obgood) {
@@ -175,15 +176,13 @@
             if (this.arr2.indexOf(that.list._id) >= 0) {
               for (var j = 0, lan = this.arr.length; j < lan; j++) {
                 if (this.arr[j]) {
-                  if (this.arr[j].id === that.list._id) {
-                  	this.arr.num += this.arr[j].num
-                  	console.log(this.arr)
-                    this.arr.splice(this.arr.indexOf(this.arr[j]), 1);
+                  if (this.arr[j].id === that.list._id) {  
+                  	shop.num += this.arr[j].num  
+                    this.arr.splice(this.arr.indexOf(this.arr[j]), 1);                    
                   }
                 }
               }
               this.arr.push(shop);
-              console.log(shop)
             } else {
               this.arr.push(shop);
             }
@@ -221,8 +220,8 @@
         }
       },
       add(){
-        if (this.num >= 100) {
-          this.num = 100
+        if (this.num >= this.list.left) {
+          this.num = this.list.left
         } else {
           this.num++
         }
@@ -438,17 +437,15 @@
 			left: 0; 
 			.shopCar-main{
 				width: 94%;
-				height: rem(112rem);
+				height: rem(100rem);
 				margin-left: 3%;
 				border-bottom: 1px solid #efefef;
 				dl{
 					float: left;
 					position: relative;
-					/*width: 56.8%;*/
-					height: rem(100rem);
 					dt{
-						width: rem(116rem);
-						height: rem(116rem);
+						width: rem(180rem);
+						height: rem(102rem);
 						position: absolute;
 						left: 0;
 						top: rem(-20rem);
@@ -458,7 +455,7 @@
 						}
 					}
 					dd{
-						margin: rem(50rem) 0 0 rem(130rem);
+						margin: rem(40rem) 0 0 rem(190rem);
 						p{
 							font-size: $font14;
 							color: #ff3300;
@@ -491,7 +488,8 @@
 					float: right;
 					width: 30%;
 					height: rem(30rem);
-					margin-top: rem(14rem);;
+					margin-top: rem(14rem);
+					margin-left: rem(5rem);
 					button{
 						width: 30%;
 						float: left;
@@ -517,6 +515,10 @@
 						text-align: center;
 					    line-height: rem(30rem);
 					}
+				}
+				.stock{
+					float: right;
+					color: #666;
 				}
 				
 			}

@@ -10,7 +10,8 @@
 	  		<div class="tolley-check" :class="{active: isSelectAll}" @click='allSelect'></div>	
 	   		<div class="order-mtitle">
 		    	汉古商城
-		    	<span></span>
+		    	<span :class="{'activeEdit': toggle}" @click='editGoods'>编辑</span>
+		    	<span :class="{'activeEdit': !toggle}" @click='successGoods'>完成</span>
 		    </div>
 	  	</div>
 	  	<div class="tolley-cont">
@@ -19,17 +20,23 @@
 		  			<div class="tolley-check" :class="{active:item.isChecked}" @click='selectGood(index)'></div>	
 			  		<dl>
 			  			<router-link :to="{ name: 'goodsdetail', query: { itemid: item.id }}">
-		    			<dt><img 
-		    				:src="''+apiPath+'/image/product/'+item.img+'/1.jpg'" 
-		    				onerror="this.src='http://placeholder.qiniudn.com/300'"/></dt>
+			    			<dt><img 
+			    				:src="''+apiPath+'/image/product/'+item.img+'/1.jpg'" 
+			    				onerror="this.src='http://placeholder.qiniudn.com/300'"/></dt>
+		    			</router-link>		
 		    			<dd>
-		    				{{item.name}}
-		    				<p>¥{{item.price}}</p>
-		    			</dd>
-		    			</router-link>
+		    				<span v-if='numHidden'>{{item.name}}</span>
+		    				<p v-if='numHidden'>¥{{item.price}}</p>
+		    				<div class="num" v-else='!numHidden'>
+								<button class="reduceBtn" @click="_changeNum(index)"></button>
+								<input type="text" value='item.num' v-model='item.num'/>
+								<button class="addBtn" @click="_changeNum(index,true)"></button>
+								<div class="delect-goods" @click='delGoods(item,index)'>删除</div>								
+		    				</div>
+		    			</dd>    			
 		    		</dl>
-		    		<div class="order-mnum">X<span>{{item.num}}</span></div>
-		    		<div class="delect" @click='delGoods(item,index)'><img src="../assets/tolleyDelect.png"/></div>
+		    		<div class="order-mnum" v-if='numHidden'>X<span>{{item.num}}</span></div>
+		    		<!--<div class="delect" @click='delGoods(item,index)' v-if='numHidden'><img src="../assets/tolleyDelect.png"/></div>-->
 			  	</div>
 		  	</div>
 	  	</div>	  	
@@ -66,7 +73,10 @@ import Toast from '@/packages/toast'
  			toastHidden:false,
  			readyToDelIndex:-1,
  			orderArr:[],
- 			apiPath:''
+ 			apiPath:'',
+ 			num:1,
+ 			numHidden:true,
+ 			toggle: true
  		}
  	},
  	methods:{
@@ -134,13 +144,33 @@ import Toast from '@/packages/toast'
         	}else{
         		this.isCheckAll()        		
         	}
-   		}
-// 		doctorAvatar(){
-//  		var doctor=JSON.parse( localStorage.getItem('shopcart_Key'));
-//  		if(!this.arr.length){
-//		    	this.$emit('catrDotted')
-//	       }
-//  	}
+   		},
+   		editGoods(){
+   			this.numHidden = false
+   			this.toggle = false
+   		},
+   		successGoods(){
+   			this.numHidden = true
+   			this.toggle = true
+   		},
+   		// 购物车增加减少
+      	_changeNum(index,bool) { 
+    		// 有bool代表加   
+        	if (bool) {
+		        if ( this.arr[index].num <= this.arr[index].left) {
+		           this.arr[index].num ++;
+		        } else{
+		          this.arr[index].num = this.arr[index].left
+		          
+		        }		       
+	        } else {
+	          	 if (this.arr[index].num <= 1) {
+		          this.arr[index].num = 1
+		        } else {
+		          this.arr[index].num--
+		        }
+		    }
+        }
  	},
 	computed:{
 		isSelectAll: function () {
@@ -164,7 +194,6 @@ import Toast from '@/packages/toast'
 //      //总价
 		totalPrice:function(){
 			var total = 0;
-			console.log(this.arr)
 			for(var i = 0, len = this.arr.length; i < len; i++){
 				if(this.arr[i].isChecked){					
 					total += this.arr[i].num*parseInt(this.arr[i].price);
@@ -250,35 +279,41 @@ import Toast from '@/packages/toast'
 			background-size: rem(15rem) rem(14rem);
 			padding-left: 5%;
 			float: left;
+			font-size: $font14;
 			span{
 				float: right;
+				font-size: $font12;
+				display: none;
+			}
+			.activeEdit{
+				display: block;
 			}
 		}
 	}
 	.tolley-cont{
 		width: 100%;
 		overflow: hidden;
-		margin-bottom: rem(50rem);
+		padding-bottom: rem(50rem);
 		.tolley-content{
 			width: 100%;
 			overflow: hidden;
 			background: #fff;
 			.tolley-mcon{
 				width: 94%;
-				height: rem(92rem);
+				height: rem(68rem);
 				background: #fafafa;
 				padding: rem(5rem) 3%;
 				margin-bottom: rem(10rem);
 				position: relative;
 				transition: transform .3s;
 				.tolley-check{
-					margin: rem(37rem) 3% 0 0;
+					margin: rem(25rem) 3% 0 0;
 				}
 				dl{
 					float: left;
 					dt{
-						width: rem(92rem);
-						height: rem(92rem);
+						width: rem(120rem);
+						height: rem(68rem);
 						float: left;
 						img{
 							width: 100%;
@@ -287,19 +322,67 @@ import Toast from '@/packages/toast'
 					}
 					dd{
 						float: left;
-						line-height: rem(20rem);
 						margin-left: rem(10rem);
 						color: $c3c3c;
+						span{
+							line-height: rem(20rem);
+						}
 						p{
 							margin-top: rem(5rem);
 							font-size: $font14;
 							color: #fe4415;
 						}
+						.num{
+							float: right;
+							width: 100%;
+							height: rem(32rem);
+							margin-left: rem(5rem);
+							border-bottom: 2px solid #fff;
+							button{
+								width: 25%;
+								float: left;
+								display: block;
+								height: rem(30rem);
+								border: 0;
+							}
+							.reduceBtn{
+								background: url(../assets/shopcarReduce.png) no-repeat center;
+								background-size: cover;
+							}
+							.addBtn{
+								background: url(../assets/shopCaradd.png) no-repeat center;
+								background-size: cover;
+							}
+							input{
+								float: left;
+								width: 30%;
+								height: rem(30rem);
+								border: 0;
+								color: #000;
+								background: #fafafa;
+								margin: 0 3%;
+								text-align: center;
+							    line-height: rem(20rem);
+							    border-left: 2px solid #fff;
+							    border-right: 2px solid #fff;
+							}
+							.delect-goods{
+								width: 12%;
+								height: rem(78rem);
+								position: absolute;
+								background: #ff3b2f;
+								right: 0;
+								top: 0;
+								line-height: rem(78rem);
+								text-align: center;
+								color: #fff;
+							}
+						}
 					}
 				}
 				.order-mnum{
 					float: right;
-					line-height: rem(46rem);
+					line-height: rem(60rem);
 					color: #9c9c9c;
 					span{
 						font-size: $font14;
@@ -375,7 +458,7 @@ import Toast from '@/packages/toast'
 			position: absolute;
 			border-radius: rem(5rem);
 			left: 10%;
-			top: 42%;
+			top: 34%;
 			p{
 				font-size: $font14;
 				margin: rem(20rem) 0 0 rem(20rem);

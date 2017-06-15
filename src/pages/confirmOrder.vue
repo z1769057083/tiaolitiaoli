@@ -37,7 +37,11 @@
     <div class="order-mcontent">
     	<dl>
     		<dt>配送方式</dt>
-    		<dd>快递 &nbsp;¥{{fare}}.00（超过300.00包邮哦）</dd>
+    		<dd>快递 &nbsp;¥{{fare}}.00</dd>
+    	</dl>
+    	<dl>
+    		<dt>备注</dt>
+    		<dd>超过300免邮费</dd>
     	</dl>
     	<dl class="order-mconpic">
     		<dt></dt>
@@ -73,12 +77,12 @@
 							<input type="text" placeholder="如街道，楼层，门牌号等" v-model='address' name='address'/>
 						</dd>
 					</dl>
-					<dl>
+					<!--<dl>
 						<dt>邮政编码</dt>
 						<dd>
 							<input type="text" placeholder="邮政编码(选填)"  v-model='postCode' name='postCode'/>
 						</dd>
-					</dl>
+					</dl>-->
 					<div class="address-btn preserve" @click='reserve'>保存</div>
 				</div>
 			</div>
@@ -120,17 +124,24 @@
 						</dd>
 					</dl>
 					<dl>
+						<dt>邮政编码</dt>
+						<dd class="">
+							<input type="text" placeholder="邮政编码(选填)" v-model='editAddressArr.postCode'/>
+							<!--<selectcity></selectcity>-->
+						</dd>
+					</dl>
+					<dl>
 						<dt>详细地址</dt>
 						<dd>
 							<input type="text" placeholder="如街道，楼层，门牌号等" v-model='editAddressArr.address'/>
 						</dd>
 					</dl>
-					<dl>
+					<!--<dl>
 						<dt>邮政编码</dt>
 						<dd>
 							<input type="text" placeholder="邮政编码(选填)" v-model='editAddressArr.postCode'/>
 						</dd>
-					</dl>
+					</dl>-->
 					<div class="address-btn preserve" @click='reserve1'>保存</div>
 				</div>
 			</div>
@@ -144,6 +155,7 @@ import axios from 'axios'
 import api from '../api/api'
 import Toast from '@/packages/toast'
 import confirmToast from '@/components/confirmToast'
+import selectcity from '@/components/selectcity'
 export default {
   data(){
   	return {
@@ -184,7 +196,8 @@ export default {
     }
   },
   components:{
-  	confirmToast
+  	confirmToast,
+  	selectcity
   },
   methods: {
   	//点击新增收货地址显示
@@ -204,10 +217,11 @@ export default {
   	},		
 		//新增地址中的关闭按钮
 	  close(){ 	
-		this.confirmToastHidden = true
+		  this.confirmToastHidden = true
 	  },
 	  closeConfirmEvent(){
-	  	this.confirmToastHidden = false
+	  	this.confirmToastHidden = false	  
+	  	this.loadDelieverAddress()
 	  },
 	  closeDialogHandler(){
 			this.Deliveryhidden = false
@@ -307,8 +321,6 @@ export default {
         })
         return;
 	  	}
-	  	
-
 	  },
   	selectEdit(){
   		this.confirmHidden = true
@@ -320,9 +332,9 @@ export default {
 		    let address_obj = JSON.parse(address_arr)
 		    if(address_obj!==null){		    	
 		    	this.addressArr = address_obj
-		    	this.editAddressArr = this.addressArr
 	      	this.addNewAddressHidden = false
-	     }
+	      }
+		    this.editAddressArr = this.addressArr
   	},
   	loadOrdersFromBuyNow(){
   		//取直接购买的商品信息         	
@@ -376,6 +388,7 @@ export default {
 	     	this.loadDelieverAddress();
       	document.title ='确认订单'
       	this.apiPath = api.apipath
+      	//修改收货地址
     }
   }
 </script>
@@ -469,14 +482,14 @@ export default {
 		}
 		.order-mdetail{
 			width: 94%;
-			height: rem(92rem);
+			height: rem(68rem);
 			background: #fafafa;
 			padding: rem(5rem) 3%;
 			dl{
 				float: left;
 				dt{
-					width: rem(92rem);
-					height: rem(92rem);
+					width: rem(120rem);
+					height: rem(68rem);
 					float: left;
 					img{
 						width: 100%;
@@ -496,7 +509,7 @@ export default {
 			}
 			.order-mnum{
 				float: right;
-				line-height: rem(92rem);
+				line-height: rem(68rem);
 				color: #9c9c9c;
 				span{
 					font-size: $font14;
@@ -505,15 +518,17 @@ export default {
 		}
 	}
 	.order-mcontent{
-		width: 94%;
-		background: #fff;
-		padding: 0 3%;
-		margin-bottom: rem(48rem);
+		width: 100%;
+		background: #f6f6f6;
+		overflow: hidden;
+		padding-bottom: rem(49rem);
 		dl{
-			width: 100%;
+			width: 94%;
+			padding: 0 3%;
 			height: rem(47rem);
 			border-bottom: 1px solid #efefef;
 			line-height: rem(47rem);
+			background: #fff;
 			dt{
 				float: left;
 				width: 30%;
@@ -617,6 +632,10 @@ export default {
 						width: 100%;
 						border: 0;
 					}
+				}
+				.selectAddress{
+					margin-top: rem(8rem);
+					overflow: hidden;
 				}
 			}
 			.address-btn{
