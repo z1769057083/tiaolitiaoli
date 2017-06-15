@@ -77,12 +77,12 @@
 							<input type="text" placeholder="如街道，楼层，门牌号等" v-model='address' name='address'/>
 						</dd>
 					</dl>
-					<!--<dl>
+					<dl>
 						<dt>邮政编码</dt>
 						<dd>
-							<input type="text" placeholder="邮政编码(选填)"  v-model='postCode' name='postCode'/>
+							<input type="number" placeholder="邮政编码(选填)"  v-model='postCode' name='postCode'/>
 						</dd>
-					</dl>-->
+					</dl>
 					<div class="address-btn preserve" @click='reserve'>保存</div>
 				</div>
 			</div>
@@ -124,24 +124,18 @@
 						</dd>
 					</dl>
 					<dl>
-						<dt>邮政编码</dt>
-						<dd class="">
-							<input type="text" placeholder="邮政编码(选填)" v-model='editAddressArr.postCode'/>
-							<!--<selectcity></selectcity>-->
-						</dd>
-					</dl>
-					<dl>
 						<dt>详细地址</dt>
 						<dd>
 							<input type="text" placeholder="如街道，楼层，门牌号等" v-model='editAddressArr.address'/>
 						</dd>
 					</dl>
-					<!--<dl>
+					<dl>
 						<dt>邮政编码</dt>
-						<dd>
-							<input type="text" placeholder="邮政编码(选填)" v-model='editAddressArr.postCode'/>
+						<dd class="">
+							<input type="number" placeholder="邮政编码(选填)" v-model='editAddressArr.postCode'/>
+							<!--<selectcity></selectcity>-->
 						</dd>
-					</dl>-->
+					</dl>
 					<div class="address-btn preserve" @click='reserve1'>保存</div>
 				</div>
 			</div>
