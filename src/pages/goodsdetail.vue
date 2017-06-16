@@ -112,6 +112,7 @@
   import axios from 'axios'
   import api from '../api/api'
   import toast from '@/components/toast'
+  import Common from '../../static/common'
   export default {
     data(){
       return {
@@ -132,6 +133,7 @@
       toast
     },
     methods: {
+
       requestlist(){
         var that = this;
         that.itemid = this.$route.query.itemid;
@@ -140,6 +142,9 @@
             if (res.data.errorCode == 0) {
               res = res.data.returnValue
               that.list = res
+				//TODO:do it for article, video and food.
+				Common.initForWechatShare(res.name,'测一测体质,调一调身心')
+
             }
           })
           .catch(function (error) {
