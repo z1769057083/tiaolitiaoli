@@ -3,7 +3,7 @@
         <!--聊天内容-->
         <div class='r-content'>
             <div class='i-headbot'>
-                <div class='i-headbottext'>您的先天体质报告</div>
+                <div class='i-headbottext' style="display: none;">您的先天体质报告</div>
             </div>
             <div class="r-main">
                 <h3 class='i-maintop'>你的先天体质情况</h3>
@@ -41,6 +41,7 @@
     import api from '../api/api';
     import Common from '../../static/common';
     import ReportHelper from '../../static/reportHelper';
+    import Toast from '@/packages/toast'
     export default {
         name: 'report',
         data (){
@@ -70,13 +71,31 @@
         mounted() {
             document.title = "先天体质报告"
             let that = this
-            let userId = JSON.parse(localStorage.getItem(Account_Index))._id
+
+            let userId = this.$route.query.userid;
+            console.log(userId);
+            if (localStorage.getItem(Account_Index) != null) {
+                userId= JSON.parse(localStorage.getItem(Account_Index))._id
+            }
+            if(typeof(userId)==='undefined'||userId==''){
+                Toast({
+                    message: '请先完成体质辨析',
+                    position: 'top'
+                });
+                return;
+            }
             axios.get(api.getReport + "?userId=" + userId + "&reportType=xianTian")
                 .then(function (res) {
                     if (res.data.errorCode == 0) {
                         let report = res.data.returnValue;
                         localStorage.setItem(XianTianReport_Index, JSON.stringify(report))
                         that.renderReport(report)
+                    }
+                    else {
+                        Toast({
+                            'message': res.data.errorReason,
+                            'position':'top'
+                        })
                     }
                 })
             document.documentElement.scrollTop = 0
