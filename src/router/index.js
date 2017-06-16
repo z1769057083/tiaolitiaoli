@@ -15,6 +15,13 @@ import recuperate from '@/pages/recuperate'
 import test from '@/pages/testUpload'
 import soupDetail from '@/pages/soupDetail'
 import geneTest from '@/pages/geneTest'
+import videoList from '@/pages/videoList'
+import videoListDetail from '@/pages/videoListDetail'
+import videoHome from '@/pages/videoHome'
+import articleList from '@/pages/articleList'
+import articleListDetail from '@/pages/articleListDetail'
+import myNullReport from '@/pages/myNullReport'
+import doctorIntroduce from '@/pages/doctorIntroduce'
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -90,6 +97,41 @@ export default new Router({
       path: '/geneTest',
       component: geneTest,
       name: 'geneTest'
-    }
+    },
+    {
+      path: '/videoList',
+      component: videoList,
+      name: 'videoList'
+    },
+    {
+      path: '/videoListDetail',
+      component: videoListDetail,
+      name: 'videoListDetail'
+    },
+    {
+      path: '/videoHome',
+      component: videoHome,
+      name: 'videoHome'
+    },
+    {
+      path: '/articleList',
+      component: articleList,
+      name: 'articleList'
+    },
+    {
+      path: '/articleListDetail',
+      component: articleListDetail,
+      name: 'articleListDetail'
+    },
+    {
+      path: '/myNullReport',
+      component: myNullReport,
+      name: 'myNullReport'
+    },
+    {
+      path: '/doctorIntroduce',
+      component: doctorIntroduce,
+      name: 'doctorIntroduce'
+    }          
   ]
 })

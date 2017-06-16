@@ -5,7 +5,7 @@
 		<dl v-for='item in list'>
 			<router-link :to="{ name: 'goodsdetail', query: { itemid: item._id }}">
 				<dt>
-					<img :src="''+apiPath+'/image/product/'+item.index+'/1.jpg'" 
+					<img :src="''+apiPath+'/image/product/thumbnail/'+item.index+'.jpg'" 
 							onerror="this.src='http://placeholder.qiniudn.com/800'"/>
 				</dt>
 			</router-link>

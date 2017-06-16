@@ -167,7 +167,8 @@
                 margin-left: 8%;
                 text-align: center;
                 font-size: $font12;
-                color: #c69b70;
+                color: #c59a6f;
+                font-weight: bold;
                 line-height: rem(21rem);
                 letter-spacing: rem(0.4rem);
             }

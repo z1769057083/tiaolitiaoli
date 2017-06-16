@@ -252,6 +252,7 @@ import Toast from '@/packages/toast'
 	height: 100%;
 	background: #f6f6f6;
 	position: absolute;
+	font-size: $font14;
   .tolley-check{
 		float: left;
 		width: rem(18rem);
@@ -279,10 +280,10 @@ import Toast from '@/packages/toast'
 			background-size: rem(15rem) rem(14rem);
 			padding-left: 5%;
 			float: left;
-			font-size: $font14;
+			font-size: $font16;
 			span{
 				float: right;
-				font-size: $font12;
+				font-size: $font14;
 				display: none;
 			}
 			.activeEdit{
@@ -300,20 +301,20 @@ import Toast from '@/packages/toast'
 			background: #fff;
 			.tolley-mcon{
 				width: 94%;
-				height: rem(68rem);
+				height: rem(92rem);
 				background: #fafafa;
 				padding: rem(5rem) 3%;
 				margin-bottom: rem(10rem);
 				position: relative;
 				transition: transform .3s;
 				.tolley-check{
-					margin: rem(25rem) 3% 0 0;
+					margin: rem(34rem) 3% 0 0;
 				}
 				dl{
 					float: left;
 					dt{
-						width: rem(120rem);
-						height: rem(68rem);
+						width: rem(92rem);
+						height: rem(92rem);
 						float: left;
 						img{
 							width: 100%;
@@ -367,13 +368,13 @@ import Toast from '@/packages/toast'
 							    border-right: 2px solid #fff;
 							}
 							.delect-goods{
-								width: 12%;
-								height: rem(78rem);
+								width: 15%;
+								height: rem(102rem);
 								position: absolute;
 								background: #ff3b2f;
 								right: 0;
 								top: 0;
-								line-height: rem(78rem);
+								line-height: rem(102rem);
 								text-align: center;
 								color: #fff;
 							}
@@ -382,7 +383,7 @@ import Toast from '@/packages/toast'
 				}
 				.order-mnum{
 					float: right;
-					line-height: rem(60rem);
+					line-height: rem(70rem);
 					color: #9c9c9c;
 					span{
 						font-size: $font14;

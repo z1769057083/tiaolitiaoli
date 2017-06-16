@@ -393,6 +393,7 @@ export default {
 	width: 100%;
 	height: 100%;
 	position: absolute;
+	font-size: $font14;
 	.order-top{
 		width: 100%;
 		height: rem(110rem);
@@ -473,17 +474,18 @@ export default {
 			background-size: rem(15rem) rem(14rem);
 			padding-left: 5%;
 			margin-left: 3%;
+			font-size: $font16;
 		}
 		.order-mdetail{
 			width: 94%;
-			height: rem(68rem);
+			height: rem(92rem);
 			background: #fafafa;
 			padding: rem(5rem) 3%;
 			dl{
 				float: left;
 				dt{
-					width: rem(120rem);
-					height: rem(68rem);
+					width: rem(92rem);
+					height: rem(92rem);
 					float: left;
 					img{
 						width: 100%;
@@ -503,7 +505,7 @@ export default {
 			}
 			.order-mnum{
 				float: right;
-				line-height: rem(68rem);
+				line-height: rem(70rem);
 				color: #9c9c9c;
 				span{
 					font-size: $font14;
@@ -702,7 +704,7 @@ export default {
 					float: left;
 					width: 84%;
 					line-height: rem((19rem));
-					font-size: $font12;
+					font-size: $font14;
 					p{
 						margin-bottom: rem(2rem);
 						color: $c3c3c;

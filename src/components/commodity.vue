@@ -36,20 +36,24 @@
 	<div class="s-mrecomment1" v-for="(item, index) in listem">
 		<h3 class="s-marttitle">{{item.title}}
 			<router-link :to="{ name: 'allgoods', query: { categoryId: item.category ,titleName:item.title}}">
-			<a class="s-mrecomall" href="">查看全部</a>
-			</router-link></h3>
+			<a class="s-mrecomall">查看全部</a>
+			</router-link>
+		</h3>
 		<div>
 		<dl class="s-mrecomlist" v-for="temp in item.items">
-				<router-link :to="{ name: 'goodsdetail', query: { itemid: temp._id}}">
-				  <dt class="s-mreconimg">
-				  	<img :src="''+apiPath+'/image/product/thumbnail/'+temp.index+'.jpg'"
-				  		onerror="this.src='http://placeholder.qiniudn.com/800'"/>
-				  </dt>
-					<dd class="s-mreconintro">
-						<span>{{temp.name}}</span>
-					</dd>
-				</router-link>
-			</dl>
+			<router-link :to="{ name: 'goodsdetail', query: { itemid: temp._id}}">
+			  <dt class="s-mreconimg">
+			  	<img :src="''+apiPath+'/image/product/thumbnail/'+temp.index+'.jpg'"
+			  		onerror="this.src='http://placeholder.qiniudn.com/800'"/>
+			  </dt>
+				<dd class="s-mreconintro">
+					<div class="s-mreconintrodiv">
+						<span v-for='temp1 in temp.fit' if='temp1' class='activeShow'>{{temp1}}</span>
+					</div>
+					<span if='name' class='activeShow'>{{temp.name}}</span>
+				</dd>
+			</router-link>
+		</dl>
 		</div>
 	</div>
 </div>
@@ -80,7 +84,7 @@ export default {
 		  	if(res.data.errorCode == 0){
 		  		res = res.data.returnValue
 		  		that.listem = res
-//		  		console.log(that.listem)
+		  		console.log(that.listem)
 		  	}
 		  })
 		  .catch(function (error) {
@@ -274,6 +278,25 @@ export default {
 	 		color: #000;
 	 		line-height: 0.48rem;
 	 		text-decoration: none;
+	 		display: none;
+	 	}
+	 	.s-mreconintrodiv{
+	 		span{
+				margin-right: rem(2rem);
+		 		overflow: hidden;
+		 		white-space: nowrap;
+				text-overflow: ellipsis;
+	 			display: inline-block;
+	 			font-size: $font12;
+	 			color: #666;
+	 		}
+	 		width: 100%;
+	 		overflow: hidden;
+	 		white-space: nowrap;
+			text-overflow: ellipsis;
+	 	}
+	 	.activeShow{
+	 		display: block;
 	 	}
  	}
 }

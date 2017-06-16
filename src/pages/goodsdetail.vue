@@ -4,7 +4,7 @@
 	    <div class="l-main">
 	    	<div class="l-mainscroll">
 	    		<div class="l-mgoodsimg">
-		    		<img :src="''+apiPath+'/image/product/thumb/'+list.index+'.jpg'"
+		    		<img :src="''+apiPath+'/image/product/thumbnail/'+list.index+'.jpg'"
 								 onerror="this.src='http://placeholder.qiniudn.com/800'"/>
 		      </div>
 				  <div class="l-mgoodsprice">
@@ -437,15 +437,15 @@
 			left: 0; 
 			.shopCar-main{
 				width: 94%;
-				height: rem(100rem);
+				height: rem(110rem);
 				margin-left: 3%;
 				border-bottom: 1px solid #efefef;
 				dl{
 					float: left;
 					position: relative;
 					dt{
-						width: rem(180rem);
-						height: rem(102rem);
+						width: rem(119rem);
+						height: rem(119rem);
 						position: absolute;
 						left: 0;
 						top: rem(-20rem);
@@ -455,7 +455,7 @@
 						}
 					}
 					dd{
-						margin: rem(40rem) 0 0 rem(190rem);
+						margin: rem(50rem) 0 0 rem(130rem);
 						p{
 							font-size: $font14;
 							color: #ff3300;
