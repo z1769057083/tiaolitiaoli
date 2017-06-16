@@ -2,8 +2,8 @@
 	<div>
 	<!--文章部分-->
 	<div class="s-mrecomment" v-if="hasRecommend" >
-		<h3 class="s-marttitle" style="display: none;">个性化推荐</h3>
-		<dl class="s-marticlecon" v-for='soupItem in getSouplist' style="display: none;">
+		<h3 class="s-marttitle" >个性化推荐</h3>
+		<dl class="s-marticlecon" v-for='soupItem in getSouplist' >
 			<router-link :to="{ name:'soupDetail', query: { soupId: soupItem._id }}">
 				<dt>
 					<h3>{{soupItem.title}}</h3>
@@ -18,7 +18,7 @@
 		<div class="s-marticlecon1">
 			<dl>
 				<dt>
-					<h3 class="s-marcontitle" v-if="hasRecommend">推荐商品</h3>
+					<h3 class="s-marcontitle">推荐商品</h3>
 				</dt>							
 				<dd class="s-martimg" v-for='recommendItem in recommendlist'>
 					<router-link :to="{ name: 'goodsdetail', query: { itemid: recommendItem._id}}">
@@ -67,7 +67,6 @@ export default {
   data(){
   	return {
       listem:[],
-        hasRecommend:false,
       recommendlist:[],
       getSouplist:[],
       soupList:[],
@@ -75,6 +74,8 @@ export default {
       toggle:true
     }
   },
+
+    props:['hasRecommend'],
   components:{
   	commodity
   },

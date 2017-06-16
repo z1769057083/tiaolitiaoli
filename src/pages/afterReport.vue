@@ -3,7 +3,7 @@
         <!--聊天内容-->
         <div class='after-content'>
             <div class='i-headbot'>
-                <div class='i-headbottext'>您的后天体质报告</div>
+                <div class='i-headbottext'>您的体质报告</div>
             </div>
             <div class="r-main">
                 <div class="r-mainchart" id='chart-container'>
@@ -81,7 +81,7 @@
                 wuXingReportJieQiContent: '',
                 wuXingDangShiStatusText: '',
                 wuXingXianTianStatusText: '',
-                wuXingHouTianStatusText: '',
+                wuXingHouTianStatusText: '&nbsp;',
                 afterReportHidden: false,
                 xianTianReportIsShowed: false
             }
@@ -126,23 +126,33 @@
             },
         },
         mounted() {
-            document.title = "后天体质报告"
+            document.title = "体质报告"
+            let userId = this.$route.query.userid;
+            console.log(userId);
             let that = this
-            if (localStorage.getItem(Account_Index) == null) {
+            if (localStorage.getItem(Account_Index) != null) {
+                userId= JSON.parse(localStorage.getItem(Account_Index))._id
+            }
+            if(typeof(userId)==='undefined'||userId==''){
                 Toast({
-                    message: '请先完成体质辨析',
+                    message: '请先完成体质检测',
                     position: 'top'
                 });
                 return;
             }
             else {
-                let userId = JSON.parse(localStorage.getItem(Account_Index))._id
                 axios.get(api.getReport + "?userId=" + userId + "&reportType=houTian")
                     .then(function (res) {
                         if (res.data.errorCode == 0) {
                             let report = res.data.returnValue;
                             localStorage.setItem(HouTianReport_Index, JSON.stringify(report))
                             that.renderReport(report)
+                        }
+                        else{
+                            Toast({
+                                message:res.data.errorReason,
+                                position:'top'
+                            })
                         }
                     })
             }

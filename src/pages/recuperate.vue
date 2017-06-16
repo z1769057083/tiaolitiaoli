@@ -4,7 +4,7 @@
 			<div class="recuperate-top">
 				<img src="../assets/recuperate1.png"/>
 			</div>
-			<h2>6-7月养生处方</h2>
+			<h2>6-7月调理处方</h2>
 			<img class="recuperatebg" src="../assets/recuperatebg.png"/>
 			<div class="recuperate-mcon">
 				<div class="mcon-name">
@@ -23,7 +23,7 @@
 						<p v-html="wuXingLevelText+'<br>'+reportContent"></p>
 					</div>
 				</div>
-				<commodity></commodity>
+				<commodity hasRecommend="true"></commodity>
 			</div>
 		</div>
    </div>
@@ -66,7 +66,7 @@
                 let houTianData=JSON.parse(localStorage.getItem(HouTianAnswer_Index));
                 let dangJiReport=JSON.parse(localStorage.getItem(HouTianReport_Index));
                 this.wuXingLevelText=Common.parseWuXingLevelToText(dangJiReport.wuXingDangShiLevel);
-                this.reportContent=Common.convertReportsToText(dangJiReport.jieQiReports).substring(0,100);
+                this.reportContent=Common.convertReportsToText(dangJiReport.jieQiReports).split('<br>',1);
                 this.nickname=user.nickname;
                 this.genderText=xianTianData.gender=='F'?'女':'男';
                 if(houTianData){ this.illness=houTianData.tags.toString();}

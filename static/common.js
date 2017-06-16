@@ -8,7 +8,7 @@ global.XianTianReport_Index = 'xianTianReport'
 global.HouTianReport_Index = 'houTianReport'
 global.XianTianAnswer_Index = 'xianTianAnswer_Index'
 global.HouTianAnswer_Index = 'houTianAnswer_Index'
-global.Version = '0.0.2'
+global.Version = '0.0.6'
 global.User = {}
 String.prototype.trim = function (char, type) {
     if (char) {
@@ -70,6 +70,11 @@ module.exports = {
             wuXingStatusArray.push(wuXingStatusText);
         }
         return wuXingStatusArray.toString();
+    },
+    initForWechatShare:function(title,description){
+        global.shareTitle=title;
+        global.link=window.location.href;
+        global.shareDesc=description;
     },
     parseWuXingToArray:function(wuXing){
         var wuXingArray = [];
