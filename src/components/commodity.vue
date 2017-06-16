@@ -49,8 +49,8 @@
 				<dd class="s-mreconintro">
 					<span if='name' class='activeShow'>{{temp.name}}</span>
 					<div class="s-mreconintrotip">
-						<span v-for='temp1 in temp.fit' v-if="temp1" class="activeShow">{{temp1}}</span>
-						<span v-for='temp1 in temp.fit' v-else="!temp1" class="activeShow">所有体质</span>
+						<img class="tip" src="../assets/shopTip.png"/>
+						{{temp.fit|transform}}
 					</div>					
 				</dd>
 			</router-link>
@@ -67,13 +67,25 @@ export default {
   data(){
   	return {
       listem:[],
-        hasRecommend:false,
+      hasRecommend:false,
       recommendlist:[],
       getSouplist:[],
       soupList:[],
       apiPath:'',
-      toggle:true
+      toggle:true,
+      fitArr:[],
+      fit1:[]
     }
+  },
+  filters:{
+	transform(val){
+		if(val){	
+			return val.slice(0,1).toString()
+		}
+		else{
+			return '平衡'
+		}
+	}
   },
   components:{
   	commodity
@@ -85,8 +97,7 @@ export default {
 		  .then(function (res) {
 		  	if(res.data.errorCode == 0){
 		  		res = res.data.returnValue
-		  		that.listem = res
-		  		console.log(that.listem)
+		  		that.listem = res  		
 		  	}
 		  })
 		  .catch(function (error) {
@@ -132,10 +143,7 @@ export default {
   	this.recommend()
   	this.getSoup()
   	this.apiPath = api.apipath
-  },
-   watch: {
-    
-   }
+  }
 }
 </script>
 <style scoped lang="scss" rel="stylesheet/scss">
@@ -283,23 +291,17 @@ export default {
 	 		display: none;
 	 	}
 	 	.s-mreconintrotip{
-	 		/*width: 80%;*/
-	 		overflow: hidden;
-	 		/*background: url(../assets/shopTip.png) no-repeat  left center;*/
-	 		/*background-size:rem(12rem) rem(15rem);*/
-	 		/*padding-left: 13%;*/
+	 		width: 100%;
 	 		overflow: hidden;
 	 		white-space: nowrap;
 			text-overflow: ellipsis;
-	 		span{
-				margin-right: rem(2rem);
-		 		overflow: hidden;
-		 		white-space: nowrap;
-				text-overflow: ellipsis;
-	 			display: inline-block;
-	 			font-size: $font12;
-	 			color: #666;
-	 		}
+			color: #666;
+			line-height: rem(26rem);
+			.tip{
+				width: rem(10rem);
+				height: rem(12rem);
+				margin-top: rem(2rem);
+			}
 	 	}
 	 	.activeShow{
 	 		display: block;
