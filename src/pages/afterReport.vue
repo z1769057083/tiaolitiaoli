@@ -158,10 +158,10 @@
     .highcharts-background {
         fill: transparent;
     }
-
     .after-content {
         width: 100%;
-        height: 100%;
+        /*height: 100%;*/
+        overflow: hidden;
         position: absolute;
         background: url(../assets/indexbg.jpg) repeat-y;
         background-size: contain;

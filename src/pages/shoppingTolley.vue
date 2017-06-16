@@ -170,6 +170,7 @@ import Toast from '@/packages/toast'
 		          this.arr[index].num--
 		        }
 		    }
+	        window.localStorage.setItem('shopcart_Key',JSON.stringify(this.arr))   				
         }
  	},
 	computed:{
@@ -217,6 +218,7 @@ import Toast from '@/packages/toast'
 		}
 	},
  	mounted() {
+ 		this.allSelect()
 	    if (!window.localStorage) {
 	        return false;
 	    } else {
