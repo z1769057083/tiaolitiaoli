@@ -126,9 +126,14 @@
             },
         },
         mounted() {
-            document.title = "后天体质报告"
+            document.title = "体质报告"
+            let userId = this.$route.query.userid;
+            console.log(userId);
             let that = this
-            if (localStorage.getItem(Account_Index) == null) {
+            if (localStorage.getItem(Account_Index) != null) {
+                userId= JSON.parse(localStorage.getItem(Account_Index))._id
+            }
+            if(typeof(userId)==='undefined'||userId==''){
                 Toast({
                     message: '请先完成体质辨析',
                     position: 'top'
@@ -136,7 +141,6 @@
                 return;
             }
             else {
-                let userId = JSON.parse(localStorage.getItem(Account_Index))._id
                 axios.get(api.getReport + "?userId=" + userId + "&reportType=houTian")
                     .then(function (res) {
                         if (res.data.errorCode == 0) {

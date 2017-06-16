@@ -4,7 +4,7 @@
 			<div class="recuperate-top">
 				<img src="../assets/recuperate1.png"/>
 			</div>
-			<h2>6-7月养生处方</h2>
+			<h2>6-7月调理处方</h2>
 			<img class="recuperatebg" src="../assets/recuperatebg.png"/>
 			<div class="recuperate-mcon">
 				<div class="mcon-name">

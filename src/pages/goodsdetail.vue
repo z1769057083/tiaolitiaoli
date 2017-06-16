@@ -4,7 +4,7 @@
 	    <div class="l-main">
 	    	<div class="l-mainscroll">
 	    		<div class="l-mgoodsimg">
-		    		<img :src="''+apiPath+'/image/product/thumb/'+list.index+'.jpg'"
+		    		<img :src="''+apiPath+'/image/product/thumbnail/'+list.index+'.jpg'"
 								 onerror="this.src='http://placeholder.qiniudn.com/800'"/>
 		      </div>
 				  <div class="l-mgoodsprice">
