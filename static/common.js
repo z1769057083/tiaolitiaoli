@@ -71,7 +71,7 @@ module.exports = {
         }
         return wuXingStatusArray.toString();
     },
-    initForWechatShare(title,description){
+    initForWechatShare:function(title,description){
         global.shareTitle=title;
         global.link=window.location.href;
         global.shareDesc=description;
