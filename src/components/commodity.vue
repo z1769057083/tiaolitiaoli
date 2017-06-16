@@ -47,10 +47,11 @@
 			  		onerror="this.src='http://placeholder.qiniudn.com/800'"/>
 			  </dt>
 				<dd class="s-mreconintro">
-					<div class="s-mreconintrodiv">
-						<span v-for='temp1 in temp.fit' if='temp1' class='activeShow'>{{temp1}}</span>
-					</div>
 					<span if='name' class='activeShow'>{{temp.name}}</span>
+					<div class="s-mreconintrotip">
+						<span v-for='temp1 in temp.fit' v-if="temp1" class="activeShow">{{temp1}}</span>
+						<span v-for='temp1 in temp.fit' v-else="!temp1" class="activeShow">所有体质</span>
+					</div>					
 				</dd>
 			</router-link>
 		</dl>
@@ -70,7 +71,8 @@ export default {
       recommendlist:[],
       getSouplist:[],
       soupList:[],
-      apiPath:''
+      apiPath:'',
+      toggle:true
     }
   },
   components:{
@@ -280,7 +282,15 @@ export default {
 	 		text-decoration: none;
 	 		display: none;
 	 	}
-	 	.s-mreconintrodiv{
+	 	.s-mreconintrotip{
+	 		/*width: 80%;*/
+	 		overflow: hidden;
+	 		/*background: url(../assets/shopTip.png) no-repeat  left center;*/
+	 		/*background-size:rem(12rem) rem(15rem);*/
+	 		/*padding-left: 13%;*/
+	 		overflow: hidden;
+	 		white-space: nowrap;
+			text-overflow: ellipsis;
 	 		span{
 				margin-right: rem(2rem);
 		 		overflow: hidden;
@@ -290,10 +300,6 @@ export default {
 	 			font-size: $font12;
 	 			color: #666;
 	 		}
-	 		width: 100%;
-	 		overflow: hidden;
-	 		white-space: nowrap;
-			text-overflow: ellipsis;
 	 	}
 	 	.activeShow{
 	 		display: block;
