@@ -18,7 +18,7 @@
 		<div class="s-marticlecon1">
 			<dl>
 				<dt>
-					<h3 class="s-marcontitle" v-if="hasRecommend">推荐商品</h3>
+					<h3 class="s-marcontitle">推荐商品</h3>
 				</dt>							
 				<dd class="s-martimg" v-for='recommendItem in recommendlist'>
 					<router-link :to="{ name: 'goodsdetail', query: { itemid: recommendItem._id}}">
@@ -62,13 +62,14 @@ export default {
   data(){
   	return {
       listem:[],
-        hasRecommend:true,
       recommendlist:[],
       getSouplist:[],
       soupList:[],
       apiPath:''
     }
   },
+
+    props:['hasRecommend'],
   components:{
   	commodity
   },

@@ -3,7 +3,7 @@
         <!--聊天内容-->
         <div class='after-content'>
             <div class='i-headbot'>
-                <div class='i-headbottext'>您的后天体质报告</div>
+                <div class='i-headbottext'>您的体质报告</div>
             </div>
             <div class="r-main">
                 <div class="r-mainchart" id='chart-container'>
@@ -81,7 +81,7 @@
                 wuXingReportJieQiContent: '',
                 wuXingDangShiStatusText: '',
                 wuXingXianTianStatusText: '',
-                wuXingHouTianStatusText: '',
+                wuXingHouTianStatusText: '&nbsp;',
                 afterReportHidden: false,
                 xianTianReportIsShowed: false
             }
@@ -135,7 +135,7 @@
             }
             if(typeof(userId)==='undefined'||userId==''){
                 Toast({
-                    message: '请先完成体质辨析',
+                    message: '请先完成体质检测',
                     position: 'top'
                 });
                 return;
@@ -147,6 +147,12 @@
                             let report = res.data.returnValue;
                             localStorage.setItem(HouTianReport_Index, JSON.stringify(report))
                             that.renderReport(report)
+                        }
+                        else{
+                            Toast({
+                                message:res.data.errorReason,
+                                position:'top'
+                            })
                         }
                     })
             }

@@ -27,7 +27,7 @@ export default {
     props:['questionSection'],
     computed: {
         fieldTitle: function () {
-            return (this.questionSection == XianTianSectionType ? "点击查看你的先天体质报告" : "点击查看你的后天体质报告");
+            return (this.questionSection == XianTianSectionType ? "点击查看你的先天体质报告" : "点击查看你的体质报告");
         },
         fieldDescription: function () {
             return (this.questionSection == XianTianSectionType ?

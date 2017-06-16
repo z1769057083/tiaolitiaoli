@@ -3,7 +3,7 @@
         <!--聊天内容-->
         <div class='r-content'>
             <div class='i-headbot'>
-                <div class='i-headbottext'>您的先天体质报告</div>
+                <div class='i-headbottext' style="display: none;">您的先天体质报告</div>
             </div>
             <div class="r-main">
                 <h3 class='i-maintop'>你的先天体质情况</h3>
