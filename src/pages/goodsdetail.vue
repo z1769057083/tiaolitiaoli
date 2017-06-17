@@ -44,7 +44,7 @@
 		  	</div>
 		  	<div class="l-mgoodscar l-mgoodsshop" @click='isRouterShop'>
 		  	  	<img src="../assets/listShooping.png"/>	  	  
-		  	  	<p>商城</p>
+		  	  	<p>返回</p>
 		  	</div>	
 		  	<div class="l-mgoodsjoin" @click='shopHiden = !shopHiden'>加入购物车
 		  	</div>
@@ -236,13 +236,12 @@
       },
       //判断是否有后天测试报告
       isRouterShop(){
-//TODO: change the logic for route redirect.
-      	if(window.localStorage.houTianReport){
-      		this.$router.push({ path: '/recuperate'})     			
-      	}else{
-      		this.$router.push({ path: '/shop'}) 	
-      	}  
-      	
+          window.history.go(-1)
+//      	if(window.localStorage.houTianReport){
+//      		this.$router.push({ path: '/recuperate'})
+//      	}else{
+//      		this.$router.push({ path: '/shop'})
+//      	}
       }
     },
     mounted() {
