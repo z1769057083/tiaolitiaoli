@@ -19,6 +19,7 @@ import videoList from '@/pages/videoList'
 import videoListDetail from '@/pages/videoListDetail'
 import videoHome from '@/pages/videoHome'
 import articleList from '@/pages/articleList'
+import backdoor from '@/pages/backdoor'
 import articleListDetail from '@/pages/articleListDetail'
 import myNullReport from '@/pages/myNullReport'
 import doctorIntroduce from '@/pages/doctorIntroduce'
@@ -82,6 +83,11 @@ export default new Router({
       component: cashier,
       name: 'cashier'
     },
+      {
+          path: '/backdoor',
+          component: backdoor,
+          name: 'backdoor'
+      },
     {
       path: '/afterReport',
       component: afterReport,
