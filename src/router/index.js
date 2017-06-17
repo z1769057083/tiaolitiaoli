@@ -22,6 +22,10 @@ import articleList from '@/pages/articleList'
 import articleListDetail from '@/pages/articleListDetail'
 import myNullReport from '@/pages/myNullReport'
 import doctorIntroduce from '@/pages/doctorIntroduce'
+import orderList from '@/pages/orderList'
+import orderListDetail from '@/pages/orderListDetail'
+import immunityTest from '@/pages/immunityTest'
+import recommendArticle from '@/pages/recommendArticle'
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -132,6 +136,26 @@ export default new Router({
       path: '/doctorIntroduce',
       component: doctorIntroduce,
       name: 'doctorIntroduce'
-    }          
+    },
+    {
+      path: '/orderList',
+      component: orderList,
+      name: 'orderList'
+    },
+    {
+      path: '/orderListDetail',
+      component: orderListDetail,
+      name: 'orderListDetail'
+    },
+    {
+      path: '/immunityTest',
+      component: immunityTest,
+      name: 'immunityTest'
+    },
+    {
+      path: '/recommendArticle',
+      component: recommendArticle,
+      name: 'recommendArticle'
+    }            
   ]
 })

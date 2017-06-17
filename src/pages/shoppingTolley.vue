@@ -156,8 +156,9 @@ import Toast from '@/packages/toast'
    		// 购物车增加减少
       	_changeNum(index,bool) { 
     		// 有bool代表加   
-        	if (bool) {
+        	if (bool) {        		
 		        if ( this.arr[index].num <= this.arr[index].left) {
+		        	console.log( this.arr[index].num)
 		           this.arr[index].num ++;
 		        } else{
 		          this.arr[index].num = this.arr[index].left
@@ -170,7 +171,7 @@ import Toast from '@/packages/toast'
 		          this.arr[index].num--
 		        }
 		    }
-	        window.localStorage.setItem('shopcart_Key',JSON.stringify(this.arr))   				
+//	        window.localStorage.setItem('shopcart_Key',JSON.stringify(this.arr))   				
         }
  	},
 	computed:{

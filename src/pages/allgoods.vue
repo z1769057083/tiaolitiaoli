@@ -12,6 +12,10 @@
 				<dd>
 					<span>{{item.name}}</span>
 					<p>¥{{item.price}}.00</p>
+					<div class="s-mreconintrotip">
+            <img class="tip" src="../assets/shopTip.png"/>
+            {{item.fit|transform}}
+        	</div>
 				</dd>
 		</dl>
 	</div>
@@ -30,6 +34,25 @@ export default {
   		apiPath:''
     }
   },
+  filters: {
+    transform(object){
+        if ( object && typeof object==='object' &&
+            Array == object.constructor && object.length>0) {
+//          	debugger;
+            if(object.length>2){
+                var sliItem = object.slice(0, 2);
+                return sliItem.toString()
+            }
+            else {
+                return object.toString()
+            }
+        }
+        else {
+        	
+            return '平衡'
+        }
+    }
+	},
   methods: {
   	requestlist(){
         var that = this;
@@ -40,6 +63,7 @@ export default {
             if (res.data.errorCode == 0) {
               res = res.data.returnValue
               that.list = res
+              console.log(that.list)
             }
           })
           .catch(function (error) {
@@ -95,6 +119,19 @@ export default {
 					color: #ff4443;
 					font-size: $font12;
 				}
+				.s-mreconintrotip {
+	        width: 100%;
+	        overflow: hidden;
+	        white-space: nowrap;
+	        text-overflow: ellipsis;
+	        color: #666;
+	        line-height: rem(26rem);
+	        .tip {
+	            width: rem(10rem);
+	            height: rem(12rem);
+	            margin-top: rem(2rem);
+	        }
+	    	}
 			}
 		}
 		dl:nth-child(2n){

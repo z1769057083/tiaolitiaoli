@@ -71,16 +71,14 @@
                 getSouplist: [],
                 soupList: [],
                 apiPath: '',
-                toggle: true,
-                fitArr: [],
-                fit1: []
+                toggle: true
             }
         },
         props: ['hasRecommend'],
         filters: {
             transform(object){
                 if ( object && typeof object==='object' &&
-                    Array == object.constructor) {
+                    Array == object.constructor && object.length>0) {
                     if(object.length>2){
                         var sliItem=object.slice(0, 2);
                         return sliItem.toString()

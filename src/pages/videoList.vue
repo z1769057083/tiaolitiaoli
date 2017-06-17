@@ -2,50 +2,19 @@
   <div class='video-list'> 
      <!--主题部分-->
 	<div class="a-main">
-		<dl>
-			<router-link to='/videoListDetail'>
+		<dl v-for='item in list'>
+			<router-link :to="{ name: 'videoListDetail', query: { itemid: item._id }}">
 				<dt>
-					<img src="../assets/video.jpg" alt="" />
+					<img :src="''+apiPath+'/image/video/'+item.index+'.jpg'"
+								onerror="this.src='http://placeholder.qiniudn.com/800'"/>
 				</dt>
+			</router-link>
 				<dd>
-					<span>小儿推拿教学—二马</span>
-					<p>二马穴在临床上具有滋阴补肾，顺气散结，清神，利水通淋的功效。</p>
-				</dd>
-			</router-link>	
-		</dl>
-		<dl>
-			<!--<router-link :to="{ name: 'goodsdetail', query: { itemid: item._id }}">-->
-				<dt>
-					<img src="../assets/video.jpg" alt="" />
-				</dt>
-			<!--</router-link>-->
-				<dd>
-					<span>小儿推拿教学—二马</span>
-					<p>二马穴在临床上具有滋阴补肾，顺气散结，清神，利水通淋的功效。</p>
+					<span>{{item.title}}</span>
+					<p>{{item.content}}</p>
 				</dd>
 		</dl>
-		<dl>
-			<!--<router-link :to="{ name: 'goodsdetail', query: { itemid: item._id }}">-->
-				<dt>
-					<img src="../assets/video.jpg" alt="" />
-				</dt>
-			<!--</router-link>-->
-				<dd>
-					<span>小儿推拿教学—二马</span>
-					<p>二马穴在临床上具有滋阴补肾，顺气散结，清神，利水通淋的功效。</p>
-				</dd>
-		</dl>
-		<dl>
-			<!--<router-link :to="{ name: 'goodsdetail', query: { itemid: item._id }}">-->
-				<dt>
-					<img src="../assets/video.jpg" alt="" />
-				</dt>
-			<!--</router-link>-->
-				<dd>
-					<span>小儿推拿教学—二马</span>
-					<p>二马穴在临床上具有滋阴补肾，顺气散结，清神，利水通淋的功效。</p>
-				</dd>
-		</dl>		
+	
 	</div>
 	<!--<div class="s-mrecombottom">我是有底线的</div>-->
 	<div class="s-mrecombottom1">更多视频，敬请期待！</div>
@@ -57,29 +26,30 @@ import api from '../api/api'
 export default {
   data(){
   	return {
-  		apiPath:''
+  		apiPath:'',
+  		list:[]
+  		
     }
   },
   methods: {
-//	requestlist(){
-//      var that = this;
-//      document.title = this.$route.query.titleName;
-//      that.categoryId = this.$route.query.categoryId;
-//      axios.get(api.allDoodsData+that.categoryId)
-//        .then(function (res) {
-//          if (res.data.errorCode == 0) {
-//            res = res.data.returnValue
-//            that.list = res
-//          }
-//        })
-//        .catch(function (error) {
-//          console.log(error)
-//        })
-//    },
+	requestlist(){
+        var that = this;
+        axios.get(api.videoList)
+          .then(function (res) {
+            if (res.data.errorCode == 0) {
+              res = res.data.returnValue
+              that.list = res
+              console.log(that.list)
+            }
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+      }
   },
   mounted() {
-//	this.apiPath = api.apipath
-//	this.requestlist()
+	this.apiPath = api.apipath
+	this.requestlist()
 	document.documentElement.scrollTop = 0
     document.body.scrollTop =0
   }

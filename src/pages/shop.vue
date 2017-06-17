@@ -42,7 +42,6 @@
             commodity
         },
         methods: {
-
             swiperlist(){
                 var that = this;
                 axios.get(api.hotGoods)

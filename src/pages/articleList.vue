@@ -1,53 +1,60 @@
 <template>
 	<div class="article">
 		<div class="s-mrecomment">
-			<!--<h3 class="s-marttitle">个性化推荐</h3>-->
-			<dl class="s-marticlecon">
-				<router-link to='articleListDetail'>
+			<dl class="s-marticlecon" v-for='item in list'>
+				<router-link :to="{ name: 'articleListDetail', query: { itemid: item._id }}">
 					<dt>
-						<h3>芒种节气食疗方</h3>
-						我国地域辽阔，同一节气的气候特征也有差异。
-						在此时不但要搞好雨期的田间管理更要注意增强体质，
-						避免季节性疾病和传染病的发生，如中暑、腮腺炎、水痘等。
+						<h3>{{item.title}}</h3>
+						<p v-html='item.content'></p>
 					</dt>
 					<dd>
-						<img src="../assets/maskheader.png"/>
-					</dd>
-				</router-link>	
-			</dl>
-			<dl class="s-marticlecon">
-				<router-link to='articleListDetail'>
-					<dt>
-						<h3>芒种节气食疗方</h3>
-						我国地域辽阔，同一节气的气候特征也有差异。
-						在此时不但要搞好雨期的田间管理更要注意增强体质，
-						避免季节性疾病和传染病的发生，如中暑、腮腺炎、水痘等。
-					</dt>
-					<dd>
-						<img src="../assets/maskheader.png"/>
-					</dd>
-				</router-link>	
-			</dl>
-			<dl class="s-marticlecon">
-				<router-link to='articleListDetail'>
-					<dt>
-						<h3>芒种节气食疗方</h3>
-						我国地域辽阔，同一节气的气候特征也有差异。
-						在此时不但要搞好雨期的田间管理
-					</dt>
-					<dd>
-						<img src="../assets/maskheader.png"/>
+						<img :src="''+apiPath+'/image/article/'+item.index+'.jpg'"
+							onerror="this.src='http://placeholder.qiniudn.com/800'"/>
 					</dd>
 				</router-link>	
 			</dl>
 		</div>	
 	</div>
 </template>
+<script>
+import axios from 'axios'
+import api from '../api/api'
+export default {
+  data(){
+  	return {
+  		apiPath:'',
+  		list:[]  		
+    }
+  },
+  methods: {
+	requestlist(){
+        var that = this;
+        axios.get(api.articleList)
+          .then(function (res) {
+            if (res.data.errorCode == 0) {
+              res = res.data.returnValue
+              that.list = res
+              console.log(that.list)
+            }
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+      }
+  },
+  mounted() {
+	this.apiPath = api.apipath
+	this.requestlist()
+	document.documentElement.scrollTop = 0
+    document.body.scrollTop =0
+  }
+}
+</script>
 <style scoped lang="scss" rel="stylesheet/scss">
 @import "../common/common.scss";
 .article{
 	width: 100%;
-	height: 100%;
+	/*height: 100%;*/
 	position: absolute;
 	overflow: hidden;
     .s-mrecomment{
@@ -77,10 +84,8 @@
 	 			font-size: $font12;
 	 			color: #999;
 	 			line-height: rem(20rem);
-	 			display: -webkit-box;
-				-webkit-box-orient: vertical;
-				-webkit-line-clamp: 2;
-				overflow: hidden;
+	 			height: rem(66rem);
+	 			overflow: hidden;	 			
 	 			h3{
 	 				font-size: $font18;
 	 				color: $c3c3c;
@@ -88,6 +93,13 @@
 	 				line-height: rem(26rem);
 					margin-bottom: rem(5rem);
 					letter-spacing: rem(1rem);
+	 			}
+	 			p{
+	 				width: 100%;
+	 				display: -webkit-box;
+					-webkit-box-orient: vertical;
+					-webkit-line-clamp: 2;
+					overflow: hidden;	 				
 	 			}
 	 		}
 	 		dd{

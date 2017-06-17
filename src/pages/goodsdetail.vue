@@ -142,6 +142,7 @@
             if (res.data.errorCode == 0) {
               res = res.data.returnValue
               that.list = res
+              console.log(that.list)
 				//TODO:do it for article, video and food.
 				Common.initForWechatShare(res.name,'测一测体质,调一调身心')
 
