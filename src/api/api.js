@@ -1,4 +1,3 @@
-// api use part
 //        let apiPath = 'http://139.162.116.116';
  let apiPath = 'http://ikehealth.cn';
 // let apiPath = 'http://localhost:3333';

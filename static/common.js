@@ -1,3 +1,5 @@
+
+import wx from 'weixin-js-sdk'
 global.Doctor_Name_Key = 'doctor_Name_Key'
 global.Doctor_Name_index = 'doctor_Name_index'
 global.All_Question_Index = 'answer_index'
@@ -8,8 +10,11 @@ global.XianTianReport_Index = 'xianTianReport'
 global.HouTianReport_Index = 'houTianReport'
 global.XianTianAnswer_Index = 'xianTianAnswer_Index'
 global.HouTianAnswer_Index = 'houTianAnswer_Index'
-global.Version = '0.0.6'
+global.WechatSignature_Index = 'wechatSignature_Index'
+global.Version = '0.0.7'
+
 global.User = {}
+
 String.prototype.trim = function (char, type) {
     if (char) {
         if (type == 'left') {
@@ -22,7 +27,7 @@ String.prototype.trim = function (char, type) {
     return this.replace(/^\s+|\s+$/g, '');
 };
 
-module.exports = {
+export default {
     getUserAge:function (birthday){
         var birthYear= new Date(birthday).getFullYear();
         var age =new Date().getFullYear()-birthYear;
@@ -75,6 +80,44 @@ module.exports = {
         global.shareTitle=title;
         global.link=window.location.href;
         global.shareDesc=description;
+        let data=JSON.parse(localStorage.getItem(global.WechatSignature_Index))
+        wx.config({
+//                        debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+            appId: data.appId, // 必填，公众号的唯一标识
+            timestamp: data.timestamp, // 必填，生成签名的时间戳
+            nonceStr: data.nonceStr, // 必填，生成签名的随机串
+            signature: data.signature,// 必填，签名，见附录1
+            jsApiList: ['chooseImage', 'previewImage',
+                'uploadImage','onMenuShareTimeline','onMenuShareAppMessage',
+                'downloadImage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+        });
+        wx.ready(function () {
+            wx.onMenuShareTimeline({
+                title: global.shareTitle, // 分享标题
+                link: global.link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                imgUrl: 'http://ikehealth.cn/image/logo.png', // 分享图标
+                success: function () {
+                    // 用户确认分享后执行的回调函数
+                },
+                cancel: function () {
+                    // 用户取消分享后执行的回调函数
+                }
+            });
+            wx.onMenuShareAppMessage({
+                title:  global.shareTitle, // 分享标题
+                desc: global.shareDesc, // 分享描述
+                link:  global.link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                imgUrl: 'http://ikehealth.cn/image/logo.png', // 分享图标
+                type: '', // 分享类型,music、video或link，不填默认为link
+                dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+                success: function () {
+                    // 用户确认分享后执行的回调函数
+                },
+                cancel: function () {
+                    // 用户取消分享后执行的回调函数
+                }
+            });
+        })
     },
     parseWuXingToArray:function(wuXing){
         var wuXingArray = [];
