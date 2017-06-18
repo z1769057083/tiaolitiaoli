@@ -1,41 +1,40 @@
 <template>
     <div class='orderDetail'>	
     	<div class="order-dmain">
-    		<div class="order-success">已付款成功，等待商家发货</div>
-    		<div class='order-transfer'>
+    		<div class="order-success">等待付款</div>
+    		<!--<div class='order-transfer'>
     			<p><span>承运物流：</span>申通快递</p>
     			<p><span>物流编号：</span>123456789</p>
-    		</div>
+    		</div>-->
     		<dl class="order-consignee">
 				<dt><img src="../assets/orderAddress.png"/></dt>
 				<dd class="consignee">
-					<p>收货人:&nbsp;和彤彤<span>15600826825</span></p>
-					<span>收货地址:&nbsp;北京市昌平区回龙观龙泽蓝天嘉园</span>
+					<p>收货人:&nbsp;{{addressObj.name}}<span>{{addressObj.phone}}</span></p>
+					<span>收货地址:&nbsp;{{addressObj.address}}</span>
 				</dd>
 				<dd class="order-right"><img src="../assets/confirmRight.png"/></dd>
 			</dl>
     	</div>
 	    <div class="order-main"> 
-	    	<h3 class="order-mtitle">汉古商城</h3>
-	    	<div class="order-mdetail">
+	    	<h3 class="order-mtitle">汉古商城</h3>	    	
+	    	<div class="order-mdetail" v-for='orderItem in orderList.order'>
 	    		<dl>
-	    			<dt><img src="../assets/maskheader1.png"/></dt>
+	    			<dt><img :src="''+apiPath+'/image/product/'+orderItem.img+'/1.jpg'" 
+							onerror="this.src='http://placeholder.qiniudn.com/800'"/></dt>
 	    			<dd>
-	    				shangpinbiaoti
-		    			<p>¥123.00</p>
+	    				{{orderItem.name}}
+		    			<p>¥{{orderItem.price}}.00</p>
 	    			</dd>
 	    		</dl>
-	    		<div class="order-mnum">X<span>1</span></div>
-	    	</div>		
+	    		<div class="order-mnum">X<span>{{orderItem.num}}</span></div>
+	    	</div>	    	
 	    </div>
 	    <div class="order-mcontent">
 	    	<dl>
 	    		<dt>订单编号：123456789045678</dt>
-	    		<!--<dd>123456789045678</dd>-->
 	    	</dl>
 	    	<dl>
 	    		<dt>下单时间：2017-06-06 12:34:56</dt>
-	    		<!--<dd>2017-06-06 12:34:56</dd>-->
 	    	</dl>
 	    	<dl>
 	    		<dd class="delect-order">删除订单</dd>
@@ -50,7 +49,8 @@ export default {
   data(){
   	return {
   		apiPath:'',
-  		list:[]
+  		orderList:[],
+  		addressObj:{}
     }
   },
   methods: {
@@ -62,8 +62,9 @@ export default {
           .then(function (res) {
             if (res.data.errorCode == 0) {
               res = res.data.returnValue
-              that.list = res
-              console.log(that.list)
+              that.orderList = res
+              console.log(that.orderList)
+			  that.addressObj = that.orderList.address
             }
           })
           .catch(function (error) {
@@ -109,10 +110,11 @@ export default {
 		}
 		.order-consignee{
 			width: 100%;
-			height: rem(40rem);
+			/*height: rem(40rem);*/
 			margin-top: rem(15rem);
 			padding-bottom: rem(10rem);
 			border-bottom: 1px solid #efefef;
+			overflow: hidden;
 			dt{
 				float: left;
 				width: rem(15rem);
@@ -166,6 +168,7 @@ export default {
 			height: rem(92rem);
 			background: #fafafa;
 			padding: rem(5rem) 3%;
+			margin-bottom: rem(5rem);
 			dl{
 				float: left;
 				dt{
@@ -181,6 +184,7 @@ export default {
 					float: left;
 					line-height: rem(20rem);
 					margin-left: rem(10rem);
+					color: $c3c3c;
 					p{
 						margin-top: rem(5rem);
 						font-size: $font14;
@@ -202,7 +206,7 @@ export default {
 		width: 100%;
 		background: #f6f6f6;
 		overflow: hidden;
-		padding-bottom: rem(10rem);
+		/*padding-bottom: rem(10rem);*/
 		dl{
 			width: 94%;
 			padding: 0 3%;
@@ -226,7 +230,7 @@ export default {
 			.delect-order{
 				width: 20%;
 				height: rem(30rem);
-				background: #26A2FF;
+				background: #fe4415;
 				margin-top: rem(9rem);
 				color: #fff;
 				line-height: rem(30rem);

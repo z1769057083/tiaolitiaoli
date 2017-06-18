@@ -1,4 +1,4 @@
-<template>
+=<template>
   <div class='cashier-main'> 
 	<div class="cashier-mtop">
 		<p>支付金额</p>

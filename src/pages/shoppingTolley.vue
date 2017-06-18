@@ -68,7 +68,7 @@ import Toast from '@/packages/toast'
  export default {
  	data(){
  		return{
- 			toggleLock: false,
+   			toggleLock: false,
  			arr:[],
  			toastHidden:false,
  			readyToDelIndex:-1,
@@ -82,18 +82,21 @@ import Toast from '@/packages/toast'
  	methods:{
    		allSelect(){
    			if(!this.toggleLock){
-   				this.isSelectAll = true
+   				this.isSelectAll = true;
    				this.toggleLock = true
+				this.$forceUpdate()
    				this.arr.forEach((item)=>{
 					item.isChecked = true					
 				})	
    			}else{
-   				this.isSelectAll = false
+   				this.isSelectAll = false;
    				this.toggleLock = false
+				this.$forceUpdate()
    				this.arr.forEach((item)=>{
 					item.isChecked = false			
 				})	
-   			}		
+   			}
+   			console.log(this.isSelectAll)
    		},
  		selectGood(index){	
  			this.arr[index].isChecked = !this.arr[index].isChecked;
@@ -140,7 +143,6 @@ import Toast from '@/packages/toast'
 			    	this.$emit('catrDotted')
 			    }
         		this.isCheckAll()  
-//      		this.doctorAvatar()
         	}else{
         		this.isCheckAll()        		
         	}
@@ -176,7 +178,7 @@ import Toast from '@/packages/toast'
  	},
 	computed:{
 		isSelectAll: function () {
- 			let flag=true;
+ 			let flag = true;
  			this.arr.forEach((item)=>{
 				if(!item.isChecked){
 					flag = false;
@@ -226,6 +228,7 @@ import Toast from '@/packages/toast'
 	        let storage = window.localStorage;
 	        let obj_arr = storage.getItem('shopcart_Key')
 	        this.arr = JSON.parse(obj_arr)
+	        console.log(this.arr)
 	    }
 	    this.arr.forEach((item)=>{
 			item.isChecked = true

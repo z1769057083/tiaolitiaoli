@@ -1,38 +1,39 @@
 <template>
     <div class='order'>
 	    <h3 class="order-mtitle">汉古商城</h3>
-	    <div  v-for='items in list'>
-	    	<router-link :to="{ name: 'orderListDetail', query: { itemid: items._id }}">
+	    <div  v-for='items in list'>	    	
 	    	<div v-for='item in items.order'>
-			    <div class="order-main"> 
-			    	<router-link to='orderListDetail'>
-			    		<div class="order-mdetail">
-				    		<dl>
-				    			<dt><img :src="''+apiPath+'/image/product/'+item.img+'/1.jpg'" 
-										onerror="this.src='http://placeholder.qiniudn.com/800'"/></dt>
-				    			<dd>
-				    				{{item.name}}{{items._id}}
-					    			<p>¥{{item.price}}.00</p>
-				    			</dd>
-				    		</dl>
-				    		<div class="order-mnum">X<span>{{item.num}}</span></div>
-				    	</div>	
-			    	</router-link>		    		
+	    		<router-link :to="{ name: 'orderListDetail', query: { itemid: items._id }}">
+			    <div class="order-main">
+		    		<div class="order-mdetail">
+			    		<dl>
+			    			<dt><img :src="''+apiPath+'/image/product/'+item.img+'/1.jpg'" 
+									onerror="this.src='http://placeholder.qiniudn.com/800'"/></dt>
+			    			<dd>
+			    				{{item.name}}
+				    			<p>¥{{item.price}}.00</p>
+			    			</dd>
+			    		</dl>
+			    		<div class="order-mnum">X<span>{{item.num}}</span></div>
+			    	</div>				    			    		
 			    </div>
+				</router-link>    
 			    <div class="order-mcontent">
 			    	<dl>
 			    		<dd>
 			    			共{{item.num}}件商品  
-			    			<span>{{items.status|filterFun}}</span>
-			    			付款 ：¥{{items.price}}.00</dd>
+			    			{{items.status|filterFun}}付款 ：¥{{items.price}}.00</dd>
 			    	</dl>
-			    	<dl>
+			    	<dl v-show='activeOrder'>			    		
 			    		<dd class="delect-order">删除订单</dd>
+			    	</dl>
+			    	<dl  v-show='!activeOrder'>			    		
+			    		<dd class="delect-order">取消订单</dd>
+			    		<dd class="delect-order order-pay">立即付款</dd>
 			    	</dl>
 			    </div>
 		    </div>
-		    </router-link>
-	    </div>
+	    </div>;
     </div>
 </template>
 <script>
@@ -44,16 +45,20 @@
 				list:[],
 				useId:'',
 				apiPath:'',
-				str1:'实'
+				submitArr:[],
+				price:{
+	 				price:0
+	 			},
+	 			activeOrder:false
             }
         },
         filters: {
-            transform(obj){
+            filterFun(obj){
                 if ( obj==1) {
-                    return this.str1
+                    return '实'
                 }
                 else if(obj==0){
-                    return this.str1
+                    return '待'
                 }
             }
         },
@@ -75,15 +80,40 @@
                     		res = res.data.returnValue
                             that.list = res  
                             console.log(that.list)
-                            
+                            if(that.list.length>0){
+				            	for(var i in that.list){
+				            		if(that.list[i].status==0){
+				            			that.activeOrder = false
+				            		}else if(that.list[i].status==1){
+				            			that.activeOrder = true
+				            		}
+				            	}
+				            }
                         }
                     })
                     .catch(function (error) {
                         console.log(error)
                     })
-            }
+           },
+//         nowPay(){
+//         	if (!window.localStorage) {
+//			    return false;
+//			}else {
+//		        let storage = window.localStorage
+//		        for(var i in this.list){
+//			        this.submitArr.push(this.list[i].order)
+//			        this.submitArr.push(this.list[i].address)
+//			        this.submitArr.push(this.price)
+//			        console.log(this.submitArr)
+//		        	var orderArr= JSON.stringify(this.submitArr)
+//		        	storage.setItem("orderArr", orderArr)
+//			  	}
+//	       }	        
+//         	this.$router.push({ path: '/cashier'})
+//         }
         },
         mounted() {
+//      	this.nowPay()
         	this.apiPath = api.apipath
         	this.orderList()       	
             document.title = "我的订单"
@@ -176,13 +206,17 @@
 			.delect-order{
 				width: 20%;
 				height: rem(30rem);
-				background: #26A2FF;
+				background: #ff8854;
 				margin-top: rem(9rem);
 				color: #fff;
 				line-height: rem(30rem);
 				text-align: center;
+				margin-left: rem(10rem);
 			}
-		}
+			.order-pay{
+				background: #fe4415;
+			}
+		}		
 		.order-mconpic{
 			border: 0;
 			dd{

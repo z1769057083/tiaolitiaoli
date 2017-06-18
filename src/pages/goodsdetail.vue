@@ -258,10 +258,10 @@
       document.body.scrollTop = 0
       //如果加入购物车则购物车的点显示 
       var storage = window.localStorage
-      if(JSON.parse(storage.getItem('shopcart_Key'))==''){
+      if(JSON.parse(storage.getItem('shopcart_Key'))==null||JSON.parse(storage.getItem('shopcart_Key'))==''){
       	this.shopingCatrDotted = false
-      }else{      	
-      	this.shopingCatrDotted = true	
+      }else{
+      	this.shopingCatrDotted = true
       }
       document.title ='商品详情'
       this.apiPath = api.apipath
