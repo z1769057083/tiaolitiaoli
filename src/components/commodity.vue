@@ -296,6 +296,11 @@
                 line-height: 0.48rem;
                 text-decoration: none;
                 display: none;
+                width: 100%;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                display: inline-block;
             }
             .s-mreconintrotip {
                 width: 100%;

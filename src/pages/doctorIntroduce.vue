@@ -22,7 +22,7 @@
 			珠江开关有限公司（办公楼）一层107室
 		</p>
 		<p class="about-intro">联系我们：5162610</p>
- 		
+ 		<h3 class='about'>名医介绍</h3>
   		<div class="doctor-mpic">
   		 	<img src="../assets/doctorImg.jpg"/>
   		</div>
@@ -50,8 +50,7 @@
   			<p>２０１０年拜著名老中医李可先生为师，得其亲传。</p>
   			<p>２０１２年联合创立汉古中医。</p>
   			<p>２０１３年完成广州中医药大学博士后研究。</p>
-  		</div>
-  		
+  		</div>  		
   		<div class="doctor-mpic">
   		 	<img src="../assets/doctorImg1.jpg"/>
   		</div>
@@ -77,6 +76,35 @@
   			<p>２００３年获中医临床基础医学专业硕士。</p>
   			<p>２００８年获中药新药开发研究专业博士。</p>
   		</div>
+  		<div class="doctor-mpic">
+  		 	<img src="../assets/doctorImg2.jpg"/>
+  		</div>
+  		<h3>周泓 教授<br />
+			</h3>
+  		<div class="doctor-mintro">
+  			<p>浙江大学 生仪系 教授</p>
+  		</div>
+  		<p class="doctor-mintro1">
+  			国家发改委半导体照明“十二五规划”专家、国际半导体照明
+  			联盟专家、浙江省重点招标工程评审专家库专家、浙江省采
+  			购中心项目评审专家等。
+  		</p>
+  		<p class="doctor-mintro1">
+  			主要研究方向为嵌入式视频监测与分析技术，尤其对于基于机器
+  			视觉与机器学习的面向领域的异常事件分析与预测有深入的研究。
+  		</p>
+  		<p class="doctor-mintro1">
+  			近年来，承担了2项国家863计划课题、2项国家支撑课题、2项
+  			国家创新基金、1项省级重点科技项目，并承担了50多项企业合
+  			作项目。相关研究成果发表了50多篇科技论文，发表著作1本，
+  			授权了9项国家发明专利，获得了2项省部级奖励，对于科技成
+  			果的产业化转化有着很好的基础。
+  		</p>
+  		<div class="doctor-mintro2">
+  			<p>1991年入浙江大学检测技术及仪器专业读本科</p>
+  			<p>2000年浙江大学仪器科学与技术专业博士毕业，一直留校任教。</p>
+  			<p>现担任浙江大学生物医学工程与仪器科学学院仪器科学与工程学系主任。</p>
+  		</div>
  	</div>
   </div>
 </template>
@@ -99,10 +127,10 @@
 	.doctor-main{
 		width: 92%;
 		margin-left: 4%;
-		margin-top: rem(20rem);
 		.about{
 			font-size: $font18;
 			text-align: center;
+			margin-top: rem(20rem);
 		}
 		.about-time{
 			font-size: $font14;
@@ -138,7 +166,7 @@
 			}
 		}
 		.doctor-mpic{
-			margin: rem(15rem) 0;
+			margin: rem(25rem) 0;
 			width: 56%;
 			margin-left: 22%;
 			overflow: hidden;
@@ -156,6 +184,7 @@
 				font-size: $font14;
 				color: $c3c3c;
 				text-align: center;
+				font-weight: bold;
 			}
 		}
 		.doctor-mintro2{

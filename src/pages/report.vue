@@ -20,8 +20,7 @@
                     <img class="i-micon" src="../assets/index.png">
                 </div>
                 <div class="r-msuggest">
-
-                    如果您成年后生活的城市、生活习惯等改变较大，强烈建议您再测试一下后天体质！
+                                                       如果您成年后生活的城市、生活习惯等改变较大，强烈建议您再测试一下后天体质！
                 </div>
                 <div class="r-mbotbtn">
                     <router-link to='/message?questionSection=houTian'>
@@ -109,7 +108,6 @@
     .highcharts-background {
         fill: transparent;
     }
-
     .r-content {
         width: 100%;
         height: 100%;

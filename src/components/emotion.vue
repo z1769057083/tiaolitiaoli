@@ -119,7 +119,7 @@
                         line-height: rem(28rem);
                         text-align: center;
                         margin-left: 7%;
-                        font-size: $font12;
+                        font-size: $font13;
                     }
 
                     .active {

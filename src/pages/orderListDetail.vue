@@ -1,46 +1,58 @@
 <template>
+	<div>
     <div class='orderDetail'>	
     	<div class="order-dmain">
-    		<div class="order-success">已付款成功，等待商家发货</div>
-    		<div class='order-transfer'>
+    		<div class="order-success" v-show='!activeOrder'>等待付款</div>
+    		<div class="order-success" v-show='activeOrder'>已付款，等待发货</div>
+    		<div class='order-transfer' v-show='activeOrder'>
     			<p><span>承运物流：</span>申通快递</p>
     			<p><span>物流编号：</span>123456789</p>
     		</div>
     		<dl class="order-consignee">
 				<dt><img src="../assets/orderAddress.png"/></dt>
 				<dd class="consignee">
-					<p>收货人:&nbsp;和彤彤<span>15600826825</span></p>
-					<span>收货地址:&nbsp;北京市昌平区回龙观龙泽蓝天嘉园</span>
+					<p>收货人:&nbsp;{{addressObj.name}}<span>{{addressObj.phone}}</span></p>
+					<span>收货地址:&nbsp;{{addressObj.address}}</span>
 				</dd>
 				<dd class="order-right"><img src="../assets/confirmRight.png"/></dd>
 			</dl>
     	</div>
 	    <div class="order-main"> 
-	    	<h3 class="order-mtitle">汉古商城</h3>
-	    	<div class="order-mdetail">
+	    	<h3 class="order-mtitle">汉古商城</h3>	    	
+	    	<div class="order-mdetail" v-for='orderItem in orderList.order'>
 	    		<dl>
-	    			<dt><img src="../assets/maskheader1.png"/></dt>
+	    			<dt><img :src="''+apiPath+'/image/product/'+orderItem.img+'/1.jpg'" 
+							onerror="this.src='http://placeholder.qiniudn.com/800'"/></dt>
 	    			<dd>
-	    				shangpinbiaoti
-		    			<p>¥123.00</p>
+	    				{{orderItem.name}}
+		    			<p>¥{{orderItem.price}}.00</p>
 	    			</dd>
 	    		</dl>
-	    		<div class="order-mnum">X<span>1</span></div>
-	    	</div>		
+	    		<div class="order-mnum">X<span>{{orderItem.num}}</span></div>
+	    	</div>	    	
 	    </div>
 	    <div class="order-mcontent">
 	    	<dl>
 	    		<dt>订单编号：123456789045678</dt>
-	    		<!--<dd>123456789045678</dd>-->
 	    	</dl>
 	    	<dl>
 	    		<dt>下单时间：2017-06-06 12:34:56</dt>
-	    		<!--<dd>2017-06-06 12:34:56</dd>-->
 	    	</dl>
-	    	<dl>
-	    		<dd class="delect-order">删除订单</dd>
+	    	<dl v-show='activeOrder'>
+	    		<dd class="delect-order"  @click='cancelOrder'>删除订单</dd>
+	    	</dl>
+	    	<dl v-show='!activeOrder'>
+	    		<dd class="delect-order" @click='cancelOrder'>取消订单</dd>
 	    	</dl>
 	    </div>
+    </div>
+	<div class="shopConfirm-toast" v-show='toastHidden'>
+	  	<div class="confirm-main">
+	  		<p>确定要删除商品嘛?</p>
+	 		<div class="btn" @click='toastHidden = !toastHidden'>取消</div>
+	 		<div class="btn rightBtn" @click='confirmDel'>确定</div>
+	  	</div>
+	</div>
     </div>
 </template>
 <script>
@@ -50,7 +62,10 @@ export default {
   data(){
   	return {
   		apiPath:'',
-  		list:[]
+  		orderList:[],
+  		addressObj:{},
+  		activeOrder:false,
+  		toastHidden:false
     }
   },
   methods: {
@@ -62,14 +77,35 @@ export default {
           .then(function (res) {
             if (res.data.errorCode == 0) {
               res = res.data.returnValue
-              that.list = res
-              console.log(that.list)
+              that.orderList = res
+              console.log(that.orderList)
+			  that.addressObj = that.orderList.address
+			  if(that.orderList.length>0){
+            	for(var i in that.orderList){				          				            		
+            		//判断是否支付完成
+            		if(that.orderList[i].status==0){
+            			that.activeOrder = false
+            		}else if(that.orderList[i].status==1){
+            			that.activeOrder = true
+            		}
+            	}
+              }
             }
           })
           .catch(function (error) {
             console.log(error)
           })
-      },
+       },
+       cancelOrder(){
+           	this.toastHidden = true
+       },
+       //删除商品
+   		confirmDel(){
+   			this.toastHidden = false
+   			this.$emit('cancelOrderEvent')
+   			this.$router.push({ path: '/orderList'})   			
+   		},
+   		
   },
   mounted() {
 	this.apiPath = api.apipath
@@ -97,6 +133,7 @@ export default {
 		.order-success{
 			line-height: rem(30rem);
 			border-bottom: 1px solid #efefef;
+			padding: rem(5rem) 0;
 		}
 		.order-transfer{
 			width: 100%;
@@ -109,10 +146,11 @@ export default {
 		}
 		.order-consignee{
 			width: 100%;
-			height: rem(40rem);
+			/*height: rem(40rem);*/
 			margin-top: rem(15rem);
 			padding-bottom: rem(10rem);
 			border-bottom: 1px solid #efefef;
+			overflow: hidden;
 			dt{
 				float: left;
 				width: rem(15rem);
@@ -166,6 +204,7 @@ export default {
 			height: rem(92rem);
 			background: #fafafa;
 			padding: rem(5rem) 3%;
+			margin-bottom: rem(5rem);
 			dl{
 				float: left;
 				dt{
@@ -181,6 +220,7 @@ export default {
 					float: left;
 					line-height: rem(20rem);
 					margin-left: rem(10rem);
+					color: $c3c3c;
 					p{
 						margin-top: rem(5rem);
 						font-size: $font14;
@@ -202,7 +242,7 @@ export default {
 		width: 100%;
 		background: #f6f6f6;
 		overflow: hidden;
-		padding-bottom: rem(10rem);
+		/*padding-bottom: rem(10rem);*/
 		dl{
 			width: 94%;
 			padding: 0 3%;
@@ -226,7 +266,7 @@ export default {
 			.delect-order{
 				width: 20%;
 				height: rem(30rem);
-				background: #26A2FF;
+				background: #fe4415;
 				margin-top: rem(9rem);
 				color: #fff;
 				line-height: rem(30rem);
@@ -244,6 +284,40 @@ export default {
 					}
 				}
 			}
+		}
+	}
+}
+.shopConfirm-toast{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	background: rgba(0,0,0,.5);
+	z-index: 999;
+	.confirm-main{
+		width: 80%;
+		background: #fff;
+		height: rem(100rem);
+		position: absolute;
+		border-radius: rem(5rem);
+		left: 10%;
+		top: 34%;
+		p{
+			font-size: $font14;
+			margin: rem(20rem) 0 0 rem(20rem);
+		}
+		.btn{
+			width: 49%;
+			height: rem(44rem);
+			float: left;
+			text-align: center;
+			line-height: rem(44rem);
+			border-top: 1px solid #efefef;
+			margin-top: rem(21rem);
+			font-size: $font14;
+		}
+		.rightBtn{
+			border-left: 1px solid #efefef;
+			color: #c69b70;
 		}
 	}
 }		

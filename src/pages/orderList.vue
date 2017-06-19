@@ -1,38 +1,48 @@
 <template>
+	<div>
     <div class='order'>
 	    <h3 class="order-mtitle">汉古商城</h3>
-	    <div  v-for='items in list'>
-	    	<router-link :to="{ name: 'orderListDetail', query: { itemid: items._id }}">
+	    <div v-for='(items,index) in list'>	    	
 	    	<div v-for='item in items.order'>
-			    <div class="order-main"> 
-			    	<router-link to='orderListDetail'>
-			    		<div class="order-mdetail">
-				    		<dl>
-				    			<dt><img :src="''+apiPath+'/image/product/'+item.img+'/1.jpg'" 
-										onerror="this.src='http://placeholder.qiniudn.com/800'"/></dt>
-				    			<dd>
-				    				{{item.name}}{{items._id}}
-					    			<p>¥{{item.price}}.00</p>
-				    			</dd>
-				    		</dl>
-				    		<div class="order-mnum">X<span>{{item.num}}</span></div>
-				    	</div>	
-			    	</router-link>		    		
+	    		<router-link :to="{ name: 'orderListDetail', query: { itemid: items._id }}">
+			    <div class="order-main">
+		    		<div class="order-mdetail">
+			    		<dl>
+			    			<dt><img :src="''+apiPath+'/image/product/'+item.img+'/1.jpg'" 
+									onerror="this.src='http://placeholder.qiniudn.com/800'"/></dt>
+			    			<dd>
+			    				{{item.name}}
+				    			<p>¥{{item.price}}.00</p>
+			    			</dd>
+			    		</dl>
+			    		<div class="order-mnum">X<span>{{item.num}}</span></div>
+			    	</div>				    			    		
 			    </div>
+				</router-link>    
 			    <div class="order-mcontent">
 			    	<dl>
 			    		<dd>
 			    			共{{item.num}}件商品  
-			    			<span>{{items.status|filterFun}}</span>
-			    			付款 ：¥{{items.price}}.00</dd>
+			    			{{items.status|filterFun}}付款 ：¥{{items.price}}.00</dd>
 			    	</dl>
-			    	<dl>
-			    		<dd class="delect-order">删除订单</dd>
+			    	<dl v-show='activeOrder'>			    		
+			    		<dd class="delect-order"  @click='cancelOrder(items,index)'>删除订单</dd>
+			    	</dl>
+			    	<dl  v-show='!activeOrder'>			    		
+			    		<dd class="delect-order" @click='cancelOrder(items,index)' @cancelOrderEvent = 'cancelOrderEvent'>取消订单</dd>
+			    		<dd class="delect-order order-pay" @click='nowPay(index)'>立即付款</dd>
 			    	</dl>
 			    </div>
 		    </div>
-		    </router-link>
 	    </div>
+	    </div>
+	    <div class="shopConfirm-toast" v-show='toastHidden'>
+		  	<div class="confirm-main">
+		  		<p>确定要删除商品嘛?</p>
+		 		<div class="btn" @click='toastHidden = !toastHidden'>取消</div>
+		 		<div class="btn rightBtn" @click='confirmDel'>确定</div>
+		  	</div>
+		</div>
     </div>
 </template>
 <script>
@@ -44,16 +54,22 @@
 				list:[],
 				useId:'',
 				apiPath:'',
-				str1:'实'
+				submitArr:[],
+				price:{
+	 				price: 0
+	 			},
+	 			activeOrder:false,
+	 			toastHidden:false,
+	 			listId:[]
             }
         },
         filters: {
-            transform(obj){
+            filterFun(obj){
                 if ( obj==1) {
-                    return this.str1
+                    return '实'
                 }
                 else if(obj==0){
-                    return this.str1
+                    return '待'
                 }
             }
         },
@@ -73,15 +89,51 @@
                     .then(function (res) {                   	
                         if (res.data.errorCode == 0) {
                     		res = res.data.returnValue
-                            that.list = res  
+                            that.list = res
                             console.log(that.list)
-                            
+                            if(that.list.length>0){
+				            	for(var i in that.list){				          				            		
+				            		//判断是否支付完成
+				            		if(that.list[i].status==0){
+				            			that.activeOrder = false
+				            		}else if(that.list[i].status==1){
+				            			that.activeOrder = true
+				            		}
+				            		that.price.price = that.list[i].price
+				            	}
+				            }
                         }
                     })
                     .catch(function (error) {
                         console.log(error)
                     })
-            }
+           },
+           nowPay(index){
+           	if (!window.localStorage) {
+			    return false;
+			}else {
+		        let storage = window.localStorage
+	        	this.price.price = this.list[index].price
+		        this.submitArr.push(this.list[index].order)
+		        this.submitArr.push(this.list[index].address)
+		        this.submitArr.push(this.price)
+	        	var orderArr= JSON.stringify(this.submitArr)
+	        	storage.setItem("orderArr", orderArr)
+	       }	        
+           	this.$router.push({ path: '/cashier'})
+           },
+           cancelOrder(items,index){
+	           	this.toastHidden = true
+				this.readyToDelIndex = index
+           },
+           //删除商品
+	   		confirmDel(){
+	   			this.toastHidden = false
+	   			this.list.splice(this.readyToDelIndex,1);		
+	   		},
+	   		cancelOrderEvent(){
+	   			this.cancelOrder()
+	   		}
         },
         mounted() {
         	this.apiPath = api.apipath
@@ -176,13 +228,17 @@
 			.delect-order{
 				width: 20%;
 				height: rem(30rem);
-				background: #26A2FF;
+				background: #ff8854;
 				margin-top: rem(9rem);
 				color: #fff;
 				line-height: rem(30rem);
 				text-align: center;
+				margin-left: rem(10rem);
 			}
-		}
+			.order-pay{
+				background: #fe4415;
+			}
+		}		
 		.order-mconpic{
 			border: 0;
 			dd{
@@ -196,6 +252,40 @@
 			}
 		}
 	}
-}		
+}	
+	.shopConfirm-toast{
+		width: 100%;
+		height: 100%;
+		position: fixed;
+		background: rgba(0,0,0,.5);
+		z-index: 999;
+		.confirm-main{
+			width: 80%;
+			background: #fff;
+			height: rem(100rem);
+			position: absolute;
+			border-radius: rem(5rem);
+			left: 10%;
+			top: 34%;
+			p{
+				font-size: $font14;
+				margin: rem(20rem) 0 0 rem(20rem);
+			}
+			.btn{
+				width: 49%;
+				height: rem(44rem);
+				float: left;
+				text-align: center;
+				line-height: rem(44rem);
+				border-top: 1px solid #efefef;
+				margin-top: rem(21rem);
+				font-size: $font14;
+			}
+			.rightBtn{
+				border-left: 1px solid #efefef;
+				color: #c69b70;
+			}
+		}
+	}		
 </style>
 
