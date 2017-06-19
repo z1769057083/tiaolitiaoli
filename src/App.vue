@@ -90,7 +90,7 @@
                 let openid = this.$route.query.openid;
                 if (typeof (openid) == 'undefined' || openid == '') {
                     //Note:generate test account.
-                    if (localStorage.getItem(Account_Index) == null) {
+                    if (localStorage.getItem(Account_Index) == null&&global.IsDebug) {
                         axios.get(api.generateTestAccount)
                             .then(function (res) {
                                 if (res.data.errorCode == 0) {
@@ -132,7 +132,8 @@
             this.loadUserInfo()
             this.configWeChatSDK()
             this.onWeChatShare()
-            console.log('当前版本:' + Version);
+            let debugMode=IsDebug?" 本地调试模式":' 发布模式';
+            console.log('当前版本:' + Version+debugMode);
         }
     }
 </script>
