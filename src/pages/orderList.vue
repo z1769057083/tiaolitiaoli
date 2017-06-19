@@ -1,7 +1,8 @@
 <template>
+	<div>
     <div class='order'>
 	    <h3 class="order-mtitle">汉古商城</h3>
-	    <div  v-for='items in list'>	    	
+	    <div v-for='(items,index) in list'>	    	
 	    	<div v-for='item in items.order'>
 	    		<router-link :to="{ name: 'orderListDetail', query: { itemid: items._id }}">
 			    <div class="order-main">
@@ -25,15 +26,23 @@
 			    			{{items.status|filterFun}}付款 ：¥{{items.price}}.00</dd>
 			    	</dl>
 			    	<dl v-show='activeOrder'>			    		
-			    		<dd class="delect-order">删除订单</dd>
+			    		<dd class="delect-order"  @click='cancelOrder(items,index)'>删除订单</dd>
 			    	</dl>
 			    	<dl  v-show='!activeOrder'>			    		
-			    		<dd class="delect-order">取消订单</dd>
-			    		<dd class="delect-order order-pay">立即付款</dd>
+			    		<dd class="delect-order" @click='cancelOrder(items,index)' @cancelOrderEvent = 'cancelOrderEvent'>取消订单</dd>
+			    		<dd class="delect-order order-pay" @click='nowPay(index)'>立即付款</dd>
 			    	</dl>
 			    </div>
 		    </div>
-	    </div>;
+	    </div>
+	    </div>
+	    <div class="shopConfirm-toast" v-show='toastHidden'>
+		  	<div class="confirm-main">
+		  		<p>确定要删除商品嘛?</p>
+		 		<div class="btn" @click='toastHidden = !toastHidden'>取消</div>
+		 		<div class="btn rightBtn" @click='confirmDel'>确定</div>
+		  	</div>
+		</div>
     </div>
 </template>
 <script>
@@ -47,9 +56,11 @@
 				apiPath:'',
 				submitArr:[],
 				price:{
-	 				price:0
+	 				price: 0
 	 			},
-	 			activeOrder:false
+	 			activeOrder:false,
+	 			toastHidden:false,
+	 			listId:[]
             }
         },
         filters: {
@@ -78,15 +89,17 @@
                     .then(function (res) {                   	
                         if (res.data.errorCode == 0) {
                     		res = res.data.returnValue
-                            that.list = res  
+                            that.list = res
                             console.log(that.list)
                             if(that.list.length>0){
-				            	for(var i in that.list){
+				            	for(var i in that.list){				          				            		
+				            		//判断是否支付完成
 				            		if(that.list[i].status==0){
 				            			that.activeOrder = false
 				            		}else if(that.list[i].status==1){
 				            			that.activeOrder = true
 				            		}
+				            		that.price.price = that.list[i].price
 				            	}
 				            }
                         }
@@ -95,25 +108,34 @@
                         console.log(error)
                     })
            },
-//         nowPay(){
-//         	if (!window.localStorage) {
-//			    return false;
-//			}else {
-//		        let storage = window.localStorage
-//		        for(var i in this.list){
-//			        this.submitArr.push(this.list[i].order)
-//			        this.submitArr.push(this.list[i].address)
-//			        this.submitArr.push(this.price)
-//			        console.log(this.submitArr)
-//		        	var orderArr= JSON.stringify(this.submitArr)
-//		        	storage.setItem("orderArr", orderArr)
-//			  	}
-//	       }	        
-//         	this.$router.push({ path: '/cashier'})
-//         }
+           nowPay(index){
+           	if (!window.localStorage) {
+			    return false;
+			}else {
+		        let storage = window.localStorage
+	        	this.price.price = this.list[index].price
+		        this.submitArr.push(this.list[index].order)
+		        this.submitArr.push(this.list[index].address)
+		        this.submitArr.push(this.price)
+	        	var orderArr= JSON.stringify(this.submitArr)
+	        	storage.setItem("orderArr", orderArr)
+	       }	        
+           	this.$router.push({ path: '/cashier'})
+           },
+           cancelOrder(items,index){
+	           	this.toastHidden = true
+				this.readyToDelIndex = index
+           },
+           //删除商品
+	   		confirmDel(){
+	   			this.toastHidden = false
+	   			this.list.splice(this.readyToDelIndex,1);		
+	   		},
+	   		cancelOrderEvent(){
+	   			this.cancelOrder()
+	   		}
         },
         mounted() {
-//      	this.nowPay()
         	this.apiPath = api.apipath
         	this.orderList()       	
             document.title = "我的订单"
@@ -230,6 +252,40 @@
 			}
 		}
 	}
-}		
+}	
+	.shopConfirm-toast{
+		width: 100%;
+		height: 100%;
+		position: fixed;
+		background: rgba(0,0,0,.5);
+		z-index: 999;
+		.confirm-main{
+			width: 80%;
+			background: #fff;
+			height: rem(100rem);
+			position: absolute;
+			border-radius: rem(5rem);
+			left: 10%;
+			top: 34%;
+			p{
+				font-size: $font14;
+				margin: rem(20rem) 0 0 rem(20rem);
+			}
+			.btn{
+				width: 49%;
+				height: rem(44rem);
+				float: left;
+				text-align: center;
+				line-height: rem(44rem);
+				border-top: 1px solid #efefef;
+				margin-top: rem(21rem);
+				font-size: $font14;
+			}
+			.rightBtn{
+				border-left: 1px solid #efefef;
+				color: #c69b70;
+			}
+		}
+	}		
 </style>
 

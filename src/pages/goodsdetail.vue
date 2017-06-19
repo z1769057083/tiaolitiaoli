@@ -133,7 +133,6 @@
       toast
     },
     methods: {
-
       requestlist(){
         var that = this;
         that.itemid = this.$route.query.itemid;

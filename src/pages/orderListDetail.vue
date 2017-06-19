@@ -1,11 +1,13 @@
 <template>
+	<div>
     <div class='orderDetail'>	
     	<div class="order-dmain">
-    		<div class="order-success">等待付款</div>
-    		<!--<div class='order-transfer'>
+    		<div class="order-success" v-show='!activeOrder'>等待付款</div>
+    		<div class="order-success" v-show='activeOrder'>已付款，等待发货</div>
+    		<div class='order-transfer' v-show='activeOrder'>
     			<p><span>承运物流：</span>申通快递</p>
     			<p><span>物流编号：</span>123456789</p>
-    		</div>-->
+    		</div>
     		<dl class="order-consignee">
 				<dt><img src="../assets/orderAddress.png"/></dt>
 				<dd class="consignee">
@@ -36,10 +38,21 @@
 	    	<dl>
 	    		<dt>下单时间：2017-06-06 12:34:56</dt>
 	    	</dl>
-	    	<dl>
-	    		<dd class="delect-order">删除订单</dd>
+	    	<dl v-show='activeOrder'>
+	    		<dd class="delect-order"  @click='cancelOrder'>删除订单</dd>
+	    	</dl>
+	    	<dl v-show='!activeOrder'>
+	    		<dd class="delect-order" @click='cancelOrder'>取消订单</dd>
 	    	</dl>
 	    </div>
+    </div>
+	<div class="shopConfirm-toast" v-show='toastHidden'>
+	  	<div class="confirm-main">
+	  		<p>确定要删除商品嘛?</p>
+	 		<div class="btn" @click='toastHidden = !toastHidden'>取消</div>
+	 		<div class="btn rightBtn" @click='confirmDel'>确定</div>
+	  	</div>
+	</div>
     </div>
 </template>
 <script>
@@ -50,7 +63,9 @@ export default {
   	return {
   		apiPath:'',
   		orderList:[],
-  		addressObj:{}
+  		addressObj:{},
+  		activeOrder:false,
+  		toastHidden:false
     }
   },
   methods: {
@@ -65,12 +80,32 @@ export default {
               that.orderList = res
               console.log(that.orderList)
 			  that.addressObj = that.orderList.address
+			  if(that.orderList.length>0){
+            	for(var i in that.orderList){				          				            		
+            		//判断是否支付完成
+            		if(that.orderList[i].status==0){
+            			that.activeOrder = false
+            		}else if(that.orderList[i].status==1){
+            			that.activeOrder = true
+            		}
+            	}
+              }
             }
           })
           .catch(function (error) {
             console.log(error)
           })
-      },
+       },
+       cancelOrder(){
+           	this.toastHidden = true
+       },
+       //删除商品
+   		confirmDel(){
+   			this.toastHidden = false
+   			this.$emit('cancelOrderEvent')
+   			this.$router.push({ path: '/orderList'})   			
+   		},
+   		
   },
   mounted() {
 	this.apiPath = api.apipath
@@ -98,6 +133,7 @@ export default {
 		.order-success{
 			line-height: rem(30rem);
 			border-bottom: 1px solid #efefef;
+			padding: rem(5rem) 0;
 		}
 		.order-transfer{
 			width: 100%;
@@ -248,6 +284,40 @@ export default {
 					}
 				}
 			}
+		}
+	}
+}
+.shopConfirm-toast{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	background: rgba(0,0,0,.5);
+	z-index: 999;
+	.confirm-main{
+		width: 80%;
+		background: #fff;
+		height: rem(100rem);
+		position: absolute;
+		border-radius: rem(5rem);
+		left: 10%;
+		top: 34%;
+		p{
+			font-size: $font14;
+			margin: rem(20rem) 0 0 rem(20rem);
+		}
+		.btn{
+			width: 49%;
+			height: rem(44rem);
+			float: left;
+			text-align: center;
+			line-height: rem(44rem);
+			border-top: 1px solid #efefef;
+			margin-top: rem(21rem);
+			font-size: $font14;
+		}
+		.rightBtn{
+			border-left: 1px solid #efefef;
+			color: #c69b70;
 		}
 	}
 }		

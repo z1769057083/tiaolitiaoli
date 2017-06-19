@@ -80,7 +80,7 @@ import Toast from '@/packages/toast'
  		}
  	},
  	methods:{
-   		allSelect(){
+   		allSelect(index){
    			if(!this.toggleLock){
    				this.isSelectAll = true;
    				this.toggleLock = true
@@ -98,14 +98,15 @@ import Toast from '@/packages/toast'
    			}
    			console.log(this.isSelectAll)
    		},
+   		//选择单个商品时
  		selectGood(index){	
  			this.arr[index].isChecked = !this.arr[index].isChecked;
  			this.$set(this.arr, index, this.arr[index])
 			this.$forceUpdate()
  		},
 // 		判断是否全部选中
- 		isCheckAll(){
- 			var flag = true;
+   		isCheckAll(){
+   			var flag = true;
 			this.orderArr.forEach((item)=>{
 				if(!item.isChecked){
 					flag = false;
@@ -116,7 +117,7 @@ import Toast from '@/packages/toast'
 			} else {
 				this.isSelectAll = true;
 			}
- 		},
+   		},
  		settlement(){
    			if(this.isSelectAny){   				
    				window.localStorage.setItem('shopcart_Key',JSON.stringify(this.arr))   				
@@ -129,6 +130,7 @@ import Toast from '@/packages/toast'
 			}
  		},
  		delGoods(item,index){
+ 			this.$set(this.arr, index, this.arr[index])
 			this.toastHidden = true
 			this.readyToDelIndex = index
 		},
@@ -172,20 +174,20 @@ import Toast from '@/packages/toast'
 		        } else {
 		          this.arr[index].num--
 		        }
-		    }
-//	        window.localStorage.setItem('shopcart_Key',JSON.stringify(this.arr))   				
+		    }			
         }
  	},
 	computed:{
+		//判断是否全部被选中
 		isSelectAll: function () {
- 			let flag = true;
- 			this.arr.forEach((item)=>{
+   			let flag = true;
+   			this.arr.forEach((item)=>{
 				if(!item.isChecked){
 					flag = false;
 				}
 			});
 			return flag;
- 	    },
+   	    },
  	    isSelectAny: function () {
  			let flag=false;
  			this.arr.forEach((item)=>{

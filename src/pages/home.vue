@@ -180,6 +180,8 @@
             .i-maintip {
                 color: #C69B70;
                 margin-top: rem(30rem);
+                color: #c59a6f;
+                font-weight: bold;
             }
 
         }

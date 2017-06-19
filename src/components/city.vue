@@ -146,7 +146,7 @@
         background: url(../assets/msgdate.png) no-repeat center;
         background-size: cover;
         line-height: 1.3rem;
-        font-size: 0.37rem;
+        font-size: $font16;
         padding-left: 7.2%;
         color: #ccc;
         border-radius: 1.06rem;
@@ -156,6 +156,7 @@
 
     b {
         color: $c3c3c;
+        margin-left: 5%;
     }
 
     }
