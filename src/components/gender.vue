@@ -53,6 +53,7 @@
                 if (this.birthday !== '') {
                     global.User.gender = this.answer.gender;
                     global.User.age = Common.getUserAge(this.birthday);
+                    global.User.birthday =this.birthday;
                     this.$emit('updateUserAnswer', this.answer);
                 }
             },
@@ -62,6 +63,7 @@
                 if (this.gender !== '') {
                     global.User.gender = this.answer.gender;
                     global.User.age = Common.getUserAge(this.birthday);
+                    global.User.birthday =this.birthday;
                     this.$emit('updateUserAnswer', this.answer);
                 }
             }

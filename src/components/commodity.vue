@@ -8,11 +8,17 @@
                     <dt>
                     <h3>{{soupItem.title}}</h3>
                     {{soupItem.material}}
+                    <div class="s-mreconintrotip">
+                        <img class="tip" src="../assets/shopTip.png"/>
+                        {{soupItem.fit|transform}}
+                    </div>
                     </dt>
+
                     <dd>
                         <img :src="''+apiPath+'/image/soup/'+soupItem.index+'/1.jpg'"
                              onerror="this.src='http://placeholder.qiniudn.com/800'"/>
                     </dd>
+
                 </router-link>
             </dl>
             <div class="s-marticlecon1">
@@ -158,6 +164,11 @@
         width: 100%;
         overflow: hidden;
         padding-top: rem(6rem);
+        .tip {
+            width: rem(10rem);
+            height: rem(12rem);
+            margin-top: rem(2rem);
+        }
         .s-marttitle {
             font-size: 0.42rem;
             line-height: rem(40rem);
