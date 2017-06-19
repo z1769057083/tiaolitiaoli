@@ -189,11 +189,6 @@
                     item.content = that.questions[that.index - diffValue].content;
                     that.renderedMessages.push(item);
                 }
-//                setTimeout(function(){
-//                    var item={isQuestion:true};
-//                    item.content=that.questions[that.index].content;
-//                    that.renderedMessages.push(item);
-//                },100)
                 if (this.isFinished) {
                     this.maskhidden = true;
                     this.saveAndGenerateReport();

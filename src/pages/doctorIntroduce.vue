@@ -2,20 +2,20 @@
   <div class="doctor">
  	<div class='doctor-main'>
  		<h3 class='about'>关于我们</h3>
- 		<p class='about-time'>2017-6-12<span>汉沽科技</span></p>
- 		<!--<div class="doctor-mpic">
-	 		<img src="../assets/doctorImg.png"/>
-		</div>-->
+ 		<!--<p class='about-time'>2017-6-19<span>汉沽科技</span></p>-->
+ 		<div class="doctor-mpic">
+	 		<img src="http://ikehealth.cn/image/main.png"/>
+		</div>
 		<p class="about-intro">
-			佛山汉古医疗科技有限公司成立于2017年4月，
-			我们立足于珠三角地地区，以中药电商平台为依托，
-			结合体质辨析、O2O基因检测、线上线下咨询和服
-			务为一体的公司。
+			佛山汉古医疗科技有限公司是汉古中医尝试将传统中
+			医数理化并将中医与基因科学、人工智能结合；打通
+			传统医学和现代科学的边界，为大众的健康管理探索
+			出一条行之有效、简单便捷的方法。
 		</p>
 		<p class="about-team">
-			团队核心成员由国内知名中医李可亲传弟子戚沁园博士
-			、陈长青博士，浙大周泓博士，互联网精英为世界各知
-			名企业高管组成，团队具有极强战斗力。
+			团队核心成员由国内知名中医李可亲传弟子戚沁园博
+			士、陈长青博士领衔的医生团队以及浙江大学周泓教
+			授带领的人工智能团队、知名互联网企业精英构成。
 		</p>
 		<p class="about-intro">
 			公司地址：佛山市南海区桂城南三路11号广东

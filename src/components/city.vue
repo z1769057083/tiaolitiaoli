@@ -153,12 +153,10 @@
         margin-top: rem(30rem);
         z-index: 9999;
         position: absolute;
-
     b {
         color: $c3c3c;
         margin-left: 5%;
     }
-
     }
     .page-picker {
         margin-top: rem(35rem);
@@ -170,8 +168,5 @@
     	background: #f8f8f8;
     	margin-top:rem(-1614rem);
     }
-
     }
-
 </style>
-	

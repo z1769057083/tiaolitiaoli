@@ -36,7 +36,6 @@
 		    			</dd>    			
 		    		</dl>
 		    		<div class="order-mnum" v-if='numHidden'>X<span>{{item.num}}</span></div>
-		    		<!--<div class="delect" @click='delGoods(item,index)' v-if='numHidden'><img src="../assets/tolleyDelect.png"/></div>-->
 			  	</div>
 		  	</div>
 	  	</div>	  	
@@ -46,8 +45,8 @@
 					合计:<span>¥{{totalPrice | Currency}}元</span>
 					<span class="fare"></span>
 				</div>
-				<div class="tolley-select">
-					<div class="tolley-check" :class="{active: isSelectAll}" @click='allSelect'></div>	
+				<div class="tolley-select"  @click='allSelect'>
+					<div class="tolley-check" :class="{active: isSelectAll}"></div>	
 					全选
 				</div>
 		  	</div>
@@ -80,23 +79,13 @@ import Toast from '@/packages/toast'
  		}
  	},
  	methods:{
-   		allSelect(index){
-   			if(!this.toggleLock){
-   				this.isSelectAll = true;
-   				this.toggleLock = true
-				this.$forceUpdate()
-   				this.arr.forEach((item)=>{
-					item.isChecked = true					
-				})	
-   			}else{
-   				this.isSelectAll = false;
-   				this.toggleLock = false
-				this.$forceUpdate()
-   				this.arr.forEach((item)=>{
-					item.isChecked = false			
-				})	
-   			}
-   			console.log(this.isSelectAll)
+   		allSelect(){
+   				this.toggleLock = !this.toggleLock
+   				for(let index=0;index<this.arr.length;index++){
+   					this.arr[index].isChecked=this.toggleLock;
+   					this.$set(this.arr,index,this.arr[index])
+   				}
+   			this.$forceUpdate()
    		},
    		//选择单个商品时
  		selectGood(index){	
@@ -104,20 +93,6 @@ import Toast from '@/packages/toast'
  			this.$set(this.arr, index, this.arr[index])
 			this.$forceUpdate()
  		},
-// 		判断是否全部选中
-   		isCheckAll(){
-   			var flag = true;
-			this.orderArr.forEach((item)=>{
-				if(!item.isChecked){
-					flag = false;
-				}
-			});
-			if(!flag){
-				this.isSelectAll = false;
-			} else {
-				this.isSelectAll = true;
-			}
-   		},
  		settlement(){
    			if(this.isSelectAny){   				
    				window.localStorage.setItem('shopcart_Key',JSON.stringify(this.arr))   				
@@ -130,29 +105,21 @@ import Toast from '@/packages/toast'
 			}
  		},
  		delGoods(item,index){
- 			this.$set(this.arr, index, this.arr[index])
 			this.toastHidden = true
 			this.readyToDelIndex = index
 		},
  		//删除商品
    		confirmDel(){
    			this.toastHidden = false
-   			this.arr.splice(this.readyToDelIndex,1);
-        	window.localStorage.setItem('shopcart_Key',JSON.stringify(this.arr))		
-        	if(window.localStorage.getItem('shopcart_Key')!==this.arr){
-        		this.isSelectAll = false
-        		 if(!this.arr.length){
-			    	this.$emit('catrDotted')
-			    }
-        		this.isCheckAll()  
-        	}else{
-        		this.isCheckAll()        		
-        	}
+   			this.arr.splice(this.readyToDelIndex,1);   	
+        	window.localStorage.setItem('shopcart_Key',JSON.stringify(this.arr))
    		},
+   		//点击编辑商品
    		editGoods(){
    			this.numHidden = false
    			this.toggle = false
    		},
+   		//点击完成
    		successGoods(){
    			this.numHidden = true
    			this.toggle = true
@@ -189,7 +156,7 @@ import Toast from '@/packages/toast'
 			return flag;
    	    },
  	    isSelectAny: function () {
- 			let flag=false;
+ 			let flag = false;
  			this.arr.forEach((item)=>{
 				if(item.isChecked){
 					flag = true;
@@ -223,7 +190,6 @@ import Toast from '@/packages/toast'
 		}
 	},
  	mounted() {
- 		this.allSelect()
 	    if (!window.localStorage) {
 	        return false;
 	    } else {

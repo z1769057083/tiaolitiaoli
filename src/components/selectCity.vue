@@ -1,16 +1,16 @@
 <template>
 	<div id="example">
-		<select v-model="prov">
-			<option v-for="option in arr" :value="option.name">
+		<select v-model="prov" id="selProv">
+			<option v-for="option in arr" :value="option.name" >
 				{{ option.name }}
 			</option>
 		</select>
-		<select v-model="city">
+		<select v-model="city" id="selCity">
 			<option v-for="option in cityArr" :value="option.name">
 				{{ option.name }}
 			</option>
 		</select>
-		<select v-model="district" v-if="district">
+		<select v-model="district" v-if="district"  id="selDistrict">
 			<option v-for="option in districtArr" :value="option.name">
 				{{ option.name }}
 			</option>
@@ -165,7 +165,7 @@
 				sub: [{name: "请选择", sub: []},
 					{
 						name: "重庆",
-						sub: [{name: "请选择"}, {name: "渝中区"}, {name: "大渡口区"}, {name: "江北区"}, {name: "南岸区"}, {name: "北碚区"}, {name: "渝北区"}, {name: "巴南区"}, {name: "长寿区"}, {name: "双桥区"}, {name: "沙坪坝区"}, {name: "万盛区"}, {name: "万州区"}, {name: "涪陵区"}, {name: "黔江区"}, {name: "永川区"}, {name: "合川区"}, {name: "江津区"}, {name: "九龙坡区"}, {name: "南川区"}, {name: "綦江县"}, {name: "潼南县"}, {name: "荣昌县"}, {name: "璧山县"}, {name: "大足县"}, {name: "铜梁县"}, {name: "梁平县"}, {name: "开县"}, {name: "忠县"}, {name: "城口县"}, {name: "垫江县"}, {name: "武隆县"}, {name: "丰都县"}, {name: "奉节县"}, {name: "云阳县"}, {name: "巫溪县"}, {name: "巫山县"}, {name: "石柱土家族自治县"}, {name: "秀山土家族苗族自治县"}, {name: "酉阳土家族苗族自治县"}, {name: "彭水苗族土家族自治县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "渝中区"}, {name: "大渡口区"}, {name: "江北区"}, {name: "南岸区"}, {name: "北碚区"}, {name: "渝北区"}, {name: "巴南区"}, {name: "长寿区"}, {name: "双桥区"}, {name: "沙坪坝区"}, {name: "万盛区"}, {name: "万州区"}, {name: "涪陵区"}, {name: "黔江区"}, {name: "永川区"}, {name: "合川区"}, {name: "江津区"}, {name: "九龙坡区"}, {name: "南川区"}, {name: "綦江县"}, {name: "潼南县"}, {name: "荣昌县"}, {name: "璧山县"}, {name: "大足县"}, {name: "铜梁县"}, {name: "梁平县"}, {name: "开县"}, {name: "忠县"}, {name: "城口县"}, {name: "垫江县"}, {name: "武隆县"}, {name: "丰都县"}, {name: "奉节县"}, {name: "云阳县"}, {name: "巫溪县"}, {name: "巫山县"}, {name: "石柱"}, {name: "秀山"}, {name: "酉阳"}, {name: "彭水"}, {name: "其他"}],
 						type: 0
 					}], type: 1
 			},
@@ -341,7 +341,7 @@
 					},
 					{
 						name: "宜昌",
-						sub: [{name: "请选择"}, {name: "西陵区"}, {name: "伍家岗区"}, {name: "点军区"}, {name: "猇亭区"}, {name: "夷陵区"}, {name: "宜都市"}, {name: "当阳市"}, {name: "枝江市"}, {name: "秭归县"}, {name: "远安县"}, {name: "兴山县"}, {name: "五峰土家族自治县"}, {name: "长阳土家族自治县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "西陵区"}, {name: "伍家岗区"}, {name: "点军区"}, {name: "猇亭区"}, {name: "夷陵区"}, {name: "宜都市"}, {name: "当阳市"}, {name: "枝江市"}, {name: "秭归县"}, {name: "远安县"}, {name: "兴山县"}, {name: "五峰"}, {name: "长阳"}, {name: "其他"}],
 						type: 0
 					},
 					{
@@ -380,7 +380,7 @@
 						type: 0
 					},
 					{
-						name: "恩施土家族苗族自治州",
+						name: "恩施",
 						sub: [{name: "请选择"}, {name: "恩施市"}, {name: "利川市"}, {name: "建始县"}, {name: "来凤县"}, {name: "巴东县"}, {name: "鹤峰县"}, {name: "宣恩县"}, {name: "咸丰县"}, {name: "其他"}],
 						type: 0
 					},
@@ -437,7 +437,7 @@
 					},
 					{
 						name: "绵阳",
-						sub: [{name: "请选择"}, {name: "涪城区"}, {name: "游仙区"}, {name: "江油市"}, {name: "盐亭县"}, {name: "三台县"}, {name: "平武县"}, {name: "安县"}, {name: "梓潼县"}, {name: "北川羌族自治县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "涪城区"}, {name: "游仙区"}, {name: "江油市"}, {name: "盐亭县"}, {name: "三台县"}, {name: "平武县"}, {name: "安县"}, {name: "梓潼县"}, {name: "北川"}, {name: "其他"}],
 						type: 0
 					},
 					{
@@ -457,7 +457,7 @@
 					},
 					{
 						name: "乐山",
-						sub: [{name: "请选择"}, {name: "市中区"}, {name: "五通桥区"}, {name: "沙湾区"}, {name: "金口河区"}, {name: "峨眉山市"}, {name: "夹江县"}, {name: "井研县"}, {name: "犍为县"}, {name: "沐川县"}, {name: "马边彝族自治县"}, {name: "峨边彝族自治县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "市中区"}, {name: "五通桥区"}, {name: "沙湾区"}, {name: "金口河区"}, {name: "峨眉山市"}, {name: "夹江县"}, {name: "井研县"}, {name: "犍为县"}, {name: "沐川县"}, {name: "马边"}, {name: "峨边"}, {name: "其他"}],
 						type: 0
 					},
 					{
@@ -501,18 +501,18 @@
 						type: 0
 					},
 					{
-						name: "阿坝藏族羌族自治州",
+						name: "阿坝",
 						sub: [{name: "请选择"}, {name: "马尔康县"}, {name: "九寨沟县"}, {name: "红原县"}, {name: "汶川县"}, {name: "阿坝县"}, {name: "理县"}, {name: "若尔盖县"}, {name: "小金县"}, {name: "黑水县"}, {name: "金川县"}, {name: "松潘县"}, {name: "壤塘县"}, {name: "茂县"}, {name: "其他"}],
 						type: 0
 					},
 					{
-						name: "甘孜藏族自治州",
+						name: "甘孜",
 						sub: [{name: "请选择"}, {name: "康定县"}, {name: "丹巴县"}, {name: "炉霍县"}, {name: "九龙县"}, {name: "甘孜县"}, {name: "雅江县"}, {name: "新龙县"}, {name: "道孚县"}, {name: "白玉县"}, {name: "理塘县"}, {name: "德格县"}, {name: "乡城县"}, {name: "石渠县"}, {name: "稻城县"}, {name: "色达县"}, {name: "巴塘县"}, {name: "泸定县"}, {name: "得荣县"}, {name: "其他"}],
 						type: 0
 					},
 					{
-						name: "凉山彝族自治州",
-						sub: [{name: "请选择"}, {name: "西昌市"}, {name: "美姑县"}, {name: "昭觉县"}, {name: "金阳县"}, {name: "甘洛县"}, {name: "布拖县"}, {name: "雷波县"}, {name: "普格县"}, {name: "宁南县"}, {name: "喜德县"}, {name: "会东县"}, {name: "越西县"}, {name: "会理县"}, {name: "盐源县"}, {name: "德昌县"}, {name: "冕宁县"}, {name: "木里藏族自治县"}, {name: "其他"}],
+						name: "凉山",
+						sub: [{name: "请选择"}, {name: "西昌市"}, {name: "美姑县"}, {name: "昭觉县"}, {name: "金阳县"}, {name: "甘洛县"}, {name: "布拖县"}, {name: "雷波县"}, {name: "普格县"}, {name: "宁南县"}, {name: "喜德县"}, {name: "会东县"}, {name: "越西县"}, {name: "会理县"}, {name: "盐源县"}, {name: "德昌县"}, {name: "冕宁县"}, {name: "木里"}, {name: "其他"}],
 						type: 0
 					},
 					{name: "其他"}],
@@ -589,7 +589,7 @@
 					},
 					{
 						name: "秦皇岛",
-						sub: [{name: "请选择"}, {name: "海港区"}, {name: "山海关区"}, {name: "北戴河区"}, {name: "昌黎县"}, {name: "抚宁县"}, {name: "卢龙县"}, {name: "青龙满族自治县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "海港区"}, {name: "山海关区"}, {name: "北戴河区"}, {name: "昌黎县"}, {name: "抚宁县"}, {name: "卢龙县"}, {name: "青龙"}, {name: "其他"}],
 						type: 0
 					},
 					{
@@ -614,17 +614,17 @@
 					},
 					{
 						name: "承德",
-						sub: [{name: "请选择"}, {name: "双桥区"}, {name: "双滦区"}, {name: "鹰手营子矿区"}, {name: "兴隆县"}, {name: "平泉县"}, {name: "滦平县"}, {name: "隆化县"}, {name: "承德县"}, {name: "丰宁满族自治县"}, {name: "宽城满族自治县"}, {name: "围场满族蒙古族自治县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "双桥区"}, {name: "双滦区"}, {name: "鹰手营子"}, {name: "兴隆县"}, {name: "平泉县"}, {name: "滦平县"}, {name: "隆化县"}, {name: "承德县"}, {name: "丰宁"}, {name: "宽城"}, {name: "围场"}, {name: "其他"}],
 						type: 0
 					},
 					{
 						name: "沧州",
-						sub: [{name: "请选择"}, {name: "新华区"}, {name: "运河区"}, {name: "泊头市"}, {name: "任丘市"}, {name: "黄骅市"}, {name: "河间市"}, {name: "献县"}, {name: "吴桥县"}, {name: "沧县"}, {name: "东光县"}, {name: "肃宁县"}, {name: "南皮县"}, {name: "盐山县"}, {name: "青县"}, {name: "海兴县"}, {name: "孟村回族自治县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "新华区"}, {name: "运河区"}, {name: "泊头市"}, {name: "任丘市"}, {name: "黄骅市"}, {name: "河间市"}, {name: "献县"}, {name: "吴桥县"}, {name: "沧县"}, {name: "东光县"}, {name: "肃宁县"}, {name: "南皮县"}, {name: "盐山县"}, {name: "青县"}, {name: "海兴县"}, {name: "孟村"}, {name: "其他"}],
 						type: 0
 					},
 					{
 						name: "廊坊",
-						sub: [{name: "请选择"}, {name: "安次区"}, {name: "广阳区"}, {name: "霸州市"}, {name: "三河市"}, {name: "香河县"}, {name: "永清县"}, {name: "固安县"}, {name: "文安县"}, {name: "大城县"}, {name: "大厂回族自治县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "安次区"}, {name: "广阳区"}, {name: "霸州市"}, {name: "三河市"}, {name: "香河县"}, {name: "永清县"}, {name: "固安县"}, {name: "文安县"}, {name: "大城县"}, {name: "大厂"}, {name: "其他"}],
 						type: 0
 					},
 					{
@@ -701,17 +701,17 @@
 				sub: [{name: "请选择", sub: []},
 					{
 						name: "郑州",
-						sub: [{name: "请选择"}, {name: "中原区"}, {name: "金水区"}, {name: "二七区"}, {name: "管城回族区"}, {name: "上街区"}, {name: "惠济区"}, {name: "巩义市"}, {name: "新郑市"}, {name: "新密市"}, {name: "登封市"}, {name: "荥阳市"}, {name: "中牟县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "中原区"}, {name: "金水区"}, {name: "二七区"}, {name: "管城"}, {name: "上街区"}, {name: "惠济区"}, {name: "巩义市"}, {name: "新郑市"}, {name: "新密市"}, {name: "登封市"}, {name: "荥阳市"}, {name: "中牟县"}, {name: "其他"}],
 						type: 0
 					},
 					{
 						name: "开封",
-						sub: [{name: "请选择"}, {name: "鼓楼区"}, {name: "龙亭区"}, {name: "顺河回族区"}, {name: "禹王台区"}, {name: "金明区"}, {name: "开封县"}, {name: "尉氏县"}, {name: "兰考县"}, {name: "杞县"}, {name: "通许县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "鼓楼区"}, {name: "龙亭区"}, {name: "顺河"}, {name: "禹王台区"}, {name: "金明区"}, {name: "开封县"}, {name: "尉氏县"}, {name: "兰考县"}, {name: "杞县"}, {name: "通许县"}, {name: "其他"}],
 						type: 0
 					},
 					{
 						name: "洛阳",
-						sub: [{name: "请选择"}, {name: "西工区"}, {name: "老城区"}, {name: "涧西区"}, {name: "瀍河回族区"}, {name: "洛龙区"}, {name: "吉利区"}, {name: "偃师市"}, {name: "孟津县"}, {name: "汝阳县"}, {name: "伊川县"}, {name: "洛宁县"}, {name: "嵩县"}, {name: "宜阳县"}, {name: "新安县"}, {name: "栾川县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "西工区"}, {name: "老城区"}, {name: "涧西区"}, {name: "瀍河"}, {name: "洛龙区"}, {name: "吉利区"}, {name: "偃师市"}, {name: "孟津县"}, {name: "汝阳县"}, {name: "伊川县"}, {name: "洛宁县"}, {name: "嵩县"}, {name: "宜阳县"}, {name: "新安县"}, {name: "栾川县"}, {name: "其他"}],
 						type: 0
 					},
 					{
@@ -807,7 +807,7 @@
 					},
 					{
 						name: "四平",
-						sub: [{name: "请选择"}, {name: "铁西区"}, {name: "铁东区"}, {name: "公主岭市"}, {name: "双辽市"}, {name: "梨树县"}, {name: "伊通满族自治县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "铁西区"}, {name: "铁东区"}, {name: "公主岭市"}, {name: "双辽市"}, {name: "梨树县"}, {name: "伊通"}, {name: "其他"}],
 						type: 0
 					},
 					{
@@ -822,12 +822,12 @@
 					},
 					{
 						name: "白山",
-						sub: [{name: "请选择"}, {name: "八道江区"}, {name: "江源区"}, {name: "临江市"}, {name: "靖宇县"}, {name: "抚松县"}, {name: "长白朝鲜族自治县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "八道江区"}, {name: "江源区"}, {name: "临江市"}, {name: "靖宇县"}, {name: "抚松县"}, {name: "长白"}, {name: "其他"}],
 						type: 0
 					},
 					{
 						name: "松原",
-						sub: [{name: "请选择"}, {name: "宁江区"}, {name: "乾安县"}, {name: "长岭县"}, {name: "扶余县"}, {name: "前郭尔罗斯蒙古族自治县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "宁江区"}, {name: "乾安县"}, {name: "长岭县"}, {name: "扶余县"}, {name: "前郭尔罗斯"}, {name: "其他"}],
 						type: 0
 					},
 					{
@@ -836,7 +836,7 @@
 						type: 0
 					},
 					{
-						name: "延边朝鲜族自治州",
+						name: "延边",
 						sub: [{name: "请选择"}, {name: "延吉市"}, {name: "图们市"}, {name: "敦化市"}, {name: "龙井市"}, {name: "珲春市"}, {name: "和龙市"}, {name: "安图县"}, {name: "汪清县"}, {name: "其他"}],
 						type: 0
 					},
@@ -853,7 +853,7 @@
 					},
 					{
 						name: "齐齐哈尔",
-						sub: [{name: "请选择"}, {name: "龙沙区"}, {name: "昂昂溪区"}, {name: "铁锋区"}, {name: "建华区"}, {name: "富拉尔基区"}, {name: "碾子山区"}, {name: "梅里斯达斡尔族区"}, {name: "讷河市"}, {name: "富裕县"}, {name: "拜泉县"}, {name: "甘南县"}, {name: "依安县"}, {name: "克山县"}, {name: "泰来县"}, {name: "克东县"}, {name: "龙江县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "龙沙区"}, {name: "昂昂溪区"}, {name: "铁锋区"}, {name: "建华区"}, {name: "富拉尔基区"}, {name: "碾子山区"}, {name: "梅里"}, {name: "讷河市"}, {name: "富裕县"}, {name: "拜泉县"}, {name: "甘南县"}, {name: "依安县"}, {name: "克山县"}, {name: "泰来县"}, {name: "克东县"}, {name: "龙江县"}, {name: "其他"}],
 						type: 0
 					},
 					{
@@ -873,7 +873,7 @@
 					},
 					{
 						name: "大庆",
-						sub: [{name: "请选择"}, {name: "萨尔图区"}, {name: "红岗区"}, {name: "龙凤区"}, {name: "让胡路区"}, {name: "大同区"}, {name: "林甸县"}, {name: "肇州县"}, {name: "肇源县"}, {name: "杜尔伯特蒙古族自治县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "萨尔图区"}, {name: "红岗区"}, {name: "龙凤区"}, {name: "让胡路区"}, {name: "大同区"}, {name: "林甸县"}, {name: "肇州县"}, {name: "肇源县"}, {name: "杜尔伯特"}, {name: "其他"}],
 						type: 0
 					},
 					{
@@ -898,7 +898,7 @@
 					},
 					{
 						name: "黑河",
-						sub: [{name: "请选择"}, {name: "爱辉区"}, {name: "北安市"}, {name: "五大连池市"}, {name: "逊克县"}, {name: "嫩江县"}, {name: "孙吴县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "爱辉区"}, {name: "北安市"}, {name: "五大连池"}, {name: "逊克县"}, {name: "嫩江县"}, {name: "孙吴县"}, {name: "其他"}],
 						type: 0
 					},
 					{
@@ -907,8 +907,8 @@
 						type: 0
 					},
 					{
-						name: "大兴安岭地区",
-						sub: [{name: "请选择"}, {name: "呼玛县"}, {name: "塔河县"}, {name: "漠河县"}, {name: "大兴安岭辖区"}, {name: "其他"}],
+						name: "大兴安岭",
+						sub: [{name: "请选择"}, {name: "呼玛县"}, {name: "塔河县"}, {name: "漠河县"}, {name: "大兴安岭"}, {name: "其他"}],
 						type: 0
 					},
 					{name: "其他"}],
@@ -924,7 +924,7 @@
 					},
 					{
 						name: "包头",
-						sub: [{name: "请选择"}, {name: "昆都仑区"}, {name: "青山区"}, {name: "东河区"}, {name: "九原区"}, {name: "石拐区"}, {name: "白云矿区"}, {name: "固阳县"}, {name: "土默特右旗"}, {name: "达尔罕茂明安联合旗"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "昆都仑区"}, {name: "青山区"}, {name: "东河区"}, {name: "九原区"}, {name: "石拐区"}, {name: "白云矿区"}, {name: "固阳县"}, {name: "土默特右旗"}, {name: "达尔罕"}, {name: "其他"}],
 						type: 0
 					},
 					{
@@ -934,47 +934,47 @@
 					},
 					{
 						name: "赤峰",
-						sub: [{name: "请选择"}, {name: "红山区"}, {name: "元宝山区"}, {name: "松山区"}, {name: "宁城县"}, {name: "林西县"}, {name: "喀喇沁旗"}, {name: "巴林左旗"}, {name: "敖汉旗"}, {name: "阿鲁科尔沁旗"}, {name: "翁牛特旗"}, {name: "克什克腾旗"}, {name: "巴林右旗"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "红山区"}, {name: "元宝山区"}, {name: "松山区"}, {name: "宁城县"}, {name: "林西县"}, {name: "喀喇沁旗"}, {name: "巴林左旗"}, {name: "敖汉旗"}, {name: "阿鲁科尔"}, {name: "翁牛特旗"}, {name: "克什克腾旗"}, {name: "巴林右旗"}, {name: "其他"}],
 						type: 0
 					},
 					{
 						name: "通辽",
-						sub: [{name: "请选择"}, {name: "科尔沁区"}, {name: "霍林郭勒市"}, {name: "开鲁县"}, {name: "科尔沁左翼中旗"}, {name: "科尔沁左翼后旗"}, {name: "库伦旗"}, {name: "奈曼旗"}, {name: "扎鲁特旗"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "科尔沁区"}, {name: "霍林"}, {name: "开鲁县"}, {name: "科尔中旗"}, {name: "科尔后旗"}, {name: "库伦旗"}, {name: "奈曼旗"}, {name: "扎鲁特旗"}, {name: "其他"}],
 						type: 0
 					},
 					{
 						name: "鄂尔多斯",
-						sub: [{name: "请选择"}, {name: "东胜区"}, {name: "准格尔旗"}, {name: "乌审旗"}, {name: "伊金霍洛旗"}, {name: "鄂托克旗"}, {name: "鄂托克前旗"}, {name: "杭锦旗"}, {name: "达拉特旗"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "东胜区"}, {name: "准格尔旗"}, {name: "乌审旗"}, {name: "伊金霍洛"}, {name: "鄂托克旗"}, {name: "鄂托克前"}, {name: "杭锦旗"}, {name: "达拉特旗"}, {name: "其他"}],
 						type: 0
 					},
 					{
 						name: "呼伦贝尔",
-						sub: [{name: "请选择"}, {name: "海拉尔区"}, {name: "满洲里市"}, {name: "牙克石市"}, {name: "扎兰屯市"}, {name: "根河市"}, {name: "额尔古纳市"}, {name: "陈巴尔虎旗"}, {name: "阿荣旗"}, {name: "新巴尔虎左旗"}, {name: "新巴尔虎右旗"}, {name: "鄂伦春自治旗"}, {name: "莫力达瓦达斡尔族自治旗"}, {name: "鄂温克族自治旗"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "海拉尔区"}, {name: "满洲里市"}, {name: "牙克石市"}, {name: "扎兰屯市"}, {name: "根河市"}, {name: "额尔古纳"}, {name: "陈巴尔虎"}, {name: "阿荣旗"}, {name: "新巴左旗"}, {name: "新巴右旗"}, {name: "鄂伦春"}, {name: "莫力达"}, {name: "鄂温"}, {name: "其他"}],
 						type: 0
 					},
 					{
 						name: "巴彦淖尔",
-						sub: [{name: "请选择"}, {name: "临河区"}, {name: "五原县"}, {name: "磴口县"}, {name: "杭锦后旗"}, {name: "乌拉特中旗"}, {name: "乌拉特前旗"}, {name: "乌拉特后旗"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "临河区"}, {name: "五原县"}, {name: "磴口县"}, {name: "杭锦后旗"}, {name: "乌拉特中"}, {name: "乌拉特前"}, {name: "乌拉特后"}, {name: "其他"}],
 						type: 0
 					},
 					{
 						name: "乌兰察布",
-						sub: [{name: "请选择"}, {name: "集宁区"}, {name: "丰镇市"}, {name: "兴和县"}, {name: "卓资县"}, {name: "商都县"}, {name: "凉城县"}, {name: "化德县"}, {name: "四子王旗"}, {name: "察哈尔右翼前旗"}, {name: "察哈尔右翼中旗"}, {name: "察哈尔右翼后旗"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "集宁区"}, {name: "丰镇市"}, {name: "兴和县"}, {name: "卓资县"}, {name: "商都县"}, {name: "凉城县"}, {name: "化德县"}, {name: "四子王旗"}, {name: "察哈尔前旗"}, {name: "察哈尔中旗"}, {name: "察哈尔后旗"}, {name: "其他"}],
 						type: 0
 					},
 					{
-						name: "锡林郭勒盟",
-						sub: [{name: "请选择"}, {name: "锡林浩特市"}, {name: "二连浩特市"}, {name: "多伦县"}, {name: "阿巴嘎旗"}, {name: "西乌珠穆沁旗"}, {name: "东乌珠穆沁旗"}, {name: "苏尼特左旗"}, {name: "苏尼特右旗"}, {name: "太仆寺旗"}, {name: "正镶白旗"}, {name: "正蓝旗"}, {name: "镶黄旗"}, {name: "其他"}],
+						name: "锡林郭",
+						sub: [{name: "请选择"}, {name: "锡林浩特"}, {name: "二连浩特"}, {name: "多伦县"}, {name: "阿巴嘎旗"}, {name: "西乌珠穆"}, {name: "东乌珠穆"}, {name: "苏尼特左旗"}, {name: "苏尼特右旗"}, {name: "太仆寺旗"}, {name: "正镶白旗"}, {name: "正蓝旗"}, {name: "镶黄旗"}, {name: "其他"}],
 						type: 0
 					},
 					{
 						name: "兴安盟",
-						sub: [{name: "请选择"}, {name: "乌兰浩特市"}, {name: "阿尔山市"}, {name: "突泉县"}, {name: "扎赉特旗"}, {name: "科尔沁右翼前旗"}, {name: "科尔沁右翼中旗"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "乌兰浩特"}, {name: "阿尔山市"}, {name: "突泉县"}, {name: "扎赉特旗"}, {name: "科尔前旗"}, {name: "科尔中旗"}, {name: "其他"}],
 						type: 0
 					},
 					{
 						name: "阿拉善盟",
-						sub: [{name: "请选择"}, {name: "阿拉善左旗"}, {name: "阿拉善右旗"}, {name: "额济纳旗"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "阿拉善左"}, {name: "阿拉善右"}, {name: "额济纳旗"}, {name: "其他"}],
 						type: 0
 					},
 					{name: "其他"}],
@@ -1217,7 +1217,7 @@
 					},
 					{
 						name: "丽水",
-						sub: [{name: "请选择"}, {name: "莲都区"}, {name: "龙泉市"}, {name: "缙云县"}, {name: "青田县"}, {name: "云和县"}, {name: "遂昌县"}, {name: "松阳县"}, {name: "庆元县"}, {name: "景宁畲族自治县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "莲都区"}, {name: "龙泉市"}, {name: "缙云县"}, {name: "青田县"}, {name: "云和县"}, {name: "遂昌县"}, {name: "松阳县"}, {name: "庆元县"}, {name: "景宁"}, {name: "其他"}],
 						type: 0
 					},
 					{name: "其他"}],
@@ -1299,7 +1299,7 @@
 					},
 					{
 						name: "邵阳",
-						sub: [{name: "请选择"}, {name: "双清区"}, {name: "大祥区"}, {name: "北塔区"}, {name: "武冈市"}, {name: "邵东县"}, {name: "洞口县"}, {name: "新邵县"}, {name: "绥宁县"}, {name: "新宁县"}, {name: "邵阳县"}, {name: "隆回县"}, {name: "城步苗族自治县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "双清区"}, {name: "大祥区"}, {name: "北塔区"}, {name: "武冈市"}, {name: "邵东县"}, {name: "洞口县"}, {name: "新邵县"}, {name: "绥宁县"}, {name: "新宁县"}, {name: "邵阳县"}, {name: "隆回县"}, {name: "城步"}, {name: "其他"}],
 						type: 0
 					},
 					{
@@ -1329,12 +1329,12 @@
 					},
 					{
 						name: "永州",
-						sub: [{name: "请选择"}, {name: "冷水滩区"}, {name: "零陵区"}, {name: "祁阳县"}, {name: "蓝山县"}, {name: "宁远县"}, {name: "新田县"}, {name: "东安县"}, {name: "江永县"}, {name: "道县"}, {name: "双牌县"}, {name: "江华瑶族自治县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "冷水滩区"}, {name: "零陵区"}, {name: "祁阳县"}, {name: "蓝山县"}, {name: "宁远县"}, {name: "新田县"}, {name: "东安县"}, {name: "江永县"}, {name: "道县"}, {name: "双牌县"}, {name: "江华"}, {name: "其他"}],
 						type: 0
 					},
 					{
 						name: "怀化",
-						sub: [{name: "请选择"}, {name: "鹤城区"}, {name: "洪江市"}, {name: "会同县"}, {name: "沅陵县"}, {name: "辰溪县"}, {name: "溆浦县"}, {name: "中方县"}, {name: "新晃侗族自治县"}, {name: "芷江侗族自治县"}, {name: "通道侗族自治县"}, {name: "靖州苗族侗族自治县"}, {name: "麻阳苗族自治县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "鹤城区"}, {name: "洪江市"}, {name: "会同县"}, {name: "沅陵县"}, {name: "辰溪县"}, {name: "溆浦县"}, {name: "中方县"}, {name: "新晃"}, {name: "芷江"}, {name: "通道"}, {name: "靖州"}, {name: "麻阳"}, {name: "其他"}],
 						type: 0
 					},
 					{
@@ -1343,7 +1343,7 @@
 						type: 0
 					},
 					{
-						name: "湘西土家族苗族自治州",
+						name: "湘西",
 						sub: [{name: "请选择"}, {name: "吉首市"}, {name: "古丈县"}, {name: "龙山县"}, {name: "永顺县"}, {name: "凤凰县"}, {name: "泸溪县"}, {name: "保靖县"}, {name: "花垣县"}, {name: "其他"}],
 						type: 0
 					},
@@ -1360,12 +1360,12 @@
 					},
 					{
 						name: "柳州",
-						sub: [{name: "请选择"}, {name: "城中区"}, {name: "鱼峰区"}, {name: "柳北区"}, {name: "柳南区"}, {name: "柳江县"}, {name: "柳城县"}, {name: "鹿寨县"}, {name: "融安县"}, {name: "融水苗族自治县"}, {name: "三江侗族自治县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "城中区"}, {name: "鱼峰区"}, {name: "柳北区"}, {name: "柳南区"}, {name: "柳江县"}, {name: "柳城县"}, {name: "鹿寨县"}, {name: "融安县"}, {name: "融水"}, {name: "三江"}, {name: "其他"}],
 						type: 0
 					},
 					{
 						name: "桂林",
-						sub: [{name: "请选择"}, {name: "象山区"}, {name: "秀峰区"}, {name: "叠彩区"}, {name: "七星区"}, {name: "雁山区"}, {name: "阳朔县"}, {name: "临桂县"}, {name: "灵川县"}, {name: "全州县"}, {name: "平乐县"}, {name: "兴安县"}, {name: "灌阳县"}, {name: "荔浦县"}, {name: "资源县"}, {name: "永福县"}, {name: "龙胜各族自治县"}, {name: "恭城瑶族自治县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "象山区"}, {name: "秀峰区"}, {name: "叠彩区"}, {name: "七星区"}, {name: "雁山区"}, {name: "阳朔县"}, {name: "临桂县"}, {name: "灵川县"}, {name: "全州县"}, {name: "平乐县"}, {name: "兴安县"}, {name: "灌阳县"}, {name: "荔浦县"}, {name: "资源县"}, {name: "永福县"}, {name: "龙胜"}, {name: "恭城"}, {name: "其他"}],
 						type: 0
 					},
 					{
@@ -1400,22 +1400,22 @@
 					},
 					{
 						name: "百色",
-						sub: [{name: "请选择"}, {name: "右江区"}, {name: "凌云县"}, {name: "平果县"}, {name: "西林县"}, {name: "乐业县"}, {name: "德保县"}, {name: "田林县"}, {name: "田阳县"}, {name: "靖西县"}, {name: "田东县"}, {name: "那坡县"}, {name: "隆林各族自治县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "右江区"}, {name: "凌云县"}, {name: "平果县"}, {name: "西林县"}, {name: "乐业县"}, {name: "德保县"}, {name: "田林县"}, {name: "田阳县"}, {name: "靖西县"}, {name: "田东县"}, {name: "那坡县"}, {name: "隆林"}, {name: "其他"}],
 						type: 0
 					},
 					{
 						name: "贺州",
-						sub: [{name: "请选择"}, {name: "八步区"}, {name: "钟山县"}, {name: "昭平县"}, {name: "富川瑶族自治县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "八步区"}, {name: "钟山县"}, {name: "昭平县"}, {name: "富川"}, {name: "其他"}],
 						type: 0
 					},
 					{
 						name: "河池",
-						sub: [{name: "请选择"}, {name: "金城江区"}, {name: "宜州市"}, {name: "天峨县"}, {name: "凤山县"}, {name: "南丹县"}, {name: "东兰县"}, {name: "都安瑶族自治县"}, {name: "罗城仫佬族自治县"}, {name: "巴马瑶族自治县"}, {name: "环江毛南族自治县"}, {name: "大化瑶族自治县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "金城江区"}, {name: "宜州市"}, {name: "天峨县"}, {name: "凤山县"}, {name: "南丹县"}, {name: "东兰县"}, {name: "都安"}, {name: "罗城仫"}, {name: "巴马"}, {name: "环江"}, {name: "大化"}, {name: "其他"}],
 						type: 0
 					},
 					{
 						name: "来宾",
-						sub: [{name: "请选择"}, {name: "兴宾区"}, {name: "合山市"}, {name: "象州县"}, {name: "武宣县"}, {name: "忻城县"}, {name: "金秀瑶族自治县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "兴宾区"}, {name: "合山市"}, {name: "象州县"}, {name: "武宣县"}, {name: "忻城县"}, {name: "金秀"}, {name: "其他"}],
 						type: 0
 					},
 					{
@@ -1502,37 +1502,37 @@
 					},
 					{
 						name: "遵义",
-						sub: [{name: "请选择"}, {name: "红花岗区"}, {name: "汇川区"}, {name: "赤水市"}, {name: "仁怀市"}, {name: "遵义县"}, {name: "绥阳县"}, {name: "桐梓县"}, {name: "习水县"}, {name: "凤冈县"}, {name: "正安县"}, {name: "余庆县"}, {name: "湄潭县"}, {name: "道真仡佬族苗族自治县"}, {name: "务川仡佬族苗族自治县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "红花岗区"}, {name: "汇川区"}, {name: "赤水市"}, {name: "仁怀市"}, {name: "遵义县"}, {name: "绥阳县"}, {name: "桐梓县"}, {name: "习水县"}, {name: "凤冈县"}, {name: "正安县"}, {name: "余庆县"}, {name: "湄潭县"}, {name: "道真仡"}, {name: "务川"}, {name: "其他"}],
 						type: 0
 					},
 					{
 						name: "安顺",
-						sub: [{name: "请选择"}, {name: "西秀区"}, {name: "普定县"}, {name: "平坝县"}, {name: "镇宁布依族苗族自治县"}, {name: "紫云苗族布依族自治县"}, {name: "关岭布依族苗族自治县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "西秀区"}, {name: "普定县"}, {name: "平坝县"}, {name: "镇宁"}, {name: "紫云"}, {name: "关岭"}, {name: "其他"}],
 						type: 0
 					},
 					{
 						name: "铜仁地区",
-						sub: [{name: "请选择"}, {name: "铜仁市"}, {name: "德江县"}, {name: "江口县"}, {name: "思南县"}, {name: "石阡县"}, {name: "玉屏侗族自治县"}, {name: "松桃苗族自治县"}, {name: "印江土家族苗族自治县"}, {name: "沿河土家族自治县"}, {name: "万山特区"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "铜仁市"}, {name: "德江县"}, {name: "江口县"}, {name: "思南县"}, {name: "石阡县"}, {name: "玉屏"}, {name: "松桃"}, {name: "印江"}, {name: "沿河"}, {name: "万山特区"}, {name: "其他"}],
 						type: 0
 					},
 					{
 						name: "毕节地区",
-						sub: [{name: "请选择"}, {name: "毕节市"}, {name: "黔西县"}, {name: "大方县"}, {name: "织金县"}, {name: "金沙县"}, {name: "赫章县"}, {name: "纳雍县"}, {name: "威宁彝族回族苗族自治县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "毕节市"}, {name: "黔西县"}, {name: "大方县"}, {name: "织金县"}, {name: "金沙县"}, {name: "赫章县"}, {name: "纳雍县"}, {name: "威宁彝族"}, {name: "其他"}],
 						type: 0
 					},
 					{
-						name: "黔西南布依族苗族自治州",
+						name: "黔西南",
 						sub: [{name: "请选择"}, {name: "兴义市"}, {name: "望谟县"}, {name: "兴仁县"}, {name: "普安县"}, {name: "册亨县"}, {name: "晴隆县"}, {name: "贞丰县"}, {name: "安龙县"}, {name: "其他"}],
 						type: 0
 					},
 					{
-						name: "黔东南苗族侗族自治州",
+						name: "黔东南",
 						sub: [{name: "请选择"}, {name: "凯里市"}, {name: "施秉县"}, {name: "从江县"}, {name: "锦屏县"}, {name: "镇远县"}, {name: "麻江县"}, {name: "台江县"}, {name: "天柱县"}, {name: "黄平县"}, {name: "榕江县"}, {name: "剑河县"}, {name: "三穗县"}, {name: "雷山县"}, {name: "黎平县"}, {name: "岑巩县"}, {name: "丹寨县"}, {name: "其他"}],
 						type: 0
 					},
 					{
-						name: "黔南布依族苗族自治州",
-						sub: [{name: "请选择"}, {name: "都匀市"}, {name: "福泉市"}, {name: "贵定县"}, {name: "惠水县"}, {name: "罗甸县"}, {name: "瓮安县"}, {name: "荔波县"}, {name: "龙里县"}, {name: "平塘县"}, {name: "长顺县"}, {name: "独山县"}, {name: "三都水族自治县"}, {name: "其他"}],
+						name: "黔南",
+						sub: [{name: "请选择"}, {name: "都匀市"}, {name: "福泉市"}, {name: "贵定县"}, {name: "惠水县"}, {name: "罗甸县"}, {name: "瓮安县"}, {name: "荔波县"}, {name: "龙里县"}, {name: "平塘县"}, {name: "长顺县"}, {name: "独山县"}, {name: "三都"}, {name: "其他"}],
 						type: 0
 					},
 					{name: "其他"}],
@@ -1543,7 +1543,7 @@
 				sub: [{name: "请选择", sub: []},
 					{
 						name: "昆明",
-						sub: [{name: "请选择"}, {name: "盘龙区"}, {name: "五华区"}, {name: "官渡区"}, {name: "西山区"}, {name: "东川区"}, {name: "安宁市"}, {name: "呈贡县"}, {name: "晋宁县"}, {name: "富民县"}, {name: "宜良县"}, {name: "嵩明县"}, {name: "石林彝族自治县"}, {name: "禄劝彝族苗族自治县"}, {name: "寻甸回族彝族自治县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "盘龙区"}, {name: "五华区"}, {name: "官渡区"}, {name: "西山区"}, {name: "东川区"}, {name: "安宁市"}, {name: "呈贡县"}, {name: "晋宁县"}, {name: "富民县"}, {name: "宜良县"}, {name: "嵩明县"}, {name: "石林"}, {name: "禄劝"}, {name: "寻甸"}, {name: "其他"}],
 						type: 0
 					},
 					{
@@ -1553,7 +1553,7 @@
 					},
 					{
 						name: "玉溪",
-						sub: [{name: "请选择"}, {name: "红塔区"}, {name: "江川县"}, {name: "澄江县"}, {name: "通海县"}, {name: "华宁县"}, {name: "易门县"}, {name: "峨山彝族自治县"}, {name: "新平彝族傣族自治县"}, {name: "元江哈尼族彝族傣族自治县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "红塔区"}, {name: "江川县"}, {name: "澄江县"}, {name: "通海县"}, {name: "华宁县"}, {name: "易门县"}, {name: "峨山"}, {name: "新平"}, {name: "元江"}, {name: "其他"}],
 						type: 0
 					},
 					{
@@ -1568,56 +1568,56 @@
 					},
 					{
 						name: "丽江",
-						sub: [{name: "请选择"}, {name: "古城区"}, {name: "永胜县"}, {name: "华坪县"}, {name: "玉龙纳西族自治县"}, {name: "宁蒗彝族自治县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "古城区"}, {name: "永胜县"}, {name: "华坪县"}, {name: "玉龙纳"}, {name: "宁蒗"}, {name: "其他"}],
 						type: 0
 					},
 					{
 						name: "普洱",
-						sub: [{name: "请选择"}, {name: "思茅区"}, {name: "普洱哈尼族彝族自治县"}, {name: "墨江哈尼族自治县"}, {name: "景东彝族自治县"}, {name: "景谷傣族彝族自治县"}, {name: "镇沅彝族哈尼族拉祜族自治县"}, {name: "江城哈尼族彝族自治县"}, {name: "孟连傣族拉祜族佤族自治县"}, {name: "澜沧拉祜族自治县"}, {name: "西盟佤族自治县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "思茅区"}, {name: "普洱"}, {name: "墨江"}, {name: "景东"}, {name: "景谷"}, {name: "镇沅"}, {name: "江城"}, {name: "孟连"}, {name: "澜沧"}, {name: "西盟"}, {name: "其他"}],
 						type: 0
 					},
 					{
 						name: "临沧",
-						sub: [{name: "请选择"}, {name: "临翔区"}, {name: "凤庆县"}, {name: "云县"}, {name: "永德县"}, {name: "镇康县"}, {name: "双江拉祜族佤族布朗族傣族自治县"}, {name: "耿马傣族佤族自治县"}, {name: "沧源佤族自治县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "临翔区"}, {name: "凤庆县"}, {name: "云县"}, {name: "永德县"}, {name: "镇康县"}, {name: "双江拉祜"}, {name: "耿马"}, {name: "沧源"}, {name: "其他"}],
 						type: 0
 					},
 					{
-						name: "德宏傣族景颇族自治州",
+						name: "德宏",
 						sub: [{name: "请选择"}, {name: "潞西市"}, {name: "瑞丽市"}, {name: "梁河县"}, {name: "盈江县"}, {name: "陇川县"}, {name: "其他"}],
 						type: 0
 					},
 					{
-						name: "怒江傈僳族自治州",
-						sub: [{name: "请选择"}, {name: "泸水县"}, {name: "福贡县"}, {name: "贡山独龙族怒族自治县"}, {name: "兰坪白族普米族自治县"}, {name: "其他"}],
+						name: "怒江",
+						sub: [{name: "请选择"}, {name: "泸水县"}, {name: "福贡县"}, {name: "贡山"}, {name: "兰坪"}, {name: "其他"}],
 						type: 0
 					},
 					{
-						name: "迪庆藏族自治州",
-						sub: [{name: "请选择"}, {name: "香格里拉县"}, {name: "德钦县"}, {name: "维西傈僳族自治县"}, {name: "其他"}],
+						name: "迪庆",
+						sub: [{name: "请选择"}, {name: "香格里拉"}, {name: "德钦县"}, {name: "维西"}, {name: "其他"}],
 						type: 0
 					},
 					{
-						name: "大理白族自治州",
-						sub: [{name: "请选择"}, {name: "大理市"}, {name: "祥云县"}, {name: "宾川县"}, {name: "弥渡县"}, {name: "永平县"}, {name: "云龙县"}, {name: "洱源县"}, {name: "剑川县"}, {name: "鹤庆县"}, {name: "漾濞彝族自治县"}, {name: "南涧彝族自治县"}, {name: "巍山彝族回族自治县"}, {name: "其他"}],
+						name: "大理",
+						sub: [{name: "请选择"}, {name: "大理市"}, {name: "祥云县"}, {name: "宾川县"}, {name: "弥渡县"}, {name: "永平县"}, {name: "云龙县"}, {name: "洱源县"}, {name: "剑川县"}, {name: "鹤庆县"}, {name: "漾濞"}, {name: "南涧"}, {name: "巍山"}, {name: "其他"}],
 						type: 0
 					},
 					{
-						name: "楚雄彝族自治州",
+						name: "楚雄",
 						sub: [{name: "请选择"}, {name: "楚雄市"}, {name: "双柏县"}, {name: "牟定县"}, {name: "南华县"}, {name: "姚安县"}, {name: "大姚县"}, {name: "永仁县"}, {name: "元谋县"}, {name: "武定县"}, {name: "禄丰县"}, {name: "其他"}],
 						type: 0
 					},
 					{
-						name: "红河哈尼族彝族自治州",
-						sub: [{name: "请选择"}, {name: "蒙自县"}, {name: "个旧市"}, {name: "开远市"}, {name: "绿春县"}, {name: "建水县"}, {name: "石屏县"}, {name: "弥勒县"}, {name: "泸西县"}, {name: "元阳县"}, {name: "红河县"}, {name: "金平苗族瑶族傣族自治县"}, {name: "河口瑶族自治县"}, {name: "屏边苗族自治县"}, {name: "其他"}],
+						name: "红河",
+						sub: [{name: "请选择"}, {name: "蒙自县"}, {name: "个旧市"}, {name: "开远市"}, {name: "绿春县"}, {name: "建水县"}, {name: "石屏县"}, {name: "弥勒县"}, {name: "泸西县"}, {name: "元阳县"}, {name: "红河县"}, {name: "金平"}, {name: "河口"}, {name: "屏边"}, {name: "其他"}],
 						type: 0
 					},
 					{
-						name: "文山壮族苗族自治州",
+						name: "文山",
 						sub: [{name: "请选择"}, {name: "文山县"}, {name: "砚山县"}, {name: "西畴县"}, {name: "麻栗坡县"}, {name: "马关县"}, {name: "丘北县"}, {name: "广南县"}, {name: "富宁县"}, {name: "其他"}],
 						type: 0
 					},
 					{
-						name: "西双版纳傣族自治州",
+						name: "西双版纳",
 						sub: [{name: "请选择"}, {name: "景洪市"}, {name: "勐海县"}, {name: "勐腊县"}, {name: "其他"}],
 						type: 0
 					},
@@ -1629,7 +1629,7 @@
 				sub: [{name: "请选择", sub: []},
 					{
 						name: "拉萨",
-						sub: [{name: "请选择"}, {name: "城关区"}, {name: "林周县"}, {name: "当雄县"}, {name: "尼木县"}, {name: "曲水县"}, {name: "堆龙德庆县"}, {name: "达孜县"}, {name: "墨竹工卡县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "城关区"}, {name: "林周县"}, {name: "当雄县"}, {name: "尼木县"}, {name: "曲水县"}, {name: "堆龙"}, {name: "达孜县"}, {name: "墨竹工卡县"}, {name: "其他"}],
 						type: 0
 					},
 					{
@@ -1644,7 +1644,7 @@
 					},
 					{
 						name: "林芝地区",
-						sub: [{name: "请选择"}, {name: "林芝县"}, {name: "工布江达县"}, {name: "米林县"}, {name: "墨脱县"}, {name: "波密县"}, {name: "察隅县"}, {name: "朗县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "林芝县"}, {name: "工布"}, {name: "米林县"}, {name: "墨脱县"}, {name: "波密县"}, {name: "察隅县"}, {name: "朗县"}, {name: "其他"}],
 						type: 0
 					},
 					{
@@ -1653,7 +1653,7 @@
 						type: 0
 					},
 					{
-						name: "日喀则地区",
+						name: "日喀则",
 						sub: [{name: "请选择"}, {name: "日喀则市"}, {name: "南木林县"}, {name: "江孜县"}, {name: "定日县"}, {name: "萨迦县"}, {name: "拉孜县"}, {name: "昂仁县"}, {name: "谢通门县"}, {name: "白朗县"}, {name: "仁布县"}, {name: "康马县"}, {name: "定结县"}, {name: "仲巴县"}, {name: "亚东县"}, {name: "吉隆县"}, {name: "聂拉木县"}, {name: "萨嘎县"}, {name: "岗巴县"}, {name: "其他"}],
 						type: 0
 					},
@@ -1729,32 +1729,32 @@
 						type: 0
 					},
 					{
-						name: "白沙黎族自治县",
+						name: "白沙",
 						sub: [],
 						type: 0
 					},
 					{
-						name: "昌江黎族自治县",
+						name: "昌江",
 						sub: [],
 						type: 0
 					},
 					{
-						name: "乐东黎族自治县",
+						name: "乐东",
 						sub: [],
 						type: 0
 					},
 					{
-						name: "陵水黎族自治县",
+						name: "陵水",
 						sub: [],
 						type: 0
 					},
 					{
-						name: "保亭黎族苗族自治县",
+						name: "保亭",
 						sub: [],
 						type: 0
 					},
 					{
-						name: "琼中黎族苗族自治县",
+						name: "琼中",
 						sub: [],
 						type: 0
 					},
@@ -1771,7 +1771,7 @@
 					},
 					{
 						name: "嘉峪关",
-						sub: [{name: "请选择"}, {name: "嘉峪关市"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "嘉峪关"}, {name: "其他"}],
 						type: 0
 					},
 					{
@@ -1786,22 +1786,22 @@
 					},
 					{
 						name: "天水",
-						sub: [{name: "请选择"}, {name: "清水县"}, {name: "秦安县"}, {name: "甘谷县"}, {name: "武山县"}, {name: "张家川回族自治县"}, {name: "北道区"}, {name: "秦城区"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "清水县"}, {name: "秦安县"}, {name: "甘谷县"}, {name: "武山县"}, {name: "张家川"}, {name: "北道区"}, {name: "秦城区"}, {name: "其他"}],
 						type: 0
 					},
 					{
 						name: "武威",
-						sub: [{name: "请选择"}, {name: "凉州区"}, {name: "民勤县"}, {name: "古浪县"}, {name: "天祝藏族自治县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "凉州区"}, {name: "民勤县"}, {name: "古浪县"}, {name: "天祝"}, {name: "其他"}],
 						type: 0
 					},
 					{
 						name: "酒泉",
-						sub: [{name: "请选择"}, {name: "肃州区"}, {name: "玉门市"}, {name: "敦煌市"}, {name: "金塔县"}, {name: "肃北蒙古族自治县"}, {name: "阿克塞哈萨克族自治县"}, {name: "安西县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "肃州区"}, {name: "玉门市"}, {name: "敦煌市"}, {name: "金塔县"}, {name: "肃北"}, {name: "阿克塞"}, {name: "安西县"}, {name: "其他"}],
 						type: 0
 					},
 					{
 						name: "张掖",
-						sub: [{name: "请选择"}, {name: "甘州区"}, {name: "民乐县"}, {name: "临泽县"}, {name: "高台县"}, {name: "山丹县"}, {name: "肃南裕固族自治县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "甘州区"}, {name: "民乐县"}, {name: "临泽县"}, {name: "高台县"}, {name: "山丹县"}, {name: "肃南裕"}, {name: "其他"}],
 						type: 0
 					},
 					{
@@ -1825,12 +1825,12 @@
 						type: 0
 					},
 					{
-						name: "临夏回族自治州",
-						sub: [{name: "请选择"}, {name: "临夏市"}, {name: "临夏县"}, {name: "康乐县"}, {name: "永靖县"}, {name: "广河县"}, {name: "和政县"}, {name: "东乡族自治县"}, {name: "积石山保安族东乡族撒拉族自治县"}, {name: "其他"}],
+						name: "临夏",
+						sub: [{name: "请选择"}, {name: "临夏市"}, {name: "临夏县"}, {name: "康乐县"}, {name: "永靖县"}, {name: "广河县"}, {name: "和政县"}, {name: "东乡族"}, {name: "积石山"}, {name: "其他"}],
 						type: 0
 					},
 					{
-						name: "甘南藏族自治州",
+						name: "甘南",
 						sub: [{name: "请选择"}, {name: "合作市"}, {name: "临潭县"}, {name: "卓尼县"}, {name: "舟曲县"}, {name: "迭部县"}, {name: "玛曲县"}, {name: "碌曲县"}, {name: "夏河县"}, {name: "其他"}],
 						type: 0
 					},
@@ -1847,7 +1847,7 @@
 					},
 					{
 						name: "石嘴山",
-						sub: [{name: "请选择"}, {name: "大武口区"}, {name: "惠农区"}, {name: "平罗县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "大武口"}, {name: "惠农区"}, {name: "平罗县"}, {name: "其他"}],
 						type: 0
 					},
 					{
@@ -1873,41 +1873,41 @@
 				sub: [{name: "请选择", sub: []},
 					{
 						name: "西宁",
-						sub: [{name: "请选择"}, {name: "城中区"}, {name: "城东区"}, {name: "城西区"}, {name: "城北区"}, {name: "湟源县"}, {name: "湟中县"}, {name: "大通回族土族自治县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "城中区"}, {name: "城东区"}, {name: "城西区"}, {name: "城北区"}, {name: "湟源县"}, {name: "湟中县"}, {name: "大通"}, {name: "其他"}],
 						type: 0
 					},
 					{
 						name: "海东地区",
-						sub: [{name: "请选择"}, {name: "平安县"}, {name: "乐都县"}, {name: "民和回族土族自治县"}, {name: "互助土族自治县"}, {name: "化隆回族自治县"}, {name: "循化撒拉族自治县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "平安县"}, {name: "乐都县"}, {name: "民和"}, {name: "互助"}, {name: "化隆"}, {name: "循化"}, {name: "其他"}],
 						type: 0
 					},
 					{
-						name: "海北藏族自治州",
-						sub: [{name: "请选择"}, {name: "海晏县"}, {name: "祁连县"}, {name: "刚察县"}, {name: "门源回族自治县"}, {name: "其他"}],
+						name: "海北",
+						sub: [{name: "请选择"}, {name: "海晏县"}, {name: "祁连县"}, {name: "刚察县"}, {name: "门源"}, {name: "其他"}],
 						type: 0
 					},
 					{
-						name: "海南藏族自治州",
+						name: "海南",
 						sub: [{name: "请选择"}, {name: "共和县"}, {name: "同德县"}, {name: "贵德县"}, {name: "兴海县"}, {name: "贵南县"}, {name: "其他"}],
 						type: 0
 					},
 					{
-						name: "黄南藏族自治州",
-						sub: [{name: "请选择"}, {name: "同仁县"}, {name: "尖扎县"}, {name: "泽库县"}, {name: "河南蒙古族自治县"}, {name: "其他"}],
+						name: "黄南",
+						sub: [{name: "请选择"}, {name: "同仁县"}, {name: "尖扎县"}, {name: "泽库县"}, {name: "河南"}, {name: "其他"}],
 						type: 0
 					},
 					{
-						name: "果洛藏族自治州",
+						name: "果洛",
 						sub: [{name: "请选择"}, {name: "玛沁县"}, {name: "班玛县"}, {name: "甘德县"}, {name: "达日县"}, {name: "久治县"}, {name: "玛多县"}, {name: "其他"}],
 						type: 0
 					},
 					{
-						name: "玉树藏族自治州",
+						name: "玉树",
 						sub: [{name: "请选择"}, {name: "玉树县"}, {name: "杂多县"}, {name: "称多县"}, {name: "治多县"}, {name: "囊谦县"}, {name: "曲麻莱县"}, {name: "其他"}],
 						type: 0
 					},
 					{
-						name: "海西蒙古族藏族自治州",
+						name: "海西",
 						sub: [{name: "请选择"}, {name: "德令哈市"}, {name: "格尔木市"}, {name: "乌兰县"}, {name: "都兰县"}, {name: "天峻县"}, {name: "其他"}],
 						type: 0
 					},
@@ -1919,22 +1919,22 @@
 				sub: [{name: "请选择", sub: []},
 					{
 						name: "乌鲁木齐",
-						sub: [{name: "请选择"}, {name: "天山区"}, {name: "沙依巴克区"}, {name: "新市区"}, {name: "水磨沟区"}, {name: "头屯河区"}, {name: "达坂城区"}, {name: "东山区"}, {name: "乌鲁木齐县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "天山区"}, {name: "沙依巴克"}, {name: "新市区"}, {name: "水磨沟区"}, {name: "头屯河区"}, {name: "达坂城区"}, {name: "东山区"}, {name: "乌鲁木齐"}, {name: "其他"}],
 						type: 0
 					},
 					{
 						name: "克拉玛依",
-						sub: [{name: "请选择"}, {name: "克拉玛依区"}, {name: "独山子区"}, {name: "白碱滩区"}, {name: "乌尔禾区"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "克拉玛依"}, {name: "独山子区"}, {name: "白碱滩区"}, {name: "乌尔禾区"}, {name: "其他"}],
 						type: 0
 					},
 					{
-						name: "吐鲁番地区",
+						name: "吐鲁番",
 						sub: [{name: "请选择"}, {name: "吐鲁番市"}, {name: "托克逊县"}, {name: "鄯善县"}, {name: "其他"}],
 						type: 0
 					},
 					{
 						name: "哈密地区",
-						sub: [{name: "请选择"}, {name: "哈密市"}, {name: "伊吾县"}, {name: "巴里坤哈萨克自治县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "哈密市"}, {name: "伊吾县"}, {name: "巴里坤"}, {name: "其他"}],
 						type: 0
 					},
 					{
@@ -1943,32 +1943,32 @@
 						type: 0
 					},
 					{
-						name: "阿克苏地区",
+						name: "阿克苏",
 						sub: [{name: "请选择"}, {name: "阿克苏市"}, {name: "温宿县"}, {name: "沙雅县"}, {name: "拜城县"}, {name: "阿瓦提县"}, {name: "库车县"}, {name: "柯坪县"}, {name: "新和县"}, {name: "乌什县"}, {name: "其他"}],
 						type: 0
 					},
 					{
 						name: "喀什地区",
-						sub: [{name: "请选择"}, {name: "喀什市"}, {name: "巴楚县"}, {name: "泽普县"}, {name: "伽师县"}, {name: "叶城县"}, {name: "岳普湖县"}, {name: "疏勒县"}, {name: "麦盖提县"}, {name: "英吉沙县"}, {name: "莎车县"}, {name: "疏附县"}, {name: "塔什库尔干塔吉克自治县"}, {name: "其他"}],
+						sub: [{name: "请选择"}, {name: "喀什市"}, {name: "巴楚县"}, {name: "泽普县"}, {name: "伽师县"}, {name: "叶城县"}, {name: "岳普湖县"}, {name: "疏勒县"}, {name: "麦盖提县"}, {name: "英吉沙县"}, {name: "莎车县"}, {name: "疏附县"}, {name: "塔什库尔"}, {name: "其他"}],
 						type: 0
 					},
 					{
-						name: "克孜勒苏柯尔克孜自治州",
+						name: "克孜勒苏",
 						sub: [{name: "请选择"}, {name: "阿图什市"}, {name: "阿合奇县"}, {name: "乌恰县"}, {name: "阿克陶县"}, {name: "其他"}],
 						type: 0
 					},
 					{
-						name: "巴音郭楞蒙古自治州",
-						sub: [{name: "请选择"}, {name: "库尔勒市"}, {name: "和静县"}, {name: "尉犁县"}, {name: "和硕县"}, {name: "且末县"}, {name: "博湖县"}, {name: "轮台县"}, {name: "若羌县"}, {name: "焉耆回族自治县"}, {name: "其他"}],
+						name: "巴音郭楞",
+						sub: [{name: "请选择"}, {name: "库尔勒市"}, {name: "和静县"}, {name: "尉犁县"}, {name: "和硕县"}, {name: "且末县"}, {name: "博湖县"}, {name: "轮台县"}, {name: "若羌县"}, {name: "焉耆"}, {name: "其他"}],
 						type: 0
 					},
 					{
-						name: "昌吉回族自治州",
-						sub: [{name: "请选择"}, {name: "昌吉市"}, {name: "阜康市"}, {name: "奇台县"}, {name: "玛纳斯县"}, {name: "吉木萨尔县"}, {name: "呼图壁县"}, {name: "木垒哈萨克自治县"}, {name: "米泉市"}, {name: "其他"}],
+						name: "昌吉",
+						sub: [{name: "请选择"}, {name: "昌吉市"}, {name: "阜康市"}, {name: "奇台县"}, {name: "玛纳斯县"}, {name: "吉木萨尔"}, {name: "呼图壁县"}, {name: "木垒"}, {name: "米泉市"}, {name: "其他"}],
 						type: 0
 					},
 					{
-						name: "博尔塔拉蒙古自治州",
+						name: "博尔塔拉",
 						sub: [{name: "请选择"}, {name: "博乐市"}, {name: "精河县"}, {name: "温泉县"}, {name: "其他"}],
 						type: 0
 					},
@@ -1993,8 +1993,8 @@
 						type: 0
 					},
 					{
-						name: "伊犁哈萨克自治州",
-						sub: [{name: "请选择"}, {name: "伊宁市"}, {name: "奎屯市"}, {name: "伊宁县"}, {name: "特克斯县"}, {name: "尼勒克县"}, {name: "昭苏县"}, {name: "新源县"}, {name: "霍城县"}, {name: "巩留县"}, {name: "察布查尔锡伯自治县"}, {name: "塔城地区"}, {name: "阿勒泰地区"}, {name: "其他"}],
+						name: "伊犁",
+						sub: [{name: "请选择"}, {name: "伊宁市"}, {name: "奎屯市"}, {name: "伊宁县"}, {name: "特克斯县"}, {name: "尼勒克县"}, {name: "昭苏县"}, {name: "新源县"}, {name: "霍城县"}, {name: "巩留县"}, {name: "察布"}, {name: "塔城地区"}, {name: "阿勒泰"}, {name: "其他"}],
 						type: 0
 					},
 					{name: "其他"}],
@@ -2007,7 +2007,7 @@
 			},
 			{
 				name: "澳门",
-				sub: [{name: "请选择"}, {name: "花地玛堂区"}, {name: "圣安多尼堂区"}, {name: "大堂区"}, {name: "望德堂区"}, {name: "风顺堂区"}, {name: "嘉模堂区"}, {name: "圣方济各堂区"}, {name: "路凼"}, {name: "其他"}],
+				sub: [{name: "请选择"}, {name: "花地玛堂区"}, {name: "圣安多尼"}, {name: "大堂区"}, {name: "望德堂区"}, {name: "风顺堂区"}, {name: "嘉模堂区"}, {name: "圣方"}, {name: "路凼"}, {name: "其他"}],
 				type: 0
 			},
 			{
@@ -2028,13 +2028,13 @@
   
 export default {
   data(){
-	return{
-		arr: arrAll,
-		prov: '北京',
-		city: '北京',
-		district: '东城区',
-		cityArr: [],
-		districtArr: []
+		return{
+			arr: arrAll,
+			prov: '北京',
+			city: '北京',
+			district: '东城区',
+			cityArr: [],
+			districtArr: []
 		}
 	},
 	methods: {
@@ -2057,7 +2057,7 @@ export default {
 				}
 			}
 			if(this.districtArr && this.districtArr.length > 0 && this.districtArr[1].name) {
-				this.district = this.districtArr[1].name;
+				this.district = this.districtArr[1].name;		
 			} else {
 				this.district = '';
 			}
@@ -2075,11 +2075,25 @@ export default {
 		city: function () {
 			this.updateDistrict();
 		}
+	},
+	mounted(){
+//		if (!window.localStorage) {
+//		    return false;
+//		  }else{
+//		  	let address_arr = window.localStorage.getItem("deliver_key")
+//			let address_obj = JSON.parse(address_arr)
+//			let address = address_obj.selectAdd
+//		  }
+//		
 	}
 }
 </script>
 <style type="text/css">
-	select{
-		border: 0;
-	}
+#example select{
+	border: 0;
+	background: transparent;
+	appearance:none;
+	-moz-appearance:none;
+	-webkit-appearance:none;
+}
 </style>

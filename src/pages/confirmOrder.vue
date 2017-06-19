@@ -14,7 +14,7 @@
 				<dt><img src="../assets/orderAddress.png"/></dt>
 				<dd class="consignee">
 					<p>收货人:&nbsp;{{addressArr.name}}<span>{{addressArr.phone}}</span></p>
-					<span>收货地址:&nbsp;{{addressArr.address}}</span>
+					<span>收货地址:&nbsp;{{addressArr.selectAdd}}{{addressArr.address}}</span>
 				</dd>
 				<dd class="order-right"><img src="../assets/confirmRight.png"/></dd>
 			</dl>
@@ -55,7 +55,7 @@
 			</div>
 		</div>
 		<!--新增收货地址开始-->
-		<div class="maskmain" v-show='Deliveryhidden' @closeDialogEvent='closeDialogHandler'>
+		<div class="maskmain" v-if='Deliveryhidden' @closeDialogEvent='closeDialogHandler'>
 			<div class="address-main">	
 				<h3 @click="close">新增收货地址</h3>
 				<div class="address-mcon">
@@ -72,6 +72,12 @@
 						</dd>
 					</dl>
 					<dl>
+						<dt>选择地址</dt>
+						<dd class="selectAddress">
+							<selectcity></selectcity>
+						</dd>
+					</dl>
+					<dl>
 						<dt>详细地址</dt>
 						<dd>
 							<input type="text" placeholder="如街道，楼层，门牌号等" v-model='address' name='address'/>
@@ -80,13 +86,13 @@
 					<dl>
 						<dt>邮政编码</dt>
 						<dd>
-							<input type="number" placeholder="邮政编码(选填)"  v-model='postCode' name='postCode'/>
+							<input type="number" placeholder="邮政编码"  v-model='postCode' name='postCode'/>
 						</dd>
 					</dl>
 					<div class="address-btn preserve" @click='reserve'>保存</div>
 				</div>
 			</div>
-			<confirmToast v-show='confirmToastHidden' @closeDialogEvent='closeDialogHandler' @closeConfirm='closeConfirmEvent'></confirmToast>
+			<confirmToast v-if='confirmToastHidden' @closeDialogEvent='closeDialogHandler' @closeConfirm='closeConfirmEvent'></confirmToast>
 		</div>
 		<!--新增收货地址结束-->
 		<!--选择收货地址开始-->
@@ -98,7 +104,7 @@
 						<dt><div class="tolley-check"></div></dt>
 			    		<dd class="consignee">
 			    				<p>收货人:&nbsp;{{addressArr.name}}<span>{{addressArr.phone}}</span></p>
-									<span>收货地址:&nbsp;{{addressArr.address}}</span>
+									<span>收货地址:&nbsp;{{addressArr.selectAdd}}{{addressArr.address}}</span>
 			    		</dd>
 			    		<dd class="order-right" @click='selectEdit'><img src="../assets/selectEdit.png"/></dd>
 					</dl>
@@ -107,7 +113,7 @@
 		</div>
 		<!--选择收货地址结束-->
 		<!--修改收货地址开始-->
-		<div class="maskmain" v-show='confirmHidden' @closeDialogEvent='closeDialogHandler'>
+		<div class="maskmain" v-if='confirmHidden' @closeDialogEvent='closeDialogHandler'>
 			<div class="address-main">	
 				<h3 @click="close">修改收货地址</h3>
 				<div class="address-mcon">
@@ -124,6 +130,12 @@
 						</dd>
 					</dl>
 					<dl>
+						<dt>选择地址</dt>
+						<dd class="selectAddress">
+							<selectcity></selectcity>
+						</dd>
+					</dl>
+					<dl>
 						<dt>详细地址</dt>
 						<dd>
 							<input type="text" placeholder="如街道，楼层，门牌号等" v-model='editAddressArr.address'/>
@@ -131,15 +143,14 @@
 					</dl>
 					<dl>
 						<dt>邮政编码</dt>
-						<dd class="">
-							<input type="number" placeholder="邮政编码(选填)" v-model='editAddressArr.postCode'/>
-							<!--<selectcity></selectcity>-->
+						<dd>
+							<input type="number" placeholder="邮政编码" v-model='editAddressArr.postCode'/>
 						</dd>
-					</dl>
+					</dl>					
 					<div class="address-btn preserve" @click='reserve1'>保存</div>
 				</div>
 			</div>
-			<confirmToast v-show='confirmToastHidden'  @closeDialogEvent='closeDialogHandler'  @closeConfirm='closeConfirmEvent'></confirmToast>
+			<confirmToast v-if='confirmToastHidden'  @closeDialogEvent='closeDialogHandler'  @closeConfirm='closeConfirmEvent'></confirmToast>
 		</div>
 		<!--修改收货地址结束-->
   </div>
@@ -172,15 +183,18 @@ export default {
  			addressArr:{
  				name:'',
 	  	  phone:'',
+	  	  selectAdd:'',
 	  	  address:'',
 	  	  postCode:''
  			},
  			editAddressArr:{
  				name:'',
 	  	  phone:'',
+	  	  selectAdd:'',
 	  	  address:'',
 	  	  postCode:''
  			},
+ 			selectAddress:[],
  			price:{
  				price:0
  			},
@@ -223,18 +237,36 @@ export default {
 			this.selecthidden = false
 			this.confirmToastHidden = false
 		},
+
 	  //保存 存localstorage，如果localstorage不为空则新增地址变为false 地址变为true 
 	  reserve(){
 	  	if (!window.localStorage) {
 	        return false
 	    } else {
+	    	//从selectCity里面取城市的值
+		  	this.selectAddress.push(this.$children[0].$el.querySelector('#selProv').value)
+		  	this.selectAddress.push(this.$children[0].$el.querySelector('#selCity').value)
+		  	this.selectAddress.push(this.$children[0].$el.querySelector('#selDistrict').value)	  	  	
+		  	let str = this.selectAddress.toString()
+		  	str = str.replace(/,/g,'')
         var address = { 
         	name: this.name, 
         	phone: this.phone,
+        	selectAdd: str,
         	address: this.address,
         	postCode: this.postCode
         } 
         var rephone = /^1[3,4,5,7,8]\d{9}$/;
+        var rePostCode =  /^[1-9][0-9]{5}$/;        
+        if(rePostCode.test(address.postCode)){
+        	address.postCode = address.postCode
+        }else{
+        	Toast({
+            message: '邮政编码格式不正确',
+            position:'top',
+          })
+            return;
+        }        
         if(rephone.test(address.phone)){
         	if(address.name!==''&&address.address!==''){
 	         	this.addNewAddressHidden = false
@@ -256,28 +288,53 @@ export default {
           })
             return;
         }
-        this.addressArr=address
         var obj_arr = JSON.stringify(address)  
         window.localStorage.setItem("deliver_key", obj_arr)
 	    }
+	    this.addressArr=address
 	    this.$emit('closeDialogEvent')
 	    this.$emit('clickEvent')
 	  },
 	  //修改收货地址保存数据
-	  reserve1(){
+	  reserve1(){ 
+	  	//从selectCity里面取城市的值		
+		  	if(this.selectAddress.length==0){		  		
+		  		this.selectAddress.push(this.$children[0].$el.querySelector('#selProv').value)
+			  	this.selectAddress.push(this.$children[0].$el.querySelector('#selCity').value)
+			  	this.selectAddress.push(this.$children[0].$el.querySelector('#selDistrict').value)
+		  	}else{
+		  		this.selectAddress.splice(0,this.selectAddress.length)
+		  		this.selectAddress.push(this.$children[0].$el.querySelector('#selProv').value)
+			  	this.selectAddress.push(this.$children[0].$el.querySelector('#selCity').value)
+			  	this.selectAddress.push(this.$children[0].$el.querySelector('#selDistrict').value)
+		  	}
+		  	
+		  	let str = this.selectAddress.toString()		  	
+		  	str = str.replace(/,/g,'')
 	  	var address1 = { 
         	name: this.addressArr.name, 
         	phone: this.addressArr.phone,
+        	selectAdd: str,
         	address: this.addressArr.address,
         	postCode: this.addressArr.postCode
-       }	  	
+     }	  	
 	  	var rephone = /^1[3,4,5,7,8]\d{9}$/;
-	  	if(rephone.test(this.addressArr.phone)){
-	    	if(this.addressArr.name!==''&&this.addressArr.address!==''){
+	  	var rePostCode =  /^[1-9][0-9]{5}$/;        
+	    if(rePostCode.test(address1.postCode)){
+	    	address1.postCode = address1.postCode
+	    }else{
+	    	Toast({
+	        message: '邮政编码格式不正确',
+	        position:'top',
+	      })
+	        return;
+	    }
+	  	if(rephone.test(address1.phone)){
+	    	if(address1.name!==''&&address1.address!==''){
          	this.confirmHidden = false
         	this.Deliveryhidden = false
         	var storage = window.localStorage
-	        var obj_arr= JSON.stringify(address1)  
+	        var obj_arr= JSON.stringify(address1) 
 	        storage.setItem("deliver_key", obj_arr)
         }else{
         	Toast({
@@ -292,7 +349,10 @@ export default {
 	        position:'top',
 	      });
 	        return;
-	    }
+	    }	    
+	    var obj_arr = JSON.stringify(address1)  
+	    window.localStorage.setItem("deliver_key", obj_arr)
+	    this.addressArr.selectAdd = address1.selectAdd
 	  },
 	  //提交订单
 	  submitOrder(){
@@ -326,9 +386,9 @@ export default {
 		    let address_obj = JSON.parse(address_arr)
 		    if(address_obj!==null){		    	
 		    	this.addressArr = address_obj
-	      	this.addNewAddressHidden = false
-	      }
-		    this.editAddressArr = this.addressArr
+	      	this.addNewAddressHidden = false	      	
+	    }		    
+		  this.editAddressArr = this.addressArr
   	},
   	loadOrdersFromBuyNow(){
   		//取直接购买的商品信息         	
@@ -346,6 +406,7 @@ export default {
 					this.price.price = this.countPrice
   	},
   	loadOrdersFromShopCart(){
+  		//取购物车的商品信息
   		let obj_arr = window.localStorage.getItem('shopcart_Key')
 	        let obj = JSON.parse(obj_arr)
 	        obj.forEach((index)=>{
@@ -382,7 +443,6 @@ export default {
 	     	this.loadDelieverAddress();
       	document.title ='确认订单'
       	this.apiPath = api.apipath
-      	//修改收货地址
     }
   }
 </script>
@@ -594,7 +654,7 @@ export default {
 	top: 0;
 	z-index: 99;
 	.address-main{
-		height: rem(342rem);
+		height: rem(392rem);
 		background:#fff;
 		width: 100%;
 		position: absolute;
@@ -624,14 +684,14 @@ export default {
 				dd{
 					width: 78%;
 					float: right;
-					margin: rem(16rem) 0;
+					margin-top: rem(14rem);
 					input{
 						width: 100%;
 						border: 0;
 					}
 				}
 				.selectAddress{
-					margin-top: rem(8rem);
+					margin-top: rem(12rem);
 					overflow: hidden;
 				}
 			}

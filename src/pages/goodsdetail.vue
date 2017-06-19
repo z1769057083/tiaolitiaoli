@@ -39,7 +39,7 @@
 		  		<router-link to='/shoppingTolley'>
 			  	  <img src="../assets/listgoodspay.png"/>
 			  	  <p>购物车 </p>
-			  	  <span v-show = 'shopingCatrDotted' @catrDotted='catrDottedEvent'></span>
+			  	  <span v-show = 'shopingCatrDotted'></span>
 		  	  </router-link>
 		  	</div>
 		  	<div class="l-mgoodscar l-mgoodsshop" @click='isRouterShop'>
@@ -230,9 +230,6 @@
         } else {
           this.num++
         }
-      },
-      catrDottedEvent(){
-      	this.shopingCatrDotted = false
       },
       //判断是否有后天测试报告
       isRouterShop(){

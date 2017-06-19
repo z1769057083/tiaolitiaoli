@@ -6,21 +6,21 @@
 		<div class="cashier-goods">商品名称:{{this.arr2.name}}</div>
 	</div>
 	<div class="cashier-mcontent">
-		<dl  @click='toggle = !toggle'>
+		<dl @click="change_active(0,$event)">
 			<dt><img src="../assets/cashierCard.png"/></dt>
 			<dd>
 				<p>使用银行卡支付</p>
 				请使用银联卡支付，无需开通网银
 			</dd>
-			<dd class="check" :class="{'active': toggle}"></dd>
+			<dd class="check" :class="{'active': toggle === 0}"></dd>
 		</dl>
-		<dl @click='toggle = !toggle'>
+		<dl @click="change_active(1,$event)">
 			<dt><img src="../assets/cashierWechart.png"/></dt>
 			<dd>
 				<p>微信支付</p>
 				微信支付使用银行卡累计限制1000元
 			</dd>
-			<dd class="check" :class="{'active': !toggle}"></dd>
+			<dd class="check" :class="{'active': toggle === 1}"></dd>
 		</dl>	
 	</div>
 	<div class="cashier-pay">立即支付</div>
@@ -32,7 +32,7 @@ import api from '../api/api'
 export default {
   data(){
   	return {
-			toggle: true,
+			toggle: 0,
 			arr:[],
 			arr2:[],
 			accountArr:[],
@@ -72,7 +72,10 @@ export default {
 		    .catch(function (error) {
 		        console.log(error)
 		    })
-	  	}
+	  	},
+			change_active(index,event) {
+        this.toggle = index
+      }
   },
   mounted(){
   	this.requestCashier()
