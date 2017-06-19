@@ -1,11 +1,9 @@
 <template>
   <div class="doctor">
  	<div class='doctor-main'>
- 		<h3 class='about'>关于我们</h3>
- 		<p class='about-time'>2017-6-12<span>汉沽科技</span></p>
- 		<!--<div class="doctor-mpic">
-	 		<img src="../assets/doctorImg.png"/>
-		</div>-->
+ 		<div class="doctor-mpic">
+	 		<img src="http://ikehealth.cn/image/main.png"/>
+		</div>
 		<p class="about-intro">
 			佛山汉古医疗科技有限公司成立于2017年4月，
 			我们立足于珠三角地地区，以中药电商平台为依托，
@@ -116,7 +114,10 @@
     	return{
     		
     	}
-    }
+    },
+    mounted(){
+        document.title='关于我们'
+	}
   }
 </script>
 <style scoped lang="scss" rel="stylesheet/scss">
