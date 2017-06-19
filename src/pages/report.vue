@@ -26,9 +26,6 @@
                     <router-link to='/message?questionSection=houTian'>
                         <div class="r-mbotleft"><img src="../assets/reportleft.png"/></div>
                     </router-link>
-                    <router-link to='/shop'>
-                        <div class="r-mbotright"><img src="../assets/reportright.png"/></div>
-                    </router-link>
                 </div>
             </div>
         </div>
@@ -200,7 +197,7 @@
                     width: 47.6%;
                     height: rem(50rem);
                     float: left;
-                    margin-right: 4.8%;
+                    margin-left: 26.2%;
 
                     img {
                         width: 100%;
