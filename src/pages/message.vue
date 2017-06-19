@@ -56,6 +56,7 @@
     </div>
 </template>
 <script>
+    import noBounce from '../../static/inobounce.min'
     import axios from 'axios'
     import api from '../api/api'
     import gender from '@/components/gender'
@@ -379,6 +380,7 @@
 		border-top: 1px solid #e8e8e8;
 		border-top-left-radius: rem(15rem);
 		border-top-right-radius: rem(15rem);
+            -webkit-overflow-scrolling: touch;
         .hidden {
             display: none;
         }
