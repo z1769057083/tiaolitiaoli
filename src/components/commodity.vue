@@ -244,9 +244,13 @@
                 }
                 .s-martname {
                     font-size: $font12;
-                    font-weight: bold;
                     line-height: rem(18rem);
                     margin: rem(3rem) 0;
+                    overflow: hidden;
+	                white-space: nowrap;
+	                text-overflow: ellipsis;
+	                width: 100%;
+                    
                 }
                 .s-martpic {
                     color: #ff4443;

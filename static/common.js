@@ -12,7 +12,7 @@ global.XianTianAnswer_Index = 'xianTianAnswer_Index'
 global.HouTianAnswer_Index = 'houTianAnswer_Index'
 global.WechatSignature_Index = 'wechatSignature_Index'
 global.Version = '0.0.7'
-global.IsDebug = false
+global.IsDebug = true
 
 global.User = {}
 

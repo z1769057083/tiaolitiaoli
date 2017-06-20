@@ -11,7 +11,7 @@ import confirmOrder from '@/pages/confirmOrder'
 import shoppingTolley from '@/pages/shoppingTolley'
 import cashier from '@/pages/cashier'
 import afterReport from '@/pages/afterReport'
-import recuperate from '@/pages/recuperate'
+import medicalSuggesion from '@/pages/medicalSuggesion'
 import test from '@/pages/testUpload'
 import soupDetail from '@/pages/soupDetail'
 import geneTest from '@/pages/geneTest'
@@ -94,9 +94,9 @@ export default new Router({
       name: 'afterReport'
     },
     {
-      path: '/recuperate',
-      component: recuperate,
-      name: 'recuperate'
+      path: '/medicalSuggesion',
+      component: medicalSuggesion,
+      name: 'medicalSuggesion'
     },
     {
       path: '/soupDetail',

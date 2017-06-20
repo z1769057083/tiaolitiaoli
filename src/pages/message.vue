@@ -267,7 +267,6 @@
         height: 100%;
         position: absolute;
     }
-
     /*聊天内容*/
     .m-char {
         width: 100%;

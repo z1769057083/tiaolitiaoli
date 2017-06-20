@@ -86,7 +86,7 @@
 					<dl>
 						<dt>邮政编码</dt>
 						<dd>
-							<input type="number" placeholder="邮政编码"  v-model='postCode' name='postCode'/>
+							<input type="number" placeholder="邮政编码（选填）"  v-model='postCode' name='postCode'/>
 						</dd>
 					</dl>
 					<div class="address-btn preserve" @click='reserve'>保存</div>
@@ -144,7 +144,7 @@
 					<dl>
 						<dt>邮政编码</dt>
 						<dd>
-							<input type="number" placeholder="邮政编码" v-model='editAddressArr.postCode'/>
+							<input type="number" placeholder="邮政编码（选填）" v-model='editAddressArr.postCode'/>
 						</dd>
 					</dl>					
 					<div class="address-btn preserve" @click='reserve1'>保存</div>
@@ -184,6 +184,7 @@ export default {
  				name:'',
 	  	  phone:'',
 	  	  selectAdd:'',
+	  	  getAdd:[],
 	  	  address:'',
 	  	  postCode:''
  			},
@@ -191,6 +192,7 @@ export default {
  				name:'',
 	  	  phone:'',
 	  	  selectAdd:'',
+	  	  getAdd:[],
 	  	  address:'',
 	  	  postCode:''
  			},
@@ -246,27 +248,35 @@ export default {
 	    	//从selectCity里面取城市的值
 		  	this.selectAddress.push(this.$children[0].$el.querySelector('#selProv').value)
 		  	this.selectAddress.push(this.$children[0].$el.querySelector('#selCity').value)
-		  	this.selectAddress.push(this.$children[0].$el.querySelector('#selDistrict').value)	  	  	
+		  	if(this.$children[0].$el.querySelector('#selDistrict')){
+		  		this.selectAddress.push(this.$children[0].$el.querySelector('#selDistrict').value)	  	  	
+		  	}	  	
 		  	let str = this.selectAddress.toString()
 		  	str = str.replace(/,/g,'')
         var address = { 
         	name: this.name, 
         	phone: this.phone,
         	selectAdd: str,
+        	getAdd:this.selectAddress,
         	address: this.address,
         	postCode: this.postCode
         } 
-        var rephone = /^1[3,4,5,7,8]\d{9}$/;
-        var rePostCode =  /^[1-9][0-9]{5}$/;        
-        if(rePostCode.test(address.postCode)){
-        	address.postCode = address.postCode
-        }else{
-        	Toast({
-            message: '邮政编码格式不正确',
-            position:'top',
-          })
-            return;
-        }        
+        let rephone = /^1[3,4,5,7,8]\d{9}$/;
+        let rePostCode =  /^[1-9][0-9]{5}$/;
+        if (address.postCode === '') {
+			    address.postCode = '';
+			  }else{
+			  	if(rePostCode.test(address.postCode)){
+				    address.postCode = address.postCode;
+				  } else {			      
+				        Toast({
+				          message: '邮政编码格式不正确',
+				          position:'top',
+				          duration:1000
+				        });
+				        return;
+				  }
+			  }			         
         if(rephone.test(address.phone)){
         	if(address.name!==''&&address.address!==''){
 	         	this.addNewAddressHidden = false
@@ -291,7 +301,8 @@ export default {
         var obj_arr = JSON.stringify(address)  
         window.localStorage.setItem("deliver_key", obj_arr)
 	    }
-	    this.addressArr=address
+	    this.addressArr = address
+	    this.editAddressArr = address
 	    this.$emit('closeDialogEvent')
 	    this.$emit('clickEvent')
 	  },
@@ -301,12 +312,16 @@ export default {
 		  	if(this.selectAddress.length==0){		  		
 		  		this.selectAddress.push(this.$children[0].$el.querySelector('#selProv').value)
 			  	this.selectAddress.push(this.$children[0].$el.querySelector('#selCity').value)
-			  	this.selectAddress.push(this.$children[0].$el.querySelector('#selDistrict').value)
+			  	if(this.$children[0].$el.querySelector('#selDistrict')){
+			  		this.selectAddress.push(this.$children[0].$el.querySelector('#selDistrict').value)	  	  	
+			  	}
 		  	}else{
 		  		this.selectAddress.splice(0,this.selectAddress.length)
 		  		this.selectAddress.push(this.$children[0].$el.querySelector('#selProv').value)
 			  	this.selectAddress.push(this.$children[0].$el.querySelector('#selCity').value)
-			  	this.selectAddress.push(this.$children[0].$el.querySelector('#selDistrict').value)
+			  	if(this.$children[0].$el.querySelector('#selDistrict')){
+			  		this.selectAddress.push(this.$children[0].$el.querySelector('#selDistrict').value)	  	  	
+			  	}
 		  	}
 		  	
 		  	let str = this.selectAddress.toString()		  	
@@ -315,20 +330,26 @@ export default {
         	name: this.addressArr.name, 
         	phone: this.addressArr.phone,
         	selectAdd: str,
+        	getAdd:this.selectAddress,
         	address: this.addressArr.address,
         	postCode: this.addressArr.postCode
      }	  	
 	  	var rephone = /^1[3,4,5,7,8]\d{9}$/;
-	  	var rePostCode =  /^[1-9][0-9]{5}$/;        
-	    if(rePostCode.test(address1.postCode)){
-	    	address1.postCode = address1.postCode
-	    }else{
-	    	Toast({
-	        message: '邮政编码格式不正确',
-	        position:'top',
-	      })
-	        return;
-	    }
+	  	var rePostCode =  /^[1-9][0-9]{5}$/; 
+  	 	if (address1.postCode === '') {
+		    address1.postCode = '';
+		  }else{
+		  	if(rePostCode.test(address1.postCode)){
+			    address1.postCode = address1.postCode;
+			  } else {			      
+			        Toast({
+			          message: '邮政编码格式不正确',
+			          position:'top',
+			          duration:1000
+			        });
+			        return;
+			  }
+		  }	
 	  	if(rephone.test(address1.phone)){
 	    	if(address1.name!==''&&address1.address!==''){
          	this.confirmHidden = false
@@ -340,6 +361,7 @@ export default {
         	Toast({
 		        message: '必填项不能为空',
 		        position:'top',
+		        duration:1000
 		      });
 		        return;
         }
@@ -347,6 +369,7 @@ export default {
 	    	Toast({
 	        message: '手机号码格式有误',
 	        position:'top',
+	        duration:1000
 	      });
 	        return;
 	    }	    
@@ -372,6 +395,7 @@ export default {
 	  		Toast({
             message: '收货地址不能为空',
             position:'top',
+            duration:1000
         })
         return;
 	  	}
@@ -386,9 +410,10 @@ export default {
 		    let address_obj = JSON.parse(address_arr)
 		    if(address_obj!==null){		    	
 		    	this.addressArr = address_obj
-	      	this.addNewAddressHidden = false	      	
+	      	this.addNewAddressHidden = false
 	    }		    
 		  this.editAddressArr = this.addressArr
+		  	      	console.log(this.addressArr)
   	},
   	loadOrdersFromBuyNow(){
   		//取直接购买的商品信息         	

@@ -32,7 +32,7 @@
                             <!--{{wuXingDangShiStatusText}}<br>-->
                             <!--{{wuXingReportJieQiContent}}-->
                         </p>
-                        <router-link to='/recuperate'>
+                        <router-link to='/medicalSuggesion'>
                             <img class="r-mrconimg" src="../assets/afterRmy.png"/>
                         </router-link>
                     </div>

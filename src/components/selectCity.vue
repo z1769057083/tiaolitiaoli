@@ -2077,14 +2077,23 @@ export default {
 		}
 	},
 	mounted(){
-//		if (!window.localStorage) {
-//		    return false;
-//		  }else{
-//		  	let address_arr = window.localStorage.getItem("deliver_key")
-//			let address_obj = JSON.parse(address_arr)
-//			let address = address_obj.selectAdd
-//		  }
-//		
+		if (!window.localStorage) {
+		    return false;
+		  }else{
+		  	let address_arr = window.localStorage.getItem("deliver_key")
+			let address_obj = JSON.parse(address_arr)
+			if(address_obj!==null){
+				let address = address_obj.getAdd
+				this.prov = address_obj.getAdd[0]
+				this.city = address_obj.getAdd[1]
+				if(address_obj.district!==''){
+					this.district = address_obj.getAdd[2]
+				}
+			
+			}
+							
+		  }
+		
 	}
 }
 </script>
