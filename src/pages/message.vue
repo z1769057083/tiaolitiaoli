@@ -111,12 +111,6 @@
                 return (this.questionSection == XianTianSectionType && this.index >= 16
                 || this.questionSection == HouTianSectionType && this.index >= 18);
             }
-//          ,
-//      	doctorAvatar(){
-//      		var doctor=JSON.parse( localStorage.getItem(Doctor_Name_Key));
-//      		console.log(doctor.img);
-//      		return doctor.img;
-//      	}
         },
         watch: {
             renderedMessages() {

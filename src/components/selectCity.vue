@@ -2034,7 +2034,8 @@ export default {
 			city: '北京',
 			district: '东城区',
 			cityArr: [],
-			districtArr: []
+			districtArr: [],
+			address:[]
 		}
 	},
 	methods: {
@@ -2083,17 +2084,16 @@ export default {
 		  	let address_arr = window.localStorage.getItem("deliver_key")
 			let address_obj = JSON.parse(address_arr)
 			if(address_obj!==null){
-				let address = address_obj.getAdd
-				this.prov = address_obj.getAdd[0]
-				this.city = address_obj.getAdd[1]
-				if(address_obj.district!==''){
-					this.district = address_obj.getAdd[2]
+				this.address = address_obj.getAdd
+				this.prov = this.address[0]
+				this.city = this.address[1]
+				if(this.address[2]!==''){
+					this.district = this.address[2]
+					
 				}
-			
-			}
-							
-		  }
-		
+				console.log(address_obj.getAdd[1])
+			}					
+		}		
 	}
 }
 </script>
