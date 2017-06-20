@@ -233,7 +233,8 @@
       },
       //判断是否有后天测试报告
       isRouterShop(){
-          window.history.go(-1)
+//        window.history.go(-1)
+          this.$router.push({ path: '/medicalSuggesion'})
 //      	if(window.localStorage.houTianReport){
 //      		this.$router.push({ path: '/medicalSuggesion'})
 //      	}else{

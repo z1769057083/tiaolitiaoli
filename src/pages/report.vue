@@ -105,6 +105,7 @@
     .r-content {
         width: 100%;
         position: absolute;
+        overflow: hidden;
         background: url(../assets/indexbg.jpg) repeat-y;
         background-size: contain;
         .r-main {

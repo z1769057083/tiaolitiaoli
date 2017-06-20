@@ -1,8 +1,8 @@
 <template>
   <div class="doctor">
  	<div class='doctor-main'>
- 		<div class="doctor-mpic">
-	 		<img src="http://ikehealth.cn/image/main.png"/>
+ 		<div class="doctor-mlogo">
+	 		<img src="../../static/images/logo.jpg"/>
 		</div>
 		<p class="about-team">
 			佛山汉古医疗科技有限公司是汉古中医尝试将传统中医数理化并将中医与基因科学、人工智能结合；打通传统医学和现代科学的边界，为大众的健康管理探索出一条行之有效、简单便捷的方法。
@@ -108,6 +108,15 @@
 			font-size: $font14;
 			span{
 				margin-left: rem(10rem);
+			}
+		}
+		.doctor-mlogo{
+			margin: rem(20rem) 4% rem(30rem);
+			width: 92%;
+			height: rem(186rem);
+			img{
+				width: 100%;
+				height: 100%;
 			}
 		}
 		.about-intro{
