@@ -6,7 +6,6 @@
                 <div class='i-headbottext' style="display: none;">您的先天体质报告</div>
             </div>
             <div class="r-main">
-                <h3 class='i-maintop'>你的先天体质报告</h3>
                 <div class="r-mainchart" id='chart-container'>
                     <!--<img src="../assets/reportcharts.png"/>-->
                 </div>

@@ -1,8 +1,6 @@
 <template>
   <div class="doctor">
  	<div class='doctor-main'>
- 		<h3 class='about'>关于我们</h3>
- 		<!--<p class='about-time'>2017-6-19<span>汉沽科技</span></p>-->
  		<div class="doctor-mpic">
 	 		<img src="http://ikehealth.cn/image/main.png"/>
 		</div>
@@ -116,7 +114,10 @@
     	return{
     		
     	}
-    }
+    },
+    mounted(){
+        document.title='关于我们'
+	}
   }
 </script>
 <style scoped lang="scss" rel="stylesheet/scss">

@@ -26,7 +26,7 @@
                     <div class='i-maintest' @click="tab(1)"><img src="../assets/indextest.png"></div>
                     <div class='i-mainportrait'><img src="../assets/indexheadportrait1.png"></div>
                 </div>
-                <div class='i-maintext i-maintip i-maintip1'>温馨提示：本测试所提及的内容仅作为生活保健的咨询建议。</div>
+                <div class='i-maintext i-maintip i-maintip1'>温馨提示：<br>本测试所提及的内容仅作为生活保健的咨询建议。</div>
             </div>
         </div>
     </div>

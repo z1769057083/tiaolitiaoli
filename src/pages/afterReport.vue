@@ -2,7 +2,7 @@
     <div class='afterReport'>
         <!--聊天内容-->
         <div class='after-content'>
-            <div class='i-headbot'>
+            <div class='i-headbot' style="display: none;">
                 <div class='i-headbottext'>您的体质报告</div>
             </div>
             <div class="r-main">
