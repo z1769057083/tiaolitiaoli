@@ -8,7 +8,7 @@
                     <div class="swiper-slide" v-for="(hotItem,index) in hotList">
                         <template>                       
                             <img class="swiper-img"
-                                 :src="''+apiPath+'/image/product/'+hotItem.index+'/top.jpg'"
+                                 :src="''+apiPath+'/image/hot/'+hotItem.index+'.jpg'"
                                  onerror="this.src='http://placeholder.qiniudn.com/800'"
                                  @click='swiperClick(hotItem,index)'/>
                         </template>
