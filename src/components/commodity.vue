@@ -3,33 +3,30 @@
         <!--文章部分-->
         <div class="s-mrecomment" v-if="hasRecommend">
             <h3 class="s-marttitle">个性化推荐</h3>
-            <dl class="s-marticlecon" v-for='soupItem in getSouplist'>
-                <router-link :to="{ name:'soupDetail', query: { soupId: soupItem._id }}">
-                    <dt>
-                    <h3>{{soupItem.title}}</h3>
-                    {{soupItem.material}}
-                    <div class="s-mreconintrotip">
-                        <img class="tip" src="../assets/shopTip.png"/>
-                        {{soupItem.fit|transform}}
-                    </div>
-                    </dt>
-                    <dd>
-                        <img :src="''+apiPath+'/image/soup/'+soupItem.index+'/1.jpg'"
-                             onerror="this.src='http://placeholder.qiniudn.com/800'"/>
-                    </dd>
-
-                </router-link>
+            <dl class="s-marticlecon" v-for='(soupItem,index) in getSouplist' @click='soupClick(soupItem,index)'>
+                <dt>
+                <h3>{{soupItem.title}}</h3>
+                {{soupItem.material}}
+                <div class="s-mreconintrotip">
+                    <img class="tip" src="../assets/shopTip.png"/>
+                    {{soupItem.fit|transform}}
+                </div>
+                </dt>
+                <dd>
+                    <img :src="''+apiPath+'/image/soup/'+soupItem.index+'/1.jpg'"
+                         onerror="this.src='http://placeholder.qiniudn.com/800'"
+                         @click='soupClick(soupItem,index)'/>
+                </dd>
             </dl>
             <div class="s-marticlecon1">
                 <dl>
                     <dt>
                     <h3 class="s-marcontitle">推荐商品</h3>
                     </dt>
-                    <dd class="s-martimg" v-for='recommendItem in recommendlist'>
-                        <router-link :to="{ name: 'goodsdetail', query: { itemid: recommendItem._id}}">
+                    <dd class="s-martimg" v-for='(recommendItem,index) in recommendlist' @click='recomClick(recommendItem,index)'>
                             <img :src="''+apiPath+'/image/product/thumbnail/'+recommendItem.index+'.jpg'"
-                                 onerror="this.src='http://placeholder.qiniudn.com/800'"/>
-                        </router-link>
+                                 onerror="this.src='http://placeholder.qiniudn.com/800'"
+                                 @click='recomClick(recommendItem,index)'/>
                         <p class="s-martname">{{recommendItem.name}}</p>
                         <p class="s-martpic">¥{{recommendItem.price}}.00
                         </p>
@@ -41,24 +38,23 @@
         <div class="s-mrecomment1" v-for="(item, index) in listem">
             <h3 class="s-marttitle">{{item.title}}
                 <router-link :to="{ name: 'allgoods', query: { categoryId: item.category ,titleName:item.title}}">
-                    <a class="s-mrecomall">查看全部</a>
+                    <a class="s-mrecomall" @click='allClick(item,index)'>查看全部</a> 
                 </router-link>
             </h3>
             <div>
-                <dl class="s-mrecomlist" v-for="temp in item.items">
-                    <router-link :to="{ name: 'goodsdetail', query: { itemid: temp._id}}">
-                        <dt class="s-mreconimg">
-                            <img :src="''+apiPath+'/image/product/thumbnail/'+temp.index+'.jpg'"
-                                 onerror="this.src='http://placeholder.qiniudn.com/800'"/>
-                        </dt>
-                        <dd class="s-mreconintro">
-                            <span if='name' class='activeShow'>{{temp.name}}</span>
-                            <div class="s-mreconintrotip">
-                                <img class="tip" src="../assets/shopTip.png"/>
-                                {{temp.fit|transform}}
-                            </div>
-                        </dd>
-                    </router-link>
+                <dl class="s-mrecomlist" v-for="(temp,index) in item.items" @click='shopClick(temp,index)'>
+                    <dt class="s-mreconimg">
+                        <img :src="''+apiPath+'/image/product/thumbnail/'+temp.index+'.jpg'"
+                             onerror="this.src='http://placeholder.qiniudn.com/800'"
+                             @click='shopClick(temp,index)'/>
+                    </dt>
+                    <dd class="s-mreconintro">
+                        <span if='name' class='activeShow'>{{temp.name}}</span>
+                        <div class="s-mreconintrotip">
+                            <img class="tip" src="../assets/shopTip.png"/>
+                            {{temp.fit|transform}}
+                        </div>
+                    </dd>
                 </dl>
             </div>
         </div>
@@ -142,13 +138,48 @@
                     .catch(function (error) {
                         console.log(error)
                     })
-            }
+            }, 
+            soupClick(soupItem,index){
+            	this.$router.push({ name:'soupDetail', query: { soupId: soupItem._id }})
+            },
+            recomClick(recommendItem,index){
+            	this.$router.push({ name: 'goodsdetail', query: { itemid: recommendItem._id}})
+            },
+        	allClick(item,index){
+        		this.$router.push({ name: 'allgoods', query: { categoryId: item.category ,titleName:item.title}})
+        	},
+        	shopClick(temp,index){
+        		this.$router.push({ name: 'goodsdetail', query: { itemid: temp._id}})
+        	}
         },
         mounted() {
             this.requestlist()
             this.recommend()
             this.getSoup()
             this.apiPath = api.apipath
+    	},
+    	watch:{
+        	listem: {
+		        handler(val, oldVal) {
+		          	document.documentElement.scrollTop = 0
+            		document.body.scrollTop = 0
+		        },
+		        deep: true
+		    },
+		    recommendlist: {
+		        handler(val, oldVal) {
+		          	document.documentElement.scrollTop = 0
+            		document.body.scrollTop = 0
+		        },
+		        dceep: true
+		    },
+		    getSouplist: {
+		        handler(val, oldVal) {
+		          	document.documentElement.scrollTop = 0
+            		document.body.scrollTop = 0
+		        },
+		        deep: true
+		    }
         }
     }
 </script>

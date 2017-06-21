@@ -34,7 +34,6 @@
     import ReportHelper from '../../static/reportHelper';
     import Common from '../../static/common';
     import commodity from '@/components/commodity'
-    import Toast from '@/packages/toast'
     export default {
         data (){
             return{

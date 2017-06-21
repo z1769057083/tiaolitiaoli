@@ -19,11 +19,12 @@
 		  		<div class="tolley-mcon">
 		  			<div class="tolley-check" :class="{active:item.isChecked}" @click='selectGood(index)'></div>	
 			  		<dl>
-			  			<router-link :to="{ name: 'goodsdetail', query: { itemid: item.id }}">
-			    			<dt><img 
-			    				:src="''+apiPath+'/image/product/'+item.img+'/1.jpg'" 
-			    				onerror="this.src='http://placeholder.qiniudn.com/300'"/></dt>
-		    			</router-link>		
+		    			<dt @click='shopClick(item,index)'>
+		    				<img 
+		    				:src="''+apiPath+'/image/product/'+item.img+'/1.jpg'" 
+		    				onerror="this.src='http://placeholder.qiniudn.com/300'"
+		    				@click='shopClick(item,index)'/>
+		    			</dt>
 		    			<dd>
 		    				<span v-if='numHidden'>{{item.name}}</span>
 		    				<p v-if='numHidden'>¥{{item.price}}</p>
@@ -142,6 +143,9 @@ import Toast from '@/packages/toast'
 		          this.arr[index].num--
 		        }
 		    }			
+        },
+        shopClick(item,index){
+        	this.$router.push({ name: 'goodsdetail', query: { itemid: item.id }})
         }
  	},
 	computed:{

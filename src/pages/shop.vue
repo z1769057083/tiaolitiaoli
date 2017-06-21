@@ -5,13 +5,13 @@
             <!--轮播图部分-->
             <div class="swiper-container">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide" v-for="hotItem in hotList">
-                        <template>
-                            <router-link :to="{ name: 'goodsdetail', query: { itemid: hotItem._id }}">
-                                <img class="swiper-img"
-                                     :src="''+apiPath+'/image/product/'+hotItem.index+'/top.jpg'"
-                                     onerror="this.src='http://placeholder.qiniudn.com/800'"/>
-                            </router-link>
+                    <div class="swiper-slide" v-for="(hotItem,index) in hotList">
+                        <template>                       
+                            <img class="swiper-img"
+                                 :src="''+apiPath+'/image/product/'+hotItem.index+'/top.jpg'"
+                                 onerror="this.src='http://placeholder.qiniudn.com/800'"
+                                 @click='swiperClick(hotItem,index)'/>
+
                         </template>
                     </div>
                 </div>
@@ -54,6 +54,9 @@
                     .catch(function (error) {
                         console.log(error)
                     })
+            },
+            swiperClick(hotItem,index){
+            	this.$router.push({ name: 'goodsdetail', query: { itemid: hotItem._id }})
             }
         },
         mounted() {
@@ -86,7 +89,6 @@
 </script>
 <style scoped lang="scss" rel="stylesheet/scss">
     @import "../common/common.scss";
-
     .shop {
         width: 100%;
         height: 100%;

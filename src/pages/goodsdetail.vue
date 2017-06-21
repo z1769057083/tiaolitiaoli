@@ -35,15 +35,13 @@
 	    	</div>
 	    </div>
 	    <div class="l-mgoodspay">
-		  	<div class="l-mgoodscar">
-		  		<router-link to='/shoppingTolley'>
-			  	  <img src="../assets/listgoodspay.png"/>
+		  	<div class="l-mgoodscar" @click='isShopCart'>
+			  	  <img src="../assets/listgoodspay.png" @click='isShopCart'/>
 			  	  <p>购物车 </p>
 			  	  <span v-show = 'shopingCatrDotted'></span>
-		  	  </router-link>
 		  	</div>
 		  	<div class="l-mgoodscar l-mgoodsshop" @click='isRouterShop'>
-		  	  	<img src="../assets/listShooping.png"/>	  	  
+		  	  	<img src="../assets/listShooping.png" @click='isRouterShop'/>	  	  
 		  	  	<p>返回</p>
 		  	</div>	
 		  	<div class="l-mgoodsjoin" @click='shopHiden = !shopHiden'>加入购物车
@@ -212,7 +210,6 @@
           }
           this.nowArr.push(shop1);
           var obj_arr1 = JSON.stringify(this.nowArr)
-//        console.log(obj_arr1)
           storage.setItem('buyNow_Key', obj_arr1);
         }
         this.$router.push({ path: '/confirmOrder', query: { routerId: 1 }})
@@ -233,14 +230,11 @@
       },
       //判断是否有后天测试报告
       isRouterShop(){
-//        window.history.go(-1)
-          this.$router.push({ path: '/medicalSuggesion'})
-//      	if(window.localStorage.houTianReport){
-//      		this.$router.push({ path: '/medicalSuggesion'})
-//      	}else{
-//      		this.$router.push({ path: '/shop'})
-//      	}
-      }
+        this.$router.push({ path: '/medicalSuggesion'})
+     },
+     isShopCart(){
+     		this.$router.push({ path: '/shoppingTolley'})
+     }
     },
     mounted() {
       this.requestlist()

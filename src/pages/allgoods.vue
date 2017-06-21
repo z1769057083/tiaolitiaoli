@@ -2,13 +2,13 @@
   <div class='allgoods'> 
      <!--主题部分-->
 	<div class="a-main">
-		<dl v-for='item in list'>
-			<router-link :to="{ name: 'goodsdetail', query: { itemid: item._id }}">
-				<dt>
+		<dl v-for='(item,index) in list' @click='shopClick(item,index)'>
+				<dt @click='shopClick(item,index)'>
 					<img :src="''+apiPath+'/image/product/thumbnail/'+item.index+'.jpg'" 
-							onerror="this.src='http://placeholder.qiniudn.com/800'"/>
+							onerror="this.src='http://placeholder.qiniudn.com/800'"
+							@click='shopClick(item,index)'
+							/>
 				</dt>
-			</router-link>
 				<dd>
 					<span>{{item.name}}</span>
 					<p>¥{{item.price}}.00</p>
@@ -70,6 +70,9 @@ export default {
             console.log(error)
           })
       },
+      shopClick(item,index){
+      	this.$router.push({ name: 'goodsdetail', query: { itemid: item._id }})
+      }
   },
   mounted() {
   	this.apiPath = api.apipath
