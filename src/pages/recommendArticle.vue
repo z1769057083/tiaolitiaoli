@@ -1,11 +1,7 @@
 <template>
   <div class="recommend">
   	<div class="recommend-main">
-  		 <h3>养生不精准，反而害死人？</h3>
-  		 <!--<p class="date">
-			2017-06-18
-			<span>调理调理</span>					
-		 </p>-->
+  		<h3>养生不精准，反而害死人!</h3>
 		 <p class="main-content main-cont">
 		 	汉古中医在接诊病人的过程中，
 		 	发现越来越多不当养生导致的疾病。</p>
@@ -111,7 +107,7 @@
 			.cont-title{
 				font-size: $font14;
 				text-align: center;
-				padding-bottom: rem(20rem);
+				/*padding-bottom: rem(20rem);*/
 			}
 			.cont-mainImg{
 				width: 100%;
@@ -144,13 +140,14 @@
 			.cont-bottom{
 				width: 100%;
 				height: rem(8rem);
+				margin-top: rem(20rem);
 			}
 		}
 		.recommend-cont2{
 			margin-top: rem(30rem);
 			.cont-end{
 				width: 16%;
-				margin: rem(20rem) 42%;
+				margin: rem(20rem) 42% 0;
 				height: rem(12rem);
 			}
 		}

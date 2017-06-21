@@ -101,7 +101,7 @@ export default {
 			float: left;
 			margin: 0 3% rem(12rem) 0;
 			background: #fff;
-			padding-bottom: rem(4rem);
+			padding-bottom: rem(6rem);
 			dt{
 				width: 100%;
 				height: rem(98rem);
@@ -123,16 +123,22 @@ export default {
 					font-size: $font12;
 				}
 				.s-mreconintrotip {
-	        width: 100%;
+		      width: 100%;
 	        overflow: hidden;
 	        white-space: nowrap;
 	        text-overflow: ellipsis;
 	        color: #666;
-	        line-height: rem(26rem);
+	        margin-top: rem(2rem);
 	        .tip {
 	            width: rem(10rem);
 	            height: rem(12rem);
-	            margin-top: rem(2rem);
+	           	float: left;
+	           	margin-right: rem(4rem) ;
+	            vertical-align: middle;
+	        }
+	        span{
+	        	vertical-align: middle;
+	        	float: left;
 	        }
 	    	}
 			}

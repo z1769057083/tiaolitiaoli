@@ -9,7 +9,7 @@
                 {{soupItem.material}}
                 <div class="s-mreconintrotip">
                     <img class="tip" src="../assets/shopTip.png"/>
-                    {{soupItem.fit|transform}}
+                   {{soupItem.fit|transform}}
                 </div>
                 </dt>
                 <dd>
@@ -230,6 +230,17 @@
                     margin-bottom: rem(5rem);
                     letter-spacing: rem(1rem);
                 }
+                .tip {
+                    width: rem(10rem);
+                    height: rem(12rem);
+                   	float: left;
+                   	margin-right: rem(4rem) ;
+                    vertical-align: middle;
+                }
+                span{
+                	vertical-align: middle;
+                	float: left;
+                }
             }
             dd {
                 width: 32%;
@@ -343,17 +354,23 @@
                 text-overflow: ellipsis;
                 display: inline-block;
             }
-            .s-mreconintrotip {
+            .s-mreconintrotip{
                 width: 100%;
                 overflow: hidden;
                 white-space: nowrap;
                 text-overflow: ellipsis;
                 color: #666;
-                line-height: rem(26rem);
+                margin-top: rem(6rem);
                 .tip {
                     width: rem(10rem);
                     height: rem(12rem);
-                    margin-top: rem(2rem);
+                   	float: left;
+                   	margin-right: rem(4rem) ;
+                    vertical-align: middle;
+                }
+                span{
+                	vertical-align: middle;
+                	float: left;
                 }
             }
             .activeShow {
