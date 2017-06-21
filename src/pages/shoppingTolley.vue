@@ -231,13 +231,13 @@ import Toast from '@/packages/toast'
 	background: #f6f6f6;
 	position: absolute;
 	font-size: $font14;
-  .tolley-check{
+  	.tolley-check{
 		float: left;
 		width: rem(18rem);
 		height: rem(18rem);
 		border-radius: 50%;
 		border: 1px solid #999;
-		margin: rem(15rem) 3% 0 0;
+		margin: rem(12rem) 3% 0 0;
 	}
 	.active{
 		width: rem(20rem);
