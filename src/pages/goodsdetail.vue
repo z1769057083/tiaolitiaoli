@@ -230,7 +230,7 @@
       },
       //判断是否有后天测试报告
       isRouterShop(){
-        this.$router.push({ path: '/shop'})
+        window.history.go(-1)
      },
      isShopCart(){
      		this.$router.push({ path: '/shoppingTolley'})
