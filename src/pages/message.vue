@@ -56,7 +56,7 @@
     </div>
 </template>
 <script>
-    import noBounce from '../../static/inobounce.min'
+//  import noBounce from '../../static/inobounce.min'
     import axios from 'axios'
     import api from '../api/api'
     import gender from '@/components/gender'
@@ -85,7 +85,6 @@
         name: 'message',
         data(){
             return {
-                title: '',
                 questionSection: XianTianSectionType,
                 renderedMessages: [],
                 questions: [],
@@ -107,18 +106,14 @@
             character, temperament, figures
         },
         computed: {
+        	//判断问题是否回答完毕
             isFinished: function () {
                 return (this.questionSection == XianTianSectionType && this.index >= 16
                 || this.questionSection == HouTianSectionType && this.index >= 18);
             }
-//          ,
-//      	doctorAvatar(){
-//      		var doctor=JSON.parse( localStorage.getItem(Doctor_Name_Key));
-//      		console.log(doctor.img);
-//      		return doctor.img;
-//      	}
         },
         watch: {
+        	//监听滚动事件
             renderedMessages() {
                 this.$nextTick(() => {
                     var container = this.$el.querySelector("#chatContainer");
@@ -127,10 +122,12 @@
             }
         },
         methods: {
+        	//判断是否显示针对女性的问题
             checkFemaleQuestion(that){
-                var xianTianAnswer = JSON.parse(localStorage.getItem(XianTianAnswer_Index));
+                var xianTianAnswer = JSON.parse(localStorage.getItem(XianTianAnswer_Index));             
                 if (xianTianAnswer == null || typeof(xianTianAnswer) === 'undefined') {
                     that.index = that.index + 1;
+//                  console.log(that)
                 }
                 else {
                     var isMale = xianTianAnswer.gender === 'M';
@@ -144,6 +141,7 @@
                 }
 
             },
+            //存组件里面传过来的值
             updateUserAnswer(answerParams) {
                 if (answerParams.isAllFilled || typeof (answerParams.isAllFilled) === 'undefined') {
                     this.isCurrentQuestionFinished = true;
@@ -163,6 +161,7 @@
                     }
                 }
             },
+//          点击确定判断问题是否全部回答
             confirm () {
                 if (!this.isCurrentQuestionFinished) {
                     Toast({
@@ -172,7 +171,7 @@
                     return;
                 }
                 this.isCurrentQuestionFinished = false;
-                console.log(this.xianTianAnswer)
+//              console.log(this.xianTianAnswer)
 
                 var answer = { isQuestion: false, content: '' };
                 for (let key in this.pendingAnswer) {
@@ -195,6 +194,7 @@
                     this.saveAndGenerateReport();
                 }
             },
+            //完成测试发送请求获取报告
             saveAndGenerateReport(){
                 let user = JSON.parse(localStorage.getItem(Account_Index));
                 var userId = user._id;
@@ -208,21 +208,22 @@
                     localStorage.setItem(HouTianAnswer_Index, JSON.stringify(this.houTianAnswer))
                 }
                 postData.userId = userId;
-                console.log(postData);
                 axios.defaults.headers['Content-Type'] = 'application/json';
                 axios.post(api.generateReportData + "?id=" + userId + "&reportType=" + that.questionSection, postData)
                     .then(function (res) {
                         if (res.data.errorCode == 0) {
                             let report = res.data.returnValue
-                            console.log(report)
+//                          console.log(report)
                         }
                     })
                     .catch(function (error) {
                         console.log(error)
                     })
             },
+            //判断问题是先天问题还是后天问题
             startQuestionBySection(){
                 this.questionSection = this.$route.query.questionSection;
+                console.log(this.questionSection)
                 if (typeof(this.questionSection ) == 'undefined') {
                     this.questionSection = XianTianSectionType;
                 }
@@ -241,7 +242,7 @@
         },
         mounted() {
             this.startQuestionBySection()
-            //取title
+            //取页面的title，医生名字跟头像
             if (!window.localStorage) {
                 return false;
             } else {
@@ -250,6 +251,7 @@
                 let obj = JSON.parse(obj_arr)
                 document.title = obj.name
                 this.imgUrl = obj.img
+                //取用户的头像
                 if (storage.getItem(Account_Index) !== null) {
                     let account = JSON.parse(storage.getItem(Account_Index))
                     this.myselfAvatar = account.headimgurl;
@@ -267,7 +269,6 @@
         height: 100%;
         position: absolute;
     }
-
     /*聊天内容*/
     .m-char {
         width: 100%;

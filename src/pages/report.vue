@@ -19,7 +19,7 @@
                     <img class="i-micon" src="../assets/index.png">
                 </div>
                 <div class="r-msuggest">
-                                                       如果您成年后生活的城市、生活习惯等改变较大，强烈建议您再测试一下后天体质！
+                                                   如果您成年后生活的城市、生活习惯等改变较大，强烈建议您再测试一下后天体质！
                 </div>
                 <div class="r-mbotbtn">
                     <router-link to='/message?questionSection=houTian'>
@@ -66,9 +66,7 @@
         mounted() {
             document.title = "先天体质报告"
             let that = this
-
             let userId = this.$route.query.userid;
-            console.log(userId);
             if (localStorage.getItem(Account_Index) != null) {
                 userId= JSON.parse(localStorage.getItem(Account_Index))._id
             }
@@ -107,6 +105,7 @@
     .r-content {
         width: 100%;
         position: absolute;
+        overflow: hidden;
         background: url(../assets/indexbg.jpg) repeat-y;
         background-size: contain;
         .r-main {

@@ -35,10 +35,12 @@
                 var answer = {};
                 answer.gender = this.gender;
                 answer.birthday = this.birthday;
+//              answer.isAllFilled = false;
+                if(this.gender !== '' && this.birthday !== ''){
+                	answer.isAllFilled = true;
+                }
                 return answer;
             }
-        },
-        mounted(){
         },
         methods: {
             change_active(gender) {
@@ -64,7 +66,7 @@
                     global.User.gender = this.answer.gender;
                     global.User.age = Common.getUserAge(this.birthday);
                     global.User.birthday =this.birthday;
-                    this.$emit('updateUserAnswer', this.answer);
+                    this.$emit('updateUserAnswer', this.answer);                 
                 }
             }
         }

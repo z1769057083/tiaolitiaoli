@@ -13,7 +13,6 @@
                         {{soupItem.fit|transform}}
                     </div>
                     </dt>
-
                     <dd>
                         <img :src="''+apiPath+'/image/soup/'+soupItem.index+'/1.jpg'"
                              onerror="this.src='http://placeholder.qiniudn.com/800'"/>
@@ -68,7 +67,6 @@
 <script>
     import axios from 'axios'
     import api from '../api/api';
-    import commodity from '@/components/commodity'
     export default {
         data(){
             return {
@@ -97,9 +95,6 @@
                     return '平衡'
                 }
             }
-        },
-        components: {
-            commodity
         },
         methods: {
             requestlist(){
@@ -244,9 +239,13 @@
                 }
                 .s-martname {
                     font-size: $font12;
-                    font-weight: bold;
                     line-height: rem(18rem);
                     margin: rem(3rem) 0;
+                    overflow: hidden;
+	                white-space: nowrap;
+	                text-overflow: ellipsis;
+	                width: 100%;
+                    
                 }
                 .s-martpic {
                     color: #ff4443;
