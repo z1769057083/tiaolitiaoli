@@ -60,7 +60,7 @@
         },
         mounted() {
             this.swiperlist()
-            document.title = "在线商城"
+            document.title = "商城"
             document.documentElement.scrollTop = 0
             document.body.scrollTop = 0
             this.apiPath = api.apipath

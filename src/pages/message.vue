@@ -55,8 +55,8 @@
         </div>
     </div>
 </template>
-<script>
-//  import noBounce from '../../static/inobounce.min'
+<script >
+    import noBounce from '../../static/inobounce'
     import axios from 'axios'
     import api from '../api/api'
     import gender from '@/components/gender'
@@ -240,7 +240,11 @@
                 this.renderedMessages.push(item);
             }
         },
+        beforeDestroy(){
+            noBounce.disable();
+        },
         mounted() {
+            noBounce.enable();
             this.startQuestionBySection()
             //取页面的title，医生名字跟头像
             if (!window.localStorage) {
