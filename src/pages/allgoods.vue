@@ -133,7 +133,7 @@ export default {
 	            width: rem(10rem);
 	            height: rem(12rem);
 	           	float: left;
-	           	margin-right: rem(4rem) ;
+	           	margin-right: rem(4rem);
 	            vertical-align: middle;
 	        }
 	        span{
