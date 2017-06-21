@@ -11,7 +11,6 @@
                                  :src="''+apiPath+'/image/product/'+hotItem.index+'/top.jpg'"
                                  onerror="this.src='http://placeholder.qiniudn.com/800'"
                                  @click='swiperClick(hotItem,index)'/>
-
                         </template>
                     </div>
                 </div>

@@ -68,7 +68,7 @@ import Toast from '@/packages/toast'
  export default {
  	data(){
  		return{
-   			toggleLock: false,
+   			toggleLock: true,
  			arr:[],
  			toastHidden:false,
  			readyToDelIndex:-1,
