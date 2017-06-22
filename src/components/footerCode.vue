@@ -12,10 +12,10 @@
 		 	<router-link to='/'>
 		 		<li>检测体质</li>
 		 	</router-link>
-			<router-link to='/doctorIntroduce'>
+			<router-link to='/aboutUs'>
 		 		<li>关于我们</li>
 		 	</router-link>
-		 	<router-link to='/doctorIntroduce'>
+		 	<router-link to='/aboutUs'>
 		 		<li>医生简介</li>
 		 	</router-link>
 		 </ul>

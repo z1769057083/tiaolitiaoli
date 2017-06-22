@@ -26,6 +26,7 @@ import orderList from '@/pages/orderList'
 import orderListDetail from '@/pages/orderListDetail'
 import immunityTest from '@/pages/immunityTest'
 import recommendArticle from '@/pages/recommendArticle'
+import aboutUs from '@/pages/aboutUs'
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -156,6 +157,11 @@ export default new Router({
       path: '/recommendArticle',
       component: recommendArticle,
       name: 'recommendArticle'
+    },
+    {
+      path: '/aboutUs',
+      component: aboutUs,
+      name: 'aboutUs'
     }            
   ]
 })
