@@ -74,17 +74,17 @@
   			<p>2000年浙江大学仪器科学与技术专业博士毕业，一直留校任教。</p>
   			<p>现担任浙江大学生物医学工程与仪器科学学院仪器科学与工程学系主任。</p>
   		</div>
+  		<footerCode></footerCode>
  	</div>
   </div>
 </template>
 <script>
 	import axios from 'axios'
 	import api from '../api/api';
+	import footerCode from '@/components/footerCode'
   export default {
-    data(){
-    	return{
-    		
-    	}
+    components: {
+			footerCode	
     },
     mounted(){
         document.title='关于我们'

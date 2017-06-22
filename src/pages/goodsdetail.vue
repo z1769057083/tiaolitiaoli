@@ -5,7 +5,7 @@
 	    	<div class="l-mainscroll">
 	    		<div class="l-mgoodsimg">
 		    		<img :src="''+apiPath+'/image/product/thumbnail/'+list.index+'.jpg'"
-								 onerror="this.src='http://placeholder.qiniudn.com/800'"/>
+								 onerror="this.src='../../static/images/defaultPicture.jpg'"/>
 		      </div>
 				  <div class="l-mgoodsprice">
 				    <p class="l-mgoodsintro">{{list.name}}</p>
@@ -30,8 +30,9 @@
 				  	</div>
 				  	<img v-for='imgItem in list.images' 
 				  		:src="''+apiPath+'/image/product/'+list.index+'/'+imgItem+'.jpg'" 
-							onerror="this.src='http://placeholder.qiniudn.com/800'"/>
+							onerror="this.src='../../static/images/defaultPicture.jpg'"/>
 				  </div>
+				  <footerCode></footerCode>
 	    	</div>
 	    </div>
 	    <div class="l-mgoodspay">
@@ -55,7 +56,7 @@
 					<div class="shopCar-main">
 						<dl>
 							<dt><img :src="''+apiPath+'/image/product/'+list.index+'/1.jpg'" 
-							onerror="this.src='http://placeholder.qiniudn.com/800'"/></dt>
+							onerror="this.src='../../static/images/defaultPicture.jpg'"/></dt>
 							<dd>
 							    <p>¥{{list.price}}.00</p>
 							    <span>{{list.name}}</span>
@@ -81,7 +82,7 @@
 					<div class="shopCar-main">
 						<dl>
 							<dt><img :src="''+apiPath+'/image/product/'+list.index+'/1.jpg'" 
-							         onerror="this.src='http://placeholder.qiniudn.com/800'"/></dt>
+							         onerror="this.src='../../static/images/defaultPicture.jpg'"/></dt>
 							<dd>
 							     <p>¥{{list.price}}.00</p>
 							    <span>{{list.name}}</span>
@@ -101,15 +102,17 @@
 					<div class="confirmBtn1" @click='confirm1'>下一步</div>
 				</div>
 			</div>
+			
 			<!--立即购买结束-->
 			<!--已成功加入购物车-->
-		  <toast v-show='toastHidden'></toast>
+		  <toast v-show='toastHidden'></toast>	
 	  </div>
 </template>
 <script>
   import axios from 'axios'
   import api from '../api/api'
   import toast from '@/components/toast'
+  import footerCode from '@/components/footerCode'
   import Common from '../../static/common'
   export default {
     data(){
@@ -128,7 +131,7 @@
       }
     },
     components: {
-      toast
+      toast,footerCode
     },
     methods: {
       requestlist(){
@@ -230,7 +233,9 @@
       },
       //判断是否有后天测试报告
       isRouterShop(){
+      	console.log(111)
         window.history.go(-1)
+        
      },
      isShopCart(){
      		this.$router.push({ path: '/shoppingTolley'})

@@ -15,16 +15,18 @@
                 <span v-show='!msgGrilImg'>我是女生</span>
             </div>
         </div>
-        <input type="date" class="m-selectdate" :class="{'activeDate': toggle}" name='birthday' v-model='birthday' @change='change_date(birthday)'/>
+        <span class="date-tit">出生日期：</span>
+        <input type="date" class="m-selectdate" name='birthday' v-model='birthday' @change='change_date(birthday)'/>
     </div>
 </template>
 <script type="text/javascript">
     import Common from '../../static/common'
+    import Toast from '@/packages/toast'
     export default {
         data(){
             return {
                 gender: "F",
-                birthday: "1990-01-01",
+                birthday: "",
                 msgBoyImg: true,
                 msgGrilImg: false,
                 toggle: false
@@ -35,7 +37,6 @@
                 var answer = {};
                 answer.gender = this.gender;
                 answer.birthday = this.birthday;
-//              answer.isAllFilled = false;
                 if(this.gender !== '' && this.birthday !== ''){
                 	answer.isAllFilled = true;
                 }
@@ -55,11 +56,21 @@
                 if (this.birthday !== '') {
                     global.User.gender = this.answer.gender;
                     global.User.age = Common.getUserAge(this.birthday);
-                    global.User.birthday =this.birthday;
+                    global.User.birthday = this.birthday;
                     this.$emit('updateUserAnswer', this.answer);
                 }
             },
-            change_date(changedBirthday){
+            change_date(changedBirthday){ 
+            	let  bir = new Date(changedBirthday)
+                let  nowYear = new Date()
+                if (bir > nowYear) {
+                    Toast({
+                        message: '你的生日不可以晚于今天',
+                        position: 'top',
+                        duration:1500
+                    })
+                    return;
+                }
                 this.birthday = changedBirthday;
                 this.toggle = true
                 if (this.gender !== '') {
@@ -142,6 +153,12 @@
                 background: #fff;
             }
         }
+        .date-tit{
+        	color: $c3c3c;
+            font-size: $font14;
+            display: inline-block;
+            padding-bottom: rem(15rem);
+        }
         .m-selectdate {
             width: 85.6%;
             height: 1.3rem;
@@ -150,13 +167,9 @@
             line-height: 1.3rem;
             font-size: 0.37rem;
             padding: 0 7.2%;
-            color: #999;
+            color: #000;
             border-radius: 1.06rem;
             border: 0;
         }
-        .activeDate{
-        	color: #000000;
-        }
-
     }
 </style>

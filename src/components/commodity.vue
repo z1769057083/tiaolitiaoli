@@ -14,7 +14,7 @@
                 </dt>
                 <dd>
                     <img :src="''+apiPath+'/image/soup/'+soupItem.index+'/1.jpg'"
-                         onerror="this.src='http://placeholder.qiniudn.com/800'"
+                         onerror="this.src='../../static/images/defaultPicture.jpg'"
                          @click='soupClick(soupItem,index)'/>
                 </dd>
             </dl>
@@ -25,7 +25,7 @@
                     </dt>
                     <dd class="s-martimg" v-for='(recommendItem,index) in recommendlist' @click='recomClick(recommendItem,index)'>
                             <img :src="''+apiPath+'/image/product/thumbnail/'+recommendItem.index+'.jpg'"
-                                 onerror="this.src='http://placeholder.qiniudn.com/800'"
+                                 onerror="this.src='../../static/images/defaultPicture.jpg'"
                                  @click='recomClick(recommendItem,index)'/>
                         <p class="s-martname">{{recommendItem.name}}</p>
                         <p class="s-martpic">¥{{recommendItem.price}}.00
@@ -45,7 +45,7 @@
                 <dl class="s-mrecomlist" v-for="(temp,index) in item.items" @click='shopClick(temp,index)'>
                     <dt class="s-mreconimg">
                         <img :src="''+apiPath+'/image/product/thumbnail/'+temp.index+'.jpg'"
-                             onerror="this.src='http://placeholder.qiniudn.com/800'"
+                             onerror="this.src='../../static/images/defaultPicture.jpg'"
                              @click='shopClick(temp,index)'/>
                     </dt>
                     <dd class="s-mreconintro">

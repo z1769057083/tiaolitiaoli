@@ -69,7 +69,6 @@
 	                let account = JSON.parse(window.localStorage.getItem(Account_Index))
 	                this.myselfAvatar = account.headimgurl;
 	            }
-	
 	        }
         }
     }

@@ -1,10 +1,9 @@
 <template>
-    <div class='afterReport'>
+	<div>
+	<myNullReport v-if='nullHidden'></myNullReport>
+    <div class='afterReport' v-if='!nullHidden'>
         <!--聊天内容-->
         <div class='after-content'>
-            <div class='i-headbot' style="display: none;">
-                <div class='i-headbottext'>您的体质报告</div>
-            </div>
             <div class="r-main">
                 <div class="r-mainchart" id='chart-container'>
                     <!--<img src="../assets/reportcharts.png"/>-->
@@ -65,12 +64,14 @@
         </div>
         <!--后天报告详情结束-->
     </div>
+    </div>
 </template>
 <script>
     import axios from 'axios'
     import api from '../api/api'
     import ReportHelper from '../../static/reportHelper';
-    import Common from '../../static/common';
+    import Common from '../../static/common';   
+    import myNullReport from '@/components/myNullReport'
     import Toast from '@/packages/toast'
     export default {
         data (){
@@ -83,8 +84,12 @@
                 wuXingXianTianStatusText: '',
                 wuXingHouTianStatusText: '&nbsp;',
                 afterReportHidden: false,
-                xianTianReportIsShowed: false
+                xianTianReportIsShowed: false,
+                nullHidden:false
             }
+        },
+         components: {
+            myNullReport
         },
         methods: {
             renderReport(report){
@@ -128,7 +133,6 @@
         mounted() {
             document.title = "体质报告"
             let userId = this.$route.query.userid;
-            console.log(userId);
             let that = this
             if (localStorage.getItem(Account_Index) != null) {
                 userId= JSON.parse(localStorage.getItem(Account_Index))._id
@@ -138,9 +142,8 @@
                     message: '请先完成体质检测',
                     position: 'top'
                 });
-                return;
-            }
-            else {
+                return;               
+          	}else {
                 axios.get(api.getReport + "?userId=" + userId + "&reportType=houTian")
                     .then(function (res) {
                         if (res.data.errorCode == 0) {

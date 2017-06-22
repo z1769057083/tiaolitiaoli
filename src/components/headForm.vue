@@ -3,23 +3,23 @@
 	  	<h3><img src="../assets/indexline.png" alt="" />选择最接近的形象<img class="imgright" src="../assets/indexline.png" alt="" /></h3>
 	  	<div class="m-hmain">
 	  		<dl :class="{'active': face === 0}" @click="change_active(0,'1','headForm',$event)">
-	  			<dt><img src="../assets/mhead1.png"/></dt>
+	  			<dt><img src="../assets/mhead1.png" @click="change_active(0,'1','headForm',$event)"/></dt>
 	  			<dd>头小长脸</dd>
 	  		</dl>
 	  		<dl :class="{'active': face === 1}" @click="change_active(1,'1','headForm',$event)">
-	  			<dt><img src="../assets/mhead2.png"/></dt>
+	  			<dt><img src="../assets/mhead2.png" @click="change_active(1,'1','headForm',$event)"/></dt>
 	  			<dd>头顶尖面瘦</dd>
 	  		</dl>
 	  		<dl :class="{'active': face === 2}" @click="change_active(2,'1','headForm',$event)">
-	  			<dt><img src="../assets/mhead3.png"/></dt>
+	  			<dt><img src="../assets/mhead3.png" @click="change_active(2,'1','headForm',$event)"/></dt>
 	  			<dd>头大面圆</dd>
 	  		</dl>
 	  		<dl :class="{'active': face === 3}" @click="change_active(3,'1','headForm',$event)">
-	  			<dt><img src="../assets/mhead4.png"/></dt>
+	  			<dt><img src="../assets/mhead4.png" @click="change_active(3,'1','headForm',$event)"/></dt>
 	  			<dd>头大脸宽</dd>
 	  		</dl>
 	  		<dl :class="{'active': face === 4}" @click="change_active(4,'1','headForm',$event)">
-	  			<dt><img src="../assets/mhead5.png"/></dt>
+	  			<dt><img src="../assets/mhead5.png" @click="change_active(4,'1','headForm',$event)"/></dt>
 	  			<dd>头小面有棱角</dd>
 	  		</dl>
 	  	</div>
@@ -31,7 +31,7 @@ export default {
    data(){
 	  	return {
 	    arr: [],
-	      face:-1
+	    face: -1
 	    }
 	},
 	methods:{

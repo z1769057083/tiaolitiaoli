@@ -125,6 +125,7 @@
         	//判断是否显示针对女性的问题
             checkFemaleQuestion(that){
                 var xianTianAnswer = JSON.parse(localStorage.getItem(XianTianAnswer_Index));             
+                console.log(xianTianAnswer)
                 if (xianTianAnswer == null || typeof(xianTianAnswer) === 'undefined') {
                     that.index = that.index + 1;
 //                  console.log(that)
@@ -171,8 +172,6 @@
                     return;
                 }
                 this.isCurrentQuestionFinished = false;
-//              console.log(this.xianTianAnswer)
-
                 var answer = { isQuestion: false, content: '' };
                 for (let key in this.pendingAnswer) {
                     answer.content += answerHelper.getAnswerText(key, this.pendingAnswer[key]);
