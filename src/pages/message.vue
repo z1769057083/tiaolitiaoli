@@ -14,43 +14,38 @@
                 </div>
             </div>
         </div>
-        <maskconfirm v-show="maskhidden" v-bind:questionSection="questionSection"></maskconfirm>
+        <maskconfirm v-if="maskhidden"></maskconfirm>
         <div class="m-select">
-            <!--先天体质报告问题-->
+            <!--体质报告问题开始-->
             <gender v-if="index == 0" @updateUserAnswer="updateUserAnswer"></gender>
-            <city v-bind:questionSection="questionSection" v-if="index == 1"
-                  @updateUserAnswer="updateUserAnswer"></city>
-            <!--公共问题开始-->
-            <emotion v-if="index == 2" @updateUserAnswer="updateUserAnswer"></emotion>
-            <season v-if="index == 3" @updateUserAnswer="updateUserAnswer"></season>
-            <looks v-if="index == 4" @updateUserAnswer="updateUserAnswer"></looks>
-            <headForm v-if="index == 5" @updateUserAnswer="updateUserAnswer"></headForm>
-            <skinColor v-if="index == 6" @updateUserAnswer="updateUserAnswer"></skinColor>
-            <figures v-if="index == 7" @updateUserAnswer="updateUserAnswer"></figures>
-            <limbs v-if="index == 8" @updateUserAnswer="updateUserAnswer"></limbs>
-            <character v-if="index == 9" @updateUserAnswer="updateUserAnswer"></character>
-            <temperament v-if="index == 10" @updateUserAnswer="updateUserAnswer"></temperament>
-            <treatOthers1 v-if="index == 11"
+            <birthCity v-if="index == 1"  @updateUserAnswer="updateUserAnswer"></birthCity>
+            <city v-if="index == 2"  @updateUserAnswer="updateUserAnswer"></city>
+            <parentsBirthday v-if="index == 3" @updateUserAnswer="updateUserAnswer"></parentsBirthday>
+            <emotion v-if="index == 4" @updateUserAnswer="updateUserAnswer"></emotion>
+            <season v-if="index == 5" @updateUserAnswer="updateUserAnswer"></season>
+            <looks v-if="index == 6" @updateUserAnswer="updateUserAnswer"></looks>
+            <headForm v-if="index == 7" @updateUserAnswer="updateUserAnswer"></headForm>
+            <skinColor v-if="index == 8" @updateUserAnswer="updateUserAnswer"></skinColor>
+            <figures v-if="index == 9" @updateUserAnswer="updateUserAnswer"></figures>
+            <limbs v-if="index == 10" @updateUserAnswer="updateUserAnswer"></limbs>
+            <character v-if="index == 11" @updateUserAnswer="updateUserAnswer"></character>
+            <temperament v-if="index == 12" @updateUserAnswer="updateUserAnswer"></temperament>
+            <treatOthers1 v-if="index == 13"
                           @updateUserAnswer="updateUserAnswer"></treatOthers1>
-            <treatOthers2 v-if="index == 12"
+            <treatOthers2 v-if="index == 14"
                           @updateUserAnswer="updateUserAnswer"></treatOthers2>
-            <treatOthers3 v-if="index == 13"
+            <treatOthers3 v-if="index == 15"
                           @updateUserAnswer="updateUserAnswer"></treatOthers3>
-            <treatOthers4 v-if="index == 14"
+            <treatOthers4 v-if="index == 16"
                           @updateUserAnswer="updateUserAnswer"></treatOthers4>
-            <!--公共问题结束-->
-            <parentsBirthday v-if="index == 15&&questionSection=='xianTian'"
-                             @updateUserAnswer="updateUserAnswer"></parentsBirthday>
-            <!--先天体质报告问题结束-->
-            <!--后天体质报告问题-->
-            <physiology v-if="index == 15 &&questionSection=='houTian'"
+            <physiology v-if="index == 17"
                         @updateUserAnswer="updateUserAnswer"></physiology>
-            <aftertreat v-if="index == 16 &&questionSection=='houTian'"
+            <aftertreat v-if="index == 18"
                         @updateUserAnswer="updateUserAnswer"></aftertreat>
 
-            <afterCrescent v-if="index == 17 &&questionSection=='houTian' "
+            <afterCrescent v-if="index == 19"
                            @updateUserAnswer="updateUserAnswer"></afterCrescent>
-            <!--后天体质报告问题结束-->
+            <!--体质报告问题结束-->
             <button class="submit" @click="confirm">确定</button>
         </div>
     </div>
@@ -60,6 +55,7 @@
     import axios from 'axios'
     import api from '../api/api'
     import gender from '@/components/gender'
+    import birthCity from '@/components/birthCity'
     import city from '@/components/city'
     import emotion from '@/components/emotion'
     import season from '@/components/season'
@@ -84,8 +80,7 @@
     export default {
         name: 'message',
         data(){
-            return {
-                questionSection: XianTianSectionType,
+            return {             
                 renderedMessages: [],
                 questions: [],
                 imgUrl: '',
@@ -93,14 +88,18 @@
                 myselfAvatar: '../static/images/indexheadportrait.png',
                 maskhidden: false,
                 uploadHidden: false,
+                questionAnswer:{
+                	xianTian: {},
+                	houTian: {}
+                },
                 xianTianAnswer: {},
-                houTianAnswer: {},
+                houTianAnswer: {},                
                 pendingAnswer: {},
                 index: 0
             }
         },
         components: {
-            gender, city, emotion, season, looks, skinColor, limbs, treatOthers1,
+            gender,birthCity, city, emotion, season, looks, skinColor, limbs, treatOthers1,
             treatOthers2, treatOthers3, treatOthers4, parentsBirthday,
             aftertreat, maskconfirm, physiology, afterCrescent, headForm,
             character, temperament, figures
@@ -108,8 +107,7 @@
         computed: {
         	//判断问题是否回答完毕
             isFinished: function () {
-                return (this.questionSection == XianTianSectionType && this.index >= 16
-                || this.questionSection == HouTianSectionType && this.index >= 18);
+                return (this.index >= 20);
             }
         },
         watch: {
@@ -122,28 +120,19 @@
             }
         },
         methods: {
-        	//判断是否显示针对女性的问题
-            checkFemaleQuestion(that){
-                var xianTianAnswer = JSON.parse(localStorage.getItem(XianTianAnswer_Index));             
-                console.log(xianTianAnswer)
-                if (xianTianAnswer == null || typeof(xianTianAnswer) === 'undefined') {
-                    that.index = that.index + 1;
-//                  console.log(that)
-                }
-                else {
-                    var isMale = xianTianAnswer.gender === 'M';
-                    var diffValue = that.questionSection === XianTianSectionType ? 0 : 1;
-                    if (that.questions[that.index - diffValue + 1] && that.questions[that.index - diffValue + 1].questionName === 'femaleStatus' && isMale) {
-                        that.index = that.index + 2;
-                    }
-                    else {
-                        that.index = that.index + 1;
-                    }
-                }
-
+        	//判断是否显示针对女性的问题        	
+            checkFemaleQuestion(that){           	
+            	var isMale = this.questionAnswer.xianTian.gender === 'M'          	
+            	if(that.questions[that.index+1]&&that.questions[that.index+1].questionName === 'femaleStatus'&&isMale){            		
+            		that.index = that.index + 2;
+            	}else{
+            		that.index += 1;
+            		console.log(that.index)
+            	}
+                             
             },
             //存组件里面传过来的值
-            updateUserAnswer(answerParams) {
+       		updateUserAnswer(answerParams) {
                 if (answerParams.isAllFilled || typeof (answerParams.isAllFilled) === 'undefined') {
                     this.isCurrentQuestionFinished = true;
                 }
@@ -153,13 +142,14 @@
                 if (this.isCurrentQuestionFinished) {
                     this.pendingAnswer = answerParams;
                     for (let key in answerParams) {
-                        if (this.questionSection == XianTianSectionType) {
-                            this.xianTianAnswer[key] = answerParams[key];
-                        }
-                        else {
-                            this.houTianAnswer[key] = answerParams[key];
-                        }
+                    	if(this.index<=3){
+                    		this.xianTianAnswer[key] = answerParams[key];
+                    	}else{
+                    		this.houTianAnswer[key] = answerParams[key];
+                    	}                          
                     }
+                    this.questionAnswer.xianTian = this.xianTianAnswer
+                    this.questionAnswer.houTian = this.houTianAnswer
                 }
             },
 //          点击确定判断问题是否全部回答
@@ -182,10 +172,9 @@
                 this.renderedMessages.push(answer);
                 this.checkFemaleQuestion(this);
                 var that = this;
-                var diffValue = this.questionSection == XianTianSectionType ? 0 : 1;
-                if (that.questions[that.index - diffValue] && that.questions[that.index - diffValue].content) {
+                if (that.questions[that.index] && that.questions[that.index].content) {
                     var item = { isQuestion: true };
-                    item.content = that.questions[that.index - diffValue].content;
+                    item.content = that.questions[that.index].content;
                     that.renderedMessages.push(item);
                 }
                 if (this.isFinished) {
@@ -199,16 +188,11 @@
                 var userId = user._id;
                 var that = this;
                 var postData = { "answer": {} };
-                if (that.questionSection == XianTianSectionType) {
-                    postData.answer[XianTianSectionType] = this.xianTianAnswer;
-                    localStorage.setItem(XianTianAnswer_Index, JSON.stringify(this.xianTianAnswer))
-                } else {
-                    postData.answer[HouTianSectionType] = this.houTianAnswer;
-                    localStorage.setItem(HouTianAnswer_Index, JSON.stringify(this.houTianAnswer))
-                }
+				postData.answer = this.questionAnswer;
+                localStorage.setItem(XianTianAnswer_Index, JSON.stringify(this.questionAnswer))
                 postData.userId = userId;
                 axios.defaults.headers['Content-Type'] = 'application/json';
-                axios.post(api.generateReportData + "?id=" + userId + "&reportType=" + that.questionSection, postData)
+                axios.post(api.generateReportData + "?id=" + userId, postData)
                     .then(function (res) {
                         if (res.data.errorCode == 0) {
                             let report = res.data.returnValue
@@ -221,19 +205,8 @@
             },
             //判断问题是先天问题还是后天问题
             startQuestionBySection(){
-                this.questionSection = this.$route.query.questionSection;
-                console.log(this.questionSection)
-                if (typeof(this.questionSection ) == 'undefined') {
-                    this.questionSection = XianTianSectionType;
-                }
-                if (this.questionSection == XianTianSectionType) {
-                    this.index = 0;
-                    this.questions = JSON.parse(localStorage.getItem(All_Question_Index)).xianTianQuestions;
-                }
-                else {
-                    this.index = 1;
-                    this.questions = JSON.parse(localStorage.getItem(All_Question_Index)).houTianQuestions;
-                }
+                this.questions = JSON.parse(localStorage.getItem(All_Question_Index)).questions;
+                console.log(this.questions)
                 var item = { isQuestion: true };
                 item.content = this.questions[0].content;
                 this.renderedMessages.push(item);

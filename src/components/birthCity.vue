@@ -1,6 +1,6 @@
 <template>
     <div class="m-selection1">
-        <div class="m-selectcity">目前生活的城市<b>{{ addressProvince }} {{ addressCity }}</b></div>
+        <div class="m-selectcity">出生地<b>{{ addressProvince }} {{ addressCity }}</b></div>
         <div class="page-picker">
             <div class="page-picker-wrapper">
                 <mt-picker :slots="addressSlots" @change="onAddressChange" :visible-item-count="5"></mt-picker>
@@ -53,14 +53,14 @@
                 picker.setSlotValues(1, address[values[0]]);
                 this.addressProvince = values[0];
                 this.addressCity = values[1];
-                this.Obj.city = this.addressCity;
+                this.Obj.birthCity = this.addressCity;
                 this.$emit('updateUserAnswer', this.Obj);
             }
         },
         data() {
             return {
                 Obj: {
-                    city: ''
+                    birthCity: ''
                 },
                 number: 0,
                 yearSlot: [{
