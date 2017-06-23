@@ -11,9 +11,9 @@
 				
 			</div>
 			<p>问题答完了！</p>
-			<h3>点击查看你的体质报告</h3>
+			<h3>点击查看你的体质报告！</h3>
 			<div class="tip">体质情况是根据父母遗传以及平时生活工作习惯得出结论</div>
-				<button class="submit" @click="gotoReport">查看报告</button>
+				<button class="submit" @click="gotoReport"></button>
 		</div>
 	</div>
 </template>
@@ -56,20 +56,20 @@ export default {
 	top: 0;
 	z-index: 99;
 	.mask-con{
-		width: 74.6%;
+		width: 74.4%;
 		height: rem(340rem);
 		background: #fff;
 		border-radius: rem(10rem);
 		position: absolute;
-		top: rem(130rem);
-		left: 12.7%; 
+		top: rem(120rem);
+		left: 12.8%; 
 		text-align: center;
 		overflow: hidden;
 		.mask-header{
 			width: 100%;
 			height: rem(138rem);
 			position: relative; 
-			margin-bottom: rem(24rem);
+			margin-bottom: rem(16rem);
 			.mask-headerbg{
 				width: 100%;
 				height: rem(94rem);
@@ -108,23 +108,25 @@ export default {
 			line-height: rem(36rem);
 		}
 		.tip{
-			font-size: $font12;
+			font-size: $font13;
 			color: #959bab;
-			line-height: rem(24rem);
+			line-height: rem(26rem);
 			padding: 0 3%;
 		}
 		.submit{
-			width: 30%;
+			width: 35%;
 			height: rem(40rem);
 			background: #c69b70;
 			border: 0;
 			color: #fff;
-			border-radius: 0.13rem;
+			overflow: hidden;
+			border-radius: rem(5rem);
 			font-size: 0.37rem;
-			line-height: rem(40rem);
 			position: absolute;
-			bottom: rem(20rem);
-			left: 35%;
+			bottom: rem(18rem);
+			left: 32.5%;
+			background: url(../assets/maskSubmit.png) no-repeat center;
+			background-size: cover;
 		}
 	}
 }

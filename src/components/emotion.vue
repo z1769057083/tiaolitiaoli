@@ -97,7 +97,7 @@
             dl {
                 width: 100%;
                 height: rem(94rem);
-                border-bottom: 1px solid #e1e1e1;
+                border-bottom: 0.02px solid #e1e1e1;
                 font-size: $font13;
                 dt {
                     width: 19%;

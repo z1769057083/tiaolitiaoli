@@ -113,19 +113,21 @@
 		margin-left: 6.7%;
 		background: #fff;
 		padding-top: rem(34rem);
+		font-size: $font13;
 		.recuperate-top{
-			width: 47%;
+			width: 44%;
 			height: rem(34rem);
 			position: absolute;
 			top: rem(14rem);
-			left: 26.5%;
+			left: 28%;
 			img{
 				width: 100%;
 				height: 100%;
 			}
 		}
 		h2{
-			font-size: $font24;
+			font-size: $font20;
+			line-height: rem(28rem);
 			text-align: center;
 		}
 		.recuperatebg{
@@ -156,7 +158,7 @@
 				overflow: hidden;
 				white-space: nowrap;
 				text-overflow: ellipsis;
-				font-size: $font12;
+				font-size: $font13;
 				padding-bottom: rem(10rem);
 				border-bottom: 1px solid #f4eade;
 				span{
@@ -216,7 +218,7 @@
 				 			width: 64%;
 				 			float: left;
 				 			margin-right: 2%;
-				 			font-size: $font12;
+				 			font-size: $font13;
 				 			color: #999;
 				 			line-height: rem(18rem);
 				 			display: -webkit-box;
@@ -269,7 +271,7 @@
 				 				height: rem(68rem);
 				 			}
 				 			.s-martimgTitle{
-				 				font-size: $font12;
+				 				font-size: $font13;
 				 				line-height: rem(16rem);
 				 				font-weight: bold;
 				 			}
@@ -277,7 +279,7 @@
 				 				color: #ff4443;
 				 				line-height: rem(20rem);
 				 				span{
-				 					font-size: $font12;
+				 					font-size: $font13;
 				 					color: #999;
 				 					text-decoration: line-through;
 				 					line-height: rem(20rem);

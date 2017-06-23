@@ -63,7 +63,8 @@
 	        </div>
 	        <!--后天报告详情结束-->
 	    </div>
-	    <myNullReport v-if='isReportEmpty'></myNullReport>
+	    <!--<myNullReport v-if='isReportEmpty'></myNullReport>-->
+	    <myNullReport v-if='false'></myNullReport>
     </div>
 </template>
 <script>

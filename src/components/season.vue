@@ -81,15 +81,13 @@
         .m-selectfacon {
             width: 90%;
             margin-left: 5%;
-
             .m-selectseason {
                 width: 100%;
                 overflow: hidden;
-
                 dl {
                     width: 100%;
                     font-size: $font13;
-                    border-bottom: 1px solid #e1e1e1;
+                    border-bottom: 0.05px solid #e1e1e1;
                     overflow: hidden;
                     padding: rem(12rem) 0;
 
