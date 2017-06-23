@@ -2,16 +2,16 @@
     <div class="m-selection">
         <div class="m-selectcon">
             <div class="m-selectboy" :class="{'active': gender == 'M'}" @click="change_active('M',$event)">
-                <img v-show='msgBoyImg' src="../assets/msgman.png"/>
-                <img v-show='!msgBoyImg' src="../assets/msgmanactive.png"/>
-                <span v-show='msgBoyImg'>男</span>
-                <span v-show='!msgBoyImg'>我是男生</span>
+                <img v-if='msgBoyImg' src="../assets/msgman.png"/>
+                <img v-if='!msgBoyImg' src="../assets/msgmanactive.png"/>
+                <span v-if='msgBoyImg'>男</span>
+                <span class="activeSpan" v-if='!msgBoyImg'>我是男生</span>
             </div>
             <div class="m-selectgirl" :class="{'active': gender == 'F'}" @click="change_active('F',$event)">
-                <img v-show='msgGrilImg' src="../assets/msgwoman.png"/>
-                <img v-show='!msgGrilImg' src="../assets/msgwomanactive.png"/>
-                <span v-show='msgGrilImg'>女</span>
-                <span v-show='!msgGrilImg'>我是女生</span>
+                <img v-if='msgGrilImg' src="../assets/msgwoman.png"/>
+                <img v-if='!msgGrilImg' src="../assets/msgwomanactive.png"/>
+                <span v-if='msgGrilImg'>女</span>
+                <span class="activeSpan" v-if='!msgGrilImg'>我是女生</span>
             </div>
         </div>
         <span class="date-tit">出生日期和时间：</span>
@@ -138,7 +138,11 @@
                     margin: rem(12rem) 0 rem(6rem) rem(63.5rem);
                 }
                 span{
-                	color: #999;
+                	color: #bebaba;
+                	line-height: rem(20rem);
+                }
+                .activeSpan{
+                	color: #C69B70;
                 }
                 .msgimgboy {
                     display: block;
@@ -162,9 +166,12 @@
                     margin: rem(12rem) 0 rem(6rem) rem(59rem);
                 }
                 span{
-                	color: #999;
+                	color: #bebaba;
+                	line-height: rem(20rem);
                 }
-
+                .activeSpan{
+                	color: #C69B70;
+                }
             }
             .active {
                 background: #fff;

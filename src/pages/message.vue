@@ -254,14 +254,14 @@
             width: 100%;
             .m-chardocter {
                 width: 78%;
-                margin-left: 7%;
+                margin-left: 5%;
                 overflow: hidden;
                 display: flex;
                 margin-bottom: rem(14rem);
 
                 .m-charperson {
-                    width: 1.07rem;
-                    height: 1.07rem;
+                    width: rem(40rem);
+                    height: rem(40rem);
                     border-radius: 50%;
                     margin-right: rem(12rem);
                     overflow: hidden;
@@ -295,14 +295,14 @@
             }
             .m-charcustom {
                 width: 78%;
-                margin-right: 7%;
+                margin-right: 5%;
                 overflow: hidden;
                 margin-bottom: rem(14rem);
                 float: right;
 
                 .m-charperson {
-                    width: 1.07rem;
-                    height: 1.07rem;
+                    width: rem(40rem);
+                    height: rem(40rem);
                     float: right;
                     margin-left: rem(12rem);
                     border-radius: 50%;
