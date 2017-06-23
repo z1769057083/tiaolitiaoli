@@ -17,10 +17,11 @@
     </div>
 </template>
 <script type="text/javascript">
+    import Common from '../../static/common'
     export default {
         data(){
             return {
-                femaleStatus: ''
+                femaleStatus: -1
             }
         },
         computed: {
@@ -35,6 +36,9 @@
                 this.$data.femaleStatus = answerValue;
                 this.$emit('updateUserAnswer', this.answer)
             }
+        },
+        mounted(){
+            Common.loadXianTianUserData(this);
         }
     }
 </script>

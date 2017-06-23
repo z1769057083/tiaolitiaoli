@@ -79,7 +79,7 @@
             }
         },
         mounted() {
-            Common.loadExtendXianTianUserData(this,'looks');
+            Common.loadExtendXianTianUserData(this,'houTian','looks');
         }
     }
 </script>

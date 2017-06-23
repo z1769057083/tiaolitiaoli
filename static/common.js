@@ -132,15 +132,7 @@ export default {
         }
         return wuXingArray;
     },
-    loadXianTianUserData:function (component){
-        var allAnswer = JSON.parse(localStorage.getItem(AllAnswer_Index));
-        for (var key in allAnswer) {
-            if (component.$data[key] && typeof (component.$data[key]) === typeof (allAnswer[key])) {
-                component.$data[key] = allAnswer[key];
-                component.$emit('updateUserAnswer', component.answer)
-            }
-        }
-    },
+
     convertReportsToText:function(reports){
         var wuXingReportContentText = '';
         if (typeof (reports) != 'undefined' && reports != '') {
@@ -165,10 +157,29 @@ export default {
         }
         return wuXingReportContentText;
     },
-    loadExtendXianTianUserData:function (component, field){
+    loadXianTianUserData:function (component,sectionType){
+        debugger;
+        var allAnswer = JSON.parse(localStorage.getItem(AllAnswer_Index));
+        var loadingData=allAnswer.houTian;
+        if(sectionType&&sectionType=='xianTian'){
+            loadingData=allAnswer.xianTian;
+        }
+        for (var key in loadingData) {
+            if (typeof (component.$data[key])!='undefined'
+                && typeof (component.$data[key]) === typeof (loadingData[key])) {
+                component.$data[key] = loadingData[key];
+                component.$emit('updateUserAnswer', component.answer)
+            }
+        }
+    },
+    loadExtendXianTianUserData:function (component,sectionType, field){
         var allAnswer = JSON.parse(localStorage.getItem(AllAnswer_Index));
         if (allAnswer == null) return;
-        var extendValue = allAnswer[field];
+        var loadingData=allAnswer.houTian;
+        if(sectionType&&sectionType=='xianTian'){
+            loadingData=allAnswer.xianTian;
+        }
+        var extendValue = loadingData[field];
         for (var key in extendValue) {
             if (component.$data[key] && typeof (component.$data[key]) === typeof (extendValue[key])) {
                 component.$data[key] = extendValue[key];

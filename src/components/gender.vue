@@ -97,6 +97,8 @@
         		global.User.time = this.answer.time;
         		this.$emit('updateUserAnswer', this.answer);    
             }
+        },
+        mounted(){
         }
     }
 </script>
