@@ -21,12 +21,11 @@ import videoHome from '@/pages/videoHome'
 import articleList from '@/pages/articleList'
 import backdoor from '@/pages/backdoor'
 import articleListDetail from '@/pages/articleListDetail'
-import myNullReport from '@/pages/myNullReport'
-import doctorIntroduce from '@/pages/doctorIntroduce'
 import orderList from '@/pages/orderList'
 import orderListDetail from '@/pages/orderListDetail'
 import immunityTest from '@/pages/immunityTest'
 import recommendArticle from '@/pages/recommendArticle'
+import aboutUs from '@/pages/aboutUs'
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -84,9 +83,9 @@ export default new Router({
       name: 'cashier'
     },
       {
-          path: '/backdoor',
-          component: backdoor,
-          name: 'backdoor'
+      path: '/backdoor',
+      component: backdoor,
+      name: 'backdoor'
       },
     {
       path: '/afterReport',
@@ -134,16 +133,6 @@ export default new Router({
       name: 'articleListDetail'
     },
     {
-      path: '/myNullReport',
-      component: myNullReport,
-      name: 'myNullReport'
-    },
-    {
-      path: '/doctorIntroduce',
-      component: doctorIntroduce,
-      name: 'doctorIntroduce'
-    },
-    {
       path: '/orderList',
       component: orderList,
       name: 'orderList'
@@ -162,6 +151,11 @@ export default new Router({
       path: '/recommendArticle',
       component: recommendArticle,
       name: 'recommendArticle'
+    },
+    {
+      path: '/aboutUs',
+      component: aboutUs,
+      name: 'aboutUs'
     }            
   ]
 })

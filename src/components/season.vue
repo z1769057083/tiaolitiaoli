@@ -64,7 +64,7 @@
                 } else {
                     this.daily.push(obj);
                 }
-                if (this.season !== '') {
+                if (this.season !== -1) {
                     this.$emit('updateUserAnswer', this.answer)
                 }
 

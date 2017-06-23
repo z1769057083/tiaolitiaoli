@@ -9,7 +9,7 @@
                         <template>                       
                             <img class="swiper-img"
                                  :src="''+apiPath+'/image/hot/'+hotItem.index+'.jpg'"
-                                 onerror="this.src='http://placeholder.qiniudn.com/800'"
+                                 onerror="this.src='../../static/images/defaultPicture.jpg'"
                                  @click='swiperClick(hotItem,index)'/>
                         </template>
                     </div>

@@ -5,7 +5,7 @@
 		<dl v-for='(item,index) in list' @click='shopClick(item,index)'>
 				<dt @click='shopClick(item,index)'>
 					<img :src="''+apiPath+'/image/product/thumbnail/'+item.index+'.jpg'" 
-							onerror="this.src='http://placeholder.qiniudn.com/800'"
+							onerror="this.src='../../static/images/defaultPicture.jpg'"
 							@click='shopClick(item,index)'
 							/>
 				</dt>

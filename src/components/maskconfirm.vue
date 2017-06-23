@@ -11,9 +11,9 @@
 				
 			</div>
 			<p>问题答完了！</p>
-			<h3>{{fieldTitle}}</h3>
-			<div class="tip">{{fieldDescription}}</div>
-				<button class="submit" @click="gotoReport()">查看报告</button>
+			<h3>点击查看你的体质报告</h3>
+			<div class="tip">体质情况是根据父母遗传以及平时生活工作习惯得出结论</div>
+				<button class="submit" @click="gotoReport">查看报告</button>
 		</div>
 	</div>
 </template>
@@ -25,24 +25,9 @@ export default {
 	    }
 	},
     props:['questionSection'],
-    computed: {
-        fieldTitle: function () {
-            return (this.questionSection == XianTianSectionType ? "点击查看你的先天体质报告" : "点击查看你的体质报告");
-        },
-        fieldDescription: function () {
-            return (this.questionSection == XianTianSectionType ?
-				"温馨提示:先天体质是你从父母那遗传的以及早期生活习惯养成的体质。"
-				: "温馨提示:后天体质是你后天生活，工作养成的体质。");
-        },
-    },
     methods:{
-        gotoReport(){
-            if(this.questionSection == XianTianSectionType){
-                this.$router.push({ path: '/report' })
-			}
-            else{
-                this.$router.push({ path: '/afterReport' })
-			}
+        gotoReport(){            
+            this.$router.push({ path: '/afterReport' })
 		}
 	},
 	 mounted() {

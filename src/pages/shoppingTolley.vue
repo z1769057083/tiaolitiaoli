@@ -22,7 +22,7 @@
 		    			<dt @click='shopClick(item,index)'>
 		    				<img 
 		    				:src="''+apiPath+'/image/product/'+item.img+'/1.jpg'" 
-		    				onerror="this.src='http://placeholder.qiniudn.com/300'"
+		    				onerror="this.src='../../static/images/defaultPicture.jpg'"
 		    				@click='shopClick(item,index)'/>
 		    			</dt>
 		    			<dd>

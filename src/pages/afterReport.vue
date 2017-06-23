@@ -1,76 +1,77 @@
 <template>
-    <div class='afterReport'>
-        <!--聊天内容-->
-        <div class='after-content'>
-            <div class='i-headbot' style="display: none;">
-                <div class='i-headbottext'>您的体质报告</div>
-            </div>
-            <div class="r-main">
-                <div class="r-mainchart" id='chart-container'>
-                    <!--<img src="../assets/reportcharts.png"/>-->
-                </div>
-                <div class='i-maincen'>
-                    <div class="r-mreport">
-                        <div class="r-mrcontent">
-                            <h3>先天体质</h3>
-                            <p v-html="wuXingXianTianStatusText"></p>
-                            <div class="right" @click='showXianTianReport'>
-                                <img src="../assets/afterRdetail.png"/>
-                            </div>
-                        </div>
-                        <div class="r-mrcontent">
-                            <h3>后天体质</h3>
-                            <p class="r-mrconp" v-html="wuXingHouTianStatusText"></p>
-                            <div class="right" @click='afterReport'>
-                                <img src="../assets/afterRdetail.png"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="r-mseason">
-                        <h3>当季体质</h3>
-                        <p class="r-mrconp" v-html="wuXingDangShiStatusText+'<br>'+wuXingReportJieQiContent">
-                            <!--{{wuXingDangShiStatusText}}<br>-->
-                            <!--{{wuXingReportJieQiContent}}-->
-                        </p>
-                        <router-link to='/medicalSuggestion'>
-                            <img class="r-mrconimg" src="../assets/afterRmy.png"/>
-                        </router-link>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--后天报告详情开始-->
-        <div class="reportDetail" v-show='afterReportHidden'>
-            <div class="reportDetail-main">
-                <div class="top">
-                    <img src="../assets/houtianImg.png"/>
-                </div>
-                <img class="close" src="../assets/shopcarClose.png" @click='afterReportHidden = !afterReportHidden'/>
-                <div class="reportDetailcontent">
-                    <p v-html="wuXingReportHouTianContent"></p>
-                </div>
-            </div>
-        </div>
-        <div class="reportDetail" v-show='xianTianReportIsShowed'>
-            <div class="reportDetail-main">
-                <div class="top">
-                    <img src="../assets/xiantianImg.png"/>
-                </div>
-                <img class="close" src="../assets/shopcarClose.png"
-                     @click='xianTianReportIsShowed = !xianTianReportIsShowed'/>
-                <div class="reportDetailcontent">
-                    <p v-html="wuXingReportXianTianContent"></p>
-                </div>
-            </div>
-        </div>
-        <!--后天报告详情结束-->
+	<div>
+	    <div class='afterReport'>
+	        <!--聊天内容-->
+	        <div class='after-content'>
+	            <div class="r-main">
+	                <div class="r-mainchart" id='chart-container'>
+	                    <!--<img src="../assets/reportcharts.png"/>-->
+	                </div>
+	                <div class='i-maincen'>
+	                    <div class="r-mreport">
+	                        <div class="r-mrcontent">
+	                            <h3>先天体质</h3>
+	                            <p v-html="wuXingXianTianStatusText"></p>
+	                            <div class="right" @click='showXianTianReport'>
+	                                <img src="../assets/afterRdetail.png"/>
+	                            </div>
+	                        </div>
+	                        <div class="r-mrcontent">
+	                            <h3>后天体质</h3>
+	                            <p class="r-mrconp" v-html="wuXingHouTianStatusText"></p>
+	                            <div class="right" @click='afterReport'>
+	                                <img src="../assets/afterRdetail.png"/>
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <div class="r-mseason">
+	                        <h3>当季体质</h3>
+	                        <p class="r-mrconp" v-html="wuXingDangShiStatusText+'<br>'+wuXingReportJieQiContent">
+	                            <!--{{wuXingDangShiStatusText}}<br>-->
+	                            <!--{{wuXingReportJieQiContent}}-->
+	                        </p>
+	                        <router-link to='/medicalSuggestion'>
+	                            <img class="r-mrconimg" src="../assets/afterRmy.png"/>
+	                        </router-link>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	        <!--后天报告详情开始-->
+	        <div class="reportDetail" v-show='afterReportHidden'>
+	            <div class="reportDetail-main">
+	                <div class="top">
+	                    <img src="../assets/houtianImg.png"/>
+	                </div>
+	                <img class="close" src="../assets/shopcarClose.png" @click='afterReportHidden = !afterReportHidden'/>
+	                <div class="reportDetailcontent">
+	                    <p v-html="wuXingReportHouTianContent"></p>
+	                </div>
+	            </div>
+	        </div>
+	        <div class="reportDetail" v-show='xianTianReportIsShowed'>
+	            <div class="reportDetail-main">
+	                <div class="top">
+	                    <img src="../assets/xiantianImg.png"/>
+	                </div>
+	                <img class="close" src="../assets/shopcarClose.png"
+	                     @click='xianTianReportIsShowed = !xianTianReportIsShowed'/>
+	                <div class="reportDetailcontent">
+	                    <p v-html="wuXingReportXianTianContent"></p>
+	                </div>
+	            </div>
+	        </div>
+	        <!--后天报告详情结束-->
+	    </div>
+	    <myNullReport v-if='nullHidden'></myNullReport>
     </div>
 </template>
 <script>
     import axios from 'axios'
     import api from '../api/api'
     import ReportHelper from '../../static/reportHelper';
-    import Common from '../../static/common';
+    import Common from '../../static/common';   
+    import myNullReport from '@/components/myNullReport'
     import Toast from '@/packages/toast'
     export default {
         data (){
@@ -83,8 +84,12 @@
                 wuXingXianTianStatusText: '',
                 wuXingHouTianStatusText: '&nbsp;',
                 afterReportHidden: false,
-                xianTianReportIsShowed: false
+                xianTianReportIsShowed: false,
+                nullHidden: true
             }
+        },
+         components: {
+            myNullReport
         },
         methods: {
             renderReport(report){
@@ -115,9 +120,7 @@
                 this.wuXingReportJieQiContent = Common.convertReportsToText(report.jieQiReports);
                 this.wuXingReportXianTianContent = Common.convertReportsToText(report.xianTianReports);
                 this.wuXingReportHouTianContent = Common.convertReportsToText(report.houTianReports);
-
             },
-
             afterReport(){
                 this.afterReportHidden = true
             },
@@ -128,7 +131,6 @@
         mounted() {
             document.title = "体质报告"
             let userId = this.$route.query.userid;
-            console.log(userId);
             let that = this
             if (localStorage.getItem(Account_Index) != null) {
                 userId= JSON.parse(localStorage.getItem(Account_Index))._id
@@ -137,16 +139,17 @@
                 Toast({
                     message: '请先完成体质检测',
                     position: 'top'
-                });
-                return;
-            }
-            else {
+                });   
+                
+                return;               
+          	}else {
                 axios.get(api.getReport + "?userId=" + userId + "&reportType=houTian")
                     .then(function (res) {
                         if (res.data.errorCode == 0) {
                             let report = res.data.returnValue;
                             localStorage.setItem(HouTianReport_Index, JSON.stringify(report))
                             that.renderReport(report)
+                            console.log(report)
                         }
                         else{
                             Toast({
@@ -157,7 +160,14 @@
                     })
             }
             document.documentElement.scrollTop = 0
-            document.body.scrollTop = 0
+            document.body.scrollTop = 0 
+            console.log()
+            if(window.localStorage.getItem(global.HouTianAnswer_Index)==null
+            || typeof(userId)==='undefined'||userId==''||window.localStorage.getItem(global.HouTianAnswer_Index)==''){
+            	this.nullHidden = true
+            }else{
+            	this.nullHidden = false
+            }
         }
     }
 </script>
