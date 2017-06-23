@@ -52,7 +52,7 @@
                     new Date(this.fatherBirthday) < new Date(global.User.birthday) &&
                     new Date(this.fatherBirthday) > new Date('1901-01-01') &&
                     new Date(this.motherBirthday) > new Date('1901-01-01') &&
-                    new Date(this.motherBirthday) < new Date(global.User.birthday)) {
+                    new Date(this.motherBirthday) < new Date(global.User.birthday)&&this.motherHour!==''&&this.fatherHour!=='') {
                     answer.isAllFilled = true;
                 }
                 return answer;

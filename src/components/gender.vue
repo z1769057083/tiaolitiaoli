@@ -49,7 +49,9 @@
                 answer.gender = this.gender;
                 answer.time = this.time
                 answer.birthday = this.birthday+" "+this.time+":00:00";
-                if(this.gender !== '' && this.birthday !== ''){
+                debugger;
+                answer.isAllFilled=false;
+                if(this.gender !== '' && this.birthday !== ''&&this.time!==''){
                 	answer.isAllFilled = true;
                 }
                 return answer;
@@ -96,7 +98,8 @@
             	this.toggle1 = true
             	this.time = time
         		global.User.time = this.answer.time;       		
-        		this.$emit('updateUserAnswer', this.answer);    
+        		this.$emit('updateUserAnswer', this.answer); 
+        		
             }
         }
     }
