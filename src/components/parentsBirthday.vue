@@ -29,12 +29,12 @@
                 answer.motherBirthday = this.motherBirthday;
                 answer.fatherBirthday = this.fatherBirthday;
                 answer.isAllFilled = false;
-                if (this.motherBrithdy !== '' &&
+                if (this.motherBirthday !== '' &&
                     this.fatherBirthday !== '' &&
                     new Date(this.fatherBirthday) < new Date(global.User.birthday) &&
                     new Date(this.fatherBirthday) > new Date('1901-01-01') &&
-                    new Date(this.motherBrithdy) > new Date('1901-01-01') &&
-                    new Date(this.motherBrithdy) < new Date(global.User.birthday)) {
+                    new Date(this.motherBirthday) > new Date('1901-01-01') &&
+                    new Date(this.motherBirthday) < new Date(global.User.birthday)) {
                     answer.isAllFilled = true;
                 }
                 return answer;
@@ -51,9 +51,8 @@
                 }
                 this.toggle = true
                 this.fatherBirthday = fatherBirthday;
-                if (this.motherBrithdy !== '') {
                     this.$emit('updateUserAnswer', this.answer);
-                }
+                
             },
             change_MotherDate(motherBirthday){
                 if (new Date(motherBirthday) >= new Date(global.User.birthday)) {
@@ -64,10 +63,9 @@
                     return;
                 }
                 this.toggle1 = true
-                this.motherBrithdy = motherBirthday;
-                if (this.fatherBirthday !== '') {
-                    this.$emit('updateUserAnswer', this.answer);
-                }
+                this.motherBirthday = motherBirthday;
+                this.$emit('updateUserAnswer', this.answer);
+                
             }
         }
     }

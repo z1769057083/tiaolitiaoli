@@ -66,8 +66,8 @@
             document.body.scrollTop = 0
 			if(localStorage.getItem(HouTianReport_Index)!==null){
                 let user=JSON.parse(localStorage.getItem(Account_Index));
-                let xianTianData=JSON.parse(localStorage.getItem(XianTianAnswer_Index));
-                let houTianData=JSON.parse(localStorage.getItem(HouTianAnswer_Index));
+                let xianTianData=JSON.parse(localStorage.getItem(AllAnswer_Index)).xianTian;
+                let houTianData=JSON.parse(localStorage.getItem(AllAnswer_Index)).houTian;
                 let dangJiReport=JSON.parse(localStorage.getItem(HouTianReport_Index));
                 this.wuXingLevelText=Common.parseWuXingLevelToText(dangJiReport.wuXingDangShiLevel);
                 this.reportContent=Common.convertReportsToText(dangJiReport.jieQiReports).split('<br>',1);
@@ -89,8 +89,8 @@
 
 			if (window.localStorage.getItem(Account_Index) != null) {
                 this.userId= JSON.parse(window.localStorage.getItem(Account_Index))._id                         			}
-			if(window.localStorage.getItem(global.HouTianAnswer_Index)==''
-	            || typeof(this.userId)==='undefined'||this.userId==''||window.localStorage.getItem(global.HouTianAnswer_Index)==null){
+			if(window.localStorage.getItem(global.AllAnswer_Index)==''
+	            || typeof(this.userId)==='undefined'||this.userId==''||window.localStorage.getItem(global.AllAnswer_Index)==null){
 	            	this.nullHidden = true
 	            }else{
 	            	console.log(111)

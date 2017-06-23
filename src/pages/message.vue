@@ -91,9 +91,7 @@
                 questionAnswer:{
                 	xianTian: {},
                 	houTian: {}
-                },
-                xianTianAnswer: {},
-                houTianAnswer: {},                
+                },   
                 pendingAnswer: {},
                 index: 0
             }
@@ -143,17 +141,17 @@
                     this.pendingAnswer = answerParams;
                     for (let key in answerParams) {
                     	if(this.index<=3){
-                    		this.xianTianAnswer[key] = answerParams[key];
+                    		this.questionAnswer.xianTian[key] = answerParams[key];
                     	}else{
-                    		this.houTianAnswer[key] = answerParams[key];
+                    		this.questionAnswer.houTian[key] = answerParams[key];
                     	}                          
                     }
-                    this.questionAnswer.xianTian = this.xianTianAnswer
-                    this.questionAnswer.houTian = this.houTianAnswer
+                    
                 }
             },
 //          点击确定判断问题是否全部回答
             confirm () {
+            	debugger;
                 if (!this.isCurrentQuestionFinished) {
                     Toast({
                         message: '请先完成当前问题',
@@ -189,7 +187,7 @@
                 var that = this;
                 var postData = { "answer": {} };
 				postData.answer = this.questionAnswer;
-                localStorage.setItem(XianTianAnswer_Index, JSON.stringify(this.questionAnswer))
+                localStorage.setItem(AllAnswer_Index, JSON.stringify(this.questionAnswer))
                 postData.userId = userId;
                 axios.defaults.headers['Content-Type'] = 'application/json';
                 axios.post(api.generateReportData + "?id=" + userId, postData)
