@@ -44,7 +44,6 @@
             answer(){
                 var answer = {};
                 answer.gender = this.gender;
-//              answer.birthday = this.birthday;
                 answer.time = this.time
                 answer.birthday = this.birthday+" "+this.time+":00:00";
                 if(this.gender !== '' && this.birthday !== ''){
@@ -95,10 +94,8 @@
             },
             change_date1(time){
             	this.time = time
-            	if(this.gender !== ''&&this.birthday !== ''){
-            		global.User.time = this.answer.time;
-            		this.$emit('updateUserAnswer', this.answer);    
-            	}
+        		global.User.time = this.answer.time;
+        		this.$emit('updateUserAnswer', this.answer);    
             }
         }
     }

@@ -5,29 +5,42 @@
         <input type="date" :class="{'activeDate': toggle}" class="m-selectbirthday" name='fatherBirthday'
                v-model='fatherBirthday' min="1901-01-01"
                @change='change_date(fatherBirthday)'/>
+       	<select v-model="fatherHour" id="selProv" @change='change_date1(fatherHour)'>
+			<option v-for="fItem in timeArr" :value="fItem" >
+				{{ fItem}}
+			</option>
+		</select>
         <span>母亲生日：</span>
         <input type="date" :class="{'activeDate': toggle1}" class="m-selectbirthday" name='motherBirthday'
                v-model='motherBirthday'  min="1901-01-01"
                @change='change_MotherDate(motherBirthday)'/>
-
+		<select v-model="motherHour" id="selProv" @change='change_date2(motherHour)'>
+			<option v-for="mItem in timeArr" :value="mItem" >
+				{{ mItem}}
+			</option>
+		</select>
     </div>
 </template>
 <script type="text/javascript">
     import Toast from '@/packages/toast'
+    var arr = ['00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23']
     export default {
         data(){
             return {
+            	timeArr: arr,
                 motherBirthday: '1990-01-01',
                 fatherBirthday: '1990-01-01',
                 toggle: false,
-                toggle1: false
+                toggle1: false,
+                fatherHour:'12',
+                motherHour:'12'
             }
         },
         computed: {
             answer(){
                 var answer = {};
-                answer.motherBirthday = this.motherBirthday;
-                answer.fatherBirthday = this.fatherBirthday;
+                answer.motherBirthday = this.motherBirthday+" "+this.motherHour+":00:00";
+                answer.fatherBirthday = this.fatherBirthday+" "+this.fatherHour+":00:00";
                 answer.isAllFilled = false;
                 if (this.motherBirthday !== '' &&
                     this.fatherBirthday !== '' &&
@@ -66,6 +79,16 @@
                 this.motherBirthday = motherBirthday;
                 this.$emit('updateUserAnswer', this.answer);
                 
+            },
+            change_date1(fatherHour){
+            	this.fatherHour = fatherHour         
+        		global.User.fatherHour = this.answer.fatherHour;
+        		this.$emit('updateUserAnswer', this.answer);    
+            },
+            change_date2(motherHour){
+            	this.motherHour = motherHour
+        		global.User.motherHour = this.answer.motherHour;
+        		this.$emit('updateUserAnswer', this.answer);    
             }
         }
     }
@@ -90,13 +113,13 @@
             padding-bottom: rem(15rem);
         }
         .m-selectbirthday {
-            width: 92.8%;
+            width: 65.6%;
             height: 1.3rem;
             background: url(../assets/msgdate.png) no-repeat center;
             background-size: cover;
             line-height: 1.3rem;
             font-size: 0.37rem;
-            padding-left: 7.2%;
+            padding: 0 7.2%;
             color: #999;
             border-radius: 1.06rem;
             margin-bottom: rem(30rem);
@@ -104,6 +127,21 @@
         }
         .activeDate {
             color: #000;
+        }
+        #selProv{
+        	width: 20%;
+        	height: 1.3rem;
+        	overflow: hidden;
+        	float: right;
+        	border-radius: 1.06rem;
+        	border: 1px solid #DEDEDE;       	
+    		text-align: center;
+    		padding: 0 7%;
+    		color: #000;
+    		background: transparent;
+			appearance:none;
+			-moz-appearance:none;
+			-webkit-appearance:none;    		
         }
     }
 </style>

@@ -125,7 +125,6 @@
             		that.index = that.index + 2;
             	}else{
             		that.index += 1;
-            		console.log(that.index)
             	}
                              
             },
@@ -146,12 +145,12 @@
                     		this.questionAnswer.houTian[key] = answerParams[key];
                     	}                          
                     }
+                    console.log(this.questionAnswer)
                     
                 }
             },
 //          点击确定判断问题是否全部回答
             confirm () {
-            	debugger;
                 if (!this.isCurrentQuestionFinished) {
                     Toast({
                         message: '请先完成当前问题',
@@ -204,7 +203,6 @@
             //判断问题是先天问题还是后天问题
             startQuestionBySection(){
                 this.questions = JSON.parse(localStorage.getItem(All_Question_Index)).questions;
-                console.log(this.questions)
                 var item = { isQuestion: true };
                 item.content = this.questions[0].content;
                 this.renderedMessages.push(item);
