@@ -2,14 +2,15 @@
 import wx from 'weixin-js-sdk'
 global.Doctor_Name_Key = 'doctor_Name_Key'
 global.Doctor_Name_index = 'doctor_Name_index'
-global.All_Question_Index = 'answer_index'
+global.All_Question_Index = 'questions_index'
 global.Account_Index = 'account_index'
 global.XianTianSectionType = 'xianTian'
 global.HouTianSectionType = 'houTian'
 global.XianTianReport_Index = 'xianTianReport'
 global.HouTianReport_Index = 'houTianReport'
-global.XianTianAnswer_Index = 'xianTianAnswer_Index'
-global.HouTianAnswer_Index = 'houTianAnswer_Index'
+
+global.AllAnswer_Index = 'answer_index'
+//global.AllAnswer_Index = 'allAnswer_Index'
 global.WechatSignature_Index = 'wechatSignature_Index'
 global.Version = '0.0.7'
 global.IsDebug = true
@@ -132,10 +133,10 @@ export default {
         return wuXingArray;
     },
     loadXianTianUserData:function (component){
-        var xianTianAnswer = JSON.parse(localStorage.getItem(XianTianAnswer_Index));
-        for (var key in xianTianAnswer) {
-            if (component.$data[key] && typeof (component.$data[key]) === typeof (xianTianAnswer[key])) {
-                component.$data[key] = xianTianAnswer[key];
+        var allAnswer = JSON.parse(localStorage.getItem(AllAnswer_Index));
+        for (var key in allAnswer) {
+            if (component.$data[key] && typeof (component.$data[key]) === typeof (allAnswer[key])) {
+                component.$data[key] = allAnswer[key];
                 component.$emit('updateUserAnswer', component.answer)
             }
         }
@@ -165,9 +166,9 @@ export default {
         return wuXingReportContentText;
     },
     loadExtendXianTianUserData:function (component, field){
-        var xianTianAnswer = JSON.parse(localStorage.getItem(XianTianAnswer_Index));
-        if (xianTianAnswer == null) return;
-        var extendValue = xianTianAnswer[field];
+        var allAnswer = JSON.parse(localStorage.getItem(AllAnswer_Index));
+        if (allAnswer == null) return;
+        var extendValue = allAnswer[field];
         for (var key in extendValue) {
             if (component.$data[key] && typeof (component.$data[key]) === typeof (extendValue[key])) {
                 component.$data[key] = extendValue[key];

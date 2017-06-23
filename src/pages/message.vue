@@ -91,9 +91,7 @@
                 questionAnswer:{
                 	xianTian: {},
                 	houTian: {}
-                },
-                xianTianAnswer: {},
-                houTianAnswer: {},                
+                },   
                 pendingAnswer: {},
                 index: 0
             }
@@ -127,7 +125,6 @@
             		that.index = that.index + 2;
             	}else{
             		that.index += 1;
-            		console.log(that.index)
             	}
                              
             },
@@ -143,13 +140,13 @@
                     this.pendingAnswer = answerParams;
                     for (let key in answerParams) {
                     	if(this.index<=3){
-                    		this.xianTianAnswer[key] = answerParams[key];
+                    		this.questionAnswer.xianTian[key] = answerParams[key];
                     	}else{
-                    		this.houTianAnswer[key] = answerParams[key];
+                    		this.questionAnswer.houTian[key] = answerParams[key];
                     	}                          
                     }
-                    this.questionAnswer.xianTian = this.xianTianAnswer
-                    this.questionAnswer.houTian = this.houTianAnswer
+                    console.log(this.questionAnswer)
+                    
                 }
             },
 //          点击确定判断问题是否全部回答
@@ -189,7 +186,7 @@
                 var that = this;
                 var postData = { "answer": {} };
 				postData.answer = this.questionAnswer;
-                localStorage.setItem(XianTianAnswer_Index, JSON.stringify(this.questionAnswer))
+                localStorage.setItem(AllAnswer_Index, JSON.stringify(this.questionAnswer))
                 postData.userId = userId;
                 axios.defaults.headers['Content-Type'] = 'application/json';
                 axios.post(api.generateReportData + "?id=" + userId, postData)
@@ -206,7 +203,6 @@
             //判断问题是先天问题还是后天问题
             startQuestionBySection(){
                 this.questions = JSON.parse(localStorage.getItem(All_Question_Index)).questions;
-                console.log(this.questions)
                 var item = { isQuestion: true };
                 item.content = this.questions[0].content;
                 this.renderedMessages.push(item);
@@ -258,14 +254,14 @@
             width: 100%;
             .m-chardocter {
                 width: 78%;
-                margin-left: 7%;
+                margin-left: 5%;
                 overflow: hidden;
                 display: flex;
                 margin-bottom: rem(14rem);
 
                 .m-charperson {
-                    width: 1.07rem;
-                    height: 1.07rem;
+                    width: rem(40rem);
+                    height: rem(40rem);
                     border-radius: 50%;
                     margin-right: rem(12rem);
                     overflow: hidden;
@@ -299,14 +295,14 @@
             }
             .m-charcustom {
                 width: 78%;
-                margin-right: 7%;
+                margin-right: 5%;
                 overflow: hidden;
                 margin-bottom: rem(14rem);
                 float: right;
 
                 .m-charperson {
-                    width: 1.07rem;
-                    height: 1.07rem;
+                    width: rem(40rem);
+                    height: rem(40rem);
                     float: right;
                     margin-left: rem(12rem);
                     border-radius: 50%;

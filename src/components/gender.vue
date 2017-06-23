@@ -1,42 +1,51 @@
 <template>
     <div class="m-selection">
-        <!--<div class="m-selecttit1">性别</div>-->
         <div class="m-selectcon">
             <div class="m-selectboy" :class="{'active': gender == 'M'}" @click="change_active('M',$event)">
-                <img v-show='msgBoyImg' src="../assets/msgman.png"/>
-                <img v-show='!msgBoyImg' src="../assets/msgmanactive.png"/>
-                <span v-show='msgBoyImg'>男</span>
-                <span v-show='!msgBoyImg'>我是男生</span>
+                <img v-if='msgBoyImg' src="../assets/msgman.png"/>
+                <img v-if='!msgBoyImg' src="../assets/msgmanactive.png"/>
+                <span v-if='msgBoyImg'>男</span>
+                <span class="activeSpan" v-if='!msgBoyImg'>我是男生</span>
             </div>
             <div class="m-selectgirl" :class="{'active': gender == 'F'}" @click="change_active('F',$event)">
-                <img v-show='msgGrilImg' src="../assets/msgwoman.png"/>
-                <img v-show='!msgGrilImg' src="../assets/msgwomanactive.png"/>
-                <span v-show='msgGrilImg'>女</span>
-                <span v-show='!msgGrilImg'>我是女生</span>
+                <img v-if='msgGrilImg' src="../assets/msgwoman.png"/>
+                <img v-if='!msgGrilImg' src="../assets/msgwomanactive.png"/>
+                <span v-if='msgGrilImg'>女</span>
+                <span class="activeSpan" v-if='!msgGrilImg'>我是女生</span>
             </div>
         </div>
-        <span class="date-tit">出生日期：</span>
-        <input type="date" class="m-selectdate" name='birthday' v-model='birthday' @change='change_date(birthday)'/>
+        <span class="date-tit">出生日期和时间：</span>
+        <input type="date" min='1900-01-01' class="m-selectdate" name='birthday' v-model='birthday' @change='change_date(birthday)'/>
+        <select v-model="time" id="selProv" @change='change_date1(time)'>
+			<option v-for="option in timeArr" :value="option" >
+				{{ option}}
+			</option>
+		</select>
     </div>
 </template>
 <script type="text/javascript">
     import Common from '../../static/common'
     import Toast from '@/packages/toast'
+    var arr = ['00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23']
     export default {
         data(){
             return {
+            	timeArr: arr,
                 gender: "F",
                 birthday: "",
+                time:'',
                 msgBoyImg: true,
                 msgGrilImg: false,
-                toggle: false
+                toggle: false,
+                time:'12'
             }
         },
         computed: {
             answer(){
                 var answer = {};
                 answer.gender = this.gender;
-                answer.birthday = this.birthday;
+                answer.time = this.time
+                answer.birthday = this.birthday+" "+this.time+":00:00";
                 if(this.gender !== '' && this.birthday !== ''){
                 	answer.isAllFilled = true;
                 }
@@ -79,6 +88,14 @@
                     global.User.birthday =this.birthday;
                     this.$emit('updateUserAnswer', this.answer);                 
                 }
+            },
+            concat(birthday,hour){
+            	return birthday +" : "+hour+":00:00";
+            },
+            change_date1(time){
+            	this.time = time
+        		global.User.time = this.answer.time;
+        		this.$emit('updateUserAnswer', this.answer);    
             }
         }
     }
@@ -121,7 +138,11 @@
                     margin: rem(12rem) 0 rem(6rem) rem(63.5rem);
                 }
                 span{
-                	color: #999;
+                	color: #bebaba;
+                	line-height: rem(20rem);
+                }
+                .activeSpan{
+                	color: #C69B70;
                 }
                 .msgimgboy {
                     display: block;
@@ -145,9 +166,12 @@
                     margin: rem(12rem) 0 rem(6rem) rem(59rem);
                 }
                 span{
-                	color: #999;
+                	color: #bebaba;
+                	line-height: rem(20rem);
                 }
-
+                .activeSpan{
+                	color: #C69B70;
+                }
             }
             .active {
                 background: #fff;
@@ -160,7 +184,7 @@
             padding-bottom: rem(15rem);
         }
         .m-selectdate {
-            width: 85.6%;
+            width: 65.6%;
             height: 1.3rem;
             background: url(../assets/msgdate.png) no-repeat center;
             background-size: cover;
@@ -170,6 +194,21 @@
             color: #000;
             border-radius: 1.06rem;
             border: 0;
+        }
+        #selProv{
+        	width: 20%;
+        	height: 1.3rem;
+        	overflow: hidden;
+        	float: right;
+        	border-radius: 1.06rem;
+        	border: 1px solid #DEDEDE;       	
+    		text-align: center;
+    		padding: 0 7%;
+    		color: #000;
+    		background: transparent;
+			appearance:none;
+			-moz-appearance:none;
+			-webkit-appearance:none;    		
         }
     }
 </style>

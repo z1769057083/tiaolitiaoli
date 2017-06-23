@@ -63,7 +63,7 @@
 	        </div>
 	        <!--后天报告详情结束-->
 	    </div>
-	    <myNullReport v-if='nullHidden'></myNullReport>
+	    <myNullReport v-if='isReportEmpty'></myNullReport>
     </div>
 </template>
 <script>
@@ -85,7 +85,7 @@
                 wuXingHouTianStatusText: '&nbsp;',
                 afterReportHidden: false,
                 xianTianReportIsShowed: false,
-                nullHidden: true
+                isReportEmpty: true
             }
         },
          components: {
@@ -162,11 +162,11 @@
             document.documentElement.scrollTop = 0
             document.body.scrollTop = 0 
             console.log()
-            if(window.localStorage.getItem(global.HouTianAnswer_Index)==null
-            || typeof(userId)==='undefined'||userId==''||window.localStorage.getItem(global.HouTianAnswer_Index)==''){
-            	this.nullHidden = true
+            if(window.localStorage.getItem(global.AllAnswer_Index)==null
+            || typeof(userId)==='undefined'||userId==''||window.localStorage.getItem(global.AllAnswer_Index)==''){
+            	this.isReportEmpty = true
             }else{
-            	this.nullHidden = false
+            	this.isReportEmpty = false
             }
         }
     }
