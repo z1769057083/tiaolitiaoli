@@ -80,7 +80,7 @@
 			margin-bottom: rem(15rem);
 		}
 		.title{
-			font-size: $font20;
+			font-size: $font18;
 			text-align: center;
 			margin-bottom: rem(15rem);
 		}

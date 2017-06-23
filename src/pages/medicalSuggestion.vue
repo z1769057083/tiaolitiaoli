@@ -26,6 +26,7 @@
 				<commodity hasRecommend="true"></commodity>
 			</div>
 		</div>
+		<myNullReport v-if='nullHidden'></myNullReport>
    </div>
 </template>
 <script>
@@ -35,6 +36,7 @@
     import Common from '../../static/common';
     import commodity from '@/components/commodity'
     import Toast from '@/packages/toast'
+    import myNullReport from '@/components/myNullReport'
     export default {
         data (){
             return{
@@ -47,11 +49,13 @@
 				reportContent:'',
 				listem:[],
 				recommendlist:[],
-			    getSouplist:[]
+			    getSouplist:[],
+			    nullHidden:false,
+			    userId:''
             }
         },
         components:{
-		   commodity
+		   commodity,myNullReport
 		},
         methods: {
  
@@ -83,6 +87,15 @@
 				});
 			}
 
+			if (window.localStorage.getItem(Account_Index) != null) {
+                this.userId= JSON.parse(window.localStorage.getItem(Account_Index))._id                         			}
+			if(window.localStorage.getItem(global.HouTianAnswer_Index)==''
+	            || typeof(this.userId)==='undefined'||this.userId==''||window.localStorage.getItem(global.HouTianAnswer_Index)==null){
+	            	this.nullHidden = true
+	            }else{
+	            	console.log(111)
+	            	this.nullHidden = false
+	            }
         }
     }  
 </script>

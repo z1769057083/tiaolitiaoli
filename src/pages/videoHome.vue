@@ -11,7 +11,7 @@
 		<dl>
 			<router-link to='/videoListDetail'>
 				<dt>
-					<img src="../assets/video.jpg" alt="" />
+					<!--<img src="../assets/video.jpg" alt="" />-->
 				</dt>			
 				<dd>
 					<span>小儿推拿教学—二马</span>
@@ -22,7 +22,7 @@
 		<dl>
 			<!--<router-link :to="{ name: 'goodsdetail', query: { itemid: item._id }}">-->
 				<dt>
-					<img src="../assets/video.jpg" alt="" />
+					<!--<img src="../assets/video.jpg" alt="" />-->
 				</dt>
 			<!--</router-link>-->
 				<dd>
@@ -33,7 +33,7 @@
 		<dl>
 			<!--<router-link :to="{ name: 'goodsdetail', query: { itemid: item._id }}">-->
 				<dt>
-					<img src="../assets/video.jpg" alt="" />
+					<!--<img src="../assets/video.jpg" alt="" />-->
 				</dt>
 			<!--</router-link>-->
 				<dd>
@@ -44,7 +44,7 @@
 		<dl>
 			<!--<router-link :to="{ name: 'goodsdetail', query: { itemid: item._id }}">-->
 				<dt>
-					<img src="../assets/video.jpg" alt="" />
+					<!--<img src="../assets/video.jpg" alt="" />-->
 				</dt>
 			<!--</router-link>-->
 				<dd>
@@ -64,7 +64,7 @@
 		<dl>
 			<router-link to='/videoListDetail'>
 				<dt>
-					<img src="../assets/video.jpg" alt="" />
+					<!--<img src="../assets/video.jpg" alt="" />-->
 				</dt>
 			</router-link>
 				<dd>
@@ -75,7 +75,7 @@
 		<dl>
 			<!--<router-link :to="{ name: 'goodsdetail', query: { itemid: item._id }}">-->
 				<dt>
-					<img src="../assets/video.jpg" alt="" />
+					<!--<img src="../assets/video.jpg" alt="" />-->
 				</dt>
 			<!--</router-link>-->
 				<dd>
@@ -86,7 +86,7 @@
 		<dl>
 			<!--<router-link :to="{ name: 'goodsdetail', query: { itemid: item._id }}">-->
 				<dt>
-					<img src="../assets/video.jpg" alt="" />
+					<!--<img src="../assets/video.jpg" alt="" />-->
 				</dt>
 			<!--</router-link>-->
 				<dd>
@@ -97,7 +97,7 @@
 		<dl>
 			<!--<router-link :to="{ name: 'goodsdetail', query: { itemid: item._id }}">-->
 				<dt>
-					<img src="../assets/video.jpg" alt="" />
+					<!--<img src="../assets/video.jpg" alt="" />-->
 				</dt>
 			<!--</router-link>-->
 				<dd>

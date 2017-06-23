@@ -20,7 +20,7 @@
 		 		<img class="cont-titleLine" src="../assets/aboutUsLine.png" alt="" />
 		 	</h3>
 		</div> 	
-		 	<img class="cont-teamImg" src="../assets/aboutQin.png"/>
+		<img class="cont-teamImg" src="../assets/aboutQin.jpg"/>
 		<div class="recommend-cont  recommend-cont2">
 		 	<img class="cont-teamName" src="../assets/aboutQinName.png"/>
 		 	<p class="cont-intro1">汉古中医创始人</p>
@@ -29,7 +29,7 @@
 		 	<p class="cont-intro1">广州中医药大学中医药数理工程研究院 博士后</p>
 		 	<p class='cont-text cont-top'>一直致力于回归、传承、创新古中医之研究。自１５岁即入新安医学流派门下苦练针灸。从医３０余载，擅于针、药并用治疗妇、儿、内、外、皮等各科疑难症、急危重症，尤擅妇科不孕症。主创汉古中医五行体质评测系统，通过饮食疗法、经络疗法、音乐及色彩疗法等开启全新的古中医养生理念。倡导汉古小儿推拿法，对三岁以下婴幼儿各种急慢性疾病可谓“手到病除”。</p>	
 		</div> 	
-		<img class="cont-teamImg cont-teamImgTop" src="../assets/aboutChen.png"/>
+		<img class="cont-teamImg cont-teamImgTop" src="../assets/aboutChen.jpg"/>
 		<div class="recommend-cont  recommend-cont2">
 		 	<img class="cont-teamName" src="../assets/aboutChenImg.png"/>
 		 	<p class="cont-intro1">汉古中医创始人</p>
@@ -38,7 +38,7 @@
 		 	<p class='cont-text cont-top'>一直致力于回归、传承、创新古中医之研究。２０１２年联合创立汉古中医，集医、药、教、研于一体。在古中医理论指导下，全面继承李可老中医经验，汲纳民间独特疗法，采用纯中医手段，治疗内、外、妇、儿、皮、 肿瘤等各科疑难病、急危重症，疗效常常出乎意料。运用钱学森先生倡导的＂从定性到定量的综合集成研讨法＂开展中医临床创新研究。开设＂汉古李可中医学堂＂以传播古中医学思想。</p>
 		 	<p class='cont-text1'>２０００年拜著名老中医李可先生为师，尽得其传。<br />２００３年获中医临床基础医学专业硕士<br />２００８年获中药新药开发研究专业博士。</p>
 		</div> 	
-		<img class="cont-teamImg" src="../assets/aboutZhou.png"/>
+		<img class="cont-teamImg" src="../assets/aboutZhou.jpg"/>
 		<div class="recommend-cont  recommend-cont2">
 		 	<img class="cont-teamName" src="../assets/aboutZhouName.png"/>
 		 	<p class="cont-intro">1991年入浙江大学检测技术及仪器专业读本科<br />2000年浙江大学仪器科学与技术专业博士毕业，一直留校任教。<br />现担任浙江大学生物医学工程与仪器科学学院仪器科学与工程学系主任。<br />国家发改委半导体照明“十二五规划”专家、国际半导体照明联盟专家、浙江省重点招标工程评审专家库专家、浙江省采购中心项目评审专家等。</p>
