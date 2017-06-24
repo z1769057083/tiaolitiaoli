@@ -39,7 +39,7 @@
             onWeChatShare(){
                 global.shareTitle='调一调';
                 global.link='http://ikehealth.cn/wechat/';
-                global.shareDesc='感觉不舒服，调一调吧';
+                global.shareDesc='测一测体质，调一调身心';
                 wx.ready(function () {
                     wx.onMenuShareTimeline({
                         title: global.shareTitle, // 分享标题
