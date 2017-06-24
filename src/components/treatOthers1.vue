@@ -4,41 +4,41 @@
             <dl>
                 <dt>待人和气</dt>
                 <dd>
-                    <p :class="{'active': section1.treat === 0}" @click="change_active(0,'1','treat',$event)">是</p>
-                    <p :class="{'active': section1.treat === 1}" @click="change_active(1,'1','treat',$event)">不是</p>
-                    <p :class="{'active': section1.treat === 2}" @click="change_active(2,'1','treat',$event)">不确定</p>
+                    <p :class="{'active': section1.treat === 1}" @click="change_active(1,'1','treat',$event)">是</p>
+                    <p :class="{'active': section1.treat === 0}" @click="change_active(0,'1','treat',$event)">不是</p>
+                    <p :class="{'active': section1.treat === -1}" @click="change_active(-1,'1','treat',$event)">不确定</p>
                 </dd>
             </dl>
             <dl>
                 <dt>谋定而动</dt>
                 <dd>
-                    <p :class="{'active': section1.trick === 0}" @click="change_active(0,'2','trick',$event)">是</p>
-                    <p :class="{'active': section1.trick === 1}" @click="change_active(1,'2','trick',$event)">不是</p>
-                    <p :class="{'active': section1.trick === 2}" @click="change_active(2,'2','trick',$event)">不确定</p>
+                    <p :class="{'active': section1.trick === 1}" @click="change_active(1,'2','trick',$event)">是</p>
+                    <p :class="{'active': section1.trick === 0}" @click="change_active(0,'2','trick',$event)">不是</p>
+                    <p :class="{'active': section1.trick === -1}" @click="change_active(-1,'2','trick',$event)">不确定</p>
                 </dd>
             </dl>
             <dl>
                 <dt>乐于助人</dt>
                 <dd>
-                    <p :class="{'active': section1.help === 0}" @click="change_active(0,'3','help',$event)">是</p>
-                    <p :class="{'active': section1.help === 1}" @click="change_active(1,'3','help',$event)">不是</p>
-                    <p :class="{'active': section1.help === 2}" @click="change_active(2,'3','help',$event)">不确定</p>
+                    <p :class="{'active': section1.help === 1}" @click="change_active(1,'3','help',$event)">是</p>
+                    <p :class="{'active': section1.help === 0}" @click="change_active(0,'3','help',$event)">不是</p>
+                    <p :class="{'active': section1.help === -1}" @click="change_active(-1,'3','help',$event)">不确定</p>
                 </dd>
             </dl>
             <dl>
                 <dt>洁身自好</dt>
                 <dd>
-                    <p :class="{'active': section1.clean === 0}" @click="change_active(0,'4','clean',$event)">是</p>
-                    <p :class="{'active': section1.clean === 1}" @click="change_active(1,'4','clean',$event)">不是</p>
-                    <p :class="{'active': section1.clean === 2}" @click="change_active(2,'4','clean',$event)">不确定</p>
+                    <p :class="{'active': section1.clean === 1}" @click="change_active(1,'4','clean',$event)">是</p>
+                    <p :class="{'active': section1.clean === 0}" @click="change_active(0,'4','clean',$event)">不是</p>
+                    <p :class="{'active': section1.clean === -1}" @click="change_active(-1,'4','clean',$event)">不确定</p>
                 </dd>
             </dl>
             <dl>
                 <dt>随遇而安</dt>
                 <dd>
-                    <p :class="{'active': section1.liberty === 0}" @click="change_active(0,'5','liberty',$event)">是</p>
-                    <p :class="{'active': section1.liberty === 1}" @click="change_active(1,'5','liberty',$event)">不是</p>
-                    <p :class="{'active': section1.liberty === 2}" @click="change_active(2,'5','liberty',$event)">
+                    <p :class="{'active': section1.liberty === 1}" @click="change_active(1,'5','liberty',$event)">是</p>
+                    <p :class="{'active': section1.liberty === 0}" @click="change_active(0,'5','liberty',$event)">不是</p>
+                    <p :class="{'active': section1.liberty === -1}" @click="change_active(-1,'5','liberty',$event)">
                         不确定</p>
                 </dd>
             </dl>
