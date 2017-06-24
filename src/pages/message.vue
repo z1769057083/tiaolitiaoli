@@ -140,7 +140,7 @@
                 if (this.isCurrentQuestionFinished) {
                     this.pendingAnswer = answerParams;
                     for (let key in answerParams) {
-                    	if(this.index<=3){
+                    	if(this.index<=3&&this.index!=2){
                     		this.questionAnswer.xianTian[key] = answerParams[key];
                     	}else{
                     		this.questionAnswer.houTian[key] = answerParams[key];

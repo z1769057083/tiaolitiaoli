@@ -8,6 +8,7 @@ global.XianTianSectionType = 'xianTian'
 global.HouTianSectionType = 'houTian'
 global.XianTianReport_Index = 'xianTianReport'
 global.HouTianReport_Index = 'houTianReport'
+global.Cities_Index = 'cities_Index'
 
 global.AllAnswer_Index = 'answer_index'
 //global.AllAnswer_Index = 'allAnswer_Index'
@@ -34,6 +35,20 @@ export default {
         var birthYear= new Date(birthday).getFullYear();
         var age =new Date().getFullYear()-birthYear;
         return age;
+    },
+    getLocationByCity:function(province,cityName){
+        var cities= JSON.parse(localStorage.getItem(Cities_Index))
+        console.log(cities);
+        var location={
+            "latitude": 39.55,
+            "longitude": 116.24
+        };//Note:beijing Default.
+        cities.forEach(function(item,index){
+            if(item.province==province&&item.city==cityName){
+                location=item
+            }
+        });
+        return location;
     },
     parseWuXingLevelToText:function(wuXingLevel){
         var wuXingStatusText = '';

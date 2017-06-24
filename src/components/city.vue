@@ -10,6 +10,7 @@
     </div>
 </template>
 <script type="text/babel">
+    import Common from '../../static/common'
     const address = {
         '北京': ['北京'],     
         '上海': ['上海'],
@@ -54,6 +55,7 @@
                 this.addressProvince = values[0];
                 this.addressCity = values[1];
                 this.Obj.city = this.addressCity;
+                this.Obj.location = Common.getLocationByCity(this.addressProvince, this.addressCity);
                 this.$emit('updateUserAnswer', this.Obj);
             }
         },
