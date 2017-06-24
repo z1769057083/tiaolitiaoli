@@ -65,6 +65,7 @@
             document.documentElement.scrollTop = 0
             document.body.scrollTop = 0
             this.apiPath = api.apipath
+            console.log('SHOP')
             Common.initForWechatShare('商城', '测一测体质，调一调身心', window.location.href)
             console.log(this.apiPath)
         },

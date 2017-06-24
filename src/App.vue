@@ -37,6 +37,8 @@
                     })
             },
             onWeChatShare(){
+                if(global.isWechatShareInit){return;}
+                console.log('APP')
                 global.shareTitle='调一调';
                 global.link='http://ikehealth.cn/wechat/';
                 global.shareDesc='测一测体质，调一调身心';
