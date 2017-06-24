@@ -120,7 +120,8 @@
         methods: {
         	//判断是否显示针对女性的问题        	
             checkFemaleQuestion(that){           	
-            	var isMale = this.questionAnswer.xianTian.gender === 'M'          	
+            	var isMale = this.questionAnswer.xianTian.gender === 'M' 
+            	console.log(isMale)
             	if(that.questions[that.index+1]&&that.questions[that.index+1].questionName === 'femaleStatus'&&isMale){            		
             		that.index = that.index + 2;
             	}else{
