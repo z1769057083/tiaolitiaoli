@@ -143,6 +143,16 @@
                 
                 return;               
           	}else {
+                var href = window.location.href;
+                if (href.indexOf('?') > -1) {
+                    href = href + '&userid=' + userId;
+                }
+                else {
+                    href = href + '?userid=' + userId;
+                }
+
+                //TODO:update title with user's nick name.
+                Common.initForWechatShare('体质报告', '测一测体质,调一调身心', href)
                 axios.get(api.getReport + "?userId=" + userId + "&reportType=houTian")
                     .then(function (res) {
                         if (res.data.errorCode == 0) {
