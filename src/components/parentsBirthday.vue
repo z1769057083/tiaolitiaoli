@@ -44,6 +44,8 @@
         computed: {
             answer(){
                 var answer = {};
+                answer.motherHour = this.motherHour
+                answer.fatherHour = this.fatherHour
                 answer.motherBirthday = this.motherBirthday+" "+this.motherHour+":00:00";
                 answer.fatherBirthday = this.fatherBirthday+" "+this.fatherHour+":00:00";
                 answer.isAllFilled = false;
@@ -127,7 +129,7 @@
         	border-radius: 1.06rem;
         	margin-bottom: rem(30rem);
         	.m-selectbirthday {
-	            width: 60.6%;
+	            width: 40.6%;
 	            height: 1.3rem;
 	            background: url(../assets/msgdate.png) no-repeat center;
 	            background-size: cover;
@@ -145,14 +147,15 @@
 	        	position: absolute;
 	        	right: 0;
 	        	top: 0;
-	        	width: 25%;
-	        	height: 1.3rem;
+	        	width: 45%;
+	        	height: 0.6rem;
 	        	overflow: hidden;
+	        	margin-top: 0.35rem;
 	        	float: right;
-	        	border-radius: 1.06rem;
-	        	border: 0.05px solid #efefef;       	
+	        	border: 0;
+	        	border-left: 0.05px solid #efefef;       	
 	    		text-align: center;
-	    		padding: 0 9%;
+	    		padding: 0 18%;
 	    		color: #000;
 				appearance:none;
 				-moz-appearance:none;
