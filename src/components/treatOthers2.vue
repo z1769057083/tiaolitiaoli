@@ -4,47 +4,47 @@
             <dl>
                 <dt>为人耿直</dt>
                 <dd>
-                    <p :class="{'active': section2.upright === 0}" @click="change_active(0,'1','upright',$event)">是</p>
-                    <p :class="{'active': section2.upright === 1}" @click="change_active(1,'1','upright',$event)">不是</p>
-                    <p :class="{'active': section2.upright === 2}" @click="change_active(2,'1','upright',$event)">
+                    <p :class="{'active': section2.upright === 1}" @click="change_active(1,'1','upright',$event)">是</p>
+                    <p :class="{'active': section2.upright === 0}" @click="change_active(0,'1','upright',$event)">不是</p>
+                    <p :class="{'active': section2.upright === -1}" @click="change_active(-1,'1','upright',$event)">
                         不确定</p>
                 </dd>
             </dl>
             <dl>
                 <dt>体型较壮</dt>
                 <dd>
-                    <p :class="{'active': section2.strong === 0}" @click="change_active(0,'2','strong',$event)">是</p>
-                    <p :class="{'active': section2.strong === 1}" @click="change_active(1,'2','strong',$event)">不是</p>
-                    <p :class="{'active': section2.strong === 2}" @click="change_active(2,'2','strong',$event)">不确定</p>
+                    <p :class="{'active': section2.strong === 1}" @click="change_active(1,'2','strong',$event)">是</p>
+                    <p :class="{'active': section2.strong === 0}" @click="change_active(0,'2','strong',$event)">不是</p>
+                    <p :class="{'active': section2.strong === -1}" @click="change_active(-1,'2','strong',$event)">不确定</p>
                 </dd>
             </dl>
             <dl>
                 <dt>性格开朗</dt>
                 <dd>
-                    <p :class="{'active': section2.optimistic === 0}" @click="change_active(0,'3','optimistic',$event)">
-                        是</p>
                     <p :class="{'active': section2.optimistic === 1}" @click="change_active(1,'3','optimistic',$event)">
+                        是</p>
+                    <p :class="{'active': section2.optimistic === 0}" @click="change_active(0,'3','optimistic',$event)">
                         不是</p>
-                    <p :class="{'active': section2.optimistic === 2}" @click="change_active(2,'3','optimistic',$event)">
+                    <p :class="{'active': section2.optimistic === -1}" @click="change_active(-1,'3','optimistic',$event)">
                         不确定</p>
                 </dd>
             </dl>
             <dl>
                 <dt>好动</dt>
                 <dd>
-                    <p :class="{'active': section2.active === 0}" @click="change_active(0,'4','active',$event)">是</p>
-                    <p :class="{'active': section2.active === 1}" @click="change_active(1,'4','active',$event)">不是</p>
-                    <p :class="{'active': section2.active === 2}" @click="change_active(2,'4','active',$event)">不确定</p>
+                    <p :class="{'active': section2.active === 1}" @click="change_active(1,'4','active',$event)">是</p>
+                    <p :class="{'active': section2.active === 0}" @click="change_active(0,'4','active',$event)">不是</p>
+                    <p :class="{'active': section2.active === -1}" @click="change_active(-1,'4','active',$event)">不确定</p>
                 </dd>
             </dl>
             <dl>
                 <dt>喜形于色</dt>
                 <dd>
-                    <p :class="{'active': section2.pleasure === 0}" @click="change_active(0,'5','pleasure',$event)">
-                        是</p>
                     <p :class="{'active': section2.pleasure === 1}" @click="change_active(1,'5','pleasure',$event)">
+                        是</p>
+                    <p :class="{'active': section2.pleasure === 0}" @click="change_active(0,'5','pleasure',$event)">
                         不是</p>
-                    <p :class="{'active': section2.pleasure === 2}" @click="change_active(2,'5','pleasure',$event)">
+                    <p :class="{'active': section2.pleasure === -1}" @click="change_active(-1,'5','pleasure',$event)">
                         不确定</p>
                 </dd>
             </dl>
