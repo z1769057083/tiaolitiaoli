@@ -30,6 +30,7 @@
     import axios from 'axios'
     import api from '../api/api';
     import commodity from '@/components/commodity'
+    import Common from '../../static/common'
     export default {
         data(){
             return {
@@ -64,6 +65,7 @@
             document.documentElement.scrollTop = 0
             document.body.scrollTop = 0
             this.apiPath = api.apipath
+            Common.initForWechatShare('商城', '测一测体质,调一调身心', window.location.href)
             console.log(this.apiPath)
         },
         watch: {

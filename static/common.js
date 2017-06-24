@@ -78,9 +78,9 @@ export default {
         }
         return wuXingStatusArray.toString();
     },
-    initForWechatShare:function(title,description){
+    initForWechatShare:function(title,description,href){
         global.shareTitle=title;
-        global.link=window.location.href;
+        global.link=href;
         global.shareDesc=description;
         var data=JSON.parse(localStorage.getItem(global.WechatSignature_Index))
         wx.config({
