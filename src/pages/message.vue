@@ -77,6 +77,7 @@
     import temperament from '@/components/temperament'
     import Toast from '@/packages/toast'
     import figures from '@/components/figures'
+    import Common from '../../static/common'
     export default {
         name: 'message',
         data(){
@@ -180,13 +181,37 @@
                     this.saveAndGenerateReport();
                 }
             },
+            mapToSingleActor(key,sectionAnswer){
+                var single_actor=Common.actionMapper[key];
+                single_actor.name=key;
+                single_actor.value=sectionAnswer[key];
+                return single_actor;
+            },
             //完成测试发送请求获取报告
             saveAndGenerateReport(){
                 let user = JSON.parse(localStorage.getItem(Account_Index));
                 var userId = user._id;
                 var that = this;
                 var postData = { "answer": {} };
+                var actorsAnswer=[];
+                for(let key in this.questionAnswer.section1){
+                    var single_actor=this.mapToSingleActor(key,this.questionAnswer.section1)
+                    actorsAnswer.push(single_actor);
+                }
+                for(let key in this.questionAnswer.section2){
+                    var single_actor= this.mapToSingleActor(key,this.questionAnswer.section2)
+                    actorsAnswer.push(single_actor);
+                }
+                for(let key in this.questionAnswer.section3){
+                    var single_actor= this.mapToSingleActor(key,this.questionAnswer.section3)
+                    actorsAnswer.push(single_actor);
+                }
+                for(let key in this.questionAnswer.section4){
+                    var single_actor= this.mapToSingleActor(key,this.questionAnswer.section4)
+                    actorsAnswer.push(single_actor);
+                }
 				postData.answer = this.questionAnswer;
+                postData.answer.houTian.actorsAnswer=actorsAnswer;
                 localStorage.setItem(AllAnswer_Index, JSON.stringify(this.questionAnswer))
                 postData.userId = userId;
                 axios.defaults.headers['Content-Type'] = 'application/json';

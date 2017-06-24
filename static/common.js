@@ -36,6 +36,28 @@ export default {
         var age =new Date().getFullYear()-birthYear;
         return age;
     },
+    actionMapper:{
+            "treat":{"type":"wood","text":"待人和气","section":1 ,"wuXingIndex":1},
+            "trick":{"type":"wood","text":"谋定而动","section":1,"wuXingIndex":2},
+            "help":{"type":"wood","text":"乐于助人","section":1,"wuXingIndex":3},
+            "clean":{"type":"water","text":"洁身自好","section":1,"wuXingIndex":3},
+            "liberty":{"type":"water","text":"随遇而安","section":1,"wuXingIndex":4},
+            "upright":{"type":"wood","text":"为人耿直","section":2 ,"wuXingIndex":4},
+            "strong":{"type":"fire","text":"体型较壮","section":2,"wuXingIndex":1},
+            "optimistic":{"type":"fire","text":"性格开朗","section":2,"wuXingIndex":2},
+            "active":{"type":"fire","text":"好动","section":2,"wuXingIndex":3},
+            "pleasure":{"type":"fire","text":"喜形于色","section":2,"wuXingIndex":4},
+            "gentle":{"type":"earth","text":"为人和顺","section":3 ,"wuXingIndex":1},
+            "evil":{"type":"earth","text":"嫉恶如仇","section":3,"wuXingIndex":2},
+            "flexible":{"type":"earth","text":"处事灵活","section":3,"wuXingIndex":3},
+            "burly":{"type":"earth","text":"身材魁梧","section":3,"wuXingIndex":4},
+            "principle":{"type":"gold","text":"原则性强","section":3,"wuXingIndex":1},
+            "lean":{"type":"gold","text":"清瘦","section":4,"wuXingIndex":2},
+            "observe":{"type":"gold","text":"观察透彻","section":4,"wuXingIndex":3},
+            "solemn":{"type":"gold","text":"为人庄重","section":4,"wuXingIndex":4},
+            "frank":{"type":"water","text":"办事爽快","section":4,"wuXingIndex":1},
+            "speech": {"type": "water","text": "讲话策略多", "section": 4,  "wuXingIndex": 2}
+    },
     getLocationByCity:function(province,cityName){
         var cities= JSON.parse(localStorage.getItem(Cities_Index))
         console.log(cities);
