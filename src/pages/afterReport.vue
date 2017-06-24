@@ -161,7 +161,6 @@
             }
             document.documentElement.scrollTop = 0
             document.body.scrollTop = 0 
-            console.log()
             if(window.localStorage.getItem(global.AllAnswer_Index)==null
             || typeof(userId)==='undefined'||userId==''||window.localStorage.getItem(global.AllAnswer_Index)==''){
             	this.isReportEmpty = true

@@ -92,8 +92,7 @@
                             that.list = res
                             console.log(that.list)
                             if(that.list.length>0){
-				            	for(var i in that.list){				          				            		
-				            		//判断是否支付完成
+				            	for(var i in that.list){				          				            									//判断是否支付完成
 				            		if(that.list[i].status==0){
 				            			that.activeOrder = false
 				            		}else if(that.list[i].status==1){
@@ -129,7 +128,9 @@
            //删除商品
 	   		confirmDel(){
 	   			this.toastHidden = false
-	   			this.list.splice(this.readyToDelIndex,1);		
+	   			this.list.splice(this.readyToDelIndex,1);
+	   			var orderArr= JSON.stringify(this.list)  
+	        	window.localStorage.setItem("orderArr", orderArr)
 	   		},
 	   		cancelOrderEvent(){
 	   			this.cancelOrder()

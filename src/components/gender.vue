@@ -15,12 +15,14 @@
             </div>
         </div>
         <span class="date-tit">出生日期和时间：</span>
-        <input type="date" min='1900-01-01' class="m-selectdate" name='birthday' v-model='birthday' @change='change_date(birthday)'/>
-        <select v-model="time" id="selProv" @change='change_date1(time)'>
+        <div class="date-timer">
+        	  <input type="date" min='1900-01-01' :class="{'activeDate': toggle}" class="m-selectdate" name='birthday' v-model='birthday' @change='change_date(birthday)'/>
+        <select v-model="time" class="selHour" :class="{'activeHour': toggle1}" @change='change_date1(time)'>
 			<option v-for="option in timeArr" :value="option" >
 				{{ option}}
 			</option>
 		</select>
+        </div>     
     </div>
 </template>
 <script type="text/javascript">
@@ -32,12 +34,13 @@
             return {
             	timeArr: arr,
                 gender: "F",
-                birthday: "",
+                birthday: "1990-01-01",
                 time:'',
                 msgBoyImg: true,
                 msgGrilImg: false,
                 toggle: false,
-                time:'12'
+                toggle1: false,
+                time:''
             }
         },
         computed: {
@@ -46,7 +49,8 @@
                 answer.gender = this.gender;
                 answer.time = this.time
                 answer.birthday = this.birthday+" "+this.time+":00:00";
-                if(this.gender !== '' && this.birthday !== ''){
+                answer.isAllFilled=false;
+                if(this.gender !== '' && this.birthday !== ''&&this.time!==''){
                 	answer.isAllFilled = true;
                 }
                 return answer;
@@ -89,13 +93,12 @@
                     this.$emit('updateUserAnswer', this.answer);                 
                 }
             },
-            concat(birthday,hour){
-            	return birthday +" : "+hour+":00:00";
-            },
-            change_date1(time){
+            change_date1(time){  
+            	this.toggle1 = true
             	this.time = time
-        		global.User.time = this.answer.time;
-        		this.$emit('updateUserAnswer', this.answer);    
+        		global.User.time = this.answer.time;       		
+        		this.$emit('updateUserAnswer', this.answer); 
+        		
             }
         },
         mounted(){
@@ -185,32 +188,51 @@
             display: inline-block;
             padding-bottom: rem(15rem);
         }
-        .m-selectdate {
-            width: 65.6%;
-            height: 1.3rem;
-            background: url(../assets/msgdate.png) no-repeat center;
-            background-size: cover;
-            line-height: 1.3rem;
-            font-size: 0.37rem;
-            padding: 0 7.2%;
-            color: #000;
-            border-radius: 1.06rem;
-            border: 0;
-        }
-        #selProv{
-        	width: 20%;
-        	height: 1.3rem;
+        .date-timer{
+        	position: relative;
         	overflow: hidden;
-        	float: right;
+        	width: 100%;
+        	background: #fff;
         	border-radius: 1.06rem;
-        	border: 1px solid #DEDEDE;       	
-    		text-align: center;
-    		padding: 0 7%;
-    		color: #000;
-    		background: transparent;
-			appearance:none;
-			-moz-appearance:none;
-			-webkit-appearance:none;    		
+        	.m-selectdate {
+	            width: 40.6%;
+	            height: 1.3rem;
+	            background: url(../assets/msgdate.png) no-repeat center;
+	            background-size: cover;
+	            line-height: 1.3rem;
+	            font-size: 0.37rem;
+	            padding: 0 7.2%;
+	            color: #999;
+	            border-radius: 1.06rem;
+	            border: 0;
+	        }
+	        .activeDate {
+	            color: #000;
+	        }
+	        .selHour{
+	        	position: absolute;
+	        	right: 0;
+	        	top: 0;
+	        	width: 45%;
+	        	height: 0.6rem;
+	        	overflow: hidden;
+	        	margin-top: 0.35rem;
+	        	float: right;
+	        	border: 0;
+	        	border-left: 0.05px solid #efefef;       	
+	    		text-align: center;
+	    		padding: 0 18%;
+	    		color: #000;
+				appearance:none;
+				-moz-appearance:none;
+				-webkit-appearance:none; 
+				background: url(../assets/btnTime.png) no-repeat center;
+				background-size: cover;   		
+	        }
+	        .activeHour{
+	        	background: #fff;
+	        }
         }
+        
     }
 </style>

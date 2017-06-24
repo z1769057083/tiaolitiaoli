@@ -1,24 +1,27 @@
 <template>
     <div class="m-selection">
-        <!--<div class="m-selecttit">父母生日</div>-->
-        <span>父亲生日：</span>
-        <input type="date" :class="{'activeDate': toggle}" class="m-selectbirthday" name='fatherBirthday'
+        <span>父亲生日和时间：</span>
+        <div class="date-time">
+        	<input type="date" :class="{'activeDate': toggle}" class="m-selectbirthday" name='fatherBirthday'
                v-model='fatherBirthday' min="1901-01-01"
                @change='change_date(fatherBirthday)'/>
-       	<select v-model="fatherHour" id="selProv" @change='change_date1(fatherHour)'>
+       	<select v-model="fatherHour" class="selHour" :class="{'activeHour': toggle2}" @change='change_date1(fatherHour)'>
 			<option v-for="fItem in timeArr" :value="fItem" >
 				{{ fItem}}
 			</option>
 		</select>
-        <span>母亲生日：</span>
-        <input type="date" :class="{'activeDate': toggle1}" class="m-selectbirthday" name='motherBirthday'
+        </div>        
+        <span>母亲生日和时间：</span>
+        <div class="date-time">
+        	<input type="date" :class="{'activeDate': toggle1}" class="m-selectbirthday" name='motherBirthday'
                v-model='motherBirthday'  min="1901-01-01"
                @change='change_MotherDate(motherBirthday)'/>
-		<select v-model="motherHour" id="selProv" @change='change_date2(motherHour)'>
+		<select v-model="motherHour" class="selHour" :class="{'activeHour': toggle3}" @change='change_date2(motherHour)'>
 			<option v-for="mItem in timeArr" :value="mItem" >
 				{{ mItem}}
 			</option>
 		</select>
+        </div>       
     </div>
 </template>
 <script type="text/javascript">
@@ -32,13 +35,17 @@
                 fatherBirthday: '1990-01-01',
                 toggle: false,
                 toggle1: false,
-                fatherHour:'12',
-                motherHour:'12'
+                toggle2: false,
+                toggle3: false,
+                fatherHour:'',
+                motherHour:''
             }
         },
         computed: {
             answer(){
                 var answer = {};
+                answer.motherHour = this.motherHour
+                answer.fatherHour = this.fatherHour
                 answer.motherBirthday = this.motherBirthday+" "+this.motherHour+":00:00";
                 answer.fatherBirthday = this.fatherBirthday+" "+this.fatherHour+":00:00";
                 answer.isAllFilled = false;
@@ -47,7 +54,7 @@
                     new Date(this.fatherBirthday) < new Date(global.User.birthday) &&
                     new Date(this.fatherBirthday) > new Date('1901-01-01') &&
                     new Date(this.motherBirthday) > new Date('1901-01-01') &&
-                    new Date(this.motherBirthday) < new Date(global.User.birthday)) {
+                    new Date(this.motherBirthday) < new Date(global.User.birthday)&&this.motherHour!==''&&this.fatherHour!=='') {
                     answer.isAllFilled = true;
                 }
                 return answer;
@@ -81,11 +88,13 @@
                 
             },
             change_date1(fatherHour){
+            	this.toggle2 = true
             	this.fatherHour = fatherHour         
         		global.User.fatherHour = this.answer.fatherHour;
         		this.$emit('updateUserAnswer', this.answer);    
             },
             change_date2(motherHour){
+            	this.toggle3 = true
             	this.motherHour = motherHour
         		global.User.motherHour = this.answer.motherHour;
         		this.$emit('updateUserAnswer', this.answer);    
@@ -112,36 +121,52 @@
             display: inline-block;
             padding-bottom: rem(15rem);
         }
-        .m-selectbirthday {
-            width: 65.6%;
-            height: 1.3rem;
-            background: url(../assets/msgdate.png) no-repeat center;
-            background-size: cover;
-            line-height: 1.3rem;
-            font-size: 0.37rem;
-            padding: 0 7.2%;
-            color: #999;
-            border-radius: 1.06rem;
-            margin-bottom: rem(30rem);
-            border: 0;
-        }
-        .activeDate {
-            color: #000;
-        }
-        #selProv{
-        	width: 20%;
-        	height: 1.3rem;
+        .date-time{
+        	position: relative;
         	overflow: hidden;
-        	float: right;
+        	width: 100%;
+        	background: #fff;
         	border-radius: 1.06rem;
-        	border: 1px solid #DEDEDE;       	
-    		text-align: center;
-    		padding: 0 7%;
-    		color: #000;
-    		background: transparent;
-			appearance:none;
-			-moz-appearance:none;
-			-webkit-appearance:none;    		
+        	margin-bottom: rem(30rem);
+        	.m-selectbirthday {
+	            width: 40.6%;
+	            height: 1.3rem;
+	            background: url(../assets/msgdate.png) no-repeat center;
+	            background-size: cover;
+	            line-height: 1.3rem;
+	            font-size: 0.37rem;
+	            padding: 0 7.2%;
+	            color: #999;
+	            border-radius: 1.06rem;
+	            border: 0;
+	        }
+	        .activeDate {
+	            color: #000;
+	        }
+	        .selHour{
+	        	position: absolute;
+	        	right: 0;
+	        	top: 0;
+	        	width: 45%;
+	        	height: 0.6rem;
+	        	overflow: hidden;
+	        	margin-top: 0.35rem;
+	        	float: right;
+	        	border: 0;
+	        	border-left: 0.05px solid #efefef;       	
+	    		text-align: center;
+	    		padding: 0 18%;
+	    		color: #000;
+				appearance:none;
+				-moz-appearance:none;
+				-webkit-appearance:none; 
+				background: url(../assets/btnTime.png) no-repeat center;
+				background-size: cover;   		
+	        }
+	        .activeHour{
+	        	background: #fff;
+	        }
         }
+        
     }
 </style>
