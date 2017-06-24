@@ -55,7 +55,11 @@
 	import axios from 'axios'
 	import api from '../api/api';
   export default {
-
+	mounted() {
+            document.title = "关于我们"
+            document.documentElement.scrollTop = 0
+            document.body.scrollTop = 0
+        }
   }
 </script>
 <style scoped lang="scss" rel="stylesheet/scss">
