@@ -197,8 +197,8 @@ export default {
         return wuXingReportContentText;
     },
     loadXianTianUserData:function (component,sectionType){
-        debugger;
         var allAnswer = JSON.parse(localStorage.getItem(AllAnswer_Index));
+        if(allAnswer==null){return;}
         var loadingData=allAnswer.houTian;
         if(sectionType&&sectionType=='xianTian'){
             loadingData=allAnswer.xianTian;

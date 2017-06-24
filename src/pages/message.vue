@@ -194,20 +194,21 @@
                 var that = this;
                 var postData = { "answer": {} };
                 var actorsAnswer=[];
-                for(let key in this.questionAnswer.section1){
-                    var single_actor=this.mapToSingleActor(key,this.questionAnswer.section1)
+                debugger;
+                for(let key in this.questionAnswer.houTian.section1){
+                    var single_actor=this.mapToSingleActor(key,this.questionAnswer.houTian.section1)
                     actorsAnswer.push(single_actor);
                 }
-                for(let key in this.questionAnswer.section2){
-                    var single_actor= this.mapToSingleActor(key,this.questionAnswer.section2)
+                for(let key in this.questionAnswer.houTian.section2){
+                    var single_actor= this.mapToSingleActor(key,this.questionAnswer.houTian.section2)
                     actorsAnswer.push(single_actor);
                 }
-                for(let key in this.questionAnswer.section3){
-                    var single_actor= this.mapToSingleActor(key,this.questionAnswer.section3)
+                for(let key in this.questionAnswer.houTian.section3){
+                    var single_actor= this.mapToSingleActor(key,this.questionAnswer.houTian.section3)
                     actorsAnswer.push(single_actor);
                 }
-                for(let key in this.questionAnswer.section4){
-                    var single_actor= this.mapToSingleActor(key,this.questionAnswer.section4)
+                for(let key in this.questionAnswer.houTian.section4){
+                    var single_actor= this.mapToSingleActor(key,this.questionAnswer.houTian.section4)
                     actorsAnswer.push(single_actor);
                 }
 				postData.answer = this.questionAnswer;
