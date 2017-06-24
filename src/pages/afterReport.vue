@@ -152,7 +152,7 @@
                 }
 
                 //TODO:update title with user's nick name.
-                Common.initForWechatShare('体质报告', '测一测体质,调一调身心', href)
+                Common.initForWechatShare('体质报告', '测一测体质，调一调身心', href)
                 axios.get(api.getReport + "?userId=" + userId + "&reportType=houTian")
                     .then(function (res) {
                         if (res.data.errorCode == 0) {
