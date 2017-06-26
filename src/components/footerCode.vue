@@ -54,16 +54,17 @@
 				margin-top: rem(20rem);
 			}
 			.cont-img{
-				width: 60%;
-				height: rem(110rem);
-				margin: rem(30rem) 0;
-				margin-left: 20%;
+				width: 10%;
+				height: rem(25rem);
+				margin: rem(30rem) 0 rem(10rem);
+				margin-left: 45%;
 				display: block;
 			}
 			.title1{
-				font-size: $font16;
+				font-size: $font12;
 				text-align: center;
-				margin: rem(10rem) 0 rem(20rem);
+				margin: rem(5rem) 0 rem(10rem);
+				color: #999;
 			}
 		}
 		.cont-bottit{
@@ -80,7 +81,7 @@
 			margin-bottom: rem(15rem);
 		}
 		.title{
-			font-size: $font18;
+			font-size: $font14;
 			text-align: center;
 			margin-bottom: rem(15rem);
 		}
@@ -90,13 +91,13 @@
 			background: #dedede;
 		}
 		.cont-link{
-			padding-left: 6%;
+			padding-left: 16%;
 			margin: rem(20rem) 0;
 			li{
 				float: left;
 				padding: 0 5%;
 				color: #333;
-				font-size: $font16;
+				font-size: $font12;
 
 			}
 		}

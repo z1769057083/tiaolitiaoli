@@ -10,7 +10,7 @@
 						</div>
 					</div>						
 				</div>
-				<p>聚散之间</p>
+				<p>{{myName}}</p>
 				<h3>快去测一测你的体质！</h3>
 				<div class="tip">完成测试后，您将了解您的体质详情，并获得相应的个性化的解决方法</div>
 				<router-link to='/'>
@@ -27,7 +27,8 @@
     export default {
         data() {
             return {
-                myselfAvatar:'../../static/images/indexheadportrait.png'
+                myselfAvatar:'../../static/images/defaultAvatar.png',
+                myName:''
             }
         },
         methods: {     
@@ -39,6 +40,7 @@
 	            if (window.localStorage.getItem(Account_Index) !== null) {
 	                let account = JSON.parse(window.localStorage.getItem(Account_Index))
 	                this.myselfAvatar = account.headimgurl;
+	                this.myName = account.nickname
 	            }
 	        }
         }
@@ -50,7 +52,7 @@
 	width: 100%;
 	height: 100%;
 	background: rgba(0,0,0,0.6);
-	position: absolute;
+	position: fixed;
 	bottom: 0;
 	left: 0;
 	top: 0;

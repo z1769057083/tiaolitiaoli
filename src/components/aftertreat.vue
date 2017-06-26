@@ -34,7 +34,10 @@ export default {
             } else {
                 this.tags.push(obj);
             }
-            this.$emit('updateUserAnswer', this.answer)
+            if(this.tags!==null){
+            	this.$emit('updateUserAnswer', this.answer)
+            }
+            
         }
   },
 	mounted(){

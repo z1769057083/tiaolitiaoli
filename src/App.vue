@@ -13,12 +13,9 @@
     import api from '@/api/api'
     import Highcharts from 'highcharts';
     import Hig from 'highcharts/highcharts-more' ;
-
     import {mapGetters,mapActions} from 'vuex';
     Hig(Highcharts)
     global.Highcharts = Highcharts
-
-
     export default {
         name: 'app',
         computed:mapGetters(['loading']),
