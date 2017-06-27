@@ -233,30 +233,34 @@
                 var item = { isQuestion: true };
                 item.content = this.questions[0].content;
                 this.renderedMessages.push(item);
+            },
+            loadDoctorAvatar(){
+                if (!window.localStorage) {
+                    return false;
+                } else {
+                    let storage = window.localStorage;
+                    let obj_arr = storage.getItem(Doctor_Name_Key)
+                    let obj = JSON.parse(obj_arr)
+                    document.title = obj.name
+                    this.imgUrl = obj.img
+                    //取用户的头像
+                    if (storage.getItem(Account_Index) !== null) {
+                        let account = JSON.parse(storage.getItem(Account_Index))
+                        this.myselfAvatar = account.headimgurl;
+                    }
+                }
             }
         },
+
         beforeDestroy(){
             noBounce.disable();
         },
         mounted() {
             noBounce.enable();
             this.startQuestionBySection()
+            document.title='体质检测'
             //取页面的title，医生名字跟头像
-            if (!window.localStorage) {
-                return false;
-            } else {
-                let storage = window.localStorage;
-                let obj_arr = storage.getItem(Doctor_Name_Key)
-                let obj = JSON.parse(obj_arr)
-                document.title = obj.name
-                this.imgUrl = obj.img
-                //取用户的头像
-                if (storage.getItem(Account_Index) !== null) {
-                    let account = JSON.parse(storage.getItem(Account_Index))
-                    this.myselfAvatar = account.headimgurl;
-                }
 
-            }
         }
     }
 </script>
