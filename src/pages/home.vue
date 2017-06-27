@@ -49,7 +49,7 @@
                     let obj_arr = JSON.stringify(doctor1)
                     localStorage.setItem(Doctor_Name_Key, obj_arr);
                 }
-                this.$router.push({ path: '/message', query: { questionSection: XianTianSectionType } })
+                this.$router.push({ path: '/message'})
             }
         },
         mounted() {
