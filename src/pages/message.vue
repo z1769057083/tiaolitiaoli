@@ -222,7 +222,7 @@
                 let storage = window.localStorage;
                 let obj_arr = storage.getItem(Doctor_Name_Key)
                 let obj = JSON.parse(obj_arr)
-                document.title = obj.name
+                document.title = '体质检测'
                 this.imgUrl = obj.img
                 //取用户的头像
                 if (storage.getItem(Account_Index) !== null) {

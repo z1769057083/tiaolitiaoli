@@ -23,6 +23,10 @@ export default {
         answer(){
             var answer = {};
             answer.tags = this.tags;
+            answer.isAllFilled=false;
+            if(this.tags !== null &&this.tags.length>0){
+            	answer.isAllFilled = true;
+            }
             return answer;
         }
     },
@@ -34,9 +38,7 @@ export default {
             } else {
                 this.tags.push(obj);
             }
-            if(this.tags!==null){
-            	this.$emit('updateUserAnswer', this.answer)
-            }
+            this.$emit('updateUserAnswer', this.answer)
             
         }
   },
