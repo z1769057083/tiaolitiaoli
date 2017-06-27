@@ -1,51 +1,51 @@
 <template>
-    <div class="m-temperament">
+    <div class="m-role">
         <h3><img src="../assets/indexline.png" alt=""/>哪个人物性情像你？<img class="imgright" src="../assets/indexline.png"
                                                                      alt=""/></h3>
         <div class="m-hmain">
-            <dl :class="{'active': temperament === 1}" @click="change_active(1)">
+            <dl :class="{'active': role === 1}" @click="change_active(1)">
                 <dt><img src="../assets/tempate1.png"/></dt>
                 <dd>
                     与人为善、思虑周全<br>
                     不逐名利、渴望认同
                 </dd>
             </dl>
-            <dl :class="{'active': temperament === 3}" @click="change_active(3)">
+            <dl :class="{'active': role === 3}" @click="change_active(3)">
                 <dt><img src="../assets/tempate2.png"/></dt>
                 <dd>
                     多愁善感、敏感多思<br>
                     个性独立、清高气傲
                 </dd>
             </dl>
-            <dl :class="{'active': temperament === 4}" @click="change_active(4)">
+            <dl :class="{'active': role === 4}" @click="change_active(4)">
                 <dt><img src="../assets/tempate3.png"/></dt>
                 <dd>
                     聪明活泼、感情丰富<br>
                     善于交际、无条理
                 </dd>
             </dl>
-            <dl :class="{'active': temperament === 0}" @click="change_active(0)">
+            <dl :class="{'active': role === 0}" @click="change_active(0)">
                 <dt><img src="../assets/tempate4.png"/></dt>
                 <dd>
                     精明能干、事业心强<br>
                     情感专一、控制欲强
                 </dd>
             </dl>
-            <dl :class="{'active': temperament === 2}" @click="change_active(2)">
+            <dl :class="{'active': role === 2}" @click="change_active(2)">
                 <dt><img src="../assets/tempate5.png"/></dt>
                 <dd>
                     性情高冷、独来独往<br>
                     有洁癖、有才华
                 </dd>
             </dl>
-            <dl :class="{'active': temperament === 5}" @click="change_active(5)">
+            <dl :class="{'active': role === 5}" @click="change_active(5)">
                 <dt><img src="../assets/tempate6.png"/></dt>
                 <dd>
                     踏实专一、和善友好<br>
                     有包容心、会照顾人
                 </dd>
             </dl>
-            <dl :class="{'active': temperament === 6}" @click="change_active(6)">
+            <dl :class="{'active': role === 6}" @click="change_active(6)">
                 <dt><img src="../assets/tempate7.png"/></dt>
                 <dd>
                     美丽聪慧、柔情似水<br>
@@ -53,7 +53,7 @@
 
                 </dd>
             </dl>
-            <dl :class="{'active': temperament === 7}" @click="change_active(7)">
+            <dl :class="{'active': role === 7}" @click="change_active(7)">
                 <dt><img src="../assets/tempate8.png"/></dt>
                 <dd>
                     聪明能干、维护领导<br>
@@ -61,14 +61,14 @@
 
                 </dd>
             </dl>
-            <dl :class="{'active': temperament === 8}" @click="change_active(8)">
+            <dl :class="{'active': role === 8}" @click="change_active(8)">
                 <dt><img src="../assets/tempate9.png"/></dt>
                 <dd>
                     敢说敢为、办事练达<br>
                     志趣高雅、大方开朗
                 </dd>
             </dl>
-            <dl :class="{'active': temperament === 9}" @click="change_active(9)">
+            <dl :class="{'active': role === 9}" @click="change_active(9)">
                 <dt><img src="../assets/tempate10.png"/></dt>
                 <dd>
                     贞静淡泊、清雅端庄<br>
@@ -84,19 +84,19 @@
     export default {
         data(){
             return {
-                temperament: -1
+                role: -1
             }
         },
         computed: {
             answer(){
                 var answer = {};
-                answer.temperament = this.temperament;
+                answer.role = this.role;
                 return answer;
             }
         },
         methods: {
             change_active(answerValue) {
-                this.$data.temperament = answerValue
+                this.$data.role = answerValue
                 this.$emit('updateUserAnswer', this.answer)
             }
         },
@@ -108,7 +108,7 @@
 <style lang="scss" rel="stylesheet/scss">
     @import "../common/common.scss";
     /*选择问题内容*/
-    .m-temperament {
+    .m-role {
         width: 96%;
         margin-left: 2%;
         overflow: hidden;

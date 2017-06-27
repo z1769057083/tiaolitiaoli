@@ -1,71 +1,71 @@
 <template>
-    <div class="m-character">
+    <div class="m-mind">
         <h3><img src="../assets/indexline.png" alt=""/>下面哪个人物像你？<img class="imgright" src="../assets/indexline.png"
                                                                      alt=""/></h3>
         <div class="m-hmain">
-            <dl :class="{'active': character === 1}" @click="change_active(1)">
+            <dl :class="{'active': mind === 1}" @click="change_active(1)">
                 <dt><img src="../assets/character1.png"/></dt>
                 <dd>
                     博学多才、足智多谋<br>
                 </dd>
             </dl>
-            <dl :class="{'active': character === 3}" @click="change_active(3)">
+            <dl :class="{'active': mind === 3}" @click="change_active(3)">
                 <dt><img src="../assets/character2.png"/></dt>
                 <dd>
                     有魄力、讲义气
                     轻<br>财务、要面子
                 </dd>
             </dl>
-            <dl :class="{'active': character === 4}" @click="change_active(4)">
+            <dl :class="{'active': mind === 4}" @click="change_active(4)">
                 <dt><img src="../assets/character3.png"/></dt>
                 <dd>
                     吃嘛嘛香、不爱操心<br>
                     容易知足、不喜动
                 </dd>
             </dl>
-            <dl :class="{'active': character === 0}" @click="change_active(0)">
+            <dl :class="{'active': mind === 0}" @click="change_active(0)">
                 <dt><img src="../assets/character4.png"/></dt>
                 <dd>
                     能担大任、善于用人<br>
                     行为果断、精力充沛
                 </dd>
             </dl>
-            <dl :class="{'active': character === 2}" @click="change_active(2)">
+            <dl :class="{'active': mind === 2}" @click="change_active(2)">
                 <dt><img src="../assets/character5.png"/></dt>
                 <dd>
                     知识面广、有想象力<br>
                     处事灵活
                 </dd>
             </dl>
-            <dl :class="{'active': character === 5}" @click="change_active(5)">
+            <dl :class="{'active': mind === 5}" @click="change_active(5)">
                 <dt><img src="../assets/character6.png"/></dt>
                 <dd>
                     重感情、讲义气<br>
                     慈仁善良、处事稳重
                 </dd>
             </dl>
-            <dl :class="{'active': character === 6}" @click="change_active(6)">
+            <dl :class="{'active': mind === 6}" @click="change_active(6)">
                 <dt><img src="../assets/character7.png"/></dt>
                 <dd>
                     善良温和、与人为善<br>
                     不轻易妥协、有恒心
                 </dd>
             </dl>
-            <dl :class="{'active': character === 7}" @click="change_active(7)">
+            <dl :class="{'active': mind === 7}" @click="change_active(7)">
                 <dt><img src="../assets/character8.png"/></dt>
                 <dd>
                     喜欢安逸、知足常乐<br>
                     幽默风趣、憨厚率直
                 </dd>
             </dl>
-            <dl :class="{'active': character === 8}" @click="change_active(8)">
+            <dl :class="{'active': mind === 8}" @click="change_active(8)">
                 <dt><img src="../assets/character9.png"/></dt>
                 <dd>
                     聪明好学、追求自由<br>
                     富正义感、勇于创新
                 </dd>
             </dl>
-            <dl :class="{'active': character === 9}" @click="change_active(9)">
+            <dl :class="{'active': mind === 9}" @click="change_active(9)">
                 <dt><img src="../assets/character10.png"/></dt>
                 <dd>
                     勤劳稳重、任劳任怨<br>
@@ -81,19 +81,19 @@
     export default {
         data(){
             return {
-                character: -1
+                mind: -1
             }
         },
         computed: {
             answer(){
                 var answer = {};
-                answer.character = this.character;
+                answer.mind = this.mind;
                 return answer;
             }
         },
         methods: {
             change_active(answerValue) {
-                this.$data.character = answerValue
+                this.$data.mind = answerValue
                 this.$emit('updateUserAnswer', this.answer)
             }
         },
@@ -105,7 +105,7 @@
 <style lang="scss" rel="stylesheet/scss">
     @import "../common/common.scss";
     /*选择问题内容*/
-    .m-character {
+    .m-mind {
         width: 96%;
         margin-left: 2%;
         overflow: hidden;
