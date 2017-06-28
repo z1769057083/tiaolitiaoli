@@ -419,6 +419,7 @@ export default {
   		//取直接购买的商品信息         	
         	let obj_arr = window.localStorage.getItem('buyNow_Key')
 	        this.arr = JSON.parse(obj_arr)
+	        console.log(this.arr)
 	        this.totalNum += this.arr[0].num
 					this.count = this.arr[0].num*parseInt(this.arr[0].price)
 					if(this.count>=300){
@@ -453,6 +454,22 @@ export default {
 								this.price.price = this.countPrice
 	          }
          }
+  	},
+  	loadOrdersFromGenePay(){
+  		//取直接购买的商品信息         	
+        	let obj_arr = window.localStorage.getItem('genePay_Key')
+	        this.arr = JSON.parse(obj_arr)
+	        console.log(this.arr)
+	        this.totalNum += this.arr[0].num
+					this.count = this.arr[0].num*parseInt(this.arr[0].price)
+					if(this.count>=300){
+						this.fare = 0
+						this.countPrice = this.count
+					}else{
+						this.fare = 12
+						this.countPrice = this.count + 12
+					}
+					this.price.price = this.countPrice
   	}
   },
   mounted() {  
@@ -464,6 +481,8 @@ export default {
         	this.loadOrdersFromShopCart();
         }else if(routeId==1){      	
         	this.loadOrdersFromBuyNow();
+        }else if(routeId==2){
+        	this.loadOrdersFromGenePay();
         }
 	     	this.loadDelieverAddress();
       	document.title ='确认订单'

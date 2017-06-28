@@ -109,7 +109,7 @@
  		</div>
  		<div class="gene-pay">
  			<span>¥680.00</span>
- 			<div class="pay">购买</div>
+ 			<div class="pay" @click="payClick">购买</div>
  		</div>
  	</div>
 </template>
@@ -117,6 +117,31 @@
 	import axios from 'axios'
 	import api from '../api/api'
 	export default {
+		data(){
+            return {
+            	nowArr:[]
+            }
+       },
+        methods: {
+            payClick(){
+		        if (!window.localStorage) {
+		          return false;
+		        } else {
+		          var storage = window.localStorage;
+		          var shop1 = {
+		          	'id':1,
+		            'img': '../../static/images/geneBot1.png',
+		            'name': '基因检测器',
+		            'price': '162',
+		            'num': 1,
+		          }
+		          this.nowArr.push(shop1);
+		          var obj_arr1 = JSON.stringify(this.nowArr)
+		          storage.setItem('genePay_Key', obj_arr1);
+		        }
+		        this.$router.push({ path: '/confirmOrder', query: { routerId: 2 }})
+            }
+        },
         mounted() {
         	document.documentElement.scrollTop = 0
             document.body.scrollTop = 0

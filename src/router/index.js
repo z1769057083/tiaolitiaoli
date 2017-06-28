@@ -27,6 +27,14 @@ import immunityTest from '@/pages/immunityTest'
 import recommendArticle from '@/pages/recommendArticle'
 import aboutUs from '@/pages/aboutUs'
 import gene from '@/pages/gene'
+import receiveCoupon from '@/pages/receiveCoupon'
+import myCoupon from '@/pages/myCoupon'
+import bindIntroduce from '@/pages/bindIntroduce'
+import bindBarCode from '@/pages/bindBarCode'
+import myOrder from '@/pages/myOrder'
+import geneReport from '@/pages/geneReport'
+
+import geneIndex from '@/pages/geneIndex'
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -38,7 +46,13 @@ export default new Router({
           path: '/main',
           component: main,
           name: 'main'
-      }, {
+      },
+      {
+          path: '/geneIndex',
+          component: geneIndex,
+          name: 'geneIndex'
+      },
+      {
       path: '/test',
       component: test,
       name: 'test'
@@ -162,6 +176,36 @@ export default new Router({
       path: '/gene',
       component: gene,
       name: 'gene'
-    }               
+    },
+    {
+      path: '/receiveCoupon',
+      component: receiveCoupon,
+      name: 'receiveCoupon'
+    },
+    {
+      path: '/myCoupon',
+      component: myCoupon,
+      name: 'myCoupon'
+    },
+    {
+      path: '/bindIntroduce',
+      component: bindIntroduce,
+      name: 'bindIntroduce'
+    },
+    {
+      path: '/bindBarCode',
+      component: bindBarCode,
+      name: 'bindBarCode'
+    },
+    {
+      path: '/myOrder',
+      component: myOrder,
+      name: 'myOrder'
+    },
+    {
+      path: '/geneReport',
+      component: geneReport,
+      name: 'geneReport'
+    }
   ]
 })

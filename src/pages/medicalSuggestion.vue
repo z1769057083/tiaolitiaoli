@@ -113,7 +113,6 @@
 		margin-left: 6.7%;
 		background: #fff;
 		padding-top: rem(34rem);
-		font-size: $font13;
 		.recuperate-top{
 			width: 44%;
 			height: rem(34rem);
@@ -158,8 +157,9 @@
 				overflow: hidden;
 				white-space: nowrap;
 				text-overflow: ellipsis;
-				font-size: $font13;
+				font-size:$font13;
 				padding-bottom: rem(10rem);
+				padding-top: rem(2rem);
 				border-bottom: 1px solid #f4eade;
 				span{
 					font-weight: bold;
