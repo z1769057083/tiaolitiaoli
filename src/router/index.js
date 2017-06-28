@@ -26,7 +26,6 @@ import orderListDetail from '@/pages/orderListDetail'
 import immunityTest from '@/pages/immunityTest'
 import recommendArticle from '@/pages/recommendArticle'
 import aboutUs from '@/pages/aboutUs'
-import geneDetection from '@/pages/geneDetection'
 import gene from '@/pages/gene'
 Vue.use(Router)
 export default new Router({
@@ -158,12 +157,7 @@ export default new Router({
       path: '/aboutUs',
       component: aboutUs,
       name: 'aboutUs'
-    },
-    {
-      path: '/geneDetection',
-      component: geneDetection,
-      name: 'geneDetection'
-    },
+    },   
     {
       path: '/gene',
       component: gene,

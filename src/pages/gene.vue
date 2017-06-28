@@ -1,7 +1,7 @@
 <template>
  	<div class="detection-main">
  		<h3 class="d-title">六大高发癌症风险检测套餐</h3>
- 		<div class='d-titbot'>汉古科技·让癌症远离你</div>
+ 		<div class='d-titbot'>汉古科技 · 让癌症远离你</div>
  		<ul class="d-titcon">
  			<li>风险<br />评估</li>
  			<li>个性<br />解读</li>
@@ -115,7 +115,14 @@
 </template>
 <script>
 	import axios from 'axios'
-	import api from '../api/api';
+	import api from '../api/api'
+	export default {
+        mounted() {
+        	document.documentElement.scrollTop = 0
+            document.body.scrollTop = 0
+            document.title = '基因检测'
+        }
+	}
 </script>
 <style scoped lang="scss" rel="stylesheet/scss">
 @import "../common/common.scss";
