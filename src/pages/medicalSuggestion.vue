@@ -19,7 +19,7 @@
 				<div class="mcon-season">
 					<p class="tit" style="display: none;">R</p>
 					<div>
-						<span>当季体质:</span>
+						<span>节令体质:</span>
 						<p v-html="wuXingLevelText+'<br>'+reportContent"></p>
 					</div>
 				</div>
