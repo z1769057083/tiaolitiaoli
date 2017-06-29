@@ -256,6 +256,7 @@
                     box-shadow: rem(1rem) rem(1rem) rem(1rem) rem(1.5rem) #e2e1df;
                     margin-top: rem(10rem);
                     position: relative;
+					text-align: justify;
                     h3 {
                         background: url(../assets/rmattribute.png) no-repeat center left;
                         padding-left: 3%;
