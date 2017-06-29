@@ -12,16 +12,16 @@
 	                        <div class="r-mrcontent">
 	                            <h3>先天体质</h3>
 	                            <p v-html="wuXingXianTianStatusText"></p>
-	                            <div class="right" @click='showXianTianReport'>
-	                                <img src="../assets/afterRdetail.png"/>
-	                            </div>
+	                            <!--<div class="right" @click='showXianTianReport'>-->
+	                                <!--<img src="../assets/afterRdetail.png"/>-->
+	                            <!--</div>-->
 	                        </div>
 	                        <div class="r-mrcontent">
 	                            <h3>后天体质</h3>
 	                            <p class="r-mrconp" v-html="wuXingHouTianStatusText"></p>
-	                            <div class="right" @click='afterReport'>
-	                                <img src="../assets/afterRdetail.png"/>
-	                            </div>
+	                            <!--<div class="right" @click='afterReport'>-->
+	                                <!--<img src="../assets/afterRdetail.png"/>-->
+	                            <!--</div>-->
 	                        </div>
 	                    </div>
 	                    <div class="r-mseason">
