@@ -6,7 +6,7 @@
             </div>
             <div class='i-main'>
                 <h3 class='i-maintop'><img src="../assets/rmattribute.png" alt="" />体质检测<img src="../assets/rmattribute.png" alt="" /></h3>
-                <div class='i-maintext'>
+                <div class='i-maintext main'>
                     本测试由汉古科技多位教授多年潜心研究，利用《皇帝内经》等传统中医理论结合人工智能技术创立的体质辨析研究模型；完成测试后，您将了解到您的体质详情，并获得相应的个性化的解决方法。
                 </div>
                 <div class='i-maintext'>本次测试大约需要10分钟的时间填写。</div>
@@ -98,6 +98,10 @@
                 line-height: rem(30rem);
                 color: #000;
                 text-align: center;
+
+            }
+            .main{
+                text-align: justify;
             }
 
             .i-maincen {
