@@ -99,14 +99,7 @@
                         })
                 }
             },
-            loadWeather(){
-                var weatherKey='df7f80c391ea4cf788d372d9feb5f09f';
-                axios.get(' https://api.heweather.com/v5/suggestion?city=lasa&key='+weatherKey)
-                    .then(function (res) {
-                        console.log(res);
-                    })
 
-            },
             loadUserInfo(){
                 let openid = this.$route.query.openid;
                 if (typeof (openid) == 'undefined' || openid == '') {
@@ -155,7 +148,6 @@
             this.configWeChatSDK()
             this.onWeChatShare()
             this.loadCities()
-            this.loadWeather()
             let debugMode = IsDebug ? " 本地调试模式" : ' 发布模式';
             console.log('当前版本:' + Version + debugMode);
         }
