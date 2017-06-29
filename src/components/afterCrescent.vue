@@ -1,6 +1,6 @@
 <template>
     <div class="m-afterCrescent">
-        <h3>上传月牙白图片</h3>
+        <h3>上传十个手指指甲盖图片</h3>
         <div class="m-crescent">
             <div class="m-picture" @click='beginUsePic'>
                 <img :src="fingerImage"/>
