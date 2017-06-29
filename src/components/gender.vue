@@ -14,7 +14,7 @@
                 <span class="activeSpan" v-if='!msgGrilImg'>我是女生</span>
             </div>
         </div>
-        <span class="date-tit">出生日期和时间：</span>
+        <span class="date-tit">出生日期和小时：</span>
         <div class="date-timer">
         	  <input type="date" min='1900-01-01' :class="{'activeDate': toggle}" class="m-selectdate" name='birthday' v-model='birthday' @change='change_date(birthday)'/>
         <select v-model="time" class="selHour" :class="{'activeHour': toggle1}" @change='change_date1(time)'>

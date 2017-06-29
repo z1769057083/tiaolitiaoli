@@ -1,6 +1,6 @@
 <template>
     <div class="m-selection">
-        <span>父亲生日和时间：</span>
+        <span>父亲生日和小时：</span>
         <div class="date-time">
         	<input type="date" :class="{'activeDate': toggle}" class="m-selectbirthday" name='fatherBirthday'
                v-model='fatherBirthday' min="1901-01-01"
@@ -11,7 +11,7 @@
 			</option>
 		</select>
         </div>        
-        <span>母亲生日和时间：</span>
+        <span>母亲生日和小时：</span>
         <div class="date-time">
         	<input type="date" :class="{'activeDate': toggle1}" class="m-selectbirthday" name='motherBirthday'
                v-model='motherBirthday'  min="1901-01-01"
