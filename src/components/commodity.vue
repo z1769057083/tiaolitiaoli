@@ -2,7 +2,7 @@
     <div>
         <!--文章部分-->
         <div class="s-mrecomment" v-if="hasRecommend">
-            <h3 class="s-marttitle">个性化推荐</h3>
+            <!--<h3 class="s-marttitle">个性化推荐</h3>-->
             <dl class="s-marticlecon" v-for='(soupItem,index) in getSouplist' @click='soupClick(soupItem,index)'>
                 <dt>
                 <h3>{{soupItem.title}}</h3>
@@ -18,24 +18,30 @@
                          @click='soupClick(soupItem,index)'/>
                 </dd>
             </dl>
-            <div class="s-marticlecon1">
-                <dl>
-                    <dt>
-                    <h3 class="s-marcontitle">推荐商品</h3>
-                    </dt>
-                    <dd class="s-martimg" v-for='(recommendItem,index) in recommendlist' @click='recomClick(recommendItem,index)'>
-                            <img :src="''+apiPath+'/image/product/thumbnail/'+recommendItem.index+'.jpg'"
-                                 onerror="this.src='../../static/images/defaultPicture.jpg'"
-                                 @click='recomClick(recommendItem,index)'/>
-                        <p class="s-martname">{{recommendItem.name}}</p>
-                        <p class="s-martpic">¥{{recommendItem.price}}.00
-                        </p>
-                    </dd>
-                </dl>
-            </div>
+            <dl class="s-marticlecon" v-for='(item,index) in recommendlist' @click='recomClick(item,index)' >
+                <dt>
+                <h3>{{item.name}}</h3>
+                ¥{{item.price}}.00
+                <div class="s-mreconintrotip">
+                    <img class="tip" src="../assets/shopTip.png"/>
+                    <!--{{item.fit|transform}}-->
+                    {{item.recommendText}}
+                </div>
+                </dt>
+                <dd>
+                    <img :src="''+apiPath+'/image/product/thumbnail/'+item.index+'.jpg'"
+                         onerror="this.src='../../static/images/defaultPicture.jpg'"
+                         @click='soupClick(soupItem,index)'/>
+                </dd>
+            </dl>
         </div>
         <!--商品部分-->
+
+        <div class="product-section" >
+            <h2 v-if="hasRecommend">逛一逛</h2>
+            <img v-if="hasRecommend" class="recuperatebg" src="../assets/recuperatebg.png"/>
         <div class="s-mrecomment1" v-for="(item, index) in listem">
+
             <h3 class="s-marttitle">{{item.title}}
                 <router-link :to="{ name: 'allgoods', query: { categoryId: item.category ,titleName:item.title}}">
                     <a class="s-mrecomall" @click='allClick(item,index)'>查看全部</a> 
@@ -57,6 +63,7 @@
                     </dd>
                 </dl>
             </div>
+        </div>
         </div>
     </div>
 </template>
@@ -300,6 +307,18 @@
     }
 
     /*商品列表*/
+    .product-section{
+        h2 {
+            padding-top: $font12;
+            font-size: $font20;
+            line-height: rem(28rem);
+            text-align: center;
+        }
+        .recuperatebg {
+            width: 49%;
+            margin: rem(10rem) 25.5% rem(8rem);
+        }
+    }
     .s-mrecomment1 {
         width: 100%;
         overflow: hidden;
