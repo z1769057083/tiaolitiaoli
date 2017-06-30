@@ -84,7 +84,7 @@
             return {             
                 renderedMessages: [],
                 questions: [],
-                imgUrl: '',
+                imgUrl: '../static/images/indexheadportrait.png',
                 isCurrentQuestionFinished: false,
                 myselfAvatar: '../static/images/indexheadportrait.png',
                 maskhidden: false,
