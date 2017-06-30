@@ -3,10 +3,24 @@
         <h3><img src="../assets/indexline.png" alt=""/>下面哪个人物像你？<img class="imgright" src="../assets/indexline.png"
                                                                      alt=""/></h3>
         <div class="m-hmain">
+            <dl :class="{'active': mind === 0}" @click="change_active(0)">
+                <dt><img src="../assets/character4.png"/></dt>
+                <dd>
+                    能担大任、善于用人<br>
+                    行为果断、精力充沛
+                </dd>
+            </dl>
             <dl :class="{'active': mind === 1}" @click="change_active(1)">
                 <dt><img src="../assets/character1.png"/></dt>
                 <dd>
                     博学多才、足智多谋<br>
+                </dd>
+            </dl>
+            <dl :class="{'active': mind === 2}" @click="change_active(2)">
+                <dt><img src="../assets/character5.png"/></dt>
+                <dd>
+                    知识面广、有想象力<br>
+                    处事灵活
                 </dd>
             </dl>
             <dl :class="{'active': mind === 3}" @click="change_active(3)">
@@ -23,20 +37,8 @@
                     容易知足、不喜动
                 </dd>
             </dl>
-            <dl :class="{'active': mind === 0}" @click="change_active(0)">
-                <dt><img src="../assets/character4.png"/></dt>
-                <dd>
-                    能担大任、善于用人<br>
-                    行为果断、精力充沛
-                </dd>
-            </dl>
-            <dl :class="{'active': mind === 2}" @click="change_active(2)">
-                <dt><img src="../assets/character5.png"/></dt>
-                <dd>
-                    知识面广、有想象力<br>
-                    处事灵活
-                </dd>
-            </dl>
+
+
             <dl :class="{'active': mind === 5}" @click="change_active(5)">
                 <dt><img src="../assets/character6.png"/></dt>
                 <dd>
