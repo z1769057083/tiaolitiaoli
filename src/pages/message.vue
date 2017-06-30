@@ -194,7 +194,6 @@
                 var that = this;
                 var postData = { "answer": {} };
                 var actorsAnswer=[];
-                debugger;
                 for(let key in this.questionAnswer.houTian.section1){
                     var single_actor=this.mapToSingleActor(key,this.questionAnswer.houTian.section1)
                     actorsAnswer.push(single_actor);
