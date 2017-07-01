@@ -47,7 +47,7 @@
                     有包容心、会照顾人
                 </dd>
             </dl>
-            <dl :class="{'active': role === 0}" @click="change_active(6)">
+            <dl :class="{'active': role === 6}" @click="change_active(6)">
                 <dt><img src="../assets/tempate4.png"/></dt>
                 <dd>
                     精明能干、事业心强<br>
