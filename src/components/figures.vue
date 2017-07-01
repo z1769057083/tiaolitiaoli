@@ -4,14 +4,15 @@
 	  		<dl>
 	  			<dt>身材</dt>
 				<!--Note:必须按照 0金1木2水3火4土 来匹配。-->
+				<dd><span :class="{'active': body === 0}" @click="change_active(0)">
+					肩背瘦小，腹小</span></dd>
 				<dd><span :class="{'active': body === 1}" @click="change_active(1)">
 					身材四肢长、身材挺拔、肩背宽大</span></dd>
 				<dd><span :class="{'active': body === 3}" @click="change_active(3)">
 					脊背宽广而肌肉丰满，身材上尖下阔</span></dd>
 				<dd><span :class="{'active': body === 4}" @click="change_active(4)">
 					肩背丰满，腹部容易发胖，身材上下匀称</span></dd>
-	  			<dd><span :class="{'active': body === 0}" @click="change_active(0)">
-					肩背瘦小，腹小</span></dd>
+
 		  			<dd><span :class="{'active': body === 2}" @click="change_active(2)">
 					两肩小，腹部易肥胖，脊背长，骶长，塌臀</span></dd>
 	  		</dl>
