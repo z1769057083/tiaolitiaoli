@@ -195,7 +195,7 @@
         	background: #fff;
         	border-radius: 1.06rem;
         	.m-selectdate {
-	            width: 40.6%;
+	            width: 44%;
 	            height: 1.3rem;
 	            background: url(../assets/msgdate.png) no-repeat center;
 	            background-size: cover;
@@ -213,7 +213,7 @@
 	        	position: absolute;
 	        	right: 0;
 	        	top: 0;
-	        	width: 45%;
+	        	width: 40%;
 	        	height: 0.6rem;
 	        	overflow: hidden;
 	        	margin-top: 0.35rem;
@@ -221,7 +221,7 @@
 	        	border: 0;
 	        	border-left: 0.05px solid #efefef;       	
 	    		text-align: center;
-	    		padding: 0 18%;
+	    		padding: 0 14%;
 	    		color: #000;
 				appearance:none;
 				-moz-appearance:none;
