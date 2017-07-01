@@ -1,6 +1,6 @@
 // api use part
 //  let apiPath = 'http://192.168.28.153:3333';
-//        let apiPath = 'http://139.162.116.116';
+//  let apiPath = 'http://139.162.116.116';
 let apiPath = 'http://ikehealth.cn';
 // let apiPath = 'http://localhost:3333';
 //  let apiPath = 'http://192.168.28.153:3333';
@@ -26,5 +26,6 @@ module.exports = {
     articleListDetail: apiPath + '/product/article_details?id=',
     orderList: apiPath + '/order/my?userId=',
     singleOrderList: apiPath + '/order/single?id=',
+    cities: apiPath + '/data/cities.json',
     apipath:apiPath //发起请求向后台传订单数据 post
 }
