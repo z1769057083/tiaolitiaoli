@@ -78,7 +78,7 @@
             }
         },
         mounted(){
-            document.title = '调理方法'
+            document.title = '调理处方'
             document.documentElement.scrollTop = 0
             document.body.scrollTop = 0
             this.loadWeather();

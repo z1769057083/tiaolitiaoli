@@ -50,11 +50,11 @@
     export default {
         data(){
             return {
-                eye: -1,
-                taste: -1,
-                smell: -1,
-                tone: -1,
-                hear: -1
+                eye: -2,
+                taste: -2,
+                smell: -2,
+                tone: -2,
+                hear: -2
             }
         },
         computed: {
@@ -73,7 +73,7 @@
         methods: {
             change_active(answerValue, sectionKey, event) {
                 this.$data[sectionKey] = answerValue
-                if (this.eye !== -1 && this.taste !== -1 && this.smell !== -1 && this.tone !== -1 && this.hear !== -1) {
+                if (this.eye !== -2 && this.taste !== -2 && this.smell !== -2 && this.tone !== -2 && this.hear !== -2) {
                     this.$emit('updateUserAnswer', this.answer)
                 }
             }
