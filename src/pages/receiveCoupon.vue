@@ -1,27 +1,31 @@
 <template>
 	<div>
 		<div class='receive'>
-	        <h3>{{name}}欢迎关注调理调理</h3>
-	        <p>领取优惠券</p>
-	        <div class="code" style="font-size: 30px;">
-	         	ssssssdsfdggg  
+	        <div class="receive-top">
+	        	<div class="price">
+	        		¥&nbsp;<span>680</span>
+	        	</div>
+	        	<div class="p-right">
+	        		<p>仅限购买六大高发癌症风险检测套餐</p>
+	        		<span>有效期2017.06.09-2017.12.29</span>
+	        		<div class="p-rightBtn">
+	        			<img  @click='receiveCode' v-if='btnHidden' src="../assets/receiveBtn1.png" alt="" />
+	        			<img @click='nowUse' v-if='!btnHidden' src="../assets/receiveBtn2.png" alt="" />
+	        		</div>
+	        	</div>
 	        </div>
-	        <div class="receive-code" @click='receiveCode' v-if='btnHidden'>立即领取</div>
-	        <div class="receive-code" @click='nowUse' v-if='!btnHidden'>立即使用</div>       
-    	</div>
-    	<div class="mask" v-if='maskHidden'>
-         	<div class="mask-main">
-         		<img class="geneIcon" src="../../static/images/geneIcon.png" alt="" />
-         		<p class="title">恭喜您，领取成功</p>
-         		<span>感谢您的参与，祝您购物愉快</span>
-         		<div class="btn">
-         			<p class="left" @click='nowUse'>立即使用</p>
-         			<p class="right" @click='close'>关闭</p>
-         		</div>
-         	</div>
         </div>
-	</div>
-    
+        <div class="mask" v-if='maskHidden'>
+        	<div class="mask-main">
+        		<img class="geneIcon" src="../assets/toastImg.png" alt="" />
+        		<p>已成功领取优惠券！</p>
+        		<div class="bottom">
+        			<div class="botLeft" @click='nowUse'>立即使用</div>
+        			<div class="botRight" @click='close'>关闭</div>
+        		</div>
+        	</div>
+        </div>
+	</div>   
 </template>
 <script>
     import axios from 'axios'
@@ -37,7 +41,6 @@
         methods: {
 			receiveCode(){
 				this.maskHidden = !this.maskHidden
-				this.btnHidden = !this.btnHidden
 			},
 			nowUse(){
 				this.$router.push({ path:'/gene'})
@@ -45,19 +48,11 @@
 			},
 			close(){
 				this.maskHidden = !this.maskHidden
+				this.btnHidden = !this.btnHidden
 			}
         },
         mounted() {
-            document.title = "调理调理"
-            if (!window.localStorage) {
-            return false;
-	        } else {
-	            if (window.localStorage.getItem(Account_Index) !== null) {
-	                let account = JSON.parse(window.localStorage.getItem(Account_Index))
-	                this.name = account.nickname
-	            }
-	        }
-            
+            document.title = "领取优惠券"
         }
     }
 </script>
@@ -68,33 +63,52 @@
 	height: 100%;
 	position: absolute;
 	overflow: hidden;
-	background: url(../assets/indexbg.jpg) no-repeat;
-    background-size: 100% 100%;
-	h3{
-		font-size: $font18;
-		margin: rem(50rem) 0 rem(50rem) 5%;
-	}
-	p{
-		font-size: $font14;
-		text-align: center;
-	}
-	.code{
-		width: 80%;
-		height: rem(50rem);
-		margin-left: 10%;
-		border: 1px solid #0190FE;
-		margin-top: rem(60rem);
-	}
-	.receive-code{
-		width: 30%;
-		height: rem(40rem);
-		margin-left: 35%;
-		margin-top: rem(60rem);
-		font-size: $font18;
-		color: #fff;
-		background: #DEA726;
-		text-align: center;
-		line-height: rem(40rem);
+	background: #f6f6f6;
+	.receive-top{
+		width: 92%;
+		height: rem(100rem);
+		margin-top: rem(20rem);
+		background: url(../assets/receivebg.png) no-repeat center;
+		background-size: cover;
+		margin-left: 4%;
+		.price{
+			width: 34%;
+			height: rem(100rem);
+			line-height: rem(100rem);
+			text-align: center;
+			font-size: $font16;
+			color: #fff;
+			float: left;
+			span{
+				font-size: rem(32rem);
+			}
+		}
+		.p-right{
+			width: 61%;
+			float: right;
+			height: rem(100rem);
+			overflow: hidden;
+			position: relative;
+			p{
+				font-size: $font12;
+				margin: rem(14rem) 0 rem(6rem);
+				color: #000;
+			}
+			span{
+				color: #999;
+			}
+			.p-rightBtn{
+				width: rem(65rem);
+				height: rem(30rem);
+				position: absolute;
+				right: rem(16rem);
+				bottom: rem(10rem);
+				img{
+					width: 100%;
+					height: 100%;
+				}
+			}
+		}
 	}
 }
 .mask{
@@ -105,56 +119,47 @@
 	right: 0;
 	top: 0;
 	bottom: 0;
-	background: rgba(0,0,0,.1);
+	background: rgba(0,0,0,.3);
 	.mask-main{
-		width: 75%;
-		height: rem(200rem);
-		background: #fff;
-		left: 12.5%;
+		width: 70%;
+		height: rem(127rem);
+		background: #393939;
+		left: 15%;
 		top: rem(180rem);
 		position: absolute;
-		border: 1px solid #dfdfdf;
 		text-align: center;
 		border-radius: rem(5rem);
 		.geneIcon{
-			width: rem(40rem);
-			height: rem(40rem);
-			margin-top: rem(15rem);
-		}
-		.title{
-			font-size: $font18;
-			text-align: center;
+			width: rem(26rem);
+			height: rem(18rem);
 			margin-top: rem(20rem);
-			margin-bottom: rem(10rem);
 		}
-		span{
-			color: #9f9f9f;
+		p{
+			color: #fff;
+			margin-top: rem(14rem);
+			letter-spacing: rem(1rem);
 		}
-		.btn{
-			width: 80%;
-			overflow: hidden;
-			margin-left: 10%;
-			margin-top: rem(25rem);
-			p{
-				width: 46%;
-				height: rem(35rem);
-				display: block;
+		.bottom{
+			width: 100%;
+			height: rem(44rem);
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			border-top: 1px solid #6a6a6a;
+			div{
+				width: 50%;
 				float: left;
-				background: #00A0E9;
-				line-height: rem(35rem);
+				height: rem(44rem);
+				line-height: rem(44rem);
+				color: #fff;
 				font-size: $font14;
-				border-radius: rem(4rem);
-				color:#fff;
-				border: 1px solid #b74d4f;		
-				background: #dc3d37; 		
 			}
-			.right{
-				float: right;
-				color: #000;
-				background: #f5f5f5;
-				border: 1px solid #ddd;
+			.botRight{
+				width: 49%;
+				border-left: 1px solid #6a6a6a;
 			}
 		}
+
 	}
 }
 </style>

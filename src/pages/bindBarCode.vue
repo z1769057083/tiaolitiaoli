@@ -10,13 +10,13 @@
 	    		<dl>
 	    			<dt>样本编码:</dt>
 	    			<dd>
-	    				<input type="text" />
+	    				<input type="text" name='code' v-model='code'/>
 	    			</dd>
 	    		</dl>
 	    		<dl>
 	    			<dt>受检人:</dt>
 	    			<dd>
-	    				<input type="text" />
+	    				<input type="text" name='name' v-model='name'/>
 	    			</dd>
 	    		</dl>
 	    		<dl>
@@ -41,7 +41,12 @@
 	    				<input type="date" min='1900-01-01' :class="{'activeDate': toggle}" class="m-selectdate" name='birthday' v-model='birthday' @change='change_date(birthday)'/>
 	    			</dd>
 	    		</dl>
-				<img class="bind" src="../assets/couponBind.png"/>
+	    		<div class="address">
+	    			<span>绑定样本后请回寄至以下地址</span>
+	    			<p class="address-detail">北京市海淀区北三环西路48号科技会展中心2号楼16B (汉古医疗科技中心收)</p>
+	    			<p>联系电话：010-51626150</p>
+	    		</div>
+				<img class="bind" @click='bindData' src="../assets/couponBind.png"/>
 	    	</div>
     	</div>
     </div>
@@ -49,13 +54,16 @@
 <script>
     import axios from 'axios'
     import api from '../api/api'
+    import Toast from '@/packages/toast'
     export default {
         data() {
             return {
 				birthday: "1990-01-01",
 				msgBoyImg: true,
-				gender:'',
-				toggle:false
+				toggle:false,
+				gender:'M',
+				code:'',
+				name:''				
             }
         },
         methods: {
@@ -65,8 +73,7 @@
                 } else {
                     this.msgBoyImg = true
                 }
-                this.gender = gender;
-                console.log(this.gender)
+                this.gender = gender
             },
             change_date(birthday){ 
             	let  bir = new Date(birthday)
@@ -79,9 +86,27 @@
                     })
                     return;
                 }
-                this.birthday = birthday;
+                this.birthday = birthday
                 this.toggle = true                             
             },
+            bindData(){
+            	if (this.code!==''&&this.name!=='') {
+		        	let codeData={
+				    	code:this.code,
+				    	name:this.name,
+			    		gander:this.gender,
+			    		birthday:this.birthday
+		    		}
+		        	 console.log(codeData)
+			    } else {
+			    	Toast({
+			        message: '必填项不能为空',
+			        position:'top',
+			        duration:1000
+			      });
+			        return;
+            	}				   
+			}
         },
         mounted() {
             document.title = "绑定样本"
@@ -186,6 +211,29 @@
 	    					margin-right: rem(24rem);
 	    				}
     				}
+    			}
+    		}
+    		.address{
+    			width: 99%;
+    			height: rem(74rem);
+    			background: #fff;
+    			margin-top: rem(20rem);
+    			border: 1px dashed #cecece;
+    			padding: rem(12rem) 0;
+    			text-align: center;
+    			span{
+    				font-size: $font14;
+    				color: $c3c3c;
+    				font-weight: bold;
+    			}
+    			p{
+    				padding: 0 rem(24rem);
+    				line-height: rem(18rem);
+    				font-size: $font13;
+    				text-align: left;
+    			}
+    			.address-detail{
+    				margin-top: rem(8rem);
     			}
     		}
     		.bind{

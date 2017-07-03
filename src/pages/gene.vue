@@ -126,13 +126,13 @@
             payClick(){
 		        if (!window.localStorage) {
 		          return false;
-		        } else {
+		        }else {
 		          var storage = window.localStorage;
 		          var shop1 = {
 		          	'id':1,
 		            'img': '../../static/images/geneBot1.png',
 		            'name': '基因检测器',
-		            'price': '162',
+		            'price': '680',
 		            'num': 1,
 		          }
 		          this.nowArr.push(shop1);

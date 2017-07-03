@@ -23,11 +23,11 @@
 			<dd class="check" :class="{'active': toggle === 1}"></dd>
 		</dl>	
 		<dl @click="change_active(2,$event)" v-if='codeHidden'>
-			<!--<dt><img src="../assets/cashierWechart.png"/></dt>-->
+			<dt><img src="../assets/couponPay.png"/></dt>
 			<dd>
 				<p>使用优惠券</p>
-				<!--微信支付使用银行卡累计限制1000元-->
-				<input type="text" />
+				使用优惠券，支付无负担
+				<!--<input type="text" />-->
 			</dd>
 			<dd class="check" :class="{'active': toggle === 2}"></dd>
 		</dl>	

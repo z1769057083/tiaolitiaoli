@@ -29,12 +29,10 @@ import aboutUs from '@/pages/aboutUs'
 import gene from '@/pages/gene'
 import receiveCoupon from '@/pages/receiveCoupon'
 import myCoupon from '@/pages/myCoupon'
-import bindIntroduce from '@/pages/bindIntroduce'
 import bindBarCode from '@/pages/bindBarCode'
 import myOrder from '@/pages/myOrder'
 import geneReport from '@/pages/geneReport'
-
-import geneIndex from '@/pages/geneIndex'
+import geneReportDetail from '@/pages/geneReportDetail'
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -48,164 +46,159 @@ export default new Router({
           name: 'main'
       },
       {
-          path: '/geneIndex',
-          component: geneIndex,
-          name: 'geneIndex'
+          path: '/geneReportDetail',
+          component: geneReportDetail,
+          name: 'geneReportDetail'
       },
       {
-      path: '/test',
-      component: test,
-      name: 'test'
-    },
-    {
-      path: '/message',
-      component: message,
-      name: 'message'
-    },
-    {
-      path: '/report',
-      component: report,
-      name: 'report'
-    },
-    {
-      path: '/shop',
-      component: shop,
-      name: 'shop'
-    },
-    {
-      path: '/goodsdetail',
-      component: goodsdetail,
-      name: 'goodsdetail'
-    },
-    {
-      path: '/allgoods',
-      component: allgoods,
-      name: 'allgoods'
-    },
-    {
-      path: '/confirmOrder',
-      component: confirmOrder,
-      name: 'confirmOrder'
-    },
-    {
-      path: '/shoppingTolley',
-      component: shoppingTolley,
-      name: 'shoppingTolley'
-    },
-    {
-      path: '/cashier',
-      component: cashier,
-      name: 'cashier'
-    },
-      {
-      path: '/backdoor',
-      component: backdoor,
-      name: 'backdoor'
-      },
-    {
-      path: '/afterReport',
-      component: afterReport,
-      name: 'afterReport'
-    },
-    {
-      path: '/medicalSuggestion',
-      component: medicalSuggestion,
-      name: 'medicalSuggestion'
-    },
-    {
-      path: '/soupDetail',
-      component: soupDetail,
-      name: 'soupDetail'
-    },
-    {
-      path: '/geneTest',
-      component: geneTest,
-      name: 'geneTest'
-    },
-    {
-      path: '/videoList',
-      component: videoList,
-      name: 'videoList'
-    },
-    {
-      path: '/videoListDetail',
-      component: videoListDetail,
-      name: 'videoListDetail'
-    },
-    {
-      path: '/videoHome',
-      component: videoHome,
-      name: 'videoHome'
-    },
-    {
-      path: '/articleList',
-      component: articleList,
-      name: 'articleList'
-    },
-    {
-      path: '/articleListDetail',
-      component: articleListDetail,
-      name: 'articleListDetail'
-    },
-    {
-      path: '/orderList',
-      component: orderList,
-      name: 'orderList'
-    },
-    {
-      path: '/orderListDetail',
-      component: orderListDetail,
-      name: 'orderListDetail'
-    },
-    {
-      path: '/immunityTest',
-      component: immunityTest,
-      name: 'immunityTest'
-    },
-    {
-      path: '/recommendArticle',
-      component: recommendArticle,
-      name: 'recommendArticle'
-    },
-    {
-      path: '/aboutUs',
-      component: aboutUs,
-      name: 'aboutUs'
-    },   
-    {
-      path: '/gene',
-      component: gene,
-      name: 'gene'
-    },
-    {
-      path: '/receiveCoupon',
-      component: receiveCoupon,
-      name: 'receiveCoupon'
-    },
-    {
-      path: '/myCoupon',
-      component: myCoupon,
-      name: 'myCoupon'
-    },
-    {
-      path: '/bindIntroduce',
-      component: bindIntroduce,
-      name: 'bindIntroduce'
-    },
-    {
-      path: '/bindBarCode',
-      component: bindBarCode,
-      name: 'bindBarCode'
-    },
-    {
-      path: '/myOrder',
-      component: myOrder,
-      name: 'myOrder'
-    },
-    {
-      path: '/geneReport',
-      component: geneReport,
-      name: 'geneReport'
-    }
+	      path: '/test',
+	      component: test,
+	      name: 'test'
+	    },
+	    {
+	      path: '/message',
+	      component: message,
+	      name: 'message'
+	    },
+	    {
+	      path: '/report',
+	      component: report,
+	      name: 'report'
+	    },
+	    {
+	      path: '/shop',
+	      component: shop,
+	      name: 'shop'
+	    },
+	    {
+	      path: '/goodsdetail',
+	      component: goodsdetail,
+	      name: 'goodsdetail'
+	    },
+	    {
+	      path: '/allgoods',
+	      component: allgoods,
+	      name: 'allgoods'
+	    },
+	    {
+	      path: '/confirmOrder',
+	      component: confirmOrder,
+	      name: 'confirmOrder'
+	    },
+	    {
+	      path: '/shoppingTolley',
+	      component: shoppingTolley,
+	      name: 'shoppingTolley'
+	    },
+	    {
+	      path: '/cashier',
+	      component: cashier,
+	      name: 'cashier'
+	    },
+	      {
+	      path: '/backdoor',
+	      component: backdoor,
+	      name: 'backdoor'
+	      },
+	    {
+	      path: '/afterReport',
+	      component: afterReport,
+	      name: 'afterReport'
+	    },
+	    {
+	      path: '/medicalSuggestion',
+	      component: medicalSuggestion,
+	      name: 'medicalSuggestion'
+	    },
+	    {
+	      path: '/soupDetail',
+	      component: soupDetail,
+	      name: 'soupDetail'
+	    },
+	    {
+	      path: '/geneTest',
+	      component: geneTest,
+	      name: 'geneTest'
+	    },
+	    {
+	      path: '/videoList',
+	      component: videoList,
+	      name: 'videoList'
+	    },
+	    {
+	      path: '/videoListDetail',
+	      component: videoListDetail,
+	      name: 'videoListDetail'
+	    },
+	    {
+	      path: '/videoHome',
+	      component: videoHome,
+	      name: 'videoHome'
+	    },
+	    {
+	      path: '/articleList',
+	      component: articleList,
+	      name: 'articleList'
+	    },
+	    {
+	      path: '/articleListDetail',
+	      component: articleListDetail,
+	      name: 'articleListDetail'
+	    },
+	    {
+	      path: '/orderList',
+	      component: orderList,
+	      name: 'orderList'
+	    },
+	    {
+	      path: '/orderListDetail',
+	      component: orderListDetail,
+	      name: 'orderListDetail'
+	    },
+	    {
+	      path: '/immunityTest',
+	      component: immunityTest,
+	      name: 'immunityTest'
+	    },
+	    {
+	      path: '/recommendArticle',
+	      component: recommendArticle,
+	      name: 'recommendArticle'
+	    },
+	    {
+	      path: '/aboutUs',
+	      component: aboutUs,
+	      name: 'aboutUs'
+	    },   
+	    {
+	      path: '/gene',
+	      component: gene,
+	      name: 'gene'
+	    },
+	    {
+	      path: '/receiveCoupon',
+	      component: receiveCoupon,
+	      name: 'receiveCoupon'
+	    },
+	    {
+	      path: '/myCoupon',
+	      component: myCoupon,
+	      name: 'myCoupon'
+	    },
+	    {
+	      path: '/bindBarCode',
+	      component: bindBarCode,
+	      name: 'bindBarCode'
+	    },
+	    {
+	      path: '/myOrder',
+	      component: myOrder,
+	      name: 'myOrder'
+	    },
+	    {
+	      path: '/geneReport',
+	      component: geneReport,
+	      name: 'geneReport'
+	    }
   ]
 })
