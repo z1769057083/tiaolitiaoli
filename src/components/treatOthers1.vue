@@ -51,11 +51,11 @@
         data(){
             return {
                 section1: {
-                    treat: -1,
-                    trick: -1,
-                    help: -1,
-                    clean: -1,
-                    liberty: -1
+                    treat: -2,
+                    trick: -2,
+                    help: -2,
+                    clean: -2,
+                    liberty: -2
                 }
             }
         },

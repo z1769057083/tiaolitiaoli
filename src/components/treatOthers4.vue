@@ -51,11 +51,11 @@
         data(){
             return {
                 section4: {
-                    lean: -1,
-                    observe: -1,
-                    solemn: -1,
-                    frank: -1,
-                    speech: -1
+                    lean: -2,
+                    observe: -2,
+                    solemn: -2,
+                    frank: -2,
+                    speech: -2
                 }
             }
         },

@@ -50,11 +50,11 @@ export default {
   data(){
 	  	return {
             section3:{
-	      	gentle:-1,
-	      	evil:-1,
-	      	flexible:-1,
-	      	burly:-1,
-	      	principle:-1
+	      	gentle:-2,
+	      	evil:-2,
+	      	flexible:-2,
+	      	burly:-2,
+	      	principle:-2
 	      }
 	    }
 	},

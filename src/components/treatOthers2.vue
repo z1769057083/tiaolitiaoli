@@ -58,11 +58,11 @@
         data(){
             return {
                 section2: {
-                    upright: -1,
-                    strong: -1,
-                    optimistic: -1,
-                    active: -1,
-                    pleasure: -1
+                    upright: -2,
+                    strong: -2,
+                    optimistic: -2,
+                    active: -2,
+                    pleasure: -2
                 }
             }
         },
