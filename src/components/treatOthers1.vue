@@ -66,9 +66,9 @@
                 return answer;
             },
             isAllFilled(){
-                return this.section1.treat != -1 && this.section1.trick != -1
-                    && this.section1.help != -1 && this.section1.clean != -1
-                    && this.section1.liberty != -1;
+                return this.section1.treat != -2 && this.section1.trick != -2
+                    && this.section1.help != -2 && this.section1.clean != -2
+                    && this.section1.liberty != -2;
             }
         },
         methods: {

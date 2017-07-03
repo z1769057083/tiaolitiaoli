@@ -73,9 +73,9 @@
                 return answer;
             },
             isAllFilled(){
-                return this.section2.upright != -1 && this.section2.strong != -1
-                    && this.section2.optimistic != -1 && this.section2.active != -1
-                    && this.section2.pleasure != -1;
+                return this.section2.upright != -2 && this.section2.strong != -2
+                    && this.section2.optimistic != -2 && this.section2.active != -2
+                    && this.section2.pleasure != -2;
             }
         },
         methods: {

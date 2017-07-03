@@ -66,9 +66,9 @@
                 return answer;
             },
             isAllFilled(){
-                return this.section4.lean != -1 && this.section4.observe != -1
-                    && this.section4.solemn != -1 && this.section4.frank != -1
-                    && this.section4.speech != -1;
+                return this.section4.lean != -2 && this.section4.observe != -2
+                    && this.section4.solemn != -2 && this.section4.frank != -2
+                    && this.section4.speech != -2;
             }
         },
         methods: {

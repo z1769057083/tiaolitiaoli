@@ -65,9 +65,9 @@ export default {
             return answer;
         },
         isAllFilled(){
-            return this.section3.gentle != -1 && this.section3.evil != -1
-                && this.section3.flexible != -1 && this.section3.burly != -1
-                && this.section3.principle != -1;
+            return this.section3.gentle != -2 && this.section3.evil != -2
+                && this.section3.flexible != -2 && this.section3.burly != -2
+                && this.section3.principle != -2;
         }
     },
 	methods:{
