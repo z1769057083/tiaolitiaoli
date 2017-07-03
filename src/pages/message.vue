@@ -141,7 +141,7 @@
                 if (this.isCurrentQuestionFinished) {
                     this.pendingAnswer = answerParams;
                     for (let key in answerParams) {
-                    	if(this.index<=3&&this.index!=2){
+                    	if(this.index<=3&&this.index!==2){
                     		this.questionAnswer.xianTian[key] = answerParams[key];
                     	}else{
                     		this.questionAnswer.houTian[key] = answerParams[key];
@@ -259,7 +259,16 @@
             this.startQuestionBySection()
             document.title='体质检测'
             //取页面的title，医生名字跟头像
-
+            if (!window.localStorage) {
+                return false;
+            } else {
+                let storage = window.localStorage;
+                //取用户的头像
+                if (storage.getItem(Account_Index) !== null) {
+                    let account = JSON.parse(storage.getItem(Account_Index))
+                    this.myselfAvatar = account.headimgurl;
+                }
+            }
         }
     }
 </script>

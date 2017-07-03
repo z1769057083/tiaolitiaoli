@@ -200,7 +200,7 @@
         .tip {
             width: rem(10rem);
             height: rem(12rem);
-            margin-top: rem(2rem);
+            margin-top: rem(3.5rem);
         }
         .s-marttitle {
             font-size: 0.42rem;
@@ -379,17 +379,13 @@
                 white-space: nowrap;
                 text-overflow: ellipsis;
                 color: #666;
-                margin-top: rem(6rem);
+                padding-top: rem(6rem);
                 .tip {
                     width: rem(10rem);
                     height: rem(12rem);
                    	float: left;
-                   	margin-right: rem(4rem) ;
+                   	margin-right: rem(4rem);
                     vertical-align: middle;
-                }
-                span{
-                	vertical-align: middle;
-                	float: left;
                 }
             }
             .activeShow {

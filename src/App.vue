@@ -17,8 +17,6 @@
     import { mapGetters, mapActions } from 'vuex';
     Hig(Highcharts)
     global.Highcharts = Highcharts
-
-
     export default {
         name: 'app',
         computed: mapGetters(['loading']),

@@ -23,6 +23,10 @@ export default {
         answer(){
             var answer = {};
             answer.tags = this.tags;
+            answer.isAllFilled=false;
+            if(this.tags !== null &&this.tags.length>0){
+            	answer.isAllFilled = true;
+            }
             return answer;
         }
     },
@@ -35,6 +39,7 @@ export default {
                 this.tags.push(obj);
             }
             this.$emit('updateUserAnswer', this.answer)
+            
         }
   },
 	mounted(){

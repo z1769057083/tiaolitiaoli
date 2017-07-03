@@ -47,7 +47,6 @@
             answer(){
                 var answer = {};
                 answer.gender = this.gender;
-                answer.time = this.time
                 answer.birthday = this.birthday+" "+this.time+":00:00";
                 answer.isAllFilled=false;
                 if(this.gender !== '' && this.birthday !== ''&&this.time!==''){
@@ -86,17 +85,19 @@
                 }
                 this.birthday = changedBirthday;
                 this.toggle = true
-                if (this.gender !== '') {
+              
                     global.User.gender = this.answer.gender;
                     global.User.age = Common.getUserAge(this.birthday);
                     global.User.birthday =this.birthday;
                     this.$emit('updateUserAnswer', this.answer);                 
-                }
+                
             },
             change_date1(time){  
             	this.toggle1 = true
-            	this.time = time
-        		global.User.time = this.answer.time;       		
+            	this.time = time     
+            	global.User.gender = this.gender;
+                global.User.age = Common.getUserAge(this.birthday);
+                global.User.birthday =this.birthday;
         		this.$emit('updateUserAnswer', this.answer); 
         		
             }
@@ -195,7 +196,7 @@
         	background: #fff;
         	border-radius: 1.06rem;
         	.m-selectdate {
-	            width: 44%;
+	            width: 45.6%;
 	            height: 1.3rem;
 	            background: url(../assets/msgdate.png) no-repeat center;
 	            background-size: cover;
@@ -221,7 +222,7 @@
 	        	border: 0;
 	        	border-left: 0.05px solid #efefef;       	
 	    		text-align: center;
-	    		padding: 0 14%;
+	    		padding: 0 16%;
 	    		color: #000;
 				appearance:none;
 				-moz-appearance:none;

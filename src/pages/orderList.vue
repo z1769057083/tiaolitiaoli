@@ -118,13 +118,13 @@
 		        this.submitArr.push(this.price)
 	        	var orderArr= JSON.stringify(this.submitArr)
 	        	storage.setItem("orderArr", orderArr)
-	       }	        
+	        }	        
            	this.$router.push({ path: '/cashier'})
-           },
-           cancelOrder(items,index){
+            },
+            cancelOrder(items,index){
 	           	this.toastHidden = true
 				this.readyToDelIndex = index
-           },
+            },
            //删除商品
 	   		confirmDel(){
 	   			this.toastHidden = false

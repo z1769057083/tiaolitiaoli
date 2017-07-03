@@ -44,8 +44,6 @@
         computed: {
             answer(){
                 var answer = {};
-                answer.motherHour = this.motherHour
-                answer.fatherHour = this.fatherHour
                 answer.motherBirthday = this.motherBirthday+" "+this.motherHour+":00:00";
                 answer.fatherBirthday = this.fatherBirthday+" "+this.fatherHour+":00:00";
                 answer.isAllFilled = false;
@@ -89,14 +87,12 @@
             },
             change_date1(fatherHour){
             	this.toggle2 = true
-            	this.fatherHour = fatherHour         
-        		global.User.fatherHour = this.answer.fatherHour;
+            	this.fatherHour = fatherHour                
         		this.$emit('updateUserAnswer', this.answer);    
             },
             change_date2(motherHour){
             	this.toggle3 = true
-            	this.motherHour = motherHour
-        		global.User.motherHour = this.answer.motherHour;
+            	this.motherHour = motherHour        		
         		this.$emit('updateUserAnswer', this.answer);    
             }
         }
@@ -129,7 +125,7 @@
         	border-radius: 1.06rem;
         	margin-bottom: rem(30rem);
         	.m-selectbirthday {
-	            width: 44%;
+	            width: 45.6%;
 	            height: 1.3rem;
 	            background: url(../assets/msgdate.png) no-repeat center;
 	            background-size: cover;
@@ -155,7 +151,7 @@
 	        	border: 0;
 	        	border-left: 0.05px solid #efefef;       	
 	    		text-align: center;
-	    		padding: 0 14%;
+	    		padding: 0 16%;
 	    		color: #000;
 				appearance:none;
 				-moz-appearance:none;

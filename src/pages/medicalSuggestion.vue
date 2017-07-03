@@ -26,7 +26,7 @@
                         <p v-html="wuXingLevelText+'<br>'+reportContent"></p>
                     </div>
                 </div>
-                <commodity hasRecommend="true"></commodity>
+                <commodity hasRecommend="true" v-if='!nullHidden'></commodity>
             </div>
         </div>
         <myNullReport v-if='nullHidden'></myNullReport>

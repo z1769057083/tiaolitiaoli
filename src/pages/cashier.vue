@@ -22,8 +22,17 @@
 			</dd>
 			<dd class="check" :class="{'active': toggle === 1}"></dd>
 		</dl>	
+		<dl @click="change_active(2,$event)" v-if='codeHidden'>
+			<dt><img src="../assets/couponPay.png"/></dt>
+			<dd>
+				<p>使用优惠券</p>
+				使用优惠券，支付无负担
+				<!--<input type="text" />-->
+			</dd>
+			<dd class="check" :class="{'active': toggle === 2}"></dd>
+		</dl>	
 	</div>
-	<div class="cashier-pay">立即支付</div>
+	<div class="cashier-pay" @click="nowPay">立即支付</div>
   </div>
 </template>
 <script>
@@ -37,7 +46,8 @@ export default {
 			arr:[],
 			arr2:[],
 			accountArr:[],
-			totalCount:0
+			totalCount:0,
+			codeHidden:false
     }
   },
   methods: {
@@ -63,7 +73,6 @@ export default {
 	    	let obj_arr = storage.getItem('orderArr')
 	    	let obj = JSON.parse(obj_arr)
 	   		this.arr = obj
-	   		console.log(this.arr)
 	   		if (window.localStorage.getItem(Account_Index) !== null) {
             let account = JSON.parse(window.localStorage.getItem(Account_Index))
             this.accountArr = account
@@ -98,12 +107,14 @@ export default {
 		        console.log(error)
 		    })
 	  	},
+	  	nowPay(){
+	  		this.requestCashier()
+	  	},
 			change_active(index,event) {
         this.toggle = index
       }
   },
-  mounted(){
-  	this.requestCashier()
+  mounted(){ 	
     if(!window.localStorage){
     	return false
     }else{
@@ -111,7 +122,11 @@ export default {
     	let obj_arr = storage.getItem('orderArr')
 	    let obj = JSON.parse(obj_arr)
 	    this.arr = obj
+	    console.log(this.arr)
 	    this.arr2 = this.arr[0][0]
+	    if(this.arr2.id===1){
+	    	this.codeHidden = true
+	    }
 			this.totalCount = this.arr[2].price
     }
     document.documentElement.scrollTop = 0
@@ -201,9 +216,6 @@ export default {
 				background-size: cover;
 				border:0;
 			}
-		}
-		dl:nth-child(2){
-			border: 0;
 		}
 	}
 	.cashier-pay{
