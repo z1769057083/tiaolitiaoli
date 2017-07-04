@@ -63,7 +63,9 @@
 				toggle:false,
 				gender:'M',
 				code:'',
-				name:''				
+				name:'',
+				bindDateList:[],
+				params:{}
             }
         },
         methods: {
@@ -89,15 +91,17 @@
                 this.birthday = birthday
                 this.toggle = true                             
             },
-            bindData(){
-            	if (this.code!==''&&this.name!=='') {
-		        	let codeData={
+            bindUserData(){
+                let that = this
+                axios.defaults.headers['Content-Type'] = 'application/json';
+                if (this.code!==''&&this.name!=='') {
+		        	this.params ={
 				    	code:this.code,
 				    	name:this.name,
 			    		gander:this.gender,
 			    		birthday:this.birthday
-		    		}
-		        	 console.log(codeData)
+		    		}	
+		    		console.log(this.params)
 			    } else {
 			    	Toast({
 			        message: '必填项不能为空',
@@ -105,7 +109,22 @@
 			        duration:1000
 			      });
 			        return;
-            	}				   
+            	}
+			    console.log(this.params)
+			    axios.post(api.bindUser, this.params)
+                    .then(function (res) {
+                    	console.log(res)
+                        if (res.status == 200) {
+                            that.bindDateList = res.config
+                            console.log(that.bindDateList)
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error)
+                    })
+            },
+            bindData(){
+            	this.bindUserData()
 			}
         },
         mounted() {

@@ -14,7 +14,7 @@ global.AllAnswer_Index = 'answer_index'
 //global.AllAnswer_Index = 'allAnswer_Index'
 global.WechatSignature_Index = 'wechatSignature_Index'
 global.Version = '0.0.15'
-global.IsDebug = false
+global.IsDebug = true
 
 global.User = {}
 

@@ -7,6 +7,7 @@
 	        	</div>
 	        	<div class="p-right">
 	        		<p>仅限购买六大高发癌症风险检测套餐</p>
+	        		<p class="bot">{{this.couponList.code}}</p>
 	        		<span>有效期2017.06.09-2017.12.29</span>
 	        		<div class="p-rightBtn">
 	        			<img  @click='receiveCode' v-if='btnHidden' src="../assets/receiveBtn1.png" alt="" />
@@ -35,12 +36,22 @@
             return {
 				name:'',
 				maskHidden: false,
-				btnHidden: true
+				btnHidden: true,
+				useId:'',
+				nickname:'',
+				couponList:[],
+				isReceive: 0
             }
         },
         methods: {
 			receiveCode(){
 				this.maskHidden = !this.maskHidden
+				this.isReceive = 1
+				if (!window.localStorage) {
+	            return false;
+		        } else {
+		        	window.localStorage.setItem('receiveCode',JSON.stringify(this.isReceive))
+		        }
 			},
 			nowUse(){
 				this.$router.push({ path:'/gene'})
@@ -49,10 +60,43 @@
 			close(){
 				this.maskHidden = !this.maskHidden
 				this.btnHidden = !this.btnHidden
+			},
+			getCoupon(){
+				if (!window.localStorage) {
+	            return false;
+		        } else {
+		            if (window.localStorage.getItem(Account_Index) !== null) {
+		                let account = JSON.parse(window.localStorage.getItem(Account_Index))
+		                console.log(account)
+		                this.useId = account._id;
+		                this.nickname = account.nickname
+		            }
+		        }
+				var that = this;
+                axios.get(api.getCoupon+'?userId='+that.useId+'&nickname='+that.nickname)
+                    .then(function (res) {
+                        if (res.data.errorCode == 0) {
+                            res = res.data.returnValue
+                            that.couponList = res
+                            console.log(that.couponList)
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error)
+                    })
 			}
         },
         mounted() {
+        	this.getCoupon()
             document.title = "领取优惠券"
+            if (!window.localStorage) {
+            	return false;
+	        } else {
+	        	let receive = JSON.parse(window.localStorage.getItem('receiveCode'))
+	        	if(receive==1){
+	        		this.btnHidden = !this.btnHidden
+	        	}
+	        }
         }
     }
 </script>
@@ -91,8 +135,11 @@
 			position: relative;
 			p{
 				font-size: $font12;
-				margin: rem(14rem) 0 rem(6rem);
+				margin: rem(10rem) 0 rem(6rem);
 				color: #000;
+			}
+			.bot{
+				margin: 0 0 rem(6rem) 0;
 			}
 			span{
 				color: #999;
@@ -102,7 +149,7 @@
 				height: rem(30rem);
 				position: absolute;
 				right: rem(16rem);
-				bottom: rem(10rem);
+				bottom: rem(5rem);
 				img{
 					width: 100%;
 					height: 100%;
