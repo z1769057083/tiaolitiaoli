@@ -12,7 +12,6 @@ import shoppingTolley from '@/pages/shoppingTolley'
 import cashier from '@/pages/cashier'
 import afterReport from '@/pages/afterReport'
 import medicalSuggestion from '@/pages/medicalSuggestion'
-import test from '@/pages/testUpload'
 import soupDetail from '@/pages/soupDetail'
 import geneTest from '@/pages/geneTest'
 import videoList from '@/pages/videoList'
@@ -50,11 +49,6 @@ export default new Router({
           component: geneReportDetail,
           name: 'geneReportDetail'
       },
-      {
-	      path: '/test',
-	      component: test,
-	      name: 'test'
-	    },
 	    {
 	      path: '/message',
 	      component: message,

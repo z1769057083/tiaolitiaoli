@@ -84,7 +84,7 @@
                             signature: data.signature,// 必填，签名，见附录1
                             jsApiList: ['chooseImage', 'previewImage',
                                 'uploadImage', 'onMenuShareTimeline', 'onMenuShareAppMessage',
-                                'downloadImage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                                'downloadImage','chooseWXPay'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
                         });
                     })
             },

@@ -19,7 +19,7 @@ module.exports = {
     getUserCount: apiPath + '/user/count',
     getReport: apiPath + '/report/get_report',
     hotGoods: apiPath + '/product/hot',
-    cashierSendData: apiPath + '/order/create',
+    cashierSendData: apiPath + '/wechat/generate_wechat_order',
     videoListDetail: apiPath + '/product/video_details?id=',
     videoList: apiPath + '/product/video',
     articleList: apiPath + '/product/article',
