@@ -7,14 +7,14 @@
             <div class="cashier-goods">商品名称:{{this.arr2.name}}</div>
         </div>
         <div class="cashier-mcontent">
-            <dl @click="change_active(0,$event)">
-                <dt><img src="../assets/cashierCard.png"/></dt>
-                <dd>
-                    <p>使用银行卡支付</p>
-                    请使用银联卡支付，无需开通网银
-                </dd>
-                <dd class="check" :class="{'active': toggle === 0}"></dd>
-            </dl>
+            <!--<dl @click="change_active(0,$event)">-->
+                <!--<dt><img src="../assets/cashierCard.png"/></dt>-->
+                <!--<dd>-->
+                    <!--<p>使用银行卡支付</p>-->
+                    <!--请使用银联卡支付，无需开通网银-->
+                <!--</dd>-->
+                <!--<dd class="check" :class="{'active': toggle === 0}"></dd>-->
+            <!--</dl>-->
             <dl @click="change_active(1,$event)">
                 <dt><img src="../assets/cashierWechart.png"/></dt>
                 <dd>
@@ -43,7 +43,7 @@
     export default {
         data(){
             return {
-                toggle: 0,
+                toggle: 1,
                 arr: [],
                 arr2: [],
                 accountArr: [],
