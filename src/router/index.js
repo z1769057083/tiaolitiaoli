@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import home from '@/pages/home'
-import main from '@/pages/home2'
 import message from '@/pages/message'
 import report from '@/pages/report'
 import shop from '@/pages/shop'
@@ -39,10 +38,6 @@ export default new Router({
           path: '/',
           component: home,
           name: 'home'
-      }, {
-          path: '/main',
-          component: main,
-          name: 'main'
       },
       {
           path: '/geneReportDetail',
