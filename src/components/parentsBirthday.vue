@@ -65,7 +65,6 @@
                         message: '父亲生日不能晚于你的生日',
                         position: 'top'
                     })
-                    return;
                 }
                 this.toggle = true
                 this.fatherBirthday = fatherBirthday;
@@ -78,7 +77,6 @@
                         message: '母亲生日不能晚于你的生日',
                         position: 'top'
                     })
-                    return;
                 }
                 this.toggle1 = true
                 this.motherBirthday = motherBirthday;
