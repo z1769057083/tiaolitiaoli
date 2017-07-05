@@ -81,12 +81,11 @@
         width: 90%;
         margin-left: 5%;
         .m-selectappend {
-            height: rem(270rem);
+            height: rem(240rem);
             overflow-y: scroll;
             width: 100%;
             dl {
                 width: 100%;
-                border-bottom: 1px solid #e3e3e3;
                 overflow: hidden;
                 padding-bottom: rem(14rem);
                 padding-top: rem(14rem);
