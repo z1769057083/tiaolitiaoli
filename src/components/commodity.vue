@@ -25,7 +25,7 @@
                 <div class="s-mreconintrotip">
                     <img class="tip" src="../assets/shopTip.png"/>
                     <!--{{item.fit|transform}}-->
-                    {{item.recommendText}}
+                    {{item.recommendText|textHandler}}
                 </div>
                 </dt>
                 <dd>
@@ -96,6 +96,11 @@
                 }
                 else {
                     return '平衡'
+                }
+            },
+            textHandler(text){
+                if(text==''){
+                    return '平衡';
                 }
             }
         },

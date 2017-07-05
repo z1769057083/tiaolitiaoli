@@ -20,15 +20,15 @@
                             </div>
                         </div>
                         <div class="r-mseason">
-                            <div class="r-mrcontent">
+                            <div class="r-mrcontent" v-if="wuXingReportHouTianObj.analysis">
                                 <h3>分析</h3>
                                 <p v-html="wuXingReportHouTianObj.analysis"></p>
                             </div>
-                            <div class="r-mrcontent">
+                            <div class="r-mrcontent" v-if="wuXingReportHouTianObj.content">
                                 <h3>表现</h3>
                                 <p v-html="wuXingReportHouTianObj.content"></p>
                             </div>
-                            <div class="r-mrcontent">
+                            <div class="r-mrcontent" v-if="wuXingReportHouTianObj.illness">
                                 <h3>易患疾病</h3>
                                 <p v-html="wuXingReportHouTianObj.illness"></p>
                             </div>

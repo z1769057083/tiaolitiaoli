@@ -80,7 +80,9 @@ export default {
             'fire': '火',
             'earth': '土',
         }
+        var isEmptyObj=true;
         for (var key in wuXingLevel) {
+            isEmptyObj=false;
             wuXingStatusText += wuXingTextMapper[key];
             if (wuXingLevel[key] == 0) {
                 wuXingStatusText += '弱';
@@ -89,6 +91,9 @@ export default {
                 wuXingStatusText += '强';
             }
             wuXingStatusText += ','
+        }
+        if(isEmptyObj){
+            wuXingStatusText='平衡';
         }
         wuXingStatusText = wuXingStatusText.trim(',');
         return wuXingStatusText;
@@ -198,7 +203,11 @@ export default {
     },
     convertReportsToObj: function (reports) {
         var reportObj = { content: "", attention: "", illness: "", analysis: "", other: "" };
-        if (typeof (reports) != 'undefined' && reports != '') {
+        if (typeof (reports) != 'undefined' && reports !== '') {
+            if(reports.length==0){
+                reportObj.analysis='五行均强，总体五行圆运动升发和肃降有序，一生当中整体的阳气和阴精都比较充足，整体免疫力、对外邪的抵抗力都较常人为强，基本上出现非外力所造成的重大疾病的可能性比较小，即便是偶有小疾也能够快速痊愈，回复正常状态。<br>五行偏弱，五行圆运动升发、肃降有序，但一生当中整体的阳气和阴精都偏弱，精力有限。虽然不容易出现除外力造成的重大疾病，但对外界的诱因比较容易敏感，整体免疫力、抵抗力一般，容易偶有小疾，而恢复较快。';
+                return reportObj;
+            }
             for (var index = 0; index < reports.length; index++) {
                 if (reports[index].content)
                     reportObj.content += reports[index].content;
