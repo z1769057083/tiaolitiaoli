@@ -1,8 +1,8 @@
 // api use part
 //  let apiPath = 'http://192.168.28.153:3333';
 //  let apiPath = 'http://139.162.116.116';
-let apiPath = 'http://ikehealth.cn';
-// let apiPath = 'http://localhost:3333';
+// let apiPath = 'http://ikehealth.cn';
+let apiPath = 'http://localhost:3333';
 //  let apiPath = 'http://192.168.28.153:3333';
 module.exports = {
     shopData: apiPath + '/product/all', // 商城首页
