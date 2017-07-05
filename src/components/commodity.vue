@@ -102,6 +102,9 @@
                 if(text==''){
                     return '平衡';
                 }
+                else{
+                    return text;
+                }
             }
         },
         methods: {
