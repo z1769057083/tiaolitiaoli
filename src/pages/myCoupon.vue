@@ -69,7 +69,7 @@
             	return false;
 	        } else {
 	        	let receive = JSON.parse(window.localStorage.getItem('receiveCode'))
-	        	if(receive==1){
+	        	if(receive){
 	        		this.couponHidden = false
 	        	}
 	        }

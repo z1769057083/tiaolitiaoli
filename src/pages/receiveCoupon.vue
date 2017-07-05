@@ -40,13 +40,13 @@
 				useId:'',
 				nickname:'',
 				couponList:[],
-				isReceive: 0
+				isReceive:''
             }
         },
         methods: {
 			receiveCode(){
 				this.maskHidden = !this.maskHidden
-				this.isReceive = 1
+				this.isReceive = this.couponList.code
 				if (!window.localStorage) {
 	            return false;
 		        } else {
@@ -86,14 +86,17 @@
                     })
 			}
         },
-        mounted() {
-        	this.getCoupon()
+        mounted() {         	
             document.title = "领取优惠券"
             if (!window.localStorage) {
             	return false;
 	        } else {
 	        	let receive = JSON.parse(window.localStorage.getItem('receiveCode'))
-	        	if(receive==1){
+	        	console.log(receive)
+	        	if(receive==null){
+	        		this.getCoupon()
+	        	}else{
+	        		this.couponList.code = receive
 	        		this.btnHidden = !this.btnHidden
 	        	}
 	        }

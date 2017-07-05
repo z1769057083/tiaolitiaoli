@@ -25,10 +25,9 @@
             </dl>
             <dl @click="change_active(2,$event)" v-if='codeHidden'>
                 <dt><img src="../assets/couponPay.png"/></dt>
-                <dd>
+                <dd class="coupon">
                     <p>使用优惠券</p>
-                    使用优惠券，支付无负担
-                    <!--<input type="text" />-->
+                    {{couponCode}}
                 </dd>
                 <dd class="check" :class="{'active': toggle === 2}"></dd>
             </dl>
@@ -48,7 +47,8 @@
                 arr2: [],
                 accountArr: [],
                 totalCount: 0,
-                codeHidden: false
+                codeHidden: false,
+                couponCode:''
             }
         },
         methods: {
@@ -129,6 +129,10 @@
                     this.codeHidden = true
                 }
                 this.totalCount = this.arr[2].price
+                let receive = JSON.parse(window.localStorage.getItem('receiveCode'))
+	        	if(receive){
+	        		this.couponCode = receive
+	        	}
             }
             document.documentElement.scrollTop = 0
             document.body.scrollTop = 0
@@ -201,6 +205,9 @@
                         font-size: $font14;
                         margin-bottom: rem(8rem);
                     }
+                }
+                .coupon{
+                	color: #777;
                 }
                 .check {
                     position: absolute;

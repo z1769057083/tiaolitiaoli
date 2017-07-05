@@ -101,7 +101,6 @@
 			    		gander:this.gender,
 			    		birthday:this.birthday
 		    		}	
-		    		console.log(this.params)
 			    } else {
 			    	Toast({
 			        message: '必填项不能为空',
@@ -109,8 +108,7 @@
 			        duration:1000
 			      });
 			        return;
-            	}
-			    console.log(this.params)
+            }
 			    axios.post(api.bindUser, this.params)
                     .then(function (res) {
                     	console.log(res)
@@ -129,6 +127,15 @@
         },
         mounted() {
             document.title = "绑定样本"
+            if (!window.localStorage) {
+                return false
+            } else {
+                let receive = JSON.parse(window.localStorage.getItem('receiveCode'))
+	        	if(receive){	        		
+	        		this.code = receive
+	        		console.log(this.code)
+	        	}
+            }
         }
     }
 </script>
@@ -188,7 +195,7 @@
     				width: 78%;
     				float: left;
     				input{
-    					width: 55%;
+    					width: 78%;
     					border: 0;
     					background: transparent;
     					height: rem(18rem);
