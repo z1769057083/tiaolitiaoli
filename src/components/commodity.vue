@@ -123,7 +123,6 @@
                                 res = res.data.returnValue
                                 that.recommendlist = res
                                 that.recommendData = true
-//					  		console.log(that.recommendlist)
                             }
                         })
                         .catch(function (error) {
