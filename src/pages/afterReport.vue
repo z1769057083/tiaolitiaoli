@@ -168,7 +168,24 @@
 
                 //TODO:update title with user's nick name.
                 Common.initForWechatShare('体质报告', '测一测体质，调一调身心', href)
-                axios.get(api.getReport + "?userId=" + userId + "&reportType=houTian")
+                var isTest=this.$route.query.isTest;
+                var queryString='';
+                if(isTest=='true'){
+                    var testWuXing={};
+                    testWuXing.water=this.$route.query.water;
+                    testWuXing.gold=this.$route.query.gold;
+                    testWuXing.fire=this.$route.query.fire;
+                    testWuXing.wood=this.$route.query.wood;
+                    testWuXing.earth=this.$route.query.earth;
+                    for(var key in testWuXing){
+                        if(typeof(testWuXing[key]) !='undefined'){
+                            queryString+='&'+key+'='+testWuXing[key];
+                        }
+                    }
+                    queryString+='&isTest=true';
+                }
+
+                axios.get(api.getReport + "?userId=" + userId + "&reportType=houTian"+queryString)
                     .then(function (res) {
                         if (res.data.errorCode == 0) {
                             let report = res.data.returnValue;

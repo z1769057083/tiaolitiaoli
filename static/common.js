@@ -178,6 +178,7 @@ export default {
         return wuXingArray;
     },
     convertReportsToText: function (reports) {
+        debugger;
         var wuXingReportContentText = '';
         if (typeof (reports) != 'undefined' && reports != '') {
             for (var index = 0; index < reports.length; index++) {
