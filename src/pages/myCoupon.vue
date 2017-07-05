@@ -1,9 +1,26 @@
 <template>
-	<div class='receive'>
-         <h3>我的优惠券</h3>
-         <div class="myCode">wfewfergeg</div>
-         <div class="viewReport">立即使用</div>
-	</div>    
+	<div>
+		<div class="no-coupon" v-if='couponHidden'>
+			<div>
+				您还没有领取优惠券
+			</div>
+		</div>
+		<div class='receive' v-if='!couponHidden'>
+	        <div class="receive-top" v-for='coupon in couponList'>
+	        	<div class="price">
+	        		¥&nbsp;<span>680</span>
+	        	</div>
+	        	<div class="p-right">
+	        		<p>仅限购买六大高发癌症风险检测套餐</p>
+	        		<p class="bot">{{coupon.code}}</p>
+	        		<span>有效期2017.06.09-2017.12.29</span>
+	        		<div class="p-rightBtn">
+	        			<img @click='nowUse' src="../assets/receiveBtn2.png" alt="" />
+	        		</div>
+	        	</div>
+	        </div>
+       </div>
+	</div>   
 </template>
 <script>
     import axios from 'axios'
@@ -11,50 +28,122 @@
     export default {
         data() {
             return {
-				
+				name:'',
+				useId:'',
+				couponList:[],
+				couponHidden: true
             }
         },
         methods: {
-
+        	nowUse(){
+				this.$router.push({ path:'/gene'})
+			},
+			getCoupon(){
+				if (!window.localStorage) {
+	            return false;
+		        } else {
+		            if (window.localStorage.getItem(Account_Index) !== null) {
+		                let account = JSON.parse(window.localStorage.getItem(Account_Index))
+		                console.log(account)
+		                this.useId = account._id;
+		            }
+		        }
+				var that = this;
+                axios.get(api.userCoupon+that.useId)
+                    .then(function (res) {
+                        if (res.data.errorCode == 0) {
+                            res = res.data.returnValue
+                            that.couponList = res
+                            console.log(that.couponList)
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error)
+                    })
+			}
         },
         mounted() {
-            document.title = "调理调理"
+        	this.getCoupon()
+            document.title = "我的优惠券"
+            if (!window.localStorage) {
+            	return false;
+	        } else {
+	        	let receive = JSON.parse(window.localStorage.getItem('receiveCode'))
+	        	if(receive){
+	        		this.couponHidden = false
+	        	}
+	        }
         }
     }
 </script>
 <style scoped lang="scss" rel="stylesheet/scss">
-@import "../common/common.scss";
+ @import "../common/common.scss";
+ .no-coupon{
+  	 background: #f6f6f6;
+  	 width: 100%;
+  	 height: 100%;
+  	 position: absolute;
+  	 z-index: 999;
+ 	div{
+ 		text-align: center;
+  	    line-height: 100%;	
+  	    margin-top: 40%;
+ 	}
+  }
 .receive{
 	width: 100%;
-	height: 100%;
+	/*height: 100%;*/
 	position: absolute;
 	overflow: hidden;
-	background: url(../assets/indexbg.jpg) no-repeat;
-    background-size: 100% 100%;
-	h3{
-		font-size: $font18;
-		margin: rem(50rem) 0 rem(20rem) 5%;
-	}
-	.myCode{
-		width: 40%;
-		height: rem(40rem);
-		border: 1px solid #00A0E9;
-		float: left;
-		margin-left: 6.6%;
-	}
-	.viewReport{
-		width: 25%;
-		height: rem(35rem);
-		background: #F08300;
-		color: #fff;
-		float: left;
-		text-align: center;
-		line-height: rem(35rem);
-		font-size: $font14;
-		margin-top: rem(2.5rem);
+	background: #f6f6f6;
+	.receive-top{
+		width: 92%;
+		height: rem(100rem);
+		margin-top: rem(20rem);
+		background: url(../assets/receivebg.png) no-repeat center;
+		background-size: cover;
 		margin-left: 4%;
+		.price{
+			width: 34%;
+			height: rem(100rem);
+			line-height: rem(100rem);
+			text-align: center;
+			font-size: $font16;
+			color: #fff;
+			float: left;
+			span{
+				font-size: rem(32rem);
+			}
+		}
+		.p-right{
+			width: 61%;
+			float: right;
+			height: rem(100rem);
+			overflow: hidden;
+			position: relative;
+			p{
+				font-size: $font12;
+				margin: rem(10rem) 0 rem(6rem);
+				color: #000;
+			}
+			.bot{
+				margin: 0 0 rem(6rem) 0;
+			}
+			span{
+				color: #999;
+			}
+			.p-rightBtn{
+				width: rem(65rem);
+				height: rem(30rem);
+				position: absolute;
+				right: rem(16rem);
+				bottom: rem(5rem);
+				img{
+					width: 100%;
+					height: 100%;
+				}
+			}
+		}
 	}
-	
 }
 </style>
-

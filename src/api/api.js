@@ -1,7 +1,7 @@
 // api use part
 //  let apiPath = 'http://192.168.28.153:3333';
-//  let apiPath = 'http://139.162.116.116';
-let apiPath = 'http://ikehealth.cn';
+    let apiPath = 'http://139.162.116.116';
+//let apiPath = 'http://ikehealth.cn';
 // let apiPath = 'http://localhost:3333';
 //  let apiPath = 'http://192.168.28.153:3333';
 module.exports = {
@@ -27,5 +27,8 @@ module.exports = {
     orderList: apiPath + '/order/my?userId=',
     singleOrderList: apiPath + '/order/single?id=',
     cities: apiPath + '/data/cities.json',
+    getCoupon: apiPath + '/coupon/retrieve',//生成优惠券
+    userCoupon: apiPath + '/coupon/get_by_user?userId=',//获取某个用户的优惠券
+    bindUser: apiPath + '/item/bind_user',//绑定用户
     apipath:apiPath //发起请求向后台传订单数据 post
 }
