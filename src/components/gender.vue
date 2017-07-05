@@ -85,7 +85,6 @@
                 }
                 this.birthday = changedBirthday;
                 this.toggle = true
-              
                     global.User.gender = this.answer.gender;
                     global.User.age = Common.getUserAge(this.birthday);
                     global.User.birthday =this.birthday;
@@ -94,7 +93,7 @@
             },
             change_date1(time){  
             	this.toggle1 = true
-            	this.time = time     
+            	this.time = time
             	global.User.gender = this.gender;
                 global.User.age = Common.getUserAge(this.birthday);
                 global.User.birthday =this.birthday;
