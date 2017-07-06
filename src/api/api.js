@@ -27,6 +27,7 @@ module.exports = {
     orderList: apiPath + '/order/my?userId=',
     singleOrderList: apiPath + '/order/single?id=',
     cities: apiPath + '/data/cities.json',
+    removeUser: apiPath + '/user/remove?id=',
     getCoupon: apiPath + '/coupon/retrieve',//生成优惠券
     userCoupon: apiPath + '/coupon/get_by_user?userId=',//获取某个用户的优惠券
     bindUser: apiPath + '/item/bind_user',//绑定用户
