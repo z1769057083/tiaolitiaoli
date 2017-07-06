@@ -101,7 +101,7 @@
                     line-height: rem(44rem);
                     p {
                         display: block;
-                        width: 22%;
+                        width: rem(82rem);
                         float: left;
                         height: rem(30rem);
                         background: #fff;
@@ -109,11 +109,12 @@
                         border-radius: rem(10rem);
                         line-height: rem(30rem);
                         text-align: center;
-                        margin-right: 4%;
+                        margin-right: rem(15rem);
+                        padding: 0 rem(7rem);
                     }
-                    p:nth-child(4n) {
+                    /*p:nth-child(4n) {
                         margin-right: 0;
-                    }
+                    }*/
                     .m-selectulcer {
                         width: 40%;
 

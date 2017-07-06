@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class='afterReport'>
+        <div class='afterReport' :class="{'afterReportActive': afterReportHidden}" v-if='!isReportEmpty'>
             <!--聊天内容-->
             <div class='after-content'>
                 <div class="r-main">
@@ -68,7 +68,7 @@
                     </div>
                 </div>
             </div>
-            <div class="reportDetail" v-show='xianTianReportIsShowed'>
+            <!--<div class="reportDetail" v-show='xianTianReportIsShowed'>
                 <div class="reportDetail-main">
                     <div class="top">
                         <img src="../assets/xiantianImg.png"/>
@@ -78,7 +78,7 @@
                     <div class="reportDetailcontent">
                     </div>
                 </div>
-            </div>
+            </div>-->
             <!--后天报告详情结束-->
         </div>
         <myNullReport v-if='isReportEmpty'></myNullReport>
@@ -90,7 +90,6 @@
     import ReportHelper from '../../static/reportHelper';
     import Common from '../../static/common';
     import myNullReport from '@/components/myNullReport'
-    import Toast from '@/packages/toast'
     export default {
         data (){
             return {
@@ -102,7 +101,8 @@
                 wuXingHouTianStatusText: '&nbsp;',
                 afterReportHidden: false,
                 xianTianReportIsShowed: false,
-                isReportEmpty: true
+                isReportEmpty: true,
+                toggle:false
             }
         },
         components: {
@@ -151,11 +151,6 @@
                 userId = JSON.parse(localStorage.getItem(Account_Index))._id
             }
             if (typeof(userId) === 'undefined' || userId == '') {
-                Toast({
-                    message: '请先完成体质检测',
-                    position: 'top'
-                });
-
                 return;
             } else {
                 var href = window.location.href;
@@ -192,12 +187,6 @@
                             localStorage.setItem(HouTianReport_Index, JSON.stringify(report))
                             that.renderReport(report)
                             console.log(report)
-                        }
-                        else {
-                            Toast({
-                                message: res.data.errorReason,
-                                position: 'top'
-                            })
                         }
                     })
             }
@@ -324,7 +313,9 @@
             }
         }
     }
-
+	.afterReportActive{
+		height: 100%;
+	}
     .reportDetail {
         width: 100%;
         height: 100%;
@@ -333,6 +324,7 @@
         bottom: 0;
         left: 0;
         top: 0;
+        right: 0;
         z-index: 99;
         .reportDetail-main {
             width: 74.6%;

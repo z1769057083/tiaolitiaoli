@@ -1,6 +1,6 @@
 <template>
     <div class='recuperate'>
-        <div class="recuperate-main">
+        <div class="recuperate-main" v-if='!nullHidden'>
             <div class="recuperate-top">
                 <img src="../assets/recuperate1.png"/>
             </div>
@@ -103,13 +103,6 @@
                     this.comments = houTianData.femaleStatus;
                 }
             }
-            else {
-                Toast({
-                    message: '请先完成体质辨析',
-                    position: 'top',
-                });
-            }
-
             if (window.localStorage.getItem(Account_Index) != null) {
                 this.userId = JSON.parse(window.localStorage.getItem(Account_Index))._id
             }
@@ -166,7 +159,6 @@
                     border-bottom: 1px dotted #ddb88e;
                     line-height: rem(24rem);
                     font-weight: bold;
-                    margin-bottom: rem(12rem);
                     span {
                         margin-right: 4%;
                         display: none;
@@ -184,7 +176,8 @@
                     white-space: nowrap;
                     text-overflow: ellipsis;
                     font-size: $font13;
-                    padding-bottom: rem(10rem);
+                    padding-top: rem(12rem);
+                    padding-bottom: rem(12rem);
                     border-bottom: 1px solid #f4eade;
                     span {
                         font-weight: bold;

@@ -21,7 +21,7 @@
             <dl class="s-marticlecon" v-for='(item,index) in recommendlist' @click='recomClick(item,index)' >
                 <dt>
                 <h3>{{item.name}}</h3>
-                ¥{{item.price}}.00
+                <span class="itemPrice">¥{{item.price}}.00</span>
                 <div class="s-mreconintrotip">
                     <img class="tip" src="../assets/shopTip.png"/>
                     <!--{{item.fit|transform}}-->
@@ -253,8 +253,12 @@
                 }
                 span{
                 	vertical-align: middle;
-                	float: left;
+                	/*float: left;*/
                 }
+                .itemPrice{
+                	color: #ff4443;
+                }
+                
             }
             dd {
                 width: 32%;
