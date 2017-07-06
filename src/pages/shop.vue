@@ -82,7 +82,9 @@
                                 autoplayDisableOnInteraction: false
                             });
                         }
-                    });
+                    })
+                    document.documentElement.scrollTop = 0
+            		document.body.scrollTop = 0
                 },
                 deep: true
             }
