@@ -100,9 +100,12 @@
 
             loadUserInfo(){
                 let openid = this.$route.query.openid;
+                let test = this.$route.query.test;
                 if (typeof (openid) == 'undefined' || openid == '') {
                     //Note:generate test account.
-                    if (localStorage.getItem(Account_Index) == null && global.IsDebug) {
+                    //remove it as when no need to test.
+                    if (localStorage.getItem(Account_Index) == null && global.IsDebug
+                        ||test=='true') {
                         axios.get(api.generateTestAccount)
                             .then(function (res) {
                                 if (res.data.errorCode == 0) {

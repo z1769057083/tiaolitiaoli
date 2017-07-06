@@ -47,6 +47,20 @@
     },
     {
       "collectionId": "249b3409-f55f-99e8-4c8f-63d5ca3f067b",
+      "id": "32d66373-d78c-603a-3f90-fbb6a9fc721b",
+      "name": "获取用户详情",
+      "description": "",
+      "url": "http://{{server}}/user/get_user?id=59379b909d64b639a4ebb58a",
+      "method": "GET",
+      "headers": "",
+      "data": "{\"name\":\"a\",\"birthday\":\"as\",\"gender\":\"m\",\"qrCode\":\"asd\"}",
+      "dataMode": "raw",
+      "timestamp": 0,
+      "responses": [],
+      "version": 2
+    },
+    {
+      "collectionId": "249b3409-f55f-99e8-4c8f-63d5ca3f067b",
       "id": "458658a3-f4df-38c9-c993-3e20b75194b4",
       "name": "create_item",
       "description": "创建单个货物",
@@ -86,6 +100,20 @@
       "timestamp": 0,
       "responses": [],
       "version": 2
+    },
+    {
+      "collectionId": "249b3409-f55f-99e8-4c8f-63d5ca3f067b",
+      "id": "6f8262e0-5cb9-1f4c-7ff3-f1dcaa3457d1",
+      "name": "后台账号登录",
+      "description": "",
+      "url": "{{server}}/account/login",
+      "method": "POST",
+      "headers": "a: \nContent-Type: application/json\n",
+      "data": "{\"username\":\"admin\",\"password\":\"password\"}",
+      "dataMode": "raw",
+      "timestamp": 0,
+      "version": 2,
+      "time": 1499163136996
     },
     {
       "collectionId": "249b3409-f55f-99e8-4c8f-63d5ca3f067b",
@@ -135,6 +163,20 @@
       "name": "getOrderByPage",
       "description": "获取订单列表",
       "url": "http://{{server}}/order/get_by_page?pageIndex=0",
+      "method": "GET",
+      "headers": "",
+      "data": "{\"name\":\"a\",\"birthday\":\"as\",\"gender\":\"m\",\"qrCode\":\"asd\"}",
+      "dataMode": "raw",
+      "timestamp": 0,
+      "responses": [],
+      "version": 2
+    },
+    {
+      "collectionId": "249b3409-f55f-99e8-4c8f-63d5ca3f067b",
+      "id": "cdd1dbd0-13e2-3a0f-2bb1-4cc25634e7de",
+      "name": "获取商品分页列表",
+      "description": "",
+      "url": "http://{{server}}/product/get_by_page?pageIndex=0",
       "method": "GET",
       "headers": "",
       "data": "{\"name\":\"a\",\"birthday\":\"as\",\"gender\":\"m\",\"qrCode\":\"asd\"}",

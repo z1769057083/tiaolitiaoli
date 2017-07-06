@@ -25,7 +25,7 @@
                 <div class="s-mreconintrotip">
                     <img class="tip" src="../assets/shopTip.png"/>
                     <!--{{item.fit|transform}}-->
-                    {{item.recommendText}}
+                    {{item.recommendText|textHandler}}
                 </div>
                 </dt>
                 <dd>
@@ -97,6 +97,14 @@
                 else {
                     return '平衡'
                 }
+            },
+            textHandler(text){
+                if(text==''){
+                    return '平衡';
+                }
+                else{
+                    return text;
+                }
             }
         },
         methods: {
@@ -123,7 +131,6 @@
                                 res = res.data.returnValue
                                 that.recommendlist = res
                                 that.recommendData = true
-//					  		console.log(that.recommendlist)
                             }
                         })
                         .catch(function (error) {

@@ -1,86 +1,103 @@
 <template>
-	<div>
-	    <div class='afterReport'>
-	        <!--聊天内容-->
-	        <div class='after-content'>
-	            <div class="r-main">
-	                <div class="r-mainchart" id='chart-container'>
-	                    <!--<img src="../assets/reportcharts.png"/>-->
-	                </div>
-	                <div class='i-maincen'>
-	                    <div class="r-mreport">
-	                        <div class="r-mrcontent">
-	                            <h3>先天体质</h3>
-	                            <p v-html="wuXingXianTianStatusText"></p>
-	                            <!--<div class="right" @click='showXianTianReport'>-->
-	                                <!--<img src="../assets/afterRdetail.png"/>-->
-	                            <!--</div>-->
-	                        </div>
-	                        <div class="r-mrcontent">
-	                            <h3>后天体质</h3>
-	                            <p class="r-mrconp" v-html="wuXingHouTianStatusText"></p>
-	                            <!--<div class="right" @click='afterReport'>-->
-	                                <!--<img src="../assets/afterRdetail.png"/>-->
-	                            <!--</div>-->
-	                        </div>
-	                    </div>
-	                    <div class="r-mseason">
-	                        <h3>节令体质</h3>
-	                        <p class="r-mrconp" v-html="wuXingDangShiStatusText+'<br>'+wuXingReportJieQiContent">
-	                            <!--{{wuXingDangShiStatusText}}<br>-->
-	                            <!--{{wuXingReportJieQiContent}}-->
-	                        </p>
-	                        <router-link to='/medicalSuggestion'>
-	                            <img class="r-mrconimg" src="../assets/afterRmy.png"/>
-	                        </router-link>
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
-	        <!--后天报告详情开始-->
-	        <div class="reportDetail" v-show='afterReportHidden'>
-	            <div class="reportDetail-main">
-	                <div class="top">
-	                    <img src="../assets/houtianImg.png"/>
-	                </div>
-	                <img class="close" src="../assets/shopcarClose.png" @click='afterReportHidden = !afterReportHidden'/>
-	                <div class="reportDetailcontent">
-	                    <p v-html="wuXingReportHouTianContent"></p>
-	                </div>
-	            </div>
-	        </div>
-	        <div class="reportDetail" v-show='xianTianReportIsShowed'>
-	            <div class="reportDetail-main">
-	                <div class="top">
-	                    <img src="../assets/xiantianImg.png"/>
-	                </div>
-	                <img class="close" src="../assets/shopcarClose.png"
-	                     @click='xianTianReportIsShowed = !xianTianReportIsShowed'/>
-	                <div class="reportDetailcontent">
-	                    <p v-html="wuXingReportXianTianContent"></p>
-	                </div>
-	            </div>
-	        </div>
-	        <!--后天报告详情结束-->
-	    </div>
-	    <myNullReport v-if='isReportEmpty'></myNullReport>
+    <div>
+        <div class='afterReport'>
+            <!--聊天内容-->
+            <div class='after-content'>
+                <div class="r-main">
+                    <div class="r-mainchart" id='chart-container'>
+                        <!--<img src="../assets/reportcharts.png"/>-->
+                    </div>
+                    <div class='i-maincen'>
+                        <div class="r-mreport">
+                            <div class="r-mrcontent">
+                                <h3>五行体质
+                                    <button class="help-button" @click='afterReport'>?
+                                    </button>
+                                </h3>
+                                <p v-html="wuXingXianTianStatusText"></p>
+                                <p v-html="wuXingHouTianStatusText"></p>
+                                <p class="r-mrconp" v-html="wuXingJieQiStatusText"></p>
+                            </div>
+                        </div>
+                        <div class="r-mseason">
+                            <div class="r-mrcontent" v-if="wuXingReportHouTianObj.analysis">
+                                <h3>分析</h3>
+                                <p v-html="wuXingReportHouTianObj.analysis"></p>
+                            </div>
+                            <div class="r-mrcontent" v-if="wuXingReportHouTianObj.content">
+                                <h3>表现</h3>
+                                <p v-html="wuXingReportHouTianObj.content"></p>
+                            </div>
+                            <div class="r-mrcontent" v-if="wuXingReportHouTianObj.illness">
+                                <h3>易患疾病</h3>
+                                <p v-html="wuXingReportHouTianObj.illness"></p>
+                            </div>
+                            <div class="r-mrcontent" v-if="wuXingReportHouTianObj.attention">
+                                <h3>注意</h3>
+                                <p v-html="wuXingReportHouTianObj.attention"></p>
+                            </div>
+                            <div class="r-mrcontent" v-if="wuXingReportHouTianObj.other">
+                                <h3>其他</h3>
+                                <p v-html="wuXingReportHouTianObj.other"></p>
+                            </div>
+
+                            <router-link to='/medicalSuggestion'>
+                                <img class="r-mrconimg" src="../assets/afterRmy.png"/>
+                            </router-link>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--后天报告详情开始-->
+            <div class="reportDetail" v-show='afterReportHidden'>
+                <div class="reportDetail-main">
+                    <div class="top">
+                        <!--<img src="../assets/houtianImg.png"/>-->
+                        <img  src="../assets/recuperatebg.png"/>
+                    </div>
+                    <img class="close" src="../assets/shopcarClose.png"
+                         @click='afterReportHidden = !afterReportHidden'/>
+                    <div class="reportDetailcontent">
+                        <p>
+                            "水曰润下，火曰炎上，木曰曲直，金曰从革，土爱稼穑"<br>
+                        </p>
+                        <p style="text-align: right">——《尚书·洪范》</p>
+                        <p>
+                            中医体质是指个体生命在先天遗传和后天获得的基础上表现出的综合特质。这种特质属于先天性，同时会受到后天环境、情志等各种因素的影响，甚至发生先天体质的改变，个人调理则应当根据五行体质来进行。<br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="reportDetail" v-show='xianTianReportIsShowed'>
+                <div class="reportDetail-main">
+                    <div class="top">
+                        <img src="../assets/xiantianImg.png"/>
+                    </div>
+                    <img class="close" src="../assets/shopcarClose.png"
+                         @click='xianTianReportIsShowed = !xianTianReportIsShowed'/>
+                    <div class="reportDetailcontent">
+                    </div>
+                </div>
+            </div>
+            <!--后天报告详情结束-->
+        </div>
+        <myNullReport v-if='isReportEmpty'></myNullReport>
     </div>
 </template>
 <script>
     import axios from 'axios'
     import api from '../api/api'
     import ReportHelper from '../../static/reportHelper';
-    import Common from '../../static/common';   
+    import Common from '../../static/common';
     import myNullReport from '@/components/myNullReport'
     import Toast from '@/packages/toast'
     export default {
         data (){
             return {
                 list: [],
-                wuXingReportXianTianContent: '',
                 wuXingReportHouTianContent: '',
-                wuXingReportJieQiContent: '',
-                wuXingDangShiStatusText: '',
+                wuXingReportHouTianObj: {},
+                wuXingJieQiStatusText: '',
                 wuXingXianTianStatusText: '',
                 wuXingHouTianStatusText: '&nbsp;',
                 afterReportHidden: false,
@@ -88,7 +105,7 @@
                 isReportEmpty: true
             }
         },
-         components: {
+        components: {
             myNullReport
         },
         methods: {
@@ -111,15 +128,13 @@
                     data: wuXingDangshiArray
                 }];
                 ReportHelper.loadChart('chart-container', items)
-                this.wuXingXianTianStatusText = Common.parseWuXingLevelToText(report.wuXingXianTianLevel)
-                    + " <br> [" +Common.parseWuXingPointToText(report.wuXingXianTian)+"]";
-                this.wuXingHouTianStatusText = Common.parseWuXingLevelToText(report.wuXingHouTianLevel)
-                    + " <br> [" + Common.parseWuXingPointToText(report.wuXingHouTian)+"]";
-                this.wuXingDangShiStatusText = Common.parseWuXingLevelToText(report.wuXingDangShiLevel)
-                    + " <br> [" + Common.parseWuXingPointToText(report.wuXingDangShi)+"]";
-                this.wuXingReportJieQiContent = Common.convertReportsToText(report.jieQiReports);
-                this.wuXingReportXianTianContent = Common.convertReportsToText(report.xianTianReports);
-                this.wuXingReportHouTianContent = Common.convertReportsToText(report.houTianReports);
+                this.wuXingXianTianStatusText ='先天: '+ Common.parseWuXingLevelToText(report.wuXingXianTianLevel)
+                    + " <br> [" + Common.parseWuXingPointToText(report.wuXingXianTian) + "]";
+                this.wuXingHouTianStatusText ='后天: '+  Common.parseWuXingLevelToText(report.wuXingHouTianLevel)
+                    + " <br> [" + Common.parseWuXingPointToText(report.wuXingHouTian) + "]";
+                this.wuXingJieQiStatusText = '节令: '+ Common.parseWuXingLevelToText(report.wuXingDangShiLevel)
+                    + " <br> [" + Common.parseWuXingPointToText(report.wuXingDangShi) + "]";
+                this.wuXingReportHouTianObj = Common.convertReportsToObj(report.jieQiReports);
             },
             afterReport(){
                 this.afterReportHidden = true
@@ -133,16 +148,16 @@
             let userId = this.$route.query.userid;
             let that = this
             if (localStorage.getItem(Account_Index) != null) {
-                userId= JSON.parse(localStorage.getItem(Account_Index))._id
+                userId = JSON.parse(localStorage.getItem(Account_Index))._id
             }
-            if(typeof(userId)==='undefined'||userId==''){
+            if (typeof(userId) === 'undefined' || userId == '') {
                 Toast({
                     message: '请先完成体质检测',
                     position: 'top'
-                });   
-                
-                return;               
-          	}else {
+                });
+
+                return;
+            } else {
                 var href = window.location.href;
                 if (href.indexOf('?') > -1) {
                     href = href + '&userid=' + userId;
@@ -153,7 +168,24 @@
 
                 //TODO:update title with user's nick name.
                 Common.initForWechatShare('体质报告', '测一测体质，调一调身心', href)
-                axios.get(api.getReport + "?userId=" + userId + "&reportType=houTian")
+                var isTest=this.$route.query.isTest;
+                var queryString='';
+                if(isTest=='true'){
+                    var testWuXing={};
+                    testWuXing.water=this.$route.query.water;
+                    testWuXing.gold=this.$route.query.gold;
+                    testWuXing.fire=this.$route.query.fire;
+                    testWuXing.wood=this.$route.query.wood;
+                    testWuXing.earth=this.$route.query.earth;
+                    for(var key in testWuXing){
+                        if(typeof(testWuXing[key]) !='undefined'){
+                            queryString+='&'+key+'='+testWuXing[key];
+                        }
+                    }
+                    queryString+='&isTest=true';
+                }
+
+                axios.get(api.getReport + "?userId=" + userId + "&reportType=houTian"+queryString)
                     .then(function (res) {
                         if (res.data.errorCode == 0) {
                             let report = res.data.returnValue;
@@ -161,21 +193,21 @@
                             that.renderReport(report)
                             console.log(report)
                         }
-                        else{
+                        else {
                             Toast({
-                                message:res.data.errorReason,
-                                position:'top'
+                                message: res.data.errorReason,
+                                position: 'top'
                             })
                         }
                     })
             }
             document.documentElement.scrollTop = 0
-            document.body.scrollTop = 0 
-            if(window.localStorage.getItem(global.AllAnswer_Index)==null
-            || typeof(userId)==='undefined'||userId==''||window.localStorage.getItem(global.AllAnswer_Index)==''){
-            	this.isReportEmpty = true
-            }else{
-            	this.isReportEmpty = false
+            document.body.scrollTop = 0
+            if (window.localStorage.getItem(global.AllAnswer_Index) == null
+                || typeof(userId) === 'undefined' || userId == '' || window.localStorage.getItem(global.AllAnswer_Index) == '') {
+                this.isReportEmpty = true
+            } else {
+                this.isReportEmpty = false
             }
         }
     }
@@ -187,7 +219,8 @@
     .highcharts-background {
         fill: transparent;
     }
-    .afterReport{
+
+    .afterReport {
         width: 100%;
         overflow: hidden;
         position: absolute;
@@ -223,6 +256,17 @@
                             font-size: $font14;
                             color: #c69b70;
                         }
+                        .help-button {
+                            border: 1px solid #c69b70;
+                            background-color: transparent;
+                            border-radius: 10px;
+                            width: 20px;
+                            height: 20px;
+                            font-size: 12px;
+                            color: #c69b70;
+                            margin-left: 4px;
+                            line-height: 16px;
+                        }
                         p {
                             margin: rem(5rem) rem(8rem) 0;
                             line-height: rem(22rem);
@@ -256,7 +300,7 @@
                     box-shadow: rem(1rem) rem(1rem) rem(1rem) rem(1.5rem) #e2e1df;
                     margin-top: rem(10rem);
                     position: relative;
-					text-align: justify;
+                    text-align: justify;
                     h3 {
                         background: url(../assets/rmattribute.png) no-repeat center left;
                         padding-left: 3%;
@@ -302,11 +346,10 @@
                 position: absolute;
                 width: 54%;
                 height: rem(54rem);
-                top: rem(-16rem);
+                top: rem(10rem);
                 left: 23%;
                 img {
                     width: 100%;
-                    height: 100%;
                 }
             }
             .close {
@@ -320,7 +363,6 @@
                 width: 100%;
                 height: rem(275rem);
                 margin-top: rem(48rem);
-                border-bottom: 1px double #f4eade;
                 overflow: auto;
                 p {
                     margin: 0 8%;

@@ -38,7 +38,6 @@ export default {
     transform(object){
         if ( object && typeof object==='object' &&
             Array == object.constructor && object.length>0) {
-//          	debugger;
             if(object.length>2){
                 var sliItem = object.slice(0, 2);
                 return sliItem.toString()
