@@ -48,6 +48,13 @@
 </script>
 <style scoped lang="scss" rel="stylesheet/scss">
 @import "../common/common.scss";
+.home{
+	background: url(../assets/indexbg.jpg) repeat-y;
+    background-size: cover;
+    width: 100%;
+	height: 100%;
+	position: absolute;
+}
 .maskmain{
 	width: 100%;
 	height: 100%;

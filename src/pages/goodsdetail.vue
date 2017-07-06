@@ -41,10 +41,10 @@
 			  	  <p>购物车 </p>
 			  	  <span v-show = 'shopingCatrDotted'></span>
 		  	</div>
-		  	<div class="l-mgoodscar l-mgoodsshop" @click='isRouterShop'>
+		  	<!--<div class="l-mgoodscar l-mgoodsshop" @click='isRouterShop'>
 		  	  	<img src="../assets/listShooping.png" @click='isRouterShop'/>	  	  
 		  	  	<p>返回</p>
-		  	</div>	
+		  	</div>	-->
 		  	<div class="l-mgoodsjoin" @click='shopHiden = !shopHiden'>加入购物车
 		  	</div>
 		  	<div class="l-mgoodsjoin l-mgoodsbuy" @click='purchaseHidden = !purchaseHidden'>立即购买</div>
@@ -378,8 +378,9 @@
 	  	bottom: 0;
 	  	right: 0;
 	  	display: flex;
+	  	border-top: 1px solid #E6E6E6;
 	  	.l-mgoodscar{
-		  	width: 17.8%;
+		  	width: 20%;
 		  	height: 1.28rem;
 		  	text-align: center;
 		  	position: relative;
@@ -407,7 +408,7 @@
 		  	border-left: 1px solid #efefef;
 		  }
 		  .l-mgoodsjoin{
-		  	width: 32.2%;
+		  	width: 40%;
 		  	height: 1.28rem;
 		  	text-align: center;
 		  	line-height: 1.28rem;
