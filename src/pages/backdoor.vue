@@ -14,6 +14,13 @@
                         width: 60px;background-color: #fff;margin-left: 10px;">清除缓存</button>
                     </div>
                 </div>
+                <div class='i-maindocter'>
+                    <div style="padding: 36px 20px 20px 20px;">用于测试时清除缓存</div>
+                    <div class='i-maintest' >
+                        <button  @click="removeUser"   style="border: 1px solid #e2c8a8;height: 28px;color: #e2c8a8;float: right;
+                        width: 100px;background-color: #fff;margin-left: 10px;">删除当前账号</button>
+                    </div>
+                </div>
                 <div class='i-maintext i-maintip i-maintip1'> 版本号：{{version}}</div>
             </div>
         </div>
@@ -35,6 +42,16 @@
             removeLocalStorage(){
                 localStorage.clear();
                 alert('已经清除');
+            },
+            removeUser(){
+               var account =JSON.parse(localStorage.getItem(global.Account_Index));
+                axios.get(api.removeUser + account._id)
+                    .then(function (res) {
+                        var text='UserId:'+account._id+'NickName+'+account.nickname+'已经删除';
+                        localStorage.clear();
+                        alert(text);
+                    })
+
             }
         },
         mounted() {
