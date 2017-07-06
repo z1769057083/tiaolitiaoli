@@ -2,7 +2,7 @@
 	<div>
     <div class='order'>
 	    <h3 class="order-mtitle">汉古商城</h3>
-	    <div v-for='(items,index) in list'>	    	
+	    <div v-for='(items,index) in listDate'>	    	
 	    	<div v-for='item in items.order'>
 	    		<router-link :to="{ name: 'orderListDetail', query: { itemid: items._id }}">
 			    <div class="order-main">
@@ -25,24 +25,24 @@
 			    			共{{item.num}}件商品  
 			    			{{items.status|filterFun}}付款 ：¥{{items.price}}.00</dd>
 			    	</dl>
-			    	<dl v-show='activeOrder'>			    		
+			    	<!--<dl v-if='activeOrder'>			    		
 			    		<dd class="delect-order"  @click='cancelOrder(items,index)'>删除订单</dd>
 			    	</dl>
-			    	<dl  v-show='!activeOrder'>			    		
+			    	<dl  v-if='activeOrder1'>			    		
 			    		<dd class="delect-order" @click='cancelOrder(items,index)' @cancelOrderEvent = 'cancelOrderEvent'>取消订单</dd>
 			    		<dd class="delect-order order-pay" @click='nowPay(index)'>立即付款</dd>
-			    	</dl>
+			    	</dl>-->
 			    </div>
 		    </div>
 	    </div>
 	    </div>
-	    <div class="shopConfirm-toast" v-show='toastHidden'>
+	    <!--<div class="shopConfirm-toast" v-show='toastHidden'>
 		  	<div class="confirm-main">
 		  		<p>确定要删除商品嘛?</p>
 		 		<div class="btn" @click='toastHidden = !toastHidden'>取消</div>
 		 		<div class="btn rightBtn" @click='confirmDel'>确定</div>
 		  	</div>
-		</div>
+		</div>-->
     </div>
 </template>
 <script>
@@ -52,6 +52,7 @@
         data() {
             return {
 				list:[],
+				listDate:[],
 				useId:'',
 				apiPath:'',
 				submitArr:[],
@@ -59,8 +60,9 @@
 	 				price: 0
 	 			},
 	 			activeOrder:false,
+	 			activeOrder1:false,
 	 			toastHidden:false,
-	 			listId:[]
+	 			listId:[]	 	
             }
         },
         filters: {
@@ -90,15 +92,14 @@
                         if (res.data.errorCode == 0) {
                     		res = res.data.returnValue
                             that.list = res
-                            console.log(that.list)
+                            //判断是否支付完成
                             if(that.list.length>0){
-				            	for(var i in that.list){				          				            									//判断是否支付完成
-				            		if(that.list[i].status==0){
-				            			that.activeOrder = false
-				            		}else if(that.list[i].status==1){
-				            			that.activeOrder = true
-				            		}
-				            		that.price.price = that.list[i].price
+				            	for (var i = 0, len = that.list.length; i < len; i++) {
+				            		if(that.list[i].status==1){				            			
+				            			that.listDate.push(that.list[i])
+				            			console.log(that.listDate)
+				            		}			            			
+				            		that.price.price = that.list[i].price													           		
 				            	}
 				            }
                         }
@@ -107,34 +108,34 @@
                         console.log(error)
                     })
            },
-           nowPay(index){
-           	if (!window.localStorage) {
-			    return false;
-			}else {
-		        let storage = window.localStorage
-	        	this.price.price = this.list[index].price
-		        this.submitArr.push(this.list[index].order)
-		        this.submitArr.push(this.list[index].address)
-		        this.submitArr.push(this.price)
-	        	var orderArr= JSON.stringify(this.submitArr)
-	        	storage.setItem("orderArr", orderArr)
-	        }	        
-           	this.$router.push({ path: '/cashier'})
-            },
-            cancelOrder(items,index){
-	           	this.toastHidden = true
-				this.readyToDelIndex = index
-            },
-           //删除商品
-	   		confirmDel(){
-	   			this.toastHidden = false
-	   			this.list.splice(this.readyToDelIndex,1);
-	   			var orderArr= JSON.stringify(this.list)  
-	        	window.localStorage.setItem("orderArr", orderArr)
-	   		},
-	   		cancelOrderEvent(){
-	   			this.cancelOrder()
-	   		}
+//         nowPay(index){
+//         	if (!window.localStorage) {
+//			    return false;
+//			}else {
+//		        let storage = window.localStorage
+//	        	this.price.price = this.list[index].price
+//		        this.submitArr.push(this.list[index].order)
+//		        this.submitArr.push(this.list[index].address)
+//		        this.submitArr.push(this.price)
+//	        	var orderArr= JSON.stringify(this.submitArr)
+//	        	storage.setItem("orderArr", orderArr)
+//	        }	        
+//         	this.$router.push({ path: '/cashier'})
+//          },
+//          cancelOrder(items,index){
+//	           	this.toastHidden = true
+//				this.readyToDelIndex = index
+//          },
+//         //删除商品
+//	   		confirmDel(){
+//	   			this.toastHidden = false
+//	   			this.list.splice(this.readyToDelIndex,1);
+//	   			var orderArr= JSON.stringify(this.list)  
+//	        	window.localStorage.setItem("orderArr", orderArr)
+//	   		},
+//	   		cancelOrderEvent(){
+//	   			this.cancelOrder()
+//	   		}
         },
         mounted() {
         	this.apiPath = api.apipath

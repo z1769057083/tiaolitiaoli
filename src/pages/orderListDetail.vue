@@ -2,9 +2,9 @@
 	<div>
     <div class='orderDetail'>	
     	<div class="order-dmain">
-    		<div class="order-success" v-show='!activeOrder'>等待付款</div>
-    		<div class="order-success" v-show='activeOrder'>已付款，等待发货</div>
-    		<div class='order-transfer' v-show='activeOrder'>
+    		<!--<div class="order-success" v-show='!activeOrder'>等待付款</div>-->
+    		<div class="order-success">已付款，等待发货</div>
+    		<div class='order-transfer' v-if='false'>
     			<p><span>承运物流：</span>申通快递</p>
     			<p><span>物流编号：</span>123456789</p>
     		</div>
@@ -33,17 +33,22 @@
 	    </div>
 	    <div class="order-mcontent">
 	    	<dl>
-	    		<dt>订单编号：123456789045678</dt>
+	    		<dt>配送费用</dt>
+	    		<dd>快递 &nbsp;¥{{fare}}.00</dd>
 	    	</dl>
 	    	<dl>
-	    		<dt>下单时间：2017-06-06 12:34:56</dt>
+	    		<dt>订单编号：{{orderList._id}}</dt>
 	    	</dl>
-	    	<dl v-show='activeOrder'>
+	    	<dl>
+	    		<dt>下单时间：{{orderList.createTime|filterFun}}</dt>
+	    	</dl>
+	    	<!--<dl v-show='activeOrder'>
 	    		<dd class="delect-order"  @click='cancelOrder'>删除订单</dd>
 	    	</dl>
 	    	<dl v-show='!activeOrder'>
 	    		<dd class="delect-order" @click='cancelOrder'>取消订单</dd>
-	    	</dl>
+	    		<dd class="delect-order order-pay" @click='nowPay'>立即付款</dd>
+	    	</dl>-->
 	    </div>
     </div>
 	<div class="shopConfirm-toast" v-show='toastHidden'>
@@ -57,6 +62,7 @@
 </template>
 <script>
 import axios from 'axios'
+import moment from 'moment'
 import api from '../api/api'
 export default {
   data(){
@@ -64,8 +70,20 @@ export default {
   		apiPath:'',
   		orderList:[],
   		addressObj:{},
-  		activeOrder:false,
-  		toastHidden:false
+//		activeOrder:false,
+  		toastHidden:false,
+  		submitArr:[],
+  		price:{
+			price: 0
+		},
+		fare:12
+    }
+  },
+  filters: {
+    filterFun(obj){
+        if ( obj) {
+            return moment(obj).format('YYYY-MM-DD HH:mm:ss');
+    	}
     }
   },
   methods: {
@@ -80,16 +98,16 @@ export default {
               that.orderList = res
               console.log(that.orderList)
 			  that.addressObj = that.orderList.address
-			  if(that.orderList.length>0){
-            	for(var i in that.orderList){				          				            		
-            		//判断是否支付完成
-            		if(that.orderList[i].status==0){
-            			that.activeOrder = false
-            		}else if(that.orderList[i].status==1){
-            			that.activeOrder = true
-            		}
-            	}
-              }
+//			  if(that.orderList.status==0){
+//      			that.activeOrder = false
+//      		}else if(that.orderList.status==1){
+//      			that.activeOrder = true
+//      		}
+        		if(that.orderList.price>=300){
+        			that.fare = 0
+        		}else{
+        			that.fare = 12
+        		}
             }
           })
           .catch(function (error) {
@@ -99,6 +117,20 @@ export default {
        cancelOrder(){
            	this.toastHidden = true
        },
+       nowPay(){
+       	if (!window.localStorage) {
+		    return false;
+		}else {
+	        let storage = window.localStorage
+        	this.price.price = this.orderList.price
+	        this.submitArr.push(this.orderList.order)
+	        this.submitArr.push(this.orderList.address)
+	        this.submitArr.push(this.price)
+        	var orderArr= JSON.stringify(this.submitArr)
+        	storage.setItem("orderArr", orderArr)
+        }	        
+       	this.$router.push({ path: '/cashier'})
+        },
        //删除商品
    		confirmDel(){
    			this.toastHidden = false
@@ -266,11 +298,15 @@ export default {
 			.delect-order{
 				width: 20%;
 				height: rem(30rem);
-				background: #fe4415;
+				background: #ff8854;
 				margin-top: rem(9rem);
 				color: #fff;
 				line-height: rem(30rem);
 				text-align: center;
+				margin-left: rem(10rem);
+			}
+			.order-pay{
+				background: #fe4415;
 			}
 		}
 		.order-mconpic{

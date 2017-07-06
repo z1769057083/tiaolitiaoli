@@ -11,9 +11,11 @@ import './common/common.scss'
 import store from './store/'
 import Loading from './components/loading'
 import axios from 'axios'
+import moment from 'moment'
 Vue.use(VueRouter)
 Vue.use(MintUI)
 Vue.use(Loading)
+Vue.use(moment)
 Vue.config.productionTip = false
 axios.interceptors.request.use(function(config) { //配置发送请求的信息
     store.dispatch('showLoading');
