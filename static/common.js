@@ -185,17 +185,21 @@ export default {
                     wuXingReportContentText += reports[index].content;
                 if (reports[index].illness)
                     wuXingReportContentText += reports[index].illness;
-                if (global.User.gender == 'F') {
-                    if (reports[index].female)
-                        wuXingReportContentText += reports[index].female;
-                }
-                else {
-                    if (reports[index].male)
-                        wuXingReportContentText += reports[index].male;
-                }
-                if (global.User.age <= 15) {
-                    if (reports[index].child)
-                        wuXingReportContentText += reports[index].child;
+                var user=JSON.parse(localStorage.getItem(Account_Index));
+                if(user!=null&&user.xianTian){
+                    var age=this.getUserAge(user.xianTian.birthday);
+                    if (user.xianTian.gender == 'F') {
+                        if (reports[index].female)
+                            wuXingReportContentText += reports[index].female;
+                    }
+                    else {
+                        if (reports[index].male)
+                            wuXingReportContentText += reports[index].male;
+                    }
+                    if (age <= 15) {
+                        if (reports[index].child)
+                            wuXingReportContentText += reports[index].child;
+                    }
                 }
             }
         }
@@ -217,18 +221,24 @@ export default {
                     reportObj.analysis += reports[index].analysis;
                 if (reports[index].attention)
                     reportObj.attention += reports[index].attention;
-                if (global.User.gender == 'F') {
-                    if (reports[index].female)
-                        reportObj.other += reports[index].female;
+                var user=JSON.parse(localStorage.getItem(Account_Index));
+
+                if(user!=null&&user.xianTian){
+                    var age=this.getUserAge(user.xianTian.birthday);
+                    if (user.xianTian.gender == 'F') {
+                        if (reports[index].female)
+                            reportObj.other += reports[index].female;
+                    }
+                    else {
+                        if (reports[index].male)
+                            reportObj.other += reports[index].male;
+                    }
+                    if (age <= 15) {
+                        if (reports[index].child)
+                            reportObj.other += reports[index].child;
+                    }
                 }
-                else {
-                    if (reports[index].male)
-                        reportObj.other += reports[index].male;
-                }
-                if (global.User.age <= 15) {
-                    if (reports[index].child)
-                        reportObj.other += reports[index].child;
-                }
+
             }
         }
         return reportObj;
