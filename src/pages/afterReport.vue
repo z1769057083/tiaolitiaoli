@@ -110,7 +110,6 @@
         },
         methods: {
             renderReport(report){
-//          let report = JSON.parse(localStorage.getItem(HouTianReport_Index));
                 let wuXingXianTianArray = Common.parseWuXingToArray(report.wuXingXianTian);
                 let wuXingHouTianArray = Common.parseWuXingToArray(report.wuXingHouTian);
                 let wuXingDangshiArray = Common.parseWuXingToArray(report.wuXingDangShi);

@@ -218,8 +218,8 @@
                 axios.post(api.generateReportData + "?id=" + userId, postData)
                     .then(function (res) {
                         if (res.data.errorCode == 0) {
-                            let report = res.data.returnValue
-//                          console.log(report)
+                            let user = res.data.returnValue
+                            localStorage.setItem(Account_Index, JSON.stringify(user))
                         }
                     })
                     .catch(function (error) {
