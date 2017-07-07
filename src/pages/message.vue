@@ -94,7 +94,8 @@
                 	houTian: {}
                 },   
                 pendingAnswer: {},
-                index: 0
+                index: 0,
+                validationMessage:''
             }
         },
         components: {
@@ -132,6 +133,9 @@
             },
             //存组件里面传过来的值
        		updateUserAnswer(answerParams) {
+                if (answerParams.validationMessage && typeof (answerParams.validationMessage) !== 'undefined') {
+                    this.validationMessage=answerParams.validationMessage;
+                }
                 if (answerParams.isAllFilled || typeof (answerParams.isAllFilled) === 'undefined') {
                     this.isCurrentQuestionFinished = true;
                 }
@@ -154,8 +158,12 @@
 //          点击确定判断问题是否全部回答
             confirm () {
                 if (!this.isCurrentQuestionFinished) {
+                    var message='请先完成当前问题';
+                    if(this.validationMessage!==''){
+                        message=this.validationMessage;
+                    }
                     Toast({
-                        message: '请先完成当前问题',
+                        message: message,
                         position: 'top',
                     });
                     return;
