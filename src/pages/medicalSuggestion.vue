@@ -99,9 +99,9 @@
                 }
 
                 this.age = new Date().getFullYear() - new Date(xianTianData.birthday).getFullYear();
-                if (houTianData && houTianData.femaleStatus) {
-                    this.comments = houTianData.femaleStatus;
-                }
+//                if (houTianData && houTianData.femaleStatus) {
+//                    this.comments = houTianData.femaleStatus;
+//                }
             }
             if (window.localStorage.getItem(Account_Index) != null) {
                 this.userId = JSON.parse(window.localStorage.getItem(Account_Index))._id
@@ -110,7 +110,6 @@
                 || typeof(this.userId) === 'undefined' || this.userId == '' || window.localStorage.getItem(global.AllAnswer_Index) == null) {
                 this.nullHidden = true
             } else {
-                console.log(111)
                 this.nullHidden = false
             }
         }
