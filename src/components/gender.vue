@@ -104,8 +104,7 @@
             }
         },
         mounted(){
-        	this.today = moment(new Date()).format('YYYY-MM-DD'); 
-        	console.log(this.today)
+        	
         }
     }
 </script>

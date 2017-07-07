@@ -9,9 +9,8 @@
             <div class="recuperate-mcon">
                 <div class="mcon-name">
                     <span v-if='nickname' class="mcon-block">姓名：{{nickname}}</span>
-                    <span v-if='age' class="mcon-block">年龄：{{age}}</span>
                     <span v-if='genderText' class="mcon-block">性别：{{genderText}}</span>
-                    <span v-if='comments' class="mcon-block">备注：{{comments}}</span>
+                    <span v-if='age' class="mcon-block">年龄：{{age}}</span>                  
                 </div>
                 <div class="mcon-symptom">
                     <span>主述症状:</span>{{illness}}
