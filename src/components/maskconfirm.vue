@@ -108,9 +108,9 @@ export default {
 			line-height: rem(40rem);
 		}
 		.tip{
-			font-size: $font13;
+			font-size: $font12;
 			color: #959bab;
-			line-height: rem(26rem);
+			line-height: rem(20rem);
 			padding: 0 3%;
 		}
 		.submit{

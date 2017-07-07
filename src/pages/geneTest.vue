@@ -14,8 +14,8 @@
   			<img src="../assets/index.png" alt="" />
   		</div>
   		<p class="content">
-  		 	通过基因检测了解自己的疾病易感性，<br />
-  		 	让你了解自己的先天特点，<br />从而更好的管理自己的生活、饮食以及防御疾病的发生，活的更好，活的更久。
+  		 	通过基因检测了解自己的疾病易感性，
+  		 	让你了解自己的先天特点，从而更好的管理自己的生活、饮食以<br /><span>及防御疾病的发生，活的更好，活的更久。</span>
   		</p>
 		<h3>基因检测马上上线，敬请期待！</h3>
   		 
@@ -99,8 +99,13 @@
 			font-size: $font14;
 			color: #c69b70;
 			margin-bottom: rem(30rem);
-			text-indent: rem(14rem);
-			/*text-align: justify;*/
+			/*text-indent: rem(14rem);*/
+			text-align: justify;
+			span{
+				width: 100%;
+				text-align: center;
+				display: inline-block;
+			}
 		}
 		h3{
 			text-align: center;

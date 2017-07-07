@@ -14,11 +14,8 @@
   			<img src="../assets/index.png" alt="" />
   		</div>
   		<p class="content">
-  		 	它可以识别和清除外来入侵的病毒，病变的肿瘤细胞、
-  		 	衰老细胞、死亡细胞、并保持免疫系统稳定。我们研
-  		 	发了先进的血液检测方法，在家就可以采集一滴血寄
-  		 	到实验室，通过血液检测机体免疫力，从而更有效的
-  		 	知道日常养生和保健。
+  		 	它可以识别和清除外来入侵的病毒，病变的肿瘤细胞、衰老细胞、死亡细胞、并保持免疫系统稳定。我们研发了先进的血液检测方法，在家就可以采集一滴血寄到实验室，通过血液检测机体免疫力，从
+  		 	<span>而更有效的知道日常养生和保健。</span>
   		</p>
 		<h3>免疫力检测马上上线，敬请期待！</h3>
   		 
@@ -102,8 +99,12 @@
 			font-size: $font14;
 			color: #c69b70;
 			margin-bottom: rem(30rem);
-			text-indent: rem(14rem);
-			/*text-align: justify;*/
+			text-align: justify;
+			span{
+				width: 100%;
+				text-align: center;
+				display: inline-block;
+			}
 		}
 		h3{
 			text-align: center;
