@@ -15,7 +15,7 @@
 			<router-link to='/aboutUs'>
 		 		<li>公司介绍</li>
 		 	</router-link>
-		 	<router-link to='/aboutUs'>
+		 	<router-link to='/doctorIntroduce'>
 		 		<li>医生简介</li>
 		 	</router-link>
 		 </ul>
