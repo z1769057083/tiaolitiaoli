@@ -223,9 +223,10 @@
 	        	margin-top: 0.35rem;
 	        	float: right;
 	        	border: 0;
-	        	border-left: 0.05px solid #efefef;       	
+	        	border-left: 1px solid #efefef;       	
 	    		text-align: center;
 	    		padding: 0 16%;
+	    		border-radius: 0;
 	    		color: #000;
 				appearance:none;
 				-moz-appearance:none;
