@@ -2,14 +2,14 @@
     <div class="m-selectfacon">
         <div class="m-selectemotion">
             <dl>
-                <dt>饮食口味</dt>
+                <dt>饮食口味<br />(多选)</dt>
                 <dd>
                     <p v-for="items in tasteListSample" :class="{active: taste.indexOf(items.key) > -1 }"
                        @click="ac1(items.key)">{{items.text}}</p>
                 </dd>
             </dl>
             <dl>
-                <dt>情绪情况</dt>
+                <dt>情绪情况<br />(多选)</dt>
                 <dd>
                     <p v-for="item in emotionList" :class="{active: emotions.indexOf(item.key) > -1 }"
                        @click="ac(item.key)">{{item.text}}</p>
@@ -101,8 +101,9 @@
                 font-size: $font13;
                 dt {
                     width: 19%;
-                    float: left;                    
-                    line-height: rem(48rem);
+                    float: left;   
+                    padding-top:rem(12rem);                 
+                    line-height: rem(24rem);
                 }
                 dd {
                     width: 81%;

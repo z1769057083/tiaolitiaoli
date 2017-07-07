@@ -19,7 +19,7 @@
                 </dd>
             </dl>
             <dl>
-                <dt>为人庄重</dt>
+                <dt>为人稳重</dt>
                 <dd>
                     <p :class="{'active': section4.solemn === 1}" @click="change_active(1,'3','solemn',$event)">是</p>
                     <p :class="{'active': section4.solemn === 0}" @click="change_active(0,'3','solemn',$event)">不是</p>

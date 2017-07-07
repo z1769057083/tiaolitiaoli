@@ -59,7 +59,7 @@ export default {
     },
     getLocationByCity: function (province, cityName) {
         var cities = JSON.parse(localStorage.getItem(Cities_Index))
-        console.log(cities);
+//      console.log(cities);
         var location = {
             "latitude": 39.55,
             "longitude": 116.24

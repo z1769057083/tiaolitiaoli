@@ -123,7 +123,6 @@
         	//判断是否显示针对女性的问题        	
             checkFemaleQuestion(that){           	
             	var isMale = this.questionAnswer.xianTian.gender === 'M' 
-            	console.log(isMale)
             	if(that.questions[that.index+1]&&that.questions[that.index+1].questionName === 'femaleStatus'&&isMale){            		
             		that.index = that.index + 2;
             	}else{
@@ -151,7 +150,6 @@
                     		this.questionAnswer.houTian[key] = answerParams[key];
                     	}                          
                     }
-                    console.log(this.questionAnswer)
                     
                 }
             },
@@ -172,7 +170,12 @@
                 this.validationMessage='';//reset message.
                 var answer = { isQuestion: false, content: '' };
                 for (let key in this.pendingAnswer) {
-                    answer.content += answerHelper.getAnswerText(key, this.pendingAnswer[key]);
+                	if(key==='birthday'){
+                		this.pendingAnswer[key] = this.pendingAnswer[key].substring(0,this.pendingAnswer[key].length-6)+'时'
+                		answer.content += answerHelper.getAnswerText(key, this.pendingAnswer[key]);
+                	}else{
+                	answer.content += answerHelper.getAnswerText(key, this.pendingAnswer[key]);
+                	}                  
                 }
                 if (answer.content === '') {
                     answer.content = '回答完毕';
@@ -264,7 +267,14 @@
                         this.myselfAvatar = account.headimgurl;
                     }
                 }
-            }
+            },
+            isAndroid(){
+	        	let u = navigator.userAgent
+	        	if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) {//安卓手机				
+				} else{//苹果手机
+				 noBounce.enable()
+				}
+	        }
         },
         beforeDestroy(){
             noBounce.disable();

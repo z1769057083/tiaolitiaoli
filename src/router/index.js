@@ -24,6 +24,7 @@ import orderListDetail from '@/pages/orderListDetail'
 import immunityTest from '@/pages/immunityTest'
 import recommendArticle from '@/pages/recommendArticle'
 import aboutUs from '@/pages/aboutUs'
+import doctorIntroduce from '@/pages/doctorIntroduce'
 import gene from '@/pages/gene'
 import receiveCoupon from '@/pages/receiveCoupon'
 import myCoupon from '@/pages/myCoupon'
@@ -158,7 +159,12 @@ export default new Router({
 	      path: '/aboutUs',
 	      component: aboutUs,
 	      name: 'aboutUs'
-	    },   
+	    },
+	    {
+	      path: '/doctorIntroduce',
+	      component: doctorIntroduce,
+	      name: 'doctorIntroduce'
+	    }, 
 	    {
 	      path: '/gene',
 	      component: gene,
