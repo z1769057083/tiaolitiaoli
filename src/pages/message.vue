@@ -241,6 +241,13 @@
                 item.content = this.questions[0].content;
                 this.renderedMessages.push(item);
             },
+            isAndroid(){
+                let u = navigator.userAgent
+                if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) {//安卓手机
+                } else{//苹果手机
+                    noBounce.enable()
+                }
+            },
             loadDoctorAvatar(){
                 if (!window.localStorage) {
                     return false;
@@ -261,18 +268,9 @@
         beforeDestroy(){
             noBounce.disable();
         },
-        isAndroid(){
-        	let u = navigator.userAgent
-        	if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) {//安卓手机				
-			} else{//苹果手机
-			 noBounce.enable()
-			}
-        },
         mounted() {
-//          noBounce.enable();		
             this.startQuestionBySection()
             document.title='体质检测'
-            //取页面的title，医生名字跟头像
             if (!window.localStorage) {
                 return false;
             } else {
