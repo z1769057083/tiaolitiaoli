@@ -169,6 +169,7 @@
                     return;
                 }
                 this.isCurrentQuestionFinished = false;
+                this.validationMessage='';//reset message.
                 var answer = { isQuestion: false, content: '' };
                 for (let key in this.pendingAnswer) {
                     answer.content += answerHelper.getAnswerText(key, this.pendingAnswer[key]);
