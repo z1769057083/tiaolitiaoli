@@ -258,12 +258,18 @@
                 }
             }
         },
-
         beforeDestroy(){
             noBounce.disable();
         },
+        isAndroid(){
+        	let u = navigator.userAgent
+        	if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) {//安卓手机				
+			} else{//苹果手机
+			 noBounce.enable()
+			}
+        },
         mounted() {
-            noBounce.enable();
+//          noBounce.enable();		
             this.startQuestionBySection()
             document.title='体质检测'
             //取页面的title，医生名字跟头像
@@ -277,6 +283,7 @@
                     this.myselfAvatar = account.headimgurl;
                 }
             }
+            this.isAndroid()	
         }
     }
 </script>

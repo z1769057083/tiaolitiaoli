@@ -111,8 +111,6 @@
     @import "../common/common.scss";
     /*选择问题内容*/
     .m-selection {
-        /*width: 74.6%;
-        margin-left: 12.2%;*/
         margin-top: rem(35rem);
         .m-selecttit {
             text-align: center;
@@ -158,7 +156,8 @@
 	        	margin-top: 0.35rem;
 	        	float: right;
 	        	border: 0;
-	        	border-left: 0.05px solid #efefef;       	
+	        	border-left: 1px solid #efefef;  
+	        	border-radius: 0;     	
 	    		text-align: center;
 	    		padding: 0 16%;
 	    		color: #000;
