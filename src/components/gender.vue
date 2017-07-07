@@ -28,6 +28,7 @@
 <script type="text/javascript">
     import Common from '../../static/common'
     import Toast from '@/packages/toast'
+    import moment from 'moment'
     var arr = ['','00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23']
     export default {
         data(){
@@ -40,7 +41,8 @@
                 msgGrilImg: false,
                 toggle: false,
                 toggle1: false,
-                time:''
+                time:'',
+                today:''
             }
         },
         computed: {
@@ -53,7 +55,7 @@
                 	answer.isAllFilled = true;
                 }
                 return answer;
-            }
+            },
         },
         methods: {
             change_active(gender) {
@@ -102,6 +104,8 @@
             }
         },
         mounted(){
+        	this.today = moment(new Date()).format('YYYY-MM-DD'); 
+        	console.log(this.today)
         }
     }
 </script>

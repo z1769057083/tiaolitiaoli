@@ -44,17 +44,19 @@
 		 	<p class="cont-intro">1991年入浙江大学检测技术及仪器专业读本科<br />2000年浙江大学仪器科学与技术专业博士毕业，一直留校任教。<br />现担任浙江大学生物医学工程与仪器科学学院仪器科学与工程学系主任。<br />国家发改委半导体照明“十二五规划”专家、国际半导体照明联盟专家、浙江省重点招标工程评审专家库专家、浙江省采购中心项目评审专家等。</p>
 		 	<p class='cont-text cont-top'>主要研究方向为嵌入式视频监测与分析技术，尤其对于基于机器视觉与机器学习的面向领域的异常事件分析与预测有深入的研究。</p>
 		 	<p class='cont-text1'>近年来，承担了2项国家863计划课题、2项国家支撑课题、2项国家创新基金、1项省级重点科技项目，并承担了50多项企业合作项目。相关研究成果发表了50多篇科技论文，发表著作1本，授权了9项国家发明专利，获得了2项省部级奖励，对于科技成果的产业化转化有着很好的基础。</p>
-		 	<img src="../assets/recommendEnd.png" class="cont-end"/>
-		 	<img class="cont-bottom" src="../assets/recommendLine.png" alt="" />		 	
+		 	<img src="../assets/recommendEnd.png" class="cont-end"/>		 		 	
 		</div>
-		 <p class="cont-bottit">长按下图识别二维码关注我们<br />期待更多精彩内容</p>
-		 <img class="cont-code" src="../assets/recommendCode.png" alt="" />
+		 <footerCode></footerCode>
   	 </div>  
 </template>
 <script>
 	import axios from 'axios'
-	import api from '../api/api';
+	import api from '../api/api'
+	import footerCode from '@/components/footerCode'
   export default {
+  	components: {
+      footerCode
+    },
 	mounted() {
             document.title = "关于我们"
             document.documentElement.scrollTop = 0
@@ -149,7 +151,6 @@
 			}
 		}
 		.recommend-cont2{
-			/*margin-top: rem(30rem);*/
 			.cont-end{
 				width: 16%;
 				margin: rem(20rem) 42% 0;
