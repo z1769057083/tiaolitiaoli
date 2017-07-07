@@ -74,8 +74,7 @@
                 if (new Date(fatherBirthday) >= new Date(global.User.birthday)) {
                     Toast({
                         message: '父亲生日应早于你的生日',
-                        position: 'top',
-						duration:100000
+                        position: 'top'
                     })
                 }
                 this.toggle = true
