@@ -1,24 +1,12 @@
 <template>
   	<div class="recommend-main">
-		<div class="recommend-cont">
-		 	<!--<img class="cont-tit" src="../assets/recommendtit1.png" alt="" />-->
-		 	<!--<h3 class="cont-title" >
-		 		<img class="cont-titleLine" src="../assets/aboutUsLine.png" alt="" />
-		 		<span>公司介绍</span>
-		 		<img class="cont-titleLine" src="../assets/aboutUsLine.png" alt="" />
-		 	</h3>-->
-		 	<img class="cont-mainImg" src="../../static/images/hanGuLogo.jpg"/>
-		 	<p class='cont-intro'>团队核心成员由国内知名中医李可亲传弟子戚沁园博士、陈长青博士以及知名互联网企业精英组成。</p>
-		 	<!--<p class='cont-text1'>佛山汉古医疗科技有限公司是汉古中医尝试将传统中医数理化并将中医与基因科学、人工智能结合；打通传统医学和现代科学的边界，为大众的健康管理探索出一条行之有效、简单便捷的方法。</p>-->		 	
-		 	<!--<img class="cont-bottom" src="../assets/recommendLine.png" alt="" />-->
-		</div>
-		<!--<div class="recommend-cont  recommend-cont2">
-		 	<img class="cont-tit" src="../assets/recommendtit2.png" alt="" />
-		 	<h3 class="cont-title">
+		<div class="recommend-cont  recommend-cont2">
+		 	<!--<img class="cont-tit" src="../assets/recommendtit2.png" alt="" />-->
+		 	<!--<h3 class="cont-title">
 		 		<img class="cont-titleLine" src="../assets/aboutUsLine.png" alt="" />
 		 		<span>团队介绍</span>
 		 		<img class="cont-titleLine" src="../assets/aboutUsLine.png" alt="" />
-		 	</h3>
+		 	</h3>-->
 		</div> 	
 		<img class="cont-teamImg" src="../assets/aboutQin.jpg"/>
 		<div class="recommend-cont  recommend-cont2">
@@ -38,7 +26,7 @@
 		 	<p class='cont-text cont-top'>一直致力于回归、传承、创新古中医之研究。２０１２年联合创立汉古中医，集医、药、教、研于一体。在古中医理论指导下，全面继承李可老中医经验，汲纳民间独特疗法，采用纯中医手段，治疗内、外、妇、儿、皮、 肿瘤等各科疑难病、急危重症，疗效常常出乎意料。运用钱学森先生倡导的＂从定性到定量的综合集成研讨法＂开展中医临床创新研究。开设＂汉古李可中医学堂＂以传播古中医学思想。</p>
 		 	<p class='cont-text1'>２０００年拜著名老中医李可先生为师，尽得其传。</p>
 		</div> 	
-		<img class="cont-teamImg" src="../assets/aboutZhou.jpg"/>
+		<!--<img class="cont-teamImg" src="../assets/aboutZhou.jpg"/>
 		<div class="recommend-cont  recommend-cont2">
 		 	<img class="cont-teamName" src="../assets/aboutZhouName.png"/>
 		 	<p class="cont-intro">国家发改委半导体照明“十二五规划”专家、国际半导体照明联盟专家、浙江省重点招标工程评审专家库专家、浙江省采购中心项目评审专家等。</p>
@@ -57,7 +45,7 @@
       footerCode
     },
 	mounted() {
-            document.title = "公司介绍"
+            document.title = "医生简介"
             document.documentElement.scrollTop = 0
             document.body.scrollTop = 0
         }

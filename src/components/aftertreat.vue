@@ -2,7 +2,7 @@
     <div class="m-selectfacon">
         <div class="m-selectappend">
             <dl>
-                <!--<dt>最近出现情况:</dt>-->
+                <dt>最近出现情况(多选)</dt>
                 <dd>
                     <p v-for="item in items" :class="{active: tags.indexOf(item) > -1 }" @click="ac(item)">
                         {{item}}</p>

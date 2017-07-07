@@ -1,6 +1,6 @@
 <template>
     <div class="m-selection1">
-        <div class="m-selectcity">目前生活的城市<b>{{ addressProvince }} {{ addressCity }}</b></div>
+        <div class="m-selectcity">生活最久的城市<b>{{ addressProvince }} {{ addressCity }}</b></div>
         <div class="page-picker">
             <div class="page-picker-wrapper">
                 <mt-picker :slots="addressSlots" @change="onAddressChange" :visible-item-count="5"></mt-picker>

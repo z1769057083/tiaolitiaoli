@@ -10,9 +10,9 @@
 				</div>	
 				
 			</div>
-			<p>问题答完了！</p>
-			<h3>点击查看你的体质报告！</h3>
-			<div class="tip">体质情况是根据父母遗传以及平时生活工作习惯得出结论</div>
+			<p>问题答完了</p>
+			<h3>点击查看你的体质报告</h3>
+			<div class="tip">体质情况是根据父母遗传以及平时<br />生活工作习惯得出结论</div>
 				<button class="submit" @click="gotoReport"></button>
 		</div>
 	</div>
@@ -105,7 +105,7 @@ export default {
 		h3{
 			font-size: $font18;
 			color: #c79b6e;
-			line-height: rem(36rem);
+			line-height: rem(40rem);
 		}
 		.tip{
 			font-size: $font13;

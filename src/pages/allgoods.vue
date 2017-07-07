@@ -20,7 +20,7 @@
 		</dl>
 	</div>
 	<div class="s-mrecombottom" v-if='list.length>4'>我是有底线的</div>
-	<div class="s-mrecombottom1" v-if='list.length<=4'>当前商品还很少哦</div>
+	<div class="s-mrecombottom1" v-if='list.length<=4'></div>
   </div>
 </template>
 <script>

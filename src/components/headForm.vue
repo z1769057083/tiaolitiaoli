@@ -77,6 +77,7 @@ export default {
 	.m-hmain{
 		width: 100%;
 		overflow: hidden;
+		padding-top: rem(2rem);
 		dl{
 			width: 23%;
 			height: rem(80rem);
@@ -84,7 +85,7 @@ export default {
 			border-radius: rem(5rem);
 			float: left;
 			font-size: $font13;
-			margin-right: 2.6%;
+			margin-right: 1.5%;
 			margin-bottom: rem(10rem);
 			dt{
 				width: 90%;
@@ -101,12 +102,17 @@ export default {
 				text-align: center;
 			}
 		}
+		dl:nth-child(1n){
+			margin-left: 0.5%;
+		}
 		dl:nth-child(4){
 			margin-right: 0;
 		}
 		.active{
 			background: #fff;
-			box-shadow: 0 rem(1rem) rem(2rem) #e2e1df;
+			/*border: 1px solid #c69b70;*/
+		/*	box-shadow: 0 rem(1rem) rem(2rem) #e2e1df;*/
+			box-shadow:rem(0.5rem) 0 rem(1rem) rem(1rem) #c69b70;
 		}
 	}
 }	

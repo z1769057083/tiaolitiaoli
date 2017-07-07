@@ -162,7 +162,7 @@
                 var answer = { isQuestion: false, content: '' };
                 for (let key in this.pendingAnswer) {
                 	if(key==='birthday'){
-                		this.pendingAnswer[key] = this.pendingAnswer[key].substring(0,this.pendingAnswer[key].length-6)+'点'
+                		this.pendingAnswer[key] = this.pendingAnswer[key].substring(0,this.pendingAnswer[key].length-6)+'时'
                 		answer.content += answerHelper.getAnswerText(key, this.pendingAnswer[key]);
                 	}else{
                 	answer.content += answerHelper.getAnswerText(key, this.pendingAnswer[key]);

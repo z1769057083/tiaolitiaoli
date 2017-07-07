@@ -262,42 +262,42 @@ export default {
         	postCode: this.postCode
         } 
         let rephone = /^1[3,4,5,7,8]\d{9}$/;
-        let rePostCode =  /^[1-9][0-9]{5}$/;
-        if (address.postCode === '') {
-			    address.postCode = '';
-			  }else{
-			  	if(rePostCode.test(address.postCode)){
-				    address.postCode = address.postCode;
-				  } else {			      
-				        Toast({
-				          message: '邮政编码格式不正确',
-				          position:'top',
-				          duration:1000
-				        });
-				        return;
-				  }
-			  }			         
-        if(rephone.test(address.phone)){
-        	if(address.name!==''&&address.address!==''){
-	         	this.addNewAddressHidden = false
-	        	this.Deliveryhidden = false
-	        	var storage = window.localStorage
-		        var obj_arr = JSON.stringify(address)  
-		        storage.setItem("deliver_key", obj_arr)
+//      let rePostCode =  /^[1-9][0-9]{5}$/;
+//      if (address.postCode === '') {
+//			    address.postCode = '';
+//			  }else{
+//			  	if(rePostCode.test(address.postCode)){
+//				    address.postCode = address.postCode;
+//				  } else {			      
+//				        Toast({
+//				          message: '邮政编码格式不正确',
+//				          position:'bottom',
+//				          duration:1000
+//				        });
+//				        return;
+//				  }
+//			  }			         
+        	if(address.name!==''&&address.address!==''&&address.phone!==''){
+        		if(rephone.test(address.phone)){
+        			this.addNewAddressHidden = false
+		        	this.Deliveryhidden = false
+		        	var storage = window.localStorage
+			        var obj_arr = JSON.stringify(address)  
+			        storage.setItem("deliver_key", obj_arr)
+        		}else{
+		        	Toast({
+		            message: '手机号码格式有误',
+		            position:'middle'
+		          })
+		            return;
+		        }	         	
 	        }else{
 	        	Toast({
 		        message: '必填项不能为空',
-		        position:'top',
+		        position:'middle'
 		      });
 		        return;
-          }
-        }else{
-        	Toast({
-            message: '手机号码格式有误',
-            position:'top',
-          })
-            return;
-        }
+         } 
         var obj_arr = JSON.stringify(address)  
         window.localStorage.setItem("deliver_key", obj_arr)
 	    }
@@ -335,44 +335,44 @@ export default {
         	postCode: this.addressArr.postCode
      }	  	
 	  	var rephone = /^1[3,4,5,7,8]\d{9}$/;
-	  	var rePostCode =  /^[1-9][0-9]{5}$/; 
-  	 	if (address1.postCode === '') {
-		    address1.postCode = '';
-		  }else{
-		  	if(rePostCode.test(address1.postCode)){
-			    address1.postCode = address1.postCode;
-			  } else {			      
-			        Toast({
-			          message: '邮政编码格式不正确',
-			          position:'top',
-			          duration:1000
-			        });
-			        return;
-			  }
-		  }	
-	  	if(rephone.test(address1.phone)){
-	    	if(address1.name!==''&&address1.address!==''){
+//	  	var rePostCode =  /^[1-9][0-9]{5}$/; 
+//	 	if (address1.postCode === '') {
+//		    address1.postCode = '';
+//		  }else{
+//		  	if(rePostCode.test(address1.postCode)){
+//			    address1.postCode = address1.postCode;
+//			  } else {			      
+//			        Toast({
+//			          message: '邮政编码格式不正确',
+//			          position:'middle',
+//			          duration:1000
+//			        });
+//			        return;
+//			  }
+//		  }	
+	    	if(address1.name!==''&&address1.address!==''&&address1.phone!==''){
+	    		if(rephone.test(address1.phone)){
          	this.confirmHidden = false
         	this.Deliveryhidden = false
         	var storage = window.localStorage
 	        var obj_arr= JSON.stringify(address1) 
 	        storage.setItem("deliver_key", obj_arr)
+	        }else{
+			    	Toast({
+			        message: '手机号码格式有误',
+			        position:'top',
+			        duration:1000
+			      });
+			        return;
+			    }	 
         }else{
         	Toast({
 		        message: '必填项不能为空',
-		        position:'top',
+		        position:'middle',
 		        duration:1000
 		      });
 		        return;
-        }
-	    }else{
-	    	Toast({
-	        message: '手机号码格式有误',
-	        position:'top',
-	        duration:1000
-	      });
-	        return;
-	    }	    
+        }	       
 	    var obj_arr = JSON.stringify(address1)  
 	    window.localStorage.setItem("deliver_key", obj_arr)
 	    this.addressArr.selectAdd = address1.selectAdd

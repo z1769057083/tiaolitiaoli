@@ -15,8 +15,8 @@
 				    </div>
 				  </div>
 				  <div class="l-maddress">
-				  	<img class="l-maddressimgl" src="../assets/listadress.png"/>线下门店：广东省广州市天河区平逸街102号
-				  	<img class="l-maddressimgr" src="../assets/listadressright.png" alt="" />
+				  	<!--<img class="l-maddressimgl" src="../assets/listadress.png"/>线下门店：广东省广州市天河区平逸街102号-->
+				  	<!--<img class="l-maddressimgr" src="../assets/listadressright.png" alt="" />-->
 				  </div>
 				  <div class="l-mgoodstit">
 				  	<img src="../assets/listline.png"/><span>商品详情</span><img src="../assets/listline.png"/>
@@ -311,7 +311,7 @@
 			  }
 			  .l-maddress{
 			  	width: 93.6%;
-			  	padding: 0.37rem 3.2%;
+			  	padding: 0 3.2%;
 			  	background: #fff;
 			  	color: #3c3c3c;
 			  	font-size: 0.37rem;

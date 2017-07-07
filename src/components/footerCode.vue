@@ -6,14 +6,14 @@
 		 </div>
 		 <p class="cont-bottit">长按下图识别二维码关注我们<br />期待更多精彩内容</p>
 		 <img class="cont-code" src="../assets/recommendCode.png" alt="" />
-		 <p class="title">调理</p>
+		 <p class="title">调理调理</p>
 		 <div class="line"></div>
 		 <ul class="cont-link">
 		 	<router-link to='/'>
 		 		<li>检测体质</li>
 		 	</router-link>
 			<router-link to='/aboutUs'>
-		 		<li>关于我们</li>
+		 		<li>公司介绍</li>
 		 	</router-link>
 		 	<router-link to='/aboutUs'>
 		 		<li>医生简介</li>

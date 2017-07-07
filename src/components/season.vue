@@ -2,7 +2,7 @@
     <div class="m-selectfacon">
         <div class="m-selectseason">
             <dl>
-                <dt>你的劳逸情况:</dt>
+                <dt>你的劳逸情况(多选)</dt>
                 <dd>
                     <p v-for="item in dailyList" :class="{active: daily.indexOf(item.key) > -1 }" @click="ac(item.key)">
                         {{item.text}}</p>

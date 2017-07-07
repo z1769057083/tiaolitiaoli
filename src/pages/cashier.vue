@@ -4,7 +4,9 @@
         <div class="cashier-mtop">
             <p>支付金额</p>
             <span>¥{{totalCount}}.00</span>
-            <div class="cashier-goods">商品名称:{{this.arr2.name}}</div>
+            <!--<div class="cashier-goods">商品名称:{{this.arr2.name}}</div>-->
+            <!--<div class="cashier-goods"></div>-->
+            <p>汉古商城</p>
         </div>
         <div class="cashier-mcontent">
             <!--<dl @click="change_active(0,$event)">-->

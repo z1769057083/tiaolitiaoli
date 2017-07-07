@@ -111,8 +111,8 @@
     @import "../common/common.scss";
     /*选择问题内容*/
     .m-role {
-        width: 96%;
-        margin-left: 2%;
+        width: 97%;
+        margin-left: 1.5%;
         overflow: hidden;
         height: rem(240rem);
         h3 {
@@ -133,15 +133,16 @@
         .m-hmain {
             width: 100%;
             height: rem(210rem);
+            padding-top: rem(2rem);
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
             dl {
-                width: 32%;
+                width: 31.5%;
                 height: rem(100rem);
                 padding: rem(10rem) 0;
                 border-radius: rem(5rem);
                 float: left;
-                margin-right: 2%;
+                margin-right: 1%;
                 margin-bottom: rem(10rem);
                 padding: rem(10rem) 0;
                 dt {
@@ -159,12 +160,13 @@
                     padding: 0 rem(3rem);
                 }
             }
-            dl:nth-child(3n) {
-                margin-right: 0;
+            dl:nth-child(1n) {
+                margin-left: 0.5%;
             }
             .active {
                 background: #fff;
-                box-shadow: 0 rem(1rem) rem(2rem) #e2e1df;
+                /*box-shadow: rem(0.5rem) rem(0.2rem) rem(0.5rem) rem(1rem) #c69b70;*/
+               box-shadow:rem(0.5rem) 0 rem(1rem) rem(1rem) #c69b70;
             }
             .temper-bottom {
                 width: 100%;
