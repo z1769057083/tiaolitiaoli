@@ -10,13 +10,15 @@
                     <div class='i-maincen'>
                         <div class="r-mreport">
                             <div class="r-mrcontent">
-                                <h3>五行体质
-                                    <button class="help-button" @click='afterReport'>?
-                                    </button>
+                                <h3>{{wuXingJieQiPointText}}
+                                    <!--<button class="help-button" @click='afterReport'>?-->
+                                    <!--</button>-->
+                                    <div class="right" @click='showWuXingPoint'>
+                                        <img src="../assets/afterRdetail.png"/>
+                                    </div>
                                 </h3>
-                                <p v-html="wuXingXianTianStatusText"></p>
-                                <p v-html="wuXingHouTianStatusText"></p>
-                                <p class="r-mrconp" v-html="wuXingJieQiStatusText"></p>
+                                <!--<p class="r-mrconp" v-html="wuXingJieQiPointText"></p>-->
+
                             </div>
                         </div>
                         <div class="r-mseason">
@@ -32,10 +34,10 @@
                                 <h3>容易导致的疾病</h3>
                                 <p v-html="wuXingReportHouTianObj.illness"></p>
                             </div>
-                            <div class="r-mrcontent" v-if="wuXingReportHouTianObj.attention">
-                                <h3>注意</h3>
-                                <p v-html="wuXingReportHouTianObj.attention"></p>
-                            </div>
+                            <!--<div class="r-mrcontent" v-if="wuXingReportHouTianObj.attention">-->
+                                <!--<h3>注意</h3>-->
+                                <!--<p v-html="wuXingReportHouTianObj.attention"></p>-->
+                            <!--</div>-->
                             <!--<div class="r-mrcontent" v-if="wuXingReportHouTianObj.other">-->
                                 <!--<h3>其他</h3>-->
                                 <!--<p v-html="wuXingReportHouTianObj.other"></p>-->
@@ -61,6 +63,7 @@
                     <img class="close" src="../assets/shopcarClose.png"
                          @click='afterReportHidden = !afterReportHidden'/>
                     <div class="reportDetailcontent">
+
                         <p>
                             "水曰润下，火曰炎上，木曰曲直，金曰从革，土爱稼穑"<br>
                         </p>
@@ -71,17 +74,28 @@
                     </div>
                 </div>
             </div>
-            <!--<div class="reportDetail" v-show='xianTianReportIsShowed'>
+            <div class="reportDetail" v-show='wuXingPoint'>
                 <div class="reportDetail-main">
                     <div class="top">
-                        <img src="../assets/xiantianImg.png"/>
+                        <img  src="../assets/recuperatebg.png"/>
+                        <!--<img src="../assets/xiantianImg.png"/>-->
                     </div>
                     <img class="close" src="../assets/shopcarClose.png"
-                         @click='xianTianReportIsShowed = !xianTianReportIsShowed'/>
+                         @click='wuXingPoint = !wuXingPoint'/>
                     <div class="reportDetailcontent">
+                        <p v-html="wuXingXianTianStatusText"></p>
+                        <p v-html="wuXingHouTianStatusText"></p>
+                        <p class="r-mrconp" v-html="wuXingJieQiStatusText"></p>
+                        <p>
+                            五行体质是指个体生命在先天遗传和后天获得的基础上表现出的综合特质。这种特质属于先天性，同时会受到后天环境、情志等各种因素的影响，甚至发生先天体质的改变，个人调理则应当根据五行体质来进行。<br>
+                        </p>
+                        <p>
+                            "水曰润下，火曰炎上，木曰曲直，金曰从革，土爱稼穑"<br>
+                        </p>
+                        <p style="text-align: right">——《尚书·洪范》</p>
                     </div>
                 </div>
-            </div>-->
+            </div>
             <!--后天报告详情结束-->
         </div>
         <myNullReport v-if='isReportEmpty'></myNullReport>
@@ -104,7 +118,7 @@
                 wuXingXianTianStatusText: '',
                 wuXingHouTianStatusText: '&nbsp;',
                 afterReportHidden: false,
-                xianTianReportIsShowed: false,
+                wuXingPoint: false,
                 isReportEmpty: true,
                 toggle:false
             }
@@ -131,11 +145,12 @@
                     data: wuXingDangshiArray
                 }];
                 ReportHelper.loadChart('chart-container', items)
-                this.wuXingXianTianStatusText ='先天: '+ Common.parseWuXingLevelToText(report.wuXingXianTianLevel)
+                this.wuXingXianTianStatusText ='先天体质: '+ Common.parseWuXingLevelToText(report.wuXingXianTianLevel)
                     + " <br> [" + Common.parseWuXingPointToText(report.wuXingXianTian) + "]";
-                this.wuXingHouTianStatusText ='后天: '+  Common.parseWuXingLevelToText(report.wuXingHouTianLevel)
+                this.wuXingHouTianStatusText ='后天体质: '+  Common.parseWuXingLevelToText(report.wuXingHouTianLevel)
                     + " <br> [" + Common.parseWuXingPointToText(report.wuXingHouTian) + "]";
-                this.wuXingJieQiStatusText = '节令: '+ Common.parseWuXingLevelToText(report.wuXingDangShiLevel)
+                this.wuXingJieQiPointText = '五行体质: '+ Common.parseWuXingLevelToText(report.wuXingDangShiLevel);
+                this.wuXingJieQiStatusText = '节令体质: '+ Common.parseWuXingLevelToText(report.wuXingDangShiLevel)
                     + " <br> [" + Common.parseWuXingPointToText(report.wuXingDangShi) + "]";
                 this.wuXingReportHouTianObj = Common.convertReportsToObj(report.jieQiReports);
                 var text=Common.parseWuXingLevelToText(report.wuXingDangShiLevel);
@@ -144,8 +159,8 @@
             afterReport(){
                 this.afterReportHidden = true
             },
-            showXianTianReport(){
-                this.xianTianReportIsShowed = true
+            showWuXingPoint(){
+                this.wuXingPoint = true
             },
         },
         mounted() {
@@ -249,6 +264,8 @@
                             padding-left: 3%;
                             font-size: $font14;
                             color: #c69b70;
+                            line-height: rem(28rem);
+                            height: rem(28rem);;
                         }
                         .help-button {
                             border: 1px solid #c69b70;
@@ -279,7 +296,7 @@
                             height: rem(28rem);
                             position: absolute;
                             right: rem(10rem);
-                            top: rem(8rem);
+                            top: rem(0rem);
                             img {
                                 width: 100%;
                                 height: 100%;
