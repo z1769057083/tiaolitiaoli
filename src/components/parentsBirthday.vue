@@ -56,11 +56,17 @@
                     answer.isAllFilled = true;
                 }
                 else{
-                    if (new Date(this.fatherBirthday) >= new Date(global.User.birthday)) {
+                	if (new Date(this.fatherBirthday) >= new Date(global.User.birthday)) {
                         answer.validationMessage='父亲生日应早于你的生日';
                     }
+                	else if (this.fatherHour=='') {
+                        answer.validationMessage = '父亲的小时不能为空';
+                   	}
                     else if (new Date(this.motherBirthday) >= new Date(global.User.birthday)) {
                         answer.validationMessage = '母亲生日应早于你的生日';
+                    }
+                    else if(this.motherHour==''){
+                    	answer.validationMessage = '母亲的小时不能为空';
                     }
                     else {
                         answer.validationMessage = '';
