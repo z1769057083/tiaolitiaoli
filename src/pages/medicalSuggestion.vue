@@ -25,7 +25,7 @@
                         <p v-html="reportContent"></p>
                     </div>
                 </div>
-                <commodity hasRecommend="true" v-if='!nullHidden'></commodity>
+                <suggestion hasRecommend="true" v-if='!nullHidden'></suggestion>
             </div>
         </div>
         <myNullReport v-if='nullHidden'></myNullReport>
@@ -36,7 +36,7 @@
     import api from '../api/api'
     import ReportHelper from '../../static/reportHelper';
     import Common from '../../static/common';
-    import commodity from '@/components/commodity'
+    import suggestion from '@/components/suggestion'
     import Toast from '@/packages/toast'
     import myNullReport from '@/components/myNullReport'
     export default {
@@ -58,19 +58,19 @@
             }
         },
         components: {
-            commodity, myNullReport
+            suggestion, myNullReport
         },
         methods: {
             loadWeather(){
-                var that = this;
-                var account = JSON.parse(localStorage.getItem(global.Account_Index));
+                let that = this;
+                let account = JSON.parse(localStorage.getItem(global.Account_Index));
                 if (account != null && account.houTian && account.houTian.city) {
-                    var weatherKey = 'df7f80c391ea4cf788d372d9feb5f09f';
+                    let weatherKey = 'df7f80c391ea4cf788d372d9feb5f09f';
                     axios.get(' https://api.heweather.com/v5/suggestion?city=' + account.houTian.city + '&key=' + weatherKey)
                         .then(function (res) {
-                            var today = new Date();
-                            var monthText = today.getMonth() + 1;
-                            var text ='现在是'+ today.getFullYear() + '年' + monthText + '月' + today.getDate() + '日' + today.getHours() + '点';
+                            let today = new Date();
+                            let monthText = today.getMonth() + 1;
+                            let text ='现在是'+ today.getFullYear() + '年' + monthText + '月' + today.getDate() + '日' + today.getHours() + '点';
                             that.suggestion = text + " " + res.data.HeWeather5[0].suggestion.comf.txt;
                         })
                 }
@@ -96,11 +96,7 @@
                 if (houTianData) {
                     this.illness = houTianData.tags.toString();
                 }
-
                 this.age = new Date().getFullYear() - new Date(xianTianData.birthday).getFullYear();
-//                if (houTianData && houTianData.femaleStatus) {
-//                    this.comments = houTianData.femaleStatus;
-//                }
             }
             if (window.localStorage.getItem(Account_Index) != null) {
                 this.userId = JSON.parse(window.localStorage.getItem(Account_Index))._id
@@ -121,12 +117,21 @@
         width: 100%;
         height: 100%;
         position: absolute;
+        height: 100%;
         background: url(../assets/indexbg.jpg) repeat-y;
+<<<<<<< HEAD
         background-size: cover;
         padding: rem(30rem) 0;
         .recuperate-main {
             width: 86.6%;
             /*height: 86%;*/
+=======
+        background-size: contain;
+        /*padding: rem(30rem) 0;*/
+        .recuperate-main {
+            width: 86.6%;
+            margin-top: rem(30rem);
+>>>>>>> 9b77c1ea66dc7b3ba425b7deca2af0e968223db8
             border: 1px solid #c69b70;
             margin-left: 6.7%;
             background: #fff;
