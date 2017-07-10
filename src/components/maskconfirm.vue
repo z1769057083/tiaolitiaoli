@@ -7,8 +7,7 @@
 					<div class="mask-portraitimg">
 						<img :src="myselfAvatar"/>
 					</div>
-				</div>	
-				
+				</div>					
 			</div>
 			<p>问题答完了</p>
 			<h3>点击查看你的体质报告</h3>

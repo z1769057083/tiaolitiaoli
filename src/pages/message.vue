@@ -15,6 +15,7 @@
             </div>
         </div>
         <maskconfirm v-if="maskhidden"></maskconfirm>
+        <upLoad  v-if="maskUpLoadHidden" @UpLoadEvent="UpLoad"></upLoad>
         <div class="m-select">
             <!--体质报告问题开始-->
             <gender v-if="index == 0" @updateUserAnswer="updateUserAnswer"></gender>
@@ -44,7 +45,7 @@
                         @updateUserAnswer="updateUserAnswer"></aftertreat>
 
             <afterCrescent v-if="index == 19"
-                           @updateUserAnswer="updateUserAnswer"></afterCrescent>
+                           @updateUserAnswer="updateUserAnswer"   @maskUpLoadEvent="maskUpLoad"></afterCrescent>
             <!--体质报告问题结束-->
             <button class="submit" @click="confirm">确定</button>
         </div>
@@ -77,6 +78,7 @@
     import temperament from '@/components/temperament'
     import Toast from '@/packages/toast'
     import figures from '@/components/figures'
+    import upLoad from '@/components/upLoad'
     import Common from '../../static/common'
     export default {
         name: 'message',
@@ -95,14 +97,15 @@
                 },   
                 pendingAnswer: {},
                 index: 0,
-                validationMessage:''
+                validationMessage:'',
+                maskUpLoadHidden: false
             }
         },
         components: {
             gender,birthCity, city, emotion, season, looks, skinColor, limbs, treatOthers1,
             treatOthers2, treatOthers3, treatOthers4, parentsBirthday,
             aftertreat, maskconfirm, physiology, afterCrescent, headForm,
-            character, temperament, figures
+            character, temperament, figures ,upLoad
         },
         computed: {
         	//判断问题是否回答完毕
@@ -274,6 +277,13 @@
 				} else{//苹果手机
 				 noBounce.enable()
 				}
+	        },
+//	        //上传舌苔照片组件
+	        maskUpLoad(){
+	        	this.maskUpLoadHidden = true
+	        },
+	        UpLoad(){
+	        	this.maskUpLoadHidden = false
 	        }
         },
         beforeDestroy(){
@@ -321,7 +331,6 @@
                 overflow: hidden;
                 display: flex;
                 margin-bottom: rem(14rem);
-
                 .m-charperson {
                     width: rem(40rem);
                     height: rem(40rem);

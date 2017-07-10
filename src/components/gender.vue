@@ -14,7 +14,7 @@
                 <span class="activeSpan" v-if='!msgGrilImg'>我是女生</span>
             </div>
         </div>
-        <span class="date-tit">出生日期和小时：</span>
+        <span class="date-tit" @click='upLoad'>出生日期和小时：</span>
         <div class="date-timer">
         	  <input type="date" min='1900-01-01' :class="{'activeDate': toggle}" class="m-selectdate" name='birthday' v-model='birthday' @change='change_date(birthday)'/>
         <select v-model="time" class="selHour" :class="{'activeHour': toggle1}" @change='change_date1(time)'>
@@ -58,6 +58,10 @@
             },
         },
         methods: {
+        	upLoad(){
+        		console.log(1)
+        		this.$emit('maskUpLoadEvent')
+        	},
             change_active(gender) {
                 if (gender == 'M') {
                     this.msgBoyImg = false
@@ -71,7 +75,7 @@
                     global.User.gender = this.answer.gender;
                     global.User.age = Common.getUserAge(this.birthday);
                     global.User.birthday = this.birthday;
-                    this.$emit('updateUserAnswer', this.answer);
+                    this.$emit('updateUserAnswer', this.answer)
                 }
             },
             change_date(changedBirthday){ 
@@ -99,8 +103,7 @@
             	global.User.gender = this.gender;
                 global.User.age = Common.getUserAge(this.birthday);
                 global.User.birthday =this.birthday;
-        		this.$emit('updateUserAnswer', this.answer); 
-        		
+        		this.$emit('updateUserAnswer', this.answer);         		
             }
         },
         mounted(){
