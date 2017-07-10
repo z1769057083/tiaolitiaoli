@@ -3,28 +3,27 @@
         <!--文章部分-->
         <div class="s-mrecomment" v-if="hasRecommend">
             <!--<h3 class="s-marttitle">个性化推荐</h3>-->
-            <dl class="s-marticlecon" v-for='(soupItem,index) in getSouplist' @click='soupClick(soupItem,index)'>
-                <dt>
-                <h3>{{soupItem.title}}</h3>
-                {{soupItem.material}}
-                <div class="s-mreconintrotip">
-                    <img class="tip" src="../assets/shopTip.png"/>
-                   {{soupItem.fit|transform}}
-                </div>
-                </dt>
-                <dd>
-                    <img :src="''+apiPath+'/image/soup/'+soupItem.index+'/1.jpg'"
-                         onerror="this.src='../../static/images/defaultPicture.jpg'"
-                         @click='soupClick(soupItem,index)'/>
-                </dd>
-            </dl>
+            <!--<dl class="s-marticlecon" v-for='(soupItem,index) in getSouplist' @click='soupClick(soupItem,index)'>-->
+                <!--<dt>-->
+                <!--<h3>{{soupItem.title}}</h3>-->
+                <!--{{soupItem.material}}-->
+                <!--<div class="s-mreconintrotip">-->
+                    <!--<img class="tip" src="../assets/shopTip.png"/>-->
+                   <!--{{soupItem.recommendText|textHandler}}-->
+                <!--</div>-->
+                <!--</dt>-->
+                <!--<dd>-->
+                    <!--<img :src="''+apiPath+'/image/soup/'+soupItem.index+'/1.jpg'"-->
+                         <!--onerror="this.src='../../static/images/defaultPicture.jpg'"-->
+                         <!--@click='soupClick(soupItem,index)'/>-->
+                <!--</dd>-->
+            <!--</dl>-->
             <dl class="s-marticlecon" v-for='(item,index) in recommendlist' @click='recomClick(item,index)' >
                 <dt>
                 <h3>{{item.name}}</h3>
                 <span class="itemPrice">¥{{item.price}}.00</span>
                 <div class="s-mreconintrotip">
                     <img class="tip" src="../assets/shopTip.png"/>
-                    <!--{{item.fit|transform}}-->
                     {{item.recommendText|textHandler}}
                 </div>
                 </dt>

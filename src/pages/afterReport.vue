@@ -25,20 +25,23 @@
                                 <p v-html="wuXingReportHouTianObj.analysis"></p>
                             </div>
                             <div class="r-mrcontent" v-if="wuXingReportHouTianObj.content">
-                                <h3>表现</h3>
+                                <h3>{{wuXingText}}特征</h3>
                                 <p v-html="wuXingReportHouTianObj.content"></p>
                             </div>
                             <div class="r-mrcontent" v-if="wuXingReportHouTianObj.illness">
-                                <h3>易患疾病</h3>
+                                <h3>容易导致的疾病</h3>
                                 <p v-html="wuXingReportHouTianObj.illness"></p>
                             </div>
                             <div class="r-mrcontent" v-if="wuXingReportHouTianObj.attention">
                                 <h3>注意</h3>
                                 <p v-html="wuXingReportHouTianObj.attention"></p>
                             </div>
-                            <div class="r-mrcontent" v-if="wuXingReportHouTianObj.other">
-                                <h3>其他</h3>
-                                <p v-html="wuXingReportHouTianObj.other"></p>
+                            <!--<div class="r-mrcontent" v-if="wuXingReportHouTianObj.other">-->
+                                <!--<h3>其他</h3>-->
+                                <!--<p v-html="wuXingReportHouTianObj.other"></p>-->
+                            <!--</div>-->
+                            <div  class="r-mrcontent" style="  color: #c59a6f;margin-bottom: 20px;">
+                               <p> 节令调理处方会根据地区、季节、气候等外部环境问题来进行定期更新，请及时登录服务号来查看</p>
                             </div>
 
                             <router-link to='/medicalSuggestion'>
@@ -94,6 +97,7 @@
         data (){
             return {
                 list: [],
+                wuXingText:'',
                 wuXingReportHouTianContent: '',
                 wuXingReportHouTianObj: {},
                 wuXingJieQiStatusText: '',
@@ -110,7 +114,6 @@
         },
         methods: {
             renderReport(report){
-//          let report = JSON.parse(localStorage.getItem(HouTianReport_Index));
                 let wuXingXianTianArray = Common.parseWuXingToArray(report.wuXingXianTian);
                 let wuXingHouTianArray = Common.parseWuXingToArray(report.wuXingHouTian);
                 let wuXingDangshiArray = Common.parseWuXingToArray(report.wuXingDangShi);
@@ -135,6 +138,8 @@
                 this.wuXingJieQiStatusText = '节令: '+ Common.parseWuXingLevelToText(report.wuXingDangShiLevel)
                     + " <br> [" + Common.parseWuXingPointToText(report.wuXingDangShi) + "]";
                 this.wuXingReportHouTianObj = Common.convertReportsToObj(report.jieQiReports);
+                var text=Common.parseWuXingLevelToText(report.wuXingDangShiLevel);
+                if(text!==''){this.wuXingText=text+'的'}
             },
             afterReport(){
                 this.afterReportHidden = true

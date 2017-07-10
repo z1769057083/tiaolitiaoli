@@ -55,6 +55,17 @@
                     new Date(this.motherBirthday) < new Date(global.User.birthday)&&this.motherHour!==''&&this.fatherHour!=='') {
                     answer.isAllFilled = true;
                 }
+                else{
+                    if (new Date(this.fatherBirthday) >= new Date(global.User.birthday)) {
+                        answer.validationMessage='父亲生日应早于你的生日';
+                    }
+                    else if (new Date(this.motherBirthday) >= new Date(global.User.birthday)) {
+                        answer.validationMessage = '母亲生日应早于你的生日';
+                    }
+                    else {
+                        answer.validationMessage = '';
+                    }
+				}
                 return answer;
             }
         },
@@ -62,7 +73,7 @@
             change_date(fatherBirthday){
                 if (new Date(fatherBirthday) >= new Date(global.User.birthday)) {
                     Toast({
-                        message: '父亲生日不能晚于你的生日',
+                        message: '父亲生日应早于你的生日',
                         position: 'top'
                     })
                 }
@@ -74,7 +85,7 @@
             change_MotherDate(motherBirthday){
                 if (new Date(motherBirthday) >= new Date(global.User.birthday)) {
                     Toast({
-                        message: '母亲生日不能晚于你的生日',
+                        message: '母亲生日应早于你的生日',
                         position: 'top'
                     })
                 }

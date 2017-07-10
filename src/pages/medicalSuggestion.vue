@@ -15,7 +15,7 @@
                 <div class="mcon-symptom">
                     <span>主述症状:</span>{{illness}}
                 </div>
-                <div class="field-suggestion">
+                <div class="field-suggestion" v-if="suggestion">
                     {{suggestion}}
                 </div>
                 <div class="mcon-season">
@@ -87,7 +87,7 @@
                 let houTianData = JSON.parse(localStorage.getItem(AllAnswer_Index)).houTian;
                 let dangJiReport = JSON.parse(localStorage.getItem(HouTianReport_Index));
                 this.wuXingLevelText = Common.parseWuXingLevelToText(dangJiReport.wuXingDangShiLevel);
-                this.reportContent = Common.convertReportsToText(dangJiReport.jieQiReports).split('<br>', 1)[0];
+                this.reportContent = Common.convertReportsToObj(dangJiReport.jieQiReports).content;
                 if(this.reportContent==''){
                     this.reportContent='五行偏弱，五行圆运动升发、肃降有序，但一生当中整体的阳气和阴精都偏弱，精力有限。';
                 }
@@ -98,9 +98,9 @@
                 }
 
                 this.age = new Date().getFullYear() - new Date(xianTianData.birthday).getFullYear();
-                if (houTianData && houTianData.femaleStatus) {
-                    this.comments = houTianData.femaleStatus;
-                }
+//                if (houTianData && houTianData.femaleStatus) {
+//                    this.comments = houTianData.femaleStatus;
+//                }
             }
             if (window.localStorage.getItem(Account_Index) != null) {
                 this.userId = JSON.parse(window.localStorage.getItem(Account_Index))._id
@@ -109,7 +109,6 @@
                 || typeof(this.userId) === 'undefined' || this.userId == '' || window.localStorage.getItem(global.AllAnswer_Index) == null) {
                 this.nullHidden = true
             } else {
-                console.log(111)
                 this.nullHidden = false
             }
         }

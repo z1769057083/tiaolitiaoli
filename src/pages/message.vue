@@ -94,7 +94,8 @@
                 	houTian: {}
                 },   
                 pendingAnswer: {},
-                index: 0
+                index: 0,
+                validationMessage:''
             }
         },
         components: {
@@ -131,6 +132,9 @@
             },
             //存组件里面传过来的值
        		updateUserAnswer(answerParams) {
+                if (answerParams.validationMessage && typeof (answerParams.validationMessage) !== 'undefined') {
+                    this.validationMessage=answerParams.validationMessage;
+                }
                 if (answerParams.isAllFilled || typeof (answerParams.isAllFilled) === 'undefined') {
                     this.isCurrentQuestionFinished = true;
                 }
@@ -152,13 +156,18 @@
 //          点击确定判断问题是否全部回答
             confirm () {
                 if (!this.isCurrentQuestionFinished) {
+                    var message='请先完成当前问题';
+                    if(this.validationMessage!==''){
+                        message=this.validationMessage;
+                    }
                     Toast({
-                        message: '请先完成当前问题',
+                        message: message,
                         position: 'top',
                     });
                     return;
                 }
                 this.isCurrentQuestionFinished = false;
+                this.validationMessage='';//reset message.
                 var answer = { isQuestion: false, content: '' };
                 for (let key in this.pendingAnswer) {
                 	if(key==='birthday'){
@@ -221,8 +230,8 @@
                 axios.post(api.generateReportData + "?id=" + userId, postData)
                     .then(function (res) {
                         if (res.data.errorCode == 0) {
-                            let report = res.data.returnValue
-//                          console.log(report)
+                            let user = res.data.returnValue
+                            localStorage.setItem(Account_Index, JSON.stringify(user))
                         }
                     })
                     .catch(function (error) {
@@ -235,6 +244,13 @@
                 var item = { isQuestion: true };
                 item.content = this.questions[0].content;
                 this.renderedMessages.push(item);
+            },
+            isAndroid(){
+                let u = navigator.userAgent
+                if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) {//安卓手机
+                } else{//苹果手机
+                    noBounce.enable()
+                }
             },
             loadDoctorAvatar(){
                 if (!window.localStorage) {
@@ -264,10 +280,8 @@
             noBounce.disable();
         },
         mounted() {
-//          noBounce.enable();		
             this.startQuestionBySection()
             document.title='体质检测'
-            //取页面的title，医生名字跟头像
             if (!window.localStorage) {
                 return false;
             } else {

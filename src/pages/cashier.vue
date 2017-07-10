@@ -55,6 +55,7 @@
         },
         methods: {
             startUsingWechatPay(wechatPayParams){
+                var that=this;
                 wx.chooseWXPay({
                     timestamp: wechatPayParams.timeStamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
                     nonceStr: wechatPayParams.nonceStr, // 支付签名随机串，不长于 32 位
@@ -62,7 +63,7 @@
                     signType: wechatPayParams.signType, // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
                     paySign: wechatPayParams.paySign, // 支付签名
                     success: function (res) {
-                        // 支付成功后的回调函数
+                        that.$router.push({ path: '/orderListDetail',query: { itemid: wechatPayParams.orderId }})
                     }
                 });
             },
@@ -89,7 +90,7 @@
                     openid: this.accountArr.openid,
                     nickName: this.accountArr.nickname
                 }
-                let test = this.$route.query.test;
+                let test = this.$route.query.test_pay;
                 if (test && test == 'true') {
                     params = {
                         order: {},
