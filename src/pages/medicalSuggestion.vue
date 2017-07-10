@@ -25,7 +25,7 @@
                         <p v-html="reportContent"></p>
                     </div>
                 </div>
-                <commodity hasRecommend="true" v-if='!nullHidden'></commodity>
+                <suggestion hasRecommend="true" v-if='!nullHidden'></suggestion>
             </div>
         </div>
         <myNullReport v-if='nullHidden'></myNullReport>
@@ -36,7 +36,7 @@
     import api from '../api/api'
     import ReportHelper from '../../static/reportHelper';
     import Common from '../../static/common';
-    import commodity from '@/components/commodity'
+    import suggestion from '@/components/suggestion'
     import Toast from '@/packages/toast'
     import myNullReport from '@/components/myNullReport'
     export default {
@@ -58,7 +58,7 @@
             }
         },
         components: {
-            commodity, myNullReport
+            suggestion, myNullReport
         },
         methods: {
             loadWeather(){
@@ -116,11 +116,13 @@
     .recuperate {
         width: 100%;
         position: absolute;
+        height: 100%;
         background: url(../assets/indexbg.jpg) repeat-y;
         background-size: contain;
-        padding: rem(30rem) 0;
+        /*padding: rem(30rem) 0;*/
         .recuperate-main {
             width: 86.6%;
+            margin-top: rem(30rem);
             border: 1px solid #c69b70;
             margin-left: 6.7%;
             background: #fff;
