@@ -253,11 +253,11 @@
                     width: 100%;
                     overflow: hidden;
                     background: #fff;
-                    padding-top: rem(18rem);
+                    padding-top: rem(14rem);
                     box-shadow: rem(1rem) rem(1rem) rem(1rem) rem(1.5rem) #e2e1df;
-                    margin-top: rem(10rem);
+                    /*margin-top: rem(10rem);*/
                     .r-mrcontent {
-                        padding-bottom: rem(10rem);
+                        padding-bottom: rem(14rem);
                         position: relative;
                         h3 {
                             background: url(../assets/rmattribute.png) no-repeat center left;
