@@ -119,19 +119,10 @@
         position: absolute;
         height: 100%;
         background: url(../assets/indexbg.jpg) repeat-y;
-<<<<<<< HEAD
-        background-size: cover;
-        padding: rem(30rem) 0;
-        .recuperate-main {
-            width: 86.6%;
-            /*height: 86%;*/
-=======
         background-size: contain;
-        /*padding: rem(30rem) 0;*/
         .recuperate-main {
             width: 86.6%;
             margin-top: rem(30rem);
->>>>>>> 9b77c1ea66dc7b3ba425b7deca2af0e968223db8
             border: 1px solid #c69b70;
             margin-left: 6.7%;
             background: #fff;
