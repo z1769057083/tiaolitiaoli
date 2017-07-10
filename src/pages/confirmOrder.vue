@@ -246,14 +246,23 @@ export default {
 	        return false
 	    } else {
 	    	//从selectCity里面取城市的值
-		  	this.selectAddress.push(this.$children[0].$el.querySelector('#selProv').value)
-		  	this.selectAddress.push(this.$children[0].$el.querySelector('#selCity').value)
-		  	if(this.$children[0].$el.querySelector('#selDistrict')){
-		  		this.selectAddress.push(this.$children[0].$el.querySelector('#selDistrict').value)	  	  	
-		  	}	  	
+				if(this.selectAddress.length==0){		  		
+		  		this.selectAddress.push(this.$children[0].$el.querySelector('#selProv').value)
+			  	this.selectAddress.push(this.$children[0].$el.querySelector('#selCity').value)
+			  	if(this.$children[0].$el.querySelector('#selDistrict')){
+			  		this.selectAddress.push(this.$children[0].$el.querySelector('#selDistrict').value)	  	  	
+			  	}
+		  	}else{
+		  		this.selectAddress.splice(0,this.selectAddress.length)
+		  		this.selectAddress.push(this.$children[0].$el.querySelector('#selProv').value)
+			  	this.selectAddress.push(this.$children[0].$el.querySelector('#selCity').value)
+			  	if(this.$children[0].$el.querySelector('#selDistrict')){
+			  		this.selectAddress.push(this.$children[0].$el.querySelector('#selDistrict').value)	  	  	
+			  	}
+		  	}
 		  	let str = this.selectAddress.toString()
 		  	str = str.replace(/,/g,'')
-        var address = { 
+        var address = {
         	name: this.name, 
         	phone: this.phone,
         	selectAdd: str,
@@ -277,13 +286,21 @@ export default {
 //				        return;
 //				  }
 //			  }			         
-        	if(address.name!==''&&address.address!==''&&address.phone!==''){
+        	if(address.name!==''&&address.phone!==''){
         		if(rephone.test(address.phone)){
-        			this.addNewAddressHidden = false
-		        	this.Deliveryhidden = false
-		        	var storage = window.localStorage
-			        var obj_arr = JSON.stringify(address)  
-			        storage.setItem("deliver_key", obj_arr)
+        			if(address.address!==''){
+        				this.addNewAddressHidden = false
+			        	this.Deliveryhidden = false
+			        	var storage = window.localStorage
+				        var obj_arr = JSON.stringify(address)  
+				        storage.setItem("deliver_key", obj_arr)
+        			}else{
+        				Toast({
+				        message: '必填项不能为空',
+				        position:'middle'
+				      });
+				        return;
+        			}       			
         		}else{
 		        	Toast({
 		            message: '手机号码格式有误',
@@ -350,13 +367,22 @@ export default {
 //			        return;
 //			  }
 //		  }	
-	    	if(address1.name!==''&&address1.address!==''&&address1.phone!==''){
+	    	if(address1.name!==''&&address1.phone!==''){
 	    		if(rephone.test(address1.phone)){
-         	this.confirmHidden = false
-        	this.Deliveryhidden = false
-        	var storage = window.localStorage
-	        var obj_arr= JSON.stringify(address1) 
-	        storage.setItem("deliver_key", obj_arr)
+	    			if(address1.address!==''){
+	    				this.confirmHidden = false
+		        	this.Deliveryhidden = false
+		        	var storage = window.localStorage
+			        var obj_arr= JSON.stringify(address1) 
+			        storage.setItem("deliver_key", obj_arr)
+	    			}else{
+	    				Toast({
+				        message: '必填项不能为空',
+				        position:'middle',
+				        duration:1000
+				      });
+				        return;
+	    			}        	
 	        }else{
 			    	Toast({
 			        message: '手机号码格式有误',

@@ -57,9 +57,9 @@
 						<dl>
 							<dt><img :src="''+apiPath+'/image/product/'+list.index+'/1.jpg'" 
 							onerror="this.src='../../static/images/defaultPicture.jpg'"/></dt>
-							<dd>
-							    <p>¥{{list.price}}.00</p>
+							<dd>							    
 							    <span>{{list.name}}</span>
+							    <p>¥{{list.price}}.00</p>
 							</dd>
 						</dl>
 						<div class="closeBtn" @click='shopHiden = !shopHiden'></div>				
@@ -83,9 +83,9 @@
 						<dl>
 							<dt><img :src="''+apiPath+'/image/product/'+list.index+'/1.jpg'" 
 							         onerror="this.src='../../static/images/defaultPicture.jpg'"/></dt>
-							<dd>
-							     <p>¥{{list.price}}.00</p>
+							<dd>							     
 							    <span>{{list.name}}</span>
+							    <p>¥{{list.price}}.00</p>
 							</dd>
 						</dl>
 						<div class="closeBtn" @click='purchaseHidden = !purchaseHidden'></div>				

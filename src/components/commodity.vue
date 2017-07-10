@@ -37,7 +37,7 @@
         </div>
         <!--商品部分-->
 
-        <div class="product-section" >
+        <div class="product-section" v-if="!hasRecommend">
             <h2 v-if="hasRecommend">逛一逛</h2>
             <img v-if="hasRecommend" class="recuperatebg" src="../assets/recuperatebg.png"/>
         <div class="s-mrecomment1" v-for="(item, index) in listem">

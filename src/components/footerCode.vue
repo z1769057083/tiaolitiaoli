@@ -10,7 +10,7 @@
 		 <div class="line"></div>
 		 <ul class="cont-link">
 		 	<router-link to='/'>
-		 		<li>检测体质</li>
+		 		<li>体质检测 </li>
 		 	</router-link>
 			<router-link to='/aboutUs'>
 		 		<li>公司介绍</li>

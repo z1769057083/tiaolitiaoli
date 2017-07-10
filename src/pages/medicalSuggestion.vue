@@ -120,12 +120,14 @@
 
     .recuperate {
         width: 100%;
+        height: 100%;
         position: absolute;
         background: url(../assets/indexbg.jpg) repeat-y;
-        background-size: contain;
+        background-size: cover;
         padding: rem(30rem) 0;
         .recuperate-main {
             width: 86.6%;
+            /*height: 86%;*/
             border: 1px solid #c69b70;
             margin-left: 6.7%;
             background: #fff;
