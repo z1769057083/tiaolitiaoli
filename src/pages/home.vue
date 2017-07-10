@@ -15,7 +15,7 @@
                     <img class="i-micon" src="../assets/index.png">
                 </div>
                 <div class="i-mainTest" @click='tab'></div>
-                <div class='i-maintip'>温馨提示：<br />本测试所提及的内容仅作为生活保健的咨询建议。</div>
+                <div class="i-mainTip">温馨提示：<br />本测试所提及的内容仅作为生活保健的咨询建议。</div>
             </div>
         </div>
     </div>
@@ -129,7 +129,7 @@
            	background-size: cover;
            	margin: rem(20rem) 30% rem(40rem);
            }
-            .i-maintip {
+            .i-mainTip {
             	width: 81%;
             	margin-left: 9.5%;
                 color: #C69B70;
