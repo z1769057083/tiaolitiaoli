@@ -53,14 +53,14 @@ export default {
                                 that.fingerImage=localData;
                                 //Note:code here for ios.
                                 that.upLoadArr.fingerImage = that.fingerImage
-                                that.$bus.emit('onImageChoosed',this.upLoadArr)
+                                that.$bus.emit('onImageChoosed',that.upLoadArr)
                             }
                         });
                         
                     }else{
                     	//Note:code here for android.
                     	that.upLoadArr.fingerImage = that.fingerImage                   	
-                        that.$bus.emit('onImageChoosed',this.upLoadArr)
+                        that.$bus.emit('onImageChoosed',that.upLoadArr)
                     }
                       	
                     that.uploadPic(res.localIds[0].toString());
@@ -116,7 +116,7 @@ export default {
 		height: rem(330rem);
 		border-radius: rem(10rem);
 		position: absolute;
-		top: rem(130rem);
+		top: rem(120rem);
 		left: 12.8%; 
 		overflow: hidden;
 		background: url(../assets/afterCresent.png) no-repeat center;
