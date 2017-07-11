@@ -40,7 +40,7 @@
 			                <dd>
 			                    <img :src="''+apiPath+'/image/product/thumbnail/'+item.index+'.jpg'"
 			                         onerror="this.src='../../static/images/defaultPicture.jpg'"
-			                         @click='soupClick(soupItem,index)'/>
+			                         @click='recomClick(item,index)'/>
 			                </dd>
 			            </dl>
 			        </div>
