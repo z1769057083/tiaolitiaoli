@@ -2070,12 +2070,15 @@ export default {
 	},
 	watch: {
 		prov: function () {
+			console.log('prov')
 			this.updateCity();
 			this.updateDistrict();
 		},
 		city: function () {
+			console.log('city')
 			this.updateDistrict();
 		}
+		
 	},
 	mounted(){
 		if (!window.localStorage) {
@@ -2086,11 +2089,19 @@ export default {
 			if(address_obj!==null){
 				this.address = address_obj.getAdd
 				this.prov = this.address[0]
-				this.city = this.address[1]
-				if(this.address[2]!==''){
-					this.district = this.address[2]
+				this.$nextTick(() => {
+					console.log('next')
+						this.city = this.address[1]	
+						this.$nextTick(() => {
+							if(this.address[2]!==''){
+							this.district = this.address[2]
 					
-				}
+							}
+						})
+						
+			})
+			
+				
 				console.log(address_obj.getAdd[1])
 			}					
 		}		
