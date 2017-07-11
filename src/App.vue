@@ -71,8 +71,9 @@
                 })
             },
             configWeChatSDK(){
-                var domain = location.href.split('#')[0];//Note http://localhost:3333/
-                axios.get(domain + 'wechat/get_signature?url=' + domain)
+//                var domain = location.href.split('#')[0];//Note http://localhost:3333/
+                var domain=api.apipath;
+                axios.get(domain + '/wechat/get_signature?url=' + domain)
                     .then(function (res) {
                         var data = res.data;
                         localStorage.setItem(global.WechatSignature_Index, JSON.stringify(data))
