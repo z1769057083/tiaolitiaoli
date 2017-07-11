@@ -12,7 +12,7 @@ global.Cities_Index = 'cities_Index'
 global.AllAnswer_Index = 'answer_index'
 //global.AllAnswer_Index = 'allAnswer_Index'
 global.WechatSignature_Index = 'wechatSignature_Index'
-global.Version = '0.0.88'
+global.Version = '0.0.89'
 global.IsDebug = false
 
 global.User = {}
