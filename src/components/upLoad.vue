@@ -67,23 +67,6 @@ export default {
                 }
             })
         },
-        beginUsePic(){
-            if (!this.isChosen) {
-                this.choosePic();
-            }
-            else{
-                this.showPicDetails();
-            }
-        },
-        showPicDetails(){
-            if (this.isChosen) {
-                var localIds = [this.fingerImage];
-                wx.previewImage({
-                    current: this.fingerImage, // 当前显示图片的http链接
-                    urls: localIds // 需要预览的图片http链接列表
-                });
-            }
-        },
         uploadPic(localId){
             wx.uploadImage({
                 localId: localId, // 需要上传的图片的本地ID，由chooseImage接口获得
