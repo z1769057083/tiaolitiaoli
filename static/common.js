@@ -117,7 +117,7 @@ export default {
             }
             wuXingStatusArray.push(wuXingStatusText);
         }
-        return wuXingStatusArray.toString();
+        return wuXingStatusArray.toString().replace(/,/g,'、');
     },
     initForWechatShare: function (title, description, href) {
         global.isWechatShareInit = true;
