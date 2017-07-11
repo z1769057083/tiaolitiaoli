@@ -15,6 +15,7 @@
     </div>
 </template>
 <script type="text/javascript">
+    import wx from 'weixin-js-sdk'
     export default {
         data(){
             return {
@@ -41,7 +42,9 @@
                 var localIds = [this.fingerImage];
                 wx.previewImage({
                     current: this.fingerImage, // 当前显示图片的http链接
-                    urls: localIds // 需要预览的图片http链接列表
+                    urls: localIds
+                     // 需要预览的图片http链接列表
+//                    complete: function (res) { alert(res); }
                 });
             }
         },
