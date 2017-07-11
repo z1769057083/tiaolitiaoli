@@ -2,10 +2,10 @@
     <div class="m-afterCrescent">
         <h3>上传舌苔图片</h3>
         <div class="m-crescent">
-            <div class="m-picture" @click='upLoad'>
+            <div class="m-picture" @click='beginUsePic'>
                 <img :src="fingerImage"/>
             </div>
-            <div class="re-choose-button" v-show="isChosen" @click='upLoad'>
+            <div class="re-choose-button" v-show="isChosen" @click='choosePic'>
                 <div class="re-choose-text">重新选择</div>
                 <div class="m-remove">
                     <img src="../assets/mafterRemove.png"/>
@@ -24,9 +24,27 @@
             }
         },
         methods: {
-        	upLoad(){
+        	
+        	beginUsePic(){
+	            if (!this.isChosen) {
+	                this.choosePic();
+	            }
+	            else{
+	                this.showPicDetails();
+	            }
+        	},
+        	choosePic(){
         		this.$emit('maskUpLoadEvent')
         	},
+        showPicDetails(){
+            if (this.isChosen) {
+                var localIds = [this.fingerImage];
+                wx.previewImage({
+                    current: this.fingerImage, // 当前显示图片的http链接
+                    urls: localIds // 需要预览的图片http链接列表
+                });
+            }
+        },
         	onImageChoosedHandler(obj){
           		this.upLoadArr = obj
           		this.isChosen = this.upLoadArr.isChosen

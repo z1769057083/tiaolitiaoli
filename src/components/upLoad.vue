@@ -53,36 +53,19 @@ export default {
                                 that.fingerImage=localData;
                                 //Note:code here for ios.
                                 that.upLoadArr.fingerImage = that.fingerImage
-                                that.$bus.emit('onImageChoosed',this.upLoadArr)
+                                that.$bus.emit('onImageChoosed',that.upLoadArr)
                             }
                         });
                         
                     }else{
                     	//Note:code here for android.
                     	that.upLoadArr.fingerImage = that.fingerImage                   	
-                        that.$bus.emit('onImageChoosed',this.upLoadArr)
+                        that.$bus.emit('onImageChoosed',that.upLoadArr)
                     }
                       	
                     that.uploadPic(res.localIds[0].toString());
                 }
             })
-        },
-        beginUsePic(){
-            if (!this.isChosen) {
-                this.choosePic();
-            }
-            else{
-                this.showPicDetails();
-            }
-        },
-        showPicDetails(){
-            if (this.isChosen) {
-                var localIds = [this.fingerImage];
-                wx.previewImage({
-                    current: this.fingerImage, // 当前显示图片的http链接
-                    urls: localIds // 需要预览的图片http链接列表
-                });
-            }
         },
         uploadPic(localId){
             wx.uploadImage({
@@ -116,7 +99,7 @@ export default {
 		height: rem(330rem);
 		border-radius: rem(10rem);
 		position: absolute;
-		top: rem(130rem);
+		top: rem(120rem);
 		left: 12.8%; 
 		overflow: hidden;
 		background: url(../assets/afterCresent.png) no-repeat center;
