@@ -39,7 +39,7 @@ export default {
                 sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
                 sourceType: [picType], // 可以指定来源是相册还是相机，默认二者都有
                 success: function (res) {
-                	this.$emit('UpLoadEvent')
+                	that.$emit('UpLoadEvent')
                     that.fingerImage = res.localIds[0];                    
                     //js判断是否ios或Android
                     var u = navigator.userAgent;
@@ -53,14 +53,14 @@ export default {
                                 that.fingerImage=localData;
                                 //Note:code here for ios.
                                 that.upLoadArr.fingerImage = that.fingerImage
-                                this.$bus.emit('onImageChoosed',this.upLoadArr)
+                                that.$bus.emit('onImageChoosed',this.upLoadArr)
                             }
                         });
                         
                     }else{
                     	//Note:code here for android.
                     	that.upLoadArr.fingerImage = that.fingerImage                   	
-                        this.$bus.emit('onImageChoosed',this.upLoadArr)
+                        that.$bus.emit('onImageChoosed',this.upLoadArr)
                     }
                       	
                     that.uploadPic(res.localIds[0].toString());

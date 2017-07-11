@@ -1,6 +1,6 @@
 <template>
     <div class="Report" >
-        <div class='afterReport' :class="{'afterReportActive': afterReportHidden}" v-if='!isReportEmpty'>
+        <div class='afterReport' :class="{'afterReportActive': wuXingPoint}" v-if='!isReportEmpty' >
             <!--聊天内容-->
             <div class='after-content'>
                 <div class="r-main">
@@ -157,11 +157,9 @@
                 var text=Common.parseWuXingLevelToText(report.wuXingDangShiLevel);
                 if(text!==''){this.wuXingText=text+'的'}
             },
-            afterReport(){
-                this.afterReportHidden = true
-            },
             showWuXingPoint(){
                 this.wuXingPoint = true
+//              this.afterReportHidden = true
             },
         },
         mounted() {
