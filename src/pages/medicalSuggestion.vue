@@ -13,7 +13,7 @@
 	                    <span v-if='genderText' class="mcon-block">性别：{{genderText}}</span>
 	                    <span v-if='age' class="mcon-block">年龄：{{age}}</span>                  
 	                </div>
-	                <div class="mcon-symptom">
+	                <div class="mcon-symptom" v-if='illness'>
 	                    <span>主述症状:</span>{{illness}}
 	                </div>
 	                <div class="field-suggestion" v-if="suggestion">

@@ -23,8 +23,7 @@
                 upLoadArr:{}
             }
         },
-        methods: {
-        	
+        methods: {       	
         	beginUsePic(){
 	            if (!this.isChosen) {
 	                this.choosePic();
@@ -45,11 +44,11 @@
                 });
             }
         },
-        	onImageChoosedHandler(obj){
-          		this.upLoadArr = obj
-          		this.isChosen = this.upLoadArr.isChosen
-	            this.fingerImage = this.upLoadArr.fingerImage
-        	}
+    	onImageChoosedHandler(obj){
+      		this.upLoadArr = obj
+      		this.isChosen = this.upLoadArr.isChosen
+            this.fingerImage = this.upLoadArr.fingerImage
+    	}
         },
         beforeDestroy(){
            	

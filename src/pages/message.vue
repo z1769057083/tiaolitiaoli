@@ -159,13 +159,18 @@
 //          点击确定判断问题是否全部回答
             confirm () {
                 if (!this.isCurrentQuestionFinished) {
-                    var message='请先完成当前问题';
+                	if(this.index==0){
+                		var message='请填写您的出生时间';
+                	}else{
+                		var message='请先完成当前问题';
+                	}                    
                     if(this.validationMessage!==''){
                         message=this.validationMessage;
                     }
                     Toast({
                         message: message,
                         position: 'top',
+                        duration: 1500
                     });
                     return;
                 }
