@@ -1,34 +1,58 @@
 <template>
-    <div class='recuperate'>
-        <div class="recuperate-main" v-if='!nullHidden'>
-            <div class="recuperate-top">
-                <img src="../assets/recuperate1.png"/>
-            </div>
-            <!--<h2>6-7月调理处方</h2>-->
-            <!--<img class="recuperatebg" src="../assets/recuperatebg.png"/>-->
-            <div class="recuperate-mcon">
-                <div class="mcon-name">
-                    <span v-if='nickname' class="mcon-block">姓名：{{nickname}}</span>
-                    <span v-if='genderText' class="mcon-block">性别：{{genderText}}</span>
-                    <span v-if='age' class="mcon-block">年龄：{{age}}</span>                  
-                </div>
-                <div class="mcon-symptom">
-                    <span>主述症状:</span>{{illness}}
-                </div>
-                <div class="field-suggestion" v-if="suggestion">
-                    {{suggestion}}
-                </div>
-                <div class="mcon-season">
-                    <p class="tit" style="display: none;">R</p>
-                    <div>
-                        <p class="subtitle">节令体质: {{wuXingLevelText}}</p>
-                        <p v-html="reportContent"></p>
-                    </div>
-                </div>
-                <suggestion hasRecommend="true" v-if='!nullHidden'></suggestion>
-            </div>
-        </div>
-        <myNullReport v-if='nullHidden'></myNullReport>
+	<div class="wrap">
+	    <div class='recuperate'>
+	        <div class="recuperate-main" v-if='!nullHidden'>
+	            <div class="recuperate-top">
+	                <img src="../assets/recuperate1.png"/>
+	            </div>
+	            <!--<h2>6-7月调理处方</h2>-->
+	            <!--<img class="recuperatebg" src="../assets/recuperatebg.png"/>-->
+	            <div class="recuperate-mcon">
+	                <div class="mcon-name">
+	                    <span v-if='nickname' class="mcon-block">姓名：{{nickname}}</span>
+	                    <span v-if='genderText' class="mcon-block">性别：{{genderText}}</span>
+	                    <span v-if='age' class="mcon-block">年龄：{{age}}</span>                  
+	                </div>
+	                <div class="mcon-symptom">
+	                    <span>主述症状:</span>{{illness}}
+	                </div>
+	                <div class="field-suggestion" v-if="suggestion">
+	                    {{suggestion}}
+	                </div>
+	                <div class="mcon-season">
+	                    <p class="tit" style="display: none;">R</p>
+	                    <div>
+	                        <p class="subtitle">节令体质: {{wuXingLevelText}}</p>
+	                        <p v-html="reportContent"></p>
+	                    </div>
+	                </div>
+	     			<!--商品推荐-->
+			        <div class="s-mrecomment">
+			            <dl class="s-marticlecon" v-for='(item,index) in recommendlist' @click='recomClick(item,index)'>
+			                <dt>
+			                <h3>{{item.name}}</h3>
+			                <span class="itemPrice">¥{{item.price}}.00</span>
+			                <div class="s-mreconintrotip">
+			                    <img class="tip" src="../assets/shopTip.png"/>
+			                    {{item.recommendText|textHandler}}
+			                </div>
+			                </dt>
+			                <dd>
+			                    <img :src="''+apiPath+'/image/product/thumbnail/'+item.index+'.jpg'"
+			                         onerror="this.src='../../static/images/defaultPicture.jpg'"
+			                         @click='soupClick(soupItem,index)'/>
+			                </dd>
+			            </dl>
+			        </div>
+	           </div>
+	        </div>
+	        <div class="product-section">
+	            <router-link to='/shop'>
+	                <div class="shop-button">商城</div>
+	            </router-link>
+	        </div>
+	        <myNullReport v-if='nullHidden'></myNullReport>
+	    </div>
     </div>
 </template>
 <script>
@@ -36,7 +60,6 @@
     import api from '../api/api'
     import ReportHelper from '../../static/reportHelper';
     import Common from '../../static/common';
-    import suggestion from '@/components/suggestion'
     import Toast from '@/packages/toast'
     import myNullReport from '@/components/myNullReport'
     export default {
@@ -54,11 +77,21 @@
                 recommendlist: [],
                 getSouplist: [],
                 nullHidden: false,
-                userId: ''
+                userId: '',
             }
         },
         components: {
-            suggestion, myNullReport
+            myNullReport
+        },
+        filters: {            
+            textHandler(text){
+                if (text == '') {
+                    return '平衡';
+                }
+                else {
+                    return text;
+                }
+            }
         },
         methods: {
             loadWeather(){
@@ -74,13 +107,35 @@
                             that.suggestion = text + " " + res.data.HeWeather5[0].suggestion.comf.txt;
                         })
                 }
-            }
+            },
+            recomClick(recommendItem,index){
+            	this.$router.push({ name: 'goodsdetail', query: { itemid: recommendItem._id}})
+            },
+            recommend(){
+                var that = this;
+                if (window.localStorage.getItem(Account_Index) !== null) {
+                    let account = JSON.parse(window.localStorage.getItem(Account_Index))
+                    axios.get(api.recommendData + account._id)
+                        .then(function (res) {
+                            if (res.data.errorCode == 0) {
+                                res = res.data.returnValue
+                                that.recommendlist = res
+                                that.recommendData = true
+                            }
+                        })
+                        .catch(function (error) {
+                            console.log(error)
+                        })
+                }
+            },
         },
         mounted(){
             document.title = '调理处方'
             document.documentElement.scrollTop = 0
             document.body.scrollTop = 0
             this.loadWeather();
+            this.apiPath = api.apipath
+            this.recommend()            
             if (localStorage.getItem(HouTianReport_Index) !== null) {
                 let user = JSON.parse(localStorage.getItem(Account_Index));
                 let xianTianData = JSON.parse(localStorage.getItem(AllAnswer_Index)).xianTian;
@@ -107,17 +162,30 @@
             } else {
                 this.nullHidden = false
             }
+        },
+        watch: {
+            recommendlist: {
+                handler(val, oldVal) {
+                    document.documentElement.scrollTop = 0
+                    document.body.scrollTop = 0
+                },
+                dceep: true
+            },
         }
     }
 </script>
 <style scoped lang="scss" rel="stylesheet/scss">
     @import "../common/common.scss";
-
-    .recuperate {
-        width: 100%;
+    .wrap{
+    	width: 100%;
         height: 100%;
         position: absolute;
-        height: 100%;
+        background: url(../assets/indexbg.jpg) repeat-y;
+        background-size: contain;
+    }
+    .recuperate {
+        width: 100%;
+        position: absolute;
         background: url(../assets/indexbg.jpg) repeat-y;
         background-size: contain;
         .recuperate-main {
@@ -213,168 +281,98 @@
                     }
                 }
                 /*文章部分*/
-                .s-marticle {
-                    width: 100%;
-                    overflow: hidden;
-                    background: #fff;
-                    .s-mrecomment {
-                        width: 100%;
-                        overflow: hidden;
-                        padding-top: rem(5rem);
-                        .s-marttitle {
-                            font-size: rem(16rem);
-                            line-height: rem(40rem);
-                            color: #000;
-                            font-weight: bold;
-                            margin-bottom: 0.26rem;
-                            background: url(../assets/shoptitleft.png) no-repeat center left;
-                            padding-left: 2%;
-                            border-bottom: rem(1rem) solid #f4eade;
-                        }
-                        .s-marticlecon {
-                            width: 100%;
-                            overflow: hidden;
-                            margin-top: rem(15rem);
-                            padding-bottom: rem(15rem);
-                            border-bottom: rem(1rem) solid #f4eade;
-                            dt {
-                                width: 64%;
-                                float: left;
-                                margin-right: 2%;
-                                font-size: $font13;
-                                color: #999;
-                                line-height: rem(18rem);
-                                display: -webkit-box;
-                                -webkit-box-orient: vertical;
-                                -webkit-line-clamp: 2;
-                                overflow: hidden;
-                                h3 {
-                                    font-size: $font18;
-                                    color: $c3c3c;
-                                    font-weight: bold;
-                                    line-height: rem(22rem);
-                                    margin-bottom: rem(5rem);
-                                    letter-spacing: rem(1rem);
-                                }
-                            }
-                            dd {
-                                width: 32%;
-                                height: rem(70rem);
-                                float: right;
-                                img {
-                                    width: 100%;
-                                    height: 100%;
-                                }
-                            }
-                        }
-                        .s-marticlecon1 {
-                            width: 100%;
-                            overflow: hidden;
-                            margin-top: rem(15rem);
-                            padding-bottom: rem(15rem);
-                            border-bottom: rem(1rem) solid #f4eade;
-                            dt {
-                                width: 100%;
-                                h3 {
-                                    font-size: $font18;
-                                    color: $c3c3c;
-                                    font-weight: bold;
-                                    line-height: rem(26rem);
-                                    margin-bottom: rem(5rem);
-                                    letter-spacing: rem(1rem);
-                                }
-                            }
-                            .s-martimg {
-                                width: 31%;
-                                float: left;
-                                margin-right: 3%;
-                                overflow: hidden;
-                                img {
-                                    width: 100%;
-                                    height: rem(68rem);
-                                }
-                                .s-martimgTitle {
-                                    font-size: $font13;
-                                    line-height: rem(16rem);
-                                    font-weight: bold;
-                                }
-                                .s-martimgPic {
-                                    color: #ff4443;
-                                    line-height: rem(20rem);
-                                    span {
-                                        font-size: $font13;
-                                        color: #999;
-                                        text-decoration: line-through;
-                                        line-height: rem(20rem);
-                                        float: right;
-                                    }
-                                }
-                            }
-                            .s-martimg:nth-child(4) {
-                                margin-right: 0;
-                            }
-                        }
-                    }
-                    /*商品列表*/
-                    .s-mgoods {
-                        width: 100%;
-                        overflow: hidden;
-                        background: #fff;
-                        .s-mrecomment {
-                            width: 100%;
-                            overflow: hidden;
-                            padding: 0.32rem 0 0.28rem;
-                            border-bottom: rem(1rem) solid #e8e8e8;
-                            .h3 {
-                                font-size: 0.42rem;
-                                line-height: 0.59rem;
-                                color: #000;
-                                font-weight: bold;
-                                margin-bottom: 0.26rem;
-                                background: url(../assets/shoptitleft.png) no-repeat left;
-                                padding-left: 2%;
-                                .s-mrecomall {
-                                    font-size: 0.35rem;
-                                    color: #c69b70;
-                                    float: right;
-                                    font-weight: normal;
-                                    background: url(../assets/s-mrecomall.png) no-repeat right;
-                                    background-size: 0.16rem 0.32rem;
-                                    padding-right: 3%;
-                                }
-                            }
-                        }
-                        .s-mrecomlist {
-                            width: 31.9%;
-                            float: left;
-                            margin-right: 2.1%;
-                            margin-bottom: 0.26rem;
-                            .s-mreconimg {
-                                width: 100%;
-                                height: 2.24rem;
-                                margin-bottom: 0.21rem;
-                                img {
-                                    width: 100%;
-                                    height: 100%;
-                                }
-                            }
-                            .s-mreconintro {
-                                width: 100%;
-                                overflow: hidden;
-                                span {
-                                    font-size: 0.35rem;
-                                    color: #000;
-                                    line-height: 0.48rem;
-                                }
-                            }
-                        }
-                        .s-mrecomlist:nth-child(3n) {
-                            margin-right: 0;
-                        }
-                    }
-                }
+                .s-mrecomment {
+			        width: 100%;
+			        overflow: hidden;
+			        padding-top: rem(6rem);
+			        .tip {
+			            width: rem(10rem);
+			            height: rem(12rem);
+			            margin-top: rem(3.5rem);
+			        }
+			        .s-marttitle {
+			            font-size: 0.42rem;
+			            line-height: rem(40rem);
+			            color: #000;
+			            font-weight: bold;
+			            margin-bottom: 0.26rem;
+			            background: url(../assets/shoptitleft.png) no-repeat center left;
+			            padding-left: 2.5%;
+			            border-bottom: rem(1rem) solid #e8e8e8;
+			        }
+			        .s-marticlecon {
+			            width: 100%;
+			            overflow: hidden;
+			            margin-top: rem(15rem);
+			            padding-bottom: rem(12rem);
+			            border-bottom: rem(1rem) solid #e8e8e8;
+			            dt {
+			                width: 66%;
+			                float: left;
+			                margin-right: 2%;
+			                font-size: $font12;
+			                color: #999;
+			                line-height: rem(20rem);
+			                display: -webkit-box;
+			                -webkit-box-orient: vertical;
+			                -webkit-line-clamp: 2;
+			                overflow: hidden;
+			                h3 {
+			                    font-size: $font18;
+			                    color: $c3c3c;
+			                    font-weight: bold;
+			                    line-height: rem(26rem);
+			                    margin-bottom: rem(5rem);
+			                    letter-spacing: rem(1rem);
+			                }
+			                .tip {
+			                    width: rem(10rem);
+			                    height: rem(12rem);
+			                    float: left;
+			                    margin-right: rem(4rem);
+			                    vertical-align: middle;
+			                }
+			                span {
+			                    vertical-align: middle;
+			                    /*float: left;*/
+			                }
+			                .itemPrice {
+			                    color: #ff4443;
+			                }
+			
+			            }
+			            dd {
+			                width: 32%;
+			                height: rem(64rem);
+			                float: left;
+			                img {
+			                    width: 100%;
+			                    height: 100%;
+			                }
+			            }
+			        }
+			    }
             }
+            
         }
+        .product-section {
+	        width: 100%;			        			        
+	        padding-top: rem(60rem);
+	        padding-bottom: rem(20rem);
+	        text-align: center;			
+	        .shop-button {
+	            width: rem(120rem);
+	            height: rem(40rem);
+	            line-height: rem(40rem);
+	            font-size: rem(18rem);
+	            color: white;
+	            left: 0;
+	            display: inline-block;
+	            text-align: center;
+	            background: url(../../static/images/blankButton.jpg);
+	            background-size: contain;
+	        }
+	    }
     }
 
 </style>

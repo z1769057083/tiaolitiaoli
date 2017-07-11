@@ -1,6 +1,7 @@
 <template>
 	<div class="maskmain">
 		<div class="mask-conent">
+			<img  class="close" @click='maskClose' src="../assets/shopcarClose.png" alt="" />
 			<div class="mask-main">
 				<div class="mask-btn" @click='choosePic("camera")'>
 					<img src="../assets/mupload.png"/>
@@ -27,6 +28,9 @@ export default {
 	    }
 	},
     methods:{
+    	maskClose(){
+    		this.$emit('UpLoadEvent')
+    	},    	
         choosePic(picType){
             var that = this;
             wx.chooseImage({
@@ -117,6 +121,13 @@ export default {
 		overflow: hidden;
 		background: url(../assets/afterCresent.png) no-repeat center;
 		background-size: cover;
+		.close{
+			width: rem(19rem);
+			height: rem(19rem);
+			position: absolute;
+			right: 3%;
+			top: 2%;
+		}
 		.mask-main{
 			width: 100%;
 			height: rem(96rem);
