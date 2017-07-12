@@ -23,7 +23,7 @@
 	                		<dt><img src="../assets/medicalImg2.png"/></dt>
 	                        <dd>
 	                        	<p class="subtitle" >天气舒适度</p>
-	                        	<p v-html="reportContent">{{suggestion}}</p>
+	                        	<p>{{suggestion}}</p>
 	                        </dd>
 	                    </dl>
 	                    <dl>
