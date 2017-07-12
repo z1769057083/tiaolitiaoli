@@ -2,7 +2,7 @@
   	<div class="recommend-main">
 		<div class="recommend-cont">
 		 	<img class="cont-mainImg" src="../../static/images/hanGuLogo.jpg"/>		 	
-		 	<p class='cont-intro'>佛山汉古医疗科技有限公司是汉古中医尝试将传统中医数理化并将中医与基因科学、人工智能结合；打通传统医学和现代科学的边界，为大众的健康管理探索出一条行之有效、简单便捷的方法。</p>	
+		 	<p class='cont-intro'>佛山汉古医疗科技有限公司致力于传统中医数理化，将中医与基因科学、人工智能相结合，努力打通传统医学和现代科学的边界，为大众实现有效便捷的全息健康管理。</p>
 		 	<p class='cont-text1'>团队核心成员由国内知名中医李可亲传弟子戚沁园博士、陈长青博士以及知名互联网企业精英组成。</p>		 	
 		</div>
 		 <footerCode></footerCode>
