@@ -102,7 +102,7 @@ export default {
 		top: rem(120rem);
 		left: 12.8%; 
 		overflow: hidden;
-		background: url(../assets/afterCresent.png) no-repeat center;
+		background: url(../assets/afterCresent.jpg) no-repeat center;
 		background-size: cover;
 		.close{
 			width: rem(19rem);
