@@ -357,7 +357,7 @@
         }
         .product-section {
 	        width: 100%;			        			        
-	        padding-top: rem(60rem);
+	        padding-top: rem(50rem);
 	        padding-bottom: rem(20rem);
 	        text-align: center;			
 	        .shop-button {

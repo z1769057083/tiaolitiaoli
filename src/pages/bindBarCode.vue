@@ -127,15 +127,6 @@
         },
         mounted() {
             document.title = "绑定样本"
-            if (!window.localStorage) {
-                return false
-            } else {
-                let receive = JSON.parse(window.localStorage.getItem('receiveCode'))
-	        	if(receive){	        		
-	        		this.code = receive
-	        		console.log(this.code)
-	        	}
-            }
         }
     }
 </script>
