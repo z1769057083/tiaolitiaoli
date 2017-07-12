@@ -31,7 +31,7 @@
                                 <p v-html="wuXingReportHouTianObj.content"></p>
                             </div>
                             <div class="r-mrcontent" v-if="wuXingReportHouTianObj.illness">
-                                <h3>容易导致的疾病</h3>
+                                <h3>可能产生的症状</h3>
                                 <p v-html="wuXingReportHouTianObj.illness"></p>
                             </div>
                             <!--<div class="r-mrcontent" v-if="wuXingReportHouTianObj.attention">-->
