@@ -32,6 +32,7 @@ import bindBarCode from '@/pages/bindBarCode'
 import myOrder from '@/pages/myOrder'
 import geneReport from '@/pages/geneReport'
 import geneReportDetail from '@/pages/geneReportDetail'
+import personalCenter from '@/pages/personalCenter'
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -189,6 +190,11 @@ export default new Router({
 	      path: '/myOrder',
 	      component: myOrder,
 	      name: 'myOrder'
+	    },
+	    {
+	      path: '/personalCenter',
+	      component: personalCenter,
+	      name: 'personalCenter'
 	    },
 	    {
 	      path: '/geneReport',

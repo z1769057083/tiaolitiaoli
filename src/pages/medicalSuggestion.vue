@@ -5,27 +5,36 @@
 	            <div class="recuperate-top">
 	                <img src="../assets/recuperate1.png"/>
 	            </div>
-	            <!--<h2>6-7月调理处方</h2>-->
-	            <!--<img class="recuperatebg" src="../assets/recuperatebg.png"/>-->
 	            <div class="recuperate-mcon">
 	                <div class="mcon-name">
-	                    <span v-if='nickname' class="mcon-block">姓名：{{nickname}}</span>
-	                    <span v-if='genderText' class="mcon-block">性别：{{genderText}}</span>
-	                    <span v-if='age' class="mcon-block">年龄：{{age}}</span>                  
+	                    <span v-if='nickname' class="mcon-block"><b>姓名：</b>{{nickname}}</span>
+	                    <span v-if='genderText' class="mcon-block"><b>性别：</b>{{genderText}}</span>
+	                    <span v-if='age' class="mcon-block"><b>年龄：</b>{{age}}</span>                  
 	                </div>
 	                <div class="mcon-symptom" v-if='illness'>
-	                    <span>主述症状:</span>{{illness}}
+	                    <span>主述症状:</span>
+	                    <p>{{illness}}</p>
 	                </div>
-	                <div class="field-suggestion" v-if="suggestion">
+	                <!--<div class="field-suggestion" >
 	                    {{suggestion}}
-	                </div>
+	                </div>-->
 	                <div class="mcon-season">
-	                    <p class="tit" style="display: none;">R</p>
-	                    <div>
-	                        <p class="subtitle">节令体质: {{wuXingLevelText}}</p>
-	                        <p v-html="reportContent"></p>
-	                    </div>
+	                	<dl v-if="suggestion">
+	                		<dt><img src="../assets/medicalImg2.png"/></dt>
+	                        <dd>
+	                        	<p class="subtitle" >天气舒适度</p>
+	                        	<p v-html="reportContent">{{suggestion}}</p>
+	                        </dd>
+	                    </dl>
+	                    <dl>
+	                    	<dt><img src="../assets/medicalImg1.png"/></dt>
+	                        <dd>
+	                        	<p class="subtitle">节令体质: {{wuXingLevelText}}</p>
+	                        	<p v-html="reportContent"></p>
+	                        </dd>
+	                    </dl>	                    
 	                </div>
+	                <p class="bottomLine"></p>
 	     			<!--商品推荐-->
 			        <div class="s-mrecomment">
 			            <dl class="s-marticlecon" v-for='(item,index) in recommendlist' @click='recomClick(item,index)'>
@@ -222,33 +231,52 @@
                 .mcon-name {
                     border-bottom: 1px dotted #ddb88e;
                     line-height: rem(24rem);
-                    font-weight: bold;
                     span {
-                        margin-right: 4%;
                         display: none;
                     }
-                    span:nth-child(1) {
-                        margin-right: 12%;
+                    span:nth-child(2) {
+                        margin-left: 14%;
+                    }
+                    span:nth-child(3){
+                    	float: right;
                     }
                     .mcon-block {
                         display: inline-block;
+                        color: #666;
+                        b{
+                        	color: #000;
+                        }
                     }
                 }
                 .mcon-symptom {
                     width: 100%;
+                    font-size: $font12;
                     overflow: hidden;
-                    white-space: nowrap;
-                    text-overflow: ellipsis;
-                    font-size: $font13;
-                    padding-top: rem(12rem);
-                    padding-bottom: rem(12rem);
+                    padding: rem(5rem) 0;
                     border-bottom: 1px solid #f4eade;
                     span {
                         font-weight: bold;
                         margin-right: 2%;
+                        color: #000;
+                        display: inline-block;
+                        float: left;
+                        width: 20%;
+                        line-height: rem(20rem);
+                    }
+                    p{	
+                    	width: 78%;
+                    	overflow:hidden; 
+						text-overflow:ellipsis;
+						display:-webkit-box; 
+						-webkit-box-orient:vertical;
+						-webkit-line-clamp:2; 
+						color: #666;
+                    	line-height: rem(20rem);
+                    	float: right;
                     }
                 }
                 .field-suggestion {
+                	width: 100%;
                     font-size: $font13;
                     line-height: $font16;
                     padding-bottom: rem(10rem);
@@ -257,28 +285,50 @@
                     border-bottom: 1px solid #f4eade;
                 }
                 .mcon-season {
-                    width: 100%;
+                    width: 92%;
+                    border: 1px dashed #c6c6c6;
+                    border-radius: rem(28rem);
                     overflow: hidden;
-                    margin-top: rem(10rem);
-                    padding-bottom: rem(10rem);
-                    border-bottom: 1px solid #f4eade;
-                    .tit {
-                        font-size: $font20;
+                    margin-top: rem(16rem);
+                    padding:0  4% rem(20rem);
+                    dl {
+                    	width: 100%;
+                    	overflow: hidden;
+                    	margin-top: rem(20rem);
+                    	dt{
+                    		width: rem(26rem);
+                    		height: rem(26rem);
+                    		float: left;
+                    		img{
+                    			width: 100%;
+                    			height: 100%;
+                    		}
+                    	}
+                    	dd{
+                    		float: right;
+                    		width: 86%;
+                    		span {
+	                            display: block;
+	                            font-weight: bold;
+	                            float: left;
+	                            line-height: rem(18rem);
+	                        }
+	                        p {
+	                            line-height: rem(18rem);
+	                            color: #666;
+	                        }
+	                        .subtitle{
+	                        	font-weight: bold;
+	                            color: #c69b70;
+	                            line-height: rem(22rem);
+	                        }
+                    	}                        
                     }
-                    div {
-                        span {
-                            display: block;
-                            font-weight: bold;
-                            float: left;
-                            line-height: rem(18rem);
-                        }
-                        p {
-                            line-height: rem(18rem);
-                        }
-                        .subtitle{
-                            font-weight: bold;
-                        }
-                    }
+                }
+                .bottomLine{
+                	width: 100%;
+                	margin-top: rem(16rem);
+                	border-bottom: 1px solid #f4eade;
                 }
                 /*文章部分*/
                 .s-mrecomment {
@@ -303,7 +353,7 @@
 			        .s-marticlecon {
 			            width: 100%;
 			            overflow: hidden;
-			            margin-top: rem(15rem);
+			            margin-top: rem(9rem);
 			            padding-bottom: rem(12rem);
 			            border-bottom: rem(1rem) solid #e8e8e8;
 			            dt {
@@ -318,10 +368,10 @@
 			                -webkit-line-clamp: 2;
 			                overflow: hidden;
 			                h3 {
-			                    font-size: $font18;
+			                    font-size: $font16;
 			                    color: $c3c3c;
 			                    font-weight: bold;
-			                    line-height: rem(26rem);
+			                    line-height: rem(22rem);
 			                    margin-bottom: rem(5rem);
 			                    letter-spacing: rem(1rem);
 			                }
@@ -334,10 +384,9 @@
 			                }
 			                span {
 			                    vertical-align: middle;
-			                    /*float: left;*/
 			                }
 			                .itemPrice {
-			                    color: #ff4443;
+			                    color: #ff4444;
 			                }
 			
 			            }
@@ -357,14 +406,14 @@
         }
         .product-section {
 	        width: 100%;			        			        
-	        padding-top: rem(50rem);
+	        padding-top: rem(20rem);
 	        padding-bottom: rem(20rem);
 	        text-align: center;			
 	        .shop-button {
-	            width: rem(120rem);
-	            height: rem(40rem);
-	            line-height: rem(40rem);
-	            font-size: rem(18rem);
+	            width: rem(150rem);
+	            height: rem(50rem);
+	            line-height: rem(50rem);
+	            font-size: rem(16rem);
 	            color: white;
 	            left: 0;
 	            display: inline-block;

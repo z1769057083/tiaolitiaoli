@@ -386,7 +386,7 @@ export default {
 	        }else{
 			    	Toast({
 			        message: '手机号码格式有误',
-			        position:'top',
+			        position:'middle',
 			        duration:1000
 			      });
 			        return;

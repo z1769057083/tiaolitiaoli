@@ -10,13 +10,13 @@
         	<dd>全球每年约有60万人死于肝癌，其中约55%发生在中国。我国肝癌高发年龄为35-45岁，且有发病率上升、年龄趋小的态势。</dd>
         </dl>
         <h3 class="title title1"><img src="../assets/geneReportTit.png" alt="" />肝癌检测结果</h3>
-        <div class="detail-mcen">一般风险</div>
+        <div class="detail-mcen">正常</div>
         <p class="detail-text">您的基因风险值高于</p>
         <p class="detail-text detail-text1"><span>68%</span>的人</p>
         <img class="geneReportBot" src="../assets/geneReportBot.png"/>
         <div class="detail-mbot">
-        	<p><span></span>一般风险</p>
-        	<p><span  class="center"></span>中度风险</p>
+        	<p><span></span>正常</p>
+        	<p><span class="center"></span>中度风险</p>
         	<p class="height"><span></span>高度风险</p>
         </div>
         <p class="detail-text2">中国平均患病率  25%</p>
@@ -43,7 +43,9 @@
         		
         	</ul>
         </div>
-        <div class="tiaoLi">调理身体</div>
+        <div class="tiaoLi">
+        <router-link to="/" tag='a'>调理身体</router-link>
+        </div>
     </div>
 </template>
 <script>
@@ -167,7 +169,7 @@
 			p{
 				float: left;
 				line-height: rem(15rem);
-				margin-right: 10%;
+				margin-right: 17%;
 				font-size: $font12;
 				color: #727171;
 				span{
@@ -200,6 +202,7 @@
 			width: 85%;
 			margin-left: 7.5%;
 			overflow: hidden;
+			height: rem(380rem);
 			.detail-botTop{
 				width: 100%;
 				border-bottom: 0.05px solid #c9caca;
@@ -219,7 +222,7 @@
 				margin-top: rem(20rem);
 				overflow: hidden;
 				p{
-					line-height: rem(14rem);
+					line-height: rem(18rem);
 					font-size: $font12;
 					text-align: justify;
 					margin-bottom: rem(10rem);
@@ -267,17 +270,19 @@
 			}
 		}
 		.tiaoLi{
-			margin-top: rem(80rem);
+			margin-top: rem(20rem);
 			width: 28%;
 			margin-left: 36%;
 			background: #00a0e9;
-			color: #fff;
 			height: rem(35rem);
 			text-align: center;
 			line-height: rem(35rem);
 			font-size: $font16;
 			border-radius: rem(10rem);
-			margin-bottom: rem(60rem);
+			margin-bottom: rem(40rem);
+			a{
+				color: #fff;
+			}
 		}
 	}
 </style>
