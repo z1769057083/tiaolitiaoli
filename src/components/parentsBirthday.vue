@@ -1,6 +1,6 @@
 <template>
     <div class="m-selection">
-        <span>父亲生日和小时：</span>
+        <span>父亲出生日期和时辰：</span>
         <div class="date-time">
         	<input type="date" :class="{'activeDate': toggle}" class="m-selectbirthday" name='fatherBirthday'
                v-model='fatherBirthday' min="1901-01-01"
@@ -11,7 +11,7 @@
 			</option>
 		</select>
         </div>        
-        <span>母亲生日和小时：</span>
+        <span>母亲出生日期和时辰：</span>
         <div class="date-time">
         	<input type="date" :class="{'activeDate': toggle1}" class="m-selectbirthday" name='motherBirthday'
                v-model='motherBirthday'  min="1901-01-01"
@@ -60,13 +60,13 @@
                         answer.validationMessage='父亲生日应早于你的生日';
                     }
                 	else if (this.fatherHour=='') {
-                        answer.validationMessage = '请填写父亲的出生时间';
+                        answer.validationMessage = '父亲的出生时辰不能为空';
                    	}
                     else if (new Date(this.motherBirthday) >= new Date(global.User.birthday)) {
                         answer.validationMessage = '母亲生日应早于你的生日';
                     }
                     else if(this.motherHour==''){
-                    	answer.validationMessage = '请填写母亲的出生时间';
+                    	answer.validationMessage = '母亲的出生时辰不能为空';
                     }
                     else {
                         answer.validationMessage = '';

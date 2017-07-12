@@ -103,3 +103,12 @@ $c3c3c: #3c3c3c;
     }   
       
 }
+.reportDetailcontent{
+    p{
+        span{
+            color: #c69b70;
+            font-size: $font14;
+            line-height: rem(24rem);
+        }
+    }
+}

@@ -83,9 +83,9 @@
                     <img class="close" src="../assets/shopcarClose.png"
                          @click='wuXingPoint = !wuXingPoint'/>
                     <div class="reportDetailcontent">
-                        <p v-html="wuXingXianTianStatusText"></p>
-                        <p v-html="wuXingHouTianStatusText"></p>
-                        <p class="r-mrconp" v-html="wuXingJieQiStatusText"></p>
+                        <p class="reportTextBorder" v-html="wuXingXianTianStatusText"></p>
+                        <p class="reportTextBorder" v-html="wuXingHouTianStatusText"></p>
+                        <p class="reportTextBorder r-mrconp" v-html="wuXingJieQiStatusText"></p>
                         <p>
                             五行体质是指个体生命在先天遗传和后天获得的基础上表现出的综合特质。这种特质属于先天性，同时会受到后天环境、情志等各种因素的影响，甚至发生先天体质的改变，个人调理则应当根据五行体质来进行。<br>
                         </p>
@@ -146,13 +146,13 @@
                     data: wuXingDangshiArray
                 }];
                 ReportHelper.loadChart('chart-container', items)
-                this.wuXingXianTianStatusText ='先天体质: '+ Common.parseWuXingLevelToText(report.wuXingXianTianLevel)
-                    + " <br> [" + Common.parseWuXingPointToText(report.wuXingXianTian) + "]";
-                this.wuXingHouTianStatusText ='后天体质: '+  Common.parseWuXingLevelToText(report.wuXingHouTianLevel)
-                    + " <br> [" + Common.parseWuXingPointToText(report.wuXingHouTian) + "]";
+                this.wuXingXianTianStatusText ='<span>先天体质: '+ Common.parseWuXingLevelToText(report.wuXingXianTianLevel)
+                    + " </span><br>" + Common.parseWuXingPointToText(report.wuXingXianTian);
+                this.wuXingHouTianStatusText ='<span>后天体质: '+  Common.parseWuXingLevelToText(report.wuXingHouTianLevel)
+                    + "</span><br>" + Common.parseWuXingPointToText(report.wuXingHouTian);
                 this.wuXingJieQiPointText = '五行体质: '+ Common.parseWuXingLevelToText(report.wuXingDangShiLevel);
-                this.wuXingJieQiStatusText = '节令体质: '+ Common.parseWuXingLevelToText(report.wuXingDangShiLevel)
-                    + " <br> [" + Common.parseWuXingPointToText(report.wuXingDangShi) + "]";
+                this.wuXingJieQiStatusText = '<span>节令体质: '+ Common.parseWuXingLevelToText(report.wuXingDangShiLevel)
+                    + "</span><br>" + Common.parseWuXingPointToText(report.wuXingDangShi);
                 this.wuXingReportHouTianObj = Common.convertReportsToObj(report.jieQiReports);
                 var text=Common.parseWuXingLevelToText(report.wuXingDangShiLevel);
                 if(text!==''){this.wuXingText=text+'的'}
@@ -232,7 +232,8 @@
     	width: 100%;
     	position: absolute;  
     	background: url(../assets/indexbg.jpg) repeat-y;
-	    background-size: contain;   
+	    background-size: contain;  
+	    font-size: $font14; 
 	    .afterReport {
 	        width: 100%;
 	        overflow: hidden;  
@@ -266,7 +267,7 @@
 	                        h3 {
 	                            background: url(../assets/rmattribute.png) no-repeat center left;
 	                            padding-left: 3%;
-	                            font-size: $font14;
+	                            font-size: $font15;
 	                            color: #c69b70;
 	                            line-height: rem(28rem);
 	                            height: rem(28rem);;
@@ -319,7 +320,7 @@
 	                    h3 {
 	                        background: url(../assets/rmattribute.png) no-repeat center left;
 	                        padding-left: 3%;
-	                        font-size: $font14;
+	                        font-size: $font15;
 	                        color: #c69b70;
 	                    }
 	                    p {
@@ -363,7 +364,7 @@
 	            .top {
 	                position: absolute;
 	                width: 54%;
-	                height: rem(54rem);
+	                height: rem(22rem);
 	                top: rem(10rem);
 	                left: 23%;
 	                img {
@@ -380,16 +381,21 @@
 	            .reportDetailcontent {
 	                width: 100%;
 	                height: rem(275rem);
-	                margin-top: rem(48rem);
+	                margin-top: rem(40rem);
 	                overflow: auto;
 	                p {
 	                    margin: 0 8%;
-	                    line-height: rem(22rem);;
-	                    padding-bottom: rem(10rem);
+	                    line-height: rem(22rem);
+	                    padding-bottom: rem(8rem);
 	                    font-size: $font14;
-	                    color: #505050;
+	                    color: #000;
 	                    text-align: justify;
-	                     text-justify: inter-ideograph;
+	                    text-justify: inter-ideograph;                    
+	                    margin-bottom: rem(8rem);	                    
+	                }
+	                .reportTextBorder{
+	                	border-bottom: 1px solid #efdbc3;
+	                	font-size: $font12;
 	                }
 	            }
 	        }

@@ -160,7 +160,7 @@
             confirm () {
                 if (!this.isCurrentQuestionFinished) {
                 	if(this.index==0){
-                		var message='请填写您的出生时间';
+                		var message='您的出生时辰不能为空';
                 	}else{
                 		var message='请先完成当前问题';
                 	}                    

@@ -130,6 +130,7 @@
                 this.arr2 = this.arr[0][0]
                 if (this.arr2.id === 1) {
                     this.codeHidden = true
+                    this.toggle = 2
                 }
                 this.totalCount = this.arr[2].price
                 let receive = JSON.parse(window.localStorage.getItem('receiveCode'))
