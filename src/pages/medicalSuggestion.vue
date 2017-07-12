@@ -48,7 +48,7 @@
 	        </div>
 	        <div class="product-section">
 	            <router-link to='/shop'>
-	                <div class="shop-button">商城</div>
+	                <div class="shop-button">逛一逛</div>
 	            </router-link>
 	        </div>
 	        <myNullReport v-if='nullHidden'></myNullReport>
