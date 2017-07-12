@@ -186,7 +186,7 @@
                 	}                  
                 }
                 if (answer.content === '') {
-                    answer.content = '回答完毕';
+                    answer.content = '回答完毕。';
                 }
                 this.renderedMessages.push(answer);
                 this.checkFemaleQuestion(this);
