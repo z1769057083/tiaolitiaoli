@@ -2,9 +2,9 @@
 	<div class="wrap">
 	    <div class='recuperate'>
 	        <div class="recuperate-main" v-if='!nullHidden'>
-	            <div class="recuperate-top">
+	            <!--<div class="recuperate-top">
 	                <img src="../assets/recuperate1.png"/>
-	            </div>
+	            </div>-->
 	            <div class="recuperate-mcon">
 	                <div class="mcon-name">
 	                    <span v-if='nickname' class="mcon-block"><b>姓名：</b>{{nickname}}</span>
@@ -15,7 +15,7 @@
 	                    <span>主述症状:</span>
 	                    <p>{{illness}}</p>
 	                </div>
-	                <!--<div class="field-suggestion" >
+	                <!--<div class="field-suggestion" v-if="suggestion">
 	                    {{suggestion}}
 	                </div>-->
 	                <div class="mcon-season">
@@ -203,7 +203,7 @@
             border: 1px solid #c69b70;
             margin-left: 6.7%;
             background: #fff;
-            padding-top: rem(34rem);
+            padding-top: rem(15rem);
             font-size: $font13;
             .recuperate-top {
                 width: 44%;
@@ -335,11 +335,6 @@
 			        width: 100%;
 			        overflow: hidden;
 			        padding-top: rem(6rem);
-			        .tip {
-			            width: rem(10rem);
-			            height: rem(12rem);
-			            margin-top: rem(3.5rem);
-			        }
 			        .s-marttitle {
 			            font-size: 0.42rem;
 			            line-height: rem(40rem);
@@ -362,7 +357,7 @@
 			                margin-right: 2%;
 			                font-size: $font12;
 			                color: #999;
-			                line-height: rem(20rem);
+			                line-height: rem(21rem);
 			                display: -webkit-box;
 			                -webkit-box-orient: vertical;
 			                -webkit-line-clamp: 2;
@@ -376,11 +371,12 @@
 			                    letter-spacing: rem(1rem);
 			                }
 			                .tip {
-			                    width: rem(10rem);
+			                    width: rem(12rem);
 			                    height: rem(12rem);
 			                    float: left;
 			                    margin-right: rem(4rem);
 			                    vertical-align: middle;
+			                    margin-top: rem(3.2rem);			                    
 			                }
 			                span {
 			                    vertical-align: middle;

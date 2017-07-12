@@ -128,8 +128,9 @@ export default {
 	        text-overflow: ellipsis;
 	        color: #666;
 	        margin-top: rem(2rem);
+	        line-height: rem(14.2rem);
 	        .tip {
-	            width: rem(10rem);
+	            width: rem(12rem);
 	            height: rem(12rem);
 	           	float: left;
 	           	margin-right: rem(4rem);
