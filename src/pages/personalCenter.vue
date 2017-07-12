@@ -3,10 +3,6 @@
         <div class='i-content'>
             <div class='i-main'>
                 <h3 class='i-maintop'>个人中心</h3>
-                <div class='i-maincen'>
-                    <img class="i-mline" src="../assets/indexline.png"/>
-                    <img class="i-micon" src="../assets/index.png">
-                </div>
                 <div class='i-maindocter'>
                     <div style="padding: 36px 20px 20px 20px;">用于测试时清除缓存</div>
                     <div class='i-maintest' >
@@ -17,7 +13,7 @@
                 <div class='i-maindocter'>
                     <div style="padding: 36px 20px 20px 20px;">用于测试时清除缓存</div>
                     <div class='i-maintest' >
-                        <button  @click="removeUser"   style="border: 1px solid #e2c8a8;height: 28px;color: #e2c8a8;float: right;
+                        <button  @click="removeUser"  style="border: 1px solid #e2c8a8;height: 28px;color: #e2c8a8;float: right;
                         width: 100px;background-color: #fff;margin-left: 10px;">删除当前账号</button>
                     </div>
                 </div>

@@ -203,11 +203,6 @@
         width: 100%;
         overflow: hidden;
         padding-top: rem(6rem);
-        .tip {
-            width: rem(10rem);
-            height: rem(12rem);
-            margin-top: rem(3.5rem);
-        }
         .s-marttitle {
             font-size: 0.42rem;
             line-height: rem(40rem);
@@ -230,7 +225,7 @@
                 margin-right: 2%;
                 font-size: $font12;
                 color: #999;
-                line-height: rem(20rem);
+                line-height: rem(23rem);
                 display: -webkit-box;
                 -webkit-box-orient: vertical;
                 -webkit-line-clamp: 2;
@@ -244,7 +239,7 @@
                     letter-spacing: rem(1rem);
                 }
                 .tip {
-                    width: rem(10rem);
+                    width: rem(12rem);
                     height: rem(12rem);
                    	float: left;
                    	margin-right: rem(4rem) ;
@@ -390,8 +385,9 @@
                 text-overflow: ellipsis;
                 color: #666;
                 padding-top: rem(6rem);
+                line-height: rem(15rem);
                 .tip {
-                    width: rem(10rem);
+                    width: rem(12rem);
                     height: rem(12rem);
                    	float: left;
                    	margin-right: rem(4rem);
