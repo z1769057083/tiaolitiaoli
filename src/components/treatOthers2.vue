@@ -11,7 +11,7 @@
                 </dd>
             </dl>
             <dl>
-                <dt>体型较壮</dt>
+                <dt>体格健壮</dt>
                 <dd>
                     <p :class="{'active': section2.strong === 1}" @click="change_active(1,'2','strong',$event)">是</p>
                     <p :class="{'active': section2.strong === 0}" @click="change_active(0,'2','strong',$event)">不是</p>
