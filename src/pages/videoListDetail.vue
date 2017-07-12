@@ -1,95 +1,90 @@
 <template>
-  <div class="wrap-box">
-			<div class="wrap">
-				<h3 class="title">{{list.title}}</h3>
-				<!--<p class="date">
-					2017-06-13
-					<span>汉古科技</span>					
-				</p>-->
-				<p class="wuxing">五行：弱水</p>
-				<video width="100%" height="240" controls autobuffer :src="apiPath+'/video/'+list.index+'.mp4'">
-				</video>
-				<p class="content">
-					{{list.content}}
-				</p>
-			</div>	
-		</div>
+    <div class="wrap-box">
+        <div class="wrap">
+            <h3 class="title">{{list.title}}</h3>
+            <p class="wuxing">五行：弱水</p>
+            <video width="100%" height="240" controls autobuffer :src="apiPath+'/video/'+list.index+'.mp4'">
+            </video>
+            <p class="content">
+                {{list.content}}
+            </p>
+        </div>
+    </div>
 </template>
 <script>
-import axios from 'axios'
-import api from '../api/api'
-export default {
-  data(){
-  	return {
-  		apiPath:'',
-  		list:{
-  		}
-    }
-  },
-  methods: {
-	requestlist(){
-        var that = this;
-        that.videoId = this.$route.query.itemid;
-        console.log(that.videoId)
-        axios.get(api.videoListDetail+that.videoId)
-          .then(function (res) {
-            if (res.data.errorCode == 0) {
-              res = res.data.returnValue
-              that.list = res
-              console.log(that.list)
+    import axios from 'axios'
+    import api from '../api/api'
+    export default {
+        data(){
+            return {
+                apiPath: '',
+                list: {}
             }
-          })
-          .catch(function (error) {
-            console.log(error)
-          })
-      },
-  },
-  mounted() {
-	this.apiPath = api.apipath
-	this.requestlist()
-		document.documentElement.scrollTop = 0
-    document.body.scrollTop = 0
-  }
-}
+        },
+        methods: {
+            loadVideo(){
+                var that = this;
+                that.videoId = this.$route.query.itemid;
+                console.log(that.videoId)
+                axios.get(api.videoListDetail + that.videoId)
+                    .then(function (res) {
+                        if (res.data.errorCode == 0) {
+                            res = res.data.returnValue
+                            that.list = res
+                            console.log(that.list)
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error)
+                    })
+            }
+        },
+        mounted() {
+            this.apiPath = api.apipath
+            this.loadVideo()
+            document.documentElement.scrollTop = 0
+            document.body.scrollTop = 0
+        }
+    }
 </script>
 <style scoped lang="scss" rel="stylesheet/scss">
-	@import "../common/common.scss";
-	.wrap-box{
-			width: 100%;
-			overflow: hidden;
-			background: #fff;
-			.wrap{
-				width: 92%;
-				margin: 0 4%;
-				padding-bottom: rem(15rem);
-				.title{
-					font-size: $font18;
-					font-weight: bold;
-					margin: rem(10rem) 0 rem(8rem);
-				}
-				.date{
-					font-size: $font12;
-					color: #868686;
-					span{
-						color: #4e7b9c;
-					}
-				}
-				.wuxing{
-					font-size: $font12;
-					color: #666;
-					margin: rem(8rem) 0 rem(10rem);
-				}
-				.content{
-					margin-top: rem(10rem);
-					line-height: rem(26rem);
-					color: #000;
-					font-size: $font14;
-					text-align: justify;
-				}
-			}
-		}
-		
-		
-		
+    @import "../common/common.scss";
+
+    .wrap-box {
+        width: 100%;
+        overflow: hidden;
+        background: #fff;
+        .wrap {
+            width: 92%;
+            margin: 0 4%;
+            padding-bottom: rem(15rem);
+            .title {
+                font-size: $font18;
+                font-weight: bold;
+                margin: rem(10rem) 0 rem(8rem);
+            }
+            .date {
+                font-size: $font12;
+                color: #868686;
+                span {
+                    color: #4e7b9c;
+                }
+            }
+            .wuxing {
+                font-size: $font12;
+                color: #666;
+                margin: rem(8rem) 0 rem(10rem);
+            }
+            .content {
+                margin-top: rem(10rem);
+                line-height: rem(26rem);
+                color: #000;
+                font-size: $font14;
+                text-align: justify;
+            }
+        }
+    }
+
+
 </style>
 
