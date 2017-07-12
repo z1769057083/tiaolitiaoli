@@ -112,6 +112,7 @@
             return {
                 list: [],
                 wuXingText:'',
+                wuXingJieQiPointText:'',
                 wuXingReportHouTianContent: '',
                 wuXingReportHouTianObj: {},
                 wuXingJieQiStatusText: '',

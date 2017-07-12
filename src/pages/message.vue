@@ -20,7 +20,7 @@
             <!--体质报告问题开始-->
             <gender v-if="index == 0" @updateUserAnswer="updateUserAnswer"></gender>
             <birthCity v-if="index == 1"  @updateUserAnswer="updateUserAnswer"></birthCity>
-            <city v-if="index == 2"  @updateUserAnswer="updateUserAnswer"></city>
+            <liveCity v-if="index == 2"  @updateUserAnswer="updateUserAnswer"></liveCity>
             <parentsBirthday v-if="index == 3" @updateUserAnswer="updateUserAnswer"></parentsBirthday>
             <emotion v-if="index == 4" @updateUserAnswer="updateUserAnswer"></emotion>
             <season v-if="index == 5" @updateUserAnswer="updateUserAnswer"></season>
@@ -57,7 +57,7 @@
     import api from '../api/api'
     import gender from '@/components/gender'
     import birthCity from '@/components/birthCity'
-    import city from '@/components/city'
+    import liveCity from '@/components/liveCity'
     import emotion from '@/components/emotion'
     import season from '@/components/season'
     import looks from '@/components/looks'
@@ -102,7 +102,7 @@
             }
         },
         components: {
-            gender,birthCity, city, emotion, season, looks, skinColor, limbs, treatOthers1,
+            gender,birthCity, liveCity, emotion, season, looks, skinColor, limbs, treatOthers1,
             treatOthers2, treatOthers3, treatOthers4, parentsBirthday,
             aftertreat, maskconfirm, physiology, afterCrescent, headForm,
             character, temperament, figures ,upLoad

@@ -11,7 +11,7 @@
 		 <div class="recommend-cont">
 		 	<img class="cont-tit" src="../assets/recommendtit1.png" alt="" />
 		 	<h3 class="cont-title">固元膏、阿胶膏小心吃出病</h3>
-		 	<img class="cont-mainImg" src="../assets/recommendimg1.png"/>
+		 	<img class="cont-mainImg" src="../assets/recommendArticle1.jpg"/>
 		 	<p class="cont-intro">
 		 		阿胶固然有滋阴养血、补益气血、调经安胎、
 		 		扩张血管等功效；</p>
@@ -28,7 +28,7 @@
 		 <div class="recommend-cont  recommend-cont2">
 		 	<img class="cont-tit" src="../assets/recommendtit2.png" alt="" />
 		 	<h3 class="cont-title">杂粮也可能危害健康</h3>
-		 	<img class="cont-mainImg" src="../assets/recommendimg2.png"/>
+		 	<img class="cont-mainImg" src="../assets/recommendArticle2.jpg"/>
 		 	<p class="cont-intro">
 		 		儿童处于生长发育期，需要补脾、养胃，易消化的食物，
 		 		而薏米、小米之类的粗粮，所谓健脾是驱邪而健脾。</p>

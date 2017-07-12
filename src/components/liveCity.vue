@@ -54,7 +54,7 @@
                 picker.setSlotValues(1, address[values[0]]);
                 this.addressProvince = values[0];
                 this.addressCity = values[1];
-                this.Obj.city = this.addressCity;
+                this.Obj.liveCity = this.addressCity;
                 this.Obj.location = Common.getLocationByCity(this.addressProvince, this.addressCity);
                 this.$emit('updateUserAnswer', this.Obj);
             }
@@ -62,7 +62,7 @@
         data() {
             return {
                 Obj: {
-                    city: ''
+                    liveCity: ''
                 },
                 number: 0,
                 yearSlot: [{

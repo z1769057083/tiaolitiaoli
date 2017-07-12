@@ -11,9 +11,13 @@
     "isFormat": true,
     "text": "我是{0}出生的。"
   },
-  "city": {
+  "liveCity": {
     "isFormat": true,
-    "text": "我是{0}人。"
+    "text": "我在{0}生活。"
+  },
+  "birthCity": {
+    "isFormat": true,
+    "text": "我出生在{0}。"
   },
   "taste": {
     "isArray":true,
