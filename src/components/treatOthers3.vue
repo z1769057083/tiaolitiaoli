@@ -26,7 +26,7 @@
 	  			</dd>
 	  		</dl>
 	  		<dl>
-	  			<dt>身材魁梧</dt>
+	  			<dt>体型高大</dt>
 	  			<dd>
 	  				<p :class="{'active': section3.burly === 1}" @click="change_active(1,'4','burly',$event)">是</p>
 	  				<p :class="{'active': section3.burly === 0}" @click="change_active(0,'4','burly',$event)">不是</p>

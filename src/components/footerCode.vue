@@ -1,12 +1,12 @@
 <template>
   <div class="recommend">
   	<div class="recommend-main">
-		 <div class="recommend-cont">
+		 <div class="recommend-cont" v-if="hasQrCodeImage==true">
 		 	<img class="cont-bottom" src="../assets/recommendLine.png" alt="" />		 	
 		 </div>
-		 <p class="cont-bottit">长按下图识别二维码关注我们<br />期待更多精彩内容</p>
-		 <img class="cont-code" src="../assets/recommendCode.png" alt="" />
-		 <p class="title">调理调理</p>
+		 <p class="cont-bottit" v-if="hasQrCodeImage==true">长按下图识别二维码关注我们<br />期待更多精彩内容</p>
+		 <img class="cont-code" src="../assets/recommendCode.png" alt=""  v-if="hasQrCodeImage==true"/>
+		 <p class="title" v-if="hasQrCodeImage==true">调理调理</p>
 		 <div class="line"></div>
 		 <ul class="cont-link">
 		 	<router-link to='/'>
@@ -30,6 +30,7 @@
 	import axios from 'axios'
 	import api from '../api/api';
   export default {
+      props:['hasQrCodeImage'],
 
   }
 </script>
