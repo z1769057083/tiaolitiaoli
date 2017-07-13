@@ -41,9 +41,9 @@
             document.title = "我的优惠券"
             if (!window.localStorage) {
             	return false;
-	        } else {
-	        	this.receive = JSON.parse(window.localStorage.getItem('receiveCode'))	        	
-	        	if(this.receive){
+	        } else {	        		        	
+	        	if(window.localStorage.getItem('receiveCode')){
+	        		this.receive = JSON.parse(window.localStorage.getItem('receiveCode'))
 	        		this.couponHidden = false
 	        	}
 	        }

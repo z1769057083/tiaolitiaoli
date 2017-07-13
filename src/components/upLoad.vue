@@ -105,8 +105,6 @@ export default {
 		left: 12.8%; 
 		overflow: hidden;
 		background: #fff;
-		/*background: url(../assets/afterCresent.jpg) no-repeat center;
-		background-size: cover;*/
 		.mask-conTop{
 			width: 100%;
 			height: rem(210rem);

@@ -7,7 +7,7 @@
 	        	</div>
 	        	<div class="p-right">
 	        		<p>仅限购买六大高发癌症风险检测套餐</p>
-	        		<p class="bot">{{this.couponList.code}}</p>
+	        		<p class="bot">{{code}}</p>
 	        		<span>有效期2017.06.09-2017.12.29</span>
 	        		<div class="p-rightBtn">
 	        			<img  @click='receiveCode' v-if='btnHidden' src="../assets/receiveBtn1.png" alt="" />
@@ -31,6 +31,7 @@
 <script>
     import axios from 'axios'
     import api from '../api/api'
+    import Toast from '@/packages/toast'
     export default {
         data() {
             return {
@@ -39,19 +40,14 @@
 				btnHidden: true,
 				useId:'',
 				nickname:'',
-				couponList:[],
+				code:'',
 				isReceive:''
             }
         },
         methods: {
 			receiveCode(){
+				this.getCoupon()
 				this.maskHidden = !this.maskHidden
-				this.isReceive = this.couponList.code
-				if (!window.localStorage) {
-	            return false;
-		        } else {
-		        	window.localStorage.setItem('receiveCode',JSON.stringify(this.isReceive))
-		        }
 			},
 			nowUse(){
 				this.$router.push({ path:'/gene'})
@@ -76,10 +72,17 @@
                 axios.get(api.getCoupon+'?userId='+that.useId+'&nickname='+that.nickname)
                     .then(function (res) {
                         if (res.data.errorCode == 0) {
-                            res = res.data.returnValue
-                            that.couponList = res
-                            console.log(res)
-                            console.log(that.couponList)
+                            res = res.data.returnValue;
+                            that.code = res.code;
+                            window.localStorage.setItem('receiveCode',JSON.stringify(that.code))
+                        }else if(res.data.errorCode == 7){
+                        	this.maskHidden = this.maskHidden
+                        	Toast({
+		                        message: '每个用户只能领取一张优惠券',
+		                        position: 'top',
+		                        duration: 1500
+		                    });
+		                    return;
                         }
                     })
                     .catch(function (error) {
@@ -91,12 +94,10 @@
             document.title = "领取优惠券"
             if (!window.localStorage) {
             	return false;
-	        } else {
-	        	let receive = JSON.parse(window.localStorage.getItem('receiveCode'))
-	        	if(receive==null){
-	        		this.getCoupon()
-	        	}else{
-	        		this.couponList.code = receive
+	        } else {	        	
+	        	if(window.localStorage.getItem('receiveCode')){
+	        		let receive = JSON.parse(window.localStorage.getItem('receiveCode'))
+	        		this.code = receive
 	        		this.btnHidden = !this.btnHidden
 	        	}
 	        }
