@@ -78,6 +78,7 @@
                         if (res.data.errorCode == 0) {
                             res = res.data.returnValue
                             that.couponList = res
+                            console.log(res)
                             console.log(that.couponList)
                         }
                     })
@@ -92,7 +93,6 @@
             	return false;
 	        } else {
 	        	let receive = JSON.parse(window.localStorage.getItem('receiveCode'))
-	        	console.log(receive)
 	        	if(receive==null){
 	        		this.getCoupon()
 	        	}else{

@@ -6,13 +6,13 @@
 			</div>
 		</div>
 		<div class='receive' v-if='!couponHidden'>
-	        <div class="receive-top" v-for='coupon in couponList'>
+	        <div class="receive-top">
 	        	<div class="price">
 	        		¥&nbsp;<span>680</span>
 	        	</div>
 	        	<div class="p-right">
 	        		<p>仅限购买六大高发癌症风险检测套餐</p>
-	        		<p class="bot">{{coupon.code}}</p>
+	        		<p class="bot">{{receive}}</p>
 	        		<span>有效期2017.06.09-2017.12.29</span>
 	        		<div class="p-rightBtn">
 	        			<img @click='nowUse' src="../assets/receiveBtn2.png" alt="" />
@@ -28,48 +28,22 @@
     export default {
         data() {
             return {
-				name:'',
-				useId:'',
-				couponList:[],
+				receive:'',
 				couponHidden: true
             }
         },
         methods: {
         	nowUse(){
 				this.$router.push({ path:'/gene'})
-			},
-			getCoupon(){
-				if (!window.localStorage) {
-	            return false;
-		        } else {
-		            if (window.localStorage.getItem(Account_Index) !== null) {
-		                let account = JSON.parse(window.localStorage.getItem(Account_Index))
-		                console.log(account)
-		                this.useId = account._id;
-		            }
-		        }
-				var that = this;
-                axios.get(api.userCoupon+that.useId)
-                    .then(function (res) {
-                        if (res.data.errorCode == 0) {
-                            res = res.data.returnValue
-                            that.couponList = res
-                            console.log(that.couponList)
-                        }
-                    })
-                    .catch(function (error) {
-                        console.log(error)
-                    })
 			}
         },
         mounted() {
-        	this.getCoupon()
             document.title = "我的优惠券"
             if (!window.localStorage) {
             	return false;
 	        } else {
-	        	let receive = JSON.parse(window.localStorage.getItem('receiveCode'))
-	        	if(receive){
+	        	this.receive = JSON.parse(window.localStorage.getItem('receiveCode'))	        	
+	        	if(this.receive){
 	        		this.couponHidden = false
 	        	}
 	        }
@@ -92,7 +66,7 @@
   }
 .receive{
 	width: 100%;
-	/*height: 100%;*/
+	height: 100%;
 	position: absolute;
 	overflow: hidden;
 	background: #f6f6f6;
