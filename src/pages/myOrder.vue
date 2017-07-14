@@ -27,7 +27,7 @@
   				<div class="r-bigStep">
   					<div class="r-smallStep"></div>					
   				</div>
-  				<p class="stepActive">您的样本正在路上</p>
+  				<p v-if='' class="stepActive">您的样本正在路上</p>
   				<div class="r-bigStep">
   					<!--<div class="r-smallStep"></div>-->					
   				</div>
@@ -53,8 +53,48 @@
   export default {
     data(){
     	return{
-    		
+    		list:[],
+    		listDate:[]
     	}
+    },
+    methods: {
+    	orderList(){
+        var that = this;
+        if (!window.localStorage) {
+            return false;
+        } else {
+            if (window.localStorage.getItem(Account_Index) !== null) {
+                let account = JSON.parse(window.localStorage.getItem(Account_Index))
+                that.useId = account._id
+            }
+
+        }
+        axios.get(api.orderList+that.useId)
+            .then(function (res) {                   	
+                if (res.data.errorCode == 0) {
+            		res = res.data.returnValue
+	                that.list = res
+	                //判断是否支付完成
+	                if(that.list.length>0){
+			            	for (var i = 0, len = that.list.length; i < len; i++) {
+			            		if(that.list[i].status==1){				            			
+			            			that.listDate.push(that.list[i])
+			            			console.log(that.listDate)
+			            		}			            			
+			            		that.price.price = that.list[i].price													           		
+			            	}
+		            	}
+                }
+            })
+            .catch(function (error) {
+                console.log(error)
+            })
+   		}
+   	},
+   	mounted() {
+    	this.apiPath = api.apipath
+    	this.orderList()       	
+        document.title = "优惠券订单"
     }
   }
 </script>

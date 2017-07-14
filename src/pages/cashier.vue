@@ -111,8 +111,60 @@
                         console.log(error)
                     })
             },
+            couponCashier(){
+            	let that = this
+                axios.defaults.headers['Content-Type'] = 'application/json';
+                if (!window.localStorage) {
+                    return false
+                } else {
+                    let storage = window.localStorage
+                    let obj_arr = storage.getItem('orderArr')
+                    let obj = JSON.parse(obj_arr)
+                    this.arr = obj
+                    if (window.localStorage.getItem(Account_Index) !== null) {
+                        let account = JSON.parse(window.localStorage.getItem(Account_Index))
+                        this.accountArr = account
+                    }
+                }
+                let params = {
+                    order: this.arr[0],
+                    address: this.arr[1],
+                    price: this.arr[2].price,
+                    userId: this.accountArr._id,
+                    openid: this.accountArr.openid,
+                    nickName: this.accountArr.nickname,
+                    couponCode:this.couponCode
+                }
+                let test = this.$route.query.test_pay;
+                if (test && test == 'true') {
+                    params = {
+                        order: {},
+                        address: 'test',
+                        price: 0.01,
+                        userId: this.accountArr._id,
+                        openid: this.accountArr.openid,
+                        nickName: this.accountArr.nickname,
+                        couponCode:this.couponCode
+                    }
+                }
+                axios.post(api.payCoupon, params)
+                    .then(function (res) {
+                        if (res.data.errorCode == 0) {
+                            console.log(res)
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error)
+                    })
+            },
             nowPay(){
-                this.requestCashier()
+            	console.log(this.toggle)
+            	if(this.toggle==1){
+            		this.requestCashier()
+            	}else if(this.toggle==2){            		
+            		this.couponCashier()
+            	}
+                
             },
             change_active(index, event) {
                 this.toggle = index
@@ -126,7 +178,6 @@
                 let obj_arr = storage.getItem('orderArr')
                 let obj = JSON.parse(obj_arr)
                 this.arr = obj
-                console.log(this.arr)
                 this.arr2 = this.arr[0][0]
                 if (this.arr2.id === 1) {
                     this.codeHidden = true

@@ -2,11 +2,11 @@
     <div class="wrap-box">
         <div class="wrap">
             <h3 class="title">{{list.title}}</h3>
-            <p class="wuxing">五行：弱水</p>
+            <!--<p class="wuxing">五行：弱水</p>-->
             <video width="100%" height="240" controls autobuffer :src="apiPath+'/video/'+list.index+'.mp4'">
             </video>
             <p class="content">
-                {{list.content}}
+                {{list.description}}
             </p>
         </div>
     </div>

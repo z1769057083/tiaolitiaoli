@@ -41,6 +41,12 @@
 	    				<input type="date" min='1900-01-01' :class="{'activeDate': toggle}" class="m-selectdate" name='birthday' v-model='birthday' @change='change_date(birthday)'/>
 	    			</dd>
 	    		</dl>
+	    		<dl>
+	    			<dt>联系方式:</dt>
+	    			<dd>
+	    				<input type="text" name='phone' v-model='phone'/>
+	    			</dd>
+	    		</dl>
 	    		<div class="address">
 	    			<span>绑定样本后请回寄至以下地址</span>
 	    			<p class="address-detail">北京市海淀区北三环西路48号科技会展中心2号楼16B (汉古医疗科技中心收)</p>
@@ -64,6 +70,7 @@
 				gender:'M',
 				code:'',
 				name:'',
+				phone:'',
 				bindDateList:[],
 				params:{}
             }
@@ -94,13 +101,25 @@
             bindUserData(){
                 let that = this
                 axios.defaults.headers['Content-Type'] = 'application/json';
-                if (this.code!==''&&this.name!=='') {
-		        	this.params ={
-				    	code:this.code,
-				    	name:this.name,
-			    		gander:this.gender,
-			    		birthday:this.birthday
-		    		}	
+                let rephone = /^1[3,4,5,7,8]\d{9}$/;
+                if (this.code!==''&&this.name!==''&&this.phone!=='') {
+                	if(rephone.test(this.phone)){
+                		this.params ={
+					    	code:this.code,
+					    	name:this.name,
+				    		gander:this.gender,
+				    		birthday:this.birthday,
+				    		phone:this.phone
+		    			}
+                	}else{
+                		Toast({
+					        message: '手机号码格式错误',
+					        position:'top',
+					        duration:1000
+					      });
+					        return;
+                	}
+		        		
 			    } else {
 			    	Toast({
 			        message: '必填项不能为空',
@@ -108,7 +127,8 @@
 			        duration:1000
 			      });
 			        return;
-            }
+            	}
+			    
 			    axios.post(api.bindUser, this.params)
                     .then(function (res) {
                     	console.log(res)

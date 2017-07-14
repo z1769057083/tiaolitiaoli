@@ -21,7 +21,7 @@ module.exports = {
     hotGoods: apiPath + '/product/hot',
     cashierSendData: apiPath + '/wechat/generate_wechat_order',
     videoListDetail: apiPath + '/product/video_details?id=',
-    videoList: apiPath + '/product/video',
+    videoList: apiPath + '/product/video?type=',
     articleList: apiPath + '/product/article',
     articleListDetail: apiPath + '/product/article_details?id=',
     orderList: apiPath + '/order/my?userId=',
@@ -31,5 +31,6 @@ module.exports = {
     getCoupon: apiPath + '/coupon/retrieve',//生成优惠券
     userCoupon: apiPath + '/coupon/get_by_user?userId=',//获取某个用户的优惠券
     bindUser: apiPath + '/item/bind_user',//绑定用户
+    payCoupon: apiPath + '/item/gene_purchase',//优惠券支付
     apipath:apiPath //发起请求向后台传订单数据 post
 }

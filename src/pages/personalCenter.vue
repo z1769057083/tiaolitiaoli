@@ -3,27 +3,26 @@
         <div class='i-content'>
             <div class='i-main'>
                 <h3 class='i-maintop'>个人中心</h3>
-                <div class='i-maindocter'>
-                    <div style="padding: 36px 20px 20px 20px;">用于测试时清除缓存</div>
-                    <div class='i-maintest' >
-                        <button  @click="removeLocalStorage"   style="border: 1px solid #e2c8a8;height: 28px;color: #e2c8a8;float: right;
-                        width: 60px;background-color: #fff;margin-left: 10px;">清除缓存</button>
-                    </div>
-                </div>
-                <div class='i-maindocter'>
-                    <div style="padding: 36px 20px 20px 20px;">用于测试时清除缓存</div>
-                    <div class='i-maintest' >
-                        <button  @click="removeUser"  style="border: 1px solid #e2c8a8;height: 28px;color: #e2c8a8;float: right;
-                        width: 100px;background-color: #fff;margin-left: 10px;">删除当前账号</button>
-                    </div>
-                </div>
+                <img class="avatar" :src="myselfAvatar"/>
+                <p class="name">{{myName}}</p>
+                <ul>
+                	<li @click='videoHome'>视频文章</li>
+                	<li @click='payGene'>购买基因产品</li>
+                	<li @click='geneReport'>基因报告</li>
+                	<li @click='myCoupon'>我的优惠券</li>
+                	<li @click='receiveCoupon'>领取优惠券</li>
+                	<li @click='bindCoupon'>绑定优惠券</li>
+                	<li @click="myOrder">优惠券订单</li>
+                	<li @click='orderList'>我的订单</li>                	
+                	<li @click="removeLocalStorage">删除当前账号</li>                	
+                	<li @click="removeUser">清除缓存</li>
+                </ul>
                 <div class='i-maintext i-maintip i-maintip1'> 版本号：{{version}}</div>
             </div>
         </div>
     </div>
 </template>
 <script>
-
     import Toast from '@/packages/toast'
     import axios from 'axios'
     import api from '../api/api'
@@ -32,6 +31,8 @@
         data() {
             return {
                 version: global.Version,
+                myName:'',
+                myselfAvatar:''                
             }
         },
         methods: {
@@ -47,28 +48,89 @@
                         localStorage.clear();
                         alert(text);
                     })
-
+            },
+            payGene(){
+            	this.$router.push({path:'/gene'})
+            },
+            myCoupon(){
+            	this.$router.push({path:'/myCoupon'})
+            },
+            receiveCoupon(){
+            	this.$router.push({path:'/receiveCoupon'})
+            },
+            bindCoupon(){
+            	this.$router.push({path:'/bindBarCode'})
+            },
+            orderList(){
+            	this.$router.push({path:'/orderList'})
+            },
+            myOrder(){
+            	this.$router.push({path:'/myOrder'})
+            },
+            geneReport(){
+            	this.$router.push({path:'/geneReport'})
+            },
+            videoHome(){
+            	this.$router.push({path:'/videoHome'})
             }
         },
         mounted() {
-
+			if (!window.localStorage) {
+            return false;
+	        } else {
+	            if (window.localStorage.getItem(Account_Index)) {
+	                let account = JSON.parse(window.localStorage.getItem(Account_Index))
+	                this.myselfAvatar = account.headimgurl;
+	                this.myName = account.nickname
+	            }
+	        }
         }
     }
 </script>
 <style scoped lang="scss" rel="stylesheet/scss">
     @import "../common/common.scss";
-
+	.home{
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		background: url(../assets/indexbg.jpg) no-repeat;
+        background-size: 100% 100%;        
+	}
     .i-content {
         position: absolute;
-        bottom: 0;
         width: 100%;
-        height: 100%;
+        overflow: hidden;
+        padding-bottom: rem(20rem);
         background: url(../assets/indexbg.jpg) no-repeat;
         background-size: 100% 100%;
-
         .i-main {
             margin-top: rem(18rem);
-
+            .avatar{
+            	width: rem(88rem);
+				height: rem(88rem);
+				border-radius: 50%;
+				margin: rem(2.6rem);
+				overflow: hidden;
+				margin-left: 38%;
+            }
+            .name{
+            	text-align: center;
+            	margin: rem(20rem) 0;
+            }
+			ul{
+				width: 92%;
+				overflow: hidden;
+				margin-left: 4%;
+				font-size: $font14;
+				li{
+					width: 92%;
+					padding: rem(10rem) 4%;
+					border-radius: rem(10rem);
+					margin-bottom: rem(10rem);
+					background:#fff url(../assets/confirmRight.png) no-repeat 96%;
+					background-size: rem(8rem) rem(12rem);
+				}
+			}
             .i-maintext {
                 width: 83.8%;
                 margin-left: 8.6%;

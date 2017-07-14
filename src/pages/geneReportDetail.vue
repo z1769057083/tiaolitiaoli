@@ -66,7 +66,7 @@
 		        }else{
 		        	this.tabHidden = false
 		        }
-		      }
+		    }
         },
         mounted() {
             document.title = "基因检测报告"
