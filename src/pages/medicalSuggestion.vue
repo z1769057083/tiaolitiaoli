@@ -9,7 +9,7 @@
 	                <div class="mcon-name">
 	                    <span v-if='nickname' class="mcon-block"><b>姓名：</b>{{nickname}}</span>
 	                    <span v-if='genderText' class="mcon-block"><b>性别：</b>{{genderText}}</span>
-	                    <span v-if='age' class="mcon-block"><b>年龄：</b>{{age}}</span>                  
+	                    <!--<span v-if='age' class="mcon-block"><b>年龄：</b>{{age}}</span>-->                  
 	                </div>
 	                <div class="mcon-symptom" v-if='illness'>
 	                    <span>主述症状:</span>
@@ -235,10 +235,7 @@
                         display: none;
                     }
                     span:nth-child(2) {
-                        margin-left: 14%;
-                    }
-                    span:nth-child(3){
-                    	float: right;
+                       float: right;
                     }
                     .mcon-block {
                         display: inline-block;

@@ -1,7 +1,9 @@
 <template>
 	<div class="maskmain">
 		<div class="mask-conent">
-			<img  class="close" @click='maskClose' src="../assets/shopcarClose.png" alt="" />
+			<div class="mask-conTop">
+				<img  class="close" @click='maskClose' src="../assets/shopcarClose.png" alt="" />
+			</div>			
 			<div class="mask-main">
 				<div class="mask-btn" @click='choosePic("camera")'>
 					<img src="../assets/mupload.png"/>
@@ -99,17 +101,23 @@ export default {
 		height: rem(330rem);
 		border-radius: rem(10rem);
 		position: absolute;
-		top: rem(120rem);
+		top: rem(90rem);
 		left: 12.8%; 
 		overflow: hidden;
-		background: url(../assets/afterCresent.jpg) no-repeat center;
-		background-size: cover;
-		.close{
-			width: rem(19rem);
-			height: rem(19rem);
-			position: absolute;
-			right: 3%;
-			top: 2%;
+		background: #fff;
+		.mask-conTop{
+			width: 100%;
+			height: rem(210rem);
+			background: red;
+			background: url(../assets/afterCresent.jpg) no-repeat center;
+			background-size: cover;
+			.close{
+				width: rem(19rem);
+				height: rem(19rem);
+				position: absolute;
+				right: 3%;
+				top: 2%;
+			}
 		}
 		.mask-main{
 			width: 100%;
