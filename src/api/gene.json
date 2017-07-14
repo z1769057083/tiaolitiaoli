@@ -5,6 +5,34 @@
   "requests": [
     {
       "collectionId": "249b3409-f55f-99e8-4c8f-63d5ca3f067b",
+      "id": "0a8cbebf-8c8c-fc7d-933b-5657bd759411",
+      "name": "逻辑删除优惠券",
+      "description": "",
+      "url": "http://{{server}}/coupon/remove?id=595a19cdc2d0f2f7f0eba027",
+      "method": "GET",
+      "headers": "",
+      "data": "{\"username\":\"admin\",\"password\":\"password\"}",
+      "dataMode": "raw",
+      "timestamp": 0,
+      "responses": [],
+      "version": 2
+    },
+    {
+      "collectionId": "249b3409-f55f-99e8-4c8f-63d5ca3f067b",
+      "id": "1734f46f-4f2d-a262-598e-6a2656cf127f",
+      "name": "逻辑删除货物",
+      "description": "",
+      "url": "http://{{server}}/item/remove?id=595a19cdc2d0f2f7f0eba027",
+      "method": "GET",
+      "headers": "",
+      "data": "{\"username\":\"admin\",\"password\":\"password\"}",
+      "dataMode": "raw",
+      "timestamp": 0,
+      "responses": [],
+      "version": 2
+    },
+    {
+      "collectionId": "249b3409-f55f-99e8-4c8f-63d5ca3f067b",
       "id": "1a89d580-de2e-c56c-e58e-12c6dedced56",
       "name": "getSingleOrde",
       "description": "获取订单详情",
@@ -117,6 +145,34 @@
     },
     {
       "collectionId": "249b3409-f55f-99e8-4c8f-63d5ca3f067b",
+      "id": "992b1e93-e7e7-8ab6-4896-34dcb1132909",
+      "name": "createWeChatOrder",
+      "description": "",
+      "url": "http://{{server}}/wechat/generate_wechat_order",
+      "method": "POST",
+      "headers": "Content-Type: application/json\n",
+      "data": "{\"address\": \"test\",\"nickName\": \"xujian2\",\"openid\": \"6097iibi0yn1cko2y4cbi3haor\",\n  \"price\":0.01,\n  \"userId\":\"595da1f66251b76f94a52d2f\"}",
+      "dataMode": "raw",
+      "timestamp": 0,
+      "responses": [],
+      "version": 2
+    },
+    {
+      "collectionId": "249b3409-f55f-99e8-4c8f-63d5ca3f067b",
+      "id": "a04b7d03-5f98-d4d5-0130-c1a3de9e7bc9",
+      "name": "修改商品",
+      "description": "",
+      "url": "{{server}}/product/edit",
+      "method": "POST",
+      "headers": "Content-Type: application/json\n",
+      "data": " {\n        \"_id\": \"591d3b1973e713ce5aaddbc5\",\n        \"index\": 22,\n        \"name\": \"补肺调衡贴\",\n        \"priceText\": \"100元/套\",\n        \"price\": 100,\n        \"category\": \"daily\",\n        \"categoryName\": \"日常\",\n        \"effect\": \"温肺经，补肺气。\",\n        \"fit_people\": \"肺气虚引起反复感冒、咳嗽者；久咳难愈者；\",\n        \"avoid\": \"皮肤过敏者慎用；皮肤破损、出血者禁用。\",\n        \"specification\": \"30克/瓶，配90张穴位贴。\",\n        \"preservation\": \"阴凉干燥处密封存放。\",\n        \"images\": [\n            \"1\"\n        ],\n        \"left\": 100,\n        \"createTime\": \"2017-07-11T02:55:53.873Z\",\n        \"fit\": [\n            \"金弱\"\n        ],\n        \"tags\": [\n            \"久咳久喘\",\n            \"免疫力低下\"\n        ]\n    }",
+      "dataMode": "raw",
+      "timestamp": 0,
+      "responses": [],
+      "version": 2
+    },
+    {
+      "collectionId": "249b3409-f55f-99e8-4c8f-63d5ca3f067b",
       "id": "aad13897-2713-6215-bee2-4b4ba1e40240",
       "name": "getSingleCoupon",
       "description": "查看单个优惠券详情",
@@ -142,6 +198,20 @@
       "timestamp": 0,
       "version": 2,
       "time": 1499078222246
+    },
+    {
+      "collectionId": "249b3409-f55f-99e8-4c8f-63d5ca3f067b",
+      "id": "ba54b64f-886b-8a09-dc8f-99f4f8fb808b",
+      "name": "优惠券支付",
+      "description": "",
+      "url": "http://{{server}}/item/gene_purchase",
+      "method": "POST",
+      "headers": "Content-Type: application/json\n",
+      "data": " {\n        \"userId\": \"sada\",\n        \"couponCode\":\"56k6fmppfge78xkj6gza5j0pb9\",\n        \"nickname\": \"asda\",\n   \"telephone\":\"13811129221\",\n        \"address\": \"asdasd\" \n    }",
+      "dataMode": "raw",
+      "timestamp": 0,
+      "version": 2,
+      "time": 1499917723239
     },
     {
       "collectionId": "249b3409-f55f-99e8-4c8f-63d5ca3f067b",

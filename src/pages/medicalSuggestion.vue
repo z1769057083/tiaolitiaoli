@@ -106,9 +106,9 @@
             loadWeather(){
                 let that = this;
                 let account = JSON.parse(localStorage.getItem(global.Account_Index));
-                if (account != null && account.houTian && account.houTian.city) {
+                if (account != null && account.houTian && account.houTian.liveCity) {
                     let weatherKey = 'df7f80c391ea4cf788d372d9feb5f09f';
-                    axios.get(' https://api.heweather.com/v5/suggestion?city=' + account.houTian.city + '&key=' + weatherKey)
+                    axios.get(' https://api.heweather.com/v5/suggestion?city=' + account.houTian.liveCity + '&key=' + weatherKey)
                         .then(function (res) {
                             let today = new Date();
                             let monthText = today.getMonth() + 1;
