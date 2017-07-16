@@ -130,8 +130,8 @@
 		          var storage = window.localStorage;
 		          var shop1 = {
 		          	'id':1,
-		            'img': '../../static/images/geneBot1.png',
-		            'name': '基因检测器',
+		            'img': 'geneProduct',
+		            'name': '六大肿瘤基因检测',
 		            'price': '680',
 		            'num': 1,
 		          }

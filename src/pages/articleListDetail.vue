@@ -2,13 +2,9 @@
   <div class="soup">
   	<div class="soup-main">
   		 <h3 class="activeShow">{{list.title}}</h3>
-  		 <!--<p class="date">
-				2017-06-13
-				<span>汉古科技</span>					
-			 </p>-->
   		 <div class="soup-mpic activeShow">
   		 		<img :src="''+apiPath+'/image/article/'+list.index+'.jpg'"
-							onerror="this.src='http://placeholder.qiniudn.com/800'"/>
+							onerror="this.src='../../static/images/defaultPicture.jpg'"/>
   		 </div>
   		 <p v-html='list.content'></p>
   	</div>  

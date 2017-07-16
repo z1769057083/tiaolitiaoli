@@ -2,8 +2,7 @@
     <div class="wrap-box">
         <div class="wrap">
             <h3 class="title">{{list.title}}</h3>
-            <!--<p class="wuxing">五行：弱水</p>-->
-            <video width="100%" height="240" controls autobuffer :src="apiPath+'/video/'+list.index+'.mp4'">
+            <video width="100%" height="240" controls autobuffer :src="apiPath+'/video/'+videotype+'/'+list.index+'.mp4'">
             </video>
             <p class="content">
                 {{list.description}}
@@ -18,20 +17,22 @@
         data(){
             return {
                 apiPath: '',
-                list: {}
+                list: {},
+                videotype:''
             }
         },
         methods: {
             loadVideo(){
                 var that = this;
                 that.videoId = this.$route.query.itemid;
-                console.log(that.videoId)
+                that.videotype = this.$route.query.type
+                console.log(that.videotype)
                 axios.get(api.videoListDetail + that.videoId)
                     .then(function (res) {
                         if (res.data.errorCode == 0) {
                             res = res.data.returnValue
                             that.list = res
-                            console.log(that.list)
+//                          console.log(that.list)
                         }
                     })
                     .catch(function (error) {
@@ -40,7 +41,9 @@
             }
         },
         mounted() {
-            this.apiPath = api.apipath
+            //this.apiPath = api.apipath
+            //Note:test for local.
+            this.apiPath = 'http://ikehealth.cn'
             this.loadVideo()
             document.documentElement.scrollTop = 0
             document.body.scrollTop = 0
@@ -49,7 +52,6 @@
 </script>
 <style scoped lang="scss" rel="stylesheet/scss">
     @import "../common/common.scss";
-
     .wrap-box {
         width: 100%;
         overflow: hidden;

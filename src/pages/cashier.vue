@@ -41,6 +41,7 @@
     import axios from 'axios'
     import api from '../api/api'
     import wx from 'weixin-js-sdk'
+    import Toast from '@/packages/toast'
     export default {
         data(){
             return {
@@ -103,7 +104,7 @@
                 }
                 axios.post(api.cashierSendData, params)
                     .then(function (res) {
-                        if (res.data.errorCode == 0) {
+                        if (res.data.errorCode == 0) {                      	
                             that.startUsingWechatPay(res.data.returnValue)
                         }
                     })
@@ -151,6 +152,14 @@
                     .then(function (res) {
                         if (res.data.errorCode == 0) {
                             console.log(res)
+            				this.$router.push({path:'/myOrder'})                            
+                        }else{
+                        	Toast({
+		                        message: '支付失败',
+		                        position: 'top',
+		                        duration: 1500
+		                    });
+		                    return;
                         }
                     })
                     .catch(function (error) {

@@ -119,15 +119,22 @@ export default new Router({
 	    {
 	      path: '/videoListDetail',
 	      component: videoListDetail,
+	      meta: {
+		      keepAlive: false // 不需要被缓存
+		    },
 	      name: 'videoListDetail'
 	    },
 	    {
 	      path: '/videoHome',
 	      component: videoHome,
+	      meta: { keepAlive: true },
 	      name: 'videoHome'
 	    },
 	    {
 	      path: '/articleList',
+	      meta: {
+		      keepAlive: false // 不需要被缓存
+		    },
 	      component: articleList,
 	      name: 'articleList'
 	    },

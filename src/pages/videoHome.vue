@@ -1,24 +1,22 @@
-<template>
+<template >
   <div class='wrap'> 
 		<div class="recommend-top">
 			<p @click="change_active(0,$event)" :class="{'activeTit':toggle===0}">文章</p>
 			<p @click="change_active(1,$event)" :class="{'activeTit':toggle===1}" class="top-right">视频</p>
-		</div>
-		<div class="article-main" v-if='mainShow'>
-			<dl>
-				<dt>
-					<h3>正常的脉象是啥样的？</h3>
-					<p>中医里很多看似神秘莫测的说法，却蕴含诸多令人捉摸不透的真知灼见。</p>
-				</dt>
-				<dd><img src=""/></dd>
-			</dl>
-			<dl>
-				<dt>
-					<h3>正常的脉象是啥样的？</h3>
-					<p>中医里很多看似神秘莫测的说法，却蕴含诸多令人捉摸不透的真知灼见却蕴含诸多令人捉摸不透的真知灼见。</p>
-				</dt>
-				<dd><img src=""/></dd>
-			</dl>
+		</div>	
+		<div class="article-main" v-if='mainShow' ref="scroll_hook">
+			<div>
+				<dl v-for='articleItem in articleAll'>
+					<router-link :to="{ name: 'articleListDetail', query: { itemid: articleItem._id }}">
+						<dt>
+							<h3>{{articleItem.title}}</h3>
+							<p>{{articleItem.content}}</p>
+						</dt>
+						<dd><img :src="''+apiPath+'/image/article/'+articleItem.index+'.jpg'"
+	                     onerror="this.src='../../static/images/defaultPicture.jpg'"/></dd>
+          </router-link>
+				</dl>
+			</div>			
 		</div>
 		<div class="video-mtop" v-if='!mainShow'>
 			<p  @click='baDuanJin(0,$event)' class="mtop-left" :class="{'activeBtn':btnIndex===0}">八段锦</p>
@@ -27,10 +25,10 @@
 		</div>
 		<div class="video-main" v-if='!mainShow'>
 			 <dl v-for='videoItem in videoDateList'>
-        <router-link :to="{ name: 'videoListDetail', query: { itemid: videoItem._id }}">
+        <router-link :to="{ name: 'videoListDetail', query: { itemid: videoItem._id, type:videoItem.type }}">
             <dt>
                 <img :src="''+apiPath+'/image/video/'+videoItem.type+'/'+videoItem.index+'.jpg'"
-                     onerror="this.src='http://placeholder.qiniudn.com/800'"/>
+                     onerror="this.src='../../static/images/defaultPicture.jpg'"/>
             </dt>
         </router-link>
         <dd>
@@ -38,21 +36,15 @@
             <p>{{videoItem.content}}</p>
         </dd>
     	</dl>
-			<!--<dl>
-				<dt></dt>
-				<dd>养生 、 三伏天养生，不同体质要区别对待</dd>
-			</dl>
-			<dl>
-				<dt></dt>
-				<dd>养生 、 三伏天养生，不同体质要区别对待</dd>
-			</dl>-->
 		</div>
-	<!--<div class="s-mrecombottom">我是有底线的</div>-->
-  </div>
+	
+	<div class="s-mrecombottom">我是有底线的</div>
+  </div>	
 </template>
 <script>
 import axios from 'axios'
 import api from '../api/api'
+import BScroll from 'better-scroll'
 export default {
   data(){
   	return {
@@ -61,7 +53,11 @@ export default {
   		mainShow:true,
   		type:'baduanjin',
   		videoDateList:[],
-  		btnIndex: 0
+  		articleAll:[],
+  		articleDateList:[],
+  		btnIndex: 0,
+  		pageIndex:0,
+  		MIN_PULL: 40
     }
   },
   methods: {
@@ -95,19 +91,76 @@ export default {
 	            if (res.data.errorCode == 0) {
 	                res = res.data.returnValue
 	                that.videoDateList = res
-	                console.log(that.videoDateList)
 	            }
 	        })
 	        .catch(function (error) {
 	            console.log(error)
 	        })
-    }
+    },
+    loadArticle(){
+    	var that = this;
+	    axios.get(api.articleList+this.pageIndex)
+	        .then(function (res) {
+	            if (res.data.errorCode == 0) {
+	                res = res.data.returnValue
+	                that.articleDateList = res
+	                that.articleAll = that.articleAll.concat(that.articleDateList)
+	                console.log(that.articleDateList)
+	            }
+	        })
+	        .catch(function (error) {
+	            console.log(error)
+	        })
+    },
+    initScroll() {
+	    this.$nextTick(() => {
+	      if (!this.scroll) {
+	        // 主体滚动初始化
+	        this.scroll = new BScroll(this.$refs.scroll_hook, {
+	          probeType: 3,
+	          click: true
+	        });
+	        // 记录最大高度
+					this.maxHeight = this.scroll.maxScrollY;
+	        // 上拉加载
+	        this.scroll.on('touchend', (pos) => {
+	          	if (pos.y < this.maxHeight - this.MIN_PULL) {
+		            this.pageIndex++;	
+		            console.log(this.pageIndex)
+		            if(this.pageIndex==1){
+		            	this.pageIndex=1
+		            	this.loadArticle()
+		            }else if(this.pageIndex==2){
+		            	this.pageIndex=2
+		            	this.loadArticle()
+		            }else if(this.pageIndex==3){
+		            	this.pageIndex=3
+		            	this.loadArticle()
+		            }
+	            }
+	        })
+	      } else {
+	        this.scroll.refresh();
+	        // 记录最大高度
+	        this.maxHeight = this.scroll.maxScrollY;
+	      }
+    	})
+  	}   
   },
   mounted() {
   	this.loadVideo()
+  	this.loadArticle()
 		this.apiPath = api.apipath
 		document.documentElement.scrollTop = 0
     document.body.scrollTop =0
+  },
+  watch: {
+      articleDateList: {
+        handler(val, oldVal) {
+          this.initScroll();
+        },
+        deep: true
+      },
   }
 }
 </script>
@@ -116,9 +169,11 @@ export default {
 	.wrap{
 		width: 100%;
 		overflow: hidden;
+		background: #f6f6f6;
 		.recommend-top{
 			width: 100%;
 			height: rem(37rem);
+			background: #fff;
 			border-bottom: 1px solid #dcdcdc;
 			p{
 				float: left;
@@ -142,6 +197,7 @@ export default {
 			height: rem(52rem);
 			border-bottom: 1px solid #dcdcdc;
 			padding-top: rem(18rem);
+			background: #fff;
 			p{
 				padding: 0 rem(20rem);
 				font-size: $font13;
@@ -167,11 +223,17 @@ export default {
 			}
 		}
 		.article-main{
-			width: 92%;
-			overflow: hidden;
-			margin-left: 4%;
+			width: 100%;
+			position: absolute;
+			top: rem(38rem);
+			left: 0;
+			right: 0;
+			bottom: 0;
+			overflow: hidden;			
+			background: #fff;
 			dl{
-        width: 100%;
+        width: 92%;
+        margin-left: 4%;
         overflow: hidden;
         margin-top: rem(15rem);
         padding-bottom: rem(15rem);
@@ -235,5 +297,15 @@ export default {
 				}
 			}
 		}
+		.s-mrecombottom{
+	 		line-height: 0.45rem;
+	 		font-size: 0.32rem;
+	 		color: #999;
+	 		width: 100%;
+	 		overflow: hidden;
+	 		text-align: center;
+	 		margin: rem(20rem) 0;
+	 		display: block;
+	 	}
 	}
 </style>

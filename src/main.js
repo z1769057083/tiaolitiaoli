@@ -13,6 +13,7 @@ import Loading from './components/loading'
 import axios from 'axios'
 import moment from 'moment'
 import VueBus from 'vue-bus'
+import BScroll from 'better-scroll'
 Vue.use(VueBus);
 Vue.use(VueRouter)
 Vue.use(MintUI)
