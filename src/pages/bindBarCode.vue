@@ -134,6 +134,7 @@
                     	console.log(res)
                         if (res.status == 200) {
                             that.bindDateList = res.config
+                            that.$router.push({path:'/myOrder',query: {type:'gene' }})
                             console.log(that.bindDateList)
                         }
                     })

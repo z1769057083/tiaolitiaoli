@@ -24,8 +24,10 @@
     	<h3 class="order-mtitle">汉古商城</h3>
     	<div class="order-mdetail" v-for='(item,index) in arr'>
     		<dl>
-    			<dt><img :src="''+apiPath+'/image/product/'+item.img+'/1.jpg'" 
-	    				onerror="this.src='http://placeholder.qiniudn.com/300'"/></dt>
+    			<dt v-if='geneProduct'><img :src="imgUrl" 
+	    				onerror="this.src=''"/></dt>
+    			<dt v-if='!geneProduct'><img :src="''+apiPath+'/image/product/'+item.img+'/1.jpg'" 
+	    				onerror="this.src='../../static/images/defaultPicture.jpg'"/></dt>
     			<dd>
     				{{item.name}}
 	    			<p>¥{{item.price}}</p>
@@ -166,6 +168,7 @@ export default {
   	return {
   		num:1,
   		totalPrice:'',
+  		imgUrl:'',
   		Deliveryhidden: false,
   		addNewAddressHidden: true,
   		selecthidden: false,
@@ -202,7 +205,8 @@ export default {
  			},
  			submitArr:[],
  			apiPath:'',
- 			fare:12
+ 			fare:12,
+ 			geneProduct:false
     }
   },
   components:{
@@ -486,6 +490,8 @@ export default {
         	let obj_arr = window.localStorage.getItem('genePay_Key')
 	        this.arr = JSON.parse(obj_arr)
 	        console.log(this.arr)
+	        this.geneProduct = true
+	        this.imgUrl = this.arr[0].img
 	        this.totalNum += this.arr[0].num
 					this.count = this.arr[0].num*parseInt(this.arr[0].price)
 					if(this.count>=300){
