@@ -179,10 +179,10 @@
             for (var i = 0, len = this.arr.length; i < len; i++) {
               this.arr2.push(this.arr[i].id);
             }
-            if (this.arr2.indexOf(that.list._id) >= 0) {
+            if (this.arr2.indexOf(this.list._id) >= 0) {
               for (var j = 0, lan = this.arr.length; j < lan; j++) {
                 if (this.arr[j]) {
-                  if (this.arr[j].id === that.list._id) {  
+                  if (this.arr[j].id === this.list._id) {  
                   	shop.num += this.arr[j].num  
                     this.arr.splice(this.arr.indexOf(this.arr[j]), 1);                    
                   }

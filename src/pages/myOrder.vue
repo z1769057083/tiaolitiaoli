@@ -17,11 +17,9 @@
   				<div class="l-bline l-bline3"></div>
   				<div class="l-bline l-bline4"></div>
   				<div class="l-btn l-btnStep1"><img src="../../static/images/myOrder1.png"/></div> 				
- 				<div class="l-btn l-btnStep2"></div> 				
-  				<div class="l-btn l-btnStep3"></div> 				
-  				<div class="l-btn l-btnStep4"></div>
-  					
-  				
+ 					<div class="l-btn l-btnStep2"><img src="../../static/images/myOrder1.png"/></div> 				
+  				<div class="l-btn l-btnStep3"><img src="../../static/images/myOrder1.png"/></div> 				
+  				<div class="l-btn l-btnStep4"><img src="../../static/images/myOrder1.png"/></div>  				
   			</div>
   			<div class="step-right">
   				<div class="r-bigStep">
@@ -29,15 +27,15 @@
   				</div>
   				<p v-if='' class="stepActive">您的样本正在路上</p>
   				<div class="r-bigStep">
-  					<!--<div class="r-smallStep"></div>-->					
+  					<div class="r-smallStep"></div>					
   				</div>
   				<p>您的样本已到实验室，正在提取DNA</p>
   				<div class="r-bigStep">
-  					<!--<div class="r-smallStep"></div>-->					
+  					<div class="r-smallStep"></div>					
   				</div>
   				<p>您的DNA提取已完成，正在上级检测</p>
   				<div class="r-bigStep">
-  					<!--<div class="r-smallStep"></div>-->					
+  					<div class="r-smallStep"></div>					
   				</div>
   				<p>检测已完成，正在处理数据，生成报告</p>
   			</div>
@@ -54,7 +52,10 @@
     data(){
     	return{
     		list:[],
-    		listDate:[]
+    		listDate:[],
+    		type:'',
+    		orderDate1:[],
+    		orderDate2:[]
     	}
     },
     methods: {
@@ -65,26 +66,32 @@
         } else {
             if (window.localStorage.getItem(Account_Index) !== null) {
                 let account = JSON.parse(window.localStorage.getItem(Account_Index))
-                that.useId = account._id
+                that.useId = account._id                
             }
-
         }
-        axios.get(api.orderList+that.useId)
+        this.type = this.$route.query.type;
+        axios.get(api.orderList+that.useId+'&type='+this.type)
             .then(function (res) {                   	
                 if (res.data.errorCode == 0) {
-            		res = res.data.returnValue
+            			res = res.data.returnValue
 	                that.list = res
+//	                console.log(that.list)
 	                //判断是否支付完成
-	                if(that.list.length>0){
-			            	for (var i = 0, len = that.list.length; i < len; i++) {
-			            		if(that.list[i].status==1){				            			
-			            			that.listDate.push(that.list[i])
-			            			console.log(that.listDate)
-			            		}			            			
-			            		that.price.price = that.list[i].price													           		
-			            	}
-		            	}
-                }
+//	                if(that.list.length>0){	                	
+//			            	for (var i = 0, len = that.list.length; i < len; i++) {
+//		              		that.orderDate1.push(that.list[i].couponCode); 	
+//			            	}
+//			            	if (that.orderDate1.indexOf(that.list[i].couponCode) >= 0) {				            		
+//					              for (var j = 0, lan = that.list.length; j < lan; j++) {
+//					              	console.log(that.list[j])
+//					                  if (that.list[j].couponCode === that.list[i].couponCode) {   
+//					                    that.list.splice(this.list.indexOf(that.list[j]), 1);
+//					                    console.log(that.list)
+//					                  }
+//					              }		            															           		
+//		            			} 
+//              	}
+	            	}
             })
             .catch(function (error) {
                 console.log(error)
@@ -94,7 +101,7 @@
    	mounted() {
     	this.apiPath = api.apipath
     	this.orderList()       	
-        document.title = "优惠券订单"
+      document.title = "优惠券订单"
     }
   }
 </script>
@@ -199,15 +206,15 @@
 				}
 				.l-bline2{
 					top: rem(58rem);
-					/*background: #48d29f;*/
+					background: #48d29f;
 				}
 				.l-bline3{
 					top: rem(128rem);
-					/*background: #48d29f;*/
+					background: #48d29f;
 				}
 				.l-bline4{
 					top: rem(200rem);
-					/*background: #48d29f;*/
+					background: #48d29f;
 					height: rem(30rem);
 				}
 			}
@@ -215,7 +222,6 @@
 				width: 80%;
 				float: right;
 				height: rem(300rem);
-				/*border: 1px solid #000;*/
 				.r-bigStep{
 					width: 100%;
 					height: rem(16rem);

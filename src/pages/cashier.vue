@@ -64,7 +64,7 @@
                     signType: wechatPayParams.signType, // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
                     paySign: wechatPayParams.paySign, // 支付签名
                     success: function (res) {
-                        that.$router.push({ path: '/orderListDetail',query: { itemid: wechatPayParams.orderId }})
+                        that.$router.push({ path: '/orderListDetail',query: { itemid: wechatPayParams.orderId,type:'medical' }})
                     }
                 });
             },
@@ -151,8 +151,7 @@
                 axios.post(api.payCoupon, params)
                     .then(function (res) {
                         if (res.data.errorCode == 0) {
-                            console.log(res)
-            				this.$router.push({path:'/myOrder'})                            
+            				that.$router.push({path:'/myOrder',query: {type:'gene' }})                            
                         }else{
                         	Toast({
 		                        message: '支付失败',
@@ -167,7 +166,6 @@
                     })
             },
             nowPay(){
-            	console.log(this.toggle)
             	if(this.toggle==1){
             		this.requestCashier()
             	}else if(this.toggle==2){            		
@@ -193,10 +191,14 @@
                     this.toggle = 2
                 }
                 this.totalCount = this.arr[2].price
-                let receive = JSON.parse(window.localStorage.getItem('receiveCode'))
-	        	if(receive){
-	        		this.couponCode = receive
-	        	}
+                if(window.localStorage.getItem('receiveCode')){
+                	let receive = JSON.parse(window.localStorage.getItem('receiveCode'))		        	
+		        	this.couponCode = receive
+                }else{
+                	this.toggle = 1
+                	this.codeHidden = false
+                }
+                
             }
             document.documentElement.scrollTop = 0
             document.body.scrollTop = 0
