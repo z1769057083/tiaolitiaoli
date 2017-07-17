@@ -48,6 +48,7 @@
                            @updateUserAnswer="updateUserAnswer"   @maskUpLoadEvent="maskUpLoad"></afterCrescent>
             <!--体质报告问题结束-->
             <button class="submit" @click="confirm">确定</button>
+            <!--<button v-if='index>=1'  class="return" @click="returnQuestion">上一步</button>-->
         </div>
     </div>
 </template>
@@ -155,6 +156,8 @@
                     }
                     
                 }
+                //所有问题及答案
+//              console.log(this.questionAnswer)
             },
 //          点击确定判断问题是否全部回答
             confirm () {
@@ -242,9 +245,6 @@
                             localStorage.setItem(Account_Index, JSON.stringify(user))
                         }
                     })
-                    .catch(function (error) {
-                        console.log(error)
-                    })
             },
             //判断问题是先天问题还是后天问题
             startQuestionBySection(){
@@ -276,6 +276,7 @@
                     }
                 }
             },
+            //手机适配
             isAndroid(){
 	        	let u = navigator.userAgent
 	        	if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) {//安卓手机				
@@ -289,6 +290,13 @@
 	        },
 	        UpLoad(){
 	        	this.maskUpLoadHidden = false
+	        },
+	        //返回上一步按钮
+	        returnQuestion(){
+	        	this.index--
+	        	console.log(this.renderedMessages)
+				this.renderedMessages.splice(this.renderedMessages.length-2,this.renderedMessages.length)
+				console.log(this.renderedMessages)
 	        }
         },
         beforeDestroy(){
@@ -296,6 +304,7 @@
         },
         mounted() {
             this.startQuestionBySection()
+            this.isAndroid()
             document.title='体质检测'
             if (!window.localStorage) {
                 return false;
@@ -306,8 +315,7 @@
                     let account = JSON.parse(storage.getItem(Account_Index))
                     this.myselfAvatar = account.headimgurl;
                 }
-            }
-            this.isAndroid()	
+            }           	
         }
     }
 </script>
@@ -325,7 +333,6 @@
         height: 44%;
         background: #f2f2f2;
         padding-top: rem(20rem);
-        /*border-bottom: rem(4rem) solid #dab589;*/
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
         .m-charscroll {
@@ -425,7 +432,7 @@
 		border-top: 1px solid #e8e8e8;
 		border-top-left-radius: rem(15rem);
 		border-top-right-radius: rem(15rem);
-            -webkit-overflow-scrolling: touch;
+        -webkit-overflow-scrolling: touch;
         .hidden {
             display: none;
         }
@@ -446,6 +453,19 @@
             position: absolute;
             bottom: rem(20rem);
             left: 35%;
+        }
+        .return{
+        	width: 12%;
+            height: rem(20rem);
+            border: 0;
+            color: #c69b70;
+            font-size: 0.37rem;
+            line-height: rem(20rem);
+            position: absolute;
+            bottom: rem(21rem);
+            left: 5%;
+            background: transparent;
+            border-bottom: 1px solid #c69b70;
         }
 
     }

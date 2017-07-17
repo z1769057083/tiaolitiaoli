@@ -13,31 +13,39 @@
   		<div class="gene-step">
   			<div class="step-left">
   				<div class="l-bline l-bline1"></div>
-  				<div class="l-bline l-bline2"></div>
-  				<div class="l-bline l-bline3"></div>
-  				<div class="l-bline l-bline4"></div>
-  				<div class="l-btn l-btnStep1"><img src="../../static/images/myOrder1.png"/></div> 				
- 					<div class="l-btn l-btnStep2"><img src="../../static/images/myOrder1.png"/></div> 				
-  				<div class="l-btn l-btnStep3"><img src="../../static/images/myOrder1.png"/></div> 				
-  				<div class="l-btn l-btnStep4"><img src="../../static/images/myOrder1.png"/></div>  				
+  				<div class="l-bline l-bline2" :class="{'l-blineActive':addActive2}"></div>
+  				<div class="l-bline l-bline3" :class="{'l-blineActive':addActive3}"></div>
+  				<div class="l-bline l-bline4" :class="{'l-blineActive':addActive4}"></div>
+  				<div class="l-btn l-btnStep1">
+  					<img src="../../static/images/myOrder1.png"/>
+  				</div> 				
+ 					<div class="l-btn l-btnStep2">
+ 						<img v-if='list.status==2||list.status==3||list.status==4||list.status==5' src="../../static/images/myOrder1.png"/>
+ 					</div> 				
+  				<div class="l-btn l-btnStep3">
+  					<img v-if='list.status==3||list.status==4||list.status==5' src="../../static/images/myOrder1.png"/>
+  				</div> 				
+  				<div class="l-btn l-btnStep4">
+  					<img v-if='list.status==4||list.status==5' src="../../static/images/myOrder1.png"/>
+  				</div>  				
   			</div>
   			<div class="step-right">
   				<div class="r-bigStep">
-  					<div class="r-smallStep"></div>					
+  					<div class="r-smallStep" :class="{'r-smallAllStep':addActive2}"></div>					
   				</div>
-  				<p v-if='' class="stepActive">您的样本正在路上</p>
+  				<p class="stepActive">您的样本正在路上</p>
   				<div class="r-bigStep">
-  					<div class="r-smallStep"></div>					
+  					<div v-if='list.status==2||list.status==3||list.status==4||list.status==5' class="r-smallStep" :class="{'r-smallAllStep':addActive3}"></div>					
   				</div>
-  				<p>您的样本已到实验室，正在提取DNA</p>
+  				<p :class="{'stepActive':addActive2}">您的样本已到实验室，正在提取DNA</p>
   				<div class="r-bigStep">
-  					<div class="r-smallStep"></div>					
+  					<div v-if='list.status==3||list.status==4||list.status==5' :class="{'r-smallAllStep':addActive4}" class="r-smallStep"></div>					
   				</div>
-  				<p>您的DNA提取已完成，正在上级检测</p>
+  				<p :class="{'stepActive':addActive3}">您的DNA提取已完成，正在上级检测</p>
   				<div class="r-bigStep">
-  					<div class="r-smallStep"></div>					
+  					<div v-if='list.status==4||list.status==5' :class="{'r-smallAllStep':addActive5}" class="r-smallStep"></div>					
   				</div>
-  				<p>检测已完成，正在处理数据，生成报告</p>
+  				<p :class="{'stepActive':addActive4}">检测已完成，正在处理数据，生成报告</p>
   			</div>
   		</div>
   		 
@@ -55,7 +63,11 @@
     		listDate:[],
     		type:'',
     		orderDate1:[],
-    		orderDate2:[]
+    		orderDate2:[],
+    		addActive2:false,
+    		addActive3:false,
+    		addActive4:false,
+    		addActive5:false
     	}
     },
     methods: {
@@ -74,23 +86,27 @@
             .then(function (res) {                   	
                 if (res.data.errorCode == 0) {
             			res = res.data.returnValue
-	                that.list = res
-//	                console.log(that.list)
-	                //判断是否支付完成
-//	                if(that.list.length>0){	                	
-//			            	for (var i = 0, len = that.list.length; i < len; i++) {
-//		              		that.orderDate1.push(that.list[i].couponCode); 	
-//			            	}
-//			            	if (that.orderDate1.indexOf(that.list[i].couponCode) >= 0) {				            		
-//					              for (var j = 0, lan = that.list.length; j < lan; j++) {
-//					              	console.log(that.list[j])
-//					                  if (that.list[j].couponCode === that.list[i].couponCode) {   
-//					                    that.list.splice(this.list.indexOf(that.list[j]), 1);
-//					                    console.log(that.list)
-//					                  }
-//					              }		            															           		
-//		            			} 
-//              	}
+	                that.list = res[0]
+	                console.log(that.list)
+	                if(that.list.status == 2){
+	                	console.log(2)
+	                	that.addActive2 = true
+	                }else if(that.list.status == 3){
+	                	console.log(3)
+	                	that.addActive2 = true
+	                	that.addActive3 = true
+	                }else if(that.list.status == 4){
+	                	console.log(4)
+	                	that.addActive4 = true
+	                	that.addActive3 = true
+	                	that.addActive2 = true
+	                	that.addActive5 = false
+	                }else if(that.list.status == 5){
+	                	that.addActive5 = true
+	                	that.addActive3 = true
+	                	that.addActive2 = true
+	                	that.addActive4 = true
+	                }
 	            	}
             })
             .catch(function (error) {
@@ -206,16 +222,16 @@
 				}
 				.l-bline2{
 					top: rem(58rem);
-					background: #48d29f;
 				}
 				.l-bline3{
 					top: rem(128rem);
-					background: #48d29f;
 				}
 				.l-bline4{
 					top: rem(200rem);
-					background: #48d29f;
 					height: rem(30rem);
+				}
+				.l-blineActive{
+					background: #48d29f;
 				}
 			}
 			.step-right{
@@ -235,6 +251,9 @@
 						width: 40%;
 						background: #dcd7ff;
 						margin: rem(3rem) rem(3rem);
+					}
+					.r-smallAllStep{
+						width: 100%;
 					}
 				}
 				p{

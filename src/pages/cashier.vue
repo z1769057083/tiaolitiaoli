@@ -51,7 +51,8 @@
                 accountArr: [],
                 totalCount: 0,
                 codeHidden: false,
-                couponCode:''
+                couponCode:'',
+                couponDetailData:{}
             }
         },
         methods: {
@@ -107,10 +108,7 @@
                         if (res.data.errorCode == 0) {                      	
                             that.startUsingWechatPay(res.data.returnValue)
                         }
-                    })
-                    .catch(function (error) {
-                        console.log(error)
-                    })
+                    })                
             },
             couponCashier(){
             	let that = this
@@ -150,7 +148,9 @@
                 }
                 axios.post(api.payCoupon, params)
                     .then(function (res) {
+                    	console.log(res)
                         if (res.data.errorCode == 0) {
+                        	
             				that.$router.push({path:'/myOrder',query: {type:'gene' }})                            
                         }else{
                         	Toast({
@@ -158,12 +158,29 @@
 		                        position: 'top',
 		                        duration: 1500
 		                    });
-		                    return;
                         }
-                    })
-                    .catch(function (error) {
-                        console.log(error)
-                    })
+                    })                 
+            },
+            isUseCoupon(){
+            	let that = this
+            	axios.get(api.couponDetail+this.couponCode)
+                    .then(function (res) {    
+                    	console.log(res.data)
+                        if (res.data.errorCode == 0) {
+							that.couponDetailData = res.data.returnValue
+							if(that.couponDetailData.isUsed==true){
+								that.toggle = 1
+								Toast({
+			                        message: '优惠券已被使用',
+			                        position: 'top',
+			                        duration: 1500
+			                    });
+			                    return;
+							}else{
+								that.toggle = 2
+							}
+                        }
+                    })                  
             },
             nowPay(){
             	if(this.toggle==1){
@@ -192,14 +209,14 @@
                 }
                 this.totalCount = this.arr[2].price
                 if(window.localStorage.getItem('receiveCode')){
-                	let receive = JSON.parse(window.localStorage.getItem('receiveCode'))		        	
-		        	this.couponCode = receive
+                	let receive = JSON.parse(window.localStorage.getItem('receiveCode'));		        					this.couponCode = receive
+                	this.isUseCoupon()
                 }else{
                 	this.toggle = 1
                 	this.codeHidden = false
-                }
-                
+                }                
             }
+            
             document.documentElement.scrollTop = 0
             document.body.scrollTop = 0
             document.title = '收银台'

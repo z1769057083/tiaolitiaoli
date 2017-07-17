@@ -31,6 +31,6 @@ module.exports = {
     userCoupon: apiPath + '/coupon/get_by_user?userId=',//获取某个用户的优惠券
     bindUser: apiPath + '/item/bind_user',//绑定用户
     payCoupon: apiPath + '/item/gene_purchase',//优惠券支付
-    CouponDetail: apiPath + '/coupon/get_by_code?code=',//优惠券详情
+    couponDetail: apiPath + '/coupon/get_by_code?code=',//优惠券详情
     apipath:apiPath //发起请求向后台传订单数据 post
 }
