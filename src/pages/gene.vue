@@ -130,7 +130,7 @@
 		          var storage = window.localStorage;
 		          var shop1 = {
 		          	'id':1,
-		            'img': 'geneProduct',
+		            'img': '../../static/images/geneProduct.jpg',
 		            'name': '六大肿瘤基因检测',
 		            'price': '680',
 		            'num': 1,
@@ -517,11 +517,11 @@
 	}
 	.gene-pay{
 		width: 100%;
-		height: rem(25rem);
+		height: rem(40rem);
 		border-top: 1px solid #a09e9d;
 		font-size: $font14;
-		span{
-			line-height: rem(25rem);
+		line-height: rem(40rem);
+		span{			
 			margin-left: 5.3%;
 			color: #4c4948;
 		}
@@ -529,10 +529,9 @@
 			background: #f08300;
 			width: 29%;
 			float: right;
-			height: rem(25rem);
+			height: rem(40rem);
 			color: #fff;
 			text-align: center;
-			line-height: rem(25rem);
 		}
 	}
 }
