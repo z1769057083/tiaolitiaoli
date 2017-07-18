@@ -250,10 +250,10 @@
 						height: rem(10rem);
 						width: 40%;
 						background: #dcd7ff;
-						margin: rem(3rem) rem(3rem);
+						margin: rem(3rem) 2%;
 					}
 					.r-smallAllStep{
-						width: 100%;
+						width: 96%;
 					}
 				}
 				p{
