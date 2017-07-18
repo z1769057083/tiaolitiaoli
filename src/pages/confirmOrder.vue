@@ -37,11 +37,22 @@
     	</div>		
     </div>
     <div class="order-mcontent">
-    	<dl>
+    	<dl v-if='useCoupon'>
+    		<dt>运费</dt>
+    		<dd>免邮</dd>
+    	</dl>
+    	<dl v-if='useCoupon'>
+    		<dt>代金券</dt>
+    		<dd>
+    			<p class="couponName">六大高发癌症代金券</p>
+    			<p class="couponReduce">立减&nbsp;&nbsp;¥{{reduceCount}}.00</p>
+    		</dd>
+    	</dl>
+    	<dl v-if='!useCoupon'>
     		<dt>配送方式</dt>
     		<dd>快递 &nbsp;¥{{fare}}.00</dd>
     	</dl>
-    	<dl>
+    	<dl v-if='!useCoupon'>
     		<dt>备注</dt>
     		<dd>超过300免邮费</dd>
     	</dl>
@@ -206,7 +217,9 @@ export default {
  			submitArr:[],
  			apiPath:'',
  			fare:12,
- 			geneProduct:false
+ 			geneProduct:false,
+ 			useCoupon:false,
+ 			couponCode:''
     }
   },
   components:{
@@ -274,22 +287,7 @@ export default {
         	address: this.address,
         	postCode: this.postCode
         } 
-        let rephone = /^1[3,4,5,7,8]\d{9}$/;
-//      let rePostCode =  /^[1-9][0-9]{5}$/;
-//      if (address.postCode === '') {
-//			    address.postCode = '';
-//			  }else{
-//			  	if(rePostCode.test(address.postCode)){
-//				    address.postCode = address.postCode;
-//				  } else {			      
-//				        Toast({
-//				          message: '邮政编码格式不正确',
-//				          position:'bottom',
-//				          duration:1000
-//				        });
-//				        return;
-//				  }
-//			  }			         
+        let rephone = /^1[3,4,5,7,8]\d{9}$/;	         
         	if(address.name!==''&&address.phone!==''){
         		if(rephone.test(address.phone)){
         			if(address.address!==''){
@@ -343,8 +341,7 @@ export default {
 			  	if(this.$children[0].$el.querySelector('#selDistrict')){
 			  		this.selectAddress.push(this.$children[0].$el.querySelector('#selDistrict').value)	  	  	
 			  	}
-		  	}
-		  	
+		  	}	  	
 		  	let str = this.selectAddress.toString()		  	
 		  	str = str.replace(/,/g,'')
 	  	var address1 = { 
@@ -355,22 +352,7 @@ export default {
         	address: this.addressArr.address,
         	postCode: this.addressArr.postCode
      }	  	
-	  	var rephone = /^1[3,4,5,7,8]\d{9}$/;
-//	  	var rePostCode =  /^[1-9][0-9]{5}$/; 
-//	 	if (address1.postCode === '') {
-//		    address1.postCode = '';
-//		  }else{
-//		  	if(rePostCode.test(address1.postCode)){
-//			    address1.postCode = address1.postCode;
-//			  } else {			      
-//			        Toast({
-//			          message: '邮政编码格式不正确',
-//			          position:'middle',
-//			          duration:1000
-//			        });
-//			        return;
-//			  }
-//		  }	
+	  	var rephone = /^1[3,4,5,7,8]\d{9}$/;	
 	    	if(address1.name!==''&&address1.phone!==''){
 	    		if(rephone.test(address1.phone)){
 	    			if(address1.address!==''){
@@ -461,6 +443,41 @@ export default {
 					}
 					this.price.price = this.countPrice
   	},
+  	checkIfCodeIsUsed(isUsed){
+  		this.useCoupon = !isUsed
+	  	if(isUsed==false){
+	  		this.price.price = 0
+	      	this.count = 0	      	
+	  	}else{
+	  		this.count += this.arr[0].num * parseInt(this.arr[0].price)
+    		if(this.count>=300){
+						this.fare = 0
+						this.countPrice = this.count
+					}else{
+						this.fare = 12
+						this.countPrice = this.count + 12
+					}
+					this.price.price = this.countPrice
+	    }
+	  },
+  	loadOrderToCheckCouponStatus(hasCoupon){
+  		if(hasCoupon){
+						this.price.price = 0
+	          	this.count = 0
+	          	this.useCoupon = true
+  		}
+  		else{
+  			this.count += this.arr[i].num * parseInt(this.arr[i].price)
+    		if(this.count>=300){
+						this.fare = 0
+						this.countPrice = this.count
+					}else{
+						this.fare = 12
+						this.countPrice = this.count + 12
+					}
+					this.price.price = this.countPrice
+  		}
+  	},
   	loadOrdersFromShopCart(){
   		//取购物车的商品信息
   		let obj_arr = window.localStorage.getItem('shopcart_Key')
@@ -492,35 +509,66 @@ export default {
 	        console.log(this.arr)
 	        this.geneProduct = true
 	        this.imgUrl = this.arr[0].img
-	        this.totalNum += this.arr[0].num
-					this.count = this.arr[0].num*parseInt(this.arr[0].price)
-					if(this.count>=300){
-						this.fare = 0
-						this.countPrice = this.count
-					}else{
-						this.fare = 12
-						this.countPrice = this.count + 12
-					}
-					this.price.price = this.countPrice
-  	}
-  },
-  mounted() {  
-  	  var routeId = this.$router.currentRoute.query.routerId
-			if (!window.localStorage) {
-		    return false;
-		  } 
-        if(routeId==0){
-        	this.loadOrdersFromShopCart();
-        }else if(routeId==1){      	
-        	this.loadOrdersFromBuyNow();
-        }else if(routeId==2){
-        	this.loadOrdersFromGenePay();
+	        this.totalNum += this.arr[0].num	
+	        this.reduceCount = this.arr[0].num * parseInt(this.arr[0].price)
+					let hasCoupon=window.localStorage.getItem('receiveCode')!==null;
+					this.loadOrderToCheckCouponStatus(hasCoupon);
+					
+  	},
+  	loadOrderForMedial(){
+  		var routeId = this.$router.currentRoute.query.routerId
+	    if(routeId==0){
+	    	this.loadOrdersFromShopCart();
+	    }else if(routeId==1){      	
+	    	this.loadOrdersFromBuyNow();
+	    }      		
+  	},
+  	loadOrderForGene(){
+	    this.loadOrdersFromGenePay();
+	    if(window.localStorage.getItem('receiveCode')){
+	      	let receive = JSON.parse(window.localStorage.getItem('receiveCode'));		        					this.couponCode = receive
+	      	let that = this;
+					axios.get(api.couponDetail+this.couponCode)
+            .then(function (res) {    
+                if (res.data.errorCode == 0) {
+									that.couponDetailData = res.data.returnValue
+									console.log(that.couponDetailData.isUsed)
+		      				that.checkIfCodeIsUsed(that.couponDetailData.isUsed)
+	      	}})  
+			}	 
+	  },	
+    loadUserCouponStatus(){
+    	let that = this
+    	axios.get(api.couponDetail+this.couponCode)
+            .then(function (res) {    
+            	console.log(res.data)
+                if (res.data.errorCode == 0) {
+								that.couponDetailData = res.data.returnValue
+//							console.log(that.couponDetailData.isUsed)
+//					if(that.couponDetailData.isUsed==true){
+//						that.toggle = 1
+//						that.codeHidden = false
+//						
+//          return;
+//					}else{
+//						that.toggle = 2
+//					}
         }
-	     	this.loadDelieverAddress();
-      	document.title ='确认订单'
-      	this.apiPath = api.apipath
-    }
+      })                  
+  	}  
+  },
+  mounted() {
+	  this.loadOrderForMedial();
+		var routeId = this.$router.currentRoute.query.routerId
+    if(routeId==2){
+  	  this.loadOrderForGene();
+	  }
+	  	document.title ='确认订单'
+	  	this.apiPath = api.apipath  	
+	  	this.loadDelieverAddress();
   }
+}
+  
 </script>
 <style scoped lang="scss" rel="stylesheet/scss">
 @import "../common/common.scss";
@@ -673,6 +721,16 @@ export default {
 			}
 			dd{
 				float: right;
+				height: rem(47rem);
+				overflow: hidden;
+				text-align: right;
+				.couponName{
+					line-height: rem(24rem);
+				}
+				.couponReduce{
+					color: #ff3300;
+					line-height: rem(22rem);
+				}
 			}
 		}
 		.order-mconpic{

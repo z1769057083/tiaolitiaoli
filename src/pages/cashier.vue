@@ -1,4 +1,3 @@
-=
 <template>
     <div class='cashier-main'>
         <div class="cashier-mtop">
@@ -25,14 +24,14 @@
                 </dd>
                 <dd class="check" :class="{'active': toggle === 1}"></dd>
             </dl>
-            <dl @click="change_active(2,$event)" v-if='codeHidden'>
+            <!--<dl @click="change_active(2,$event)" v-if='codeHidden'>
                 <dt><img src="../assets/couponPay.png"/></dt>
                 <dd class="coupon">
                     <p>使用优惠券</p>
                     {{couponCode}}
                 </dd>
                 <dd class="check" :class="{'active': toggle === 2}"></dd>
-            </dl>
+            </dl>-->
         </div>
         <div class="cashier-pay" @click="nowPay">立即支付</div>
     </div>
@@ -161,28 +160,7 @@
                         }
                     })                 
             },
-            isUseCoupon(){
-            	let that = this
-            	axios.get(api.couponDetail+this.couponCode)
-                    .then(function (res) {    
-                    	console.log(res.data)
-                        if (res.data.errorCode == 0) {
-							that.couponDetailData = res.data.returnValue
-							if(that.couponDetailData.isUsed==true){
-								that.toggle = 1
-								Toast({
-			                        message: '优惠券已被使用',
-			                        position: 'top',
-			                        duration: 1500
-			                    });
-			                    return;
-							}else{
-								that.toggle = 2
-							}
-                        }
-                    })                  
-            },
-            nowPay(){
+            nowPay(){            	
             	if(this.toggle==1){
             		this.requestCashier()
             	}else if(this.toggle==2){            		
@@ -203,20 +181,19 @@
                 let obj = JSON.parse(obj_arr)
                 this.arr = obj
                 this.arr2 = this.arr[0][0]
-                if (this.arr2.id === 1) {
-                    this.codeHidden = true
-                    this.toggle = 2
-                }
+//              if (this.arr2.id === 1) {
+//                  this.codeHidden = true
+//                  this.toggle = 2
+//              }
                 this.totalCount = this.arr[2].price
-                if(window.localStorage.getItem('receiveCode')){
-                	let receive = JSON.parse(window.localStorage.getItem('receiveCode'));		        					this.couponCode = receive
-                	this.isUseCoupon()
-                }else{
-                	this.toggle = 1
-                	this.codeHidden = false
-                }                
-            }
-            
+//              if(window.localStorage.getItem('receiveCode')){
+//              	let receive = JSON.parse(window.localStorage.getItem('receiveCode'));		        					this.couponCode = receive
+////              	this.isUseCoupon()
+//              }else{
+//              	this.toggle = 1
+//              	this.codeHidden = false
+//              }                
+           }            
             document.documentElement.scrollTop = 0
             document.body.scrollTop = 0
             document.title = '收银台'
@@ -302,6 +279,13 @@
                     border: 1px solid #999;
                 }
                 .active {
+                    width: rem(20rem);
+                    height: rem(20rem);
+                    background: url(../assets/cashierCheck.png) no-repeat center;
+                    background-size: cover;
+                    border: 0;
+                }
+                .disableActive {
                     width: rem(20rem);
                     height: rem(20rem);
                     background: url(../assets/cashierCheck.png) no-repeat center;

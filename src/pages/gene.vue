@@ -524,6 +524,7 @@
 		span{			
 			margin-left: 5.3%;
 			color: #4c4948;
+			font-size: $font16;
 		}
 		.pay{
 			background: #f08300;

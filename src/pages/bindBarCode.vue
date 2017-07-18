@@ -4,13 +4,13 @@
     		<div class="receive-top">
 	    		<img class="top-left" src="../assets/couponGene.png" alt="" />
 	    		<img class="top-center"src="../assets/couponFang.png" alt=""/>
-	    		<img class="top-right" src="../assets/couponCode.png" alt=""/>
+	    		<img @click='saoCode' class="top-right" src="../assets/couponCode.png" alt=""/>
 	    	</div>
 	    	<div class="receive-main">
 	    		<dl>
 	    			<dt>样本编码:</dt>
 	    			<dd>
-	    				<input type="text" name='code' v-model='code'/>
+	    				<input type="text" name='code' disabled="true"  v-model='code'/>
 	    			</dd>
 	    		</dl>
 	    		<dl>
@@ -61,6 +61,7 @@
     import axios from 'axios'
     import api from '../api/api'
     import Toast from '@/packages/toast'
+    import wx from 'weixin-js-sdk'
     export default {
         data() {
             return {
@@ -72,7 +73,8 @@
 				name:'',
 				phone:'',
 				bindDateList:[],
-				params:{}
+				params:{},
+				result:''
             }
         },
         methods: {
@@ -97,6 +99,16 @@
                 }
                 this.birthday = birthday
                 this.toggle = true                             
+            },
+            saoCode(){
+            	var that = this;
+            	wx.scanQRCode({
+				    needResult: 0, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+				    scanType: ["qrCode","barCode"], // 可以指定扫二维码还是一维码，默认二者都有
+				    success: function (res) {
+				    	that.code = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+					}
+				});
             },
             bindUserData(){
                 let that = this
@@ -148,6 +160,14 @@
         },
         mounted() {
             document.title = "绑定样本"
+//          if(window.localStorage.getItem('genePay_key')){
+//          	let order = JSON.parse(window.localStorage.getItem('orderArr')) 
+//          	let orderGeneId = order[0][0].id
+//          	if(orderGeneId!==1){
+//          		console.log(111)
+//          	}
+//          	
+//          }
         }
     }
 </script>

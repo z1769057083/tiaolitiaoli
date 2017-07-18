@@ -16,7 +16,6 @@
     import api from '@/api/api'
     import Highcharts from 'highcharts';
     import Hig from 'highcharts/highcharts-more' ;
-
     import { mapGetters, mapActions } from 'vuex';
     Hig(Highcharts)
     global.Highcharts = Highcharts
@@ -89,7 +88,7 @@
                             signature: data.signature,// 必填，签名，见附录1
                             jsApiList: ['chooseImage', 'previewImage',
                                 'uploadImage', 'onMenuShareTimeline', 'onMenuShareAppMessage',
-                                'downloadImage','chooseWXPay'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                                'downloadImage','chooseWXPay','scanQRCode'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
                         });
                     })
             },

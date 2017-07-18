@@ -33,6 +33,7 @@ import myOrder from '@/pages/myOrder'
 import geneReport from '@/pages/geneReport'
 import geneReportDetail from '@/pages/geneReportDetail'
 import personalCenter from '@/pages/personalCenter'
+import successPayment from '@/pages/successPayment'
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -201,6 +202,11 @@ export default new Router({
 	      path: '/geneReport',
 	      component: geneReport,
 	      name: 'geneReport'
+	    },
+	    {
+	      path: '/successPayment',
+	      component: successPayment,
+	      name: 'successPayment'
 	    }
   ]
 })
