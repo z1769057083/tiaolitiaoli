@@ -11,60 +11,90 @@
         		<dt>检测项目</dt>
         		<dd>我的患病风险</dd>
         	</dl>
-        	<dl @click='detailClick'>
+        	<router-link :to="{ name: 'geneReportDetail', query: { code: code ,disease_type:'lung'}}">
+        	<dl>
         		<dt>肺癌</dt>
         		<dd>
         			<span></span>
-        			<p class="receive-mCen1 activeDown">低</p>
+        			<p class="receive-mCen1"></p>
+        			<p v-if="list.lungRisk==='low'" class="receive-mCen1 activeDown">低</p>
         			<p class="receive-mCen2"></p>
-        			<p class="receive-mCen3"></p>        			
+        			<p v-if="list.lungRisk==='middle'" class="receive-mCen2 activeCen">中</p>
+        			<p class="receive-mCen3"></p> 
+        			<p v-if="list.lungRisk==='high'" class="receive-mCen3 activeUp">高</p>
         		</dd>
         	</dl>
+        	</router-link>
+        	<router-link :to="{ name: 'geneReportDetail', query: { code: code ,disease_type:'stomach'}}">
         	<dl>
         		<dt>胃癌</dt>
         		<dd>
         			<span></span>
-        			<p class="receive-mCen1 activeDown">低</p>
+        			<p class="receive-mCen1"></p>
+        			<p v-if="list.stomachRisk==='low'" class="receive-mCen1 activeDown">低</p>
         			<p class="receive-mCen2"></p>
-        			<p class="receive-mCen3"></p>        			
+        			<p v-if="list.stomachRisk==='middle'" class="receive-mCen2 activeCen">中</p>
+        			<p class="receive-mCen3"></p> 
+        			<p v-if="list.stomachRisk==='high'" class="receive-mCen3 activeUp">高</p>        			
         		</dd>
         	</dl>
+        	</router-link>
+        	<router-link :to="{ name: 'geneReportDetail', query: { code: code ,disease_type:'liver'}}">
         	<dl>
         		<dt>肝癌</dt>
         		<dd>
         			<span></span>
         			<p class="receive-mCen1"></p>
-        			<p class="receive-mCen2 activeCen">中</p>
-        			<p class="receive-mCen3"></p>        			
+        			<p v-if="list.liverRisk==='low'" class="receive-mCen1 activeDown">低</p>
+        			<p class="receive-mCen2"></p>
+        			<p v-if="list.liverRisk==='middle'" class="receive-mCen2 activeCen">中</p>
+        			<p class="receive-mCen3"></p> 
+        			<p v-if="list.liverRisk==='high'" class="receive-mCen3 activeUp">高</p>       			
         		</dd>
         	</dl>
+        	</router-link>
+        	<router-link :to="{ name: 'geneReportDetail', query: { code: code ,disease_type:'shiguan'}}">
         	<dl>
         		<dt>食道癌</dt>
         		<dd>
         			<span></span>
-        			<p class="receive-mCen1 activeDown">低</p>
+        			<p class="receive-mCen1"></p>
+        			<p v-if="list.shiguanRisk==='low'" class="receive-mCen1 activeDown">低</p>
         			<p class="receive-mCen2"></p>
-        			<p class="receive-mCen3"></p>        			
+        			<p v-if="list.shiguanRisk==='middle'" class="receive-mCen2 activeCen">中</p>
+        			<p class="receive-mCen3"></p> 
+        			<p v-if="list.shiguanRisk==='high'" class="receive-mCen3 activeUp">高</p>       			
         		</dd>
         	</dl>
+        	</router-link>
+        	<router-link :to="{ name: 'geneReportDetail', query: { code: code ,disease_type:'intestine'}}">
         	<dl>
         		<dt>结直肠癌</dt>
         		<dd>
         			<span></span>
-        			<p class="receive-mCen1 activeDown">低</p>
+        			<p class="receive-mCen1"></p>
+        			<p v-if="list.intestineRisk==='low'" class="receive-mCen1 activeDown">低</p>
         			<p class="receive-mCen2"></p>
-        			<p class="receive-mCen3"></p>        			
+        			<p v-if="list.intestineRisk==='middle'" class="receive-mCen2 activeCen">中</p>
+        			<p class="receive-mCen3"></p> 
+        			<p v-if="list.intestineRisk==='high'" class="receive-mCen3 activeUp">高</p>        			
         		</dd>
         	</dl>
+        	</router-link>
+        	<router-link :to="{ name: 'geneReportDetail', query: {code:code ,disease_type:'breast'}}">
         	<dl>
         		<dt>乳腺癌</dt>
         		<dd>
         			<span></span>
         			<p class="receive-mCen1"></p>
+        			<p v-if="list.breastRisk==='low'" class="receive-mCen1 activeDown">低</p>
         			<p class="receive-mCen2"></p>
-        			<p class="receive-mCen3  activeUp">高</p>        			
+        			<p v-if="list.breastRisk==='middle'" class="receive-mCen2 activeCen">中</p>
+        			<p class="receive-mCen3"></p> 
+        			<p v-if="list.breastRisk==='high'" class="receive-mCen3 activeUp">高</p>       			
         		</dd>
         	</dl>
+        	</router-link>
         	<h3 class="receive-ctit">遗传风险不能做的</h3>
         	<p class="receive-text">1、遗传风险不适用于诊断是否患有某项疾病</p>
         	<p class="receive-text">2、遗传风险无法对已患的疾病给出治疗指导</p>
@@ -86,15 +116,29 @@
     export default {
         data() {
             return {
-				
+				code:'916071702',
+				list:[]
             }
         },
-        methods: {
+        methods: {        	
+        	geneReportRequest(){
+        		var that = this
+        		axios.get(api.geneReportData+this.code)
+		            .then(function (res) {                   	
+		                if (res.data.errorCode == 0) {
+		            			res = res.data.returnValue
+				                that.list = res
+				                
+				                console.log(that.list)			    
+			            	}
+		            })
+        	},
 			detailClick(){
 				this.$router.push({path: '/geneReportDetail'})
 			}
         },
         mounted() {
+        	this.geneReportRequest()
             document.title = "基因检测报告"
         }
     }

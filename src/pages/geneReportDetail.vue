@@ -55,10 +55,27 @@
         data() {
             return {
 				toggle: 0,
-				tabHidden: false
+				tabHidden: false,
+				geneDetailList:[],
+				code:'',
+				disease_type:''
+				
             }
         },
         methods: {
+        	geneDetailRequest(){
+		        var that = this;
+		        this.code = this.$route.query.code;
+		        this.disease_type = this.$route.query.disease_type;
+		        axios.get(api.geneDetailData + this.code+'&disease_type='+this.disease_type)
+		          .then(function (res) {
+		            if (res.data.errorCode == 0) {
+		              res = res.data.returnValue
+		              that.geneDetailList = res
+		              console.log(that.geneDetailList)
+		            }
+		          })
+		    },
 			change_active(index,event) {
 		        this.toggle = index
 		        if(this.toggle==1){
@@ -69,6 +86,7 @@
 		    }
         },
         mounted() {
+        	this.geneDetailRequest()
             document.title = "基因检测报告"
         }
     }

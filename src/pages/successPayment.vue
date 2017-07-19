@@ -6,7 +6,7 @@
 				<p>支付成功</p>
 				<span>我们会在2-3个工作日给您发货！</span>
 			</div>
-			<div class="payment-center">
+			<div class="payment-center" @click='physicalTest'>
 				<img class="payment-centerLeft" src="../assets/paymentPhy.png" alt="" />
 				想了解自己的体质么？点这里
 				<img class="payment-centerRight" src="../assets/listadressright.png" alt="" />
@@ -73,7 +73,10 @@
                 }
             },
             recommendClick(item,index){
-            	this.$router.push({ name: 'goodsdetail', query: { itemid: item._id }})
+            	this.$router.push({ path: 'goodsdetail', query: { itemid: item._id }})
+            },
+            physicalTest(){
+            	this.$router.push({ path: '/'})
             }
         },
         mounted() {
@@ -164,8 +167,7 @@
 			        background: #fff;
 			        .s-mreconimg {
 			            width: 100%;
-			            height: rem(98rem);
-			            margin-bottom: 0.21rem;
+			            height: rem(100rem);
 			            img {
 			                width: 100%;
 			                height: 100%;
@@ -175,6 +177,7 @@
 			            width: 97%;
 			            padding-left:3%;
 			            overflow: hidden;
+			            padding-top: 0.21rem;
 			            span {
 			                font-size: 0.35rem;
 			                color: #000;

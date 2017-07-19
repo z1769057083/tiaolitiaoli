@@ -1,6 +1,6 @@
 //  api use part
 //  let apiPath = 'http://192.168.28.153:3333';
-    let apiPath = 'http://139.162.116.116';
+    let apiPath = 'http://192.168.28.243';
 //  let apiPath = 'http://ikehealth.cn';
 //  let apiPath = 'http://localhost:3333';
 module.exports = {
@@ -32,5 +32,7 @@ module.exports = {
     bindUser: apiPath + '/item/bind_user',//绑定用户
     payCoupon: apiPath + '/item/gene_purchase',//优惠券支付
     couponDetail: apiPath + '/coupon/get_by_code?code=',//优惠券详情
+    geneReportData: apiPath + '/geneReport/get_report?code=',//基因报告
+    geneDetailData: apiPath + '/geneReport/get_my_points?code=',//基因报告详情
     apipath:apiPath //发起请求向后台传订单数据 post
 }

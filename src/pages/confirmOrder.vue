@@ -256,7 +256,6 @@ export default {
 			this.selecthidden = false
 			this.confirmToastHidden = false
 		},
-
 	  //保存 存localstorage，如果localstorage不为空则新增地址变为false 地址变为true 
 	  reserve(){
 	  	if (!window.localStorage) {
@@ -425,13 +424,13 @@ export default {
 	      	this.addNewAddressHidden = false
 	    }		    
 		  this.editAddressArr = this.addressArr
-		  	      	console.log(this.addressArr)
+//		  console.log(this.addressArr)
   	},
   	loadOrdersFromBuyNow(){
   		//取直接购买的商品信息         	
         	let obj_arr = window.localStorage.getItem('buyNow_Key')
 	        this.arr = JSON.parse(obj_arr)
-	        console.log(this.arr)
+//	        console.log(this.arr)
 	        this.totalNum += this.arr[0].num
 					this.count = this.arr[0].num*parseInt(this.arr[0].price)
 					if(this.count>=300){
@@ -444,10 +443,12 @@ export default {
 					this.price.price = this.countPrice
   	},
   	checkIfCodeIsUsed(isUsed){
+  		console.log(11111)
+  		console.log(isUsed)
   		this.useCoupon = !isUsed
 	  	if(isUsed==false){
 	  		this.price.price = 0
-	      	this.count = 0	      	
+	      this.count = 0	      	
 	  	}else{
 	  		this.count += this.arr[0].num * parseInt(this.arr[0].price)
     		if(this.count>=300){
@@ -458,16 +459,20 @@ export default {
 						this.countPrice = this.count + 12
 					}
 					this.price.price = this.countPrice
+					Toast({
+                message: '您的优惠券已使用',
+                position: 'top',
+                duration: 1500
+            });
 	    }
 	  },
   	loadOrderToCheckCouponStatus(hasCoupon){
   		if(hasCoupon){
 						this.price.price = 0
-	          	this.count = 0
-	          	this.useCoupon = true
-  		}
-  		else{
-  			this.count += this.arr[i].num * parseInt(this.arr[i].price)
+          	this.count = 0
+          	this.useCoupon = true
+  		}else{
+  			this.count += this.arr[0].num * parseInt(this.arr[0].price)
     		if(this.count>=300){
 						this.fare = 0
 						this.countPrice = this.count
@@ -506,12 +511,13 @@ export default {
   		//取直接购买的商品信息         	
         	let obj_arr = window.localStorage.getItem('genePay_Key')
 	        this.arr = JSON.parse(obj_arr)
-	        console.log(this.arr)
+//	        console.log(this.arr)
 	        this.geneProduct = true
 	        this.imgUrl = this.arr[0].img
 	        this.totalNum += this.arr[0].num	
 	        this.reduceCount = this.arr[0].num * parseInt(this.arr[0].price)
-					let hasCoupon=window.localStorage.getItem('receiveCode')!==null;
+					let hasCoupon = window.localStorage.getItem('receiveCode')!==null;
+					console.log(hasCoupon)
 					this.loadOrderToCheckCouponStatus(hasCoupon);
 					
   	},
@@ -532,30 +538,12 @@ export default {
             .then(function (res) {    
                 if (res.data.errorCode == 0) {
 									that.couponDetailData = res.data.returnValue
+									console.log(that.couponDetailData)
 									console.log(that.couponDetailData.isUsed)
 		      				that.checkIfCodeIsUsed(that.couponDetailData.isUsed)
 	      	}})  
 			}	 
-	  },	
-    loadUserCouponStatus(){
-    	let that = this
-    	axios.get(api.couponDetail+this.couponCode)
-            .then(function (res) {    
-            	console.log(res.data)
-                if (res.data.errorCode == 0) {
-								that.couponDetailData = res.data.returnValue
-//							console.log(that.couponDetailData.isUsed)
-//					if(that.couponDetailData.isUsed==true){
-//						that.toggle = 1
-//						that.codeHidden = false
-//						
-//          return;
-//					}else{
-//						that.toggle = 2
-//					}
-        }
-      })                  
-  	}  
+	  }  
   },
   mounted() {
 	  this.loadOrderForMedial();
