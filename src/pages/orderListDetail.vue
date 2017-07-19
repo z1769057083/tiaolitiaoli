@@ -2,8 +2,8 @@
 	<div>
     <div class='orderDetail'>	
     	<div class="order-dmain">
-    		<!--<div class="order-success" v-show='!activeOrder'>等待付款</div>-->
-    		<div class="order-success">已付款，等待发货</div>
+    		<div class="order-success" v-if='orderList.status==0'>等待付款</div>
+    		<div class="order-success" v-if='orderList.status==1'>已付款，等待发货</div>
     		<div class='order-transfer' v-if='false'>
     			<p><span>承运物流：</span>申通快递</p>
     			<p><span>物流编号：</span>123456789</p>
@@ -42,22 +42,11 @@
 	    	<dl>
 	    		<dt>下单时间：{{orderList.createTime|filterFun}}</dt>
 	    	</dl>
-	    	<!--<dl v-show='activeOrder'>
-	    		<dd class="delect-order"  @click='cancelOrder'>删除订单</dd>
+	    	<dl v-if='orderList.status==0'>
+	    		<dd class="delect-order order-pay" @click='nowPay'>去支付</dd>
 	    	</dl>
-	    	<dl v-show='!activeOrder'>
-	    		<dd class="delect-order" @click='cancelOrder'>取消订单</dd>
-	    		<dd class="delect-order order-pay" @click='nowPay'>立即付款</dd>
-	    	</dl>-->
 	    </div>
     </div>
-	<div class="shopConfirm-toast" v-show='toastHidden'>
-	  	<div class="confirm-main">
-	  		<p>确定要删除商品嘛?</p>
-	 		<div class="btn" @click='toastHidden = !toastHidden'>取消</div>
-	 		<div class="btn rightBtn" @click='confirmDel'>确定</div>
-	  	</div>
-	</div>
     </div>
 </template>
 <script>
@@ -70,8 +59,6 @@ export default {
   		apiPath:'',
   		orderList:[],
   		addressObj:{},
-//		activeOrder:false,
-  		toastHidden:false,
   		submitArr:[],
   		price:{
 			price: 0
@@ -94,20 +81,13 @@ export default {
         axios.get(api.singleOrderList+that.orderId)
           .then(function (res) {
             if (res.data.errorCode == 0) {
-              res = res.data.returnValue
-              that.orderList = res
-              console.log(that.orderList)
-			  that.addressObj = that.orderList.address
-//			  if(that.orderList.status==0){
-//      			that.activeOrder = false
-//      		}else if(that.orderList.status==1){
-//      			that.activeOrder = true
-//      		}
-        		if(that.orderList.price>=300){
-        			that.fare = 0
-        		}else{
-        			that.fare = 12
-        		}
+              	that.orderList = res.data.returnValue
+			  	that.addressObj = that.orderList.address
+	    		if(that.orderList.price>=300){
+	    			that.fare = 0
+	    		}else{
+	    			that.fare = 12
+	    		}
             }
           })
           .catch(function (error) {
@@ -130,14 +110,7 @@ export default {
         	storage.setItem("orderArr", orderArr)
         }	        
        	this.$router.push({ path: '/cashier'})
-        },
-       //删除商品
-   		confirmDel(){
-   			this.toastHidden = false
-   			this.$emit('cancelOrderEvent')
-   			this.$router.push({ path: '/orderList'})   			
-   		},
-   		
+       },
   },
   mounted() {
 	this.apiPath = api.apipath
@@ -322,41 +295,7 @@ export default {
 			}
 		}
 	}
-}
-.shopConfirm-toast{
-	width: 100%;
-	height: 100%;
-	position: fixed;
-	background: rgba(0,0,0,.5);
-	z-index: 999;
-	.confirm-main{
-		width: 80%;
-		background: #fff;
-		height: rem(100rem);
-		position: absolute;
-		border-radius: rem(5rem);
-		left: 10%;
-		top: 34%;
-		p{
-			font-size: $font14;
-			margin: rem(20rem) 0 0 rem(20rem);
-		}
-		.btn{
-			width: 49%;
-			height: rem(44rem);
-			float: left;
-			text-align: center;
-			line-height: rem(44rem);
-			border-top: 1px solid #efefef;
-			margin-top: rem(21rem);
-			font-size: $font14;
-		}
-		.rightBtn{
-			border-left: 1px solid #efefef;
-			color: #c69b70;
-		}
-	}
-}		
+}	
 </style>
 
 

@@ -1,46 +1,51 @@
 <template>
     <div class='geneReportDetail'>
-    	<h3 class="title"><img src="../assets/geneReportH3.png" alt="" />肝癌简介</h3>
+    	<h3 class="title"><img src="../assets/geneReportH3.png" alt="" />{{disease_name}}简介</h3>
         <dl class="detail-top">
         	<dt></dt>
-        	<dd>肝细胞癌是临床上常见的恶性肿瘤之一，其恶性度高、病情进展快、致死率高。肝癌已经成为严重威胁我国人民健康和生命的一大杀手，其危险性不容小视。</dd>
+        	<dd>{{section1}}</dd>
         </dl>
         <dl class="detail-top">
         	<dt class="yellow"></dt>
-        	<dd>全球每年约有60万人死于肝癌，其中约55%发生在中国。我国肝癌高发年龄为35-45岁，且有发病率上升、年龄趋小的态势。</dd>
+        	<dd>{{section2}}</dd>
         </dl>
-        <h3 class="title title1"><img src="../assets/geneReportTit.png" alt="" />肝癌检测结果</h3>
-        <div class="detail-mcen">正常</div>
+        <h3 class="title title1"><img src="../assets/geneReportTit.png" alt="" />{{disease_name}}检测结果</h3>
+        <div v-if="geneDetailList.riskLevel=='low'" class="detail-mcen">正常</div>
+        <div v-if="geneDetailList.riskLevel=='middle'" class="detail-mcen detail-center">中度风险</div>
+        <div v-if="geneDetailList.riskLevel=='high'" class="detail-mcen detail-high">高度风险</div>
         <p class="detail-text">您的基因风险值高于</p>
-        <p class="detail-text detail-text1"><span>68%</span>的人</p>
+        <p class="detail-text detail-text1"><span>{{geneDetailList.belowUserPercentage}}%</span>的人</p>
         <img class="geneReportBot" src="../assets/geneReportBot.png"/>
         <div class="detail-mbot">
         	<p><span></span>正常</p>
         	<p><span class="center"></span>中度风险</p>
         	<p class="height"><span></span>高度风险</p>
         </div>
-        <p class="detail-text2">中国平均患病率  25%</p>
         <h3 class="title"><img src="../assets/geneReportTit1.png" alt="" />我的易感基因位点解读</h3>
         <div class="detail-bottom">
         	<div class="detail-botTop">
         		<p :class="{'active': toggle === 0}" @click="change_active(0,$event)">位点详情</p>
         		<p :class="{'active': toggle === 1}" @click="change_active(1,$event)">参考文献</p>
         	</div>
-        	<div class="detail-botCen" v-if='tabHidden'>
-        		<p><span>[1] Siegel R L, Miller K D,</span> Jemal A. Cancer statistics, 2016 [J][1] Siegel R L, Miller K D, Jemal A. Cancer statistics, 2016 [J]</p>
-        		<p><span>[1] Siegel R L, Miller K D,</span> Jemal A. Cancer statistics, 2016 [J][1] Siegel R L, Miller K D, Jemal A. Cancer statistics, 2016 [J]</p>
-        		<p><span>[1] Siegel R L, Miller K D,</span> Jemal A. Cancer statistics, 2016 [J][1] Siegel R L, Miller K D, Jemal A. Cancer statistics, 2016 [J]</p>
-        		<p><span>[1] Siegel R L, Miller K D,</span> Jemal A. Cancer statistics, 2016 [J][1] Siegel R L, Miller K D, Jemal A. Cancer statistics, 2016 [J]</p>
+        	<div class="detail-botCen" v-if='tabHidden' v-for='item in geneDetailList.details'>
+        		<p v-if="item.refer!==''">{{item.refer}}</p>
         	</div>
-        	<ul class="detail-botMain" v-if='!tabHidden'>
-        		<li class="detail-botLi"><p>位点</p><p>基因型</p><p>健康评价</p><p>基因型占比</p></li>
-        		<li><p>rs123456789</p><p>AG</p><p>风险增加1.39倍</p><p>42.7%</p></li>
-        		<li><p>rs123456789</p><p>AG</p><p>风险增加1.39倍</p><p>42.7%</p></li>
-        		<li><p>rs123456789</p><p>AG</p><p>风险增加1.39倍</p><p>42.7%</p></li>
-        		<li><p>rs123456789</p><p>AG</p><p>风险增加1.39倍</p><p>42.7%</p></li>
-        		<li><p>rs123456789</p><p>AG</p><p>风险增加1.39倍</p><p>42.7%</p></li>
-        		<li><p>rs123456789</p><p>AG</p><p>风险增加1.39倍</p><p>42.7%</p></li>
-        		
+        	<ul class="detail-botMain" v-if='!tabHidden' >
+        		<li class="detail-botLi">
+        			<p>位点</p>
+        			<p>基因型</p>
+        			<p>健康评价</p>
+        			<p>基因型占比</p>
+        		</li>
+	        	<template v-for='items in geneDetailList.details'>
+		        	<li>
+		        		<p>{{items.snp}}</p>
+		        		<p>{{items.gene_type}}</p>
+		        		<p v-if="items.risk===1">正常</p>
+		        		<p v-if="items.risk!==1">风险增加{{items.risk}}倍</p>
+		        		<p>{{items.id}}%</p>
+		        	</li>
+	        	</template>
         	</ul>
         </div>
         <div class="tiaoLi">
@@ -51,6 +56,7 @@
 <script>
     import axios from 'axios'
     import api from '../api/api'
+    import mapper from '../common/diseaseMapper.js'
     export default {
         data() {
             return {
@@ -58,8 +64,10 @@
 				tabHidden: false,
 				geneDetailList:[],
 				code:'',
-				disease_type:''
-				
+				disease_type:'',
+				section1:'',
+				section2:'',
+				disease_name:''				
             }
         },
         methods: {
@@ -87,7 +95,14 @@
         },
         mounted() {
         	this.geneDetailRequest()
+        	document.documentElement.scrollTop = 0
+    		document.body.scrollTop = 0
             document.title = "基因检测报告"
+			this.disease_type = this.$route.query.disease_type;
+			console.log(this.section1)
+			this.disease_name = mapper[this.disease_type].name
+			this.section1 = mapper[this.disease_type].section1
+			this.section2 = mapper[this.disease_type].section2			
         }
     }
 </script>
@@ -137,7 +152,7 @@
 				padding: rem(10rem);
 				background: #e6e6e6;
 				float: right;
-				height: rem(52rem);
+				min-height: rem(52rem);;
 				border-radius: rem(10rem);
 				line-height: rem(18rem);
 				font-size: $font12;
@@ -155,6 +170,12 @@
 			font-size: $font16;
 			border-radius: rem(20rem);
 			margin-bottom: rem(30rem);
+		}
+		.detail-center{			
+			background: #f9c72f;
+		}
+		.detail-high{			
+			background: #ec4c22;
 		}
 		.detail-text{
 			width: 40%;
@@ -179,11 +200,10 @@
 		}
 		.detail-mbot{
 			width: 76%;
-			margin-left: 12%;
 			overflow: hidden;
 			border-top: 1px solid #c9caca;
 			padding-top: rem(18rem);
-			margin-top: rem(30rem);
+			margin: rem(30rem) 0 rem(30rem) 12%;
 			p{
 				float: left;
 				line-height: rem(15rem);
@@ -209,12 +229,6 @@
 					background: #ec4c22;
 				}				
 			}
-		}
-		.detail-text2{
-			text-align: center;
-			font-size: $font16;
-			color: #4c4948;
-			margin: rem(30rem) 0 rem(20rem);
 		}
 		.detail-bottom{
 			width: 85%;

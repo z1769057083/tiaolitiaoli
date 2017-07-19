@@ -55,7 +55,7 @@
         	</router-link>
         	<router-link :to="{ name: 'geneReportDetail', query: { code: code ,disease_type:'shiguan'}}">
         	<dl>
-        		<dt>食道癌</dt>
+        		<dt>食管癌</dt>
         		<dd>
         			<span></span>
         			<p class="receive-mCen1"></p>
@@ -139,6 +139,8 @@
         },
         mounted() {
         	this.geneReportRequest()
+        	document.documentElement.scrollTop = 0
+    		document.body.scrollTop = 0
             document.title = "基因检测报告"
         }
     }

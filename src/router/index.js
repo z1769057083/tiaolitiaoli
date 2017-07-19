@@ -141,6 +141,7 @@ export default new Router({
 	    {
 	      path: '/orderList',
 	      component: orderList,
+	      meta: { keepAlive: true },
 	      name: 'orderList'
 	    },
 	    {

@@ -175,7 +175,7 @@
                 }                             
         	}
            	if(window.localStorage.getItem('receiveCode')){
-	      			let receive = JSON.parse(window.localStorage.getItem('receiveCode'));		        					this.couponCode = receive
+	      		let receive = JSON.parse(window.localStorage.getItem('receiveCode'));		        				this.couponCode = receive
             }
         }
     }

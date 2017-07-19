@@ -23,7 +23,7 @@ module.exports = {
     videoList: apiPath + '/product/video?type=',
     articleList: apiPath + '/product/article?pageIndex=',
     articleListDetail: apiPath + '/product/article_details?id=',
-    orderList: apiPath + '/order/my?userId=',
+    myOrders: apiPath + '/order/my?userId=',
     singleOrderList: apiPath + '/order/single?id=',
     cities: apiPath + '/data/cities.json',
     removeUser: apiPath + '/user/remove?id=',
