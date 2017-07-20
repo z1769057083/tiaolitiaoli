@@ -1,8 +1,8 @@
 //  api use part
 //  let apiPath = 'http://192.168.28.153:3333';
-    let apiPath = 'http://192.168.28.243';
+//     let apiPath = 'http://192.168.28.243';
 //  let apiPath = 'http://ikehealth.cn';
-//  let apiPath = 'http://localhost:3333';
+ let apiPath = 'http://localhost:3333';
 module.exports = {
     shopData: apiPath + '/product/all', // 商城首页
     recommendData: apiPath + '/product/recommend?id=', // 推荐商品
@@ -22,7 +22,7 @@ module.exports = {
     videoListDetail: apiPath + '/product/video_details?id=',
     videoList: apiPath + '/product/video?type=',
     articleList: apiPath + '/product/article?pageIndex=',
-    articleListDetail: apiPath + '/product/article_details?id=',
+    articleDetails: apiPath + '/product/article_details?id=',
     myOrders: apiPath + '/order/my?userId=',
     singleOrderList: apiPath + '/order/single?id=',
     cities: apiPath + '/data/cities.json',

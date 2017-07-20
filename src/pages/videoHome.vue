@@ -7,7 +7,7 @@
 		<div class="article-main" v-if='mainShow' ref="scroll_hook">
 			<div>
 				<dl v-for='articleItem in articleAll'>
-					<router-link :to="{ name: 'articleListDetail', query: { itemid: articleItem._id }}">
+					<router-link :to="{ name: 'articleDetails', query: { itemid: articleItem._id }}">
 						<dt>
 							<h3>{{articleItem.title}}</h3>
 							<p>{{articleItem.content}}</p>
