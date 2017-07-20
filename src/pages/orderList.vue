@@ -341,15 +341,16 @@
 			}
 		}
 		.s-mrecombottom{
- 		line-height: 0.45rem;
- 		font-size: 0.32rem;
- 		color: #999;
- 		width: 100%;
- 		overflow: hidden;
- 		text-align: center;
- 		margin: rem(20rem) 0;
- 		display: block;
- 	}
+	 		line-height: 0.45rem;
+	 		font-size: 0.32rem;
+	 		color: #999;
+	 		width: 100%;
+	 		overflow: hidden;
+	 		text-align: center;
+	 		padding: rem(20rem) 0;
+	 		display: block;
+	 		background: #f6f6f6;
+	 	}
 	}
 	.nullOrder{
 		text-align: center;
