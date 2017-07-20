@@ -34,6 +34,8 @@ import geneReport from '@/pages/geneReport'
 import geneReportDetail from '@/pages/geneReportDetail'
 import personalCenter from '@/pages/personalCenter'
 import successPayment from '@/pages/successPayment'
+import geneticPhysical from '@/pages/geneticPhysical'
+import opinionFeedback from '@/pages/opinionFeedback'
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -208,6 +210,16 @@ export default new Router({
 	      path: '/successPayment',
 	      component: successPayment,
 	      name: 'successPayment'
+	    },
+	    {
+	      path: '/geneticPhysical',
+	      component: geneticPhysical,
+	      name: 'geneticPhysical'
+	    },
+	    {
+	      path: '/opinionFeedback',
+	      component: opinionFeedback,
+	      name: 'opinionFeedback'
 	    }
   ]
 })

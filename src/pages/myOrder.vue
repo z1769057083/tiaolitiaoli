@@ -82,7 +82,7 @@
             }
         }
         this.type = this.$route.query.type;
-        axios.get(api.orderList+that.useId+'&type='+this.type)
+        axios.get(api.myOrders+that.useId+'&type='+this.type)
             .then(function (res) {                   	
                 if (res.data.errorCode == 0) {
             			res = res.data.returnValue
