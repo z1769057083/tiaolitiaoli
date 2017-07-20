@@ -68,6 +68,7 @@
                     let obj_arr = storage.getItem('orderArr')
                     let obj = JSON.parse(obj_arr)
                     this.arr = obj
+                    console.log( this.arr)
                     if (window.localStorage.getItem(Account_Index) !== null) {
                         let account = JSON.parse(window.localStorage.getItem(Account_Index))
                         this.accountArr = account
@@ -77,6 +78,7 @@
                     order: this.arr[0],
                     address: this.arr[1],
                     price: this.arr[2].price,
+                    totalNum:this.arr[2].totalNum,
                     userId: this.accountArr._id,
                     openid: this.accountArr.openid,
                     nickName: this.accountArr.nickname
@@ -87,6 +89,7 @@
                         order: {},
                         address: 'test',
                         price: 0.01,
+                        totalNum:1,
                         userId: this.accountArr._id,
                         openid: this.accountArr.openid,
                         nickName: this.accountArr.nickname
@@ -118,6 +121,7 @@
                     order: this.arr[0],
                     address: this.arr[1],
                     price: this.arr[2].price,
+                    totalNum:this.arr[2].totalNum,
                     userId: this.accountArr._id,
                     openid: this.accountArr.openid,
                     nickName: this.accountArr.nickname,
@@ -129,6 +133,7 @@
                         order: {},
                         address: 'test',
                         price: 0.01,
+                        totalNum:1,
                         userId: this.accountArr._id,
                         openid: this.accountArr.openid,
                         nickName: this.accountArr.nickname,

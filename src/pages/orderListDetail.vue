@@ -1,21 +1,23 @@
 <template>
     <div class='orderDetail'>
     	<div class="orderDetail-main">
-			<div class="order-success" v-if='orderList.status==0'>等待付款</div>
-			<div class="order-paySuccess" v-if='orderList.status==1'>已付款，等待发货</div>
+			<div class="order-paySuccess" v-if='orderList.status==0'>等待付款</div>
+			<div class="order-paySuccess" v-if='orderList.status==1'>已付款</div>
+			<div class="order-paySuccess" v-if='orderList.status==9'>已完成</div>
 			<dl class="order-consignee">
 				<dt><img src="../assets/orderDetailAddress.png"/></dt>
 				<dd class="consignee">
 					<p>收货人:&nbsp;{{addressObj.name}}<span>{{addressObj.phone}}</span></p>
 					<span>收货地址:&nbsp;{{addressObj.address}}</span>
 				</dd>
-				<!--<dd class="order-right"><img src="../assets/confirmRight.png"/></dd>-->
 			</dl>
 		    <div class="order-main"> 
 		    	<h3 class="order-mtitle">汉古商城</h3>	    	
 		    	<div class="order-mdetail" v-for='orderItem in orderList.order'>
 		    		<dl>
-		    			<dt><img :src="''+apiPath+'/image/product/'+orderItem.img+'/1.jpg'" 
+		    			<dt>
+		    				<img v-if='orderItem.id==1' :src="orderItem.img" />
+		    				<img v-else :src="''+apiPath+'/image/product/'+orderItem.img+'/1.jpg'" 
 								onerror="this.src='http://placeholder.qiniudn.com/800'"/></dt>
 		    			<dd>
 		    				{{orderItem.name}}
@@ -36,8 +38,8 @@
 		    	<dl>
 		    		<dt>下单时间：{{orderList.createTime|filterFun}}</dt>
 		    	</dl>
-		    	<dl v-if='orderList.status==0'>
-		    		<dd class="delect-order" @click='nowPay'></dd>
+		    	<dl class="order-mconpic">
+		    		<dd>共{{orderList.totalNum}}件商品&nbsp; 需付款  ¥{{orderList.price}}.00</dd>
 		    	</dl>
 		    	<dl class="order-mconpic" v-if='orderList.status==0'>
 		    		<dd class="pay-order" @click='nowPay'>去支付</dd>
@@ -79,6 +81,7 @@ export default {
           .then(function (res) {
             if (res.data.errorCode == 0) {
               	that.orderList = res.data.returnValue
+              	console.log(that.orderList)
 			  	that.addressObj = that.orderList.address
 	    		if(that.orderList.price>=300){
 	    			that.fare = 0
@@ -131,26 +134,16 @@ export default {
 		width: 100%;
 		overflow: hidden;
 		position: absolute;
-		font-size: $font14;			
-		.order-success{
-			width: 94%;
-			overflow: hidden;
-			padding: rem(5rem) 3%;
-			line-height: rem(30rem);
-			border-bottom: 1px solid #efefef;
-			background: #fff;
-		}
+		font-size: $font14;
 		.order-paySuccess{
 			width: 94%;
 			overflow: hidden;
 			height: rem(62rem);
 			line-height: rem(62rem);
-			color: #c69b70;
+			color: #fff;
 			font-size: $font16;
-			font-weight: bold;
-			border-bottom: 2px solid #ddc9b1;
-			background: #fff url(../assets/orderDetailDdeliver.png) no-repeat 97% center;
-			background-size: rem(60rem) rem(30rem);
+			background: url(../assets/orderDetail.jpg) no-repeat center;
+			background-size: cover;
 			padding: rem(5rem) 3%;
 		}
 		.order-consignee{
@@ -199,15 +192,15 @@ export default {
 			}
 			.order-mdetail{
 				width: 94%;
-				height: rem(92rem);
+				height: rem(60rem);
 				background: #fafafa;
 				padding: rem(5rem) 3%;
 				margin-bottom: rem(5rem);
 				dl{
 					float: left;
 					dt{
-						width: rem(92rem);
-						height: rem(92rem);
+						width: rem(60rem);
+						height: rem(60rem);
 						float: left;
 						img{
 							width: 100%;
@@ -221,7 +214,7 @@ export default {
 						color: $c3c3c;
 						p{
 							margin-top: rem(5rem);
-							font-size: $font14;
+							font-size: $font13;
 							color: #fe4415;
 						}
 					}
@@ -248,6 +241,7 @@ export default {
 				border-bottom: 1px solid #efefef;
 				line-height: rem(47rem);
 				background: #fff;
+				color: #6e6e6e;
 				dt{
 					float: left;
 					/*width: 30%;*/
@@ -275,6 +269,7 @@ export default {
 			}
 			.order-mconpic{
 				border: 0;
+				color: #000;
 				dd{
 					letter-spacing: rem(0.4rem);
 					span{

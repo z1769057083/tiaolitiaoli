@@ -25,7 +25,7 @@
     	<div class="order-mdetail" v-for='(item,index) in arr'>
     		<dl>
     			<dt v-if='geneProduct'><img :src="imgUrl" 
-	    				onerror="this.src=''"/></dt>
+	    				onerror="this.src='../../static/images/defaultPicture.jpg'"/></dt>
     			<dt v-if='!geneProduct'><img :src="''+apiPath+'/image/product/'+item.img+'/1.jpg'" 
 	    				onerror="this.src='../../static/images/defaultPicture.jpg'"/></dt>
     			<dd>
@@ -399,7 +399,8 @@ export default {
 	        this.submitArr.push(this.arr)
 	        this.submitArr.push(this.addressArr)
 	        this.submitArr.push(this.price)
-	        var orderArr= JSON.stringify(this.submitArr)  
+	        var orderArr= JSON.stringify(this.submitArr) 
+	        console.log(orderArr)
 	        storage.setItem("orderArr", orderArr)
 			  }
 			  this.$router.push({ path: '/cashier'})
@@ -442,12 +443,12 @@ export default {
 						this.countPrice = this.count + 12
 					}
 					this.price.price = this.countPrice
+					this.price.totalNum = this.totalNum
   	},
   	checkIfCodeIsUsed(isUsed){
-  		console.log(11111)
-  		console.log(isUsed)
   		this.useCoupon = !isUsed
 	  	if(isUsed==false){
+	  		this.price.totalNum = 1
 	  		this.price.price = 0
 	      this.count = 0	      	
 	  	}else{
@@ -460,6 +461,7 @@ export default {
 						this.countPrice = this.count + 12
 					}
 					this.price.price = this.countPrice
+					this.price.totalNum = this.totalNum
 					Toast({
                 message: '您的优惠券已使用',
                 position: 'top',
@@ -471,6 +473,7 @@ export default {
   		if(hasCoupon){
 						this.price.price = 0
           	this.count = 0
+          	this.price.totalNum = 1
           	this.useCoupon = true
   		}else{
   			this.count += this.arr[0].num * parseInt(this.arr[0].price)
@@ -482,6 +485,7 @@ export default {
 						this.countPrice = this.count + 12
 					}
 					this.price.price = this.countPrice
+					this.price.totalNum = this.totalNum
   		}
   	},
   	loadOrdersFromShopCart(){
@@ -505,6 +509,7 @@ export default {
 									this.countPrice = this.count + 12
 								}
 								this.price.price = this.countPrice
+								this.price.totalNum = this.totalNum
 	          }
          }
   	},
@@ -539,8 +544,6 @@ export default {
             .then(function (res) {    
                 if (res.data.errorCode == 0) {
 									that.couponDetailData = res.data.returnValue
-									console.log(that.couponDetailData)
-									console.log(that.couponDetailData.isUsed)
 		      				that.checkIfCodeIsUsed(that.couponDetailData.isUsed)
 	      	}})  
 			}	 

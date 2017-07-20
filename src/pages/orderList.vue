@@ -1,12 +1,12 @@
 <template>
 	<div class="orderHome">
 		<ul class="order-top">
-			<li :class="{'orderTop':toggle==0}" @click="change_active('0',$event)" class='all-order'>全部</li>
-			<li :class="{'orderTop':toggle==1}" @click="change_active('1',$event)">待付款</li>
-			<li :class="{'orderTop':toggle==2}" @click="change_active('2',$event)">已付款</li>
-			<li :class="{'orderTop':toggle==3}" @click="change_active('3',$event)">已完成</li>
+			<li :class="{'orderTop':toggle==-1}" @click="change_active('-1',$event)" class='all-order'>全部</li>
+			<li :class="{'orderTop':toggle==0}" @click="change_active('0',$event)">待付款</li>
+			<li :class="{'orderTop':toggle==1}" @click="change_active('1',$event)">已付款</li>
+			<li :class="{'orderTop':toggle==9}" @click="change_active('9',$event)">已完成</li>
 		</ul>
-	    <div class='order' v-if='toggle==0'>
+	    <div class='order'>
 		    <div v-for='(items,index) in list'>	    	
 		    	<div>
 		    		<router-link :to="{ name: 'orderListDetail', query: { itemid: items._id }}">
@@ -14,17 +14,19 @@
 				    	<div class="order-mtop">
 				    		<img class="time" src="../assets/orderListTime.png" alt="" />
 				    		{{items.createTime|filterTime}}
-				    		<span>{{items.status|filterFun}}付款 </span>
-				    		<span class="orderListComplate" v-if='items.status==2'></span>
+				    		<span class="orderListComplate" v-if='items.status==9'></span>
+				    		<span v-else>{{items.status|filterFun}}付款 </span>				    		
 				    	</div>
 			    		<div class="order-mdetail">
 				    		<dl>
 				    			<dt v-for='item in items.order'>
-				    				<img 									:src="''+apiPath+'/image/product/'+item.img+'/1.jpg'" 
+				    				<img v-if='item.id==1'									:src="item.img" 
+									onerror="this.src='http://placeholder.qiniudn.com/800'"/>
+				    				<img v-else									:src="''+apiPath+'/image/product/'+item.img+'/1.jpg'" 
 									onerror="this.src='http://placeholder.qiniudn.com/800'"/>
 				    			</dt>		
-				    			<dd>
-				    				{{items.order.name}}
+				    			<dd v-if='items.order.length==1' v-for='item in items.order'>
+				    				{{item.name}}
 				    			</dd>
 				    		</dl>
 				    		<img src="../assets/confirmRight.png" class="order-mnum"/>
@@ -34,7 +36,7 @@
 				    <div class="order-mcontent">
 				    	<dl>
 				    		<dd>
-				    			共{{totalNum}}件商品  
+				    			共{{items.totalNum}}件商品  
 				    			合计&nbsp;¥{{items.price}}.00</dd>
 				    	</dl>
 				    	<dl  v-if='items.status==0'>			    		
@@ -43,11 +45,9 @@
 				    </div>
 			    </div>
 		    </div>
+		    <div class="s-mrecombottom">没有更多了</div>
 		</div>
-		<!--<div class="order" v-if='toggle==1'>
-			
-		</div>-->
-		<div class="nullOrder" v-if='toggle==1||toggle==2||toggle==3'>
+		<div class="nullOrder" v-if='list.length==0'>
 			<img class="nullOrder-img" src="../assets/orderListNull.png"/>
 			<p>您还没有相关订单</p>
 		</div>
@@ -68,8 +68,9 @@
 	 			},
 	 			toastHidden:false,
 	 			listId:[],
-	 			toggle:0,
-	 			totalNum:''
+	 			toggle:-1,
+	 			totalNum:'',
+	 			status:''
             }
         },
         filters: {
@@ -78,7 +79,7 @@
                     return '待'
                 }
                 else if(obj==1){
-                    return '实'
+                    return '已'
                 }
             },
             filterTime(time){
@@ -88,16 +89,7 @@
         methods: {
             orderList(){
                 var that = this;
-		        if (!window.localStorage) {
-		            return false;
-		        } else {
-		            if (window.localStorage.getItem(Account_Index) !== null) {
-		                let account = JSON.parse(window.localStorage.getItem(Account_Index))
-		                that.useId = account._id
-		            }
-		
-		        }
-                axios.get(api.myOrders+that.useId)
+                axios.get(api.myOrders+this.useId)
                     .then(function (res) { 
                     	console.log(res)
                         if (res.data.errorCode == 0) {                       	
@@ -112,8 +104,38 @@
                         }
                     })
            },
+           orderListDetail(){
+                var that = this;
+                axios.get(api.myOrders+this.useId+'&status='+this.toggle)
+                    .then(function (res) { 
+                    	console.log(res)
+                        if (res.data.errorCode == 0) {                       	
+                    		that.list = res.data.returnValue
+                    		console.log(1111)
+                            console.log(that.list)
+                          //判断是否支付完成
+                            if(that.list.length>0){
+				            	for (var i = 0, len = that.list.length; i < len; i++) {
+				            	that.price.price = that.list[i].price
+				            	}
+				            }
+                        }
+                    })
+           },
            change_active(index){
            	this.toggle = index
+           	if(this.toggle==-1){
+           		this.orderList()   
+           	}else if(this.toggle==0){
+           		this.toggle = 0
+           		this.orderListDetail()
+           	}else if(this.toggle==1){
+           		this.toggle = 1
+           		this.orderListDetail()
+           	}else if(this.toggle==9){
+           		this.toggle = 9
+           		this.orderListDetail()
+           	}
            },
            nowPay(index){
            	if (!window.localStorage) {
@@ -135,11 +157,21 @@
             },
         },
         mounted() {
+        	if (!window.localStorage) {
+		            return false;
+	        } else {
+	            if (window.localStorage.getItem(Account_Index) !== null) {
+	                let account = JSON.parse(window.localStorage.getItem(Account_Index))
+	                this.useId = account._id
+	            }		
+	        }
         	document.documentElement.scrollTop = 0
     		document.body.scrollTop = 0
-        	this.apiPath = api.apipath
-        	this.orderList()       	
+        	this.apiPath = api.apipath       	
             document.title = "我的订单"
+            if(this.toggle==-1){
+            	this.orderList()
+            }
         }
     }
 </script>
@@ -228,8 +260,11 @@
 				background: #fafafa;
 				padding: rem(10rem) 3%;
 				dl{
+					width: 96%;
 					float: left;
 					color: $c3c3c;
+					overflow: hidden;
+					height: rem(60rem);
 					dt{
 						width: rem(60rem);
 						height: rem(60rem);
@@ -243,7 +278,7 @@
 					dd{
 						float: left;
 						line-height: rem(60rem);
-						margin-left: rem(15rem);
+						margin-left: rem(5rem);
 						color: #3c3c3c;
 					}
 				}
@@ -305,6 +340,16 @@
 				}
 			}
 		}
+		.s-mrecombottom{
+ 		line-height: 0.45rem;
+ 		font-size: 0.32rem;
+ 		color: #999;
+ 		width: 100%;
+ 		overflow: hidden;
+ 		text-align: center;
+ 		margin: rem(20rem) 0;
+ 		display: block;
+ 	}
 	}
 	.nullOrder{
 		text-align: center;
