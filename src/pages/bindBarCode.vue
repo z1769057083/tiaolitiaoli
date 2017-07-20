@@ -144,14 +144,17 @@
 			    axios.post(api.bindUser, this.params)
                     .then(function (res) {
                     	console.log(res)
-                        if (res.status == 200) {
+                        if (res.data.errorCode == 0) {
                             that.bindDateList = res.config
                             that.$router.push({path:'/myOrder',query: {type:'gene' }})
                             console.log(that.bindDateList)
+                        }else if(res.data.errorCode == 2&&res.data.errorReason=='"qrCode_invalid"'){
+                        	Toast({
+						        message: '无效的条形码',
+						        position:'top',
+						        duration:1000
+						      });
                         }
-                    })
-                    .catch(function (error) {
-                        console.log(error)
                     })
             },
             bindData(){

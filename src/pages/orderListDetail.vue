@@ -1,52 +1,49 @@
 <template>
-	<div>
-    <div class='orderDetail'>	
-    	<div class="order-dmain">
-    		<div class="order-success" v-if='orderList.status==0'>等待付款</div>
-    		<div class="order-success" v-if='orderList.status==1'>已付款，等待发货</div>
-    		<div class='order-transfer' v-if='false'>
-    			<p><span>承运物流：</span>申通快递</p>
-    			<p><span>物流编号：</span>123456789</p>
-    		</div>
-    		<dl class="order-consignee">
-				<dt><img src="../assets/orderAddress.png"/></dt>
+    <div class='orderDetail'>
+    	<div class="orderDetail-main">
+			<div class="order-success" v-if='orderList.status==0'>等待付款</div>
+			<div class="order-paySuccess" v-if='orderList.status==1'>已付款，等待发货</div>
+			<dl class="order-consignee">
+				<dt><img src="../assets/orderDetailAddress.png"/></dt>
 				<dd class="consignee">
 					<p>收货人:&nbsp;{{addressObj.name}}<span>{{addressObj.phone}}</span></p>
 					<span>收货地址:&nbsp;{{addressObj.address}}</span>
 				</dd>
-				<dd class="order-right"><img src="../assets/confirmRight.png"/></dd>
+				<!--<dd class="order-right"><img src="../assets/confirmRight.png"/></dd>-->
 			</dl>
-    	</div>
-	    <div class="order-main"> 
-	    	<h3 class="order-mtitle">汉古商城</h3>	    	
-	    	<div class="order-mdetail" v-for='orderItem in orderList.order'>
-	    		<dl>
-	    			<dt><img :src="''+apiPath+'/image/product/'+orderItem.img+'/1.jpg'" 
-							onerror="this.src='http://placeholder.qiniudn.com/800'"/></dt>
-	    			<dd>
-	    				{{orderItem.name}}
-		    			<p>¥{{orderItem.price}}.00</p>
-	    			</dd>
-	    		</dl>
-	    		<div class="order-mnum">X<span>{{orderItem.num}}</span></div>
-	    	</div>	    	
-	    </div>
-	    <div class="order-mcontent">
-	    	<dl>
-	    		<dt>配送费用</dt>
-	    		<dd>快递 &nbsp;¥{{fare}}.00</dd>
-	    	</dl>
-	    	<dl>
-	    		<dt>订单编号：{{orderList._id}}</dt>
-	    	</dl>
-	    	<dl>
-	    		<dt>下单时间：{{orderList.createTime|filterFun}}</dt>
-	    	</dl>
-	    	<dl v-if='orderList.status==0'>
-	    		<dd class="delect-order order-pay" @click='nowPay'>去支付</dd>
-	    	</dl>
-	    </div>
-    </div>
+		    <div class="order-main"> 
+		    	<h3 class="order-mtitle">汉古商城</h3>	    	
+		    	<div class="order-mdetail" v-for='orderItem in orderList.order'>
+		    		<dl>
+		    			<dt><img :src="''+apiPath+'/image/product/'+orderItem.img+'/1.jpg'" 
+								onerror="this.src='http://placeholder.qiniudn.com/800'"/></dt>
+		    			<dd>
+		    				{{orderItem.name}}
+			    			<p>¥{{orderItem.price}}.00</p>
+		    			</dd>
+		    		</dl>
+		    		<div class="order-mnum">X<span>{{orderItem.num}}</span></div>
+		    	</div>	    	
+		    </div>
+		    <div class="order-mcontent">
+		    	<dl>
+		    		<dt>配送费用</dt>
+		    		<dd>快递 &nbsp;¥{{fare}}.00</dd>
+		    	</dl>
+		    	<dl>
+		    		<dt>订单编号：{{orderList._id}}</dt>
+		    	</dl>
+		    	<dl>
+		    		<dt>下单时间：{{orderList.createTime|filterFun}}</dt>
+		    	</dl>
+		    	<dl v-if='orderList.status==0'>
+		    		<dd class="delect-order" @click='nowPay'></dd>
+		    	</dl>
+		    	<dl class="order-mconpic" v-if='orderList.status==0'>
+		    		<dd class="pay-order" @click='nowPay'>去支付</dd>
+		    	</dl>
+		    </div>
+		</div>    
     </div>
 </template>
 <script>
@@ -124,38 +121,45 @@ export default {
 <style scoped lang="scss" rel="stylesheet/scss">
 @import "../common/common.scss";
 .orderDetail{
-	background: #fff;
+	background: #f6f6f6;
 	width: 100%;
 	height: 100%;
-	overflow: hidden;
 	position: absolute;
 	font-size: $font14;
-	.order-dmain{
-		width: 94%;
+	.orderDetail-main{
+		background: #f6f6f6;
+		width: 100%;
 		overflow: hidden;
-		/*background: #fafafa;*/
-		padding: rem(5rem) 3%;
+		position: absolute;
+		font-size: $font14;			
 		.order-success{
+			width: 94%;
+			overflow: hidden;
+			padding: rem(5rem) 3%;
 			line-height: rem(30rem);
 			border-bottom: 1px solid #efefef;
-			padding: rem(5rem) 0;
+			background: #fff;
 		}
-		.order-transfer{
-			width: 100%;
-			border-bottom: 1px solid #efefef;
+		.order-paySuccess{
+			width: 94%;
 			overflow: hidden;
-			padding-bottom: rem(5rem);
-			p{
-				line-height: rem(30rem);
-			}
+			height: rem(62rem);
+			line-height: rem(62rem);
+			color: #c69b70;
+			font-size: $font16;
+			font-weight: bold;
+			border-bottom: 2px solid #ddc9b1;
+			background: #fff url(../assets/orderDetailDdeliver.png) no-repeat 97% center;
+			background-size: rem(60rem) rem(30rem);
+			padding: rem(5rem) 3%;
 		}
 		.order-consignee{
-			width: 100%;
-			/*height: rem(40rem);*/
-			margin-top: rem(15rem);
-			padding-bottom: rem(10rem);
+			width: 94%;
+			padding: rem(15rem)  3% rem(10rem);
+			margin: rem(10rem) 0;
 			border-bottom: 1px solid #efefef;
 			overflow: hidden;
+			background: #fff;
 			dt{
 				float: left;
 				width: rem(15rem);
@@ -168,7 +172,7 @@ export default {
 			}
 			.consignee{
 				float: left;
-				width: 86%;
+				width: 92%;
 				font-size: $font14;
 				p{
 					margin-bottom: rem(8rem);
@@ -180,121 +184,109 @@ export default {
 					line-height: rem(18rem);
 				}
 			}
-			.order-right{
-				width: rem(5.5rem);
-				height: rem(11rem);
-				float: right;
-				margin-top: rem(14.5rem);
-				img{
-					width: 100%;
-					height: 100%;
+		}			
+		.order-main{
+			width: 100%;
+			background: #fff;
+			overflow: hidden;
+			.order-mtitle{
+				line-height: rem(42rem);
+				background: url(../assets/confirmLogo.png) no-repeat left;
+				background-size: rem(15rem) rem(14rem);
+				padding-left: 5%;
+				margin-left: 3%;
+				font-size: $font16;
+			}
+			.order-mdetail{
+				width: 94%;
+				height: rem(92rem);
+				background: #fafafa;
+				padding: rem(5rem) 3%;
+				margin-bottom: rem(5rem);
+				dl{
+					float: left;
+					dt{
+						width: rem(92rem);
+						height: rem(92rem);
+						float: left;
+						img{
+							width: 100%;
+							height: 100%;
+						}
+					}
+					dd{
+						float: left;
+						line-height: rem(20rem);
+						margin-left: rem(10rem);
+						color: $c3c3c;
+						p{
+							margin-top: rem(5rem);
+							font-size: $font14;
+							color: #fe4415;
+						}
+					}
+				}
+				.order-mnum{
+					float: right;
+					line-height: rem(70rem);
+					color: #9c9c9c;
+					span{
+						font-size: $font14;
+					}
 				}
 			}
-		}			
-	}
-	.order-main{
-		width: 100%;
-		background: #fff;
-		overflow: hidden;
-		.order-mtitle{
-			line-height: rem(42rem);
-			background: url(../assets/confirmLogo.png) no-repeat left;
-			background-size: rem(15rem) rem(14rem);
-			padding-left: 5%;
-			margin-left: 3%;
-			font-size: $font16;
 		}
-		.order-mdetail{
-			width: 94%;
-			height: rem(92rem);
-			background: #fafafa;
-			padding: rem(5rem) 3%;
-			margin-bottom: rem(5rem);
+		.order-mcontent{
+			width: 100%;
+			background: #f6f6f6;
+			overflow: hidden;
+			/*padding-bottom: rem(10rem);*/
 			dl{
-				float: left;
+				width: 94%;
+				padding: 0 3%;
+				height: rem(47rem);
+				border-bottom: 1px solid #efefef;
+				line-height: rem(47rem);
+				background: #fff;
 				dt{
-					width: rem(92rem);
-					height: rem(92rem);
 					float: left;
-					img{
-						width: 100%;
-						height: 100%;
+					/*width: 30%;*/
+				}
+				.leave-msg{
+					span{
+						color: #999;
+						padding-left: 3%;
 					}
 				}
 				dd{
-					float: left;
-					line-height: rem(20rem);
+					float: right;
+				}
+				.pay-order{
+					width: 20%;
+					height: rem(28rem);
+					margin-top: rem(9rem);
+					color: #fff;
+					line-height: rem(28rem);
+					text-align: center;
 					margin-left: rem(10rem);
-					color: $c3c3c;
-					p{
-						margin-top: rem(5rem);
-						font-size: $font14;
-						color: #fe4415;
-					}
+					border: 1px solid #c69b70;
+					color: #c69b70;
 				}
 			}
-			.order-mnum{
-				float: right;
-				line-height: rem(70rem);
-				color: #9c9c9c;
-				span{
-					font-size: $font14;
-				}
-			}
-		}
-	}
-	.order-mcontent{
-		width: 100%;
-		background: #f6f6f6;
-		overflow: hidden;
-		/*padding-bottom: rem(10rem);*/
-		dl{
-			width: 94%;
-			padding: 0 3%;
-			height: rem(47rem);
-			border-bottom: 1px solid #efefef;
-			line-height: rem(47rem);
-			background: #fff;
-			dt{
-				float: left;
-				/*width: 30%;*/
-			}
-			.leave-msg{
-				span{
-					color: #999;
-					padding-left: 3%;
-				}
-			}
-			dd{
-				float: right;
-			}
-			.delect-order{
-				width: 20%;
-				height: rem(30rem);
-				background: #ff8854;
-				margin-top: rem(9rem);
-				color: #fff;
-				line-height: rem(30rem);
-				text-align: center;
-				margin-left: rem(10rem);
-			}
-			.order-pay{
-				background: #fe4415;
-			}
-		}
-		.order-mconpic{
-			border: 0;
-			dd{
-				letter-spacing: rem(0.4rem);
-				span{
-					color: #ff3300;
-					.order-mconprice{
-						font-size: $font14;
+			.order-mconpic{
+				border: 0;
+				dd{
+					letter-spacing: rem(0.4rem);
+					span{
+						color: #ff3300;
+						.order-mconprice{
+							font-size: $font14;
+						}
 					}
 				}
 			}
 		}
-	}
+	}	
 }	
 </style>
 

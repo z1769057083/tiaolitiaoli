@@ -212,7 +212,8 @@ export default {
  			},
  			selectAddress:[],
  			price:{
- 				price:0
+ 				price:0,
+ 				totalNum:0
  			},
  			submitArr:[],
  			apiPath:'',

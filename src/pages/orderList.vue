@@ -6,36 +6,50 @@
 			<li :class="{'orderTop':toggle==2}" @click="change_active('2',$event)">已付款</li>
 			<li :class="{'orderTop':toggle==3}" @click="change_active('3',$event)">已完成</li>
 		</ul>
-	    <div class='order'>
+	    <div class='order' v-if='toggle==0'>
 		    <div v-for='(items,index) in list'>	    	
-		    	<div v-for='item in items.order'>
+		    	<div>
 		    		<router-link :to="{ name: 'orderListDetail', query: { itemid: items._id }}">
 				    <div class="order-main">
+				    	<div class="order-mtop">
+				    		<img class="time" src="../assets/orderListTime.png" alt="" />
+				    		{{items.createTime|filterTime}}
+				    		<span>{{items.status|filterFun}}付款 </span>
+				    		<span class="orderListComplate" v-if='items.status==2'></span>
+				    	</div>
 			    		<div class="order-mdetail">
 				    		<dl>
-				    			<dt><img :src="''+apiPath+'/image/product/'+item.img+'/1.jpg'" 
-										onerror="this.src='http://placeholder.qiniudn.com/800'"/></dt>
+				    			<dt v-for='item in items.order'>
+				    				<img 									:src="''+apiPath+'/image/product/'+item.img+'/1.jpg'" 
+									onerror="this.src='http://placeholder.qiniudn.com/800'"/>
+				    			</dt>		
 				    			<dd>
-				    				{{item.name}}
-					    			<p>¥{{item.price}}.00</p>
+				    				{{items.order.name}}
 				    			</dd>
 				    		</dl>
-				    		<div class="order-mnum">X<span>{{item.num}}</span></div>
+				    		<img src="../assets/confirmRight.png" class="order-mnum"/>
 				    	</div>				    			    		
 				    </div>
 					</router-link>    
 				    <div class="order-mcontent">
 				    	<dl>
 				    		<dd>
-				    			共{{item.num}}件商品  
-				    			{{items.status|filterFun}}付款 ：¥{{items.price}}.00</dd>
+				    			共{{totalNum}}件商品  
+				    			合计&nbsp;¥{{items.price}}.00</dd>
 				    	</dl>
 				    	<dl  v-if='items.status==0'>			    		
-				    		<dd class="delect-order order-pay" @click='nowPay(index)'>去支付</dd>
+				    		<dd class="pay-order" @click='nowPay(index)'>去支付</dd>
 				    	</dl>
 				    </div>
 			    </div>
 		    </div>
+		</div>
+		<!--<div class="order" v-if='toggle==1'>
+			
+		</div>-->
+		<div class="nullOrder" v-if='toggle==1||toggle==2||toggle==3'>
+			<img class="nullOrder-img" src="../assets/orderListNull.png"/>
+			<p>您还没有相关订单</p>
 		</div>
     </div>
 </template>
@@ -54,17 +68,21 @@
 	 			},
 	 			toastHidden:false,
 	 			listId:[],
-	 			toggle:0
+	 			toggle:0,
+	 			totalNum:''
             }
         },
         filters: {
             filterFun(obj){
-                if ( obj==1) {
-                    return '实'
-                }
-                else if(obj==0){
+                if ( obj==0) {
                     return '待'
                 }
+                else if(obj==1){
+                    return '实'
+                }
+            },
+            filterTime(time){
+            	return time = time.substring(0,10)
             }
         },
         methods: {
@@ -88,12 +106,7 @@
                           //判断是否支付完成
                             if(that.list.length>0){
 				            	for (var i = 0, len = that.list.length; i < len; i++) {
-//				            		console.log(that.list[i].status==0)
-//				            		if(that.list[i].status==0){				           										that.activeOrder = true
-//				            		}else{
-//				            			that.activeOrder = false
-//				            		}
-				            		that.price.price = that.list[i].price													           		
+				            	that.price.price = that.list[i].price
 				            	}
 				            }
                         }
@@ -133,7 +146,7 @@
 <style scoped lang="scss" rel="stylesheet/scss">
 @import "../common/common.scss";
 .orderHome{
-	background: #fff;
+	background: #f6f6f6;
 	width: 100%;
 	height: 100%;
 	position: absolute;
@@ -142,24 +155,28 @@
 		height: rem(40rem);
 		overflow: hidden;
 		position: absolute;
+		background: #fff;
 		top: 0;
 		left: 0;				
 		li{
 			float: left;
-			font-size: $font16;
-			width: 26%;
+			font-size: $font15;
+			width: 16%;
+			margin: 0 5%;
 			text-align: center;
 			line-height: rem(40rem);
 		}
 		.all-order{
-			width: 21%;
+			width: 11%;
 		}
 		.orderTop{
-			color: #0082E6;
+			color: #c69b70;
+			line-height: rem(37rem);
+			border-bottom: 3px solid #c69b70;
+			
 		}
 	}
 	.order{
-		background: #fff;
 		width: 100%;
 		position: absolute;
 		overflow: hidden;
@@ -178,18 +195,46 @@
 			width: 100%;
 			background: #fff;
 			overflow: hidden;
+			margin-top: rem(10rem);
+			.order-mtop{
+				width: 94%;
+				margin-left: 3%;
+				height: rem(40rem);
+				line-height: rem(40rem);
+				color: #3C3C3C;
+				.time{
+					float: left;
+					width: rem(14rem);
+					height: rem(14rem);
+					margin: rem(13rem) rem(10rem) 0 0;
+				}
+				span{
+					float: right;
+					color: #c69b70;					
+				}
+				.orderListComplate{
+					width: rem(64rem);
+					height: rem(64rem);
+					position: absolute;
+					background: url(../assets/orderListComplate.png) no-repeat center;
+					background-size: cover;
+					right: 3%;
+					top: rem(26rem);
+				}
+			}
 			.order-mdetail{
 				width: 94%;
-				height: rem(92rem);
+				height: rem(60rem);
 				background: #fafafa;
-				padding: rem(5rem) 3%;
+				padding: rem(10rem) 3%;
 				dl{
 					float: left;
 					color: $c3c3c;
 					dt{
-						width: rem(92rem);
-						height: rem(92rem);
+						width: rem(60rem);
+						height: rem(60rem);
 						float: left;
+						margin-right: rem(10rem);
 						img{
 							width: 100%;
 							height: 100%;
@@ -197,22 +242,16 @@
 					}
 					dd{
 						float: left;
-						line-height: rem(20rem);
-						margin-left: rem(10rem);
-						p{
-							margin-top: rem(5rem);
-							font-size: $font14;
-							color: #fe4415;
-						}
+						line-height: rem(60rem);
+						margin-left: rem(15rem);
+						color: #3c3c3c;
 					}
 				}
 				.order-mnum{
 					float: right;
-					line-height: rem(70rem);
-					color: #9c9c9c;
-					span{
-						font-size: $font14;
-					}
+					width: rem(6rem);
+					height: rem(12rem);	
+					margin-top: rem(24rem);				
 				}
 			}
 		}
@@ -241,18 +280,16 @@
 				dd{
 					float: right;
 				}
-				.delect-order{
+				.pay-order{
 					width: 20%;
-					height: rem(30rem);
-					background: #ff8854;
+					height: rem(28rem);
 					margin-top: rem(9rem);
 					color: #fff;
-					line-height: rem(30rem);
+					line-height: rem(28rem);
 					text-align: center;
 					margin-left: rem(10rem);
-				}
-				.order-pay{
-					background: #fe4415;
+					border: 1px solid #c69b70;
+					color: #c69b70;
 				}
 			}		
 			.order-mconpic{
@@ -267,6 +304,18 @@
 					}
 				}
 			}
+		}
+	}
+	.nullOrder{
+		text-align: center;
+		font-size: $font14;
+		color: #999;
+		.nullOrder-img{
+			margin-top: rem(220rem);
+			margin-bottom: rem(24rem);
+			width: rem(70rem);
+			height: rem(95rem);
+			
 		}
 	}	
 }		
