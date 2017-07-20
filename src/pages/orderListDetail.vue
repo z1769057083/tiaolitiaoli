@@ -41,10 +41,10 @@
 		    	<dl class="order-mconpic">
 		    		<dd>共{{orderList.totalNum}}件商品&nbsp; 需付款  ¥{{orderList.price}}.00</dd>
 		    	</dl>
-		    	<dl class="order-mconpic" v-if='orderList.status==0'>
-		    		<dd class="pay-order" @click='nowPay'>去支付</dd>
-		    	</dl>
 		    </div>
+		    <div class="nowPayOrder" v-if='orderList.status==0'>
+	    		<p class="pay-order" @click='nowPay'>去支付</p>
+	    	</div>
 		</div>    
     </div>
 </template>
@@ -255,30 +255,31 @@ export default {
 				dd{
 					float: right;
 				}
-				.pay-order{
-					width: 20%;
-					height: rem(28rem);
-					margin-top: rem(9rem);
-					color: #fff;
-					line-height: rem(28rem);
-					text-align: center;
-					margin-left: rem(10rem);
-					border: 1px solid #c69b70;
-					color: #c69b70;
-				}
 			}
 			.order-mconpic{
 				border: 0;
 				color: #000;
-				dd{
-					letter-spacing: rem(0.4rem);
-					span{
-						color: #ff3300;
-						.order-mconprice{
-							font-size: $font14;
-						}
-					}
-				}
+			}
+		}
+		.nowPayOrder{
+			width: 100%;
+			height: rem(46rem);
+			background: #fff;
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			.pay-order{
+				width: 20%;
+				height: rem(28rem);
+				margin-top: rem(9rem);
+				color: #fff;
+				line-height: rem(28rem);
+				text-align: center;
+				margin-right: rem(10rem);
+				border: 1px solid #c69b70;
+				color: #c69b70;
+				float: right;
 			}
 		}
 	}	

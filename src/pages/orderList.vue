@@ -45,7 +45,7 @@
 				    </div>
 			    </div>
 		    </div>
-		    <div class="s-mrecombottom">没有更多了</div>
+		    <div v-if='list.length!==0' class="s-mrecombottom">没有更多了</div>
 		</div>
 		<div class="nullOrder" v-if='list.length==0'>
 			<img class="nullOrder-img" src="../assets/orderListNull.png"/>
