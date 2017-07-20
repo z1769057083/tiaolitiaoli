@@ -6,7 +6,7 @@
   		 		<img :src="''+apiPath+'/image/article/'+list.index+'.jpg'"
 							onerror="this.src='../../static/images/defaultPicture.jpg'"/>
   		 </div>
-  		 <p v-html='list.content'></p>
+  		 <p v-html='list.content' class="articleContent"></p>
   	</div>  
   </div>
 </template>
