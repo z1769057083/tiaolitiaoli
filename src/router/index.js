@@ -18,7 +18,7 @@ import videoListDetail from '@/pages/videoListDetail'
 import videoHome from '@/pages/videoHome'
 import articleList from '@/pages/articleList'
 import backdoor from '@/pages/backdoor'
-import articleListDetail from '@/pages/articleListDetail'
+import articleDetails from '@/pages/articleDetails'
 import orderList from '@/pages/orderList'
 import orderListDetail from '@/pages/orderListDetail'
 import immunityTest from '@/pages/immunityTest'
@@ -134,9 +134,9 @@ export default new Router({
 	      name: 'articleList'
 	    },
 	    {
-	      path: '/articleListDetail',
-	      component: articleListDetail,
-	      name: 'articleListDetail'
+	      path: '/articleDetails',
+	      component: articleDetails,
+	      name: 'articleDetails'
 	    },
 	    {
 	      path: '/orderList',

@@ -22,7 +22,7 @@ module.exports = {
     videoListDetail: apiPath + '/product/video_details?id=',
     videoList: apiPath + '/product/video?type=',
     articleList: apiPath + '/product/article?pageIndex=',
-    articleListDetail: apiPath + '/product/article_details?id=',
+    articleDetails: apiPath + '/product/article_details?id=',
     myOrders: apiPath + '/order/my?userId=',
     singleOrderList: apiPath + '/order/single?id=',
     cities: apiPath + '/data/cities.json',

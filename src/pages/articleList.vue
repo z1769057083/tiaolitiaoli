@@ -2,7 +2,7 @@
 	<div class="article">
 		<div class="s-mrecomment">
 			<dl class="s-marticlecon" v-for='item in list'>
-				<router-link :to="{ name: 'articleListDetail', query: { itemid: item._id }}">
+				<router-link :to="{ name: 'articleDetails', query: { itemid: item._id }}">
 					<dt>
 						<h3>{{item.title}}</h3>
 						<p v-html='item.content'></p>

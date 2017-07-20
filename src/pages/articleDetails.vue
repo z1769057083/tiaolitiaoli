@@ -25,7 +25,7 @@
         var that = this;
         that.sarticleId = this.$route.query.itemid;
         console.log(that.sarticleId)
-        axios.get(api.articleListDetail + that.sarticleId)
+        axios.get(api.articleDetails + that.sarticleId)
           .then(function (res) {
             if (res.data.errorCode == 0) {
               res = res.data.returnValue
