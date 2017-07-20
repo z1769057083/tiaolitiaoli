@@ -27,7 +27,7 @@
 		                    <span class='activeShow'>{{item.name}}</span>
 		                    <div class="s-mreconintrotip">
 		                        <img class="tip" src="../assets/shopTip.png"/>
-		                        {{item.recommendText|textHandler}}
+		                        {{item.geneTags|textHandler}}
 		                    </div>
 		                </dd>
 		            </dl>
@@ -62,14 +62,35 @@
                 var that = this;
                 if (window.localStorage.getItem(Account_Index) !== null) {
                     let account = JSON.parse(window.localStorage.getItem(Account_Index))
-	                axios.get(api.recommendData+ account._id)
+                    if(account.sex==0){
+                     	axios.get(api.geneRecommendData)
 	                    .then(function (res) {
 	                        if (res.data.errorCode == 0) {
 	                            res = res.data.returnValue
-	                            that.recommendList = res
+	                            that.recommendList = res.items
 	                            console.log(res)
 	                        }
 	                    })
+                    }else if(account.sex==1){
+                    	axios.get(api.geneRecommendData+'?gender=M')
+	                    .then(function (res) {
+	                        if (res.data.errorCode == 0) {
+	                            res = res.data.returnValue
+	                            that.recommendList = res.items
+	                            console.log(res)
+	                        }
+	                    })                    	
+                    }else if(account.sex==2){
+                    	axios.get(api.geneRecommendData+'?gender=F')
+	                    .then(function (res) {
+	                        if (res.data.errorCode == 0) {
+	                            res = res.data.returnValue
+	                            that.recommendList = res.items
+	                            console.log(res)
+	                        }
+	                    }) 
+                    }
+	                
                 }
             },
             recommendClick(item,index){
@@ -93,7 +114,6 @@
     	height: 100%;
     	position: absolute;
     	background: #f6f6f6;
-    	overflow: hidden;
     	.payment{
 	    	width: 100%;
 	    	position: absolute;

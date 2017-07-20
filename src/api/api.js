@@ -34,5 +34,6 @@ module.exports = {
     couponDetail: apiPath + '/coupon/get_by_code?code=',//优惠券详情
     geneReportData: apiPath + '/geneReport/get_report?code=',//基因报告
     geneDetailData: apiPath + '/geneReport/get_my_points?code=',//基因报告详情
+    geneRecommendData: apiPath + '/product/geneRecommend',//基因推荐
     apipath:apiPath //发起请求向后台传订单数据 post
 }
