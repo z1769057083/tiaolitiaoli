@@ -462,11 +462,6 @@ export default {
 					}
 					this.price.price = this.countPrice
 					this.price.totalNum = this.totalNum
-					Toast({
-                message: '您的优惠券已使用',
-                position: 'top',
-                duration: 1500
-            });
 	    }
 	  },
   	loadOrderToCheckCouponStatus(hasCoupon){
