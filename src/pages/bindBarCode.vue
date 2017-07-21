@@ -70,7 +70,7 @@
 				msgBoyImg: true,
 				toggle:false,
 				gender:'M',
-				code:'',
+				code:'916020196',
 				name:'',
 				phone:'',
 				bindDateList:[],
@@ -157,13 +157,15 @@
                     	console.log(res)
                         if (res.data.errorCode == 0) {
                             that.bindDateList = res.config
-                            that.$router.push({path:'/myOrder',query: {type:'gene' }})
-                            console.log(that.bindDateList)
-                        }else if(res.data.errorCode == 2&&res.data.errorReason=='"qrCode_invalid"'){
+                            that.$router.push({path:'/geneticPhysical',query: {type:'gene' }})
+//                          console.log(that.bindDateList)
+                            console.log(11111)
+                        }else if(res.data.errorCode == 2&&res.data.errorReason=='qrCode_invalid'){
+                        	console.log(11111)
                         	Toast({
 						        message: '无效的条形码',
 						        position:'top',
-						        duration:1000
+						        duration: 3000
 						      });
                         }
                     })
@@ -249,7 +251,7 @@
     					margin-top: rem(21rem);
     					float: left;
     					font-size: $font13;
-    					color:$c3c3c;
+    					color:#000;
     				}
     				.m-selectdate{
     					color: #999;
