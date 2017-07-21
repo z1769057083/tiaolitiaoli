@@ -67,7 +67,6 @@ export default {
         }else{
         	this.mainShow = false
         }
-//        this.initScroll()
     },
     baDuanJin(index,event){
     	this.btnIndex = index

@@ -1,9 +1,15 @@
 <template>
     <div class='genetic'>
         <div class="genetic-main">
-	        <div class="genetic-center" v-for='(list,index) in orderList' @click='viewOrderStepDetail(index)'>
-	        	<p class="genetic-name">97102201702{{list.nickName}} <span>{{list.createTime|filterTime}}</span></p>
-	        	<ul>
+	        <div class="genetic-center" v-for='(list,index) in orderList'>
+	        	<p class="genetic-name" @click='viewOrderStepDetail(index)'>
+	        		{{list.nickName}}
+	        		<span v-if='list.itemQrCode'>{{list.itemQrCode}}</span> 
+	        		<span class="right">
+	        			{{list.createTime|filterTime}}
+	        		</span>
+	        	</p>
+	        	<ul @click='viewOrderStepDetail(index)'>
 	        		<li class="genetic-liLeft">
 	        			<img class="liLeftCar" src="../assets/geneticCar.png" alt="" />
 	        			<p>当前进度</p>
@@ -40,7 +46,7 @@
 	        			</div>
 	        		</li>
 	        	</ul>
-	        	<p class="geneticReport viewReport" v-if='list.status==5' @click='viewGeneReport'><span>我的基因报告</span></p>
+	        	<p class="geneticReport viewReport" v-if='list.status==5' @click='viewGeneReport(index)'><span>我的基因报告</span></p>
 	        	<p class="geneticReport" v-else><span>我的基因报告</span></p>
 	        </div>
 	        <div v-if='orderList.length>=1' class="s-mrecombottom">没有更多了</div>
@@ -168,8 +174,8 @@
 			            }
 		            })
 	   		},
-	   		viewGeneReport(){
-	   			this.$router.push({path:'geneReport'})
+	   		viewGeneReport(index){
+	   			this.$router.push({path:'geneReport',query: { code:this.orderList[index].itemQrCode }})
 	   		},
 	   		closeOrderDetailStep(){
 	   			this.orderDetailStepHidden = false
@@ -208,7 +214,7 @@
 				line-height: rem(40rem);
 				border-bottom: 1px solid #efefef;
 				font-size: $font14;
-				span{
+				.right{
 					float: right;
 				}
 				

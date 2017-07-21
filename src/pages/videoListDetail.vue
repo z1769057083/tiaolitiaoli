@@ -2,8 +2,11 @@
     <div class="wrap-box">
         <div class="wrap">
             <h3 class="title">{{list.title}}</h3>
-            <video width="100%" height="240" controls autobuffer :src="apiPath+'/video/'+videotype+'/'+list.index+'.mp4'">
+            <!--<video width="100%" height="240" controls autobuffer :src="apiPath+'/video/'+videotype+'/'+list.index+'.mp4'">
+            </video>-->
+             <video width="100%" height="240" controls autobuffer src="../../static/images/video.mp4">
             </video>
+            
             <p class="content">
                 {{list.description}}
             </p>
