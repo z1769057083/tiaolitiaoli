@@ -4,7 +4,7 @@
     		<div class="receive-top">
 	    		<img class="top-left" src="../assets/couponGene.png" alt="" />
 	    		<img class="top-center"src="../assets/couponFang.png" alt=""/>
-	    		<img @click='saoCode' class="top-right" src="../assets/couponCode.png" alt=""/>
+	    		<img class="top-right" src="../assets/couponCode.png" alt=""/>
 	    	</div>
 	    	<div class="receive-main">
 	    		<dl>
@@ -12,6 +12,7 @@
 	    			<dd>
 	    				<input type="text" name='code' disabled="true"  v-model='code'/>
 	    			</dd>
+	    			<dd class="saoCode" @click='saoCode'>扫一扫</dd>
 	    		</dl>
 	    		<dl>
 	    			<dt>受检人:</dt>
@@ -106,7 +107,17 @@
 				    needResult: 0, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
 				    scanType: ["qrCode","barCode"], // 可以指定扫二维码还是一维码，默认二者都有
 				    success: function (res) {
-				    	that.code = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+//				    	that.code = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+				    	 //扫码后获取结果参数赋值给Input
+	                    var url = res.resultStr;
+	                    //商品条形码，取","后面的
+	                    if(url.indexOf(",")>=0){
+	                        var tempArray = url.split(',');
+	                        var tempNum = tempArray[1];
+	                        that.code = tempNum
+	                    }else{
+	                    	that.code = url	                       
+	                    }
 					}
 				});
             },
@@ -186,7 +197,7 @@
     	.receive-wrap{
     		width: 86.6%;
     		margin-left: 6.7%;
-    		margin-top: rem(50rem);
+    		margin-top: rem(20rem);
     		.receive-top{
     			width: 100%;
     			overflow: hidden;
@@ -218,6 +229,7 @@
     			width: 100%;
     			height: rem(50rem);
     			border-bottom: 1px solid #e7e7e7;
+    			position: relative;
     			dt{
     				font-size: $font13;
     				line-height: rem(18rem);
@@ -272,6 +284,19 @@
 	    					margin-right: rem(24rem);
 	    				}
     				}
+    			}
+    			.saoCode{
+    				position: absolute;
+    				width: rem(60rem);
+    				height: rem(28rem);
+    				background: #999;
+    				color: #fff;
+    				right: 0;
+    				border-radius: rem(4rem);
+    				text-align: center;
+    				font-size: $font13;
+    				margin-top: rem(11rem);
+    				line-height: rem(28rem);
     			}
     		}
     		.address{

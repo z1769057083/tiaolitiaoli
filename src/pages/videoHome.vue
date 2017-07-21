@@ -3,14 +3,14 @@
 		<div class="recommend-top">
 			<p @click="change_active(0,$event)" :class="{'activeTit':toggle===0}">文章</p>
 			<p @click="change_active(1,$event)" :class="{'activeTit':toggle===1}" class="top-right">视频</p>
-		</div>	
+		</div>
 		<div class="article-main" v-if='mainShow' ref="scroll_hook">
 			<div>
 				<dl v-for='articleItem in articleAll'>
 					<router-link :to="{ name: 'articleDetails', query: { itemid: articleItem._id }}">
 						<dt>
 							<h3>{{articleItem.title}}</h3>
-							<p>{{articleItem.content}}</p>
+							<p v-html='articleItem.content'></p>
 						</dt>
 						<dd><img :src="''+apiPath+'/image/article/'+articleItem.index+'.jpg'"
 	                     onerror="this.src='../../static/images/defaultPicture.jpg'"/></dd>
@@ -36,9 +36,8 @@
             <p>{{videoItem.content}}</p>
         </dd>
     	</dl>
-		</div>
-	
-	<div class="s-mrecombottom">我是有底线的</div>
+		</div>	
+		<div class="s-mrecombottom">我是有底线的</div>
   </div>	
 </template>
 <script>
@@ -68,6 +67,7 @@ export default {
         }else{
         	this.mainShow = false
         }
+//        this.initScroll()
     },
     baDuanJin(index,event){
     	this.btnIndex = index
@@ -106,6 +106,7 @@ export default {
 	                that.articleDateList = res
 	                that.articleAll = that.articleAll.concat(that.articleDateList)
 	                console.log(that.articleDateList)
+	                  
 	            }
 	        })
 	        .catch(function (error) {
@@ -149,7 +150,7 @@ export default {
   },
   mounted() {
   	this.loadVideo()
-  	this.loadArticle()
+		this.loadArticle()
 		this.apiPath = api.apipath
 		document.documentElement.scrollTop = 0
     document.body.scrollTop =0
@@ -157,7 +158,7 @@ export default {
   watch: {
       articleDateList: {
         handler(val, oldVal) {
-          this.initScroll();
+//        this.initScroll();
         },
         deep: true
       },
@@ -168,13 +169,18 @@ export default {
    @import "../common/common.scss";
 	.wrap{
 		width: 100%;
-		overflow: hidden;
+		height: 100%;
 		background: #f6f6f6;
+		overflow: hidden;
 		.recommend-top{
 			width: 100%;
 			height: rem(37rem);
 			background: #fff;
 			border-bottom: 1px solid #dcdcdc;
+			position: absolute; 
+			left: 0;
+			top: 0;
+			right: 0; 
 			p{
 				float: left;
 				line-height: rem(34rem);
@@ -198,6 +204,11 @@ export default {
 			border-bottom: 1px solid #dcdcdc;
 			padding-top: rem(18rem);
 			background: #fff;
+			position: absolute;
+			top: rem(38rem);
+			left: 0;
+			right: 0;
+			
 			p{
 				padding: 0 rem(20rem);
 				font-size: $font13;
@@ -231,6 +242,7 @@ export default {
 			bottom: 0;
 			overflow: hidden;			
 			background: #fff;
+			-webkit-overflow-scrolling: touch;
 			dl{
         width: 92%;
         margin-left: 4%;
@@ -244,6 +256,8 @@ export default {
             margin-right: 2%;
             font-size: $font12;
             color: #999;
+            overflow: hidden;
+            height: rem(60rem);
             h3{
                 font-size: $font18;
                 color: #000;
@@ -274,8 +288,13 @@ export default {
 		}
 		.video-main{
 			width: 100%;
-			overflow: hidden;			
+			overflow: hidden;	
+			position: absolute;		
 			background: #f6f6f6;
+			top: rem(90rem);
+			left: 0;
+			right: 0;
+			-webkit-overflow-scrolling: touch;
 			dl{
 				width: 92%;
 				padding: rem(14rem) 4% 0;
