@@ -3,9 +3,9 @@
          <h3 class="title">六大高发癌症风险检测报告</h3>
          <div class="receive-main">
          	<div class="receive-name">
-	         	<p>样本编号:1234567890</p>
-	         	<p>姓名:李依依</p>
-	         	<p class="last">报告更新时期:2017-08-08</p>
+	         	<p>样本编号:{{code}}</p>
+	         	<p v-if='list.name'>姓名:{{list.name}}</p>
+	         	<p class="last">报告更新时期:{{time}}</p>
 	        </div>
         	<dl class="receive-mtit">
         		<dt>检测项目</dt>
@@ -117,7 +117,8 @@
         data() {
             return {
 				code:'',
-				list:[]
+				list:{},
+				time:''
             }
         },
         methods: {        	
@@ -129,7 +130,7 @@
 		                if (res.data.errorCode == 0) {
 		            			res = res.data.returnValue
 				                that.list = res
-				                
+				                that.time = that.list.updatedTime.substring(0,10)
 				                console.log(that.list)			    
 			            	}
 		            })
@@ -176,6 +177,7 @@
 				}
 				.last{
 					margin-right: 0;
+					float: right;
 				}
 			}
 			dl{

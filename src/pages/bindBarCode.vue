@@ -132,7 +132,7 @@
 					    	name:this.name,
 				    		gender:this.gender,
 				    		birthday:this.birthday,
-				    		phone:this.phone
+				    		telephone:this.phone
 		    			}
                 	}else{
                 		Toast({

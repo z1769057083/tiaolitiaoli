@@ -1,6 +1,6 @@
 <template>
     <div class='genetic'>
-        <div class="genetic-main">
+        <div class="genetic-main" v-if='orderList'>
 	        <div class="genetic-center" v-for='(list,index) in orderList'>
 	        	<p class="genetic-name" @click='viewOrderStepDetail(index)'>
 	        		{{list.nickName}}
@@ -51,7 +51,14 @@
 	        </div>
 	        <div v-if='orderList.length>=1' class="s-mrecombottom">没有更多了</div>
         </div>
-                
+        <div class="null-genetic" v-else>
+    		<img src="../assets/orderListNull.png"/>
+    		<p>您还没有任何检测结果</p>
+    		<div class="nullGene-btn">
+    			<p @click='bindBarCode'>绑定唾液采集器</p>
+    			<p @click='payGeneNow' class="payGene">前去购买</p>
+    		</div>
+    	</div>       
         <div class="mask" v-if='orderDetailStepHidden'>
         	<div class='mask-main'>
         		<div class="mask-top">
@@ -179,6 +186,12 @@
 	   		},
 	   		closeOrderDetailStep(){
 	   			this.orderDetailStepHidden = false
+	   		},
+	   		bindBarCode(){
+	   			this.$router.push({path:'/bindBarCode'})
+	   		},
+	   		payGeneNow(){
+	   			this.$router.push({path:'/gene'})
 	   		}
         },
         mounted() {       	
@@ -199,6 +212,47 @@
 	height: 100%;
 	position: absolute;
 	background: #F6F6F6;
+	.null-genetic{
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		text-align: center;
+		font-size: $font14;
+		color: #999;
+		img{
+			width: rem(70rem);
+			height: rem(94rem);
+			margin-top: rem(100rem);
+			margin-bottom: rem(24rem);
+		}
+		.nullGene-btn{
+			width: 100%;
+			overflow: hidden;
+			margin-top: rem(20rem);
+			p{
+				width: rem(118rem);
+				height: rem(36rem);
+				float: left;
+				border: 1px solid #999;
+				text-align: center;
+				line-height: rem(36rem);
+				color: #3c3c3c;
+				font-size: $font14;
+				border-radius: rem(3rem);
+				margin-left: 14%;
+			}
+			.payGene{
+				width: rem(120rem);
+				height: rem(38rem);
+				line-height: rem(38rem);
+				color: #fff;
+				background: #f08300;
+				border: 0;
+				margin-left: 7%;
+			}
+		}
+		
+	}
 	.genetic-main{
 		width: 100%;
 		overflow: hidden;
