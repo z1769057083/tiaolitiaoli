@@ -64,7 +64,7 @@
 		<div class="order-bottom">
 			<div class="submitOrder" @click='submitOrder'>提交订单</div>
 			<div class="toal">
-				合计:<span>¥&nbsp;{{countPrice}}</span>
+				合计:<span>¥&nbsp;{{countPrice}}.00</span>
 			</div>
 		</div>
 		<!--新增收货地址开始-->

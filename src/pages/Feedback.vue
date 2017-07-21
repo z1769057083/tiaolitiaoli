@@ -8,7 +8,7 @@
 	        </ul>
 	        <textarea maxlength="500" rows="4" @input='descInput' v-model='desc'>
 	        </textarea>
-	        <div class="feedback-num"><span id="">{{inputNum}}</span>/500</div>
+	        <div class="feedback-num"><span>{{inputNum}}</span>/500</div>
 	        	        
         </div>
         <div class="feedback-phone">
@@ -32,7 +32,7 @@
             return {
                inputNum:500,
                desc:'',
-               toggle:-1
+               toggle:0
             }
         },
         methods: {
@@ -91,7 +91,7 @@
 			}
 			textarea{
 				width: 94%;
-				height: rem(140rem);
+				height: rem(180rem);
 				font-size: $font12;
 				padding: rem(10rem) 3%;
 				line-height: rem(20rem);
@@ -102,6 +102,7 @@
 				position: absolute;
 				bottom: rem(30rem);
 				right: 5%;
+				color: #999;
 			}
 		}
 		.feedback-phone{

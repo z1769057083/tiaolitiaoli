@@ -43,7 +43,7 @@
 	  	<div class="tolley-mbottom">
 			<div class="submitOrder" @click='settlement'>结算(<span>{{totalNum}}</span>)</div>
 				<div class="toal">
-					合计:<span>¥{{totalPrice | Currency}}元</span>
+					合计:<span>¥{{totalPrice | Currency}}.00</span>
 					<span class="fare"></span>
 				</div>
 				<div class="tolley-select"  @click='allSelect'>

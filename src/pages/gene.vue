@@ -108,11 +108,15 @@
 		 			<img src="../../static/images/geneBot5.png"/>
 	 			</div>
 	 		</div>
-	 		<div class="gene-pay">
-	 			<span>¥680.00</span>
-	 			<div class="pay" @click="payClick">购买</div>
-	 		</div>
 	 	</div>
+ 		<div class="gene-pay">
+ 			<div class="pay-coupon" v-if='couponHidden'>
+ 				<span>合计:&nbsp;<b>¥0.00元</b></span>
+ 				<p>总额&nbsp;¥680.00 &nbsp;立减:¥680.00(代金券) </p>
+ 			</div>
+ 			<span class="pay-money" v-if='!couponHidden'>¥680.00</span>
+ 			<div class="pay" @click="payClick">购买</div>
+ 		</div>
 	 	<div class="maskCoupon" v-if='maskCouponHidden'>
 	 		<div class="Coupon-main">
 	 			<p class='receiveCouponUse' @click='receiveCouponAddUse'>领取使用</p>
@@ -129,7 +133,8 @@
 		data(){
             return {
             	nowArr:[],
-            	maskCouponHidden:true
+            	maskCouponHidden:true,
+            	couponHidden:false
             }
        },
         methods: {
@@ -155,8 +160,10 @@
                             res = res.data.returnValue;
                             that.code = res.code
                             console.log(res)
+                            that.couponHidden = true
                     window.localStorage.setItem('receiveCode',JSON.stringify(that.code))
                         }else if(res.data.errorCode == 7){
+                        	that.couponHidden = false
                         	that.maskCouponHidden = false
                         	Toast({
 		                        message: '每个用户只能领取一张优惠券',
@@ -569,29 +576,54 @@
 			}
 		}
 	}
-	.gene-pay{
-		width: 100%;
-		height: rem(40rem);
-		border-top: 1px solid #a09e9d;
-		font-size: $font14;
-		line-height: rem(40rem);
-		span{			
-			margin-left: 5.3%;
-			color: #4c4948;
-			font-size: $font16;
-		}
-		.pay{
-			background: #f08300;
-			width: 29%;
-			float: right;
-			height: rem(40rem);
-			color: #fff;
-			text-align: center;
-		}
-	}
+	
 }
 .detection{
 	height: 100%;
+}
+.gene-pay{
+	width: 100%;
+	height: rem(50rem);
+	border-top: 1px solid #EDEDED;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	background: #fff;
+	.pay-coupon{
+		float: left;
+		margin-left: 3%;
+		margin-top: rem(5rem);
+		span{						
+			color: #3C3C3C;
+			font-size: $font16;
+			line-height: rem(26rem);
+			b{
+				color: #ff3300;
+				font-weight: normal;
+			}
+		}
+		p{
+			font-size: $font12;
+			color: #999;
+		}
+	}
+	.pay-money{
+		float: left;
+		margin-left: 3%;
+		color: #3C3C3C;
+		font-size: $font16;
+		line-height: rem(50rem);
+	}
+	.pay{
+		font-size: $font16;
+		background: #f08300;
+		width: 29%;
+		float: right;
+		height: rem(50rem);
+		color: #fff;
+		text-align: center;
+		line-height: rem(50rem);
+	}
 }
 .maskCoupon{
 	width: 100%;

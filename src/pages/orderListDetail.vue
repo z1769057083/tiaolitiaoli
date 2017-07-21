@@ -39,7 +39,8 @@
 		    		<dt>下单时间：{{orderList.createTime|filterFun}}</dt>
 		    	</dl>
 		    	<dl class="order-mconpic">
-		    		<dd>共{{orderList.totalNum}}件商品&nbsp; 需付款  ¥{{orderList.price}}.00</dd>
+		    		<dd v-if='orderList.status==0'>共{{orderList.totalNum}}件商品&nbsp; 需付款  ¥{{orderList.price}}.00</dd>
+		    		<dd v-else>共{{orderList.totalNum}}件商品&nbsp; 已付款  ¥{{orderList.price}}.00</dd>
 		    	</dl>
 		    </div>
 		    <div class="nowPayOrder" v-if='orderList.status==0'>

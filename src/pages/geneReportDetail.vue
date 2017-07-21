@@ -15,7 +15,9 @@
         <div v-if="geneDetailList.riskLevel=='high'" class="detail-mcen detail-high">高度风险</div>
         <p class="detail-text">您的基因风险值高于</p>
         <p class="detail-text detail-text1"><span>{{geneDetailList.belowUserPercentage}}%</span>的人</p>
-        <img class="geneReportBot" src="../assets/geneReportBot.png"/>
+        <div class="geneReportBot">
+        	<img class="people" :style="{left: geneDetailList.belowUserPercentage-10+'%'}" src="../assets/geneReportPeople.png"/>
+        </div>       
         <div class="detail-mbot">
         	<p><span></span>正常</p>
         	<p><span class="center"></span>中度风险</p>
@@ -197,6 +199,15 @@
 			margin-left: 7.5%;
 			height: rem(66rem);
 			margin-top: rem(30rem);
+			background: url(../assets/geneReportBot.png) no-repeat center;
+			background-size: 100%;
+			position: relative;
+			.people{
+				width: rem(20rem);
+				height: rem(66rem);
+				position: absolute;
+				top: 0;
+			}
 		}
 		.detail-mbot{
 			width: 76%;
