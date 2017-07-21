@@ -134,13 +134,23 @@
             return {
             	nowArr:[],
             	maskCouponHidden:true,
-            	couponHidden:false
+            	couponHidden:false,
+            	code:''
             }
        },
         methods: {
         	receiveCouponAddUse(){
         		this.maskCouponHidden = false;
         		this.getCouponRequest()
+        	},
+        	isUsedCouponStatus(){
+        		var that = this
+        		axios.get(api.couponDetail+this.code)
+		            .then(function (res) {    
+		                if (res.data.errorCode == 0) {
+							res = res.data.returnValue
+							that.couponHidden = !res.isUsed
+			      	}})  
         	},
         	getCouponRequest(){
 				if (!window.localStorage) {
@@ -204,7 +214,10 @@
             document.body.scrollTop = 0
             document.title = '基因检测'     	        	
         	if(window.localStorage.getItem('receiveCode')){
+        		let coupon = JSON.parse(window.localStorage.getItem('receiveCode'))
+        		this.code = coupon
         		this.maskCouponHidden = false
+        		this.isUsedCouponStatus()
         	}
         }
 	}
