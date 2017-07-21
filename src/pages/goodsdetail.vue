@@ -25,7 +25,7 @@
 				  	<div>
 				  		<p class="activeShow" v-if="list.effect">功效：{{list.effect}}</p>
 							<p class="activeShow" v-if="list.avoid">禁用：{{list.avoid}}</p>
-							<p class="activeShow" v-if="list.description">{{list.description}}</p>
+							<p class="activeShow" v-if="list.description" v-html="list.description"></p>
 							<p class="activeShow" v-if="list.fit_people">适用人群：{{list.fit_people}}</p>
 				  	</div>
 				  	<img v-for='imgItem in list.images' 
