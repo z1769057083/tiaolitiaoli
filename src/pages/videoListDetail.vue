@@ -2,7 +2,7 @@
     <div class="wrap-box">
         <div class="wrap">
             <h3 class="title">{{list.title}}</h3>
-            <video width="100%" height="240" controls autobuffer :src="apiPath+'/video/'+videotype+'/'+list.index+'.mp4'">
+            <video v-if='list.index' poster="../../static/images/defaultPicture.jpg"  width="100%" height="240" controls autobuffer :src="apiPath+'/video/'+videotype+'/'+list.index+'.mp4'">
             </video>
             <p class="content">
                 {{list.description}}
@@ -11,6 +11,7 @@
     </div>
 </template>
 <script>
+	
     import axios from 'axios'
     import api from '../api/api'
     export default {
@@ -32,7 +33,6 @@
                         if (res.data.errorCode == 0) {
                             res = res.data.returnValue
                             that.list = res
-//                          console.log(that.list)
                         }
                     })
                     .catch(function (error) {
@@ -45,6 +45,9 @@
             //Note:test for local.
             this.apiPath = 'http://ikehealth.cn'
             this.loadVideo()
+            this.$nextTick(() => {
+				this.loadVideo()
+			})
             document.documentElement.scrollTop = 0
             document.body.scrollTop = 0
         }

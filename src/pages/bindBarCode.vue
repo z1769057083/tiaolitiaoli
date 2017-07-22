@@ -10,7 +10,7 @@
 	    		<dl>
 	    			<dt>样本编码:</dt>
 	    			<dd>
-	    				<input type="text" name='code' disabled="true"  v-model='code'/>
+	    				<input type="text" name='code' v-model='code'/>
 	    			</dd>
 	    			<dd class="saoCode" @click='saoCode'>扫一扫</dd>
 	    		</dl>
@@ -70,7 +70,7 @@
 				msgBoyImg: true,
 				toggle:false,
 				gender:'M',
-				code:'916020196',
+				code:'',
 				name:'',
 				phone:'',
 				bindDateList:[],
@@ -130,9 +130,9 @@
                 		this.params ={
 					    	code:this.code,
 					    	name:this.name,
-				    		gander:this.gender,
+				    		gender:this.gender,
 				    		birthday:this.birthday,
-				    		phone:this.phone
+				    		telephone:this.phone
 		    			}
                 	}else{
                 		Toast({

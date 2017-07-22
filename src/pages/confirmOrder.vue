@@ -96,12 +96,6 @@
 							<input type="text" placeholder="如街道，楼层，门牌号等" v-model='address' name='address'/>
 						</dd>
 					</dl>
-					<dl>
-						<dt>邮政编码</dt>
-						<dd>
-							<input type="number" placeholder="邮政编码（选填）"  v-model='postCode' name='postCode'/>
-						</dd>
-					</dl>
 					<div class="address-btn preserve" @click='reserve'>保存</div>
 				</div>
 			</div>
@@ -153,13 +147,7 @@
 						<dd>
 							<input type="text" placeholder="如街道，楼层，门牌号等" v-model='editAddressArr.address'/>
 						</dd>
-					</dl>
-					<dl>
-						<dt>邮政编码</dt>
-						<dd>
-							<input type="number" placeholder="邮政编码（选填）" v-model='editAddressArr.postCode'/>
-						</dd>
-					</dl>					
+					</dl>				
 					<div class="address-btn preserve" @click='reserve1'>保存</div>
 				</div>
 			</div>
@@ -187,7 +175,6 @@ export default {
   		name:'',
   	  phone:'',
   	  address:'',
-  	  postCode:'',
   	  confirmHidden: false,
   	  confirmToastHidden: false,
  			count:0,
@@ -200,7 +187,6 @@ export default {
 	  	  selectAdd:'',
 	  	  getAdd:[],
 	  	  address:'',
-	  	  postCode:''
  			},
  			editAddressArr:{
  				name:'',
@@ -208,7 +194,6 @@ export default {
 	  	  selectAdd:'',
 	  	  getAdd:[],
 	  	  address:'',
-	  	  postCode:''
  			},
  			selectAddress:[],
  			price:{
@@ -284,8 +269,7 @@ export default {
         	phone: this.phone,
         	selectAdd: str,
         	getAdd:this.selectAddress,
-        	address: this.address,
-        	postCode: this.postCode
+        	address: this.address
         } 
         let rephone = /^1[3,4,5,7,8]\d{9}$/;	         
         	if(address.name!==''&&address.phone!==''){
@@ -349,8 +333,7 @@ export default {
         	phone: this.addressArr.phone,
         	selectAdd: str,
         	getAdd:this.selectAddress,
-        	address: this.addressArr.address,
-        	postCode: this.addressArr.postCode
+        	address: this.addressArr.address
      }	  	
 	  	var rephone = /^1[3,4,5,7,8]\d{9}$/;	
 	    	if(address1.name!==''&&address1.phone!==''){
@@ -775,7 +758,7 @@ export default {
 	top: 0;
 	z-index: 99;
 	.address-main{
-		height: rem(392rem);
+		height: rem(342rem);
 		background:#fff;
 		width: 100%;
 		position: absolute;
