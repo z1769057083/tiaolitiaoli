@@ -3,9 +3,9 @@
          <h3 class="title">六大高发癌症风险检测报告</h3>
          <div class="receive-main">
          	<div class="receive-name">
-	         	<p>样本编号:{{code}}</p>
+	         	<p>编号:{{code}}</p>
 	         	<p v-if='list.name'>姓名:{{list.name}}</p>
-	         	<p class="last">报告更新时期:{{time}}</p>
+	         	<p class="last">更新时期:{{time}}</p>
 	        </div>
         	<dl class="receive-mtit">
         		<dt>检测项目</dt>
