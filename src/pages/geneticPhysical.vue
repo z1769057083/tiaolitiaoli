@@ -110,6 +110,7 @@
     import Toast from '@/packages/toast'
     import axios from 'axios'
     import api from '../api/api'
+    import moment from 'moment'
     export default {
         data() {
             return {
@@ -130,7 +131,7 @@
         },
         filters: {
             filterTime(time){
-            	return time = time.substring(0,10)
+            	return time = moment(time).format('YYYY-MM-DD HH:mm:ss');
             }
         },
         methods: {
