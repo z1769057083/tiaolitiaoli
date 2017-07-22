@@ -116,6 +116,7 @@
                 params.userId=this.accountArr._id;
                 params.openid=this.accountArr.openid;
                 params.nickName=this.accountArr.nickname;
+                params.couponCode = this.couponCode;
                 let test = this.$route.query.test_pay;
                 if (test && test == 'true') {
                     params = {
@@ -125,8 +126,7 @@
                         totalNum:1,
                         userId: this.accountArr._id,
                         openid: this.accountArr.openid,
-                        nickName: this.accountArr.nickname,
-                        couponCode:this.couponCode
+                        nickName: this.accountArr.nickname
                     }
                 }
                 axios.post(api.payCoupon, params)
@@ -161,8 +161,7 @@
             document.title = '收银台'
         	if(window.localStorage.getItem('orderArr')){
         		this.arr = JSON.parse(window.localStorage.getItem('orderArr'));
-        		console.log(this.arr)
-        		this.arr2 = this.arr.order
+        		this.arr2 = this.arr.order[0]
                 this.totalCount = this.arr.price
                 if (this.arr2.id === 1&&this.totalCount===0) {
                     this.codeHidden = true
