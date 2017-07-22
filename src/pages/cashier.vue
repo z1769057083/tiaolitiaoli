@@ -9,8 +9,8 @@
             <dl  v-if='!codeHidden'>
                 <dt><img src="../assets/cashierWechart.png"/></dt>
                 <dd>
-                    <p>微信支付</p>
-                    微信支付使用银行卡累计限制1000元
+                    <p class="wexinPay">微信支付</p>
+                    <!--微信支付使用银行卡累计限制1000元-->
                 </dd>
                 <dd class="check"></dd>
             </dl>
@@ -249,6 +249,10 @@
                         color: $c3c3c;
                         font-size: $font14;
                         margin-bottom: rem(8rem);
+                    }
+                    .wexinPay{
+                    	font-size: $font18;
+                    	line-height: rem(37rem);
                     }
                 }
                 .coupon{

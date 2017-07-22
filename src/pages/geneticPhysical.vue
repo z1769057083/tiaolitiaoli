@@ -1,6 +1,6 @@
 <template>
     <div class='genetic'>
-        <div class="genetic-main" v-if='orderList'>
+        <div class="genetic-main" v-if='orderList.length>=1'  :class="{'geneticDefault':orderDetailStepHidden}">
 	        <div class="genetic-center" v-for='(list,index) in orderList'>
 	        	<p class="genetic-name" @click='viewOrderStepDetail(index)'>
 	        		{{list.nickName}}
@@ -25,23 +25,28 @@
 	        		</li>
 	        		<li class="genetic-liRight">
 	        			<div class="liRightTitle" v-if='list.status==1||list.status==2'>	       				
-	        				<p>产品发货</p>
+	        				<p v-if='list.status==1' class="activeStep">产品发货</p>
+	        				<p v-else>产品发货</p>
 	        				<span>您购买的商品已寄出，请注意查收。</span>
 	        			</div>
-	        			<div class="liRightTitle" v-if='list.status==1||list.status==2||list.status==3'>	        				
-	        				<p>唾液采集</p>
+	        			<div class="liRightTitle" v-if='list.status==1||list.status==2||list.status==3'>	
+	        				<p v-if='list.status==2' class="activeStep">唾液采集</p>
+	        				<p v-else>唾液采集</p>
 	        				<span>您未进行唾液样本采集，请依照【唾液采集说明】，完成采集，并在2日内寄回指定地址。</span>
 	        			</div>
 	        			<div class="liRightTitle" v-if='list.status==3||list.status==4'>	        				
-	        				<p>回寄收货确认</p>
+	        				<p v-if='list.status==3' class="activeStep">回寄收货确认</p>
+	        				<p v-else>回寄收货确认</p>
 	        				<span>您的基因样本顺利到达基因检测中心。</span>
 	        			</div>
 	        			<div class="liRightTitle" v-if='list.status==5||list.status==4'>	        				
-	        				<p>样本检测</p>
+	        				<p v-if='list.status==4' class="activeStep">样本检测</p>
+	        				<p v-else>样本检测</p>
 	        				<span>请耐心等待3~5个工作日，检测结果将以微信形式推送到您的手机端，请注意查看。</span>
 	        			</div>
 	        			<div v-if='list.status==5' class="liRightTitle">	       				
-	        				<p>查看报告</p>
+	        				<p v-if='list.status==5' class="activeStep">查看报告</p>
+	        				<p v-else>查看报告</p>
 	        				<span>您的检测报告已出，请进入【调理调理】微信公众号，查看您的基因结果。</span>
 	        			</div>
 	        		</li>
@@ -195,7 +200,7 @@
 	   		}
         },
         mounted() {       	
-            document.title = '基因体质'
+            document.title = '我的基因'
             if (window.localStorage.getItem(Account_Index)) {
                 let account = JSON.parse(window.localStorage.getItem(Account_Index))
                 this.useId = account._id      
@@ -287,6 +292,7 @@
 					height: rem(92rem);
 					text-align: center;
 					color: #999;
+					font-size: $font13;
 					.liLeftCar{
 						width: rem(30rem);
 						height: rem(18rem);
@@ -346,7 +352,7 @@
 				}
 				.genetic-liRight{
 					overflow: hidden;
-					height: rem(92rem);
+					height: rem(98rem);
 					width: 72%;
 					.liRightTitle{
 						margin-top: rem(15rem);
@@ -354,11 +360,15 @@
 							font-size: $font14;
 							margin-bottom: rem(5rem);
 						}
+						.activeStep{
+							color: #1babe8;
+							font-size: $font15;
+						}
 						span{
 							color: #999;
 							width: 100%;
 							overflow: hidden;
-							font-size: $font12;
+							font-size: $font13;
 							text-overflow:ellipsis;
 							white-space:nowrap;
 							display: inline-block;
@@ -411,6 +421,9 @@
 	 		background: #f6f6f6;
 	 		font-size: $font13;
 	 	}
+	}
+	.geneticDefault{
+		height: 100%;
 	}
 	.mask{
 		width: 100%;

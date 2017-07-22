@@ -10,7 +10,7 @@
 	    		<dl>
 	    			<dt>样本编码:</dt>
 	    			<dd>
-	    				<input type="text" name='code' v-model='code'/>
+	    				<input type="text" name='code' disabled="true" v-model='code'/>
 	    			</dd>
 	    			<dd class="saoCode" @click='saoCode'>扫一扫</dd>
 	    		</dl>
