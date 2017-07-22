@@ -382,6 +382,10 @@ export default {
 	        this.submitArr.push(this.arr)
 	        this.submitArr.push(this.addressArr)
 	        this.submitArr.push(this.price)
+	        this.submitArr.addrss=this.addressArr
+	        if(this.arr[0].id==1){
+	        	this.submitArr.push({type:'gene'})
+	        }
 	        var orderArr= JSON.stringify(this.submitArr) 
 	        console.log(orderArr)
 	        storage.setItem("orderArr", orderArr)
