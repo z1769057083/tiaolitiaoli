@@ -1,6 +1,6 @@
 <template>
     <div class='genetic'>
-        <div class="genetic-main" v-if='orderList'>
+        <div class="genetic-main" v-if='orderList.length>=1'>
 	        <div class="genetic-center" v-for='(list,index) in orderList'>
 	        	<p class="genetic-name" @click='viewOrderStepDetail(index)'>
 	        		{{list.nickName}}
