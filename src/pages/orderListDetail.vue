@@ -59,7 +59,7 @@ export default {
   		apiPath:'',
   		orderList:[],
   		addressObj:{},
-  		submitArr:[],
+  		submitArr:{},
   		price:{
 			price: 0
 		},
@@ -103,10 +103,13 @@ export default {
 		    return false;
 		}else {
 	        let storage = window.localStorage
-        	this.price.price = this.orderList.price
-	        this.submitArr.push(this.orderList.order)
-	        this.submitArr.push(this.orderList.address)
-	        this.submitArr.push(this.price)
+        	this.submitArr.order = this.orderList.order
+	        this.submitArr.address = this.orderList.address
+	        this.submitArr.price = this.orderList.price
+	        this.submitArr.totalNum = this.orderList.totalNum
+	        if(this.orderList.order[0].id == 1){
+	        	this.submitArr.type = 'gene'
+	        }
         	var orderArr= JSON.stringify(this.submitArr)
         	storage.setItem("orderArr", orderArr)
         }	        

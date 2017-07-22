@@ -72,7 +72,6 @@ import Toast from '@/packages/toast'
  			arr:[],
  			toastHidden:false,
  			readyToDelIndex:-1,
- 			orderArr:[],
  			apiPath:'',
  			num:1,
  			numHidden:true,

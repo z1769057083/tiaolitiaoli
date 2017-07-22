@@ -74,15 +74,10 @@
                         this.accountArr = account
                     }
                 }
-                let params = {
-                    order: this.arr[0],
-                    address: this.arr[1],
-                    price: this.arr[2].price,
-                    totalNum:this.arr[2].totalNum,
-                    userId: this.accountArr._id,
-                    openid: this.accountArr.openid,
-                    nickName: this.accountArr.nickname
-                }
+                let params = this.arr
+                params.userId=this.accountArr._id;
+                params.openid=this.accountArr.openid;
+                params.nickName=this.accountArr.nickname;
                 let test = this.$route.query.test_pay;
                 if (test && test == 'true') {
                     params = {
@@ -117,16 +112,10 @@
                         this.accountArr = account
                     }
                 }
-                let params = {
-                    order: this.arr[0],
-                    address: this.arr[1],
-                    price: this.arr[2].price,
-                    totalNum:this.arr[2].totalNum,
-                    userId: this.accountArr._id,
-                    openid: this.accountArr.openid,
-                    nickName: this.accountArr.nickname,
-                    couponCode:this.couponCode
-                }
+                let params = this.arr
+                params.userId=this.accountArr._id;
+                params.openid=this.accountArr.openid;
+                params.nickName=this.accountArr.nickname;
                 let test = this.$route.query.test_pay;
                 if (test && test == 'true') {
                     params = {
@@ -143,7 +132,8 @@
                 axios.post(api.payCoupon, params)
                     .then(function (res) {
                     	console.log(res)
-                        if (res.data.errorCode == 0) {                       	
+                        if (res.data.errorCode == 0) { 
+                        	console.log(res)
             				that.$router.push({path:'/successPayment'})                            
                         }else{
                         	Toast({
@@ -171,8 +161,9 @@
             document.title = '收银台'
         	if(window.localStorage.getItem('orderArr')){
         		this.arr = JSON.parse(window.localStorage.getItem('orderArr'));
-        		this.arr2 = this.arr[0][0]
-                this.totalCount = this.arr[2].price
+        		console.log(this.arr)
+        		this.arr2 = this.arr.order
+                this.totalCount = this.arr.price
                 if (this.arr2.id === 1&&this.totalCount===0) {
                     this.codeHidden = true
                 }else{

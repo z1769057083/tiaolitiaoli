@@ -176,14 +176,6 @@
         },
         mounted() {
             document.title = "绑定样本"
-//          if(window.localStorage.getItem('genePay_key')){
-//          	let order = JSON.parse(window.localStorage.getItem('orderArr')) 
-//          	let orderGeneId = order[0][0].id
-//          	if(orderGeneId!==1){
-//          		console.log(111)
-//          	}
-//          	
-//          }
         }
     }
 </script>

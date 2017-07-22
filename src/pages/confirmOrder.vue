@@ -200,7 +200,7 @@ export default {
  				price:0,
  				totalNum:0
  			},
- 			submitArr:[],
+ 			submitArr:{},
  			apiPath:'',
  			fare:12,
  			geneProduct:false,
@@ -379,12 +379,14 @@ export default {
 			    return false;
 			  } else {
 	        let storage = window.localStorage
-	        this.submitArr.push(this.arr)
-	        this.submitArr.push(this.addressArr)
-	        this.submitArr.push(this.price)
+	        this.submitArr.order = this.arr;
+	        this.submitArr.address = this.addressArr;
+	        this.submitArr.price = this.price.price;
+	        this.submitArr.totalNum = this.price.totalNum
 	        if(this.arr[0].id==1){
-	        	this.submitArr.push({type:'gene'})
+	        	this.submitArr.type = 'gene'
 	        }
+	        console.log(this.submitArr)
 	        var orderArr= JSON.stringify(this.submitArr) 
 	        console.log(orderArr)
 	        storage.setItem("orderArr", orderArr)
