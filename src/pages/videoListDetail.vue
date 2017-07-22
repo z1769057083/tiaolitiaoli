@@ -2,7 +2,7 @@
     <div class="wrap-box">
         <div class="wrap">
             <h3 class="title">{{list.title}}</h3>
-            <video v-if='list.index' poster="../../static/images/defaultPicture.jpg"  width="100%" height="240" controls autobuffer :src="apiPath+'/video/'+videotype+'/'+list.index+'.mp4'">
+            <video v-if='list.index' poster="../../static/images/videoDefault.png"  width="100%" height="240" controls autobuffer :src="apiPath+'/video/'+videotype+'/'+list.index+'.mp4'">
             </video>
             <p class="content">
                 {{list.description}}
