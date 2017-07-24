@@ -62,7 +62,7 @@
 				list:[],
 				useId:'',
 				apiPath:'',
-				submitArr:[],
+				submitArr:{},
 				price:{
 	 				price: 0
 	 			},
@@ -142,11 +142,15 @@
 			    return false;
 			}else {
 		        let storage = window.localStorage
-	        	this.price.price = this.list[index].price
-		        this.submitArr.push(this.list[index].order)
-		        this.submitArr.push(this.list[index].address)
-		        this.submitArr.push(this.price)
+		        this.submitArr.order = this.list[index].order
+		        this.submitArr.address = this.list[index].address
+		        this.submitArr.price = this.list[index].price
+		        this.submitArr.totalNum = this.list[index].totalNum
+		        if(this.list[index].order[0].id == 1){
+		        	this.submitArr.type = 'gene'
+		        }
 	        	var orderArr= JSON.stringify(this.submitArr)
+	        	console.log(orderArr)
 	        	storage.setItem("orderArr", orderArr)
 	        }	        
            	this.$router.push({ path: '/cashier'})

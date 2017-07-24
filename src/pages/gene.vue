@@ -197,8 +197,7 @@
 		            'img': '../../static/images/geneProduct.jpg',
 		            'name': '六大肿瘤基因检测',
 		            'price': '680',
-		            'num': 1,
-		            'type':'gene'
+		            'num': 1
 		          }
 		          this.nowArr.push(shop1);
 		          var obj_arr1 = JSON.stringify(this.nowArr)
