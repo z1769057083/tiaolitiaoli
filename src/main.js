@@ -19,6 +19,16 @@ Vue.use(VueRouter)
 Vue.use(MintUI)
 Vue.use(Loading)
 Vue.config.productionTip = false
+
+Vue.filter('floatToPercentage', function(float) {
+    if(typeof(float)!=='undefined'){
+        return  parseInt(float*100);
+    }
+    else {
+        return 0;
+    }
+})
+
 axios.interceptors.request.use(function(config) { //配置发送请求的信息
     store.dispatch('showLoading');
     return config;
