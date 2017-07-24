@@ -151,6 +151,11 @@
 			      });
 			        return;
             	}
+            	let user=localStorage.getItem(global.Account_Index);
+                if(user){
+                    let userJson=JSON.parse(user);
+                    this.params.userId=userJson._id;
+				}
 			    
 			    axios.post(api.bindUser, this.params)
                     .then(function (res) {
