@@ -1,6 +1,7 @@
 <template>
-    <div class='genetic'>
-        <div class="genetic-main" v-if='orderList.length>=1'  :class="{'geneticDefault':orderDetailStepHidden}">
+<div>
+    <div class='genetic' v-if='geneticHidden'>
+        <div class="genetic-main" :class="{'geneticDefault':orderDetailStepHidden}">
 	        <div class="genetic-center" v-for='(list,index) in orderList'>
 	        	<p class="genetic-name" @click='viewOrderStepDetail(index)'>
 	        		{{list.nickName}}
@@ -55,15 +56,7 @@
 	        	<p class="geneticReport" v-else><span>我的基因报告</span></p>
 	        </div>
 	        <div v-if='orderList.length>=1' class="s-mrecombottom">没有更多了</div>
-        </div>
-        <div class="null-genetic" v-else>
-    		<img src="../assets/orderListNull.png"/>
-    		<p>您还没有任何检测结果</p>
-    		<div class="nullGene-btn">
-    			<p @click='bindBarCode'>绑定唾液采集器</p>
-    			<p @click='payGeneNow' class="payGene">前去购买</p>
-    		</div>
-    	</div>       
+        </div>      
         <div class="mask" v-if='orderDetailStepHidden'>
         	<div class='mask-main'>
         		<div class="mask-top">
@@ -105,6 +98,15 @@
         	<img class="close" @click='closeOrderDetailStep' src="../assets/geneticPhysicalClose.png"/>
         </div>
     </div>
+    <div class="null-genetic" v-if='!geneticHidden'>
+		<img src="../assets/orderListNull.png"/>
+		<p>您还没有任何检测结果</p>
+		<div class="nullGene-btn">
+			<p @click='bindBarCode'>绑定唾液采集器</p>
+			<p @click='payGeneNow' class="payGene">前去购买</p>
+		</div>
+	</div>
+</div>
 </template>
 <script>
     import Toast from '@/packages/toast'
@@ -126,7 +128,8 @@
               cleftNow3: false,
               cleftdot4:false,
               cleftNow4: false,
-              orderDetailStepHidden: false
+              orderDetailStepHidden: false,
+              geneticHidden: true
             }
         },
         filters: {
@@ -182,8 +185,14 @@
 		            .then(function (res) {                   	
 		                if (res.data.errorCode == 0) {
 	            			res = res.data.returnValue
-		                	that.orderList = res
-			                console.log(that.orderList)
+		                	that.orderList = res		                	
+		                	console.log(that.orderList)
+		                	if(that.orderList.length>=1){
+		                		that.geneticHidden = true
+		                	}else{
+		                		that.geneticHidden = false
+		                	}
+		                	
 			            }
 		            })
 	   		},
@@ -205,60 +214,60 @@
             if (window.localStorage.getItem(Account_Index)) {
                 let account = JSON.parse(window.localStorage.getItem(Account_Index))
                 this.useId = account._id      
-                console.log(this.useId)
             }
             this.geneOrderListStatus()
         }
     }
 </script>
 <style scoped lang="scss" rel="stylesheet/scss">
-    @import "../common/common.scss";
+    @import "../common/common.scss";	
+.null-genetic{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	text-align: center;
+	font-size: $font14;
+	color: #999;
+	background: #f6f6f6;
+	img{
+		width: rem(70rem);
+		height: rem(94rem);
+		margin-top: rem(100rem);
+		margin-bottom: rem(24rem);
+	}
+	.nullGene-btn{
+		width: 100%;
+		overflow: hidden;
+		margin-top: rem(20rem);
+		p{
+			width: rem(118rem);
+			height: rem(36rem);
+			float: left;
+			border: 1px solid #999;
+			text-align: center;
+			line-height: rem(36rem);
+			color: #3c3c3c;
+			font-size: $font14;
+			border-radius: rem(3rem);
+			margin-left: 14%;
+		}
+		.payGene{
+			width: rem(120rem);
+			height: rem(38rem);
+			line-height: rem(38rem);
+			color: #fff;
+			background: #f08300;
+			border: 0;
+			margin-left: 7%;
+		}
+	}
+	
+}
 .genetic{
 	width: 100%;
 	height: 100%;
 	position: absolute;
 	background: #F6F6F6;
-	.null-genetic{
-		width: 100%;
-		height: 100%;
-		position: absolute;
-		text-align: center;
-		font-size: $font14;
-		color: #999;
-		img{
-			width: rem(70rem);
-			height: rem(94rem);
-			margin-top: rem(100rem);
-			margin-bottom: rem(24rem);
-		}
-		.nullGene-btn{
-			width: 100%;
-			overflow: hidden;
-			margin-top: rem(20rem);
-			p{
-				width: rem(118rem);
-				height: rem(36rem);
-				float: left;
-				border: 1px solid #999;
-				text-align: center;
-				line-height: rem(36rem);
-				color: #3c3c3c;
-				font-size: $font14;
-				border-radius: rem(3rem);
-				margin-left: 14%;
-			}
-			.payGene{
-				width: rem(120rem);
-				height: rem(38rem);
-				line-height: rem(38rem);
-				color: #fff;
-				background: #f08300;
-				border: 0;
-				margin-left: 7%;
-			}
-		}
-		
-	}
 	.genetic-main{
 		width: 100%;
 		overflow: hidden;
@@ -356,10 +365,10 @@
 					height: rem(98rem);
 					width: 72%;
 					.liRightTitle{
-						margin-top: rem(15rem);
+						margin-top: rem(13rem);
 						p{
 							font-size: $font14;
-							margin-bottom: rem(5rem);
+							line-height: rem(18rem);
 						}
 						.activeStep{
 							color: #1babe8;
@@ -373,6 +382,7 @@
 							text-overflow:ellipsis;
 							white-space:nowrap;
 							display: inline-block;
+							line-height: rem(18rem);
 							
 						}
 					}
@@ -437,7 +447,7 @@
 			background: #fff;
 			height: rem(410rem);
 			border-radius: rem(8rem);
-			margin-top: rem(80rem);
+			margin-top: rem(50rem);
 			overflow: hidden;
 			.mask-top{
 				width: 100%;

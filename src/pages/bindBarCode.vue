@@ -70,7 +70,7 @@
 				msgBoyImg: true,
 				toggle:false,
 				gender:'M',
-				code:'',
+				code:'916020203',
 				name:'',
 				phone:'',
 				bindDateList:[],
@@ -115,6 +115,7 @@
 	                        var tempArray = url.split(',');
 	                        var tempNum = tempArray[1];
 	                        that.code = tempNum
+	                        bindUserData()
 	                    }else{
 	                    	that.code = url	                       
 	                    }
@@ -157,9 +158,12 @@
                     	console.log(res)
                         if (res.data.errorCode == 0) {
                             that.bindDateList = res.config
+                            Toast({
+		                        message: '样本绑定成功',
+		                        position: 'top',
+		                        duration: 1500
+		                    })
                             that.$router.push({path:'/geneticPhysical',query: {type:'gene' }})
-//                          console.log(that.bindDateList)
-                            console.log(11111)
                         }else if(res.data.errorCode == 2&&res.data.errorReason=='qrCode_invalid'){
                         	console.log(11111)
                         	Toast({
@@ -176,6 +180,7 @@
         },
         mounted() {
             document.title = "绑定样本"
+            
         }
     }
 </script>

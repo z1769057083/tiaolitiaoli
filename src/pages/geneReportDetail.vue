@@ -13,7 +13,7 @@
         <div v-if="geneDetailList.riskLevel=='low'" class="detail-mcen">正常</div>
         <div v-if="geneDetailList.riskLevel=='middle'" class="detail-mcen detail-center">中度风险</div>
         <div v-if="geneDetailList.riskLevel=='high'" class="detail-mcen detail-high">高度风险</div>
-        <div v-else class="detail-mcen">&nbsp;</div>
+        <!--<div v-else class="detail-mcen">&nbsp;</div>-->
         <p class="detail-text">您的基因风险值高于</p>
         <p class="detail-text detail-text1"><span>{{geneDetailList.belowUserPercentage}}%</span>的人</p>
         <div class="geneReportBot">

@@ -17,8 +17,8 @@
             <dl v-if='codeHidden'>
                 <dt><img src="../assets/couponPay.png"/></dt>
                 <dd class="coupon">
-                    <p>使用优惠券</p>
-                    {{couponCode}}
+                    <p class="wexinPay">优惠券抵扣</p>
+                    <!--{{couponCode}}-->
                 </dd>
                 <dd class="check"></dd>
             </dl>

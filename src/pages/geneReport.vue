@@ -116,7 +116,7 @@
     export default {
         data() {
             return {
-				code:'',
+				code:'916020203',
 				list:{},
 				time:''
             }
@@ -124,7 +124,8 @@
         methods: {        	
         	geneReportRequest(){
         		var that = this
-        		this.code = this.$route.query.code;
+//      		this.code = this.$route.query.code;
+        		this.code = '916020203'
         		axios.get(api.geneReportData+this.code)
 		            .then(function (res) {                   	
 		                if (res.data.errorCode == 0) {
