@@ -10,10 +10,11 @@
         	<dd>{{section2}}</dd>
         </dl>
         <h3 class="title title1"><img src="../assets/geneReportTit.png" alt="" />{{disease_name}}检测结果</h3>
-        <div v-if="geneDetailList.riskLevel=='low'" class="detail-mcen">正常</div>
-        <div v-if="geneDetailList.riskLevel=='middle'" class="detail-mcen detail-center">中度风险</div>
-        <div v-if="geneDetailList.riskLevel=='high'" class="detail-mcen detail-high">高度风险</div>
-        <!--<div v-else class="detail-mcen">&nbsp;</div>-->
+        <div class="detail-risk">
+        	<div v-if="geneDetailList.riskLevel=='low'" class="detail-mcen">正常</div>
+	        <div v-if="geneDetailList.riskLevel=='middle'" class="detail-mcen detail-center">中度风险</div>
+	        <div v-if="geneDetailList.riskLevel=='high'" class="detail-mcen detail-high">高度风险</div>
+        </div>
         <p class="detail-text">您的基因风险值高于</p>
         <p class="detail-text detail-text1"><span>{{geneDetailList.belowUserPercentage}}%</span>的人</p>
         <div class="geneReportBot">
@@ -46,7 +47,7 @@
 		        		<p>{{items.gene_type}}</p>
 		        		<p v-if="items.risk===1">正常</p>
 		        		<p v-if="items.risk!==1">风险增加{{items.risk}}倍</p>
-		        		<p>{{items.id}}%</p>
+		        		<p>{{items.percentage}}%</p>
 		        	</li>
 	        	</template>
         	</ul>
@@ -162,17 +163,23 @@
 				text-align: justify;
 			}
 		}
-		.detail-mcen{
+		.detail-risk{
+			position: relative;
 			width: 28%;
 			margin-left: 36%;
+			height: rem(35rem);
+			border-radius: rem(20rem);			
+			margin-bottom: rem(30rem);
+		}
+		.detail-mcen{
+			width: 100%;
 			background: #55c740;
 			color: #fff;
 			height: rem(35rem);
 			text-align: center;
 			line-height: rem(35rem);
 			font-size: $font16;
-			border-radius: rem(20rem);
-			margin-bottom: rem(30rem);
+			border-radius: rem(20rem);			
 		}
 		.detail-center{			
 			background: #f9c72f;

@@ -70,7 +70,7 @@
 				msgBoyImg: true,
 				toggle:false,
 				gender:'M',
-				code:'916020203',
+				code:'916020201',
 				name:'',
 				phone:'',
 				bindDateList:[],
@@ -151,7 +151,7 @@
 			        duration:1000
 			      });
 			        return;
-            	}
+            }
 			    
 			    axios.post(api.bindUser, this.params)
                     .then(function (res) {
@@ -176,11 +176,27 @@
             },
             bindData(){
             	this.bindUserData()
+			},
+			isValidCouponRequest(){
+				axios.get(api.isValidCoupon+this.code)
+                    .then(function (res) {
+                    	console.log(res)
+                    	if(res.data.returnValue=='false'){
+                    		Toast({
+						        message: '无效的条形码',
+						        position:'top',
+						        duration: 3000
+						      });
+						      return;
+                    	}
+                    })
 			}
         },
         mounted() {
-            document.title = "绑定样本"
-            
+            document.title = "绑定样本";
+            if(this.code!==''){
+            	this.isValidCouponRequest()
+            }           
         }
     }
 </script>
