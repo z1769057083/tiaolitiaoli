@@ -209,7 +209,7 @@
 		          	'id':1,
 		            'img': '../../static/images/geneProduct.jpg',
 		            'name': '六大肿瘤基因检测',
-		            'price': this.countPrice,
+		            'price': 680,
 		            'num': this.num
 		          }
 		          this.nowArr.push(shop1);
@@ -257,7 +257,12 @@
         		this.maskCouponHidden = false
         		this.isUsedCouponStatus()
         	}
-        	this.countPrice = 680*this.num
+        	console.log(this.couponHidden)
+        	if(!this.couponHidden){        		
+        		this.countPrice = 680*(this.num-1)
+        	}else{
+        		this.countPrice = 680*this.num
+        	}
         }
 	}
 </script>

@@ -436,10 +436,9 @@ export default {
   	checkIfCodeIsUsed(isUsed){
   		this.useCoupon = !isUsed
 	  	if(isUsed==false){
-	  		this.price.totalNum = 1
-	  		this.price.price = 0
-	      this.count = this.arr[0].price 
-	      this.countPrice = this.arr[0].price
+	      this.count = this.arr[0].num * parseInt(this.arr[0].price)-680 
+	      this.countPrice = this.arr[0].num * parseInt(this.arr[0].price)-680
+	      this.price.price = this.countPrice
 	  	}else{
 	  		this.count += this.arr[0].num * parseInt(this.arr[0].price)
     		if(this.count>=300){
@@ -447,11 +446,12 @@ export default {
 						this.countPrice = this.count
 					}else{
 						this.fare = 12
-						this.countPrice = this.count + 12
+						this.countPrice = this.count + 12						
 					}
 					this.price.price = this.countPrice
-					this.price.totalNum = this.totalNum
 	    }
+	  	
+			this.price.totalNum = this.totalNum
 	  },
   	loadOrderToCheckCouponStatus(hasCoupon){
   		if(hasCoupon){
