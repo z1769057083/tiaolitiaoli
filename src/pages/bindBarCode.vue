@@ -70,7 +70,7 @@
 				msgBoyImg: true,
 				toggle:false,
 				gender:'M',
-				code:'916020201',
+				code:'',
 				name:'',
 				phone:'',
 				bindDateList:[],
