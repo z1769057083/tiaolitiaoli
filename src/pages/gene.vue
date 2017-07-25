@@ -146,7 +146,7 @@
         	isUsedCouponStatus(){
         		var that = this
         		axios.get(api.couponDetail+this.code)
-		            .then(function (res) {    
+		            .then(function (res) { 
 		                if (res.data.errorCode == 0) {
 							res = res.data.returnValue
 							that.couponHidden = !res.isUsed
@@ -165,11 +165,10 @@
 		        }
 				var that = this;
                 axios.get(api.getCoupon+'?userId='+that.useId+'&nickname='+that.nickname)
-                    .then(function (res) {
+                    .then(function (res) {                    	
                         if (res.data.errorCode == 0) {
                             res = res.data.returnValue;
-                            that.code = res.code
-                            console.log(res)
+                            that.code = res.code                           
                             that.couponHidden = true
                     window.localStorage.setItem('receiveCode',JSON.stringify(that.code))
                         }else if(res.data.errorCode == 7){

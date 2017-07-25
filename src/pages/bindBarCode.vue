@@ -75,7 +75,8 @@
 				phone:'',
 				bindDateList:[],
 				params:{},
-				result:''
+				result:'',
+				validCode:false
             }
         },
         methods: {
@@ -114,11 +115,11 @@
 	                    if(url.indexOf(",")>=0){
 	                        var tempArray = url.split(',');
 	                        var tempNum = tempArray[1];
-	                        that.code = tempNum
-	                        bindUserData()
+	                        that.code = tempNum	                      
 	                    }else{
-	                    	that.code = url	                       
+	                    	that.code = url		                    	
 	                    }
+	                      that.isValidCouponRequest()
 					}
 				});
             },
@@ -180,28 +181,35 @@
                     })
             },
             bindData(){
-            	this.bindUserData()
+            	if(this.validCode){
+            		this.bindUserData()
+            	}else{
+            		Toast({
+				        message: '无效的条形码',
+				        position:'top',
+				        duration: 3000
+				      });
+            	}
 			},
 			isValidCouponRequest(){
-				axios.get(api.isValidCoupon+this.code)
+				let that = this
+				if(this.code!==''){
+					axios.get(api.isValidCoupon+this.code)
                     .then(function (res) {
-                    	console.log(res)
-                    	if(res.data.returnValue=='false'){
+                    	that.validCode = res.data.returnValue=='false'
+                    	if(that.validCode){
                     		Toast({
 						        message: '无效的条形码',
 						        position:'top',
 						        duration: 3000
 						      });
-						      return;
                     	}
                     })
+				}				
 			}
         },
         mounted() {
-            document.title = "绑定样本";
-            if(this.code!==''){
-            	this.isValidCouponRequest()
-            }           
+            document.title = "绑定样本";          
         }
     }
 </script>
