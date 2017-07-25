@@ -24,6 +24,7 @@ module.exports = {
     articleList: apiPath + '/product/article?pageIndex=',
     articleDetails: apiPath + '/product/article_details?id=',
     myOrders: apiPath + '/order/my?userId=',
+    myGenes: apiPath + '/item/get_by_user?userId=',
     singleOrderList: apiPath + '/order/single?id=',
     cities: apiPath + '/data/cities.json',
     removeUser: apiPath + '/user/remove?id=',

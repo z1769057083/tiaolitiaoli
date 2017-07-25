@@ -5,7 +5,7 @@
 	        <div class="genetic-center" v-for='(list,index) in orderList'>
 	        	<p class="genetic-name" @click='viewOrderStepDetail(index)'>
 	        		{{list.nickName}}
-	        		<span v-if='list.itemQrCode'>{{list.itemQrCode}}</span> 
+	        		<span v-if='list.qrCode'>{{list.qrCode}}</span>
 	        		<span class="right">
 	        			{{list.createTime|filterTime}}
 	        		</span>
@@ -181,7 +181,7 @@
             geneOrderListStatus(){
 		        var that = this;
 		        this.type = this.$route.query.type;
-		        axios.get(api.myOrders+this.useId+'&type=gene')
+		        axios.get(api.myGenes+this.useId+'&type=gene')
 		            .then(function (res) {                   	
 		                if (res.data.errorCode == 0) {
 	            			res = res.data.returnValue
@@ -197,7 +197,7 @@
 		            })
 	   		},
 	   		viewGeneReport(index){
-	   			this.$router.push({path:'geneReport',query: { code:this.orderList[index].itemQrCode }})
+	   			this.$router.push({path:'geneReport',query: { code:this.orderList[index].qrCode }})
 	   		},
 	   		closeOrderDetailStep(){
 	   			this.orderDetailStepHidden = false
