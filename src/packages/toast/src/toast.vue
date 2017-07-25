@@ -91,6 +91,9 @@
           case 'bottom':
             classes.push('is-placebottom');
             break;
+          case 'center':
+            classes.push('is-placecenter');
+            break;
           default:
             classes.push('is-placemiddle');
         }

@@ -94,7 +94,7 @@
                 if (bir > nowYear) {
                     Toast({
                         message: '你的生日不可以晚于今天',
-                        position: 'top',
+                        position: 'center',
                         duration:1500
                     })
                     return;
@@ -139,7 +139,7 @@
                 	}else{
                 		Toast({
 					        message: '手机号码格式错误',
-					        position:'top',
+					        position:'center',
 					        duration:1000
 					      });
 					        return;
@@ -148,7 +148,7 @@
 			    } else {
 			    	Toast({
 			        message: '必填项不能为空',
-			        position:'top',
+			        position:'center',
 			        duration:1000
 			      });
 			        return;
@@ -166,17 +166,10 @@
                             that.bindDateList = res.config
                             Toast({
 		                        message: '样本绑定成功',
-		                        position: 'top',
+		                        position: 'center',
 		                        duration: 1500
 		                    })
                             that.$router.push({path:'/geneticPhysical',query: {type:'gene' }})
-                        }else if(res.data.errorCode == 2&&res.data.errorReason=='qrCode_invalid'){
-                        	console.log(11111)
-                        	Toast({
-						        message: '无效的条形码',
-						        position:'top',
-						        duration: 3000
-						      });
                         }
                     })
             },
@@ -186,7 +179,7 @@
             	}else{
             		Toast({
 				        message: '无效的条形码',
-				        position:'top',
+				        position:'center',
 				        duration: 3000
 				      });
             	}
@@ -198,9 +191,10 @@
                     .then(function (res) {
                     	that.validCode = res.data.returnValue=='true'
                     	if(!that.validCode){
+                    		that.code = ''
                     		Toast({
 						        message: '无效的条形码',
-						        position:'top',
+						        position:'center',
 						        duration: 3000
 						      });
                     	}

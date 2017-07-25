@@ -110,11 +110,23 @@
 	 		</div>
 	 	</div>
  		<div class="gene-pay">
- 			<div class="pay-coupon" v-if='couponHidden'>
- 				<span>合计:&nbsp;<b>¥0.00元</b></span>
- 				<p>总额&nbsp;¥680.00 &nbsp;立减:¥680.00(代金券) </p>
+ 			<div class="pay-coupon">
+ 				<span>合计:&nbsp;<b>¥{{countPrice}}.00元</b></span>
+ 				<p v-if='couponHidden'>总额&nbsp;¥680.00 &nbsp;立减:¥680.00(代金券) </p>
+ 				<p class="genePrice" v-if='!couponHidden'>¥680.00</p>
  			</div>
- 			<span class="pay-money" v-if='!couponHidden'>¥680.00</span>
+ 			<div class="pay-money" v-if='!couponHidden'>
+ 				
+ 			</div>
+ 			<div class="calculation" :class="{'calculationNow':!couponHidden}">
+ 				<div class="warpNum" @click='reduceNum'>
+ 					<p class="reduce">-</p>
+ 				</div>				
+				<span>{{num}}</span>
+				<div class="warpNum warpNum2"  @click='addNum'>
+ 					<p class="add">+</p>
+ 				</div>				
+			</div>
  			<div class="pay" @click="payClick">购买</div>
  		</div>
 	 	<div class="maskCoupon" v-if='maskCouponHidden'>
@@ -135,7 +147,9 @@
             	nowArr:[],
             	maskCouponHidden:true,
             	couponHidden:false,
-            	code:''
+            	code:'',
+            	num:1,
+            	countPrice:0
             }
        },
         methods: {
@@ -195,8 +209,8 @@
 		          	'id':1,
 		            'img': '../../static/images/geneProduct.jpg',
 		            'name': '六大肿瘤基因检测',
-		            'price': '680',
-		            'num': 1
+		            'price': this.countPrice,
+		            'num': this.num
 		          }
 		          this.nowArr.push(shop1);
 		          var obj_arr1 = JSON.stringify(this.nowArr)
@@ -204,6 +218,31 @@
 		        }
 		        this.$router.push({ path: '/confirmOrder', query: { routerId: 2 }})
            	},
+           	reduceNum(){
+		        if (this.num <= 1) {		        	
+		          this.num = 1
+		        } else {
+		          this.num--
+		        }
+		        if(this.couponHidden){
+	        		this.countPrice = 680*(this.num-1)
+	        	}else{
+	        		this.countPrice = 680*this.num
+	        	}
+		    },
+		    addNum(){
+		        if (this.num >= 2000) {
+		          this.num = 2000
+		        } else {
+		          this.num++
+		        }
+		        if(this.couponHidden){
+		        	console.log(this.num)
+	        		this.countPrice = 680*(this.num-1)
+	        	}else{
+	        		this.countPrice = 680*this.num
+	        	}
+		    },
            	closeCouponUse(){
            		this.maskCouponHidden = false
            	}
@@ -218,6 +257,7 @@
         		this.maskCouponHidden = false
         		this.isUsedCouponStatus()
         	}
+        	this.countPrice = 680*this.num
         }
 	}
 </script>
@@ -227,6 +267,7 @@
 	width: 100%;
 	position: absolute;
 	overflow: hidden;
+	padding-bottom: rem(20rem);
 	.d-title{
 		color: #00a0e9;
 		font-size: rem(26rem);
@@ -595,11 +636,12 @@
 }
 .gene-pay{
 	width: 100%;
-	height: rem(50rem);
-	border-top: 1px solid #EDEDED;
+	height: rem(60rem);
+	/*border-top: 1px solid #EDEDED;*/
 	position: fixed;
 	bottom: 0;
 	left: 0;
+	right: 0;
 	background: #fff;
 	.pay-coupon{
 		float: left;
@@ -608,7 +650,7 @@
 		span{						
 			color: #3C3C3C;
 			font-size: $font16;
-			line-height: rem(26rem);
+			line-height: rem(32rem);
 			b{
 				color: #ff3300;
 				font-weight: normal;
@@ -617,24 +659,61 @@
 		p{
 			font-size: $font12;
 			color: #999;
+			padding-top: rem(5rem);
+		}
+		.genePrice{
+			color: #3C3C3C;
+			font-size: $font13;			
+			padding-top: rem(3rem);
 		}
 	}
-	.pay-money{
-		float: left;
-		margin-left: 3%;
-		color: #3C3C3C;
-		font-size: $font16;
-		line-height: rem(50rem);
+	.calculation{
+		width: 20%;
+		height: rem(60rem);	
+		position: absolute;
+		left: 50%;
+		top: 0;
+		bottom: 0;
+		.warpNum{
+			width: 30%;
+			float: left;
+			height: rem(50rem);			
+			p{				
+				width: 100%;
+				height: rem(20rem);
+				border: 1px solid #DCDCDC;
+				font-size: $font16;
+				text-align: center;
+				line-height: rem(20rem);
+				font-weight: bold;
+				color: #999;
+				margin-top: rem(8rem);
+			}
+		}
+		.warpNum2{
+			float: right;
+		}
+		span{
+			display: block;
+			width: 40%;
+			float: left;
+			height: rem(18rem);
+			line-height: rem(19rem);
+			text-align: center;
+			color: #3C3C3C;
+			font-size: $font14;
+			margin-top: rem(10rem);
+		}
 	}
 	.pay{
 		font-size: $font16;
 		background: #f08300;
-		width: 29%;
+		width: 26%;
 		float: right;
-		height: rem(50rem);
+		height: rem(60rem);
 		color: #fff;
 		text-align: center;
-		line-height: rem(50rem);
+		line-height: rem(60rem);
 	}
 }
 .maskCoupon{

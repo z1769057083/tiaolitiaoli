@@ -4,17 +4,16 @@
 			<div class="payment-top">
 				<img class="payment-topImg" src="../assets/paymentTop.png" alt="" />
 				<p>支付成功</p>
-				<span>我们会在2-3个工作日给您发货！</span>
+				<span>获得更多产品服务，关注调理调理公众号！</span>
+				<div class="payment-btn">
+					关注公众号
+				</div>
 			</div>
-			<div class="payment-center" @click='physicalTest'>
-				<img class="payment-centerLeft" src="../assets/paymentPhy.png" alt="" />
-				想了解自己的体质么？点这里
-				<img class="payment-centerRight" src="../assets/listadressright.png" alt="" />
-			</div>
+			<div class="payment-center" @click='physicalTest'></div>			
 			<div class="payment-main">
 				<h3>
 					<img class="left" src="../assets/paymentLike.png"/>
-					猜你喜欢
+					为你精选
 				</h3>
 				<div>
 					<dl @click='recommendClick(item,index)' class="s-mrecomlist" v-for='(item,index) in recommendList'>
@@ -122,44 +121,43 @@
 	    	.payment-top{
 	    		width: 100%;
 				margin: rem(10rem) 0;
-				height: rem(155rem);
+				height: rem(176rem);
 				background: #fff;
 				text-align: center;
 				font-size: $font13;
 				.payment-topImg{
-					height: rem(66rem);
-					width: rem(60rem);
-					margin-top: rem(10rem);
+					height: rem(40rem);
+					width: rem(40rem);
+					margin-top: rem(20rem);
 				}
 				p{
-					font-size: $font16;
+					font-size: $font18;
 					color: #3c3c3c;
-					margin:rem(12rem) 0 rem(10rem) 0;
+					margin:rem(10rem) 0 rem(6rem) 0;
 				}
 				span{
 					color: #999;
+					line-height: rem(25rem);
+				}
+				.payment-btn{
+					width: 24%;
+					height: rem(26rem);
+					border: 1px solid #f5a623;
+					border-radius: rem(3rem);
+					text-align: center;
+					line-height: rem(26rem);
+					font-size: $font14;
+					color: #f5a623;
+					margin-top: rem(10rem);
+					margin-left: 38%;
 				}
 			}
 			.payment-center{
 				width: 96%;
-				padding: 0 2%;
-				height: rem(42rem);
-				background: #fff;
-				line-height: rem(42rem);
-				font-size: $font14;
-				.payment-centerLeft{
-					width: rem(15rem);
-					height: rem(16rem);
-					float: left;
-					margin-top: rem(12rem);
-					margin-right: 2%;
-				}
-				.payment-centerRight{
-				  	width: 0.18rem;
-				  	height: 0.32rem;
-				  	float: right;
-				  	margin-top: rem(14rem);
-				}
+				margin: 0 2%;
+				height: rem(80rem);
+				background: url(../assets/successBackground.jpg);
+				background-size: 100%;
 			}
 			.payment-main{
 				width: 96%;
