@@ -196,8 +196,8 @@
 				if(this.code!==''){
 					axios.get(api.isValidCoupon+this.code)
                     .then(function (res) {
-                    	that.validCode = res.data.returnValue=='false'
-                    	if(that.validCode){
+                    	that.validCode = res.data.returnValue=='true'
+                    	if(!that.validCode){
                     		Toast({
 						        message: '无效的条形码',
 						        position:'top',
