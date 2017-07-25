@@ -115,6 +115,7 @@
 	                        var tempArray = url.split(',');
 	                        var tempNum = tempArray[1];
 	                        that.code = tempNum
+	                        bindUserData()
 	                    }else{
 	                    	that.code = url	                       
 	                    }
@@ -156,15 +157,18 @@
                     let userJson=JSON.parse(user);
                     this.params.userId=userJson._id;
 				}
-			    
+
 			    axios.post(api.bindUser, this.params)
                     .then(function (res) {
                     	console.log(res)
                         if (res.data.errorCode == 0) {
                             that.bindDateList = res.config
+                            Toast({
+		                        message: '样本绑定成功',
+		                        position: 'top',
+		                        duration: 1500
+		                    })
                             that.$router.push({path:'/geneticPhysical',query: {type:'gene' }})
-//                          console.log(that.bindDateList)
-                            console.log(11111)
                         }else if(res.data.errorCode == 2&&res.data.errorReason=='qrCode_invalid'){
                         	console.log(11111)
                         	Toast({
@@ -177,10 +181,27 @@
             },
             bindData(){
             	this.bindUserData()
+			},
+			isValidCouponRequest(){
+				axios.get(api.isValidCoupon+this.code)
+                    .then(function (res) {
+                    	console.log(res)
+                    	if(res.data.returnValue=='false'){
+                    		Toast({
+						        message: '无效的条形码',
+						        position:'top',
+						        duration: 3000
+						      });
+						      return;
+                    	}
+                    })
 			}
         },
         mounted() {
-            document.title = "绑定样本"
+            document.title = "绑定样本";
+            if(this.code!==''){
+            	this.isValidCouponRequest()
+            }           
         }
     }
 </script>

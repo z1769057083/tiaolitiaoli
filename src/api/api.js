@@ -35,5 +35,6 @@ module.exports = {
     geneReportData: apiPath + '/geneReport/get_report?code=',//基因报告
     geneDetailData: apiPath + '/geneReport/get_my_points?code=',//基因报告详情
     geneRecommendData: apiPath + '/product/geneRecommend',//基因推荐
+    isValidCoupon: apiPath + '/item/is_valid?code=',//判断二维码是否有效
     apipath:apiPath //发起请求向后台传订单数据 post
 }
