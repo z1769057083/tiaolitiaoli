@@ -40,6 +40,7 @@
                 accountArr: [],
                 totalCount: 0,
                 codeHidden: false,
+                couponWeixin: false,
                 couponCode:'',
                 couponDetailData:{}
             }
@@ -61,18 +62,12 @@
             requestCashier(){
                 let that = this
                 axios.defaults.headers['Content-Type'] = 'application/json';
-                if (!window.localStorage) {
-                    return false
-                } else {
-                    let storage = window.localStorage
-                    let obj_arr = storage.getItem('orderArr')
-                    let obj = JSON.parse(obj_arr)
-                    this.arr = obj
-                    console.log( this.arr)
-                    if (window.localStorage.getItem(Account_Index) !== null) {
-                        let account = JSON.parse(window.localStorage.getItem(Account_Index))
-                        this.accountArr = account
-                    }
+                if(window.localStorage.getItem('orderArr')){
+                	this.arr = JSON.parse(window.localStorage.getItem('orderArr'))
+                	console.log( this.arr)
+                }
+                if (window.localStorage.getItem(Account_Index) !== null) {
+                    this.accountArr = JSON.parse(window.localStorage.getItem(Account_Index))
                 }
                 let params = this.arr
                 params.userId=this.accountArr._id;
@@ -100,17 +95,12 @@
             couponCashier(){
             	let that = this
                 axios.defaults.headers['Content-Type'] = 'application/json';
-                if (!window.localStorage) {
-                    return false
-                } else {
-                    let storage = window.localStorage
-                    let obj_arr = storage.getItem('orderArr')
-                    let obj = JSON.parse(obj_arr)
-                    this.arr = obj
-                    if (window.localStorage.getItem(Account_Index) !== null) {
-                        let account = JSON.parse(window.localStorage.getItem(Account_Index))
-                        this.accountArr = account
-                    }
+                if(window.localStorage.getItem('orderArr')){
+                	this.arr = JSON.parse(window.localStorage.getItem('orderArr'))
+                }                   
+                if (window.localStorage.getItem(Account_Index) !== null) {
+                    let account = JSON.parse(window.localStorage.getItem(Account_Index))
+                    this.accountArr = account
                 }
                 let params = this.arr
                 params.userId=this.accountArr._id;
@@ -144,12 +134,49 @@
                         }
                     })                 
             },
+            couponWeiXinRequest(){
+            	let that = this
+                axios.defaults.headers['Content-Type'] = 'application/json';
+                if(window.localStorage.getItem('orderArr')){
+                	this.arr = JSON.parse(window.localStorage.getItem('orderArr'))
+                }                   
+                if (window.localStorage.getItem(Account_Index) !== null) {
+                    let account = JSON.parse(window.localStorage.getItem(Account_Index))
+                    this.accountArr = account
+                }
+                let params = this.arr
+                params.userId=this.accountArr._id;
+                params.openid=this.accountArr.openid;
+                params.nickName=this.accountArr.nickname;
+                params.couponCode = this.couponCode;
+                params.purchaseType = "couponAndWeChat";
+                let test = this.$route.query.test_pay;
+                if (test && test == 'true') {
+                    params = {
+                        order: {},
+                        address: 'test',
+                        price: 0.01,
+                        totalNum:1,
+                        userId: this.accountArr._id,
+                        openid: this.accountArr.openid,
+                        nickName: this.accountArr.nickname
+                    }
+                }
+                axios.post(api.couponWeiXinCashier, params)
+                    .then(function (res) {
+                        if (res.data.errorCode == 0) {                      	
+                            that.startUsingWechatPay(res.data.returnValue)
+                        }
+                    })    
+            },
             nowPay(){            	
             	if(this.codeHidden==false){
             		this.requestCashier()
             	}else if(this.codeHidden==true){            		
             		this.couponCashier()
-            	}                
+            	}else if(this.couponWeiXin==true){
+            		this.couponWeiXinRequest()
+            	}
             },
             change_active(index, event) {
                 this.toggle = index
@@ -165,9 +192,11 @@
                 this.totalCount = this.arr.price
                 if (this.arr2.id === 1&&this.totalCount===0) {
                     this.codeHidden = true
+                }else if(this.arr2.id === 1&&this.totalCount!==0){
+                	this.couponWeiXin = true
                 }else{
                 	this.codeHidden = false
-                }                             
+                }
         	}
            	if(window.localStorage.getItem('receiveCode')){
 	      		let receive = JSON.parse(window.localStorage.getItem('receiveCode'));		        				this.couponCode = receive

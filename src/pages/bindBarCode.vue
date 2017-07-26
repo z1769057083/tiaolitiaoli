@@ -39,7 +39,22 @@
 	    		<dl>
 	    			<dt>出生日期:</dt>
 	    			<dd>
-	    				<input type="date" min='1900-01-01' :class="{'activeDate': toggle}" class="m-selectdate" name='birthday' v-model='birthday' @change='change_date(birthday)'/>
+	    			<div class="page-datetime">		
+					    <div class="page-datetime-wrapper">
+					      <span v-if='dateHidden' class="selectDate"></span>
+					      <span v-if='!dateHidden'>{{birthday|fifTimeFun}}</span>
+					      <button @click="open('picker1')" ></button>					      
+					    </div>
+					    <datetime-picker
+					      ref="picker1"
+					      type="date"
+					      v-model="birthday"
+					      year-format="{value} 年"
+					      month-format="{value} 月"
+					      date-format="{value} 日"
+					      @confirm="handleChange">
+					    </datetime-picker>					    
+			        </div>     
 	    			</dd>
 	    		</dl>
 	    		<dl>
@@ -63,10 +78,13 @@
     import api from '../api/api'
     import Toast from '@/packages/toast'
     import wx from 'weixin-js-sdk'
+    import moment from 'moment'
+    import DatetimePicker from '@/packages/datetime-picker'
+    import noBounce from '../../static/inobounce'
     export default {
         data() {
             return {
-				birthday: "1990-01-01",
+				birthday: '1990-01-01',
 				msgBoyImg: true,
 				toggle:false,
 				gender:'M',
@@ -76,8 +94,17 @@
 				bindDateList:[],
 				params:{},
 				result:'',
-				validCode:false
+				validCode:false,
+				dateHidden:true
             }
+        },
+        components:{
+         	DatetimePicker
+        },
+         filters:{
+        	fifTimeFun(time){
+        		return time = moment(time).format('YYYY-MM-DD')
+        	} 
         },
         methods: {
 			change_active(gender) {
@@ -87,20 +114,6 @@
                     this.msgBoyImg = true
                 }
                 this.gender = gender
-            },
-            change_date(birthday){ 
-            	let  bir = new Date(birthday)
-                let  nowYear = new Date()
-                if (bir > nowYear) {
-                    Toast({
-                        message: '你的生日不可以晚于今天',
-                        position: 'top',
-                        duration:1500
-                    })
-                    return;
-                }
-                this.birthday = birthday
-                this.toggle = true                             
             },
             saoCode(){
             	var that = this;
@@ -128,6 +141,14 @@
                 axios.defaults.headers['Content-Type'] = 'application/json';
                 let rephone = /^1[3,4,5,7,8]\d{9}$/;
                 if (this.code!==''&&this.name!==''&&this.phone!=='') {
+                	if(this.dateHidden){
+                		Toast({
+					        message: '生日不能为空',
+					        position:'center',
+					        duration:1000
+					      });
+					        return;
+                	}
                 	if(rephone.test(this.phone)){
                 		this.params ={
 					    	code:this.code,
@@ -139,7 +160,7 @@
                 	}else{
                 		Toast({
 					        message: '手机号码格式错误',
-					        position:'top',
+					        position:'center',
 					        duration:1000
 					      });
 					        return;
@@ -148,7 +169,7 @@
 			    } else {
 			    	Toast({
 			        message: '必填项不能为空',
-			        position:'top',
+			        position:'center',
 			        duration:1000
 			      });
 			        return;
@@ -166,17 +187,10 @@
                             that.bindDateList = res.config
                             Toast({
 		                        message: '样本绑定成功',
-		                        position: 'top',
+		                        position: 'center',
 		                        duration: 1500
 		                    })
                             that.$router.push({path:'/geneticPhysical',query: {type:'gene' }})
-                        }else if(res.data.errorCode == 2&&res.data.errorReason=='qrCode_invalid'){
-                        	console.log(11111)
-                        	Toast({
-						        message: '无效的条形码',
-						        position:'top',
-						        duration: 3000
-						      });
                         }
                     })
             },
@@ -186,7 +200,7 @@
             	}else{
             		Toast({
 				        message: '无效的条形码',
-				        position:'top',
+				        position:'center',
 				        duration: 3000
 				      });
             	}
@@ -196,19 +210,37 @@
 				if(this.code!==''){
 					axios.get(api.isValidCoupon+this.code)
                     .then(function (res) {
-                    	that.validCode = res.data.returnValue=='false'
-                    	if(that.validCode){
+                    	that.validCode = res.data.returnValue=='true'
+                    	if(!that.validCode){
+                    		that.code = ''
                     		Toast({
 						        message: '无效的条形码',
-						        position:'top',
+						        position:'center',
 						        duration: 3000
 						      });
                     	}
                     })
 				}				
-			}
+			},
+			open(picker) {				
+		        this.$refs[picker].open();
+		        this.dateHidden = false
+		    },		
+		    handleChange(value){
+		    },
+		    isAndroid(){
+                let u = navigator.userAgent
+                if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) {//安卓手机
+                } else{//苹果手机
+                    noBounce.enable()
+                }
+            },
+        },
+        beforeDestroy(){
+            noBounce.disable();
         },
         mounted() {
+        	this.isAndroid()
             document.title = "绑定样本";          
         }
     }
@@ -219,17 +251,19 @@
 		width: 100%;
 		height: 100%;
 		position: absolute;
-		overflow: hidden;
 		background: url(../assets/indexbg.jpg) no-repeat;
     	background-size: 100% 100%;
     	.receive-wrap{
     		width: 86.6%;
     		margin-left: 6.7%;
     		margin-top: rem(20rem);
+    		position: absolute;
+    		background: url(../assets/indexbg.jpg) no-repeat;
+    		background-size: 100% 100%;
     		.receive-top{
     			width: 100%;
     			overflow: hidden;
-    			margin-bottom: rem(35rem);
+    			margin-bottom: rem(30rem);
     			img{
     				float: left;
     			}
@@ -269,6 +303,7 @@
     			dd{
     				width: 78%;
     				float: left;
+    				overflow: hidden;
     				input{
     					width: 78%;
     					border: 0;
@@ -312,6 +347,32 @@
 	    					margin-right: rem(24rem);
 	    				}
     				}
+    				.page-datetime{
+    					width: 100%;
+    					height: 100%;
+    					font-family: Arial;
+    					.page-datetime-wrapper{
+    						width: 100%;
+    						height: 100%;
+    						button{
+    							width: 100%;
+    							height: 100%;
+    							background: transparent;
+    							border: 0;
+    							position: absolute;
+    						}
+    						span{
+    							position: absolute;
+    							top: rem(25rem);
+    							font-size: $font13;
+    							letter-spacing: rem(1rem);
+    						}
+    						/*.selectDate{
+    							color: #999;
+    							font-size: $font12;
+    						}*/
+    					}
+    				}
     			}
     			.saoCode{
     				position: absolute;
@@ -331,7 +392,7 @@
     			width: 99%;
     			height: rem(74rem);
     			background: #fff;
-    			margin-top: rem(20rem);
+    			margin-top: rem(20rem);    			
     			border: 1px dashed #cecece;
     			padding: rem(12rem) 0;
     			text-align: center;
@@ -354,6 +415,7 @@
     			width: 100%;
     			height: rem(42rem);
     			margin-top: rem(20rem);
+    			margin-bottom: rem(20rem);
     		}
     	}
 	}
