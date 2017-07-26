@@ -14,7 +14,7 @@
 </template>
 
 <style lang="css">
-  @import "../../../src/style/var.css";
+  @import "../var.css";
 
   @component-namespace mint {
     @component datetime {
@@ -83,13 +83,13 @@
       startDate: {
         type: Date,
         default() {
-          return new Date(new Date().getFullYear() - 10, 0, 1);
+          return new Date(new Date().getFullYear() - 100, 0, 1);
         }
       },
       endDate: {
         type: Date,
         default() {
-          return new Date(new Date().getFullYear() + 10, 11, 31);
+          return new Date(new Date());
         }
       },
       startHour: {

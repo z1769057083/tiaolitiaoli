@@ -1581,6 +1581,12 @@ display: inline-block;
     -webkit-transform: translate(-50%, 0);
             transform: translate(-50%, 0)
 }
+.mint-toast.is-placecenter {
+    top: 130px;
+    left: 50%;
+    -webkit-transform: translate(-50%, -30%);
+            transform: translate(-50%, -30%)
+}
 .mint-toast-icon {
     display: block;
     text-align: center;

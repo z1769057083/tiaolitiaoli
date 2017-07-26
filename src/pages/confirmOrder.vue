@@ -45,7 +45,7 @@
     		<dt>代金券</dt>
     		<dd>
     			<p class="couponName">六大高发癌症代金券</p>
-    			<p class="couponReduce">立减&nbsp;&nbsp;¥{{reduceCount}}.00</p>
+    			<p class="couponReduce">立减&nbsp;&nbsp;¥680.00</p>
     		</dd>
     	</dl>
     	<dl v-if='!useCoupon'>
@@ -436,9 +436,9 @@ export default {
   	checkIfCodeIsUsed(isUsed){
   		this.useCoupon = !isUsed
 	  	if(isUsed==false){
-	  		this.price.totalNum = 1
-	  		this.price.price = 0
-	      this.count = 0	      	
+	      this.count = this.arr[0].num * parseInt(this.arr[0].price)-680 
+	      this.countPrice = this.arr[0].num * parseInt(this.arr[0].price)-680
+	      this.price.price = this.countPrice
 	  	}else{
 	  		this.count += this.arr[0].num * parseInt(this.arr[0].price)
     		if(this.count>=300){
@@ -446,11 +446,12 @@ export default {
 						this.countPrice = this.count
 					}else{
 						this.fare = 12
-						this.countPrice = this.count + 12
+						this.countPrice = this.count + 12						
 					}
 					this.price.price = this.countPrice
-					this.price.totalNum = this.totalNum
 	    }
+	  	
+			this.price.totalNum = this.totalNum
 	  },
   	loadOrderToCheckCouponStatus(hasCoupon){
   		if(hasCoupon){
@@ -500,11 +501,10 @@ export default {
   		//取直接购买的商品信息         	
         	let obj_arr = window.localStorage.getItem('genePay_Key')
 	        this.arr = JSON.parse(obj_arr)
-//	        console.log(this.arr)
+	        console.log(this.arr)
 	        this.geneProduct = true
 	        this.imgUrl = this.arr[0].img
 	        this.totalNum += this.arr[0].num	
-	        this.reduceCount = this.arr[0].num * parseInt(this.arr[0].price)
 					let hasCoupon = window.localStorage.getItem('receiveCode')!==null;
 					console.log(hasCoupon)
 					this.loadOrderToCheckCouponStatus(hasCoupon);
