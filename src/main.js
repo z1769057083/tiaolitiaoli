@@ -11,6 +11,7 @@ import './common/common.scss'
 import store from './store/'
 import Loading from './components/loading'
 import axios from 'axios'
+import Toast from '@/packages/toast'
 import moment from 'moment'
 import VueBus from 'vue-bus'
 import BScroll from 'better-scroll'
@@ -41,6 +42,9 @@ axios.interceptors.response.use(function(response) { //配置请求回来的信�
     return response;
 }, function(error) {
     store.dispatch('hideLoading');
+    if(error.response.status==404){
+        Toast('未授权的服务器地址');
+    }
     return Promise.reject(error);
 });
 /* eslint-disable no-new */
