@@ -4,10 +4,12 @@
 			<div class="payment-top">
 				<img class="payment-topImg" src="../assets/paymentTop.png" alt="" />
 				<p>支付成功</p>
-				<span>获得更多产品服务，关注调理调理公众号！</span>
-				<div class="payment-btn">
-					关注公众号
-				</div>
+				<span>获得更多产品服务，关注调理调理公众号！</span>	
+				<a href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU5MjA5NDUzMQ==&scene=110#wechat_redirect">
+					<div class="payment-btn">
+						关注公众号
+					</div>	
+				</a>				
 			</div>
 			<div class="payment-center" @click='physicalTest'></div>			
 			<div class="payment-main">
