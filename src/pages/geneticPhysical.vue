@@ -4,7 +4,7 @@
         <div class="genetic-main" :class="{'geneticDefault':orderDetailStepHidden}">
 	        <div class="genetic-center" v-for='(list,index) in orderList'>
 	        	<p class="genetic-name" @click='viewOrderStepDetail(index)'>
-	        		{{list.nickName}}
+	        		{{list.name}}
 	        		<span v-if='list.qrCode'>{{list.qrCode}}</span>
 	        		<span class="right">
 	        			{{list.createTime|filterTime}}
