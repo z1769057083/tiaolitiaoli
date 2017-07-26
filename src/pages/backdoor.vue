@@ -55,7 +55,7 @@
             }
         },
         mounted() {
-
+            document.title = "开发调试"
         }
     }
 </script>
