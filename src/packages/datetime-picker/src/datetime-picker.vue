@@ -1,6 +1,6 @@
 <template>
   <mt-popup v-model="visible" position="bottom" class="mint-datetime">
-    <picker
+    <mt-picker
       :slots="dateSlots"
       @change="onChange"
       :visible-item-count="visibleItemCount"
@@ -9,7 +9,7 @@
       show-toolbar>
       <span class="mint-datetime-action mint-datetime-cancel" @click="visible = false;$emit('cancel')">{{ cancelText }}</span>
       <span class="mint-datetime-action mint-datetime-confirm" @click="confirm">{{ confirmText }}</span>
-    </picker>
+    </mt-picker>
   </mt-popup>
 </template>
 
@@ -50,8 +50,8 @@
 
 <script type="text/babel">
 //  import picker from 'mint-ui/packages/picker/index.js';
-  import picker from '@/packages/picker';
-  import popup from '@/packages/popup/index.js';
+  import picker from 'mint-ui/packages/picker';
+  import popup from 'mint-ui/packages/popup/index.js';
   if (process.env.NODE_ENV === 'component') {
     require('mint-ui/packages/picker/style.css');
     require('mint-ui/packages/popup/style.css');
