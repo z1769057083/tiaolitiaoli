@@ -1,6 +1,6 @@
 import Vue from 'vue';
-import merge from 'mint-ui/src/utils/merge';
-import PopupManager from 'mint-ui/src/utils/popup/popup-manager';
+import merge from '@/packages/utils/merge';
+import PopupManager from '@/packages/utils/popup/popup-manager';
 
 let idSeed = 1;
 const transitions = [];

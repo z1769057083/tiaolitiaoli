@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { addClass, removeClass } from 'mint-ui/src/utils/dom';
+import { addClass, removeClass } from '@/packages/utils/dom';
 
 let hasModal = false;
 
