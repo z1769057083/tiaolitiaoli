@@ -14,34 +14,36 @@
 	        		<li class="genetic-liLeft">
 	        			<img class="liLeftCar" src="../assets/geneticCar.png" alt="" />
 	        			<p>当前进度</p>
-	        			<span class="liLeftRight">{{list.status}}/5</span>
+	        			<span v-if='list.status==2||list.status==3' class="liLeftRight">1/5</span>
+	        			<span v-if='list.status==4' class="liLeftRight">4/5</span>
+	        			<span v-if='list.status==5' class="liLeftRight">5/5</span>
 	        		</li>
 	        		<li class="genetic-liCenter">
 	        			<p class="liCenterLine"></p>
-	        			<span v-if='list.status==1' class="liCenterActive"></span>
+	        			<span v-if='list.status==2||list.status==3' class="liCenterActive"></span>
 	        			<span v-else></span>
-	        			<span v-if='list.status==1' class='liCenterbot liCenterDefult'></span>
+	        			<span v-if='list.status==2||list.status==3' class='liCenterbot liCenterDefult'></span>
 	        			<span v-else class="liCenterbot liCenterActive" ></span>
 	        			
 	        		</li>
 	        		<li class="genetic-liRight">
-	        			<div class="liRightTitle" v-if='list.status==1||list.status==2'>	       				
-	        				<p v-if='list.status==1' class="activeStep">产品发货</p>
+	        			<div class="liRightTitle" v-if='list.status==2||list.status==3'>	      				
+	        				<p v-if='list.status==2||list.status==3' class="activeStep">产品发货</p>
 	        				<p v-else>产品发货</p>
 	        				<span>您购买的商品已寄出，请注意查收。</span>
 	        			</div>
-	        			<div class="liRightTitle" v-if='list.status==1||list.status==2||list.status==3'>	
-	        				<p v-if='list.status==2' class="activeStep">唾液采集</p>
+	        			<div class="liRightTitle" v-if='list.status==2||list.status==3||list.status==31||list.status==4'>	
+	        				<p v-if='list.status==31' class="activeStep">唾液采集</p>
 	        				<p v-else>唾液采集</p>
 	        				<span>您未进行唾液样本采集，请依照【唾液采集说明】，完成采集，并在2日内寄回指定地址。</span>
 	        			</div>
-	        			<div class="liRightTitle" v-if='list.status==3||list.status==4'>	        				
-	        				<p v-if='list.status==3' class="activeStep">回寄收货确认</p>
+	        			<div class="liRightTitle" v-if='list.status==4||list.status==41'>	        				
+	        				<p v-if='list.status==4' class="activeStep">回寄收货确认</p>
 	        				<p v-else>回寄收货确认</p>
 	        				<span>您的基因样本顺利到达基因检测中心。</span>
 	        			</div>
-	        			<div class="liRightTitle" v-if='list.status==5||list.status==4'>	        				
-	        				<p v-if='list.status==4' class="activeStep">样本检测</p>
+	        			<div class="liRightTitle" v-if='list.status==5||list.status==41'>	        				
+	        				<p v-if='list.status==41' class="activeStep">样本检测</p>
 	        				<p v-else>样本检测</p>
 	        				<span>请耐心等待3~5个工作日，检测结果将以微信形式推送到您的手机端，请注意查看。</span>
 	        			</div>
@@ -140,22 +142,24 @@
         methods: {
         	viewOrderStepDetail(index){
         		this.orderDetailStepHidden = true
-        		if(this.orderList[index].status == 1){
+        		if(this.orderList[index].status == 2||this.orderList[index].status == 3){
                 	this.cleftNow = true
                 	this.step = 1
-                }else if(this.orderList[index].status == 2){
+                }
+        		else if(this.orderList[index].status == 31){
                 	this.cleftNow = false
                 	this.cleftdot = true
                 	this.cleftNow1 = true
                 	this.step = 2
-                }else if(this.orderList[index].status == 3){
+                }
+                else if(this.orderList[index].status == 4){
                 	this.cleftNow = false
                 	this.cleftdot = true
                 	this.cleftNow1 = false
                 	this.cleftdot1 = true
                 	this.cleftNow2 = true
                 	this.step = 3
-                }else if(this.orderList[index].status == 4){
+                }else if(this.orderList[index].status == 41){
                 	this.cleftNow = false
                 	this.cleftdot = true
                 	this.cleftNow1 = false
@@ -182,11 +186,11 @@
 		        var that = this;
 		        this.type = this.$route.query.type;
 		        axios.get(api.myGenes+this.useId+'&type=gene')
-		            .then(function (res) {                   	
+		            .then(function (res) { 
+		            	console.log(111)
 		                if (res.data.errorCode == 0) {
 	            			res = res.data.returnValue
 		                	that.orderList = res		                	
-		                	console.log(that.orderList)
 		                	if(that.orderList.length>=1){
 		                		that.geneticHidden = true
 		                	}else{

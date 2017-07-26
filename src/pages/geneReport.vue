@@ -113,6 +113,7 @@
 <script>
     import axios from 'axios'
     import api from '../api/api'
+    import Toast from '@/packages/toast'
     export default {
         data() {
             return {
@@ -125,14 +126,21 @@
         	geneReportRequest(){
         		var that = this
         		this.code = this.$route.query.code;
-        		axios.get(api.geneReportData+this.code)
-		            .then(function (res) {                   	
+        		axios.get(api.geneReportData+this.code)       		
+		            .then(function (res) {    
 		                if (res.data.errorCode == 0) {
 		            			res = res.data.returnValue
 				                that.list = res
 				                that.time = that.list.updatedTime.substring(0,10)
 				                console.log(that.list)			    
-			            	}
+		            	}else if(res.data.errorCode == 2){
+		            		Toast({
+						        message: '报告不存在',
+						        position:'center',
+						        duration:1000
+						      });
+						        return;
+		            	}
 		            })
         	},
 			detailClick(){
