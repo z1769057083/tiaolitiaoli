@@ -88,6 +88,7 @@
 				msgBoyImg: true,
 				toggle:false,
 				gender:'M',
+				codeResult:'',
 				code:'',
 				name:'',
 				phone:'',
@@ -96,6 +97,7 @@
 				result:'',
 				validCode:false,
 				dateHidden:true
+				
             }
         },
         components:{
@@ -128,9 +130,9 @@
 	                    if(url.indexOf(",")>=0){
 	                        var tempArray = url.split(',');
 	                        var tempNum = tempArray[1];
-	                        that.code = tempNum	                      
+	                        that.codeResult = tempNum	                      
 	                    }else{
-	                    	that.code = url		                    	
+	                    	that.codeResult = url		                    	
 	                    }
 	                      that.isValidCouponRequest()
 					}
@@ -207,17 +209,18 @@
 			},
 			isValidCouponRequest(){
 				let that = this
-				if(this.code!==''){
-					axios.get(api.isValidCoupon+this.code)
+				if(this.codeResult!==''){
+					axios.get(api.isValidCoupon+this.codeResult)
                     .then(function (res) {
                     	that.validCode = res.data.returnValue=='true'
                     	if(!that.validCode){
-                    		that.code = ''
                     		Toast({
 						        message: '无效的条形码',
 						        position:'center',
 						        duration: 3000
 						      });
+                    	}else{
+                    		that.code = that.codeResult;
                     	}
                     })
 				}				
