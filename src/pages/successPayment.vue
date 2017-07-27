@@ -7,7 +7,7 @@
 				<span>获得更多产品服务，关注调理调理公众号！</span>	
 				<a href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU5MjA5NDUzMQ==&scene=110#wechat_redirect">
 					<div class="payment-btn">
-						关注公众号
+						
 					</div>	
 				</a>				
 			</div>
@@ -143,15 +143,12 @@
 				}
 				.payment-btn{
 					width: 24%;
-					height: rem(26rem);
-					border: 1px solid #f5a623;
-					border-radius: rem(3rem);
-					text-align: center;
-					line-height: rem(26rem);
-					font-size: $font14;
-					color: #f5a623;
+					height: rem(28rem);					
+					border-radius: rem(3rem);			
 					margin-top: rem(10rem);
 					margin-left: 38%;
+					background: url(../assets/successPatmentBtn.png) no-repeat center;
+					background-size: 100%;
 				}
 			}
 			.payment-center{

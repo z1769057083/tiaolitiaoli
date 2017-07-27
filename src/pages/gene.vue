@@ -164,6 +164,12 @@
 		                if (res.data.errorCode == 0) {
 							res = res.data.returnValue
 							that.couponHidden = !res.isUsed
+							console.log(that.couponHidden)
+							if(that.couponHidden){								
+				        		that.countPrice = 0
+				        }else{
+				        		that.countPrice = 680
+				        	}
 			      	}})  
         	},
         	getCouponRequest(){
@@ -256,12 +262,6 @@
         		this.code = coupon
         		this.maskCouponHidden = false
         		this.isUsedCouponStatus()
-        	}
-        	console.log(this.couponHidden)
-        	if(!this.couponHidden){        		
-        		this.countPrice = 680*(this.num-1)
-        	}else{
-        		this.countPrice = 680*this.num
         	}
         }
 	}
